@@ -90,7 +90,7 @@ void zos_splash(uint8_t *px, int w, int h, int step) {
     text(&f, &font_semibold, px0 + (pw - text_width(&font_semibold, "zOS")) / 2, py0 + 5, "zOS", WHITE);
 
     text(&f, &font_thin, px0 + (pw - text_width(&font_thin, "zOS")) / 2, py0 + 34, "zOS", BLACK);
-    const char *tag = "a verified foundation for agents";
+    const char *tag = "Bare minimum. Verified. Real-time. An OS for the AI era.";
     text(&f, &font_regular, px0 + (pw - text_width(&font_regular, tag)) / 2, py0 + 118, tag, DARK);
 
     const int bx = px0 + 24, by = py0 + 150, bw = pw - 48, bh = NPARTS * 20 + 16;

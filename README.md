@@ -1,6 +1,8 @@
 # zOS – Zero OS
 
-**A minimal, verified, real-time foundation for AI agents.** Working paper 2026-10-20-v0.3. Every revision is listed on the page and in the commit history.
+**Bare minimum. Verified. Real-time. An OS for the AI era.**
+
+Working paper 2026-10-20-v0.4 by Tobias von Dewitz, Susann Mürling, Stefan Probst and Daniel Strecker. Every revision is listed on the page and in the commit history.
 
 > Imagine it's 1991. We are about to release a few lines of code into a world that will be very different from today.
 

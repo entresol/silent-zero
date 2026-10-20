@@ -23,7 +23,7 @@ for out, src, axes in INSTANCES:
 STRINGS_REGULAR = [
     "firmware · root of trust", "bootloader · measured image", "seL4 microkernel · MCS",
     "static system description", "safety controller", "capability broker", "agents",
-    "a verified foundation for agents", "the agent proposes. the loop disposes.",
+    "Bare minimum. Verified. Real-time. An OS for the AI era.", "the agent proposes. the loop disposes.",
 ]
 STRINGS_SEMIBOLD = ["zOS", "assumed", "proven", "tested", "untrusted"]
 STRINGS_THIN = ["zOS"]

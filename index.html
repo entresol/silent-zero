@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>zOS – Zero OS</title>
-<meta name="description" content="A working paper proposing zOS: a bootloader, a formally verified microkernel and the bare minimum to run AI agents safely and in real time. Built entirely from existing open source.">
+<meta name="description" content="zOS – Bare minimum. Verified. Real-time. An OS for the AI era. A working paper: a bootloader, a formally verified microkernel and the bare minimum to run AI safely and in real time, built entirely from existing open source.">
 <link rel="preload" href="assets/fonts/inter-latin-opsz-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/nunito-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
 <style>
@@ -186,6 +186,10 @@ ol.revisions p { margin: 0; }
 ol.revisions .rev-ver { font-weight: 600; color: var(--ink-deep); font-variant-numeric: tabular-nums; }
 ol.revisions .rev-date { color: var(--muted); font-size: 0.95rem; margin-bottom: 0.2rem; }
 
+/* title block: slogan, authors, version */
+.titleblock .authors { color: var(--ink-deep); margin-top: 0.6rem; }
+.titleblock .ver { color: var(--muted); font-size: 0.95rem; margin-top: 0.15rem; }
+
 </style>
 </head>
 <body>
@@ -195,11 +199,13 @@ ol.revisions .rev-date { color: var(--muted); font-size: 0.95rem; margin-bottom:
     <p class="lede">We are about to release a few lines of code into a world that will be very different from today.</p>
     <div class="titleblock">
       <p class="name">zOS – Zero OS</p>
-      <p class="sub">A minimal, verified, real-time foundation for AI agents. Working paper 2026-10-20-v0.3. <a href="#revisions">What changed</a></p>
+      <p class="sub">Bare minimum. Verified. Real-time. An OS for the AI era.</p>
+      <p class="authors">Tobias von Dewitz · Susann Mürling · Stefan Probst · Daniel Strecker</p>
+      <p class="ver">Working paper 2026-10-20-v0.4 · <a href="#revisions">What changed</a></p>
     </div>
     <p class="status">Nothing is built yet. This paper proposes what to build first and where it can fail. Criticism is welcome in the <a href="https://github.com/entresol/zero-os/issues">issues</a>.</p>
     <div class="actions">
-      <a class="btn" href="versions/zos-zero-os-2026-10-20-v0.3.pdf">Download the PDF</a>
+      <a class="btn" href="versions/zos-zero-os-2026-10-20-v0.4.pdf">Download the PDF</a>
       <a href="#abstract">Read it here</a>
       <span class="meta">10 pages, 53 references</span>
     </div>
@@ -415,9 +421,9 @@ ol.revisions .rev-date { color: var(--muted); font-size: 0.95rem; margin-bottom:
 <li id="ref-52">Wistoff, N.; Schneider, M.; Gürkaynak, F. K.; Heiser, G.; Benini, L. (2022): <a href="https://arxiv.org/abs/2202.12029" rel="noopener" target="_blank">Systematic Prevention of On-Core Timing Channels by Full Temporal Partitioning</a>. doi:10.1109/TC.2022.3212636.</li>
 <li id="ref-53">Yang, C. et al. (2025): <a href="https://www.microsoft.com/en-us/research/publication/autoverus-automated-proof-generation-for-rust-code/" rel="noopener" target="_blank">AutoVerus: Automated Proof Generation for Rust Code</a>. Proc. OOPSLA ’25.</li>
 </ul>
-<h2 id="revisions">Revisions</h2><p>Every change is recorded in the <a href="https://github.com/entresol/zero-os/commits/main">commit history</a>. This list says what changed in substance.</p><ol class="revisions"><li><p class="rev-date"><span class="rev-ver">2026-10-20-v0.3</span> · <a href="versions/zos-zero-os-2026-10-20-v0.3.pdf">PDF of this version</a></p><p>pib as a possible first robot. The driver island, the seams on critical paths and the dependency on seL4 dates made explicit. Anthropic's vulnerability figures qualified as self-reported.</p></li><li><p class="rev-date"><span class="rev-ver">2026-10-20-v0.2</span> · <a href="versions/zos-zero-os-2026-10-20-v0.2.pdf">PDF of this version</a></p><p>Revision after the first external review: a first use case; two questions per part instead of three trust classes; firmware above the kernel; what has to be built and who else is building it; the hardened-Linux alternative; reviews described as AI-assisted; every roadmap station labelled demonstration, test or proof. New figures.</p></li><li><p class="rev-date"><span class="rev-ver">2026-10-19-v0.1</span> · <a href="versions/zos-zero-os-2026-10-19-v0.1.pdf">PDF of this version</a></p><p>First publication.</p></li></ol>
+<h2 id="revisions">Revisions</h2><p>Every change is recorded in the <a href="https://github.com/entresol/zero-os/commits/main">commit history</a>. This list says what changed in substance.</p><ol class="revisions"><li><p class="rev-date"><span class="rev-ver">2026-10-20-v0.4</span> · <a href="versions/zos-zero-os-2026-10-20-v0.4.pdf">PDF of this version</a></p><p>The slogan becomes the subtitle: Bare minimum. Verified. Real-time. An OS for the AI era. Four authors named on the paper.</p></li><li><p class="rev-date"><span class="rev-ver">2026-10-20-v0.3</span> · <a href="versions/zos-zero-os-2026-10-20-v0.3.pdf">PDF of this version</a></p><p>pib as a possible first robot. The driver island, the seams on critical paths and the dependency on seL4 dates made explicit. Anthropic's vulnerability figures qualified as self-reported.</p></li><li><p class="rev-date"><span class="rev-ver">2026-10-20-v0.2</span> · <a href="versions/zos-zero-os-2026-10-20-v0.2.pdf">PDF of this version</a></p><p>Revision after the first external review: a first use case; two questions per part instead of three trust classes; firmware above the kernel; what has to be built and who else is building it; the hardened-Linux alternative; reviews described as AI-assisted; every roadmap station labelled demonstration, test or proof. New figures.</p></li><li><p class="rev-date"><span class="rev-ver">2026-10-19-v0.1</span> · <a href="versions/zos-zero-os-2026-10-19-v0.1.pdf">PDF of this version</a></p><p>First publication.</p></li></ol>
   </article>
 </div>
-<footer><div><span>zOS – Zero OS. Working paper 2026-10-20-v0.3. <a href="https://github.com/entresol/zero-os">Source and discussion on GitHub</a>.</span><a href="versions/zos-zero-os-2026-10-20-v0.3.pdf">Download the PDF</a></div></footer>
+<footer><div><span>zOS – Zero OS. Working paper 2026-10-20-v0.4. <a href="https://github.com/entresol/zero-os">Source and discussion on GitHub</a>.</span><a href="versions/zos-zero-os-2026-10-20-v0.4.pdf">Download the PDF</a></div></footer>
 </body>
 </html>
