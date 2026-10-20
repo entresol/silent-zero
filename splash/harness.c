@@ -1,3 +1,4 @@
+/* SPDX-License-Identifier: BSD-2-Clause */
 /* Host harness: renders every boot step of the splash into PGM files. */
 #include <stdint.h>
 #include <stdio.h>
