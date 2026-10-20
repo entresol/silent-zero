@@ -1,6 +1,6 @@
 # zOS – Zero OS
 
-**A minimal, verified, real-time foundation for AI agents.** Working paper, 20 October 2026.
+**A minimal, verified, real-time foundation for AI agents.** Working paper, version 0.3, 20 October 2026. Every revision is listed on the page and in the commit history.
 
 > Imagine it's 1991. We are about to release a few lines of code into a world that will be very different from today.
 
