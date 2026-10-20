@@ -4,9 +4,9 @@ The first screen after power-on: a grey panel in four shades, bevelled edges, cr
 
 ![boot splash, final frame](preview.png)
 
-Freestanding C: no libc, no heap, no floating point. `zos_splash(fb, w, h, step)` draws one boot step into a framebuffer of one byte per pixel holding a shade 0..3. Size of `splash.c` including its glyphs (`clang -Os -ffreestanding`): 4,999 bytes for RISC-V (rv64gc), 8,287 bytes for AArch64.
+Freestanding C: no libc, no heap, no floating point. `zos_splash(fb, w, h, step)` draws one boot step into a framebuffer of one byte per pixel holding a shade 0..3. Size of `splash.c` including its glyphs (`clang -Os -ffreestanding`): 4,894 bytes for RISC-V (rv64gc), 8,182 bytes for AArch64.
 
-- `gen_glyphs.py` rasterises the needed glyphs of Inter into 2-bit coverage, run-length coded, as `glyphs.h`. Inter is licensed under the SIL Open Font License 1.1 (`../assets/fonts/LICENSE-Inter.txt`).
+- `gen_glyphs.py` rasterises the needed glyphs into 2-bit coverage, run-length coded, as `glyphs.h`. The typography is the site's: Inter only as Thin and only large (the wordmark), Nunito Sans for everything else. Both are licensed under the SIL Open Font License 1.1 (`../assets/fonts/`).
 - `splash.c` draws panel, bevels, type and the boot report.
 - `harness.c` renders every boot step to PGM files on an ordinary computer.
 
