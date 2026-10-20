@@ -9,7 +9,8 @@ zOS is an operating system reduced to what cannot be removed: a bootloader, a fo
 Nothing is built yet. The paper proposes what to build first and states where it can fail.
 
 - Read the paper: https://entresol.github.io/zero-os/
-- Download the PDF: [`zos-zero-os.pdf`](zos-zero-os.pdf)
+- Download the PDF: [`zos-zero-os.pdf`](zos-zero-os.pdf) (always the newest version)
+- Every version as its own file: [`versions/`](versions/), named `zos-zero-os-YYYY-MM-DD-vX.Y.pdf`
 - Red-team report on an earlier draft (German): [`review/red-team-2026-10-18.md`](review/red-team-2026-10-18.md)
 
 Comments and criticism are welcome as [issues](https://github.com/entresol/zero-os/issues).
