@@ -2,14 +2,19 @@
 /*
  * zOS boot splash, prototype.
  *
- * Draws one frame of the first screen a person sees after power-on: a grey
- * panel in four shades, bevelled edges, crisp grey-scale type, and the boot
- * report of what was loaded and what we know about each part.
+ * Draws the first screen a person sees after power-on: a grey panel in four
+ * shades, bevelled edges, crisp grey-scale type, and the boot report of what
+ * was loaded and what we know about each part.
  *
  * Freestanding: no libc, no heap, no floating point. The caller hands in a
  * framebuffer of one byte per pixel holding a shade 0..3 (black, dark grey,
- * light grey, white) and the boot step to show. Mapping shades to the real
- * display format is the job of the (isolated) display driver, not of this file.
+ * light grey, white). Mapping shades to the real display format is the job of
+ * whoever owns the display, not of this file.
+ *
+ * Two ways to use it. zos_splash() shows the fixed demonstration report.
+ * The loader instead draws the frame once and fills the report row by row
+ * with what it has really measured: zos_splash_frame(), zos_splash_row(),
+ * zos_splash_progress(), zos_splash_footer().
  */
 #include <stdint.h>
 
@@ -71,45 +76,76 @@ static void text(struct fb *f, const struct font *fo, int x, int y, const char *
     }
 }
 
+/* layout, derived from the screen size */
+enum { NROWS = 7, PW = 560, PH = 404 };
+struct geo { int px0, py0, bx, by, bw, bh, gx, gy, gw, gh; };
+
+static struct geo geometry(int w, int h) {
+    struct geo g;
+    g.px0 = (w - PW) / 2; g.py0 = (h - PH) / 2;
+    g.bx = g.px0 + 24; g.by = g.py0 + 150; g.bw = PW - 48; g.bh = NROWS * 20 + 16;
+    g.gx = g.bx; g.gy = g.by + g.bh + 16; g.gw = g.bw; g.gh = 14;
+    return g;
+}
+
+/* panel, title, tagline, empty report well and empty progress bar */
+void zos_splash_frame(uint8_t *px, int w, int h) {
+    struct fb f = { px, w, h };
+    struct geo g = geometry(w, h);
+
+    rect(&f, 0, 0, w, h, DARK);                                   /* workspace */
+    rect(&f, g.px0 + 4, g.py0 + 4, PW, PH, BLACK);                /* hard shadow */
+    rect(&f, g.px0, g.py0, PW, PH, LIGHT);                        /* panel */
+    bevel(&f, g.px0, g.py0, PW, PH, 1);
+    rect(&f, g.px0 + 2, g.py0 + 2, PW - 4, 22, BLACK);            /* title bar */
+    text(&f, &font_semibold, g.px0 + (PW - text_width(&font_semibold, "zOS")) / 2, g.py0 + 5, "zOS", WHITE);
+
+    text(&f, &font_thin, g.px0 + (PW - text_width(&font_thin, "zOS")) / 2, g.py0 + 34, "zOS", BLACK);
+    const char *tag = "Bare minimum. Verified. Real-time. An OS for the AI era.";
+    text(&f, &font_regular, g.px0 + (PW - text_width(&font_regular, tag)) / 2, g.py0 + 118, tag, DARK);
+
+    rect(&f, g.bx, g.by, g.bw, g.bh, WHITE);                      /* report well */
+    bevel(&f, g.bx, g.by, g.bw, g.bh, 0);
+
+    rect(&f, g.gx, g.gy, g.gw, g.gh, LIGHT);                      /* progress */
+    bevel(&f, g.gx, g.gy, g.gw, g.gh, 0);
+}
+
+/* one line of the report: what, and what we know about it (strong = black, else dark grey) */
+void zos_splash_row(uint8_t *px, int w, int h, int row, const char *left, const char *right, int strong) {
+    struct fb f = { px, w, h };
+    struct geo g = geometry(w, h);
+    int y = g.by + 9 + row * 20;
+    text(&f, &font_regular, g.bx + 14, y, left, BLACK);
+    text(&f, &font_semibold, g.bx + g.bw - 14 - text_width(&font_semibold, right), y, right, strong ? BLACK : DARK);
+}
+
+void zos_splash_progress(uint8_t *px, int w, int h, int step, int total) {
+    struct fb f = { px, w, h };
+    struct geo g = geometry(w, h);
+    rect(&f, g.gx, g.gy, g.gw, g.gh, LIGHT);
+    rect(&f, g.gx + 2, g.gy + 2, (g.gw - 4) * step / total, g.gh - 4, DARK);
+    bevel(&f, g.gx, g.gy, g.gw, g.gh, 0);
+}
+
+/* one centred line below the progress bar */
+void zos_splash_footer(uint8_t *px, int w, int h, const char *s) {
+    struct fb f = { px, w, h };
+    struct geo g = geometry(w, h);
+    text(&f, &font_regular, g.px0 + (PW - text_width(&font_regular, s)) / 2, g.gy + g.gh + 12, s, BLACK);
+}
+
 static const char *const parts[] = {
     "firmware \xb7 root of trust", "bootloader \xb7 measured image", "seL4 microkernel \xb7 MCS",
     "static system description", "safety controller", "capability broker", "agents",
 };
 static const char *const know[] = { "assumed", "assumed", "proven", "tested", "tested", "tested", "untrusted" };
-enum { NPARTS = 7 };
 
-/* step 0 .. NPARTS: how many parts have reported in */
+/* the fixed demonstration report; step 0 .. NROWS: how many parts have reported in */
 void zos_splash(uint8_t *px, int w, int h, int step) {
-    struct fb f = { px, w, h };
-    const int pw = 560, ph = 404, px0 = (w - pw) / 2, py0 = (h - ph) / 2;
-
-    rect(&f, 0, 0, w, h, DARK);                                   /* workspace */
-    rect(&f, px0 + 4, py0 + 4, pw, ph, BLACK);                    /* hard shadow */
-    rect(&f, px0, py0, pw, ph, LIGHT);                            /* panel */
-    bevel(&f, px0, py0, pw, ph, 1);
-    rect(&f, px0 + 2, py0 + 2, pw - 4, 22, BLACK);                /* title bar */
-    text(&f, &font_semibold, px0 + (pw - text_width(&font_semibold, "zOS")) / 2, py0 + 5, "zOS", WHITE);
-
-    text(&f, &font_thin, px0 + (pw - text_width(&font_thin, "zOS")) / 2, py0 + 34, "zOS", BLACK);
-    const char *tag = "Bare minimum. Verified. Real-time. An OS for the AI era.";
-    text(&f, &font_regular, px0 + (pw - text_width(&font_regular, tag)) / 2, py0 + 118, tag, DARK);
-
-    const int bx = px0 + 24, by = py0 + 150, bw = pw - 48, bh = NPARTS * 20 + 16;
-    rect(&f, bx, by, bw, bh, WHITE);                              /* report well */
-    bevel(&f, bx, by, bw, bh, 0);
-    for (int i = 0; i < NPARTS && i < step; i++) {
-        int y = by + 9 + i * 20;
-        text(&f, &font_regular, bx + 14, y, parts[i], BLACK);
-        text(&f, &font_semibold, bx + bw - 14 - text_width(&font_semibold, know[i]), y, know[i], i == 2 ? BLACK : DARK);
-    }
-
-    const int gx = bx, gy = by + bh + 16, gw = bw, gh = 14;     /* progress */
-    rect(&f, gx, gy, gw, gh, LIGHT);
-    rect(&f, gx + 2, gy + 2, (gw - 4) * step / NPARTS, gh - 4, DARK);
-    bevel(&f, gx, gy, gw, gh, 0);
-
-    if (step >= NPARTS) {
-        const char *s = "the agent proposes. the loop disposes.";
-        text(&f, &font_regular, px0 + (pw - text_width(&font_regular, s)) / 2, gy + gh + 12, s, BLACK);
-    }
+    zos_splash_frame(px, w, h);
+    for (int i = 0; i < NROWS && i < step; i++)
+        zos_splash_row(px, w, h, i, parts[i], know[i], i == 2);
+    zos_splash_progress(px, w, h, step, NROWS);
+    if (step >= NROWS) zos_splash_footer(px, w, h, "the agent proposes. the loop disposes.");
 }

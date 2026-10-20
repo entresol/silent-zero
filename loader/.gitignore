@@ -1,0 +1,11 @@
+*.o
+*.elf
+*.bin
+*.zimg
+*.ppm
+*.log
+*.sock
+sha256_tables.h
+test_sha
+/bad-*.png
+!/bad-payload.png

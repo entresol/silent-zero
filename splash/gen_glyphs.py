@@ -25,8 +25,12 @@ STRINGS_REGULAR = [
     "firmware · root of trust", "bootloader · measured image", "seL4 microkernel · MCS",
     "static system description", "safety controller", "capability broker", "agents",
     "Bare minimum. Verified. Real-time. An OS for the AI era.", "the agent proposes. the loop disposes.",
+    # what the loader reports from its own measurements
+    "bootloader", "kernel image header", "kernel image \u00b7 SHA-256", "0123456789abcdef ",
+    "starting the kernel.", "boot halted. the kernel was not started.",
 ]
-STRINGS_SEMIBOLD = ["zOS", "assumed", "proven", "tested", "untrusted"]
+STRINGS_SEMIBOLD = ["zOS", "assumed", "proven", "tested", "untrusted",
+                    "well-formed", "malformed", "hash matches", "hash differs", "first 128 bits"]
 STRINGS_THIN = ["zOS"]
 
 FONTS = [  # name, file, pixel size, strings

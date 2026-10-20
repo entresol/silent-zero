@@ -4,7 +4,7 @@ The first screen after power-on: a grey panel in four shades, bevelled edges, cr
 
 ![boot splash, final frame](preview.png)
 
-Freestanding C: no libc, no heap, no floating point. `zos_splash(fb, w, h, step)` draws one boot step into a framebuffer of one byte per pixel holding a shade 0..3. Size of `splash.c` including its glyphs (`clang -Os -ffreestanding`): 5,172 bytes for RISC-V (rv64gc), 8,460 bytes for AArch64.
+Freestanding C: no libc, no heap, no floating point. `zos_splash(fb, w, h, step)` draws one boot step of the demonstration report into a framebuffer of one byte per pixel holding a shade 0..3. The loader (`../loader`) instead draws the frame once and fills the report with what it has measured: `zos_splash_frame`, `zos_splash_row`, `zos_splash_progress`, `zos_splash_footer`. Size of `splash.c` including its glyphs (`clang -Os -ffreestanding`, text + data of the object file): 6,436 bytes for RISC-V (rv64gc), 8,696 bytes for AArch64. The growth from 5,172 and 8,460 is the glyph set for the loader's texts (hex digits and the hash and header verdicts); the drawing code itself did not grow.
 
 - `gen_glyphs.py` rasterises the needed glyphs into 2-bit coverage, run-length coded, as `glyphs.h`. The typography is the site's: Inter only as Thin and only large (the wordmark), Nunito Sans for everything else. Both are licensed under the SIL Open Font License 1.1 (`../assets/fonts/`).
 - `splash.c` draws panel, bevels, type and the boot report.
@@ -17,4 +17,4 @@ python3 gen_glyphs.py        # needs Pillow and fontTools; only when the texts c
 cc -O2 harness.c splash.c -o harness && ./harness
 ```
 
-Two decisions are deliberate. The splash does not live in the bootloader, which belongs to the trusted base and must stay small; it runs as its own isolated component after the kernel, with access to the framebuffer only. And the report it shows is hard-coded in this prototype; in the real system it must come from the measured image and the system description.
+Where it lives: the first screen is now drawn by the loader (`../loader`), because that is the one place that knows, before the kernel starts, what it is about to start. The price is that the renderer is part of the trusted base. Its inputs are fixed: compiled-in texts and glyph tables, plus a hash; it parses nothing from outside. The rows for the parts after the kernel (proven, tested, untrusted) are still the hard-coded demonstration of `zos_splash`; in the real system they must come from the measured image and the system description, drawn by an isolated component that holds the framebuffer and nothing else.
