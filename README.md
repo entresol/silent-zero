@@ -2,7 +2,7 @@
 
 **Bare minimum. Verified. Real-time. An OS for the AI era.**
 
-Working paper 2026-10-20-v0.4. Every revision is listed on the page and in the commit history.
+Working paper 2026-10-20-v0.5. Every revision is listed on the page and in the commit history.
 
 > Imagine it's 1991. We are about to release a few lines of code into a world that will be very different from today.
 
@@ -13,10 +13,11 @@ First light: [a boot screen](splash/) and a [loader](loader/) that checks the ke
 - Read the paper: https://entresol.github.io/zero-os/
 - Download the PDF: [`zos-zero-os.pdf`](zos-zero-os.pdf) (always the newest version)
 - Every version as its own file: [`versions/`](versions/), named `zos-zero-os-YYYY-MM-DD-vX.Y.pdf`
+- The paper's source and the build for PDF and page: [`paper/`](paper/)
 - Red-team report on an earlier draft (German): [`review/red-team-2026-10-18.md`](review/red-team-2026-10-18.md)
 
 Criticism and support are warmly welcome as [issues](https://github.com/entresol/zero-os/issues).
 
 ## Licence
 
-Code: [BSD-2-Clause](LICENSE). Fonts: [SIL Open Font License 1.1](assets/fonts/). Paper and texts: licence pending, CC BY 4.0 proposed.
+Code, including the build scripts: [BSD-2-Clause](LICENSE). Fonts: [SIL Open Font License 1.1](assets/fonts/). Paper and texts: licence pending, CC BY 4.0 proposed.
