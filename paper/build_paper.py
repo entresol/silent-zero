@@ -115,7 +115,7 @@ preamble = r"""\documentclass[11pt,a4paper,twocolumn]{article}
 \pagestyle{fancy}
 \fancyhf{}
 \fancyhead[L]{\sffamily\footnotesize zOS -- Zero OS}
-\fancyhead[R]{\sffamily\footnotesize Working paper 2026-10-20-v0.5}
+\fancyhead[R]{\sffamily\footnotesize Working paper 2026-10-23-v0.6}
 \fancyfoot[C]{\sffamily\footnotesize \thepage\ / \pageref{LastPage}}
 \renewcommand{\headrulewidth}{0.3pt}
 \fancypagestyle{first}{\fancyhf{}\renewcommand{\headrulewidth}{0pt}\fancyfoot[C]{\sffamily\footnotesize \thepage\ / \pageref{LastPage}}}
@@ -123,14 +123,16 @@ preamble = r"""\documentclass[11pt,a4paper,twocolumn]{article}
 
 titleblock = r"""\twocolumn[{%
 \begin{center}
-{\sffamily\footnotesize WORKING PAPER · 2026-10-20-v0.5\par}
+{\sffamily\footnotesize WORKING PAPER · 2026-10-23-v0.6\par}
 \vspace{6pt}
 {\sffamily\bfseries\LARGE @TITLE@\par}
 \vspace{6pt}
 {\large @SUBTITLE@\par}
 \vspace{10pt}
 {\normalsize Tobias von Dewitz \textperiodcentered{} Susann Mürling \textperiodcentered{} Stefan Probst \textperiodcentered{} Daniel Strecker\par}
-{\small 20 October 2026\par}
+{\small 23 October 2026\par}
+\vspace{2pt}
+{\footnotesize Text and figures: \href{https://creativecommons.org/licenses/by/4.0/}{CC BY 4.0}\par}
 \end{center}
 \vspace{4pt}
 \begin{center}
