@@ -13,4 +13,4 @@
 
 Every published version is kept as `../versions/zos-zero-os-YYYY-MM-DD-vX.Y.pdf`; `../zos-zero-os.pdf` is always the newest.
 
-Licence: the build scripts are BSD-2-Clause. The text and figures: licence pending, CC BY 4.0 proposed.
+Licence: the build scripts are BSD-2-Clause. The text and figures: [CC BY 4.0](../LICENSE-CC-BY-4.0.txt).

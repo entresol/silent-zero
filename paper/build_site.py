@@ -108,7 +108,9 @@ html_body = re.sub(r"<table>.*?</table>", label_table, html_body, flags=re.S)
 # revisions: what changed between versions, each with the PDF as it was
 REPO = "https://github.com/entresol/zero-os"
 revisions = [
-    ("2026-10-20-v0.5", None,
+    ("2026-10-23-v0.6", None,
+     "Text and figures are licensed under CC BY 4.0."),
+    ("2026-10-20-v0.5", "79e70978704a9c21803560dc46ba265951966250",
      "The bootloader paragraph says what the first prototype does: one fixed rule; the first screen drawn by the loader, because nothing else could report a failed check; its size counted as trusted base."),
     ("2026-10-20-v0.4", "5cb6f1350b744973727f9aa11a979f8f6432d35b",
      "The slogan becomes the subtitle: Bare minimum. Verified. Real-time. An OS for the AI era. The authors are named on the paper."),
@@ -174,7 +176,7 @@ page = f"""<!doctype html>
 {html_body}
   </article>
 </div>
-<footer><div><span>zOS – Zero OS. Working paper {CURRENT_VERSION}. <a href="https://github.com/entresol/zero-os">Source and discussion on GitHub</a>.</span><a href="{pdf_name}">Download the PDF</a></div></footer>
+<footer><div><span>zOS – Zero OS. Working paper {CURRENT_VERSION}. <a href="https://github.com/entresol/zero-os">Source and discussion on GitHub</a>. Text and figures: <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</span><a href="{pdf_name}">Download the PDF</a></div></footer>
 </body>
 </html>
 """

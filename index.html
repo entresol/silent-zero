@@ -200,11 +200,11 @@ ol.revisions .rev-date { color: var(--muted); font-size: 0.95rem; margin-bottom:
     <div class="titleblock">
       <p class="name">zOS – Zero OS</p>
       <p class="sub">Bare minimum. Verified. Real-time. An OS for the AI era.</p>
-      <p class="ver">Working paper 2026-10-20-v0.5 · <a href="#revisions">latest changes</a></p>
+      <p class="ver">Working paper 2026-10-23-v0.6 · <a href="#revisions">latest changes</a></p>
     </div>
     <p class="status">First light: <a href="https://github.com/entresol/zero-os/tree/main/loader">a loader that checks the kernel image and shows its verdict on the first screen</a>, under 9 KB on RISC-V, tested in QEMU. This paper proposes what we intend to build and where it can fail. Criticism and support are warmly welcome: <a href="https://github.com/entresol/zero-os/issues">issues</a>.</p>
     <div class="actions">
-      <a class="btn" href="versions/zos-zero-os-2026-10-20-v0.5.pdf">Download the PDF</a>
+      <a class="btn" href="versions/zos-zero-os-2026-10-23-v0.6.pdf">Download the PDF</a>
       <span class="meta">10 pages, 53 references</span>
     </div>
   </div>
@@ -280,64 +280,64 @@ ol.revisions .rev-date { color: var(--muted); font-size: 0.95rem; margin-bottom:
 <col style="width: 33%" />
 </colgroup>
 <thead>
-<tr class="header">
+<tr>
 <th>Component</th>
 <th>Existing work</th>
 <th>State in 2026</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td data-label="Component">Root of trust</td>
 <td data-label="Existing work">OpenTitan</td>
 <td data-label="State in 2026">First production chip announced in 2025 (<a class="cite" href="#ref-8">CNX Software 2025</a>)</td>
 </tr>
-<tr class="even">
+<tr>
 <td data-label="Component">Capability hardware</td>
 <td data-label="Existing work">CHERI, CHERIoT</td>
 <td data-label="State in 2026">Standardisation for RISC-V under way (<a class="cite" href="#ref-35">Moore 2026</a>); CHERIoT pairs CHERI with a clean-slate embedded OS (<a class="cite" href="#ref-1">Amar et al. 2023</a>)</td>
 </tr>
-<tr class="odd">
+<tr>
 <td data-label="Component">Microkernel</td>
 <td data-label="Existing work">seL4 with MCS</td>
 <td data-label="State in 2026">Functional correctness proven (<a class="cite" href="#ref-25">Klein et al. 2009</a>); MCS verified at C level on RISC-V, AArch64 targeted for Q3 2027 (<a class="cite" href="#ref-40">seL4 Foundation n.d.-b</a>)</td>
 </tr>
-<tr class="even">
+<tr>
 <td data-label="Component">System composition</td>
 <td data-label="Existing work">seL4 Microkit</td>
 <td data-label="State in 2026">Available for use, under active development (<a class="cite" href="#ref-41">seL4 Microkit n.d.</a>)</td>
 </tr>
-<tr class="odd">
+<tr>
 <td data-label="Component">Drivers</td>
 <td data-label="Existing work">seL4 Device Driver Framework, LionsOS</td>
 <td data-label="State in 2026">Modular OS on seL4 that outperforms Linux on system-call-intensive loads; legacy drivers in VMs (<a class="cite" href="#ref-23">Heiser et al. 2025</a>)</td>
 </tr>
-<tr class="even">
+<tr>
 <td data-label="Component">Verified components</td>
 <td data-label="Existing work">Verus for Rust</td>
 <td data-label="State in 2026">Verifies systems code 3 to 61 times faster than prior tools (<a class="cite" href="#ref-27">Lattuada et al. 2024</a>)</td>
 </tr>
-<tr class="odd">
+<tr>
 <td data-label="Component">Proof automation</td>
 <td data-label="Existing work">AutoVerus; neuro-symbolic proof search</td>
 <td data-label="State in 2026">Over 90 % of 150 Rust proof tasks (<a class="cite" href="#ref-53">Yang et al. 2025</a>); 77.6 % of seL4 theorems in FVEL (<a class="cite" href="#ref-20">He et al. 2026</a>)</td>
 </tr>
-<tr class="even">
+<tr>
 <td data-label="Component">Real-time safety pattern</td>
 <td data-label="Existing work">Simplex architecture</td>
 <td data-label="State in 2026">Established since 2001 (<a class="cite" href="#ref-42">Sha 2001</a>)</td>
 </tr>
-<tr class="odd">
+<tr>
 <td data-label="Component">Robot middleware</td>
 <td data-label="Existing work">ROS 2 on seL4</td>
 <td data-label="State in 2026">Proofs of concept for Army ground vehicles (<a class="cite" href="#ref-29">Lide 2026</a>)</td>
 </tr>
-<tr class="even">
+<tr>
 <td data-label="Component">Agent–tool protocol</td>
 <td data-label="Existing work">Model Context Protocol</td>
 <td data-label="State in 2026">Open, under the Linux Foundation since December 2025 (<a class="cite" href="#ref-2">Anthropic 2025</a>)</td>
 </tr>
-<tr class="odd">
+<tr>
 <td data-label="Component">Agent authority</td>
 <td data-label="Existing work">CaMeL, FIDES</td>
 <td data-label="State in 2026">Capability and information-flow enforcement for agents; CaMeL solves 77 % of tasks with provable security versus 84 % undefended (<a class="cite" href="#ref-11">Debenedetti et al. 2025</a>; <a class="cite" href="#ref-9">Costa et al. 2025</a>)</td>
@@ -419,9 +419,9 @@ ol.revisions .rev-date { color: var(--muted); font-size: 0.95rem; margin-bottom:
 <li id="ref-52">Wistoff, N.; Schneider, M.; Gürkaynak, F. K.; Heiser, G.; Benini, L. (2022): <a href="https://arxiv.org/abs/2202.12029" rel="noopener" target="_blank">Systematic Prevention of On-Core Timing Channels by Full Temporal Partitioning</a>. doi:10.1109/TC.2022.3212636.</li>
 <li id="ref-53">Yang, C. et al. (2025): <a href="https://www.microsoft.com/en-us/research/publication/autoverus-automated-proof-generation-for-rust-code/" rel="noopener" target="_blank">AutoVerus: Automated Proof Generation for Rust Code</a>. Proc. OOPSLA ’25.</li>
 </ul>
-<h2 id="revisions">Revisions</h2><p>Every change is recorded in the <a href="https://github.com/entresol/zero-os/commits/main">commit history</a>. This list says what changed in substance.</p><ol class="revisions"><li><p class="rev-date"><span class="rev-ver">2026-10-20-v0.5</span> · <a href="versions/zos-zero-os-2026-10-20-v0.5.pdf">PDF of this version</a></p><p>The bootloader paragraph says what the first prototype does: one fixed rule; the first screen drawn by the loader, because nothing else could report a failed check; its size counted as trusted base.</p></li><li><p class="rev-date"><span class="rev-ver">2026-10-20-v0.4</span> · <a href="versions/zos-zero-os-2026-10-20-v0.4.pdf">PDF of this version</a></p><p>The slogan becomes the subtitle: Bare minimum. Verified. Real-time. An OS for the AI era. The authors are named on the paper.</p></li><li><p class="rev-date"><span class="rev-ver">2026-10-20-v0.3</span> · <a href="versions/zos-zero-os-2026-10-20-v0.3.pdf">PDF of this version</a></p><p>pib as a possible first robot. The driver island, the seams on critical paths and the dependency on seL4 dates made explicit. Anthropic's vulnerability figures qualified as self-reported.</p></li><li><p class="rev-date"><span class="rev-ver">2026-10-20-v0.2</span> · <a href="versions/zos-zero-os-2026-10-20-v0.2.pdf">PDF of this version</a></p><p>Revision after the first external review: a first use case; two questions per part instead of three trust classes; firmware above the kernel; what has to be built and who else is building it; the hardened-Linux alternative; reviews described as AI-assisted; every roadmap station labelled demonstration, test or proof. New figures.</p></li><li><p class="rev-date"><span class="rev-ver">2026-10-19-v0.1</span> · <a href="versions/zos-zero-os-2026-10-19-v0.1.pdf">PDF of this version</a></p><p>First publication.</p></li></ol>
+<h2 id="revisions">Revisions</h2><p>Every change is recorded in the <a href="https://github.com/entresol/zero-os/commits/main">commit history</a>. This list says what changed in substance.</p><ol class="revisions"><li><p class="rev-date"><span class="rev-ver">2026-10-23-v0.6</span> · <a href="versions/zos-zero-os-2026-10-23-v0.6.pdf">PDF of this version</a></p><p>Text and figures are licensed under CC BY 4.0.</p></li><li><p class="rev-date"><span class="rev-ver">2026-10-20-v0.5</span> · <a href="versions/zos-zero-os-2026-10-20-v0.5.pdf">PDF of this version</a></p><p>The bootloader paragraph says what the first prototype does: one fixed rule; the first screen drawn by the loader, because nothing else could report a failed check; its size counted as trusted base.</p></li><li><p class="rev-date"><span class="rev-ver">2026-10-20-v0.4</span> · <a href="versions/zos-zero-os-2026-10-20-v0.4.pdf">PDF of this version</a></p><p>The slogan becomes the subtitle: Bare minimum. Verified. Real-time. An OS for the AI era. The authors are named on the paper.</p></li><li><p class="rev-date"><span class="rev-ver">2026-10-20-v0.3</span> · <a href="versions/zos-zero-os-2026-10-20-v0.3.pdf">PDF of this version</a></p><p>pib as a possible first robot. The driver island, the seams on critical paths and the dependency on seL4 dates made explicit. Anthropic's vulnerability figures qualified as self-reported.</p></li><li><p class="rev-date"><span class="rev-ver">2026-10-20-v0.2</span> · <a href="versions/zos-zero-os-2026-10-20-v0.2.pdf">PDF of this version</a></p><p>Revision after the first external review: a first use case; two questions per part instead of three trust classes; firmware above the kernel; what has to be built and who else is building it; the hardened-Linux alternative; reviews described as AI-assisted; every roadmap station labelled demonstration, test or proof. New figures.</p></li><li><p class="rev-date"><span class="rev-ver">2026-10-19-v0.1</span> · <a href="versions/zos-zero-os-2026-10-19-v0.1.pdf">PDF of this version</a></p><p>First publication.</p></li></ol>
   </article>
 </div>
-<footer><div><span>zOS – Zero OS. Working paper 2026-10-20-v0.5. <a href="https://github.com/entresol/zero-os">Source and discussion on GitHub</a>.</span><a href="versions/zos-zero-os-2026-10-20-v0.5.pdf">Download the PDF</a></div></footer>
+<footer><div><span>zOS – Zero OS. Working paper 2026-10-23-v0.6. <a href="https://github.com/entresol/zero-os">Source and discussion on GitHub</a>. Text and figures: <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</span><a href="versions/zos-zero-os-2026-10-23-v0.6.pdf">Download the PDF</a></div></footer>
 </body>
 </html>
