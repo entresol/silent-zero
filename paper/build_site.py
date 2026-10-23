@@ -108,7 +108,9 @@ html_body = re.sub(r"<table>.*?</table>", label_table, html_body, flags=re.S)
 # revisions: what changed between versions, each with the PDF as it was
 REPO = "https://github.com/entresol/zero-os"
 revisions = [
-    ("2026-10-23-v0.9", None,
+    ("2026-10-23-v0.10", None,
+     "Revision after checking every cited claim against its source. The first robot is a demonstrator before zOS 0.01, which runs on RISC-V: on the Raspberry Pi 4, MCS is not verified, no WCET bound is possible and the Linux island joins the trusted base. Provable timing named as a goal. Updated: OpenTitan in production, seL4 WCET being rebuilt on RISC-V, fence.t on a second core, multikernel verification. New: the trusted path for approvals as an open seam, EU machinery law from 2027, ELISA. Corrected: agentOS, LionsOS, Felt et al., the cost of seL4."),
+    ("2026-10-23-v0.9", "a5177f6",
      "The name is marked as a working title: zOS gets a name of its own before its first release."),
     ("2026-10-23-v0.8", "fbb6f90",
      "Section 1 opens with the motivation for everything else: Don't trust the agent. Verify the system. The agent is treated as a Byzantine component; the size of the system follows from the reference monitor's oldest requirement, to be small enough to be analysed and tested."),
