@@ -10,6 +10,10 @@ from pathlib import Path
 src_dir = Path(sys.argv[1])   # folder with src.md, fig1.png, fig2.png, stations.json, paper.pdf
 out = Path(sys.argv[2])       # site output folder
 pdf_name = "zos-zero-os.pdf"
+sys.dont_write_bytecode = True
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import glossary
+gl_groups = glossary.parse(Path(__file__).resolve().parent / "glossary.md")
 
 md = (src_dir / "src.md").read_text(encoding="utf-8")
 lines = md.splitlines()
@@ -43,6 +47,7 @@ fig2 = (f'<figure class="timeline"><ol>{"".join(items)}</ol><figcaption>{cap2}</
 body = re.sub(r"&#91;embedded content: Fig\. 2[^\n]*", "\n```{=html}\n" + fig2 + "\n```\n", body)
 
 body = body.replace("Table 1 lists them", "The table lists them")
+body = body.replace("## References", glossary.markdown(gl_groups, anchors=True) + "\n## References", 1)
 html_body = subprocess.run(
     ["pandoc", "-f", "markdown", "-t", "html5", "--wrap=none"],
     input=body, capture_output=True, text=True, check=True).stdout
@@ -90,6 +95,23 @@ def link_text(chunk):
 # only touch text outside tags and outside existing links
 segs = re.split(r"(<a\b.*?</a>|<[^>]+>)", main_html, flags=re.S)
 main_html = "".join(seg if seg.startswith("<") else link_text(seg) for seg in segs)
+# glossary terms: the first use in each section links to its entry and shows the meaning on hover
+gl_terms = sorted(((m, e) for _, es in gl_groups for e in es for m in e["matches"]), key=lambda t: len(t[0]), reverse=True)
+gl_lookup = dict(gl_terms)
+gl_pat = re.compile(r"(?<![\w-])(" + "|".join(re.escape(m) for m, _ in gl_terms) + r")(?![\w-])")
+def link_terms(section):
+    seen = set()
+    def rep(m):
+        e = gl_lookup[m.group(1)]
+        if e["id"] in seen:
+            return m.group(0)
+        seen.add(e["id"])
+        return f'<a class="gl" href="#{e["id"]}" data-def="{_h.escape(e["meaning"])}">{m.group(0)}</a>'
+    segs = re.split(r"(<a\b.*?</a>|<h[1-6]\b.*?</h[1-6]>|<figure\b.*?</figure>|<[^>]+>)", section, flags=re.S)
+    return "".join(seg if seg.startswith("<") else gl_pat.sub(rep, seg) for seg in segs)
+text_part, gl_part = main_html.split('<h2 id="glossary">', 1)
+text_part = "".join(link_terms(sec) for sec in re.split(r"(?=<h2 )", text_part))
+main_html = text_part + '<h2 id="glossary">' + gl_part
 html_body = main_html + '<h2 id="references">' + refs_html
 n_refs = n
 unlinked = sorted(set(re.findall(r"\(([A-Z][^()]*?\d{4}[a-z]?)\)", re.sub(r"<a\b.*?</a>", "", main_html).replace("\xa0", " "))))
@@ -108,7 +130,9 @@ html_body = re.sub(r"<table>.*?</table>", label_table, html_body, flags=re.S)
 # revisions: what changed between versions, each with the PDF as it was
 REPO = "https://github.com/entresol/zero-os"
 revisions = [
-    ("2026-10-23-v0.10", None,
+    ("2026-10-23-v0.11", None,
+     "A glossary of 38 terms in five groups, each explained in plain words and with its role in zOS: as an appendix in the PDF and on this page, where the first use of a term in each section shows its meaning."),
+    ("2026-10-23-v0.10", "aa08aee",
      "Revision after checking every cited claim against its source. The first robot is a demonstrator before zOS 0.01, which runs on RISC-V: on the Raspberry Pi 4, MCS is not verified, no WCET bound is possible and the Linux island joins the trusted base. Provable timing named as a goal. Updated: OpenTitan in production, seL4 WCET being rebuilt on RISC-V, fence.t on a second core, multikernel verification. New: the trusted path for approvals as an open seam, EU machinery law from 2027, ELISA. Corrected: agentOS, LionsOS, Felt et al., the cost of seL4."),
     ("2026-10-23-v0.9", "a5177f6",
      "The name is marked as a working title: zOS gets a name of its own before its first release."),
@@ -185,6 +209,12 @@ page = f"""<!doctype html>
   </article>
 </div>
 <footer><div><span>zOS – Zero OS. Working paper {CURRENT_VERSION}. <a href="https://github.com/entresol/zero-os">Source and discussion on GitHub</a>. Text and figures: <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. <a href="{pdf_name}">Download the PDF</a>.</span><span id="working-title">* zOS is a working title. Before its first release the project gets a name of its own, one that treads on nobody's toes, mainframes included.</span></div></footer>
+<script>
+// glossary tooltips open to the left where they would run off the right edge
+document.querySelectorAll('a.gl').forEach(a => a.addEventListener('pointerenter', () => {{
+  a.classList.toggle('flip', a.getBoundingClientRect().left + 360 > document.documentElement.clientWidth - 16);
+}}));
+</script>
 </body>
 </html>
 """
