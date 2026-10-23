@@ -2,7 +2,7 @@
 
 **Bare minimum. Verified. Real-time. An OS for the AI era.**
 
-Working paper 2026-10-23-v0.6. Every revision is listed on the page and in the commit history.
+Working paper 2026-10-23-v0.7. Every revision is listed on the page and in the commit history.
 
 > Imagine it's 1991. We are about to release a few lines of code into a world that will be very different from today.
 
