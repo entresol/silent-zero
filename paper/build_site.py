@@ -182,7 +182,7 @@ page = f"""<!doctype html>
 {html_body}
   </article>
 </div>
-<footer><div><span>zOS – Zero OS. Working paper {CURRENT_VERSION}. <a href="https://github.com/entresol/zero-os">Source and discussion on GitHub</a>. Text and figures: <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</span><span id="working-title">* zOS is a working title. Before its first release the project gets a name of its own, one that treads on nobody's toes, mainframes included.</span><a href="{pdf_name}">Download the PDF</a></div></footer>
+<footer><div><span>zOS – Zero OS. Working paper {CURRENT_VERSION}. <a href="https://github.com/entresol/zero-os">Source and discussion on GitHub</a>. Text and figures: <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. <a href="{pdf_name}">Download the PDF</a>.</span><span id="working-title">* zOS is a working title. Before its first release the project gets a name of its own, one that treads on nobody's toes, mainframes included.</span></div></footer>
 </body>
 </html>
 """
