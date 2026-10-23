@@ -115,7 +115,7 @@ preamble = r"""\documentclass[11pt,a4paper,twocolumn]{article}
 \pagestyle{fancy}
 \fancyhf{}
 \fancyhead[L]{\sffamily\footnotesize zOS -- Zero OS}
-\fancyhead[R]{\sffamily\footnotesize Working paper 2026-10-23-v0.8}
+\fancyhead[R]{\sffamily\footnotesize Working paper 2026-10-23-v0.9}
 \fancyfoot[C]{\sffamily\footnotesize \thepage\ / \pageref{LastPage}}
 \renewcommand{\headrulewidth}{0.3pt}
 \fancypagestyle{first}{\fancyhf{}\renewcommand{\headrulewidth}{0pt}\fancyfoot[C]{\sffamily\footnotesize \thepage\ / \pageref{LastPage}}}
@@ -123,9 +123,9 @@ preamble = r"""\documentclass[11pt,a4paper,twocolumn]{article}
 
 titleblock = r"""\twocolumn[{%
 \begin{center}
-{\sffamily\footnotesize WORKING PAPER · 2026-10-23-v0.8\par}
+{\sffamily\footnotesize WORKING PAPER · 2026-10-23-v0.9\par}
 \vspace{6pt}
-{\sffamily\bfseries\LARGE @TITLE@\par}
+{\sffamily\bfseries\LARGE @TITLE@\textsuperscript{\normalsize *}\par}
 \vspace{6pt}
 {\large @SUBTITLE@\par}
 \vspace{10pt}
@@ -133,6 +133,7 @@ titleblock = r"""\twocolumn[{%
 {\small 23 October 2026\par}
 \vspace{2pt}
 {\footnotesize Text and figures: \href{https://creativecommons.org/licenses/by/4.0/}{CC BY 4.0}\par}
+{\footnotesize * zOS is a working title. Before its first release the project gets a name of its own, one that treads on nobody's toes, mainframes included.\par}
 \end{center}
 \vspace{4pt}
 \begin{center}
