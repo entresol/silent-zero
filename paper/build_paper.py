@@ -115,7 +115,7 @@ preamble = r"""\documentclass[11pt,a4paper,twocolumn]{article}
 \pagestyle{fancy}
 \fancyhf{}
 \fancyhead[L]{\sffamily\footnotesize zOS -- Zero OS}
-\fancyhead[R]{\sffamily\footnotesize Working paper 2026-10-23-v0.7}
+\fancyhead[R]{\sffamily\footnotesize Working paper 2026-10-23-v0.8}
 \fancyfoot[C]{\sffamily\footnotesize \thepage\ / \pageref{LastPage}}
 \renewcommand{\headrulewidth}{0.3pt}
 \fancypagestyle{first}{\fancyhf{}\renewcommand{\headrulewidth}{0pt}\fancyfoot[C]{\sffamily\footnotesize \thepage\ / \pageref{LastPage}}}
@@ -123,7 +123,7 @@ preamble = r"""\documentclass[11pt,a4paper,twocolumn]{article}
 
 titleblock = r"""\twocolumn[{%
 \begin{center}
-{\sffamily\footnotesize WORKING PAPER · 2026-10-23-v0.7\par}
+{\sffamily\footnotesize WORKING PAPER · 2026-10-23-v0.8\par}
 \vspace{6pt}
 {\sffamily\bfseries\LARGE @TITLE@\par}
 \vspace{6pt}
