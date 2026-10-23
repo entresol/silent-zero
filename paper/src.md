@@ -26,6 +26,8 @@ We are, once again, about to release a few lines of code into a world that will 
 
 ## 1 The idea: zero as a design rule
 
+**Don't trust the agent. Verify the system.** zOS assumes nothing about the agent's good behaviour. It may be wrong, manipulated or hostile: in the terms of distributed systems, a Byzantine component, one that may fail in any way at all (Lamport et al. 1982). Safety therefore cannot come from the agent. It has to come from the parts that decide what the agent may do and what moves, and those parts must be proven, not trusted. That decides the size of the system. The requirement was written down more than fifty years ago: the mechanism that checks every access must always be invoked, must be tamper-proof, and must be small enough to be subject to analysis and tests (Anderson 1972). Everything in zOS follows from taking the last condition seriously.
+
 zOS stands for zero OS. The name is a design rule, not a slogan: start from nothing and add only what cannot be left out. Three things cannot be left out.
 
 1. **A bootloader** that brings up the machine, checks what it loads, shows what it found, and hands over to the kernel or stops.
@@ -170,6 +172,7 @@ The announcement of 1991 promised a system that "won't be big". zOS makes the sa
 ## References
 
 - Amar, S. et al. (2023): [CHERIoT: Complete Memory Safety for Embedded Devices](https://www.microsoft.com/en-us/research/publication/cheriot-complete-memory-safety-for-embedded-devices/). Proc. MICRO '23, 641–653.
+- Anderson, J. P. (1972): [Computer Security Technology Planning Study](https://csrc.nist.gov/files/pubs/conference/1998/10/08/proceedings-of-the-21st-nissc-1998/final/docs/early-cs-papers/ande72.pdf). Vol. II, ESD-TR-73-51, U.S. Air Force Electronic Systems Division.
 - Anthropic (2025): [Donating the Model Context Protocol and establishing the Agentic AI Foundation](https://www.anthropic.com/news/donating-the-model-context-protocol-and-establishing-of-the-agentic-ai-foundation). 9 December 2025.
 - Anthropic (2026a): [Project Glasswing: Securing critical software for the AI era](https://www.anthropic.com/glasswing). 7 April 2026.
 - Anthropic (2026b): [Project Glasswing: An initial update](https://www.anthropic.com/research/glasswing-initial-update). 22 May 2026.
@@ -195,6 +198,7 @@ The announcement of 1991 promised a system that "won't be big". zOS makes the sa
 - Hubbard, J. (2026): [agentOS: an operating system designed from the core up for agents](https://github.com/jordanhubbard/agentos). Source repository, accessed 20 October 2026.
 - Klein, G. et al. (2009): [seL4: Formal Verification of an OS Kernel](https://trustworthy.systems/publications/papers/Klein_EHACDEEKNSTW_09.pdf). Proc. SOSP '09.
 - Klein, G.; Andronick, J.; Kuz, I.; Murray, T.; Heiser, G.; Fernandez, M. (2018): [Formally Verified Software in the Real World](https://trustworthy.systems/publications/abstracts/Klein_AKMHF_18.abstract). Communications of the ACM 61(10), 68–77.
+- Lamport, L.; Shostak, R.; Pease, M. (1982): [The Byzantine Generals Problem](https://lamport.azurewebsites.net/pubs/byz.pdf). ACM Transactions on Programming Languages and Systems 4(3), 382–401.
 - Lattuada, A. et al. (2024): Verus: A Practical Foundation for Systems Verification. Proc. SOSP '24.
 - Leemhuis, T. (2025): [Zahlen, bitte! Linux – soon to weigh 40 million lines of code](https://heise.de/-10250618). heise online, January 2025.
 - Lide, D. (2026): [ARSENAL: Assured Robotics Embedded Systems and Applications in Ground Vehicles](https://sel4summit2026.sched.com/event/2Prpd). Talk, seL4 Summit 2026, Vancouver.

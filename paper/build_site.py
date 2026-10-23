@@ -108,7 +108,9 @@ html_body = re.sub(r"<table>.*?</table>", label_table, html_body, flags=re.S)
 # revisions: what changed between versions, each with the PDF as it was
 REPO = "https://github.com/entresol/zero-os"
 revisions = [
-    ("2026-10-23-v0.7", None,
+    ("2026-10-23-v0.8", None,
+     "Section 1 opens with the motivation for everything else: Don't trust the agent. Verify the system. The agent is treated as a Byzantine component; the size of the system follows from the reference monitor's oldest requirement, to be small enough to be analysed and tested."),
+    ("2026-10-23-v0.7", "2a9d5b7",
      "The abstract states the thesis up front: zOS does not try to make AI trustworthy, it stays safe although the agent is not. Section 5 adds AgenticOS and Agent libOS as designs for the broker's job and the first verified LionsOS driver. He et al. cited in its OSDI '26 version."),
     ("2026-10-23-v0.6", "0459cdc",
      "Text and figures are licensed under CC BY 4.0."),
