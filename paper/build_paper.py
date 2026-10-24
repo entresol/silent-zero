@@ -9,6 +9,7 @@ from pathlib import Path
 work = Path(sys.argv[1])  # folder with src.md, fig1.png, fig2.png
 sys.dont_write_bytecode = True
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+import changelog
 import glossary
 src = (work / "src.md").read_text(encoding="utf-8")
 
@@ -120,7 +121,7 @@ preamble = r"""\documentclass[11pt,a4paper,twocolumn]{article}
 \pagestyle{fancy}
 \fancyhf{}
 \fancyhead[L]{\sffamily\footnotesize zOS -- Zero OS}
-\fancyhead[R]{\sffamily\footnotesize Working paper 2026-10-23-v0.11}
+\fancyhead[R]{\sffamily\footnotesize Working paper @VERSION@}
 \fancyfoot[C]{\sffamily\footnotesize \thepage\ / \pageref{LastPage}}
 \renewcommand{\headrulewidth}{0.3pt}
 \fancypagestyle{first}{\fancyhf{}\renewcommand{\headrulewidth}{0pt}\fancyfoot[C]{\sffamily\footnotesize \thepage\ / \pageref{LastPage}}}
@@ -128,14 +129,14 @@ preamble = r"""\documentclass[11pt,a4paper,twocolumn]{article}
 
 titleblock = r"""\twocolumn[{%
 \begin{center}
-{\sffamily\footnotesize WORKING PAPER · 2026-10-23-v0.11\par}
+{\sffamily\footnotesize WORKING PAPER · @VERSION@\par}
 \vspace{6pt}
 {\sffamily\bfseries\LARGE @TITLE@\textsuperscript{\normalsize *}\par}
 \vspace{6pt}
 {\large @SUBTITLE@\par}
 \vspace{10pt}
 {\normalsize Tobias von Dewitz \textperiodcentered{} Susann Mürling \textperiodcentered{} Stefan Probst \textperiodcentered{} Daniel Strecker\par}
-{\small 23 October 2026\par}
+{\small @DATE@\par}
 \vspace{2pt}
 {\footnotesize Text and figures: \href{https://creativecommons.org/licenses/by/4.0/}{CC BY 4.0}\par}
 {\footnotesize * zOS is a working title. Before its first release the project gets a name of its own, one that treads on nobody's toes, mainframes included.\par}
@@ -159,6 +160,11 @@ titleblock = (titleblock.replace("@SUBTITLE@", subtitle)
               .replace("@ABSTRACT@", abstract_flat)
               .replace("@KEYWORDS@", keywords))
 
+version = changelog.current(changelog.parse())
+y, m, d = (int(x) for x in version[:10].split("-"))
+date = f"{d} {'January February March April May June July August September October November December'.split()[m - 1]} {y}"
+preamble = preamble.replace("@VERSION@", version)
+titleblock = titleblock.replace("@VERSION@", version).replace("@DATE@", date)
 doc = preamble + "\\begin{document}\n" + titleblock + body_tex + "\n\\end{document}\n"
 (work / "paper.tex").write_text(doc, encoding="utf-8")
 print("ok")
