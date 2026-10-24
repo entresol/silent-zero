@@ -164,8 +164,8 @@ html_body = html_body + revisions_html
 CURRENT_VERSION = revisions[0][0]
 pdf_name = f"versions/zos-zero-os-{CURRENT_VERSION}.pdf"
 
-# table of contents from h2
-toc = "".join(f'<li><a href="#{i}">{re.sub("<[^>]+>", "", t)}</a></li>'
+# table of contents from h2, led by a link back to the top
+toc = '<li><a href="#top">\u2191 Top</a></li>' + "".join(f'<li><a href="#{i}">{re.sub("<[^>]+>", "", t)}</a></li>'
               for i, t in re.findall(r'<h2 id="([^"]+)">(.*?)</h2>', html_body))
 
 pages = subprocess.run(["pdfinfo", str(src_dir / "paper.pdf")], capture_output=True, text=True).stdout
@@ -186,7 +186,7 @@ page = f"""<!doctype html>
 </style>
 </head>
 <body>
-<header class="hero">
+<header class="hero" id="top">
   <div class="hero-inner">
     <h1>Imagine it's 1991</h1>
     <p class="lede">We are about to release a few lines of code into a world that will be very different from today.</p>
@@ -202,8 +202,9 @@ page = f"""<!doctype html>
     </div>
   </div>
 </header>
+<button class="menu" type="button" aria-controls="toc" aria-expanded="false" aria-label="Contents" hidden><span></span></button>
 <div class="layout">
-  <nav class="toc" aria-label="Contents"><p>Contents</p><ol>{toc}</ol></nav>
+  <nav class="toc" id="toc" aria-label="Contents"><p>Contents</p><ol>{toc}</ol></nav>
   <article>
 {html_body}
   </article>
@@ -214,6 +215,22 @@ page = f"""<!doctype html>
 document.querySelectorAll('a.gl').forEach(a => a.addEventListener('pointerenter', () => {{
   a.classList.toggle('flip', a.getBoundingClientRect().left + 360 > document.documentElement.clientWidth - 16);
 }}));
+// narrow screens: the menu button opens the contents as a panel; while it is open the page behind it is inert
+const menu = document.querySelector('button.menu'), toc = document.getElementById('toc');
+const behind = document.querySelectorAll('header.hero, article, footer');
+const isOpen = () => menu.getAttribute('aria-expanded') === 'true';
+function setMenu(open) {{
+  menu.setAttribute('aria-expanded', open);
+  document.documentElement.classList.toggle('menu-open', open);
+  behind.forEach(el => el.inert = open);
+  if (open) toc.querySelector('a').focus();
+}}
+menu.hidden = false;   // without JavaScript the button stays hidden and the page works as before
+menu.addEventListener('click', () => setMenu(!isOpen()));
+toc.addEventListener('click', e => {{ if (e.target.closest('a')) setMenu(false); }});
+document.addEventListener('click', e => {{ if (isOpen() && !toc.contains(e.target) && !menu.contains(e.target)) setMenu(false); }});
+document.addEventListener('keydown', e => {{ if (e.key === 'Escape' && isOpen()) {{ setMenu(false); menu.focus(); }} }});
+matchMedia('(min-width: 76rem)').addEventListener('change', e => {{ if (e.matches) setMenu(false); }});
 </script>
 </body>
 </html>
