@@ -129,8 +129,11 @@ html_body = re.sub(r"<table>.*?</table>", label_table, html_body, flags=re.S)
 
 # revisions: what changed between versions, each with the PDF as it was
 REPO = "https://github.com/entresol/zero-os"
+# paper versions are YYYY-MM-DD-vX.Y and have a PDF; changes to this page alone carry only the date
 revisions = [
-    ("2026-10-23-v0.11", None,
+    ("2026-10-24", "105fe36",
+     "On phones and tablets, a menu button at the top left opens the contents as a panel. The contents, here and on wide screens, lead with a link back to the top."),
+    ("2026-10-23-v0.11", "ca2fd3a",
      "A glossary of 38 terms in five groups, each explained in plain words and with its role in zOS: as an appendix in the PDF and on this page, where the first use of a term in each section shows its meaning."),
     ("2026-10-23-v0.10", "aa08aee",
      "Revision after checking every cited claim against its source. The first robot is a demonstrator before zOS 0.01, which runs on RISC-V: on the Raspberry Pi 4, MCS is not verified, no WCET bound is possible and the Linux island joins the trusted base. Provable timing named as a goal. Updated: OpenTitan in production, seL4 WCET being rebuilt on RISC-V, fence.t on a second core, multikernel verification. New: the trusted path for approvals as an open seam, EU machinery law from 2027, ELISA. Corrected: agentOS, LionsOS, Felt et al., the cost of seL4."),
@@ -154,14 +157,14 @@ revisions = [
 ]
 rev_items = []
 for ver, sha, text in revisions:
-    pdf = f'<a href="versions/zos-zero-os-{ver}.pdf">PDF of this version</a>'
+    pdf = f'<a href="versions/zos-zero-os-{ver}.pdf">PDF of this version</a>' if "-v" in ver else "This page only"
     rev_items.append(f'<li><p class="rev-date"><span class="rev-ver">{ver}</span> · {pdf}</p><p>{text}</p></li>')
 revisions_html = ('<h2 id="revisions">Revisions</h2>'
                   f'<p>Every change is recorded in the <a href="{REPO}/commits/main">commit history</a>. '
                   'This list says what changed in substance.</p>'
                   f'<ol class="revisions">{"".join(rev_items)}</ol>')
 html_body = html_body + revisions_html
-CURRENT_VERSION = revisions[0][0]
+CURRENT_VERSION = next(ver for ver, _, _ in revisions if "-v" in ver)
 pdf_name = f"versions/zos-zero-os-{CURRENT_VERSION}.pdf"
 
 # table of contents from h2, led by a link back to the top
