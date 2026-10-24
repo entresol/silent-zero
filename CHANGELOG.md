@@ -4,6 +4,10 @@ What changed in substance, newest first: in the paper, on its page and in the pr
 
 Format: `## <version> · <scope>`, then one paragraph. A paper version is `YYYY-MM-DD-vX.Y` and has its own PDF in `versions/`; the newest one is the version the build prints on the paper and the page. A change without a new paper version carries only its date (`YYYY-MM-DD`). Scope is `Paper`, `Site` or `Project`. The build turns this file into the list at the end of the page.
 
+## 2026-10-24-v0.12 · Paper
+
+In brief: half a page before the abstract for readers who want to know in a minute what this is about. The problem, the principle (we do not trust the agent, so authority and safety move beneath it), the building blocks that exist, where it can fail and what we need now.
+
 ## 2026-10-24 · Project
 
 The list of changes covers the whole public project: the paper, this page and the repository. Its source is CHANGELOG.md. CONTRIBUTING.md describes how we work: branches and pull requests, paper versions, what goes into the changelog, how claims are sourced.
