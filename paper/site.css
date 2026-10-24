@@ -97,6 +97,46 @@ nav.toc a { color: var(--muted); text-decoration: none; }
 nav.toc a:hover { color: var(--ink-deep); }
 nav.toc p { font: 600 0.9rem/1 var(--font-text); margin: 0 0 1rem; color: var(--ink-deep); }
 
+/* Narrow screens: the contents become a panel from the left, opened by a menu button at the top left.
+   The button is shown by the script only; without JavaScript the page stays as it was. */
+button.menu { display: none; }
+@media (max-width: 75.98rem) {
+  /* 44px touch target; left offset puts the 18px lines flush with the text column */
+  button.menu:not([hidden]) {
+    display: block; position: fixed; z-index: 20;
+    top: max(0.5rem, env(safe-area-inset-top, 0px)); left: calc(var(--gutter-l) - 0.8125rem);
+    width: 2.75rem; height: 2.75rem; padding: 0; border: 1px solid var(--rule); border-radius: 50%; cursor: pointer;
+    background: var(--paper); color: var(--ink-deep);   /* opaque: it sits on running text while reading */
+  }
+  button.menu:focus-visible { outline: 1px solid var(--accent); outline-offset: 0; }
+  /* three lines: the span is the middle one, its pseudo-elements the outer two; open, they cross */
+  button.menu span, button.menu span::before, button.menu span::after {
+    position: absolute; width: 1.125rem; height: 1px; background: currentColor;
+  }
+  button.menu span { left: calc(50% - 0.5625rem); top: calc(50% - 0.5px); }
+  button.menu span::before, button.menu span::after { content: ""; left: 0; top: 0; transition: transform 0.2s ease; }
+  button.menu span::before { transform: translateY(-6px); }
+  button.menu span::after { transform: translateY(6px); }
+  button.menu[aria-expanded="true"] span { background: transparent; }
+  button.menu[aria-expanded="true"] span::before { transform: rotate(45deg); }
+  button.menu[aria-expanded="true"] span::after { transform: rotate(-45deg); }
+
+  nav.toc {
+    display: block; position: fixed; z-index: 10; inset: 0 auto 0 0; width: min(20rem, 85vw);
+    overflow-y: auto; overscroll-behavior: contain;
+    padding: calc(max(0.5rem, env(safe-area-inset-top, 0px)) + 4rem) 1.5rem 2rem var(--gutter-l);
+    background: var(--paper); border-right: 1px solid var(--rule);
+    visibility: hidden; transform: translateX(-100%); transition: transform 0.25s ease, visibility 0s 0.25s;
+  }
+  .menu-open { overflow: hidden; }
+  .menu-open nav.toc { visibility: visible; transform: none; transition: transform 0.25s ease; box-shadow: 0 0 0 100vmax rgb(0 0 0 / 0.25); }
+  nav.toc ol { font-size: 1rem; }
+  nav.toc li { margin-bottom: 0.85rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  nav.toc, button.menu span::before, button.menu span::after { transition: none !important; }
+}
+
 h2 { font-size: clamp(36px, 5vw, 56px); line-height: 1.04; letter-spacing: -0.035em; margin: 4.2rem 0 1.4rem; scroll-margin-top: 1.5rem; }
 h2::before { content: ""; display: block; width: 32px; height: 1px; background: var(--accent); margin-bottom: 1.1rem; }
 h3 { font: 600 1.125rem/1.35 var(--font-text); color: var(--ink-deep); margin: 2.4rem 0 0.6rem; text-wrap: balance; }
@@ -127,7 +167,7 @@ footer div { max-width: var(--wide); margin: 0 auto; color: var(--muted); font-s
   td:first-child { white-space: normal; }
 }
 @media print {
-  .hero { padding: 2rem 0; } nav.toc, .actions, footer { display: none; }
+  .hero { padding: 2rem 0; } nav.toc, button.menu, .actions, footer { display: none; }
 }
 
 /* status line under the title block */
@@ -194,3 +234,8 @@ ol.revisions .rev-date { color: var(--muted); font-size: 0.95rem; margin-bottom:
 
 /* title block: slogan, authors, version */
 .titleblock .ver { color: var(--muted); font-size: 0.95rem; margin-top: 0.15rem; }
+
+/* narrow screens: jump targets land below the menu button (last, so it wins over the scroll margins above) */
+@media (max-width: 75.98rem) {
+  h2, [id^="gl-"], #references + ul li { scroll-margin-top: 4rem; }
+}
