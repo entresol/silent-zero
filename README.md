@@ -2,7 +2,7 @@
 
 **Bare minimum. Verified. Real-time. An OS for the AI era.**
 
-Working paper 2026-10-23-v0.11. Every revision is listed on the page and in the commit history.
+Every change in substance is listed in [`CHANGELOG.md`](CHANGELOG.md) and at the end of the page; every change at all in the commit history.
 
 > Imagine it's 1991. We are about to release a few lines of code into a world that will be very different from today.
 
@@ -16,7 +16,7 @@ First light: [a boot screen](splash/) and a [loader](loader/) that checks the ke
 - The paper's source and the build for PDF and page: [`paper/`](paper/)
 - Red-team report on an earlier draft (German): [`review/red-team-2026-10-18.md`](review/red-team-2026-10-18.md)
 
-Criticism and support are warmly welcome as [issues](https://github.com/entresol/zero-os/issues).
+Criticism and support are warmly welcome as [issues](https://github.com/entresol/zero-os/issues). To change something yourself, see [`CONTRIBUTING.md`](CONTRIBUTING.md).
 
 ## Licence
 

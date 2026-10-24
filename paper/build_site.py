@@ -12,6 +12,7 @@ out = Path(sys.argv[2])       # site output folder
 pdf_name = "zos-zero-os.pdf"
 sys.dont_write_bytecode = True
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+import changelog
 import glossary
 gl_groups = glossary.parse(Path(__file__).resolve().parent / "glossary.md")
 
@@ -127,44 +128,19 @@ def label_table(m):
     return re.sub(r"<tr.*?</tr>", lab_row, t, flags=re.S)
 html_body = re.sub(r"<table>.*?</table>", label_table, html_body, flags=re.S)
 
-# revisions: what changed between versions, each with the PDF as it was
+# changes: from ../CHANGELOG.md, each paper version with the PDF as it was
 REPO = "https://github.com/entresol/zero-os"
-# paper versions are YYYY-MM-DD-vX.Y and have a PDF; changes to this page alone carry only the date
-revisions = [
-    ("2026-10-24", "105fe36",
-     "On phones and tablets, a menu button at the top left opens the contents as a panel. The contents, here and on wide screens, lead with a link back to the top."),
-    ("2026-10-23-v0.11", "ca2fd3a",
-     "A glossary of 38 terms in five groups, each explained in plain words and with its role in zOS: as an appendix in the PDF and on this page, where the first use of a term in each section shows its meaning."),
-    ("2026-10-23-v0.10", "aa08aee",
-     "Revision after checking every cited claim against its source. The first robot is a demonstrator before zOS 0.01, which runs on RISC-V: on the Raspberry Pi 4, MCS is not verified, no WCET bound is possible and the Linux island joins the trusted base. Provable timing named as a goal. Updated: OpenTitan in production, seL4 WCET being rebuilt on RISC-V, fence.t on a second core, multikernel verification. New: the trusted path for approvals as an open seam, EU machinery law from 2027, ELISA. Corrected: agentOS, LionsOS, Felt et al., the cost of seL4."),
-    ("2026-10-23-v0.9", "a5177f6",
-     "The name is marked as a working title: zOS gets a name of its own before its first release."),
-    ("2026-10-23-v0.8", "fbb6f90",
-     "Section 1 opens with the motivation for everything else: Don't trust the agent. Verify the system. The agent is treated as a Byzantine component; the size of the system follows from the reference monitor's oldest requirement, to be small enough to be analysed and tested."),
-    ("2026-10-23-v0.7", "2a9d5b7",
-     "The abstract states the thesis up front: zOS does not try to make AI trustworthy, it stays safe although the agent is not. Section 5 adds AgenticOS and Agent libOS as designs for the broker's job and the first verified LionsOS driver. He et al. cited in its OSDI '26 version."),
-    ("2026-10-23-v0.6", "0459cdc",
-     "Text and figures are licensed under CC BY 4.0."),
-    ("2026-10-20-v0.5", "79e70978704a9c21803560dc46ba265951966250",
-     "The bootloader paragraph says what the first prototype does: one fixed rule; the first screen drawn by the loader, because nothing else could report a failed check; its size counted as trusted base."),
-    ("2026-10-20-v0.4", "5cb6f1350b744973727f9aa11a979f8f6432d35b",
-     "The slogan becomes the subtitle: Bare minimum. Verified. Real-time. An OS for the AI era. The authors are named on the paper."),
-    ("2026-10-20-v0.3", "4e2feba",
-     "pib as a possible first robot. The driver island, the seams on critical paths and the dependency on seL4 dates made explicit. Anthropic's vulnerability figures qualified as self-reported."),
-    ("2026-10-20-v0.2", "93d142bdf3b51c831caf5c16bf23b34040fb6ea4",
-     "Revision after the first external review: a first use case; two questions per part instead of three trust classes; firmware above the kernel; what has to be built and who else is building it; the hardened-Linux alternative; reviews described as AI-assisted; every roadmap station labelled demonstration, test or proof. New figures."),
-    ("2026-10-19-v0.1", "adf2d5d308735e0408c63341b3cc01b49d1f7a15", "First publication."),
-]
+changes = changelog.parse()
 rev_items = []
-for ver, sha, text in revisions:
-    pdf = f'<a href="versions/zos-zero-os-{ver}.pdf">PDF of this version</a>' if "-v" in ver else "This page only"
-    rev_items.append(f'<li><p class="rev-date"><span class="rev-ver">{ver}</span> · {pdf}</p><p>{text}</p></li>')
-revisions_html = ('<h2 id="revisions">Revisions</h2>'
+for ver, scope, text in changes:
+    pdf = f' · <a href="versions/zos-zero-os-{ver}.pdf">PDF of this version</a>' if changelog.has_pdf(ver) else ""
+    rev_items.append(f'<li><p class="rev-date"><span class="rev-ver">{ver}</span> · {scope}{pdf}</p><p>{text}</p></li>')
+revisions_html = ('<h2 id="changes">Changes</h2>'
                   f'<p>Every change is recorded in the <a href="{REPO}/commits/main">commit history</a>. '
-                  'This list says what changed in substance.</p>'
+                  f'This list says what changed in substance: in the paper, on this page and in the project. Its source is <a href="{REPO}/blob/main/CHANGELOG.md">CHANGELOG.md</a>.</p>'
                   f'<ol class="revisions">{"".join(rev_items)}</ol>')
 html_body = html_body + revisions_html
-CURRENT_VERSION = next(ver for ver, _, _ in revisions if "-v" in ver)
+CURRENT_VERSION = changelog.current(changes)
 pdf_name = f"versions/zos-zero-os-{CURRENT_VERSION}.pdf"
 
 # table of contents from h2, led by a link back to the top
@@ -196,7 +172,7 @@ page = f"""<!doctype html>
     <div class="titleblock">
       <p class="name">zOS – Zero OS<a class="star" href="#working-title" aria-label="About the name">*</a></p>
       <p class="sub">Bare minimum. Verified. Real-time. An OS for the AI era.</p>
-      <p class="ver">Working paper {CURRENT_VERSION} · <a href="#revisions">latest changes</a></p>
+      <p class="ver">Working paper {CURRENT_VERSION} · <a href="#changes">latest changes</a></p>
     </div>
     <p class="status">First light: <a href="https://github.com/entresol/zero-os/tree/main/loader">a loader that checks the kernel image and shows its verdict on the first screen</a>, under 9 KB on RISC-V, tested in QEMU. This paper proposes what we intend to build and where it can fail. Criticism and support are warmly welcome: <a href="https://github.com/entresol/zero-os/issues">issues</a>.</p>
     <div class="actions">
@@ -252,7 +228,17 @@ old_fig2 = out / "assets" / "fig2.png"
 if old_fig2.exists():
     old_fig2.unlink()
 (out / "versions").mkdir(exist_ok=True)
-shutil.copy(src_dir / "paper.pdf", out / pdf_name)            # this version, named by its version
-shutil.copy(src_dir / "paper.pdf", out / "zos-zero-os.pdf")    # stable name, always the newest version
+# A published version never changes. Once its PDF is on origin/main, the build keeps that file
+# and only warns if the text it just built differs: a changed paper needs a new version.
+published = subprocess.run(["git", "-C", str(out), "cat-file", "-e", f"origin/main:{pdf_name}"],
+                           capture_output=True).returncode == 0
+if published:
+    text = lambda p: subprocess.run(["pdftotext", str(p), "-"], capture_output=True, text=True).stdout
+    if text(src_dir / "paper.pdf") != text(out / pdf_name):
+        print(f"warning: the paper differs from published {CURRENT_VERSION}, which stays as it was; "
+              "add a new paper version to CHANGELOG.md", file=sys.stderr)
+else:
+    shutil.copy(src_dir / "paper.pdf", out / pdf_name)      # this version, named by its version
+shutil.copy(out / pdf_name, out / "zos-zero-os.pdf")         # stable name, always the newest version
 (out / ".nojekyll").write_text("")
 print("ok", len(page))
