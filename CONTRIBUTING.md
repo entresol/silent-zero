@@ -14,7 +14,7 @@ How we work on zOS, for everyone who changes and commits here, people and AI ass
 ## Workflow
 
 1. Branch from an up-to-date `main`, named by area: `paper/…`, `site/…`, `project/…`, `loader/…`.
-2. One topic per pull request. Nobody pushes to `main` directly; every change goes through a pull request, and someone other than the author merges it.
+2. One topic per pull request. `main` accepts changes only through pull requests; GitHub rejects direct pushes, for everyone. The core group (the paper's authors) has write access and merges; everyone else works from a fork and opens a pull request from there.
 3. If the change touches `paper/` or `CHANGELOG.md`, run `paper/build.sh` and commit the regenerated `index.html` with it. There is no CI: GitHub Pages serves exactly what is committed.
 4. Commit messages in English. First line: area and what changed (`Site: contents menu on narrow screens`, `Version 2026-10-23-v0.11: a glossary of 38 terms`). Body: why, and how it was checked.
 
