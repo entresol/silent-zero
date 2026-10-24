@@ -4,6 +4,18 @@
 
 Oct 19, 2026 · @Stefan Probst
 
+## In brief
+
+AI agents no longer just give answers; they deliver work. They read email, hold credentials, call tools and, increasingly, move arms or wheels in the physical world. Run as an ordinary program, an agent can inherit broad access to its user's files, credentials and network; sandboxes narrow that as a layer added on top. And an agent can be misled by anything it reads. In robots, the agent's software and the real-time control of the motors mostly live in separate worlds, joined by glue.
+
+**We do not trust the agent, so authority and safety move beneath it.** zOS treats every agent as untrusted, whatever model drives it. An agent holds only the authority a person granted it, limited in scope and time, and revocable. It may propose any motion; a small, deterministic loop has the last word. Processor time is capability-controlled like memory, so an agent can be prevented from monopolising the processor and starving the control path. Verified isolation, explicit capabilities and hard real time form one architecture, not three layers. Every part a guarantee depends on is labelled proven, tested or assumed: proof where feasible, explicit assumptions everywhere else.
+
+**The building blocks exist.** seL4, whose MCS configuration on 64-bit RISC-V now has a machine-checked proof of functional correctness; a verified real-world Ethernet driver; OpenTitan roots of trust, shipping in production Chromebooks since March 2026. The hard part is composing them, with an end-to-end assurance argument that holds across every seam between proven and unproven parts. Known gaps include verified multicore configurations and timing bounds for modern processors. This paper starts that argument and says where it does not know yet.
+
+**Where it can fail.** It does not stop prompt injection; it limits how far a deceived agent can reach. Firmware and GPUs remain trusted, not proven. And hardened Linux beside a separate motor controller may prove good enough.
+
+**What we need now.** People who know firmware, verification or robots, to test this argument before the architecture hardens around it.
+
 ## Abstract
 
 This paper proposes zOS, the zero operating system: an operating system reduced to what cannot be removed. zOS does not try to make AI trustworthy. It is built to stay safe although the agent is not: the agent never holds more authority than a person granted, and no motion leaves a verified loop. zOS consists of a bootloader, a formally verified microkernel, and the bare minimum needed to run AI agents safely and in real time. Nothing at its base is new: the seL4 microkernel with its mixed-criticality extensions, its system framework and drivers, capability-based security, open roots of trust and open agent protocols all exist as open-source work. What has to be built is the layer between agents and the world: a broker that turns human intent into bounded authority, and a safety path that keeps every motion under a verified loop. One rule binds the system: whatever is not needed to run agents is left out, and for every part that remains we state whether a guarantee depends on it and whether it is proven, tested or assumed.

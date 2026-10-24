@@ -18,9 +18,11 @@ title = lines[0].lstrip("# ").strip()
 subtitle = lines[2].lstrip("# ").strip()
 body = "\n".join(lines[4:]).split("\n", 1)[1]  # drop date/author line
 
+# the short pitch opens the two-column text; the abstract goes into the title block
+brief = re.search(r"## In brief\n.*?\n(?=## Abstract)", body, re.S).group(0)
 abs_match = re.search(r"## Abstract\n(.*?)\n## Prologue", body, re.S)
 abstract_md = abs_match.group(1).strip()
-body = body[abs_match.end() - len("## Prologue"):]
+body = brief + "\n" + body[abs_match.end() - len("## Prologue"):]
 
 kw_match = re.search(r"\*\*Keywords:\*\*\s*(.*)$", abstract_md, re.M)
 keywords = kw_match.group(1).strip()
