@@ -4,6 +4,10 @@ What changed in substance, newest first: in the paper, on its page and in the pr
 
 Format: `## <version> · <scope>`, then one paragraph. A paper version is `YYYY-MM-DD-vX.Y` and has its own PDF in `versions/`; the newest one is the version the build prints on the paper and the page. A change without a new paper version carries only its date (`YYYY-MM-DD`). Scope is `Paper`, `Site` or `Project`. The build turns this file into the list at the end of the page.
 
+## 2026-10-25-v0.14 · Paper
+
+The whole text reworded to read as written by people, not by a machine. Colon reveals fell from 66 to 9, contrasts of the form "X, not Y" from 17 to 3, and most paragraphs no longer end on an aphorism. No claim, figure or source changed; In brief and the opening lines of the prologue stay as they were.
+
 ## 2026-10-25-v0.13 · Paper
 
 Section 6 names three more limits. zOS can make weapons more reliable too; the authors state where they stand, as a declaration next to what is proven, tested or assumed. Small does not mean frugal: most of an agent's energy goes into its model, so no saving is claimed before it is measured. And the doubts that are the authors' own: whether AI can supply the work between the parts, whether people stay, whether there will be money. Section 2.3 says why the project is attempted now.
