@@ -11,7 +11,7 @@ Read before working here: `README.md` (what zOS is), `CONTRIBUTING.md` (workflow
 ## Working
 
 - Branch and pull request for every change; never push to `main`, never merge your own pull request. When a pull request is ready, say so plainly, so nobody pulls a half-finished branch.
-- Run `paper/build.sh` after any change to `paper/` or `CHANGELOG.md`, and commit `index.html` with the change. The build never rewrites a published PDF; if it warns that the paper differs from the published version, the change needs a new version in `CHANGELOG.md`.
+- Run `paper/build.sh` after any change to `paper/` or `CHANGELOG.md`, and commit `index.html` with the change. The workflow *Build page* (`.github/workflows/build-page.yml`) does the same on every such pull request and commits what is missing; pull before you continue on a branch it has touched. The build never rewrites a published PDF; if it warns that the paper differs from the published version, the change needs a new version in `CHANGELOG.md`.
 - Before a version entry, check every new or changed claim against its source. Say "checked against the source" only when you did.
 - Check page changes in a real browser, at 390 px and 1440 px, light and dark, and with JavaScript off when scripts are involved. Without a local Playwright install: `uv run --with playwright python script.py`, launching `chromium.launch(channel="chrome")` to use the installed Chrome.
 - The loader and the splash have their own tests (`make test` in `loader/`); run them when you touch either.
