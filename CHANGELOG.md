@@ -4,6 +4,10 @@ What changed in substance, newest first: in the paper, on its page and in the pr
 
 Format: `## <version> · <scope>`, then one paragraph. A paper version is `YYYY-MM-DD-vX.Y` and has its own PDF in `versions/`; the newest one is the version the build prints on the paper and the page. A change without a new paper version carries only its date (`YYYY-MM-DD`). Scope is `Paper`, `Site` or `Project`. The build turns this file into the list at the end of the page.
 
+## 2026-10-25-v0.13 · Paper
+
+Section 6 names three more limits. zOS can make weapons more reliable too; the authors state where they stand, as a declaration next to what is proven, tested or assumed. Small does not mean frugal: most of an agent's energy goes into its model, so no saving is claimed before it is measured. And the doubts that are the authors' own: whether AI can supply the work between the parts, whether people stay, whether there will be money. Section 2.3 says why the project is attempted now.
+
 ## 2026-10-24-v0.12 · Paper
 
 In brief: half a page before the abstract for readers who want to know in a minute what this is about. The problem, the principle (we do not trust the agent, so authority and safety move beneath it), the building blocks that exist, where it can fail and what we need now.
