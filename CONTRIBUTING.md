@@ -14,9 +14,9 @@ How we work on zOS, for everyone who changes and commits here, people and AI ass
 ## Workflow
 
 1. Branch from an up-to-date `main`, named by area: `paper/…`, `site/…`, `project/…`, `loader/…`.
-2. One topic per pull request. `main` accepts changes only through pull requests; GitHub rejects direct pushes, for everyone, because every merge is published at once. The core group (the paper's authors) has write access and merges; everyone else works from a fork and opens a pull request from there.
+2. One topic per pull request. `main` accepts changes only through pull requests; GitHub rejects direct pushes, for everyone, because every merge is published at once. The core group, the paper's authors, has write access and merges. Everyone else works from a fork and opens a pull request from there.
 3. A member of the core group may merge their own pull request for typos, wording in the changelog, links and formatting. Claims in the paper, a new version, changes to the build or the design, and anything that touches a source get a second pair of eyes first.
-4. If the change touches `paper/` or `CHANGELOG.md`, the page has to be rebuilt. Run `paper/build.sh` and commit the regenerated `index.html` with it, or let the workflow *Build page* do it: it rebuilds every such pull request and commits the result into it, so a quick fix in GitHub's web editor arrives complete. Wait until it has run before merging. If it had something to add, its commit "Site: rebuild (automatic)" is the last one in the pull request; GitHub does not run checks on that commit again, so the green check sits on the commit before it. GitHub Pages serves exactly what is on `main`.
+4. If the change touches `paper/` or `CHANGELOG.md`, the page has to be rebuilt. You can run `paper/build.sh` and commit the regenerated `index.html` with it. The workflow *Build page* also does this for every such pull request and commits the result into it, so a quick fix in GitHub's web editor arrives complete. Wait until it has run before merging. The workflow may add a commit called "Site: rebuild (automatic)" at the end of the pull request. GitHub does not check that commit again, so the green check sits on the commit before it. GitHub Pages serves exactly what is on `main`.
 5. Commit messages in English. First line: area and what changed (`Site: contents menu on narrow screens`, `Version 2026-10-23-v0.11: a glossary of 38 terms`). Body: why, and how it was checked.
 
 ## Versions and the changelog
@@ -34,6 +34,24 @@ How we work on zOS, for everyone who changes and commits here, people and AI ass
 - Say how we know: *proven* only for a machine-checked proof, *tested* for what was shown under defined load or attack, *assumed* for what is simply trusted. Goals are named as goals.
 - Dates are absolute ("the third quarter of 2028", not "in two years").
 - A new technical term that a reader may not know gets an entry in `paper/glossary.md`.
+
+### Sentences
+
+Most of the text here is written with AI, and readers notice machine prose quickly. Its worst habit is not a word or a punctuation mark. It is the sentence that tells the reader only at its end what it is about. Gopen and Swan described the rule against it in 1990 (*The Science of Scientific Writing*, American Scientist 78).
+
+- Start with what the sentence is about. Write "A care robot needs an agent that …", not "An agent that … is what a care robot needs".
+- Bring the verb early. Do not build the subject from a chain of nouns, clauses and asides.
+- Make one statement per sentence, then start the next one.
+- Let people or things act ("we", "the agent", "the kernel"). Avoid sentences in which the system acts like a person ("zOS asks for").
+- Long sentences are fine when subject and verb come first. A text made only of short sentences reads like a machine, too.
+- Use the figures that give machine prose away sparingly: the colon that reveals ("claim: explanation"), the contrast "X, not Y", the aphorism that closes a paragraph.
+
+To change a section, list its facts first (the order of the argument, every claim with its figure and source) and write the section anew in one go. Repairing it sentence by sentence leaves a patchwork that readers notice. Then check that no source and no figure got lost.
+
+Two scripts in `paper/tools/` measure a draft. They only warn. Whether a sentence works is still for a reader to judge.
+
+- `slop_lint.py FILE [--section "Heading"]` counts the figures above per 1000 words and lists every hit. It needs only Python.
+- `vorfeld.py FILE` shows, for every sentence, how many words come before the main verb, and lists the worst ones. It needs spaCy; the exact command is at the top of the file.
 
 ## What never goes into this repository
 
