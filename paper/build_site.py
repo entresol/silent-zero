@@ -147,7 +147,12 @@ pdf_name = f"versions/zos-zero-os-{CURRENT_VERSION}.pdf"
 toc = '<li><a href="#top">\u2191 Top</a></li>' + "".join(f'<li><a href="#{i}">{re.sub("<[^>]+>", "", t)}</a></li>'
               for i, t in re.findall(r'<h2 id="([^"]+)">(.*?)</h2>', html_body))
 
-pages = subprocess.run(["pdfinfo", str(src_dir / "paper.pdf")], capture_output=True, text=True).stdout
+# A published version never changes. Once its PDF is on origin/main, the build keeps that file,
+# and the page describes the PDF it serves, not the one just built (another TeX gives other pages).
+published = subprocess.run(["git", "-C", str(out), "cat-file", "-e", f"origin/main:{pdf_name}"],
+                           capture_output=True).returncode == 0
+served = out / pdf_name if published else src_dir / "paper.pdf"
+pages = subprocess.run(["pdfinfo", str(served)], capture_output=True, text=True).stdout
 pages = re.search(r"Pages:\s+(\d+)", pages).group(1)
 css = (Path(__file__).resolve().parent / "site.css").read_text(encoding="utf-8")
 css = "\n".join(l for l in css.splitlines() if "SPDX-License-Identifier" not in l) + "\n"
@@ -228,12 +233,11 @@ old_fig2 = out / "assets" / "fig2.png"
 if old_fig2.exists():
     old_fig2.unlink()
 (out / "versions").mkdir(exist_ok=True)
-# A published version never changes. Once its PDF is on origin/main, the build keeps that file
-# and only warns if the text it just built differs: a changed paper needs a new version.
-published = subprocess.run(["git", "-C", str(out), "cat-file", "-e", f"origin/main:{pdf_name}"],
-                           capture_output=True).returncode == 0
+# warn if the paper just built differs in its words from the published one: that needs a new version
 if published:
-    text = lambda p: subprocess.run(["pdftotext", str(p), "-"], capture_output=True, text=True).stdout
+    def text(p):
+        raw = subprocess.run(["pdftotext", str(p), "-"], capture_output=True, text=True).stdout
+        return re.sub(r"-\n", "", raw).split()                # line breaks and hyphenation vary with TeX
     if text(src_dir / "paper.pdf") != text(out / pdf_name):
         print(f"warning: the paper differs from published {CURRENT_VERSION}, which stays as it was; "
               "add a new paper version to CHANGELOG.md", file=sys.stderr)

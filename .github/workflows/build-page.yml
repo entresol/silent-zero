@@ -1,0 +1,66 @@
+# SPDX-License-Identifier: BSD-2-Clause
+# Rebuilds the page, and the PDF of a new paper version, for every pull request that touches
+# the paper or the changelog, and commits the result into the pull request. A two-click fix
+# in GitHub's web editor then arrives complete. A published PDF is never replaced (build_site.py),
+# and a PDF that differs only in bytes, not in words, is left as it was.
+name: Build page
+
+on:
+  pull_request:
+    paths: ["paper/**", "CHANGELOG.md", ".github/workflows/build-page.yml"]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-page-${{ github.head_ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
+
+      - name: Know what is published
+        run: git fetch --no-tags "https://github.com/${GITHUB_REPOSITORY}" "+refs/heads/main:refs/remotes/origin/main"
+
+      - name: Install pandoc 3.6.4, LaTeX and Poppler
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq --no-install-recommends \
+            texlive-latex-base texlive-latex-recommended texlive-latex-extra \
+            texlive-fonts-recommended poppler-utils
+          curl -fsSL -o /tmp/pandoc.deb https://github.com/jgm/pandoc/releases/download/3.6.4/pandoc-3.6.4-1-amd64.deb
+          sudo dpkg -i /tmp/pandoc.deb
+
+      - name: Build
+        run: sh paper/build.sh
+
+      - name: Keep PDFs whose words did not change
+        run: |
+          words() { pdftotext "$1" - | python3 -c 'import re, sys; print(" ".join(re.sub(r"-\n", "", sys.stdin.read()).split()))'; }
+          for f in $(git diff --name-only -- versions zos-zero-os.pdf); do
+            git show "HEAD:$f" > /tmp/old.pdf
+            if [ "$(words /tmp/old.pdf)" = "$(words "$f")" ]; then git checkout -- "$f"; fi
+          done
+
+      - name: Commit the result
+        env:
+          SAME_REPO: ${{ github.event.pull_request.head.repo.full_name == github.repository }}
+        run: |
+          git add -A index.html versions zos-zero-os.pdf
+          if git diff --cached --quiet; then echo "page is up to date"; exit 0; fi
+          git diff --cached --stat
+          if [ "$SAME_REPO" != "true" ]; then
+            echo "::error::The page is out of date. Run paper/build.sh and commit index.html (pull requests from forks cannot be updated automatically)."
+            exit 1
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -q -m "Site: rebuild (automatic)"
+          git push -q origin "HEAD:${GITHUB_HEAD_REF}"

@@ -14,9 +14,10 @@ How we work on zOS, for everyone who changes and commits here, people and AI ass
 ## Workflow
 
 1. Branch from an up-to-date `main`, named by area: `paper/…`, `site/…`, `project/…`, `loader/…`.
-2. One topic per pull request. `main` accepts changes only through pull requests; GitHub rejects direct pushes, for everyone. The core group (the paper's authors) has write access and merges; everyone else works from a fork and opens a pull request from there.
-3. If the change touches `paper/` or `CHANGELOG.md`, run `paper/build.sh` and commit the regenerated `index.html` with it. There is no CI: GitHub Pages serves exactly what is committed.
-4. Commit messages in English. First line: area and what changed (`Site: contents menu on narrow screens`, `Version 2026-10-23-v0.11: a glossary of 38 terms`). Body: why, and how it was checked.
+2. One topic per pull request. `main` accepts changes only through pull requests; GitHub rejects direct pushes, for everyone, because every merge is published at once. The core group (the paper's authors) has write access and merges; everyone else works from a fork and opens a pull request from there.
+3. A member of the core group may merge their own pull request for typos, wording in the changelog, links and formatting. Claims in the paper, a new version, changes to the build or the design, and anything that touches a source get a second pair of eyes first.
+4. If the change touches `paper/` or `CHANGELOG.md`, the page has to be rebuilt. Run `paper/build.sh` and commit the regenerated `index.html` with it, or let the workflow *Build page* do it: it rebuilds every such pull request and commits the result into it, so a quick fix in GitHub's web editor arrives complete. Wait for its check before merging. GitHub Pages serves exactly what is on `main`.
+5. Commit messages in English. First line: area and what changed (`Site: contents menu on narrow screens`, `Version 2026-10-23-v0.11: a glossary of 38 terms`). Body: why, and how it was checked.
 
 ## Versions and the changelog
 
