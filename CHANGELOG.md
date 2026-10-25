@@ -6,7 +6,7 @@ Format: `## <version> · <scope>`, then one paragraph. A paper version is `YYYY-
 
 ## 2026-10-25-v0.14 · Paper
 
-The whole text reworded to read as written by people, not by a machine. Colon reveals fell from 66 to 9, contrasts of the form "X, not Y" from 17 to 3, and most paragraphs no longer end on an aphorism. No claim, figure or source changed; In brief and the opening lines of the prologue stay as they were.
+The whole text reworded to sound more natural. Colon reveals fell from 66 to 9, contrasts of the form "X, not Y" from 17 to 3, and most paragraphs no longer end on an aphorism. No claim, figure or source changed; In brief and the opening lines of the prologue stay as they were.
 
 ## 2026-10-25-v0.13 · Paper
 
