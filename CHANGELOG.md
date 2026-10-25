@@ -6,6 +6,10 @@ Format: `## <version> · <scope>`, then one paragraph. A paper version is `YYYY-
 
 ## 2026-10-25 · Project
 
+CONTRIBUTING.md gains rules for sentences: say first what a sentence is about, bring the verb early, and rewrite a section from its facts instead of patching it. Two scripts in paper/tools measure a draft for machine prose.
+
+## 2026-10-25 · Project
+
 Every pull request that touches the paper or the changelog now rebuilds this page by itself, so a quick fix in GitHub's web editor no longer leaves it out of date. CONTRIBUTING.md says which changes need a second pair of eyes before they are merged.
 
 ## 2026-10-25-v0.14 · Paper
