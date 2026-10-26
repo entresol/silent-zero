@@ -59,7 +59,7 @@ Two scripts in `paper/tools/` measure a draft. They only warn. Whether a sentenc
 
 ## What never goes into this repository
 
-Internal material stays in the team's private repository: research notes, papers we may not redistribute, contacts, and the search for the project's final name. "zOS" is a working title; the domain in `CNAME` stays as it is until the project has its name.
+Internal material stays in the team's private repository: research notes, papers we may not redistribute, contacts, and the search for the project's final name. "zOS" is a working title. The page is served at silentzero.ooo; the domain is set in `CNAME` and changes only through a pull request.
 
 ## Licences
 
