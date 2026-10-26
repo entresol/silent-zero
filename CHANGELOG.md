@@ -4,6 +4,10 @@ What changed in substance, newest first: in the paper, on its page and in the pr
 
 Format: `## <version> · <scope>`, then one paragraph. A paper version is `YYYY-MM-DD-vX.Y` and has its own PDF in `versions/`; the newest one is the version the build prints on the paper and the page. A change without a new paper version carries only its date (`YYYY-MM-DD`). Scope is `Paper`, `Site` or `Project`. The build turns this file into the list at the end of the page.
 
+## 2026-10-26 · Project
+
+The paper explains a term where a reader first meets it: an abbreviation is spelled out at its first use, and every other glossary term gets a short explanation at its first use in the body. CONTRIBUTING.md states the rule, and paper/tools/glossary_check.py checks it.
+
 ## 2026-10-25 · Project
 
 CONTRIBUTING.md gains rules for sentences: say first what a sentence is about, bring the verb early, and rewrite a section from its facts instead of patching it. Two scripts in paper/tools measure a draft for machine prose.
