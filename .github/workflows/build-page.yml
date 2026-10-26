@@ -19,6 +19,7 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-24.04
+    timeout-minutes: 10   # a slow package mirror once held a run for over nine minutes
     steps:
       - uses: actions/checkout@v4
         with:

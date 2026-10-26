@@ -16,7 +16,7 @@ First light: [a boot screen](splash/) and a [loader](loader/) that checks the ke
 - The paper's source and the build for PDF and page: [`paper/`](paper/)
 - Red-team report on an earlier draft (German): [`review/red-team-2026-10-18.md`](review/red-team-2026-10-18.md)
 
-Criticism and support are warmly welcome as [issues](https://github.com/entresol/zero-os/issues). To change something yourself, see [`CONTRIBUTING.md`](CONTRIBUTING.md).
+Criticism and support are warmly welcome as [issues](https://github.com/entresol/silent-zero/issues). To change something yourself, see [`CONTRIBUTING.md`](CONTRIBUTING.md).
 
 ## Licence
 

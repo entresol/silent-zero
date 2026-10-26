@@ -6,7 +6,7 @@ Read before working here: `README.md` (what Silent Zero is), `CONTRIBUTING.md` (
 
 - `git fetch` and work from an up-to-date `main`. Other people and sessions commit here too.
 - This repository is public, and the page is live from `main`. Write nothing here you would not publish.
-- The team's private repository `entresol/zero-os-research` usually sits next to this one (`../zero-os-research`). If it is there, read its `CLAUDE.md` for internal state: open questions, contacts, the name search, the daily research run. Nothing from it is copied into this repository, not even in commit messages or pull request descriptions.
+- The team's private repository `entresol/silent-zero-research` usually sits next to this one (`../silent-zero-research`, or `../zero-os-research` in older clones). If it is there, read its `CLAUDE.md` for internal state: open questions, contacts, the name search, the daily research run. Nothing from it is copied into this repository, not even in commit messages or pull request descriptions.
 
 ## Working
 
