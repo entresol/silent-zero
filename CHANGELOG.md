@@ -16,6 +16,10 @@ The text now explains each glossary term where a reader first meets it. MCS, MCP
 
 The paper explains a term where a reader first meets it: an abbreviation is spelled out at its first use, and every other glossary term gets a short explanation at its first use in the body. CONTRIBUTING.md states the rule, and paper/tools/glossary_check.py checks it.
 
+## 2026-10-26 · Site
+
+The page moves to its own address, silentzero.ooo.
+
 ## 2026-10-25 · Project
 
 CONTRIBUTING.md gains rules for sentences: say first what a sentence is about, bring the verb early, and rewrite a section from its facts instead of patching it. Two scripts in paper/tools measure a draft for machine prose.
