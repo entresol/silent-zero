@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # SPDX-License-Identifier: BSD-2-Clause
-"""Figures 1 and 2 for the zOS paper, generated once as SVG (for PNG/web) and as JSX (for the Claude Doc widgets)."""
+"""Figures 1 and 2 for the Silent Zero paper, generated once as SVG (for PNG/web) and as JSX (for the Claude Doc widgets)."""
 import json
 import re
 import sys
@@ -81,7 +81,7 @@ def defs():
 # ---------------- Figure 1 ----------------
 W1, H1 = 760, 640
 f1 = [defs(),
-      text(24, 30, "The zOS stack: what a guarantee depends on, and what we know about it", "title", 15, 600),
+      text(24, 30, "The Silent Zero stack: what a guarantee depends on, and what we know about it", "title", 15, 600),
       text(24, 50, "Highlighted frame: trusted base, a guarantee depends on it. Dashed: outside the base. Tag: proven, tested or assumed.", "subtitle", 11.5, fill="quiet")]
 
 # lanes
@@ -125,7 +125,7 @@ f1 += [text(24, y + 14, "* A driver is outside the trusted base only where the I
 # ---------------- Figure 2 ----------------
 W2, H2 = 760, 620
 stations = [
-    ("2031", "One robot, one task, on zOS from boot to actuator", "Forty years after Linux; device, task and operating conditions defined.",
+    ("2031", "One robot, one task, on Silent Zero from boot to actuator", "Forty years after Linux; device, task and operating conditions defined.",
      "TEST", "No compromised agent moves the actuator outside its safe envelope, under stated assumptions."),
     ("2030", "Linux shrinks to a driver island", "Only accelerators still need legacy drivers.",
      "TEST", "No Linux code on any control or authority path, checked against the system description."),
@@ -133,7 +133,7 @@ stations = [
      "PROOF", "The proofs check. Plus a test: an external red team fails to escalate authority."),
     ("2028", "First robot, Simplex style", "The agent proposes, the loop disposes. Multikernel proof due (announced).",
      "TEST", "Control deadlines hold under defined load while the agent is hijacked."),
-    ("2027", "zOS 0.01: one board, one kernel, one agent, one loop", "On an open RISC-V core. MCS proof for AArch64 due (announced).",
+    ("2027", "Silent Zero 0.01: one board, one kernel, one agent, one loop", "On an open RISC-V core. MCS proof for AArch64 due (announced).",
      "DEMO", "Boots from a measured image; a stranger builds it from source."),
     ("2026", "The base exists as open source (documented)", "seL4 MCS · Microkit · LionsOS · Verus · OpenTitan · CHERI · ROS 2 on seL4 · MCP",
      "", "Missing: the broker, the tool adapters, the safety path, and evidence that the parts fit."),
@@ -175,7 +175,7 @@ def jsx_doc(children, w, h, label):
 
 
 figs = {
-    "fig1": (f1, W1, H1, "zOS stack: agents and tool access outside the trusted base; broker, safety controller, static system, kernel, bootloader and firmware inside it; authority runs through the broker, motion through the safety controller."),
+    "fig1": (f1, W1, H1, "Silent Zero stack: agents and tool access outside the trusted base; broker, safety controller, static system, kernel, bootloader and firmware inside it; authority runs through the broker, motion through the safety controller."),
     "fig2": (f2, W2, H2, "Path from 2026 to 2031, one station per year, each with its evidence: demonstration, test or proof."),
 }
 for name, (ch, w, h, label) in figs.items():

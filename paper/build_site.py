@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # SPDX-License-Identifier: BSD-2-Clause
-"""Builds the GitHub Pages landing page (index.html) for the zOS paper. No author names."""
+"""Builds the GitHub Pages landing page (index.html) for the Silent Zero paper. No author names."""
 import re
 import shutil
 import subprocess
@@ -21,12 +21,12 @@ lines = md.splitlines()
 body = "\n".join(lines[4:]).split("\n", 1)[1]      # drop title, subtitle, date/author line
 
 # the prologue's first two paragraphs become the hero; remove them from the body
-pro = re.search(r"## Prologue: Imagine it's 1991\n\nImagine it's 1991\. We are about to release a few lines of code into a world that will be very different from today\.\n\n", body)
-body = body[:pro.start()] + "## Prologue: Imagine it's 1991\n\n" + body[pro.end():]
+pro = re.search(r"## Prologue: Imagine it's 1991\n\n((?:> [^\n]*\n|>\n)+\n)?Imagine it's 1991\. We are about to release a few lines of code into a world that will be very different from today\.\n\n", body)
+body = body[:pro.start()] + "## Prologue: Imagine it's 1991\n\n" + (pro.group(1) or "") + body[pro.end():]
 
 import json, html as _h
-cap1 = "Figure 1. The zOS stack. A gold frame marks the trusted base: every part a guarantee depends on, isolated or not. The tag says what we know about it. Authority runs from the agent through the broker, motion through the safety controller; there is no third path."
-alt1 = ("Diagram of the zOS stack. Top: agents (untrusted, outside the trusted base) send authority requests to the capability broker "
+cap1 = "Figure 1. The Silent Zero stack. A gold frame marks the trusted base: every part a guarantee depends on, isolated or not. The tag says what we know about it. Authority runs from the agent through the broker, motion through the safety controller; there is no third path."
+alt1 = ("Diagram of the Silent Zero stack. Top: agents (untrusted, outside the trusted base) send authority requests to the capability broker "
         "(isolated but in the trusted base, tested, target proven), which alone reaches tools and model access (outside the base). "
         "Agents send motion proposals to the safety controller and control loops (trusted base, tested, target proven), which alone move the actuator. "
         "Below: user-mode drivers and the Linux driver island (outside the base where the IOMMU confines the device), the static system description (trusted, tested), "
@@ -161,8 +161,8 @@ page = f"""<!doctype html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>zOS – Zero OS</title>
-<meta name="description" content="zOS – Bare minimum. Verified. Real-time. An OS for the AI era. A working paper: a bootloader, a formally verified microkernel and the bare minimum to run AI safely and in real time, built entirely from existing open source.">
+<title>Silent Zero OS</title>
+<meta name="description" content="Silent Zero OS – Bare minimum. Verified. Real-time. An OS for the AI era. A working paper: a bootloader, a formally verified microkernel and the bare minimum to run AI safely and in real time, built entirely from existing open source.">
 <link rel="preload" href="assets/fonts/inter-latin-opsz-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/nunito-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
 <style>
@@ -175,7 +175,7 @@ page = f"""<!doctype html>
     <h1>Imagine it's 1991</h1>
     <p class="lede">We are about to release a few lines of code into a world that will be very different from today.</p>
     <div class="titleblock">
-      <p class="name">zOS – Zero OS<a class="star" href="#working-title" aria-label="About the name">*</a></p>
+      <p class="name">Silent Zero OS</p>
       <p class="sub">Bare minimum. Verified. Real-time. An OS for the AI era.</p>
       <p class="ver">Working paper {CURRENT_VERSION} · <a href="#changes">latest changes</a></p>
     </div>
@@ -193,7 +193,7 @@ page = f"""<!doctype html>
 {html_body}
   </article>
 </div>
-<footer><div><span>zOS – Zero OS. Working paper {CURRENT_VERSION}. <a href="https://github.com/entresol/zero-os">Source and discussion on GitHub</a>. Text and figures: <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. <a href="{pdf_name}">Download the PDF</a>.</span><span id="working-title">* zOS is a working title. Before its first release the project gets a name of its own, one that treads on nobody's toes, mainframes included.</span></div></footer>
+<footer><div><span>Silent Zero OS. Working paper {CURRENT_VERSION}. <a href="https://github.com/entresol/zero-os">Source and discussion on GitHub</a>. Text and figures: <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. <a href="{pdf_name}">Download the PDF</a>.</span></div></footer>
 <script>
 // glossary tooltips open to the left where they would run off the right edge
 document.querySelectorAll('a.gl').forEach(a => a.addEventListener('pointerenter', () => {{

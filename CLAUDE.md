@@ -1,6 +1,6 @@
-# zOS – notes for Claude Code
+# Silent Zero – notes for Claude Code
 
-Read before working here: `README.md` (what zOS is), `CONTRIBUTING.md` (workflow, versions, changelog, writing rules), the top of `CHANGELOG.md` (where things stand) and, for the paper or the page, `paper/README.md`. They are the rules; this file only adds what a session needs on top.
+Read before working here: `README.md` (what Silent Zero is), `CONTRIBUTING.md` (workflow, versions, changelog, writing rules), the top of `CHANGELOG.md` (where things stand) and, for the paper or the page, `paper/README.md`. They are the rules; this file only adds what a session needs on top.
 
 ## Before you start
 
