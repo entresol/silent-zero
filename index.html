@@ -600,7 +600,16 @@ if (matchMedia('(hover: none)').matches) {
     a.addEventListener('click', e => { e.preventDefault(); open === a ? close() : show(a); });
   });
   pop.addEventListener('click', e => { if (e.target.closest('a')) close(); });
-  document.addEventListener('click', e => { if (open && !pop.contains(e.target) && !e.target.closest('article a.gl')) close(); });
+  // a tap elsewhere closes it. iOS Safari sends no click for a tap on plain text, so this listens to pointer events
+  // and counts a touch as a tap only if the finger barely moved; a scroll leaves the popover open
+  let down = null;
+  document.addEventListener('pointerdown', e => { down = { x: e.clientX, y: e.clientY }; }, { passive: true });
+  document.addEventListener('pointerup', e => {
+    const tap = down && Math.hypot(e.clientX - down.x, e.clientY - down.y) < 10;
+    down = null;
+    if (tap && open && !pop.contains(e.target) && !e.target.closest('article a.gl')) close();
+  }, { passive: true });
+  document.addEventListener('pointercancel', () => { down = null; }, { passive: true });
   document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
   let w = innerWidth;   // phones resize when the address bar slides away while scrolling; close only on a real change
   addEventListener('resize', () => { if (innerWidth !== w) { w = innerWidth; close(); } });
