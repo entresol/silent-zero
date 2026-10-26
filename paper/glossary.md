@@ -56,8 +56,8 @@ In zOS: limits how much time an agent can use (Sections 3, 4).
 Computing in which a result is only correct if it arrives before its deadline.
 In zOS: required for every loop that moves something; provable timing is a goal, not yet a property (Sections 1, 4).
 
-**WCET** | WCET
-Worst-case execution time: a safe upper bound on how long a piece of code can take, needed to prove that deadlines hold.
+**Worst-case execution time (WCET)** | WCET; worst-case execution time
+The longest a piece of code can take to run; a safe upper bound on it is needed to prove that deadlines hold.
 In zOS: exists for seL4 only on an old Arm core; being rebuilt for RISC-V (Section 4).
 
 **Timing channel** | timing side channels
@@ -86,7 +86,7 @@ In zOS: how a proven system will later use several cores (Section 6).
 
 ## Agents and authority
 
-**Agent**
+**Agent** | agent; agents
 A program that reads, decides and acts on its own, usually driven by a language model.
 In zOS: an untrusted tenant with a time budget (Sections 1, 3).
 
