@@ -34,6 +34,10 @@ How we work on zOS, for everyone who changes and commits here, people and AI ass
 - Say how we know: *proven* only for a machine-checked proof, *tested* for what was shown under defined load or attack, *assumed* for what is simply trusted. Goals are named as goals.
 - Dates are absolute ("the third quarter of 2028", not "in two years").
 - A new technical term that a reader may not know gets an entry in `paper/glossary.md`.
+- The text explains a term where the reader first meets it. The glossary and the links on the page help only readers who look a term up, and the PDF has no links.
+  - An abbreviation is spelled out at its first use anywhere, In brief and Abstract included: "worst-case execution time (WCET)". Its glossary term then reads `Worst-case execution time (WCET)`, which is how the check below recognises it. Names that readers know as names, such as RISC-V or CHERI, need a few words on what they are instead.
+  - Every other term gets a short explanation at its first use in the body, from the Prologue on. In brief and the Abstract may use a term unexplained, so that they stay short.
+  - `python3 -I paper/tools/glossary_check.py` checks the abbreviations and prints every term's first use in the body for a reader to judge.
 
 ### Sentences
 
