@@ -6,7 +6,7 @@ Format: `## <version> · <scope>`, then one paragraph. A paper version is `YYYY-
 
 ## 2026-10-26 · Site
 
-Phones and tablets have no hover, so a tap on a term went straight to the glossary. Now, when scrolling stops, the term nearest the middle of the screen shows its meaning in a card at the bottom; scrolling on hides it, and a tap still opens the glossary.
+Phones and tablets have no hover, so a tap on a term went straight to the glossary. Now a tap opens the term's meaning in a popover anchored to it; a second tap, or a tap elsewhere, closes it, and its footer links to the glossary entry.
 
 ## 2026-10-26-v0.15 · Paper
 

@@ -199,33 +199,39 @@ page = f"""<!doctype html>
 document.querySelectorAll('a.gl').forEach(a => a.addEventListener('pointerenter', () => {{
   a.classList.toggle('flip', a.getBoundingClientRect().left + 360 > document.documentElement.clientWidth - 16);
 }}));
-// touch screens have no hover: once scrolling has stopped, the glossary term nearest the middle of the screen
-// shows its meaning in a card at the bottom of the screen, as wide as the reading column, where it covers no line
-// of the sentence being read; scrolling hides it, and a tap on the term still jumps to the glossary
+// touch screens have no hover: a tap on a term opens its meaning in a popover anchored to it (Apple HIG, Material
+// rich tooltips); a second tap on the term or a tap elsewhere closes it, and its footer links to the glossary entry.
+// The popover sits in the page below the term's line, or above it where the screen has no room, so it scrolls with it.
 if (matchMedia('(hover: none)').matches) {{
-  const peek = document.createElement('p'), col = document.querySelector('article');
-  peek.className = 'gl-peek'; peek.setAttribute('aria-hidden', 'true'); document.body.append(peek);
-  let shown = null, timer = 0;
-  const hide = () => {{ peek.classList.remove('on'); if (shown) shown.classList.remove('peek'); shown = null; }};
-  function show() {{
-    if (document.documentElement.classList.contains('menu-open')) return;
-    const mid = innerHeight / 2, band = innerHeight * 0.2;
-    let best = null, dist = band;
-    for (const a of document.querySelectorAll('article a.gl')) {{
-      const r = a.getBoundingClientRect(), d = Math.abs(r.top + r.height / 2 - mid);
-      if (d < dist) {{ best = a; dist = d; }}
-    }}
-    if (!best) return;
-    const c = col.getBoundingClientRect(), cs = getComputedStyle(col);
-    const left = c.left + parseFloat(cs.paddingLeft), width = c.width - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
-    const term = document.createElement('strong'); term.textContent = best.textContent;
-    peek.replaceChildren(term, ' ' + best.dataset.def);
-    peek.style.left = left + 'px'; peek.style.width = Math.min(width, 576) + 'px';
-    shown = best; best.classList.add('peek'); peek.classList.add('on');
+  const col = document.querySelector('article'), pop = document.createElement('div');
+  pop.className = 'gl-pop'; pop.id = 'gl-pop'; pop.hidden = true; document.body.append(pop);
+  let open = null;
+  function close() {{ if (open) open.setAttribute('aria-expanded', 'false'); open = null; pop.hidden = true; }}
+  function show(a) {{
+    close();
+    const def = document.createElement('p'), foot = document.createElement('p'), link = document.createElement('a');
+    def.textContent = a.dataset.def;
+    foot.className = 'gl-pop-foot'; link.href = a.getAttribute('href'); link.textContent = 'In the glossary \u2192';
+    foot.append(link); pop.replaceChildren(def, foot); pop.hidden = false;
+    const c = col.getBoundingClientRect(), cs = getComputedStyle(col), r = a.getClientRects()[0];
+    const left = c.left + parseFloat(cs.paddingLeft), width = Math.min(c.width - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight), 576);
+    pop.style.left = left + scrollX + 'px'; pop.style.width = width + 'px';
+    const h = pop.offsetHeight, above = r.bottom + 10 + h > innerHeight - 8 && r.top - 10 - h > 8;
+    pop.classList.toggle('above', above);
+    pop.style.top = (above ? r.top - 10 - h : r.bottom + 10) + scrollY + 'px';
+    pop.style.setProperty('--arrow', Math.min(Math.max(r.left + r.width / 2 - left, 12), width - 12) + 'px');
+    open = a; a.setAttribute('aria-expanded', 'true');
   }}
-  addEventListener('scroll', () => {{ hide(); clearTimeout(timer); timer = setTimeout(show, 400); }}, {{ passive: true }});
-  addEventListener('resize', hide);
-  addEventListener('touchstart', e => {{ if (!e.target.closest('a.gl')) hide(); }}, {{ passive: true }});
+  document.querySelectorAll('article a.gl').forEach(a => {{
+    a.setAttribute('aria-controls', 'gl-pop'); a.setAttribute('aria-expanded', 'false');
+    a.addEventListener('click', e => {{ e.preventDefault(); open === a ? close() : show(a); }});
+  }});
+  pop.addEventListener('click', e => {{ if (e.target.closest('a')) close(); }});
+  document.addEventListener('click', e => {{ if (open && !pop.contains(e.target) && !e.target.closest('article a.gl')) close(); }});
+  document.addEventListener('keydown', e => {{ if (e.key === 'Escape') close(); }});
+  let w = innerWidth;   // phones resize when the address bar slides away while scrolling; close only on a real change
+  addEventListener('resize', () => {{ if (innerWidth !== w) {{ w = innerWidth; close(); }} }});
+  document.querySelector('button.menu').addEventListener('click', close);
 }}
 // narrow screens: the menu button opens the contents as a panel; while it is open the page behind it is inert
 const menu = document.querySelector('button.menu'), toc = document.getElementById('toc');
