@@ -32,7 +32,7 @@ abstract_md = abstract_md[: kw_match.start()].strip()
 body = re.sub(r"&#91;embedded content: Fig\. 1[^\n]*\n", "", body)
 body = re.sub(r"&#91;embedded content: Fig\. 2[^\n]*\n", "", body)
 body = body.replace("## 3 Anatomy", "FIGUREONE\n\n## 3 Anatomy", 1)
-body = body.replace("## 6 What zOS", "FIGURETWO\n\n## 6 What zOS", 1)
+body = body.replace("## 6 What Silent Zero", "FIGURETWO\n\n## 6 What Silent Zero", 1)
 
 
 # component table -> full-width table* (longtable cannot live in two-column mode)
@@ -50,7 +50,7 @@ lines_t = [" & ".join("\\textbf{%s}" % esc(c) for c in hdr) + " \\\\ \\midrule"]
 lines_t += [" & ".join(esc(c) for c in r) + " \\\\" for r in data]
 table_tex = ("\\begin{table*}[tb]\n\\centering\n\\footnotesize\n\\renewcommand{\\arraystretch}{1.25}\n"
              "\\begin{tabularx}{\\textwidth}{@{}>{\\raggedright\\arraybackslash}p{2.9cm}>{\\raggedright\\arraybackslash}p{3.6cm}>{\\raggedright\\arraybackslash}X@{}}\n\\toprule\n" + "\n".join(lines_t) +
-             "\n\\bottomrule\n\\end{tabularx}\n\\caption{Nothing to invent: the open-source parts of zOS and their state in 2026.}\n\\end{table*}")
+             "\n\\bottomrule\n\\end{tabularx}\n\\caption{Nothing to invent: the open-source parts of Silent Zero and their state in 2026.}\n\\end{table*}")
 body = body.replace(tbl.group(1), "TABLEONE")
 body = body.replace("## 5 Nothing to invent", "## 5 Nothing to invent", 1)
 
@@ -70,7 +70,7 @@ body_tex = pandoc(body)
 fig1 = r"""\begin{figure*}[tb]
 \centering
 \includegraphics[width=0.68\textwidth]{fig1.png}
-\caption{The zOS stack. A gold frame marks the trusted base: every part a guarantee depends on, isolated or not. The tag says what we know about it. Authority runs from the agent through the broker, motion through the safety controller; there is no third path.}
+\caption{The Silent Zero stack. A gold frame marks the trusted base: every part a guarantee depends on, isolated or not. The tag says what we know about it. Authority runs from the agent through the broker, motion through the safety controller; there is no third path.}
 \end{figure*}"""
 fig2 = r"""\begin{figure*}[tb]
 \centering
@@ -102,7 +102,7 @@ preamble = r"""\documentclass[11pt,a4paper,twocolumn]{article}
 \usepackage{xcolor}
 \usepackage{xurl}
 \usepackage{booktabs,longtable,array,calc,tabularx}
-\usepackage[colorlinks=true,linkcolor=black,urlcolor={rgb:red,0.10;green,0.25;blue,0.55},pdftitle={zOS - Zero OS},pdfauthor={Tobias von Dewitz, Susann Mürling, Stefan Probst, Daniel Strecker},pdflang={en}]{hyperref}
+\usepackage[colorlinks=true,linkcolor=black,urlcolor={rgb:red,0.10;green,0.25;blue,0.55},pdftitle={Silent Zero},pdfauthor={Tobias von Dewitz, Susann Mürling, Stefan Probst, Daniel Strecker},pdflang={en}]{hyperref}
 \providecommand{\tightlist}{\setlength{\itemsep}{1pt}\setlength{\parskip}{0pt}}
 \setcounter{secnumdepth}{0}
 \titleformat{\section}{\sffamily\bfseries\large}{}{0pt}{}
@@ -122,7 +122,7 @@ preamble = r"""\documentclass[11pt,a4paper,twocolumn]{article}
 \renewcommand{\textfraction}{0.1}
 \pagestyle{fancy}
 \fancyhf{}
-\fancyhead[L]{\sffamily\footnotesize zOS -- Zero OS}
+\fancyhead[L]{\sffamily\footnotesize Silent Zero}
 \fancyhead[R]{\sffamily\footnotesize Working paper @VERSION@}
 \fancyfoot[C]{\sffamily\footnotesize \thepage\ / \pageref{LastPage}}
 \renewcommand{\headrulewidth}{0.3pt}
@@ -133,7 +133,7 @@ titleblock = r"""\twocolumn[{%
 \begin{center}
 {\sffamily\footnotesize WORKING PAPER · @VERSION@\par}
 \vspace{6pt}
-{\sffamily\bfseries\LARGE @TITLE@\textsuperscript{\normalsize *}\par}
+{\sffamily\bfseries\LARGE @TITLE@\par}
 \vspace{6pt}
 {\large @SUBTITLE@\par}
 \vspace{10pt}
@@ -141,7 +141,6 @@ titleblock = r"""\twocolumn[{%
 {\small @DATE@\par}
 \vspace{2pt}
 {\footnotesize Text and figures: \href{https://creativecommons.org/licenses/by/4.0/}{CC BY 4.0}\par}
-{\footnotesize * zOS is a working title. Before its first release the project gets a name of its own, one that treads on nobody's toes, mainframes included.\par}
 \end{center}
 \vspace{4pt}
 \begin{center}

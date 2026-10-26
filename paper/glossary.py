@@ -19,11 +19,11 @@ def parse(path):
             lines = [l.strip() for l in chunk.strip().splitlines() if l.strip()]
             head = re.match(r"\*\*(.+?)\*\*(?:\s*\|\s*(.+))?$", lines[0])
             role = lines[2]
-            assert head and role.startswith("In zOS:"), chunk
+            assert head and role.startswith("In Silent Zero:"), chunk
             term = head.group(1)
             matches = [m.strip() for m in head.group(2).split(";")] if head.group(2) else []
             entries.append({"term": term, "matches": matches, "meaning": lines[1],
-                            "role": role[len("In zOS:"):].strip(), "id": slug(term)})
+                            "role": role[len("In Silent Zero:"):].strip(), "id": slug(term)})
         groups.append((name.strip(), entries))
     return groups
 
@@ -35,5 +35,5 @@ def markdown(groups, anchors):
         out += [f"### {name}", ""]
         for e in entries:
             term = f"[**{e['term']}.**]{{#{e['id']}}}" if anchors else f"**{e['term']}.**"
-            out += [f"{term} {e['meaning']} *In zOS:* {e['role']}", ""]
+            out += [f"{term} {e['meaning']} *In Silent Zero:* {e['role']}", ""]
     return "\n".join(out) + "\n"

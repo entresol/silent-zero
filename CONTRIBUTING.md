@@ -1,6 +1,6 @@
 # Contributing
 
-How we work on zOS, for everyone who changes and commits here, people and AI assistants alike. This repository is public, and so is everything in it: the page is served straight from `main`.
+How we work on Silent Zero, for everyone who changes and commits here, people and AI assistants alike. This repository is public, and so is everything in it: the page is served straight from `main`.
 
 ## What lives where
 
@@ -46,7 +46,7 @@ Most of the text here is written with AI, and readers notice machine prose quick
 - Start with what the sentence is about. Write "A care robot needs an agent that …", not "An agent that … is what a care robot needs".
 - Bring the verb early. Do not build the subject from a chain of nouns, clauses and asides.
 - Make one statement per sentence, then start the next one.
-- Let people or things act ("we", "the agent", "the kernel"). Avoid sentences in which the system acts like a person ("zOS asks for").
+- Let people or things act ("we", "the agent", "the kernel"). Avoid sentences in which the system acts like a person ("Silent Zero asks for").
 - Long sentences are fine when subject and verb come first. A text made only of short sentences reads like a machine, too.
 - Use the figures that give machine prose away sparingly: the colon that reveals ("claim: explanation"), the contrast "X, not Y", the aphorism that closes a paragraph.
 
@@ -59,7 +59,7 @@ Two scripts in `paper/tools/` measure a draft. They only warn. Whether a sentenc
 
 ## What never goes into this repository
 
-Internal material stays in the team's private repository: research notes, papers we may not redistribute, contacts, and the search for the project's final name. "zOS" is a working title. The page is served at silentzero.ooo; the domain is set in `CNAME` and changes only through a pull request.
+Internal material stays in the team's private repository: research notes, papers we may not redistribute, contacts, and trademark work. Until October 2026 the project was called zOS. The page is served at silentzero.ooo; the domain is set in `CNAME` and changes only through a pull request.
 
 ## Licences
 
