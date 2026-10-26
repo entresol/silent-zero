@@ -195,15 +195,22 @@ a.gl:hover, a.gl:focus-visible { text-decoration-color: var(--accent); }
     font-style: normal; white-space: normal; pointer-events: none; }
   a.gl.flip:hover::after { left: auto; right: 0; }
 }
-/* touch screens have no hover: when scrolling stops, the term nearest the middle of the screen shows its
-   meaning in a card at the bottom (set up by the page script; tapping the term still jumps to the glossary) */
-.gl-peek { position: fixed; z-index: 20; bottom: calc(1rem + env(safe-area-inset-bottom, 0px)); margin: 0; padding: 0.5rem 0.7rem; background: var(--paper); color: var(--ink);
-  border: 1px solid var(--rule); border-left: 2px solid var(--accent); font-size: 0.85rem; line-height: 1.4;
-  box-shadow: 0 0.3rem 1rem color-mix(in srgb, var(--ink-deep) 12%, transparent); pointer-events: none;
-  opacity: 0; transition: opacity 0.15s; }
-.gl-peek.on { opacity: 1; }
-a.gl.peek { text-decoration-color: var(--accent); }
-@media (prefers-reduced-motion: reduce) { .gl-peek { transition: none; } }
+/* touch screens have no hover: a tap on a term opens its meaning in a popover anchored to it, after Apple's HIG and
+   Material's rich tooltips. A second tap, or a tap elsewhere, closes it; its footer links to the glossary entry.
+   Set up by the page script; the popover sits in the page, so it scrolls with its term. */
+.gl-pop { position: absolute; z-index: 8; margin: 0; padding: 0.6rem 0.8rem 0.5rem; background: var(--paper); color: var(--ink);
+  border: 1px solid var(--rule); border-top: 2px solid var(--accent); border-radius: 0.25rem; font-size: 0.9rem; line-height: 1.45;
+  box-shadow: 0 0.4rem 1.2rem color-mix(in srgb, var(--ink-deep) 14%, transparent); }
+.gl-pop p { margin: 0; }
+.gl-pop .gl-pop-foot { margin-top: 0.45rem; padding-top: 0.4rem; border-top: 1px solid var(--rule); font-size: 0.8rem; }
+.gl-pop .gl-pop-foot a { color: var(--ink-deep); }
+/* the arrow points at the term: up when the popover opens below it, down when it opens above */
+.gl-pop::before { content: ""; position: absolute; left: var(--arrow, 1rem); top: -0.5rem; width: 0.8rem; height: 0.8rem;
+  margin-left: -0.4rem; background: var(--accent); clip-path: polygon(50% 0, 100% 100%, 0 100%); }
+.gl-pop.above { border-top: 1px solid var(--rule); border-bottom: 2px solid var(--accent); }
+.gl-pop.above::before { top: auto; bottom: -0.5rem; clip-path: polygon(0 0, 100% 0, 50% 100%); }
+a.gl[aria-expanded] { -webkit-tap-highlight-color: transparent; }
+a.gl[aria-expanded="true"] { color: var(--ink-deep); text-decoration: underline solid var(--accent); background: color-mix(in srgb, var(--accent) 14%, transparent); }
 #glossary ~ h3 { margin-top: 1.6rem; }
 [id^="gl-"] { scroll-margin-top: 1.5rem; }
 #references + ul li:target { background: color-mix(in srgb, var(--accent) 14%, transparent); }
