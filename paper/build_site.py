@@ -199,6 +199,34 @@ page = f"""<!doctype html>
 document.querySelectorAll('a.gl').forEach(a => a.addEventListener('pointerenter', () => {{
   a.classList.toggle('flip', a.getBoundingClientRect().left + 360 > document.documentElement.clientWidth - 16);
 }}));
+// touch screens have no hover: once scrolling has stopped, the glossary term nearest the middle of the screen
+// shows its meaning in a card at the bottom of the screen, as wide as the reading column, where it covers no line
+// of the sentence being read; scrolling hides it, and a tap on the term still jumps to the glossary
+if (matchMedia('(hover: none)').matches) {{
+  const peek = document.createElement('p'), col = document.querySelector('article');
+  peek.className = 'gl-peek'; peek.setAttribute('aria-hidden', 'true'); document.body.append(peek);
+  let shown = null, timer = 0;
+  const hide = () => {{ peek.classList.remove('on'); if (shown) shown.classList.remove('peek'); shown = null; }};
+  function show() {{
+    if (document.documentElement.classList.contains('menu-open')) return;
+    const mid = innerHeight / 2, band = innerHeight * 0.2;
+    let best = null, dist = band;
+    for (const a of document.querySelectorAll('article a.gl')) {{
+      const r = a.getBoundingClientRect(), d = Math.abs(r.top + r.height / 2 - mid);
+      if (d < dist) {{ best = a; dist = d; }}
+    }}
+    if (!best) return;
+    const c = col.getBoundingClientRect(), cs = getComputedStyle(col);
+    const left = c.left + parseFloat(cs.paddingLeft), width = c.width - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+    const term = document.createElement('strong'); term.textContent = best.textContent;
+    peek.replaceChildren(term, ' ' + best.dataset.def);
+    peek.style.left = left + 'px'; peek.style.width = Math.min(width, 576) + 'px';
+    shown = best; best.classList.add('peek'); peek.classList.add('on');
+  }}
+  addEventListener('scroll', () => {{ hide(); clearTimeout(timer); timer = setTimeout(show, 400); }}, {{ passive: true }});
+  addEventListener('resize', hide);
+  addEventListener('touchstart', e => {{ if (!e.target.closest('a.gl')) hide(); }}, {{ passive: true }});
+}}
 // narrow screens: the menu button opens the contents as a panel; while it is open the page behind it is inert
 const menu = document.querySelector('button.menu'), toc = document.getElementById('toc');
 const behind = document.querySelectorAll('header.hero, article, footer');

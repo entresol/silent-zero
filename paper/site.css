@@ -195,6 +195,15 @@ a.gl:hover, a.gl:focus-visible { text-decoration-color: var(--accent); }
     font-style: normal; white-space: normal; pointer-events: none; }
   a.gl.flip:hover::after { left: auto; right: 0; }
 }
+/* touch screens have no hover: when scrolling stops, the term nearest the middle of the screen shows its
+   meaning in a card at the bottom (set up by the page script; tapping the term still jumps to the glossary) */
+.gl-peek { position: fixed; z-index: 20; bottom: calc(1rem + env(safe-area-inset-bottom, 0px)); margin: 0; padding: 0.5rem 0.7rem; background: var(--paper); color: var(--ink);
+  border: 1px solid var(--rule); border-left: 2px solid var(--accent); font-size: 0.85rem; line-height: 1.4;
+  box-shadow: 0 0.3rem 1rem color-mix(in srgb, var(--ink-deep) 12%, transparent); pointer-events: none;
+  opacity: 0; transition: opacity 0.15s; }
+.gl-peek.on { opacity: 1; }
+a.gl.peek { text-decoration-color: var(--accent); }
+@media (prefers-reduced-motion: reduce) { .gl-peek { transition: none; } }
 #glossary ~ h3 { margin-top: 1.6rem; }
 [id^="gl-"] { scroll-margin-top: 1.5rem; }
 #references + ul li:target { background: color-mix(in srgb, var(--accent) 14%, transparent); }
