@@ -4,6 +4,10 @@ What changed in substance, newest first: in the paper, on its page and in the pr
 
 Format: `## <version> · <scope>`, then one paragraph. A paper version is `YYYY-MM-DD-vX.Y` and has its own PDF in `versions/`; the newest one is the version the build prints on the paper and the page. A change without a new paper version carries only its date (`YYYY-MM-DD`). Scope is `Paper`, `Site` or `Project`. The build turns this file into the list at the end of the page.
 
+## 2026-10-26 · Project
+
+The repository is now called silent-zero. Links to the old name forward to it.
+
 ## 2026-10-26-v0.16 · Paper
 
 The project has its name: Silent Zero. zOS was the working title up to v0.15. Section 1 explains the name: zero means starting from nothing and adding only what cannot be left out, silent means that nothing runs that is not needed. The prologue opens with a motto, Never trust an OS you can't verify, after the line the Macintosh spoke about IBM's mainframes at its launch in 1984.

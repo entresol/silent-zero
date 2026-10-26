@@ -129,7 +129,7 @@ def label_table(m):
 html_body = re.sub(r"<table>.*?</table>", label_table, html_body, flags=re.S)
 
 # changes: from ../CHANGELOG.md, each paper version with the PDF as it was
-REPO = "https://github.com/entresol/zero-os"
+REPO = "https://github.com/entresol/silent-zero"
 changes = changelog.parse()
 rev_items = []
 for ver, scope, text in changes:
@@ -179,7 +179,7 @@ page = f"""<!doctype html>
       <p class="sub">Bare minimum. Verified. Real-time. An OS for the AI era.</p>
       <p class="ver">Working paper {CURRENT_VERSION} · <a href="#changes">latest changes</a></p>
     </div>
-    <p class="status">First light: <a href="https://github.com/entresol/zero-os/tree/main/loader">a loader that checks the kernel image and shows its verdict on the first screen</a>, under 9 KB on RISC-V, tested in QEMU. This paper proposes what we intend to build and where it can fail. Criticism and support are warmly welcome: <a href="https://github.com/entresol/zero-os/issues">issues</a>.</p>
+    <p class="status">First light: <a href="https://github.com/entresol/silent-zero/tree/main/loader">a loader that checks the kernel image and shows its verdict on the first screen</a>, under 9 KB on RISC-V, tested in QEMU. This paper proposes what we intend to build and where it can fail. Criticism and support are warmly welcome: <a href="https://github.com/entresol/silent-zero/issues">issues</a>.</p>
     <div class="actions">
       <a class="btn" href="{pdf_name}">Download the PDF</a>
       <span class="meta">{pages} pages, {n_refs} references</span>
@@ -193,7 +193,7 @@ page = f"""<!doctype html>
 {html_body}
   </article>
 </div>
-<footer><div><span>Silent Zero OS. Working paper {CURRENT_VERSION}. <a href="https://github.com/entresol/zero-os">Source and discussion on GitHub</a>. Text and figures: <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. <a href="{pdf_name}">Download the PDF</a>.</span></div></footer>
+<footer><div><span>Silent Zero OS. Working paper {CURRENT_VERSION}. <a href="https://github.com/entresol/silent-zero">Source and discussion on GitHub</a>. Text and figures: <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. <a href="{pdf_name}">Download the PDF</a>.</span></div></footer>
 <script>
 // glossary tooltips open to the left where they would run off the right edge
 document.querySelectorAll('a.gl').forEach(a => a.addEventListener('pointerenter', () => {{
