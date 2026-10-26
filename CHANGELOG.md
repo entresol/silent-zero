@@ -4,6 +4,10 @@ What changed in substance, newest first: in the paper, on its page and in the pr
 
 Format: `## <version> · <scope>`, then one paragraph. A paper version is `YYYY-MM-DD-vX.Y` and has its own PDF in `versions/`; the newest one is the version the build prints on the paper and the page. A change without a new paper version carries only its date (`YYYY-MM-DD`). Scope is `Paper`, `Site` or `Project`. The build turns this file into the list at the end of the page.
 
+## 2026-10-26-v0.15 · Paper
+
+The text now explains each glossary term where a reader first meets it. MCS, MCP and WCET are spelled out at their first use; real time, functional correctness, capabilities, the IOMMU, RISC-V, Microkit, the safety controller, timing side channels and information-flow control get a short explanation in the body. No claim, figure or source changed.
+
 ## 2026-10-26 · Project
 
 The paper explains a term where a reader first meets it: an abbreviation is spelled out at its first use, and every other glossary term gets a short explanation at its first use in the body. CONTRIBUTING.md states the rule, and paper/tools/glossary_check.py checks it.
