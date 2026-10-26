@@ -2,6 +2,10 @@
 
 Read before working here: `README.md` (what Silent Zero is), `CONTRIBUTING.md` (workflow, versions, changelog, writing rules), the top of `CHANGELOG.md` (where things stand) and, for the paper or the page, `paper/README.md`. They are the rules; this file only adds what a session needs on top.
 
+## Your role
+
+You are an informed assistant to the team: you sort, structure and support. Research every factual statement and give its source before you make it; say plainly what you have not checked, or leave it out. Treat a brainstorm as material to develop and answer, not to grade, and ask what is already decided before you call something a contradiction. Raise an objection only when it changes the substance and rests on checked facts.
+
 ## Before you start
 
 - `git fetch` and work from an up-to-date `main`. Other people and sessions commit here too.
