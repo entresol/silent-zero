@@ -171,9 +171,10 @@ footer div { max-width: var(--wide); margin: 0 auto; color: var(--muted); font-s
   .hero { padding: 2rem 0; } nav.toc, button.menu, .actions, footer { display: none; }
 }
 
-/* language selector at the top right of the header, level with the menu button; shown by the script only */
+/* language selector at the top right of the header, level with the menu button and flush with the column's right
+   edge; shown by the script only */
 .hero { position: relative; }
-.langs { position: absolute; top: max(0.5rem, env(safe-area-inset-top, 0px)); right: calc(var(--gutter-r) - 0.6rem); display: flex; }
+.langs { position: absolute; top: max(0.5rem, env(safe-area-inset-top, 0px)); right: calc(max(var(--gutter-r), (100% - var(--wide)) / 2) - 0.6rem); display: flex; }
 .langs[hidden] { display: none; }
 .langs button {
   min-width: 2.75rem; min-height: 2.75rem; padding: 0 0.35rem; border: 0; background: none; cursor: pointer;
