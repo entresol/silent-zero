@@ -154,6 +154,14 @@ published = subprocess.run(["git", "-C", str(out), "cat-file", "-e", f"origin/ma
 served = out / pdf_name if published else src_dir / "paper.pdf"
 pages = subprocess.run(["pdfinfo", str(served)], capture_output=True, text=True).stdout
 pages = re.search(r"Pages:\s+(\d+)", pages).group(1)
+# the header in five languages; English is in the page, the script swaps in the others
+hero_src = json.loads((Path(__file__).resolve().parent / "hero.json").read_text(encoding="utf-8"))
+fill = {"version": CURRENT_VERSION, "pdf": pdf_name, "pages": pages, "refs": n_refs,
+        "loader": "https://github.com/entresol/silent-zero/tree/main/loader", "issues": "https://github.com/entresol/silent-zero/issues"}
+hero = {l: {k: v.format_map(fill) for k, v in t.items()} for l, t in hero_src.items() if not l.startswith("_")}
+en = hero["en"]
+langs = "".join(f'<button type="button" lang="{l}" aria-pressed="{str(l == "en").lower()}">{t["label"]}</button>' for l, t in hero.items())
+hero_json = json.dumps({l: {k: v for k, v in t.items() if k != "label"} for l, t in hero.items()}, ensure_ascii=False).replace("</", "<\\/")
 css = (Path(__file__).resolve().parent / "site.css").read_text(encoding="utf-8")
 css = "\n".join(l for l in css.splitlines() if "SPDX-License-Identifier" not in l) + "\n"
 page = f"""<!doctype html>
@@ -170,22 +178,79 @@ page = f"""<!doctype html>
 </style>
 </head>
 <body>
-<header class="hero" id="top">
+<header class="hero" id="top" lang="en">
+  <div class="langs" role="group" aria-label="Language" hidden>{langs}</div>
   <div class="hero-inner">
-    <h1>Imagine it's 1991</h1>
-    <p class="lede">We are about to release a few lines of code into a world that will be very different from today.</p>
+    <h1 data-t="h1">{en["h1"]}</h1>
+    <p class="lede" data-t="lede">{en["lede"]}</p>
     <div class="titleblock">
       <p class="name">Silent Zero OS</p>
-      <p class="sub">Bare minimum. Verified. Real-time. An OS for the AI era.</p>
-      <p class="ver">Working paper {CURRENT_VERSION} · <a href="#changes">latest changes</a></p>
+      <p class="sub" data-t="sub">{en["sub"]}</p>
+      <p class="ver" data-t="ver">{en["ver"]}</p>
     </div>
-    <p class="status">First light: <a href="https://github.com/entresol/silent-zero/tree/main/loader">a loader that checks the kernel image and shows its verdict on the first screen</a>, under 9 KB on RISC-V, tested in QEMU. This paper proposes what we intend to build and where it can fail. Criticism and support are warmly welcome: <a href="https://github.com/entresol/silent-zero/issues">issues</a>.</p>
+    <p class="status" data-t="status">{en["status"]}</p>
     <div class="actions">
-      <a class="btn" href="{pdf_name}">Download the PDF</a>
-      <span class="meta">{pages} pages, {n_refs} references</span>
+      <a class="btn" href="{pdf_name}" data-t="btn">{en["btn"]}</a>
+      <span class="meta" data-t="meta">{en["meta"]}</span>
     </div>
   </div>
 </header>
+<script>
+// the header in five languages. Plain lines flip like a split-flap board, lines with links are swapped;
+// the choice is remembered. On a first visit whose browser prefers German, French, Spanish or Italian, the header
+// starts in English and flips into that language after two seconds, unless the visitor arrived at an anchor
+// further down or prefers reduced motion. Without JavaScript the selector stays hidden and the header stays English.
+(() => {{
+  const T = {hero_json}, head = document.getElementById('top'), bar = head.querySelector('.langs');
+  const still = matchMedia('(prefers-reduced-motion: reduce)').matches, FLAP = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  function flip(el, to) {{
+    const from = [...el.textContent], next = [...to], n = Math.max(from.length, next.length);
+    const stagger = Math.max(6, Math.round(1400 / n)), flips = n > 80 ? 3 : n > 40 ? 4 : 5, tick = n > 80 ? 30 : 35;
+    clearInterval(el._flap);
+    const t0 = performance.now();
+    el._flap = setInterval(() => {{
+      const now = performance.now() - t0;
+      el.textContent = Array.from({{ length: n }}, (_, i) => {{
+        const c = next[i] ?? '', start = i * stagger;
+        if (now < start) return from[i] ?? '';
+        if (now >= start + flips * tick || c === ' ' || c === '') return c;
+        return FLAP[Math.random() * FLAP.length | 0];
+      }}).join('');
+      if (now >= (n - 1) * stagger + flips * tick) {{ clearInterval(el._flap); el.textContent = to; }}
+    }}, tick);
+  }}
+  function set(l, animate) {{
+    head.lang = l;
+    bar.querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', b.lang === l));
+    head.querySelectorAll('[data-t]').forEach(el => {{
+      const v = T[l][el.dataset.t];
+      if (/</.test(v)) el.innerHTML = v;
+      else if (animate && !still) flip(el, v);
+      else el.textContent = v;
+    }});
+  }}
+  function keep(l) {{ try {{ localStorage.setItem('lang', l); }} catch (_) {{}} }}
+  let teaser = null;
+  bar.addEventListener('click', e => {{
+    const b = e.target.closest('button');
+    if (!b) return;
+    clearTimeout(teaser);
+    keep(b.lang);
+    if (b.lang !== head.lang) set(b.lang, true);
+  }});
+  let saved = null;
+  try {{ saved = localStorage.getItem('lang'); }} catch (_) {{}}
+  if (T[saved]) {{ if (saved !== 'en') set(saved, false); }}
+  else {{
+    // the first of the browser's preferred languages that we offer; English means no teaser
+    const want = (navigator.languages || [navigator.language]).map(x => String(x).slice(0, 2).toLowerCase()).find(x => T[x]);
+    if (want && want !== 'en' && !still && (!location.hash || location.hash === '#top'))
+      teaser = setTimeout(() => {{ set(want, true); keep(want); }}, 2000);
+    else if (want && want !== 'en') {{ set(want, false); keep(want); }}
+  }}
+  bar.hidden = false;
+}})();
+</script>
 <button class="menu" type="button" aria-controls="toc" aria-expanded="false" aria-label="Contents" hidden><span></span></button>
 <div class="layout">
   <nav class="toc" id="toc" aria-label="Contents"><p>Contents</p><ol>{toc}</ol></nav>
