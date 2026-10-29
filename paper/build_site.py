@@ -171,6 +171,17 @@ page = f"""<!doctype html>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Silent Zero OS</title>
 <meta name="description" content="Silent Zero OS – Bare minimum. Verified. Real-time. An OS for the AI era. A working paper: a bootloader, a formally verified microkernel and the bare minimum to run AI safely and in real time, built entirely from existing open source.">
+<!-- link previews in social media and chats; the image comes from paper/ogshot.py -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://silentzero.ooo/">
+<meta property="og:site_name" content="Silent Zero OS">
+<meta property="og:title" content="Silent Zero OS – Imagine it's 1991">
+<meta property="og:description" content="Bare minimum. Verified. Real-time. An OS for the AI era. A working paper: a formally verified microkernel and the bare minimum to run AI agents safely and in real time.">
+<meta property="og:image" content="https://silentzero.ooo/assets/og.png">
+<meta property="og:image:width" content="2400">
+<meta property="og:image:height" content="1260">
+<meta property="og:image:alt" content="Imagine it's 1991. We are about to release a few lines of code into a world that will be very different from today. Silent Zero OS: Bare minimum. Verified. Real-time. An OS for the AI era.">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="preload" href="assets/fonts/inter-latin-opsz-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/nunito-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
 <style>

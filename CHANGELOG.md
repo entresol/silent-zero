@@ -6,6 +6,10 @@ Format: `## <version> · <scope>`, then one paragraph. A paper version is `YYYY-
 
 ## 2026-10-29 · Site
 
+A link to the page now shows a preview in social media and chats: the header with its title, the name and the slogan.
+
+## 2026-10-29 · Site
+
 The header speaks five languages: English, German, French, Spanish and Italian. A selector at the top right switches it, and the lines flip like a split-flap board. On a first visit from a browser set to one of the four, the header starts in English and flips into that language after two seconds; the choice is remembered. The paper stays in English. Without JavaScript the header stays in English.
 
 ## 2026-10-26 · Project
