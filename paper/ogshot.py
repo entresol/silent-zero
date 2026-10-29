@@ -1,6 +1,7 @@
 # SPDX-License-Identifier: BSD-2-Clause
 """Screenshots the page's header into assets/og.png, the preview that social media and chats show for a link.
 Run after paper/build.sh: uv run --with playwright python paper/ogshot.py
+The header is shown at its own size, as the page draws it in a 1200 px window on a 2x screen; nothing is scaled up.
 The image leaves out the version, so it does not go stale with a new paper version."""
 from pathlib import Path
 from playwright.sync_api import sync_playwright
@@ -12,13 +13,8 @@ with sync_playwright() as p:
     pg.goto((root / "index.html").as_uri())
     pg.add_style_tag(content="""
       .langs, button.menu, .ver, .status, .actions { display: none !important; }
-      .hero { height: 630px; padding: 0 80px; border: 0; display: flex; align-items: center; }
-      .hero-inner { margin: 0; max-width: none; }
-      .hero h1 { font-size: 160px; margin-bottom: 28px; }
-      .hero .lede { font-size: 28px; line-height: 1.45; max-width: 900px; margin-bottom: 40px; hyphens: none; }
-      .titleblock { max-width: none; padding-left: 22px; }
-      .titleblock .name { font-size: 68px; margin-bottom: 6px; }
-      .titleblock .sub { font-size: 28px; line-height: 1.4; }
+      .hero { height: 630px; padding-block: 0; border: 0; display: flex; align-items: center; }
+      .hero-inner { width: 100%; }
     """)
     pg.evaluate("document.fonts.ready")
     pg.wait_for_timeout(300)
