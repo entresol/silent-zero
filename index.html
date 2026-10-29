@@ -304,7 +304,9 @@ ol.revisions .rev-date { color: var(--muted); font-size: 0.95rem; margin-bottom:
 </header>
 <script>
 // the header in five languages. Plain lines flip like a split-flap board, lines with links are swapped;
-// the choice is remembered. Without JavaScript the selector stays hidden and the header stays in English.
+// the choice is remembered. On a first visit whose browser prefers German, French, Spanish or Italian, the header
+// starts in English and flips into that language after two seconds, unless the visitor arrived at an anchor
+// further down or prefers reduced motion. Without JavaScript the selector stays hidden and the header stays English.
 (() => {
   const T = {"en": {"h1": "Imagine it's 1991", "lede": "We are about to release a few lines of code into a world that will be very different from today.", "sub": "Bare minimum. Verified. Real-time. An OS for the AI era.", "ver": "Working paper 2026-10-26-v0.16 · <a href=\"#changes\">latest changes<\/a>", "status": "First light: <a href=\"https://github.com/entresol/silent-zero/tree/main/loader\">a loader that checks the kernel image and shows its verdict on the first screen<\/a>, under 9 KB on RISC-V, tested in QEMU. This paper proposes what we intend to build and where it can fail. Criticism and support are warmly welcome: <a href=\"https://github.com/entresol/silent-zero/issues\">issues<\/a>.", "btn": "Download the PDF", "meta": "15 pages, 66 references"}, "de": {"h1": "Stell dir vor, es ist 1991", "lede": "Wir sind dabei, ein paar Zeilen Code in eine Welt zu entlassen, die sich von der heutigen sehr unterscheiden wird.", "sub": "Nur das Nötigste. Verifiziert. Echtzeitfähig. Ein Betriebssystem für das KI-Zeitalter.", "ver": "Arbeitspapier 2026-10-26-v0.16 · <a href=\"#changes\">letzte Änderungen<\/a>", "status": "Erstes Licht: <a href=\"https://github.com/entresol/silent-zero/tree/main/loader\">ein Loader, der das Kernel-Image kontrolliert und sein Urteil auf dem ersten Bildschirm zeigt<\/a>, unter 9 KB auf RISC-V, getestet in QEMU. Dieses Papier beschreibt, was wir bauen wollen und wo es scheitern kann. Kritik und Unterstützung sind herzlich willkommen: <a href=\"https://github.com/entresol/silent-zero/issues\">Issues<\/a>.", "btn": "PDF herunterladen", "meta": "15 Seiten, 66 Quellen, auf Englisch"}, "fr": {"h1": "Imaginez, nous sommes en 1991", "lede": "Nous nous apprêtons à confier quelques lignes de code à un monde qui sera très différent de celui d'aujourd'hui.", "sub": "Le strict minimum. Vérifié. Temps réel. Un système d'exploitation pour l'ère de l'IA.", "ver": "Document de travail 2026-10-26-v0.16 · <a href=\"#changes\">dernières modifications<\/a>", "status": "Première lumière : <a href=\"https://github.com/entresol/silent-zero/tree/main/loader\">un chargeur qui contrôle l'image du noyau et affiche son verdict dès le premier écran<\/a>, moins de 9 Ko sur RISC-V, testé dans QEMU. Ce document expose ce que nous comptons construire et où cela peut échouer. Critiques et soutiens sont les bienvenus : <a href=\"https://github.com/entresol/silent-zero/issues\">issues<\/a>.", "btn": "Télécharger le PDF", "meta": "15 pages, 66 références, en anglais"}, "es": {"h1": "Imagina que es 1991", "lede": "Estamos a punto de lanzar unas pocas líneas de código a un mundo que será muy distinto del de hoy.", "sub": "Lo mínimo imprescindible. Verificado. Tiempo real. Un sistema operativo para la era de la IA.", "ver": "Documento de trabajo 2026-10-26-v0.16 · <a href=\"#changes\">últimos cambios<\/a>", "status": "Primera luz: <a href=\"https://github.com/entresol/silent-zero/tree/main/loader\">un cargador que comprueba la imagen del kernel y muestra su veredicto en la primera pantalla<\/a>, menos de 9 KB en RISC-V, probado en QEMU. Este documento propone lo que queremos construir y dónde puede fallar. Las críticas y el apoyo son muy bienvenidos: <a href=\"https://github.com/entresol/silent-zero/issues\">issues<\/a>.", "btn": "Descargar el PDF", "meta": "15 páginas, 66 referencias, en inglés"}, "it": {"h1": "Immagina che sia il 1991", "lede": "Stiamo per rilasciare poche righe di codice in un mondo che sarà molto diverso da quello di oggi.", "sub": "Lo stretto indispensabile. Verificato. In tempo reale. Un sistema operativo per l'era dell'IA.", "ver": "Documento di lavoro 2026-10-26-v0.16 · <a href=\"#changes\">ultime modifiche<\/a>", "status": "Prima luce: <a href=\"https://github.com/entresol/silent-zero/tree/main/loader\">un loader che controlla l'immagine del kernel e mostra il suo verdetto sulla prima schermata<\/a>, meno di 9 KB su RISC-V, testato in QEMU. Questo documento propone ciò che intendiamo costruire e dove può fallire. Critiche e sostegno sono i benvenuti: <a href=\"https://github.com/entresol/silent-zero/issues\">issues<\/a>.", "btn": "Scarica il PDF", "meta": "15 pagine, 66 riferimenti, in inglese"}}, head = document.getElementById('top'), bar = head.querySelector('.langs');
   const still = matchMedia('(prefers-reduced-motion: reduce)').matches, FLAP = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
@@ -334,15 +336,25 @@ ol.revisions .rev-date { color: var(--muted); font-size: 0.95rem; margin-bottom:
       else el.textContent = v;
     });
   }
+  function keep(l) { try { localStorage.setItem('lang', l); } catch (_) {} }
+  let teaser = null;
   bar.addEventListener('click', e => {
     const b = e.target.closest('button');
-    if (!b || b.lang === head.lang) return;
-    set(b.lang, true);
-    try { localStorage.setItem('lang', b.lang); } catch (_) {}
+    if (!b) return;
+    clearTimeout(teaser);
+    keep(b.lang);
+    if (b.lang !== head.lang) set(b.lang, true);
   });
   let saved = null;
   try { saved = localStorage.getItem('lang'); } catch (_) {}
-  if (T[saved] && saved !== 'en') set(saved, false);
+  if (T[saved]) { if (saved !== 'en') set(saved, false); }
+  else {
+    // the first of the browser's preferred languages that we offer; English means no teaser
+    const want = (navigator.languages || [navigator.language]).map(x => String(x).slice(0, 2).toLowerCase()).find(x => T[x]);
+    if (want && want !== 'en' && !still && (!location.hash || location.hash === '#top'))
+      teaser = setTimeout(() => { set(want, true); keep(want); }, 2000);
+    else if (want && want !== 'en') { set(want, false); keep(want); }
+  }
   bar.hidden = false;
 })();
 </script>

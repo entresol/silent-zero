@@ -197,7 +197,9 @@ page = f"""<!doctype html>
 </header>
 <script>
 // the header in five languages. Plain lines flip like a split-flap board, lines with links are swapped;
-// the choice is remembered. Without JavaScript the selector stays hidden and the header stays in English.
+// the choice is remembered. On a first visit whose browser prefers German, French, Spanish or Italian, the header
+// starts in English and flips into that language after two seconds, unless the visitor arrived at an anchor
+// further down or prefers reduced motion. Without JavaScript the selector stays hidden and the header stays English.
 (() => {{
   const T = {hero_json}, head = document.getElementById('top'), bar = head.querySelector('.langs');
   const still = matchMedia('(prefers-reduced-motion: reduce)').matches, FLAP = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
@@ -227,15 +229,25 @@ page = f"""<!doctype html>
       else el.textContent = v;
     }});
   }}
+  function keep(l) {{ try {{ localStorage.setItem('lang', l); }} catch (_) {{}} }}
+  let teaser = null;
   bar.addEventListener('click', e => {{
     const b = e.target.closest('button');
-    if (!b || b.lang === head.lang) return;
-    set(b.lang, true);
-    try {{ localStorage.setItem('lang', b.lang); }} catch (_) {{}}
+    if (!b) return;
+    clearTimeout(teaser);
+    keep(b.lang);
+    if (b.lang !== head.lang) set(b.lang, true);
   }});
   let saved = null;
   try {{ saved = localStorage.getItem('lang'); }} catch (_) {{}}
-  if (T[saved] && saved !== 'en') set(saved, false);
+  if (T[saved]) {{ if (saved !== 'en') set(saved, false); }}
+  else {{
+    // the first of the browser's preferred languages that we offer; English means no teaser
+    const want = (navigator.languages || [navigator.language]).map(x => String(x).slice(0, 2).toLowerCase()).find(x => T[x]);
+    if (want && want !== 'en' && !still && (!location.hash || location.hash === '#top'))
+      teaser = setTimeout(() => {{ set(want, true); keep(want); }}, 2000);
+    else if (want && want !== 'en') {{ set(want, false); keep(want); }}
+  }}
   bar.hidden = false;
 }})();
 </script>
