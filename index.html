@@ -180,6 +180,21 @@ footer div { max-width: var(--wide); margin: 0 auto; color: var(--muted); font-s
   .hero { padding: 2rem 0; } nav.toc, button.menu, .actions, footer { display: none; }
 }
 
+/* language selector at the top right of the header, level with the menu button; shown by the script only */
+.hero { position: relative; }
+.langs { position: absolute; top: max(0.5rem, env(safe-area-inset-top, 0px)); right: calc(var(--gutter-r) - 0.6rem); display: flex; }
+.langs[hidden] { display: none; }
+.langs button {
+  min-width: 2.75rem; min-height: 2.75rem; padding: 0 0.35rem; border: 0; background: none; cursor: pointer;
+  font: 500 0.75rem/1 var(--font-text); letter-spacing: 0.08em; color: var(--muted);
+  text-decoration: underline 1px transparent; text-underline-offset: 0.45em; transition: color 0.18s ease;
+}
+.langs button + button::before { content: "|"; display: inline-block; width: 0; position: relative; left: -0.55rem; color: var(--rule); pointer-events: none; }
+.langs button:hover { color: var(--ink-deep); }
+.langs button[aria-pressed="true"] { color: var(--ink-deep); text-decoration-color: var(--accent); }
+.langs button:focus-visible { outline: 1px solid var(--accent); outline-offset: -2px; }
+@media print { .langs { display: none; } }
+
 /* status line under the title block */
 .hero .status { max-width: var(--measure); margin: 1.6rem 0 0; color: var(--ink); }
 
@@ -269,22 +284,67 @@ ol.revisions .rev-date { color: var(--muted); font-size: 0.95rem; margin-bottom:
 </style>
 </head>
 <body>
-<header class="hero" id="top">
+<header class="hero" id="top" lang="en">
+  <div class="langs" role="group" aria-label="Language" hidden><button type="button" lang="en" aria-pressed="true">EN</button><button type="button" lang="de" aria-pressed="false">DE</button><button type="button" lang="fr" aria-pressed="false">FR</button><button type="button" lang="es" aria-pressed="false">ES</button><button type="button" lang="it" aria-pressed="false">IT</button></div>
   <div class="hero-inner">
-    <h1>Imagine it's 1991</h1>
-    <p class="lede">We are about to release a few lines of code into a world that will be very different from today.</p>
+    <h1 data-t="h1">Imagine it's 1991</h1>
+    <p class="lede" data-t="lede">We are about to release a few lines of code into a world that will be very different from today.</p>
     <div class="titleblock">
       <p class="name">Silent Zero OS</p>
-      <p class="sub">Bare minimum. Verified. Real-time. An OS for the AI era.</p>
-      <p class="ver">Working paper 2026-10-26-v0.16 · <a href="#changes">latest changes</a></p>
+      <p class="sub" data-t="sub">Bare minimum. Verified. Real-time. An OS for the AI era.</p>
+      <p class="ver" data-t="ver">Working paper 2026-10-26-v0.16 · <a href="#changes">latest changes</a></p>
     </div>
-    <p class="status">First light: <a href="https://github.com/entresol/silent-zero/tree/main/loader">a loader that checks the kernel image and shows its verdict on the first screen</a>, under 9 KB on RISC-V, tested in QEMU. This paper proposes what we intend to build and where it can fail. Criticism and support are warmly welcome: <a href="https://github.com/entresol/silent-zero/issues">issues</a>.</p>
+    <p class="status" data-t="status">First light: <a href="https://github.com/entresol/silent-zero/tree/main/loader">a loader that checks the kernel image and shows its verdict on the first screen</a>, under 9 KB on RISC-V, tested in QEMU. This paper proposes what we intend to build and where it can fail. Criticism and support are warmly welcome: <a href="https://github.com/entresol/silent-zero/issues">issues</a>.</p>
     <div class="actions">
-      <a class="btn" href="versions/zos-zero-os-2026-10-26-v0.16.pdf">Download the PDF</a>
-      <span class="meta">15 pages, 66 references</span>
+      <a class="btn" href="versions/zos-zero-os-2026-10-26-v0.16.pdf" data-t="btn">Download the PDF</a>
+      <span class="meta" data-t="meta">15 pages, 66 references</span>
     </div>
   </div>
 </header>
+<script>
+// the header in five languages. Plain lines flip like a split-flap board, lines with links are swapped;
+// the choice is remembered. Without JavaScript the selector stays hidden and the header stays in English.
+(() => {
+  const T = {"en": {"h1": "Imagine it's 1991", "lede": "We are about to release a few lines of code into a world that will be very different from today.", "sub": "Bare minimum. Verified. Real-time. An OS for the AI era.", "ver": "Working paper 2026-10-26-v0.16 · <a href=\"#changes\">latest changes<\/a>", "status": "First light: <a href=\"https://github.com/entresol/silent-zero/tree/main/loader\">a loader that checks the kernel image and shows its verdict on the first screen<\/a>, under 9 KB on RISC-V, tested in QEMU. This paper proposes what we intend to build and where it can fail. Criticism and support are warmly welcome: <a href=\"https://github.com/entresol/silent-zero/issues\">issues<\/a>.", "btn": "Download the PDF", "meta": "15 pages, 66 references"}, "de": {"h1": "Stell dir vor, es ist 1991", "lede": "Wir sind dabei, ein paar Zeilen Code in eine Welt zu entlassen, die sich von der heutigen sehr unterscheiden wird.", "sub": "Nur das Nötigste. Verifiziert. Echtzeitfähig. Ein Betriebssystem für das KI-Zeitalter.", "ver": "Arbeitspapier 2026-10-26-v0.16 · <a href=\"#changes\">letzte Änderungen<\/a>", "status": "Erstes Licht: <a href=\"https://github.com/entresol/silent-zero/tree/main/loader\">ein Loader, der das Kernel-Image kontrolliert und sein Urteil auf dem ersten Bildschirm zeigt<\/a>, unter 9 KB auf RISC-V, getestet in QEMU. Dieses Papier beschreibt, was wir bauen wollen und wo es scheitern kann. Kritik und Unterstützung sind herzlich willkommen: <a href=\"https://github.com/entresol/silent-zero/issues\">Issues<\/a>.", "btn": "PDF herunterladen", "meta": "15 Seiten, 66 Quellen, auf Englisch"}, "fr": {"h1": "Imaginez, nous sommes en 1991", "lede": "Nous nous apprêtons à confier quelques lignes de code à un monde qui sera très différent de celui d'aujourd'hui.", "sub": "Le strict minimum. Vérifié. Temps réel. Un système d'exploitation pour l'ère de l'IA.", "ver": "Document de travail 2026-10-26-v0.16 · <a href=\"#changes\">dernières modifications<\/a>", "status": "Première lumière : <a href=\"https://github.com/entresol/silent-zero/tree/main/loader\">un chargeur qui contrôle l'image du noyau et affiche son verdict dès le premier écran<\/a>, moins de 9 Ko sur RISC-V, testé dans QEMU. Ce document expose ce que nous comptons construire et où cela peut échouer. Critiques et soutiens sont les bienvenus : <a href=\"https://github.com/entresol/silent-zero/issues\">issues<\/a>.", "btn": "Télécharger le PDF", "meta": "15 pages, 66 références, en anglais"}, "es": {"h1": "Imagina que es 1991", "lede": "Estamos a punto de lanzar unas pocas líneas de código a un mundo que será muy distinto del de hoy.", "sub": "Lo mínimo imprescindible. Verificado. Tiempo real. Un sistema operativo para la era de la IA.", "ver": "Documento de trabajo 2026-10-26-v0.16 · <a href=\"#changes\">últimos cambios<\/a>", "status": "Primera luz: <a href=\"https://github.com/entresol/silent-zero/tree/main/loader\">un cargador que comprueba la imagen del kernel y muestra su veredicto en la primera pantalla<\/a>, menos de 9 KB en RISC-V, probado en QEMU. Este documento propone lo que queremos construir y dónde puede fallar. Las críticas y el apoyo son muy bienvenidos: <a href=\"https://github.com/entresol/silent-zero/issues\">issues<\/a>.", "btn": "Descargar el PDF", "meta": "15 páginas, 66 referencias, en inglés"}, "it": {"h1": "Immagina che sia il 1991", "lede": "Stiamo per rilasciare poche righe di codice in un mondo che sarà molto diverso da quello di oggi.", "sub": "Lo stretto indispensabile. Verificato. In tempo reale. Un sistema operativo per l'era dell'IA.", "ver": "Documento di lavoro 2026-10-26-v0.16 · <a href=\"#changes\">ultime modifiche<\/a>", "status": "Prima luce: <a href=\"https://github.com/entresol/silent-zero/tree/main/loader\">un loader che controlla l'immagine del kernel e mostra il suo verdetto sulla prima schermata<\/a>, meno di 9 KB su RISC-V, testato in QEMU. Questo documento propone ciò che intendiamo costruire e dove può fallire. Critiche e sostegno sono i benvenuti: <a href=\"https://github.com/entresol/silent-zero/issues\">issues<\/a>.", "btn": "Scarica il PDF", "meta": "15 pagine, 66 riferimenti, in inglese"}}, head = document.getElementById('top'), bar = head.querySelector('.langs');
+  const still = matchMedia('(prefers-reduced-motion: reduce)').matches, FLAP = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  function flip(el, to) {
+    const from = [...el.textContent], next = [...to], n = Math.max(from.length, next.length);
+    const stagger = Math.max(6, Math.round(1400 / n)), flips = n > 80 ? 3 : n > 40 ? 4 : 5, tick = n > 80 ? 30 : 35;
+    clearInterval(el._flap);
+    const t0 = performance.now();
+    el._flap = setInterval(() => {
+      const now = performance.now() - t0;
+      el.textContent = Array.from({ length: n }, (_, i) => {
+        const c = next[i] ?? '', start = i * stagger;
+        if (now < start) return from[i] ?? '';
+        if (now >= start + flips * tick || c === ' ' || c === '') return c;
+        return FLAP[Math.random() * FLAP.length | 0];
+      }).join('');
+      if (now >= (n - 1) * stagger + flips * tick) { clearInterval(el._flap); el.textContent = to; }
+    }, tick);
+  }
+  function set(l, animate) {
+    head.lang = l;
+    bar.querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', b.lang === l));
+    head.querySelectorAll('[data-t]').forEach(el => {
+      const v = T[l][el.dataset.t];
+      if (/</.test(v)) el.innerHTML = v;
+      else if (animate && !still) flip(el, v);
+      else el.textContent = v;
+    });
+  }
+  bar.addEventListener('click', e => {
+    const b = e.target.closest('button');
+    if (!b || b.lang === head.lang) return;
+    set(b.lang, true);
+    try { localStorage.setItem('lang', b.lang); } catch (_) {}
+  });
+  let saved = null;
+  try { saved = localStorage.getItem('lang'); } catch (_) {}
+  if (T[saved] && saved !== 'en') set(saved, false);
+  bar.hidden = false;
+})();
+</script>
 <button class="menu" type="button" aria-controls="toc" aria-expanded="false" aria-label="Contents" hidden><span></span></button>
 <div class="layout">
   <nav class="toc" id="toc" aria-label="Contents"><p>Contents</p><ol><li><a href="#top">↑ Top</a></li><li><a href="#in-brief">In brief</a></li><li><a href="#abstract">Abstract</a></li><li><a href="#prologue-imagine-its-1991">Prologue: Imagine it’s 1991</a></li><li><a href="#the-idea-zero-as-a-design-rule">1 The idea: zero as a design rule</a></li><li><a href="#why-now">2 Why now</a></li><li><a href="#anatomy-of-silent-zero">3 Anatomy of Silent Zero</a></li><li><a href="#real-time-throughout">4 Real time throughout</a></li><li><a href="#nothing-to-invent-at-the-base">5 Nothing to invent at the base</a></li><li><a href="#what-silent-zero-is-not-and-where-it-can-fail">6 What Silent Zero is not, and where it can fail</a></li><li><a href="#five-years-back-from-2031">7 Five years back from 2031</a></li><li><a href="#epilogue">Epilogue</a></li><li><a href="#glossary">Glossary</a></li><li><a href="#references">References</a></li><li><a href="#changes">Changes</a></li></ol></nav>

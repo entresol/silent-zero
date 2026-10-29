@@ -171,6 +171,21 @@ footer div { max-width: var(--wide); margin: 0 auto; color: var(--muted); font-s
   .hero { padding: 2rem 0; } nav.toc, button.menu, .actions, footer { display: none; }
 }
 
+/* language selector at the top right of the header, level with the menu button; shown by the script only */
+.hero { position: relative; }
+.langs { position: absolute; top: max(0.5rem, env(safe-area-inset-top, 0px)); right: calc(var(--gutter-r) - 0.6rem); display: flex; }
+.langs[hidden] { display: none; }
+.langs button {
+  min-width: 2.75rem; min-height: 2.75rem; padding: 0 0.35rem; border: 0; background: none; cursor: pointer;
+  font: 500 0.75rem/1 var(--font-text); letter-spacing: 0.08em; color: var(--muted);
+  text-decoration: underline 1px transparent; text-underline-offset: 0.45em; transition: color 0.18s ease;
+}
+.langs button + button::before { content: "|"; display: inline-block; width: 0; position: relative; left: -0.55rem; color: var(--rule); pointer-events: none; }
+.langs button:hover { color: var(--ink-deep); }
+.langs button[aria-pressed="true"] { color: var(--ink-deep); text-decoration-color: var(--accent); }
+.langs button:focus-visible { outline: 1px solid var(--accent); outline-offset: -2px; }
+@media print { .langs { display: none; } }
+
 /* status line under the title block */
 .hero .status { max-width: var(--measure); margin: 1.6rem 0 0; color: var(--ink); }
 
