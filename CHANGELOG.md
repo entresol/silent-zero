@@ -6,7 +6,7 @@ Format: `## <version> · <scope>`, then one paragraph. A paper version is `YYYY-
 
 ## 2026-10-29 · Site
 
-The header says more plainly what exists: a graphical loader that checks the kernel image and shows the result on screen from the first moment. The German text reads more naturally, and links in the header are no longer hyphenated.
+The header says more plainly what exists: a graphical loader that checks the kernel image and shows the result. The German text reads more naturally, and links in the header are no longer hyphenated.
 
 ## 2026-10-29 · Site
 
