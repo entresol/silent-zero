@@ -4,6 +4,10 @@ What changed in substance, newest first: in the paper, on its page and in the pr
 
 Format: `## <version> · <scope>`, then one paragraph. A paper version is `YYYY-MM-DD-vX.Y` and has its own PDF in `versions/`; the newest one is the version the build prints on the paper and the page. A change without a new paper version carries only its date (`YYYY-MM-DD`). Scope is `Paper`, `Site` or `Project`. The build turns this file into the list at the end of the page.
 
+## 2026-10-29 · Site
+
+The header speaks five languages: English, German, French, Spanish and Italian. A selector at the top right switches it, and the lines flip like a split-flap board. On a first visit from a browser set to one of the four, the header starts in English and flips into that language after two seconds; the choice is remembered. The paper stays in English. Without JavaScript the header stays in English.
+
 ## 2026-10-26 · Project
 
 The repository is now called silent-zero. Links to the old name forward to it.
