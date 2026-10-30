@@ -3,50 +3,50 @@
   "en": {
     "label": "EN",
     "h1": "Imagine it's 1991",
-    "lede": "We are about to release a few lines of code into a world that will be very different from today.",
+    "lede": "We are about to release a few lines of code into a world that will be fundamentally different from today.",
     "sub": "Bare minimum. Verified. Real-time. An OS for the AI era.",
     "ver": "Working paper {version} · <a href=\"#changes\">latest changes</a>",
-    "status": "First light: <a href=\"{loader}\">a loader that checks the kernel image and shows its verdict on the first screen</a>, under 9 KB on RISC-V, tested in QEMU. This paper proposes what we intend to build and where it can fail. Criticism and support are warmly welcome: <a href=\"{issues}\">issues</a>.",
+    "status": "First light: <a href=\"{loader}\">a graphical loader that checks the kernel image and shows the result</a>, under 9 KB on RISC-V, tested in QEMU. This paper proposes what we are trying to build and where it can fail. Criticism and support are warmly welcome: <a href=\"{issues}\">issues</a>.",
     "btn": "Download the PDF",
     "meta": "{pages} pages, {refs} references"
   },
   "de": {
     "label": "DE",
     "h1": "Stell dir vor, es ist 1991",
-    "lede": "Wir sind dabei, ein paar Zeilen Code in eine Welt zu entlassen, die sich von der heutigen sehr unterscheiden wird.",
-    "sub": "Nur das Nötigste. Verifiziert. Echtzeitfähig. Ein Betriebssystem für das KI-Zeitalter.",
+    "lede": "Wir sind dabei, ein paar Zeilen Code in eine Welt zu entlassen, die sich von der heutigen grundlegend unterscheiden wird.",
+    "sub": "Nur das Allernötigste. Verifiziert. Echtzeitfähig. Ein Betriebssystem für das KI-Zeitalter.",
     "ver": "Arbeitspapier {version} · <a href=\"#changes\">letzte Änderungen</a>",
-    "status": "Erstes Licht: <a href=\"{loader}\">ein Loader, der das Kernel-Image kontrolliert und sein Urteil auf dem ersten Bildschirm zeigt</a>, unter 9 KB auf RISC-V, getestet in QEMU. Dieses Papier beschreibt, was wir bauen wollen und wo es scheitern kann. Kritik und Unterstützung sind herzlich willkommen: <a href=\"{issues}\">Issues</a>.",
+    "status": "Erstes Licht: <a href=\"{loader}\">ein grafischer Loader, der das Kernel-Image prüft und das Ergebnis anzeigt</a>, unter 9 KB auf RISC-V, getestet in QEMU. Dieses Papier beschreibt, was wir zu bauen versuchen und woran es scheitern kann. Kritik und Unterstützung sind herzlich willkommen: <a href=\"{issues}\">Issues</a>.",
     "btn": "PDF herunterladen",
     "meta": "{pages} Seiten, {refs} Quellen, auf Englisch"
   },
   "fr": {
     "label": "FR",
     "h1": "Imaginez, nous sommes en 1991",
-    "lede": "Nous nous apprêtons à confier quelques lignes de code à un monde qui sera très différent de celui d'aujourd'hui.",
+    "lede": "Nous nous apprêtons à confier quelques lignes de code à un monde qui sera profondément différent de celui d'aujourd'hui.",
     "sub": "Le strict minimum. Vérifié. Temps réel. Un système d'exploitation pour l'ère de l'IA.",
     "ver": "Document de travail {version} · <a href=\"#changes\">dernières modifications</a>",
-    "status": "Première lumière : <a href=\"{loader}\">un chargeur qui contrôle l'image du noyau et affiche son verdict dès le premier écran</a>, moins de 9 Ko sur RISC-V, testé dans QEMU. Ce document expose ce que nous comptons construire et où cela peut échouer. Critiques et soutiens sont les bienvenus : <a href=\"{issues}\">issues</a>.",
+    "status": "Première lumière : <a href=\"{loader}\">un chargeur graphique qui contrôle l'image du noyau et affiche le résultat</a>, moins de 9 Ko sur RISC-V, testé dans QEMU. Ce document expose ce que nous essayons de construire et où cela peut échouer. Critiques et soutiens sont les bienvenus : <a href=\"{issues}\">issues</a>.",
     "btn": "Télécharger le PDF",
     "meta": "{pages} pages, {refs} références, en anglais"
   },
   "es": {
     "label": "ES",
     "h1": "Imagina que es 1991",
-    "lede": "Estamos a punto de lanzar unas pocas líneas de código a un mundo que será muy distinto del de hoy.",
+    "lede": "Estamos a punto de lanzar unas pocas líneas de código a un mundo que será profundamente distinto del de hoy.",
     "sub": "Lo mínimo imprescindible. Verificado. Tiempo real. Un sistema operativo para la era de la IA.",
     "ver": "Documento de trabajo {version} · <a href=\"#changes\">últimos cambios</a>",
-    "status": "Primera luz: <a href=\"{loader}\">un cargador que comprueba la imagen del kernel y muestra su veredicto en la primera pantalla</a>, menos de 9 KB en RISC-V, probado en QEMU. Este documento propone lo que queremos construir y dónde puede fallar. Las críticas y el apoyo son muy bienvenidos: <a href=\"{issues}\">issues</a>.",
+    "status": "Primera luz: <a href=\"{loader}\">un cargador gráfico que comprueba la imagen del kernel y muestra el resultado</a>, menos de 9 KB en RISC-V, probado en QEMU. Este documento propone lo que intentamos construir y dónde puede fallar. Las críticas y el apoyo son muy bienvenidos: <a href=\"{issues}\">issues</a>.",
     "btn": "Descargar el PDF",
     "meta": "{pages} páginas, {refs} referencias, en inglés"
   },
   "it": {
     "label": "IT",
     "h1": "Immagina che sia il 1991",
-    "lede": "Stiamo per rilasciare poche righe di codice in un mondo che sarà molto diverso da quello di oggi.",
+    "lede": "Stiamo per rilasciare poche righe di codice in un mondo che sarà profondamente diverso da quello di oggi.",
     "sub": "Lo stretto indispensabile. Verificato. In tempo reale. Un sistema operativo per l'era dell'IA.",
     "ver": "Documento di lavoro {version} · <a href=\"#changes\">ultime modifiche</a>",
-    "status": "Prima luce: <a href=\"{loader}\">un loader che controlla l'immagine del kernel e mostra il suo verdetto sulla prima schermata</a>, meno di 9 KB su RISC-V, testato in QEMU. Questo documento propone ciò che intendiamo costruire e dove può fallire. Critiche e sostegno sono i benvenuti: <a href=\"{issues}\">issues</a>.",
+    "status": "Prima luce: <a href=\"{loader}\">un loader grafico che controlla l'immagine del kernel e mostra il risultato</a>, meno di 9 KB su RISC-V, testato in QEMU. Questo documento propone ciò che cerchiamo di costruire e dove può fallire. Critiche e sostegno sono i benvenuti: <a href=\"{issues}\">issues</a>.",
     "btn": "Scarica il PDF",
     "meta": "{pages} pagine, {refs} riferimenti, in inglese"
   }
