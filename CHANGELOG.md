@@ -6,6 +6,10 @@ Format: `## <version> · <scope>`, then one paragraph. A paper version is `YYYY-
 
 ## 2026-10-30 · Site
 
+The wiki is on the page, at [/wiki/](wiki/), in the page's own style: a catalogue in four groups (design, systems, concepts, sources), each page with its status (draft, LLM reviewed, human curated), its sources and the pages that link to it. A source page shows its topic first and its authors in the line below. The page links to the wiki from Get involved and the footer. The build renders the wiki with the page, and pull requests that change the wiki rebuild it.
+
+## 2026-10-30 · Site
+
 The newest PDF has a stable address, `silent-zero.pdf`, and downloads under that name; the version stays printed in the paper. The old address `zos-zero-os.pdf` still works, and every version keeps its own file in `versions/`.
 
 ## 2026-10-30 · Site

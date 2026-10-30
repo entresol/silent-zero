@@ -34,7 +34,7 @@ The sources live in the private research repository, usually cloned next to this
 | `systems/` | piece of existing work | e.g. seL4, LionsOS, Microkit, OpenTitan, CHERI, agentOS |
 | `design/` | part of the zOS design | which sources carry it, and how well |
 
-Plus `index.md` (the catalogue, read first for every question) and `log.md` (what happened, newest last).
+Plus `index.md` (the catalogue, read first for every question) and `log.md` (what happened, newest last). The build (`paper/build_wiki.py`, run by `paper/build.sh` and by the workflow *Build page*) renders every page as HTML next to its Markdown; never edit the HTML.
 
 File names are lower case with hyphens. A source page is named by its pool id. Links between pages are `[[name]]` or `[[name|text]]`, so the wiki works in Obsidian and the build of the page can translate them.
 

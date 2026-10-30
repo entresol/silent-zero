@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Confused deputy · Silent Zero wiki</title>
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<style>
+/* entresol typography: Inter Thin for large display only, Nunito Sans for everything else.
+   Fonts are self-hosted (SIL OFL 1.1); no requests to third-party font servers. */
+@font-face { font-family: "Inter"; font-style: normal; font-weight: 100 900; font-display: swap;
+  src: url(/assets/fonts/inter-latin-opsz-normal.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "Inter"; font-style: normal; font-weight: 100 900; font-display: swap;
+  src: url(/assets/fonts/inter-latin-ext-opsz-normal.woff2) format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: "Nunito Sans"; font-style: normal; font-weight: 200 1000; font-display: swap;
+  src: url(/assets/fonts/nunito-sans-latin-wght-normal.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "Nunito Sans"; font-style: normal; font-weight: 200 1000; font-display: swap;
+  src: url(/assets/fonts/nunito-sans-latin-ext-wght-normal.woff2) format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: "Nunito Sans"; font-style: italic; font-weight: 200 1000; font-display: swap;
+  src: url(/assets/fonts/nunito-sans-latin-wght-italic.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "Nunito Sans"; font-style: italic; font-weight: 200 1000; font-display: swap;
+  src: url(/assets/fonts/nunito-sans-latin-ext-wght-italic.woff2) format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+
+/* Layout: one reading column (~65 characters), sticky contents on wide screens, figures and table break out wider. */
+:root {
+  --font-display: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;   /* weight 100 only, large sizes only */
+  --font-text: "Nunito Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --paper: #ffffff;
+  --ink-deep: #1a1d1f;   /* headlines */
+  --ink: #3e4447;        /* running text */
+  --muted: #6f767a;      /* meta; 4.6:1 on white, WCAG AA for normal text */
+  --rule: #e2e5e7;
+  --accent: #e8a020;     /* entresol gold, the only accent */
+  --measure: 36rem;
+  --wide: 58rem;
+  --gutter-l: max(1.25rem, env(safe-area-inset-left, 0px));
+  --gutter-r: max(1.25rem, env(safe-area-inset-right, 0px));
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #121517; --ink-deep: #f1f3f4; --ink: #c5ccd0; --muted: #8b9498; --rule: #2a2f33; --accent: #e8a020;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #121517; --ink-deep: #f1f3f4; --ink: #c5ccd0; --muted: #8b9498; --rule: #2a2f33; --accent: #e8a020;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; background: var(--paper); color: var(--ink);
+  font: 400 1.125rem/1.72 var(--font-text);
+}
+a { color: var(--ink-deep); text-decoration-color: var(--accent); text-underline-offset: 0.2em; text-decoration-thickness: 1px; }
+a:hover { text-decoration-thickness: 2px; }
+a:focus-visible { outline: 1px solid var(--accent); outline-offset: 3px; }
+
+/* Display: Inter Thin, never below ~40px */
+h1, h2, .titleblock .name {
+  font-family: var(--font-display); font-weight: 100; font-optical-sizing: auto;
+  color: var(--ink-deep); text-wrap: balance;
+}
+
+.hero { padding-block: 18vh 10vh; padding-left: var(--gutter-l); padding-right: var(--gutter-r); border-bottom: 1px solid var(--rule); }
+.hero-inner { max-width: var(--wide); margin: 0 auto; }
+.hero h1 { font-size: clamp(54px, 9.5vw, 112px); line-height: 0.98; letter-spacing: -0.04em; margin: 0 0 1.6rem; }
+.hero .lede { max-width: var(--measure); margin: 0 0 3.5rem; }   /* identical to running text */
+.titleblock { max-width: 46rem; border-left: 1px solid var(--accent); padding-left: 1.1rem; }
+.titleblock p { margin: 0; }
+.titleblock .name { font-size: clamp(40px, 4.4vw, 48px); line-height: 1.05; letter-spacing: -0.03em; margin-bottom: 0.5rem; }
+.titleblock .sub { color: var(--muted); }
+.actions { margin-top: 2.2rem; display: flex; flex-wrap: wrap; gap: 0.8rem 1.6rem; align-items: center; }
+.btn {
+  font: 600 1.125rem/1.3 var(--font-text); color: var(--ink-deep);
+  text-decoration: underline; text-decoration-color: var(--accent);
+  text-decoration-thickness: 2px; text-underline-offset: 0.35em;
+}
+.btn::after { content: "\00a0\2193"; color: var(--accent); }
+.btn:hover { text-decoration-thickness: 3px; }
+.meta { color: var(--muted); font-size: 0.95rem; }
+
+.layout { padding-block: 4rem 6rem; padding-left: var(--gutter-l); padding-right: var(--gutter-r); }
+article { max-width: var(--measure); margin: 0 auto; }
+article .wide { width: min(var(--wide), calc(100vw - 2.5rem)); margin-left: 50%; transform: translateX(-50%); }
+nav.toc { display: none; }
+@media (min-width: 76rem) {
+  .layout { display: grid; grid-template-columns: 1fr var(--measure) 1fr; column-gap: 3rem; }
+  nav.toc { display: block; grid-column: 1; justify-self: end; position: sticky; top: 2rem; align-self: start; width: 14rem; }
+  article { grid-column: 2; margin: 0; }
+}
+nav.toc ol { list-style: none; margin: 0; padding: 0; font: 400 0.9rem/1.45 var(--font-text); }
+nav.toc li { margin: 0 0 0.5rem; }
+nav.toc a { color: var(--muted); text-decoration: none; }
+nav.toc a:hover { color: var(--ink-deep); }
+/* the section being read, marked by the script */
+nav.toc a[aria-current] { color: var(--ink-deep); text-decoration: underline 1px var(--accent); text-underline-offset: 0.3em; }
+nav.toc p { font: 600 0.9rem/1 var(--font-text); margin: 0 0 1rem; color: var(--ink-deep); }
+
+/* Narrow screens: the contents become a panel from the left, opened by a menu button at the top left.
+   The button is shown by the script only; without JavaScript the page stays as it was. */
+button.menu { display: none; }
+@media (max-width: 75.98rem) {
+  /* 44px touch target; left offset puts the 18px lines flush with the text column */
+  button.menu:not([hidden]) {
+    display: block; position: fixed; z-index: 20;
+    top: max(0.5rem, env(safe-area-inset-top, 0px)); left: calc(var(--gutter-l) - 0.8125rem);
+    width: 2.75rem; height: 2.75rem; padding: 0; border: 1px solid var(--rule); border-radius: 50%; cursor: pointer;
+    background: var(--paper); color: var(--ink-deep);   /* opaque: it sits on running text while reading */
+  }
+  button.menu:focus-visible { outline: 1px solid var(--accent); outline-offset: 0; }
+  /* three lines: the span is the middle one, its pseudo-elements the outer two; open, they cross */
+  button.menu span, button.menu span::before, button.menu span::after {
+    position: absolute; width: 1.125rem; height: 1px; background: currentColor;
+  }
+  button.menu span { left: calc(50% - 0.5625rem); top: calc(50% - 0.5px); }
+  button.menu span::before, button.menu span::after { content: ""; left: 0; top: 0; transition: transform 0.2s ease; }
+  button.menu span::before { transform: translateY(-6px); }
+  button.menu span::after { transform: translateY(6px); }
+  button.menu[aria-expanded="true"] span { background: transparent; }
+  button.menu[aria-expanded="true"] span::before { transform: rotate(45deg); }
+  button.menu[aria-expanded="true"] span::after { transform: rotate(-45deg); }
+
+  nav.toc {
+    display: block; position: fixed; z-index: 10; inset: 0 auto 0 0; width: min(20rem, 85vw);
+    overflow-y: auto; overscroll-behavior: contain;
+    padding: calc(max(0.5rem, env(safe-area-inset-top, 0px)) + 4rem) 1.5rem 2rem var(--gutter-l);
+    background: var(--paper); border-right: 1px solid var(--rule);
+    visibility: hidden; transform: translateX(-100%); transition: transform 0.25s ease, visibility 0s 0.25s;
+  }
+  .menu-open { overflow: hidden; }
+  .menu-open nav.toc { visibility: visible; transform: none; transition: transform 0.25s ease; box-shadow: 0 0 0 100vmax rgb(0 0 0 / 0.25); }
+  nav.toc ol { font-size: 1rem; }
+  nav.toc li { margin-bottom: 0.85rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  nav.toc, button.menu span::before, button.menu span::after { transition: none !important; }
+}
+
+h2 { font-size: clamp(36px, 5vw, 56px); line-height: 1.04; letter-spacing: -0.035em; margin: 4.2rem 0 1.4rem; scroll-margin-top: 1.5rem; }
+h2::before { content: ""; display: block; width: 32px; height: 1px; background: var(--accent); margin-bottom: 1.1rem; }
+h3 { font: 600 1.125rem/1.35 var(--font-text); color: var(--ink-deep); margin: 2.4rem 0 0.6rem; text-wrap: balance; }
+p { margin: 0 0 1.15rem; hyphens: auto; }
+ol, ul { padding-left: 1.3rem; }
+li { margin-bottom: 0.4rem; }
+blockquote { margin: 1.6rem 0; padding-left: 1.1rem; border-left: 1px solid var(--accent); }
+/* the motto at the start of the prologue: the line large, its source small */
+blockquote p:first-child { font-size: 1.15em; color: var(--ink-deep); margin-bottom: 0.4rem; }
+blockquote p + p { font-size: 0.85em; color: var(--muted); }
+strong { font-weight: 600; color: var(--ink-deep); }
+
+figure { margin: 2.8rem 0; }
+figure img { width: 100%; max-width: 100%; background: #ffffff; height: auto; display: block; }
+figcaption { max-width: var(--measure); margin: 0.8rem auto 0; font-size: 0.95rem; line-height: 1.55; color: var(--muted); }
+
+.table-wrap { overflow-x: auto; margin: 2rem 0 2.4rem; }
+table { border-collapse: collapse; width: 100%; font-size: 0.95rem; line-height: 1.5; }
+th { font: 600 0.9rem/1.3 var(--font-text); color: var(--ink-deep); text-align: left; border-bottom: 1px solid var(--accent); padding: 0 0.9rem 0.5rem 0; }
+td { vertical-align: top; border-bottom: 1px solid var(--rule); padding: 0.6rem 0.9rem 0.6rem 0; }
+td:first-child { white-space: nowrap; color: var(--ink-deep); font-weight: 600; }
+
+#references + ul { list-style: none; padding: 0; font-size: 0.95rem; line-height: 1.55; }
+#references + ul li { padding-left: 1.4rem; text-indent: -1.4rem; margin-bottom: 0.55rem; overflow-wrap: anywhere; }
+
+footer { border-top: 1px solid var(--rule); padding-block: 2rem 3rem; padding-left: var(--gutter-l); padding-right: var(--gutter-r); }
+footer div { max-width: var(--wide); margin: 0 auto; color: var(--muted); font-size: 0.95rem; display: flex; flex-wrap: wrap; gap: 0.5rem 2rem; justify-content: space-between; }
+footer .links { display: flex; gap: 1.4rem; }
+@media (max-width: 40rem) { footer .about > span:not(.sep) { display: block; } footer .sep { display: none; } }
+
+@media (max-width: 40rem) {
+  .hero { padding-block-start: 12vh; }
+  td:first-child { white-space: normal; }
+}
+@media print {
+  .hero { padding: 2rem 0; } nav.toc, button.menu, .actions, footer { display: none; }
+}
+
+/* language selector at the top right of the header, level with the menu button and flush with the column's right
+   edge; shown by the script only */
+.hero { position: relative; }
+.langs { position: absolute; top: max(0.5rem, env(safe-area-inset-top, 0px)); right: calc(max(var(--gutter-r), (100% - var(--wide)) / 2) - 0.6rem); display: flex; }
+.langs[hidden] { display: none; }
+.langs button {
+  min-width: 2.75rem; min-height: 2.75rem; padding: 0 0.35rem; border: 0; background: none; cursor: pointer;
+  font: 500 0.75rem/1 var(--font-text); letter-spacing: 0.08em; color: var(--muted);
+  text-decoration: underline 1px transparent; text-underline-offset: 0.45em; transition: color 0.18s ease;
+}
+.langs button + button::before { content: "|"; display: inline-block; width: 0; position: relative; left: -0.55rem; color: var(--rule); pointer-events: none; }
+.langs button:hover { color: var(--ink-deep); }
+.langs button[aria-pressed="true"] { color: var(--ink-deep); text-decoration-color: var(--accent); }
+.langs button:focus-visible { outline: 1px solid var(--accent); outline-offset: -2px; }
+@media print { .langs { display: none; } }
+
+/* status line under the title block */
+.hero .status { max-width: var(--measure); margin: 1.6rem 0 0; color: var(--ink); }
+.hero .status a { hyphens: manual; }   /* no "Is-sues" in German */
+
+/* wide figures extend only to the right while the contents column is visible */
+@media (min-width: 76rem) {
+  article .wide { width: min(var(--wide), calc(100% + 3rem + (100vw - 2.5rem - var(--measure) - 6rem) / 2)); margin-left: 0; transform: none; }
+}
+.fig-scroll { overflow-x: auto; }
+@media (max-width: 40rem) {
+  .fig-scroll img { min-width: 44rem; }
+}
+
+/* citations link to the reference list */
+a.cite { color: inherit; text-decoration-color: var(--rule); }
+a.cite:hover { text-decoration-color: var(--accent); }
+a.gl { color: inherit; text-decoration: underline dotted var(--muted); text-underline-offset: 0.2em; white-space: nowrap; }
+a.gl:hover, a.gl:focus-visible { text-decoration-color: var(--accent); }
+@media (hover: hover) {
+  a.gl { position: relative; }
+  a.gl:hover::after { content: attr(data-def); position: absolute; left: 0; top: 100%; margin-top: 0.35rem; z-index: 5;
+    width: max-content; max-width: min(22rem, 80vw); padding: 0.5rem 0.7rem; background: var(--paper); color: var(--ink);
+    border: 1px solid var(--rule); border-left: 2px solid var(--accent); font-size: 0.85rem; line-height: 1.4; font-weight: 400;
+    font-style: normal; white-space: normal; pointer-events: none; }
+  a.gl.flip:hover::after { left: auto; right: 0; }
+}
+/* touch screens have no hover: a tap on a term opens its meaning in a popover anchored to it, after Apple's HIG and
+   Material's rich tooltips. A second tap, or a tap elsewhere, closes it; its footer links to the glossary entry.
+   Set up by the page script; the popover sits in the page, so it scrolls with its term. */
+.gl-pop { position: absolute; z-index: 8; margin: 0; padding: 0.6rem 0.8rem 0.5rem; background: var(--paper); color: var(--ink);
+  border: 1px solid var(--rule); border-top: 2px solid var(--accent); border-radius: 0.25rem; font-size: 0.9rem; line-height: 1.45;
+  box-shadow: 0 0.4rem 1.2rem color-mix(in srgb, var(--ink-deep) 14%, transparent); }
+.gl-pop p { margin: 0; }
+.gl-pop .gl-pop-foot { margin-top: 0.45rem; padding-top: 0.4rem; border-top: 1px solid var(--rule); font-size: 0.8rem; }
+.gl-pop .gl-pop-foot a { color: var(--ink-deep); }
+/* the arrow points at the term: up when the popover opens below it, down when it opens above */
+.gl-pop::before { content: ""; position: absolute; left: var(--arrow, 1rem); top: -0.5rem; width: 0.8rem; height: 0.8rem;
+  margin-left: -0.4rem; background: var(--accent); clip-path: polygon(50% 0, 100% 100%, 0 100%); }
+.gl-pop.above { border-top: 1px solid var(--rule); border-bottom: 2px solid var(--accent); }
+.gl-pop.above::before { top: auto; bottom: -0.5rem; clip-path: polygon(0 0, 100% 0, 50% 100%); }
+a.gl[aria-expanded] { -webkit-tap-highlight-color: transparent; }
+a.gl[aria-expanded="true"] { color: var(--ink-deep); text-decoration: underline solid var(--accent); background: color-mix(in srgb, var(--accent) 14%, transparent); }
+#glossary ~ h3 { margin-top: 1.6rem; }
+[id^="gl-"] { scroll-margin-top: 1.5rem; }
+#references + ul li:target { background: color-mix(in srgb, var(--accent) 14%, transparent); }
+
+/* figure 2 as text */
+figure.timeline ol { list-style: none; margin: 0; padding: 0; border-left: 1px solid var(--rule); }
+figure.timeline li { display: grid; grid-template-columns: 4.2rem 1fr; gap: 0 1rem; padding: 0 0 1.4rem 0; margin: 0; position: relative; }
+figure.timeline li::before { content: ""; position: absolute; left: -4px; top: 0.55rem; width: 7px; height: 7px; border-radius: 50%; background: var(--muted); }
+figure.timeline li.start::before { background: var(--accent); }
+figure.timeline .year { padding-left: 1rem; font-weight: 600; color: var(--ink-deep); font-variant-numeric: tabular-nums; }
+figure.timeline li > div { min-width: 0; }
+figure.timeline p { margin: 0; }
+figure.timeline .st-name { color: var(--ink-deep); font-weight: 600; }
+figure.timeline .st-sub { color: var(--muted); font-size: 0.95rem; }
+figure.timeline .st-check { font-size: 0.95rem; margin-top: 0.25rem; }
+figure.timeline .kind { display: inline-block; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+  margin-right: 0.5rem; color: var(--accent); vertical-align: 0.1em; }
+figure.timeline figcaption { margin-left: 0; }
+
+/* component table: one entry per block on phones */
+@media (max-width: 40rem) {
+  .table-wrap table, .table-wrap tbody, .table-wrap tr, .table-wrap td { display: block; width: 100%; }
+  .table-wrap thead { display: none; }
+  .table-wrap tr { border-bottom: 1px solid var(--rule); padding: 0.8rem 0; }
+  .table-wrap td { border: 0; padding: 0.15rem 0; }
+  .table-wrap td::before { content: attr(data-label); display: block; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+  .table-wrap td:first-child { white-space: normal; }
+}
+
+/* revisions */
+ol.revisions { list-style: none; padding: 0; margin: 1.2rem 0 0; }
+ol.revisions li { padding: 0.9rem 0; border-top: 1px solid var(--rule); margin: 0; }
+ol.revisions li > div { min-width: 0; }
+ol.revisions p { margin: 0; }
+ol.revisions .rev-ver { font-weight: 600; color: var(--ink-deep); font-variant-numeric: tabular-nums; }
+ol.revisions .rev-date { color: var(--muted); font-size: 0.95rem; margin-bottom: 0.2rem; }
+
+/* title block: slogan, authors, version */
+.titleblock .ver { color: var(--muted); font-size: 0.95rem; margin-top: 0.15rem; }
+
+/* the wiki: the same header, slimmer, with the page's title in the title block instead of the poster */
+.hero.slim { padding-block: 7vh 3.5rem; }
+.hero.slim .crumbs { margin: 0 0 2.2rem; color: var(--muted); font-size: 0.95rem; }
+.hero.slim .crumbs a { color: var(--muted); text-decoration: none; }
+.hero.slim .crumbs a:hover { color: var(--ink-deep); }
+.hero.slim .titleblock h1.name { font-size: clamp(40px, 4.4vw, 48px); line-height: 1.05; letter-spacing: -0.03em; margin: 0 0 0.5rem; }
+.hero.slim .titleblock .sub { max-width: var(--measure); }
+.hero.slim .titleblock .ver a { hyphens: manual; }
+nav.toc li.toc-back { margin-bottom: 1.1rem; }
+nav.toc li.toc-back a { color: var(--ink-deep); }
+nav.toc li.toc-sep { margin-top: 1.4rem; padding-top: 1rem; border-top: 1px solid var(--rule); }
+ul.linked-from { list-style: none; padding: 0; }
+ul.linked-from .kind { color: var(--muted); font-size: 0.85rem; margin-left: 0.4rem; }
+
+/* narrow screens: jump targets land below the menu button (last, so it wins over the scroll margins above) */
+@media (max-width: 75.98rem) {
+  h2, [id^="gl-"], #references + ul li { scroll-margin-top: 4rem; }
+}
+</style>
+</head>
+<body>
+<header class="hero slim" id="top">
+  <div class="hero-inner">
+    <p class="crumbs"><a href="/">Silent Zero OS</a> · <a href="/wiki/">Wiki</a></p>
+    <div class="titleblock">
+      <h1 class="name">Confused deputy</h1>
+      <p class="sub">a program misusing one party’s authority for another’s request; capabilities as the remedy.</p>
+      <p class="ver">Concept · <a href="/wiki/#how">LLM reviewed</a> · updated 29 Oct 2026 · 2 sources</p>
+    </div>
+  </div>
+</header>
+<button class="menu" type="button" aria-controls="toc" aria-expanded="false" aria-label="Contents" hidden><span></span></button>
+<div class="layout">
+  <nav class="toc" id="toc" aria-label="Contents"><p>Contents</p><ol><li class="toc-back"><a href="/wiki/">← Wiki index</a></li><li><a href="#top">↑ Top</a></li><li><a href="#why-it-happens">Why it happens</a></li><li><a href="#the-remedy">The remedy</a></li><li><a href="#state-october-2026">State, October 2026</a></li><li><a href="#open-questions">Open questions</a></li><li class="toc-sep"><a href="/">The paper</a></li></ol></nav>
+  <article>
+<p>A program that acts with authority from more than one source, and cannot keep them apart, can be tricked into using one party’s authority for another party’s request. Hardy’s compiler held a licence to write in its own directory and wrote a user’s debugging output over the billing file there, because the user named it (<a href="/wiki/sources/1988-hardy-confused-deputy-or.html">The Confused Deputy</a>).</p>
+<h2 id="why-it-happens">Why it happens</h2>
+<p>The request names a resource, and the deputy resolves the name with its own authority. Naming and permission travel separately. Systems that pass references, which both designate and authorise, avoid this case; systems that pass names do not (<a href="/wiki/sources/1988-hardy-confused-deputy-or.html">The Confused Deputy</a>; <a href="/wiki/sources/2006-miller-robust-composition-towards.html">Robust Composition</a>, §3.2, which calls these key-centric and name-centric).</p>
+<h2 id="the-remedy">The remedy</h2>
+<p>Give the deputy a capability for each resource it may use, and have the requester hand over a capability for the resource it means. The deputy must then designate which authority it uses, and cannot use one it was not given (<a href="/wiki/sources/1988-hardy-confused-deputy-or.html">The Confused Deputy</a>).</p>
+<h2 id="state-october-2026">State, October 2026</h2>
+<p>The pattern and its remedy have been established since 1988; Miller generalises them into the distinction between name-centric and key-centric designation (<a href="/wiki/sources/2006-miller-robust-composition-towards.html">Robust Composition</a>, §3.2, §3.5).</p>
+<h2 id="open-questions">Open questions</h2>
+<ul>
+<li>How far the analogy to agents holds. The Silent Zero paper argues that indirect prompt injection follows the same pattern (Section 2.4) and states that capabilities only limit how far a deceived agent can reach (Section 6). Our reading: the pattern matches, the remedy does not fully carry over. Hardy’s deputy was confused by an ambiguous name; an injected agent is subverted in its own decisions and uses capabilities it really holds. See <a href="/wiki/concepts/prompt-injection.html">Prompt injection</a> and <a href="/wiki/design/broker.html">The broker</a>.</li>
+</ul>
+
+  </article>
+</div>
+<footer><div><span class="about"><span>Silent Zero OS</span><span class="sep"> · </span><span>Wiki</span><span class="sep"> · </span><span>Text <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></span></span><span class="links"><a href="/">Paper</a> <a href="https://github.com/entresol/silent-zero/tree/main/wiki">GitHub</a> <a href="https://unwritten.studio/impressum">Imprint</a></span></div></footer>
+<script>
+// narrow screens: the menu button opens the contents as a panel; while it is open the page behind it is inert
+const menu = document.querySelector('button.menu'), toc = document.getElementById('toc');
+const behind = document.querySelectorAll('header.hero, article, footer');
+const isOpen = () => menu.getAttribute('aria-expanded') === 'true';
+function setMenu(open) {
+  menu.setAttribute('aria-expanded', open);
+  document.documentElement.classList.toggle('menu-open', open);
+  behind.forEach(el => el.inert = open);
+  if (open) toc.querySelector('a').focus();
+}
+menu.hidden = false;   // without JavaScript the button stays hidden and the page works as before
+menu.addEventListener('click', () => setMenu(!isOpen()));
+toc.addEventListener('click', e => { if (e.target.closest('a')) setMenu(false); });
+document.addEventListener('click', e => { if (isOpen() && !toc.contains(e.target) && !menu.contains(e.target)) setMenu(false); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && isOpen()) { setMenu(false); menu.focus(); } });
+matchMedia('(min-width: 76rem)').addEventListener('change', e => { if (e.matches) setMenu(false); });
+// the contents mark the section being read: the last heading that has passed the upper fifth of the screen
+const heads = [...document.querySelectorAll('article h2[id]')], links = new Map([...toc.querySelectorAll('a')].filter(a => a.hash).map(a => [a.hash.slice(1), a]));
+let current = null, queued = false;
+function mark() {
+  queued = false;
+  const h = heads.filter(h => h.getBoundingClientRect().top < innerHeight / 5).pop(), a = h ? links.get(h.id) : null;
+  if (a === current) return;
+  current?.removeAttribute('aria-current'); a?.setAttribute('aria-current', 'location'); current = a;
+}
+addEventListener('scroll', () => { if (!queued) { queued = true; requestAnimationFrame(mark); } }, { passive: true });
+mark();
+</script>
+</body>
+</html>

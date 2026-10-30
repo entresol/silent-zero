@@ -273,6 +273,20 @@ ol.revisions .rev-date { color: var(--muted); font-size: 0.95rem; margin-bottom:
 /* title block: slogan, authors, version */
 .titleblock .ver { color: var(--muted); font-size: 0.95rem; margin-top: 0.15rem; }
 
+/* the wiki: the same header, slimmer, with the page's title in the title block instead of the poster */
+.hero.slim { padding-block: 7vh 3.5rem; }
+.hero.slim .crumbs { margin: 0 0 2.2rem; color: var(--muted); font-size: 0.95rem; }
+.hero.slim .crumbs a { color: var(--muted); text-decoration: none; }
+.hero.slim .crumbs a:hover { color: var(--ink-deep); }
+.hero.slim .titleblock h1.name { font-size: clamp(40px, 4.4vw, 48px); line-height: 1.05; letter-spacing: -0.03em; margin: 0 0 0.5rem; }
+.hero.slim .titleblock .sub { max-width: var(--measure); }
+.hero.slim .titleblock .ver a { hyphens: manual; }
+nav.toc li.toc-back { margin-bottom: 1.1rem; }
+nav.toc li.toc-back a { color: var(--ink-deep); }
+nav.toc li.toc-sep { margin-top: 1.4rem; padding-top: 1rem; border-top: 1px solid var(--rule); }
+ul.linked-from { list-style: none; padding: 0; }
+ul.linked-from .kind { color: var(--muted); font-size: 0.85rem; margin-left: 0.4rem; }
+
 /* narrow screens: jump targets land below the menu button (last, so it wins over the scroll margins above) */
 @media (max-width: 75.98rem) {
   h2, [id^="gl-"], #references + ul li { scroll-margin-top: 4rem; }
