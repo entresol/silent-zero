@@ -34,9 +34,9 @@ In zOS the bootloader "checks one signed, static system image and starts it, or 
 | Verify-and-measure boot (DICE) with a verified implementation | proven at the level of generated C on a microcontroller | proof | [[2021-tao-dice-formally-verified]] |
 | Kernel boot inside seL4's proofs | outside every verified configuration | assumed | [[nd-sel4-verified-configurations]] |
 | The zOS loader | prototype for RISC-V, hash only | assumed | paper, Section 3 |
-| An unmodified seL4 16.0.0 release kernel booting to user space on RISC-V | demonstrated in QEMU's model of the HiFive Unleashed: OpenSBI, then seL4's ELF loader, then the kernel and a root task that maps a UART through capabilities; one of five harts used | test (a recorded serial console) | [the project's video](/assets/video/sel4-riscv-boot.mp4), 30 October 2026 |
+| The official seL4 16.0.0 kernel, built with the unmodified preset `RISCV64_MCS_verified`, booting to user space on RISC-V | demonstrated in QEMU's model of the HiFive Unleashed: OpenSBI, then seL4's ELF loader, then the kernel and a root task that maps a UART through capabilities; one of five harts used; the build checks all 22 preset settings and the kernel's SHA-256 | test (a recorded serial console, rebuildable) | [the project's video](/assets/video/sel4-riscv-boot.mp4) and [its build](https://github.com/entresol/silent-zero/tree/main/loader/sel4-demo), 30 October 2026 |
 
-Our reading: the video shows seL4's own boot chain, not the zOS loader. seL4 16.0.0 defines its general verified RISC-V configurations, with and without MCS, for exactly this platform, `hifive` ([configuration files](https://github.com/seL4/seL4/tree/16.0.0/configs)); whether the video's kernel was built in one of them, the video does not say. Until that is shown, it shows that seL4 boots, not that a verified configuration does.
+Our reading: the video shows seL4's own boot chain, not the zOS loader. The kernel is built with the preset seL4 16.0.0 provides for its MCS verification on this platform, `hifive` ([configuration files](https://github.com/seL4/seL4/tree/16.0.0/configs)). So the video shows that kernel booting. It does not show a proof of the binary: the proofs are about the C code, and the compiler is trusted. QEMU stands in for the hardware, and firmware and ELF loader lie outside every proof.
 
 ## The paper and its sources
 

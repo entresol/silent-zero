@@ -424,14 +424,14 @@ ul.linked-from .kind { color: var(--muted); font-size: 0.85rem; margin-left: 0.4
 <td data-label="Source">paper, Section 3</td>
 </tr>
 <tr>
-<td data-label="Claim">An unmodified seL4 16.0.0 release kernel booting to user space on RISC-V</td>
-<td data-label="State in the paper’s terms">demonstrated in QEMU’s model of the HiFive Unleashed: OpenSBI, then seL4’s ELF loader, then the kernel and a root task that maps a UART through capabilities; one of five harts used</td>
-<td data-label="Evidence">test (a recorded serial console)</td>
-<td data-label="Source"><a href="/assets/video/sel4-riscv-boot.mp4">the project’s video</a>, 30 October 2026</td>
+<td data-label="Claim">The official seL4 16.0.0 kernel, built with the unmodified preset <code>RISCV64_MCS_verified</code>, booting to user space on RISC-V</td>
+<td data-label="State in the paper’s terms">demonstrated in QEMU’s model of the HiFive Unleashed: OpenSBI, then seL4’s ELF loader, then the kernel and a root task that maps a UART through capabilities; one of five harts used; the build checks all 22 preset settings and the kernel’s SHA-256</td>
+<td data-label="Evidence">test (a recorded serial console, rebuildable)</td>
+<td data-label="Source"><a href="/assets/video/sel4-riscv-boot.mp4">the project’s video</a> and <a href="https://github.com/entresol/silent-zero/tree/main/loader/sel4-demo" rel="noopener" target="_blank">its build</a>, 30 October 2026</td>
 </tr>
 </tbody>
 </table></div>
-<p>Our reading: the video shows seL4’s own boot chain, not the Silent Zero loader. seL4 16.0.0 defines its general verified RISC-V configurations, with and without MCS, for exactly this platform, <code>hifive</code> (<a href="https://github.com/seL4/seL4/tree/16.0.0/configs" rel="noopener" target="_blank">configuration files</a>); whether the video’s kernel was built in one of them, the video does not say. Until that is shown, it shows that seL4 boots, not that a verified configuration does.</p>
+<p>Our reading: the video shows seL4’s own boot chain, not the Silent Zero loader. The kernel is built with the preset seL4 16.0.0 provides for its MCS verification on this platform, <code>hifive</code> (<a href="https://github.com/seL4/seL4/tree/16.0.0/configs" rel="noopener" target="_blank">configuration files</a>). So the video shows that kernel booting. It does not show a proof of the binary: the proofs are about the C code, and the compiler is trusted. QEMU stands in for the hardware, and firmware and ELF loader lie outside every proof.</p>
 <h2 id="the-paper-and-its-sources">The paper and its sources</h2>
 <ul>
 <li>Section 3’s “Boot code lies outside seL4’s verified configurations” is confirmed by <a href="/wiki/sources/nd-sel4-verified-configurations.html">seL4 Foundation: Verified Configurations</a>.</li>

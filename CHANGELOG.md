@@ -4,6 +4,10 @@ What changed in substance, newest first: in the paper, on its page and in the pr
 
 Format: `## <version> · <scope>`, then one paragraph. A paper version is `YYYY-MM-DD-vX.Y` and has its own PDF in `versions/`; the newest one is the version the build prints on the paper and the page. A change without a new paper version carries only its date (`YYYY-MM-DD`). Scope is `Paper`, `Site` or `Project`. The build turns this file into the list at the end of the page.
 
+## 2026-10-30 · Project
+
+The boot video can be rebuilt. `loader/sel4-demo/` fetches the official seL4 16.0.0 sources at fixed commits, builds the kernel with the unmodified preset `RISCV64_MCS_verified`, checks all 22 settings and the kernel's hash, boots it in QEMU and records the serial console. The video on the page is now this build: 58,300 bytes instead of the earlier build without MCS. The wiki's bootloader page says what it shows and what it does not.
+
 ## 2026-10-30 · Site
 
 The header has a second line under First light: an unmodified seL4 16.0.0 release kernel boots to user space on RISC-V in QEMU, as a 41-second video of the serial console. The wiki's bootloader page lists it, and notes that the video shows seL4's own boot chain, not our loader, and that it is open whether the kernel was built in one of seL4's verified configurations for this platform.

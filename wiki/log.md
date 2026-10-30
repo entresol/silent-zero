@@ -57,3 +57,7 @@ The wiki moved from `wiki-draft/` of the private research repository to `wiki/` 
 ## [2026-10-30] update | bootloader
 
 Added the project's boot video (seL4 16.0.0 release kernel to user space on RISC-V in QEMU, through OpenSBI and seL4's ELF loader) to [[bootloader]], with the reading that it shows seL4's boot chain, not the zOS loader. seL4 16.0.0's general verified RISC-V configurations are set for this platform (`hifive`); whether the video's kernel was built in one of them is open. [[nd-sel4-verified-configurations]] now notes that the documentation page lists fewer RISC-V platforms than the configuration files.
+
+## [2026-10-30] update | bootloader
+
+The boot video now shows the official seL4 16.0.0 kernel built with the preset `RISCV64_MCS_verified`, rebuildable from `loader/sel4-demo/`. [[bootloader]] says so, and that the proofs cover the C code, not the binary, the emulated hardware or the boot chain before the kernel.
