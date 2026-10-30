@@ -4,6 +4,10 @@ What changed in substance, newest first: in the paper, on its page and in the pr
 
 Format: `## <version> · <scope>`, then one paragraph. A paper version is `YYYY-MM-DD-vX.Y` and has its own PDF in `versions/`; the newest one is the version the build prints on the paper and the page. A change without a new paper version carries only its date (`YYYY-MM-DD`). Scope is `Paper`, `Site` or `Project`. The build turns this file into the list at the end of the page.
 
+## 2026-10-30 · Site
+
+A new section after In brief, Get involved, says whom we are looking for and where to take part: Discussions, Issues and pull requests. The contents mark the section being read. The grey for meta text is darker and now meets WCAG AA contrast on white. The page has an icon, a slashed zero. The footer separates what the page is from its links: PDF, GitHub and the imprint. A downloaded PDF is named silent-zero and its version, no longer zos-zero-os.
+
 ## 2026-10-30 · Project
 
 The wiki on the paper's sources now lives in this repository, in `wiki/`: 63 pages on the sources, the concepts, the systems and the parts of the design, each saying what is proven, tested or assumed and on which source that rests. Claude writes and reviews it; a page shows whether a person has also checked it. The page does not show the wiki yet.
