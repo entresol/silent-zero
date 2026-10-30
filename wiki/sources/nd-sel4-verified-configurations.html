@@ -312,7 +312,7 @@ ul.linked-from .kind { color: var(--muted); font-size: 0.85rem; margin-left: 0.4
     <div class="titleblock">
       <h1 class="name">seL4 Foundation: Verified Configurations</h1>
       <p class="sub">which properties are proved on which architecture; boot and IOMMU outside every proof. report, full text.</p>
-      <p class="ver">Source · <a href="/wiki/#how">LLM reviewed</a> · updated 29 Oct 2026</p>
+      <p class="ver">Source · <a href="/wiki/#how">LLM reviewed</a> · updated 30 Oct 2026</p>
     </div>
   </div>
 </header>
@@ -377,6 +377,7 @@ ul.linked-from .kind { color: var(--muted); font-size: 0.85rem; margin-left: 0.4
 <ul>
 <li><strong>The page is only partly updated on MCS.</strong> Its list of unverified features names only the Arm MCS proofs as in progress, but its RISC-V section still calls the MCS configurations those “for the ongoing MCS verification”. The seL4 Foundation announced on 29 June 2026 that the functional-correctness proof for MCS on RISC-V is complete (<a href="/wiki/sources/2026-sel4-functional-correctness-proof.html">MCS functional-correctness proof completed on RISC-V</a>); the RISC-V section had not caught up by 23 October 2026.</li>
 <li><strong>Binary correctness is listed for AArch32 only.</strong> For AArch64 and RISC-V the page lists C-level properties. Whether binary verification exists elsewhere for these architectures is not said here.</li>
+<li><strong>The page’s platform list is shorter than the configuration files.</strong> A careful reader adds: in the seL4 16.0.0 sources, the general RISC-V configurations <code>RISCV64_verified</code> and <code>RISCV64_MCS_verified</code> are set for the platform <code>hifive</code> (the HiFive Unleashed), and further files exist for Ariane, Cheshire, the HiFive Premier P550, PolarFire, Star64, Banana Pi F3 and Rocket Chip (<a href="https://github.com/seL4/seL4/tree/16.0.0/configs" rel="noopener" target="_blank">configuration files</a>, read on 30 October 2026).</li>
 <li><strong>Platform support is the configuration, not the whole board.</strong> A board on the list is supported by a verified kernel configuration. The IOMMU and boot code on that board stay outside the proof, as above.</li>
 </ul>
 <h2 id="against-the-wiki">Against the wiki</h2>

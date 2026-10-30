@@ -36,7 +36,7 @@ In zOS the bootloader "checks one signed, static system image and starts it, or 
 | The zOS loader | prototype for RISC-V, hash only | assumed | paper, Section 3 |
 | An unmodified seL4 16.0.0 release kernel booting to user space on RISC-V | demonstrated in QEMU's model of the HiFive Unleashed: OpenSBI, then seL4's ELF loader, then the kernel and a root task that maps a UART through capabilities; one of five harts used | test (a recorded serial console) | [the project's video](/assets/video/sel4-riscv-boot.mp4), 30 October 2026 |
 
-Our reading: the video shows seL4's own boot chain, not the zOS loader. The HiFive Unleashed is not among the RISC-V platforms that [[nd-sel4-verified-configurations]] names, and the video does not say whether the kernel was built in a verified configuration, so it shows that seL4 boots, not that a verified configuration does.
+Our reading: the video shows seL4's own boot chain, not the zOS loader. seL4 16.0.0 defines its general verified RISC-V configurations, with and without MCS, for exactly this platform, `hifive` ([configuration files](https://github.com/seL4/seL4/tree/16.0.0/configs)); whether the video's kernel was built in one of them, the video does not say. Until that is shown, it shows that seL4 boots, not that a verified configuration does.
 
 ## The paper and its sources
 

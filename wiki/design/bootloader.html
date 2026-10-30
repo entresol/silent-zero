@@ -431,7 +431,7 @@ ul.linked-from .kind { color: var(--muted); font-size: 0.85rem; margin-left: 0.4
 </tr>
 </tbody>
 </table></div>
-<p>Our reading: the video shows seL4’s own boot chain, not the Silent Zero loader. The HiFive Unleashed is not among the RISC-V platforms that <a href="/wiki/sources/nd-sel4-verified-configurations.html">seL4 Foundation: Verified Configurations</a> names, and the video does not say whether the kernel was built in a verified configuration, so it shows that seL4 boots, not that a verified configuration does.</p>
+<p>Our reading: the video shows seL4’s own boot chain, not the Silent Zero loader. seL4 16.0.0 defines its general verified RISC-V configurations, with and without MCS, for exactly this platform, <code>hifive</code> (<a href="https://github.com/seL4/seL4/tree/16.0.0/configs" rel="noopener" target="_blank">configuration files</a>); whether the video’s kernel was built in one of them, the video does not say. Until that is shown, it shows that seL4 boots, not that a verified configuration does.</p>
 <h2 id="the-paper-and-its-sources">The paper and its sources</h2>
 <ul>
 <li>Section 3’s “Boot code lies outside seL4’s verified configurations” is confirmed by <a href="/wiki/sources/nd-sel4-verified-configurations.html">seL4 Foundation: Verified Configurations</a>.</li>
