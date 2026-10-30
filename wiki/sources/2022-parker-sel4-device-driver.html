@@ -294,6 +294,7 @@ nav.toc li.toc-back { margin-bottom: 1.1rem; }
 nav.toc li.toc-back a { color: var(--ink-deep); }
 nav.toc li.toc-sep { margin-top: 1.4rem; padding-top: 1rem; border-top: 1px solid var(--rule); }
 ul.linked-from { list-style: none; padding: 0; }
+p.links-note { color: var(--muted); font-size: 0.95rem; margin-top: -0.6rem; }
 ul.linked-from .kind { color: var(--muted); font-size: 0.85rem; margin-left: 0.4rem; }
 
 /* narrow screens: jump targets land below the menu button (last, so it wins over the scroll margins above) */
@@ -315,7 +316,7 @@ ul.linked-from .kind { color: var(--muted); font-size: 0.85rem; margin-left: 0.4
 </header>
 <button class="menu" type="button" aria-controls="toc" aria-expanded="false" aria-label="Contents" hidden><span></span></button>
 <div class="layout">
-  <nav class="toc" id="toc" aria-label="Contents"><p>Contents</p><ol><li class="toc-back"><a href="/wiki/">← Wiki index</a></li><li><a href="#top">↑ Top</a></li><li><a href="#what-it-shows">What it shows</a></li><li><a href="#how">How</a></li><li><a href="#limits">Limits</a></li><li><a href="#against-the-wiki">Against the wiki</a></li><li><a href="#for-zos">For Silent Zero</a></li><li><a href="#linked-from">Linked from</a></li><li class="toc-sep"><a href="/">The paper</a></li></ol></nav>
+  <nav class="toc" id="toc" aria-label="Contents"><p>Contents</p><ol><li class="toc-back"><a href="/wiki/">← Wiki index</a></li><li><a href="#top">↑ Top</a></li><li><a href="#what-it-shows">What it shows</a></li><li><a href="#how">How</a></li><li><a href="#limits">Limits</a></li><li><a href="#against-the-wiki">Against the wiki</a></li><li><a href="#for-zos">For Silent Zero</a></li><li><a href="#related-pages">Related pages</a></li><li class="toc-sep"><a href="/">The paper</a></li></ol></nav>
   <article>
 <p>Lucy Parker (UNSW Sydney, Trustworthy Systems). Talk at the 4th seL4 Summit, Munich, October 2022 (venue from the Silent Zero paper’s reference list, month from the slides). <a href="https://trustworthy.systems/publications/papers/Parker_22:sel4s.abstract" rel="noopener" target="_blank">Abstract and slides</a>. There is no paper; the wiki has read the slides, and the charts in them carry no readable numbers.</p>
 <h2 id="what-it-shows">What it shows</h2>
@@ -346,8 +347,9 @@ ul.linked-from .kind { color: var(--muted); font-size: 0.85rem; margin-left: 0.4
 <li><a href="/wiki/design/drivers.html">Drivers</a>: the paper cites this source for “drivers run in user mode, each with access only to its own device registers” (Section 3). The slides support user-mode drivers and the reduced privileges. They do not say in these words that each driver sees only its own registers. Our reading: Microkit lets the system description give each driver only its own registers, but does not enforce that, except for interrupts (<a href="/wiki/sources/nd-sel4-microkit-user-manual.html">seL4 Microkit: User Manual, v2.3.0</a>).</li>
 </ul>
 
-<h2 id="linked-from">Linked from</h2>
-<ul class="linked-from"><li><a href="/wiki/design/drivers.html">Drivers</a> <span class="kind">Design</span></li></ul>
+<h2 id="related-pages">Related pages</h2>
+<p class="links-note">Pages this one links to, and pages that link here.</p>
+<ul class="linked-from"><li><a href="/wiki/design/drivers.html">Drivers</a> <span class="kind">Design</span></li><li><a href="/wiki/concepts/mixed-criticality.html">Mixed criticality</a> <span class="kind">Concept</span></li><li><a href="/wiki/systems/lionsos.html">LionsOS</a> <span class="kind">System</span></li><li><a href="/wiki/sources/2026-heiser-mcs-safety-os.html">MCS safety, an OS perspective</a> <span class="kind">Source</span></li><li><a href="/wiki/sources/nd-sel4-microkit-user-manual.html">seL4 Microkit: User Manual, v2.3.0</a> <span class="kind">Source</span></li><li><a href="/wiki/sources/2026-tyler-smt-based-deductive.html">SMT-based Deductive Verification of Device Drivers</a> <span class="kind">Source</span></li></ul>
   </article>
 </div>
 <footer><div><span class="about"><span>Silent Zero OS</span><span class="sep"> · </span><span>Wiki</span><span class="sep"> · </span><span>Text <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></span></span><span class="links"><a href="/">Paper</a> <a href="https://github.com/entresol/silent-zero/tree/main/wiki">GitHub</a> <a href="https://unwritten.studio/impressum">Imprint</a></span></div></footer>

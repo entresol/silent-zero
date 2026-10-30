@@ -294,6 +294,7 @@ nav.toc li.toc-back { margin-bottom: 1.1rem; }
 nav.toc li.toc-back a { color: var(--ink-deep); }
 nav.toc li.toc-sep { margin-top: 1.4rem; padding-top: 1rem; border-top: 1px solid var(--rule); }
 ul.linked-from { list-style: none; padding: 0; }
+p.links-note { color: var(--muted); font-size: 0.95rem; margin-top: -0.6rem; }
 ul.linked-from .kind { color: var(--muted); font-size: 0.85rem; margin-left: 0.4rem; }
 
 /* narrow screens: jump targets land below the menu button (last, so it wins over the scroll margins above) */
@@ -315,7 +316,7 @@ ul.linked-from .kind { color: var(--muted); font-size: 0.85rem; margin-left: 0.4
 </header>
 <button class="menu" type="button" aria-controls="toc" aria-expanded="false" aria-label="Contents" hidden><span></span></button>
 <div class="layout">
-  <nav class="toc" id="toc" aria-label="Contents"><p>Contents</p><ol><li class="toc-back"><a href="/wiki/">← Wiki index</a></li><li><a href="#top">↑ Top</a></li><li><a href="#what-it-shows">What it shows</a></li><li><a href="#how">How</a></li><li><a href="#limits">Limits</a></li><li><a href="#against-the-wiki">Against the wiki</a></li><li><a href="#for-zos">For Silent Zero</a></li><li><a href="#linked-from">Linked from</a></li><li class="toc-sep"><a href="/">The paper</a></li></ol></nav>
+  <nav class="toc" id="toc" aria-label="Contents"><p>Contents</p><ol><li class="toc-back"><a href="/wiki/">← Wiki index</a></li><li><a href="#top">↑ Top</a></li><li><a href="#what-it-shows">What it shows</a></li><li><a href="#how">How</a></li><li><a href="#limits">Limits</a></li><li><a href="#against-the-wiki">Against the wiki</a></li><li><a href="#for-zos">For Silent Zero</a></li><li><a href="#related-pages">Related pages</a></li><li class="toc-sep"><a href="/">The paper</a></li></ol></nav>
   <article>
 <p>The boot chapters of the Raspberry Pi documentation, read on 30 October 2026 from the documentation’s source repository, because the web page could not be fetched automatically. <a href="https://www.raspberrypi.com/documentation/computers/raspberry-pi.html" rel="noopener" target="_blank">Page</a>; source files: the EEPROM boot flow, the bootloader configuration, the boot EEPROM, the legacy boot sequence and the OTP register list. The secure-boot documentation in the separate <code>usbboot</code> repository is not covered.</p>
 <h2 id="what-it-shows">What it shows</h2>
@@ -349,8 +350,9 @@ ul.linked-from .kind { color: var(--muted); font-size: 0.85rem; margin-left: 0.4
 <li><a href="/wiki/design/root-of-trust.html">Root of trust and firmware</a>: our reading: whoever can write the SD card or the boot partition can replace the bootloader through <code>recovery.bin</code> or self-update, unless OTP settings, <code>FREEZE_VERSION</code> or write protection prevent it; the checksum file is not a signature.</li>
 </ul>
 
-<h2 id="linked-from">Linked from</h2>
-<ul class="linked-from"><li><a href="/wiki/design/root-of-trust.html">Root of trust and firmware</a> <span class="kind">Design</span></li><li><a href="/wiki/design/bootloader.html">The bootloader</a> <span class="kind">Design</span></li></ul>
+<h2 id="related-pages">Related pages</h2>
+<p class="links-note">Pages this one links to, and pages that link here.</p>
+<ul class="linked-from"><li><a href="/wiki/design/root-of-trust.html">Root of trust and firmware</a> <span class="kind">Design</span></li><li><a href="/wiki/design/bootloader.html">The bootloader</a> <span class="kind">Design</span></li><li><a href="/wiki/systems/raspberry-pi.html">Raspberry Pi</a> <span class="kind">System</span></li></ul>
   </article>
 </div>
 <footer><div><span class="about"><span>Silent Zero OS</span><span class="sep"> · </span><span>Wiki</span><span class="sep"> · </span><span>Text <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></span></span><span class="links"><a href="/">Paper</a> <a href="https://github.com/entresol/silent-zero/tree/main/wiki">GitHub</a> <a href="https://unwritten.studio/impressum">Imprint</a></span></div></footer>

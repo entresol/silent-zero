@@ -42,7 +42,7 @@ for f in sorted(wiki.rglob("*.md")):
     m = re.match(r"^(.+? (?:\d{4}|\(n\.d\.\))): (.+)$", t) if meta.get("type") == "source" else None
     if m:   # "Klein et al. 2009: seL4, ..." shows the topic first; the authors go to the meta line
         by, t = m.group(1), m.group(2)
-    pages[name] = {"file": f, "meta": meta, "body": body, "url": url, "n_sources": len(srcs), "title": t, "by": by}
+    pages[name] = {"file": f, "meta": meta, "body": body, "url": url, "n_sources": len(srcs), "srcs": srcs, "title": t, "by": by}
 
 # the catalogue's one-line descriptions double as each page's subtitle
 index_md = pages["index"]["body"]
@@ -53,7 +53,11 @@ def public(s):
     """The working name becomes the public name, in text only."""
     return re.sub(r"(?<![\w/-])zOS(?![\w-])", PUBLIC_NAME, s)
 
-linked_from = {n: set() for n in pages}
+# every page's links, collected before any page is written, so each page knows who links to it
+LINK = re.compile(r"\[\[([^\]|]+)(?:\|([^\]]+))?\]\]")
+links_out = {n: {m.group(1).strip() for m in LINK.finditer(p["body"])} & set(pages) - {n, "index"}
+             for n, p in pages.items() if n != "index"}
+linked_from = {n: {m for m, out in links_out.items() if n in out} for n in pages}
 def wikilinks(md, here):
     def rep(m):
         target, text = m.group(1).strip(), (m.group(2) or "").strip()
@@ -61,11 +65,9 @@ def wikilinks(md, here):
         if not p:
             print(f"wiki: [[{target}]] in {here} has no page", file=sys.stderr)
             return text or target
-        if here != "index":
-            linked_from[target].add(here)
         by = f" ({p['by']})" if here == "index" and not text and p["by"] else ""   # the catalogue keeps who wrote it
         return f"[{text or p['title']}]({p['url']}){by}"
-    return re.sub(r"\[\[([^\]|]+)(?:\|([^\]]+))?\]\]", rep, md)
+    return LINK.sub(rep, md)
 
 def to_html(md):
     out = subprocess.run(["pandoc", "-f", "markdown-yaml_metadata_block", "-t", "html5", "--wrap=none"],
@@ -166,10 +168,20 @@ for name, p in pages.items():
     meta = p["meta"]
     body = re.sub(r"^# .+\n", "", p["body"], count=1, flags=re.M)
     html_body = to_html(wikilinks(body, name))
-    back = sorted(linked_from[name], key=lambda n: ([k for k, *_ in GROUPS].index(pages[n]["meta"].get("type", "source")), pages[n]["title"].lower()))
-    if back:
-        html_body += '\n<h2 id="linked-from">Linked from</h2>\n<ul class="linked-from">' + "".join(
-            f'<li><a href="{pages[b]["url"]}">{_h.escape(public(pages[b]["title"]))}</a> <span class="kind">{GROUP_NAME[pages[b]["meta"]["type"]]}</span></li>' for b in back) + "</ul>"
+    # two blocks at the end: what the page rests on, and every other page it is connected with, either way
+    order = lambda n: ([k for k, *_ in GROUPS].index(pages[n]["meta"]["type"]), pages[n]["title"].lower())
+    def item(n, kind=True):
+        by = f' <span class="kind">{_h.escape(pages[n]["by"])}</span>' if pages[n]["by"] else ""
+        kd = f' <span class="kind">{GROUP_NAME[pages[n]["meta"]["type"]][:-1] if pages[n]["meta"]["type"] != "design" else "Design"}</span>' if kind else ""
+        return f'<li><a href="{pages[n]["url"]}">{_h.escape(public(pages[n]["title"]))}</a>{by if not kind else kd}</li>'
+    rests = [s for s in p["srcs"] if s in pages and s != name]
+    if rests:
+        html_body += ('\n<h2 id="page-sources">Sources</h2>\n<p class="links-note">What this page rests on.</p>\n<ul class="linked-from">'
+                      + "".join(item(s, kind=False) for s in sorted(rests, key=order)) + "</ul>")
+    related = sorted((links_out[name] | linked_from[name]) - set(rests) - {name}, key=order)
+    if related:
+        html_body += ('\n<h2 id="related-pages">Related pages</h2>\n<p class="links-note">Pages this one links to, and pages that link here.</p>\n<ul class="linked-from">'
+                      + "".join(item(r) for r in related) + "</ul>")
     status = meta.get("status", "drafted")
     bits = [GROUP_NAME[meta["type"]][:-1] if meta["type"] != "design" else "Design"]
     if p["by"]:

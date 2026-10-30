@@ -294,6 +294,7 @@ nav.toc li.toc-back { margin-bottom: 1.1rem; }
 nav.toc li.toc-back a { color: var(--ink-deep); }
 nav.toc li.toc-sep { margin-top: 1.4rem; padding-top: 1rem; border-top: 1px solid var(--rule); }
 ul.linked-from { list-style: none; padding: 0; }
+p.links-note { color: var(--muted); font-size: 0.95rem; margin-top: -0.6rem; }
 ul.linked-from .kind { color: var(--muted); font-size: 0.85rem; margin-left: 0.4rem; }
 
 /* narrow screens: jump targets land below the menu button (last, so it wins over the scroll margins above) */
@@ -315,7 +316,7 @@ ul.linked-from .kind { color: var(--muted); font-size: 0.85rem; margin-left: 0.4
 </header>
 <button class="menu" type="button" aria-controls="toc" aria-expanded="false" aria-label="Contents" hidden><span></span></button>
 <div class="layout">
-  <nav class="toc" id="toc" aria-label="Contents"><p>Contents</p><ol><li class="toc-back"><a href="/wiki/">← Wiki index</a></li><li><a href="#top">↑ Top</a></li><li><a href="#what-it-gives-and-what-it-does-not">What it gives and what it does not</a></li><li><a href="#state-for-sel4-october-2026">State for seL4, October 2026</a></li><li><a href="#open-questions">Open questions</a></li><li class="toc-sep"><a href="/">The paper</a></li></ol></nav>
+  <nav class="toc" id="toc" aria-label="Contents"><p>Contents</p><ol><li class="toc-back"><a href="/wiki/">← Wiki index</a></li><li><a href="#top">↑ Top</a></li><li><a href="#what-it-gives-and-what-it-does-not">What it gives and what it does not</a></li><li><a href="#state-for-sel4-october-2026">State for seL4, October 2026</a></li><li><a href="#open-questions">Open questions</a></li><li><a href="#page-sources">Sources</a></li><li><a href="#related-pages">Related pages</a></li><li class="toc-sep"><a href="/">The paper</a></li></ol></nav>
   <article>
 <p>A program is functionally correct when every behaviour of its implementation is allowed by its specification. For <a href="/wiki/systems/sel4.html">seL4</a> it is proved as refinement: the C code refines an abstract specification, so every property proved as a Hoare triple about the specification also holds for the code (<a href="/wiki/sources/2009-klein-sel4-formal-verification.html">seL4, Formal Verification of an OS Kernel</a>, §2.3).</p>
 <h2 id="what-it-gives-and-what-it-does-not">What it gives and what it does not</h2>
@@ -332,6 +333,12 @@ ul.linked-from .kind { color: var(--muted); font-size: 0.85rem; margin-left: 0.4
 <li>How much of a Silent Zero system beyond the kernel can be brought to this standard, and which parts stay tested or assumed. See <a href="/wiki/design/kernel.html">The kernel</a>.</li>
 </ul>
 
+<h2 id="page-sources">Sources</h2>
+<p class="links-note">What this page rests on.</p>
+<ul class="linked-from"><li><a href="/wiki/sources/2018-klein-formally-verified-software.html">Formally Verified Software in the Real World</a> <span class="kind">Klein et al. 2018</span></li><li><a href="/wiki/sources/2026-sel4-functional-correctness-proof.html">MCS functional-correctness proof completed on RISC-V</a> <span class="kind">seL4 Foundation 2026</span></li><li><a href="/wiki/sources/nd-sel4-verified-configurations.html">seL4 Foundation: Verified Configurations</a></li><li><a href="/wiki/sources/2009-klein-sel4-formal-verification.html">seL4, Formal Verification of an OS Kernel</a> <span class="kind">Klein et al. 2009</span></li></ul>
+<h2 id="related-pages">Related pages</h2>
+<p class="links-note">Pages this one links to, and pages that link here.</p>
+<ul class="linked-from"><li><a href="/wiki/design/kernel.html">The kernel</a> <span class="kind">Design</span></li><li><a href="/wiki/systems/sel4.html">seL4</a> <span class="kind">System</span></li><li><a href="/wiki/sources/2006-miller-robust-composition-towards.html">Robust Composition</a> <span class="kind">Source</span></li></ul>
   </article>
 </div>
 <footer><div><span class="about"><span>Silent Zero OS</span><span class="sep"> · </span><span>Wiki</span><span class="sep"> · </span><span>Text <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></span></span><span class="links"><a href="/">Paper</a> <a href="https://github.com/entresol/silent-zero/tree/main/wiki">GitHub</a> <a href="https://unwritten.studio/impressum">Imprint</a></span></div></footer>
