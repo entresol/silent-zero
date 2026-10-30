@@ -18,7 +18,7 @@ with sync_playwright() as p:
         png = pg.screenshot(omit_background=bg == "transparent")
         pg.close()
         return Image.open(io.BytesIO(png)).convert("RGBA")
-    big = shot(256, 20, "transparent", "#ffffff", 56)
+    big = shot(256, 0, "transparent", "#ffffff", 56)   # the SVG carries its own margin
     big.save(root / "favicon.ico", sizes=[(16, 16), (32, 32), (48, 48)])
-    shot(180, 22, "#ffffff").convert("RGB").save(root / "assets" / "apple-touch-icon.png")
+    shot(180, 0, "#ffffff").convert("RGB").save(root / "assets" / "apple-touch-icon.png")
     b.close()
