@@ -7,6 +7,7 @@
     "sub": "Bare minimum. Verified. Real-time. An OS for the AI era.",
     "ver": "Working paper {version} · <a href=\"#changes\">latest changes</a>",
     "status": "First light: <a href=\"{loader}\">a graphical loader that checks the kernel image and shows the result</a>, under 9 KB on RISC-V, tested in QEMU. This paper proposes what we are trying to build and where it can fail. Criticism and support are warmly welcome: <a href=\"{issues}\">issues</a>.",
+    "video": "Also running: <a href=\"{video}\">seL4 16.0.0 boots to user space on RISC-V</a> in QEMU (video, 41 s).",
     "btn": "Download the PDF",
     "meta": "{pages} pages, {refs} references"
   },
@@ -17,6 +18,7 @@
     "sub": "Nur das Allernötigste. Verifiziert. Echtzeitfähig. Ein Betriebssystem für das KI-Zeitalter.",
     "ver": "Arbeitspapier {version} · <a href=\"#changes\">letzte Änderungen</a>",
     "status": "Erstes Licht: <a href=\"{loader}\">ein grafischer Loader, der das Kernel-Image prüft und das Ergebnis anzeigt</a>, unter 9 KB auf RISC-V, getestet in QEMU. Dieses Papier beschreibt, was wir zu bauen versuchen und woran es scheitern kann. Kritik und Unterstützung sind herzlich willkommen: <a href=\"{issues}\">Issues</a>.",
+    "video": "Ebenfalls lauffähig: <a href=\"{video}\">seL4 16.0.0 startet auf RISC-V bis in den Userspace</a>, in QEMU (Video, 41 s).",
     "btn": "PDF herunterladen",
     "meta": "{pages} Seiten, {refs} Quellen, auf Englisch"
   },
@@ -27,6 +29,7 @@
     "sub": "Le strict minimum. Vérifié. Temps réel. Un système d'exploitation pour l'ère de l'IA.",
     "ver": "Document de travail {version} · <a href=\"#changes\">dernières modifications</a>",
     "status": "Première lumière : <a href=\"{loader}\">un chargeur graphique qui contrôle l'image du noyau et affiche le résultat</a>, moins de 9 Ko sur RISC-V, testé dans QEMU. Ce document expose ce que nous essayons de construire et où cela peut échouer. Critiques et soutiens sont les bienvenus : <a href=\"{issues}\">issues</a>.",
+    "video": "Fonctionne aussi : <a href=\"{video}\">seL4 16.0.0 démarre sur RISC-V jusqu'à l'espace utilisateur</a>, dans QEMU (vidéo, 41 s).",
     "btn": "Télécharger le PDF",
     "meta": "{pages} pages, {refs} références, en anglais"
   },
@@ -37,6 +40,7 @@
     "sub": "Lo mínimo imprescindible. Verificado. Tiempo real. Un sistema operativo para la era de la IA.",
     "ver": "Documento de trabajo {version} · <a href=\"#changes\">últimos cambios</a>",
     "status": "Primera luz: <a href=\"{loader}\">un cargador gráfico que comprueba la imagen del kernel y muestra el resultado</a>, menos de 9 KB en RISC-V, probado en QEMU. Este documento propone lo que intentamos construir y dónde puede fallar. Las críticas y el apoyo son muy bienvenidos: <a href=\"{issues}\">issues</a>.",
+    "video": "También funciona: <a href=\"{video}\">seL4 16.0.0 arranca en RISC-V hasta el espacio de usuario</a>, en QEMU (vídeo, 41 s).",
     "btn": "Descargar el PDF",
     "meta": "{pages} páginas, {refs} referencias, en inglés"
   },
@@ -47,6 +51,7 @@
     "sub": "Lo stretto indispensabile. Verificato. In tempo reale. Un sistema operativo per l'era dell'IA.",
     "ver": "Documento di lavoro {version} · <a href=\"#changes\">ultime modifiche</a>",
     "status": "Prima luce: <a href=\"{loader}\">un loader grafico che controlla l'immagine del kernel e mostra il risultato</a>, meno di 9 KB su RISC-V, testato in QEMU. Questo documento propone ciò che cerchiamo di costruire e dove può fallire. Critiche e sostegno sono i benvenuti: <a href=\"{issues}\">issues</a>.",
+    "video": "Funziona anche: <a href=\"{video}\">seL4 16.0.0 si avvia su RISC-V fino allo spazio utente</a>, in QEMU (video, 41 s).",
     "btn": "Scarica il PDF",
     "meta": "{pages} pagine, {refs} riferimenti, in inglese"
   }

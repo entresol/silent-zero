@@ -6,6 +6,10 @@ Format: `## <version> · <scope>`, then one paragraph. A paper version is `YYYY-
 
 ## 2026-10-30 · Site
 
+The header has a second line under First light: an unmodified seL4 16.0.0 release kernel boots to user space on RISC-V in QEMU, as a 41-second video of the serial console. The wiki's bootloader page lists it, and notes that the video shows seL4's own boot chain, not our loader, and that it is open whether the kernel was built in one of seL4's verified configurations for this platform.
+
+## 2026-10-30 · Site
+
 Every wiki page ends with two lists: Sources, everything the page rests on, and Related pages, every page it links to or that links to it. Before, the end of a page showed only the pages linking to it, so a source the page rested on could be missing there.
 
 ## 2026-10-30 · Site

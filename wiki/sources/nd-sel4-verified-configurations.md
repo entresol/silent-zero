@@ -5,7 +5,7 @@ status: reviewed
 read: full
 kind: report
 sources: [nd-sel4-verified-configurations]
-updated: 2026-10-29
+updated: 2026-10-30
 ---
 
 # seL4 Foundation: Verified Configurations
@@ -39,6 +39,7 @@ A careful reader adds:
 
 - **The page is only partly updated on MCS.** Its list of unverified features names only the Arm MCS proofs as in progress, but its RISC-V section still calls the MCS configurations those "for the ongoing MCS verification". The seL4 Foundation announced on 29 June 2026 that the functional-correctness proof for MCS on RISC-V is complete ([[2026-sel4-functional-correctness-proof]]); the RISC-V section had not caught up by 23 October 2026.
 - **Binary correctness is listed for AArch32 only.** For AArch64 and RISC-V the page lists C-level properties. Whether binary verification exists elsewhere for these architectures is not said here.
+- **The page's platform list is shorter than the configuration files.** A careful reader adds: in the seL4 16.0.0 sources, the general RISC-V configurations `RISCV64_verified` and `RISCV64_MCS_verified` are set for the platform `hifive` (the HiFive Unleashed), and further files exist for Ariane, Cheshire, the HiFive Premier P550, PolarFire, Star64, Banana Pi F3 and Rocket Chip ([configuration files](https://github.com/seL4/seL4/tree/16.0.0/configs), read on 30 October 2026).
 - **Platform support is the configuration, not the whole board.** A board on the list is supported by a verified kernel configuration. The IOMMU and boot code on that board stay outside the proof, as above.
 
 ## Against the wiki

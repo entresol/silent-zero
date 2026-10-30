@@ -202,6 +202,7 @@ footer .links { display: flex; gap: 1.4rem; }
 
 /* status line under the title block */
 .hero .status { max-width: var(--measure); margin: 1.6rem 0 0; color: var(--ink); }
+.hero .status + .status { margin-top: 0.6rem; }
 .hero .status a { hyphens: manual; }   /* no "Is-sues" in German */
 
 /* wide figures extend only to the right while the contents column is visible */
@@ -422,8 +423,15 @@ ul.linked-from .kind { color: var(--muted); font-size: 0.85rem; margin-left: 0.4
 <td data-label="Evidence">assumed</td>
 <td data-label="Source">paper, Section 3</td>
 </tr>
+<tr>
+<td data-label="Claim">An unmodified seL4 16.0.0 release kernel booting to user space on RISC-V</td>
+<td data-label="State in the paper’s terms">demonstrated in QEMU’s model of the HiFive Unleashed: OpenSBI, then seL4’s ELF loader, then the kernel and a root task that maps a UART through capabilities; one of five harts used</td>
+<td data-label="Evidence">test (a recorded serial console)</td>
+<td data-label="Source"><a href="/assets/video/sel4-riscv-boot.mp4">the project’s video</a>, 30 October 2026</td>
+</tr>
 </tbody>
 </table></div>
+<p>Our reading: the video shows seL4’s own boot chain, not the Silent Zero loader. seL4 16.0.0 defines its general verified RISC-V configurations, with and without MCS, for exactly this platform, <code>hifive</code> (<a href="https://github.com/seL4/seL4/tree/16.0.0/configs" rel="noopener" target="_blank">configuration files</a>); whether the video’s kernel was built in one of them, the video does not say. Until that is shown, it shows that seL4 boots, not that a verified configuration does.</p>
 <h2 id="the-paper-and-its-sources">The paper and its sources</h2>
 <ul>
 <li>Section 3’s “Boot code lies outside seL4’s verified configurations” is confirmed by <a href="/wiki/sources/nd-sel4-verified-configurations.html">seL4 Foundation: Verified Configurations</a>.</li>
