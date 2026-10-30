@@ -36,6 +36,10 @@ Hashing the header fields as well as the payload means length, version and entry
 - `kernel_stub.c`, `kernel_start.S`, `kernel.ld`: a stand-in kernel that prints one line and stops QEMU, to prove that control was handed over.
 - `mkimage.py`: wraps a flat binary in the header.
 
+## The seL4 boot demo
+
+`sel4-demo/` boots the official seL4 kernel in its verified MCS configuration through seL4's own boot chain, in QEMU, and records it. It is the other half of what this loader is for; the next step puts the loader in front of it.
+
 ## Build and test
 
 ```

@@ -1,0 +1,21 @@
+# SPDX-License-Identifier: BSD-2-Clause
+# The boot demo: the official seL4 16.0.0 kernel in a configuration given on the command line (build.sh uses the
+# preset RISCV64_MCS_verified), seL4's ELF loader, and our root task, as one image for QEMU's HiFive Unleashed model.
+cmake_minimum_required(VERSION 3.16)
+set(DEPS "${CMAKE_CURRENT_LIST_DIR}/deps")
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake" "${DEPS}/seL4" "${DEPS}/seL4_tools/cmake-tool/helpers" "${DEPS}/seL4_tools/elfloader-tool")
+include("${DEPS}/seL4/configs/seL4Config.cmake")
+project(sel4_boot_demo C ASM)
+find_package(seL4 REQUIRED)
+sel4_import_kernel()
+include("${KERNEL_FLAGS_PATH}")
+sel4_import_libsel4()
+add_subdirectory("${DEPS}/util_libs/libcpio" cpio-lib)
+add_executable(boot-demo start.S main.c)
+target_compile_options(boot-demo PRIVATE -O2 -ffreestanding -fno-stack-protector -fno-pie -mcmodel=medany)
+target_link_options(boot-demo PRIVATE -nostdlib -static -Wl,--build-id=none "-Wl,-T,${CMAKE_CURRENT_LIST_DIR}/root.ld")
+target_link_libraries(boot-demo PRIVATE sel4 sel4_autoconf gcc)
+find_package(elfloader-tool REQUIRED)
+elfloader_import_project()
+include(rootserver)
+DeclareRootserver(boot-demo)
