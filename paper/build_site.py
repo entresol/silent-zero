@@ -146,6 +146,7 @@ REPO_URL = "https://github.com/entresol/silent-zero"
 involved = (f'<h2 id="get-involved">Get involved</h2>\n'
             f'<p>We are looking for people who know firmware, formal verification or robots, and who want to test this argument before the architecture hardens around it.</p>\n'
             f'<ul>\n<li>Discuss an idea or ask a question: <a href="{REPO_URL}/discussions" rel="noopener" target="_blank">Discussions</a>.</li>\n'
+            f'<li>See what the sources behind the paper show, page by page: the <a href="wiki/">wiki</a>.</li>\n'
             f'<li>Point out a flaw, a wrong claim or a missing source: <a href="{REPO_URL}/issues" rel="noopener" target="_blank">Issues</a>.</li>\n'
             f'<li>Propose a change to the paper or the code: a pull request; <a href="{REPO_URL}/blob/main/CONTRIBUTING.md" rel="noopener" target="_blank">CONTRIBUTING.md</a> says how we work.</li>\n</ul>\n')
 assert html_body.count('<h2 id="abstract">') == 1
@@ -282,7 +283,7 @@ page = f"""<!doctype html>
 {html_body}
   </article>
 </div>
-<footer><div><span class="about"><span>Silent Zero OS</span><span class="sep"> · </span><span>Working paper {CURRENT_VERSION}</span><span class="sep"> · </span><span>Text and figures <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></span></span><span class="links"><a href="{pdf_name}" download="silent-zero-{CURRENT_VERSION}.pdf">PDF</a> <a href="https://github.com/entresol/silent-zero">GitHub</a> <a href="https://unwritten.studio/impressum">Imprint</a></span></div></footer>
+<footer><div><span class="about"><span>Silent Zero OS</span><span class="sep"> · </span><span>Working paper {CURRENT_VERSION}</span><span class="sep"> · </span><span>Text and figures <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></span></span><span class="links"><a href="silent-zero.pdf" download="silent-zero.pdf">PDF</a> <a href="wiki/">Wiki</a> <a href="https://github.com/entresol/silent-zero">GitHub</a> <a href="https://unwritten.studio/impressum">Imprint</a></span></div></footer>
 <script>
 // glossary tooltips open to the left where they would run off the right edge
 document.querySelectorAll('a.gl').forEach(a => a.addEventListener('pointerenter', () => {{

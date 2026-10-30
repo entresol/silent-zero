@@ -9,7 +9,7 @@ How we work on Silent Zero, for everyone who changes and commits here, people an
 - `loader/`, `splash/`: the first code, a loader and its boot screen, with their own READMEs and tests.
 - `review/`: reviews of earlier drafts.
 - `assets/`: fonts and images for the page.
-- Generated, never edited by hand: `index.html`, `silent-zero.pdf`, `zos-zero-os.pdf`, `versions/*.pdf`.
+- Generated, never edited by hand: `index.html`, `wiki/**/*.html`, `silent-zero.pdf`, `zos-zero-os.pdf`, `versions/*.pdf`.
 
 ## Workflow
 

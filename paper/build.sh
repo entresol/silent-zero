@@ -12,4 +12,5 @@ for pass in 1 2; do
   (cd "$work" && pdflatex -interaction=nonstopmode -halt-on-error paper.tex >/dev/null)
 done
 python3 -I "$here/build_site.py" "$work" "$here/.." >/dev/null
-echo "paper: $(pdfinfo "$work/paper.pdf" | awk '/^Pages/ {print $2}') pages; site: index.html"
+python3 -I "$here/build_wiki.py" "$here/.." >/dev/null
+echo "paper: $(pdfinfo "$work/paper.pdf" | awk '/^Pages/ {print $2}') pages; site: index.html, wiki"

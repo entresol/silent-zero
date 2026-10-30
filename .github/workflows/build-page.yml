@@ -1,13 +1,13 @@
 # SPDX-License-Identifier: BSD-2-Clause
-# Rebuilds the page, and the PDF of a new paper version, for every pull request that touches
-# the paper or the changelog, and commits the result into the pull request. A two-click fix
+# Rebuilds the page, the wiki's pages and the PDF of a new paper version, for every pull request that
+# touches the paper, the wiki or the changelog, and commits the result into the pull request. A two-click fix
 # in GitHub's web editor then arrives complete. A published PDF is never replaced (build_site.py),
 # and a PDF that differs only in bytes, not in words, is left as it was.
 name: Build page
 
 on:
   pull_request:
-    paths: ["paper/**", "CHANGELOG.md", ".github/workflows/build-page.yml"]
+    paths: ["paper/**", "wiki/**", "CHANGELOG.md", ".github/workflows/build-page.yml"]
 
 permissions:
   contents: write
@@ -54,7 +54,7 @@ jobs:
         env:
           SAME_REPO: ${{ github.event.pull_request.head.repo.full_name == github.repository }}
         run: |
-          git add -A index.html versions silent-zero.pdf zos-zero-os.pdf
+          git add -A index.html wiki versions silent-zero.pdf zos-zero-os.pdf
           if git diff --cached --quiet; then echo "page is up to date"; exit 0; fi
           git diff --cached --stat
           if [ "$SAME_REPO" != "true" ]; then
