@@ -6,6 +6,10 @@ Format: `## <version> · <scope>`, then one paragraph. A paper version is `YYYY-
 
 ## 2026-10-30 · Site
 
+The newest PDF has a stable address, `silent-zero.pdf`, and downloads under that name; the version stays printed in the paper. The old address `zos-zero-os.pdf` still works, and every version keeps its own file in `versions/`.
+
+## 2026-10-30 · Site
+
 A new section after In brief, Get involved, says whom we are looking for and where to take part: Discussions, Issues and pull requests. The contents mark the section being read. The grey for meta text is darker and now meets WCAG AA contrast on white. The page has an icon, a slashed zero. The footer separates what the page is from its links: PDF, GitHub and the imprint. A downloaded PDF is named silent-zero and its version, no longer zos-zero-os.
 
 ## 2026-10-30 · Project

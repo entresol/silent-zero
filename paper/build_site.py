@@ -214,7 +214,7 @@ page = f"""<!doctype html>
     </div>
     <p class="status" data-t="status">{en["status"]}</p>
     <div class="actions">
-      <a class="btn" href="{pdf_name}" download="silent-zero-{CURRENT_VERSION}.pdf" data-t="btn">{en["btn"]}</a>
+      <a class="btn" href="silent-zero.pdf" download="silent-zero.pdf" data-t="btn">{en["btn"]}</a>
       <span class="meta" data-t="meta">{en["meta"]}</span>
     </div>
   </div>
@@ -386,6 +386,7 @@ if published:
               "add a new paper version to CHANGELOG.md", file=sys.stderr)
 else:
     shutil.copy(src_dir / "paper.pdf", out / pdf_name)      # this version, named by its version
-shutil.copy(out / pdf_name, out / "zos-zero-os.pdf")         # stable name, always the newest version
+shutil.copy(out / pdf_name, out / "silent-zero.pdf")         # stable name, always the newest version
+shutil.copy(out / pdf_name, out / "zos-zero-os.pdf")         # the same under the old name, for existing links
 (out / ".nojekyll").write_text("")
 print("ok", len(page))
