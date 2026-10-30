@@ -290,7 +290,8 @@ ol.revisions .rev-date { color: var(--muted); font-size: 0.95rem; margin-bottom:
 .hero.slim .titleblock h1.name { font-size: clamp(40px, 4.4vw, 48px); line-height: 1.05; letter-spacing: -0.03em; margin: 0 0 0.5rem; }
 .hero.slim .titleblock .sub { max-width: var(--measure); }
 .hero.slim .titleblock .ver a { hyphens: manual; }
-nav.toc li.toc-back { margin-bottom: 1.1rem; }
+nav.toc li.toc-back { margin-bottom: 0.5rem; }
+nav.toc li.toc-back:not(:has(+ li.toc-back)) { margin-bottom: 1.4rem; padding-bottom: 1rem; border-bottom: 1px solid var(--rule); }
 nav.toc li.toc-back a { color: var(--ink-deep); }
 nav.toc li.toc-sep { margin-top: 1.4rem; padding-top: 1rem; border-top: 1px solid var(--rule); }
 ul.linked-from { list-style: none; padding: 0; }
@@ -316,7 +317,7 @@ ul.linked-from .kind { color: var(--muted); font-size: 0.85rem; margin-left: 0.4
 </header>
 <button class="menu" type="button" aria-controls="toc" aria-expanded="false" aria-label="Contents" hidden><span></span></button>
 <div class="layout">
-  <nav class="toc" id="toc" aria-label="Contents"><p>Contents</p><ol><li class="toc-back"><a href="/wiki/">← Wiki index</a></li><li><a href="#top">↑ Top</a></li><li><a href="#proofs-october-2026">Proofs, October 2026</a></li><li><a href="#size-and-cost">Size and cost</a></li><li><a href="#time">Time</a></li><li><a href="#in-use">In use</a></li><li><a href="#performance">Performance</a></li><li><a href="#not-yet-in-the-wiki">Not yet in the wiki</a></li><li><a href="#page-sources">Sources</a></li><li><a href="#related-pages">Related pages</a></li><li class="toc-sep"><a href="/">The paper</a></li></ol></nav>
+  <nav class="toc" id="toc" aria-label="Contents"><p>Contents</p><ol><li class="toc-back"><a href="/">← The paper</a></li><li class="toc-back"><a href="/wiki/">← Wiki index</a></li><li><a href="#top">↑ Top</a></li><li><a href="#proofs-october-2026">Proofs, October 2026</a></li><li><a href="#size-and-cost">Size and cost</a></li><li><a href="#time">Time</a></li><li><a href="#in-use">In use</a></li><li><a href="#performance">Performance</a></li><li><a href="#not-yet-in-the-wiki">Not yet in the wiki</a></li><li><a href="#page-sources">Sources</a></li><li><a href="#related-pages">Related pages</a></li></ol></nav>
   <article>
 <p>A microkernel of the L4 family whose C implementation has a machine-checked proof of <a href="/wiki/concepts/functional-correctness.html">Functional correctness</a>, first completed in 2009 for ARMv6 (<a href="/wiki/sources/2009-klein-sel4-formal-verification.html">seL4, Formal Verification of an OS Kernel</a>). It provides a minimal set of mechanisms: threads, capabilities, virtual address spaces, IPC, notifications and interrupt delivery (<a href="/wiki/sources/2018-klein-formally-verified-software.html">Formally Verified Software in the Real World</a>, §3.1). Drivers run in user mode, except the kernel’s timer (<a href="/wiki/sources/2009-klein-sel4-formal-verification.html">seL4, Formal Verification of an OS Kernel</a>, §3.3, §3.4). Its proofs are in Isabelle/HOL in the <code>seL4/l4v</code> repository (<a href="/wiki/sources/nd-sel4-verified-configurations.html">seL4 Foundation: Verified Configurations</a>).</p>
 <h2 id="proofs-october-2026">Proofs, October 2026</h2>

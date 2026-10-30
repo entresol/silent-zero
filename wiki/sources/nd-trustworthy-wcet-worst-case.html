@@ -290,7 +290,8 @@ ol.revisions .rev-date { color: var(--muted); font-size: 0.95rem; margin-bottom:
 .hero.slim .titleblock h1.name { font-size: clamp(40px, 4.4vw, 48px); line-height: 1.05; letter-spacing: -0.03em; margin: 0 0 0.5rem; }
 .hero.slim .titleblock .sub { max-width: var(--measure); }
 .hero.slim .titleblock .ver a { hyphens: manual; }
-nav.toc li.toc-back { margin-bottom: 1.1rem; }
+nav.toc li.toc-back { margin-bottom: 0.5rem; }
+nav.toc li.toc-back:not(:has(+ li.toc-back)) { margin-bottom: 1.4rem; padding-bottom: 1rem; border-bottom: 1px solid var(--rule); }
 nav.toc li.toc-back a { color: var(--ink-deep); }
 nav.toc li.toc-sep { margin-top: 1.4rem; padding-top: 1rem; border-top: 1px solid var(--rule); }
 ul.linked-from { list-style: none; padding: 0; }
@@ -316,7 +317,7 @@ ul.linked-from .kind { color: var(--muted); font-size: 0.85rem; margin-left: 0.4
 </header>
 <button class="menu" type="button" aria-controls="toc" aria-expanded="false" aria-label="Contents" hidden><span></span></button>
 <div class="layout">
-  <nav class="toc" id="toc" aria-label="Contents"><p>Contents</p><ol><li class="toc-back"><a href="/wiki/">← Wiki index</a></li><li><a href="#top">↑ Top</a></li><li><a href="#what-it-shows">What it shows</a></li><li><a href="#how">How</a></li><li><a href="#limits">Limits</a></li><li><a href="#against-the-wiki">Against the wiki</a></li><li><a href="#for-zos">For Silent Zero</a></li><li><a href="#related-pages">Related pages</a></li><li class="toc-sep"><a href="/">The paper</a></li></ol></nav>
+  <nav class="toc" id="toc" aria-label="Contents"><p>Contents</p><ol><li class="toc-back"><a href="/">← The paper</a></li><li class="toc-back"><a href="/wiki/">← Wiki index</a></li><li><a href="#top">↑ Top</a></li><li><a href="#what-it-shows">What it shows</a></li><li><a href="#how">How</a></li><li><a href="#limits">Limits</a></li><li><a href="#against-the-wiki">Against the wiki</a></li><li><a href="#for-zos">For Silent Zero</a></li><li><a href="#related-pages">Related pages</a></li></ol></nav>
   <article>
 <p>Project page of the Trustworthy Systems group at UNSW Sydney, undated, read on 23 October 2026. <a href="https://trustworthy.systems/projects/OLD/wcet/" rel="noopener" target="_blank">Current address</a>.</p>
 <h2 id="what-it-shows">What it shows</h2>

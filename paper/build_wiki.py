@@ -124,9 +124,9 @@ mark();
 </script>"""
 
 def page(title, head, body, crumb):
-    toc = ('' if title == "Wiki" else '<li class="toc-back"><a href="/wiki/">\u2190 Wiki index</a></li>') + '<li><a href="#top">↑ Top</a></li>' + "".join(
+    back = '<li><a href="/">\u2190 The paper</a></li>' + ('' if title == "Wiki" else '<li><a href="/wiki/">\u2190 Wiki index</a></li>')
+    toc = back.replace('<li>', '<li class="toc-back">') + '<li><a href="#top">↑ Top</a></li>' + "".join(
         f'<li><a href="#{i}">{re.sub("<[^>]+>", "", t)}</a></li>' for i, t in re.findall(r'<h2 id="([^"]+)">(.*?)</h2>', body))
-    toc += '<li class="toc-sep"><a href="/">The paper</a></li>'
     return f"""<!doctype html>
 <html lang="en">
 <head>
