@@ -164,6 +164,8 @@ td:first-child { white-space: nowrap; color: var(--ink-deep); font-weight: 600; 
 
 footer { border-top: 1px solid var(--rule); padding-block: 2rem 3rem; padding-left: var(--gutter-l); padding-right: var(--gutter-r); }
 footer div { max-width: var(--wide); margin: 0 auto; color: var(--muted); font-size: 0.95rem; display: flex; flex-wrap: wrap; gap: 0.5rem 2rem; justify-content: space-between; }
+footer .links { display: flex; gap: 1.4rem; }
+@media (max-width: 40rem) { footer .about > span:not(.sep) { display: block; } footer .sep { display: none; } }
 
 @media (max-width: 40rem) {
   .hero { padding-block-start: 12vh; }

@@ -6,7 +6,7 @@ Format: `## <version> · <scope>`, then one paragraph. A paper version is `YYYY-
 
 ## 2026-10-30 · Site
 
-A new section after In brief, Get involved, says whom we are looking for and where to take part: Discussions, Issues and pull requests. The contents mark the section being read. The grey for meta text is darker and now meets WCAG AA contrast on white. The page has an icon, a slashed zero, and a link to the imprint. A downloaded PDF is named silent-zero and its version, no longer zos-zero-os.
+A new section after In brief, Get involved, says whom we are looking for and where to take part: Discussions, Issues and pull requests. The contents mark the section being read. The grey for meta text is darker and now meets WCAG AA contrast on white. The page has an icon, a slashed zero. The footer separates what the page is from its links: PDF, GitHub and the imprint. A downloaded PDF is named silent-zero and its version, no longer zos-zero-os.
 
 ## 2026-10-30 · Project
 

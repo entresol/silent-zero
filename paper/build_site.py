@@ -282,7 +282,7 @@ page = f"""<!doctype html>
 {html_body}
   </article>
 </div>
-<footer><div><span>Silent Zero OS. Working paper {CURRENT_VERSION}. <a href="https://github.com/entresol/silent-zero">Source and discussion on GitHub</a>. Text and figures: <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. <a href="{pdf_name}" download="silent-zero-{CURRENT_VERSION}.pdf">Download the PDF</a>. <a href="https://unwritten.studio/impressum">Imprint</a>.</span></div></footer>
+<footer><div><span class="about"><span>Silent Zero OS</span><span class="sep"> · </span><span>Working paper {CURRENT_VERSION}</span><span class="sep"> · </span><span>Text and figures <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></span></span><span class="links"><a href="{pdf_name}" download="silent-zero-{CURRENT_VERSION}.pdf">PDF</a> <a href="https://github.com/entresol/silent-zero">GitHub</a> <a href="https://unwritten.studio/impressum">Imprint</a></span></div></footer>
 <script>
 // glossary tooltips open to the left where they would run off the right edge
 document.querySelectorAll('a.gl').forEach(a => a.addEventListener('pointerenter', () => {{
