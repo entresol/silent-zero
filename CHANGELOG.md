@@ -4,6 +4,10 @@ What changed in substance, newest first: in the paper, on its page and in the pr
 
 Format: `## <version> · <scope>`, then one paragraph. A paper version is `YYYY-MM-DD-vX.Y` and has its own PDF in `versions/`; the newest one is the version the build prints on the paper and the page. A change without a new paper version carries only its date (`YYYY-MM-DD`). Scope is `Paper`, `Site` or `Project`. The build turns this file into the list at the end of the page.
 
+## 2026-10-30 · Site
+
+A new section after In brief, Get involved, says whom we are looking for and where to take part: Discussions, Issues and pull requests. The contents mark the section being read. The grey for meta text is darker and now meets WCAG AA contrast on white. The page has an icon, a slashed zero, and a link to the imprint. A downloaded PDF is named silent-zero and its version, no longer zos-zero-os.
+
 ## 2026-10-30 · Project
 
 A minifix may go straight to `main` without a pull request: a typo, a broken link, formatting, an outdated path or name, as long as it changes no claim, no source and no behaviour and leaves the files the page is built from alone. For now only the repository's admins may push directly. Such commits start with `Minifix:`, and the history keeps every one of them. CONTRIBUTING.md states the rule.

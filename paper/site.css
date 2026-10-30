@@ -27,7 +27,7 @@
   --paper: #ffffff;
   --ink-deep: #1a1d1f;   /* headlines */
   --ink: #3e4447;        /* running text */
-  --muted: #8b9498;      /* meta */
+  --muted: #6f767a;      /* meta; 4.6:1 on white, WCAG AA for normal text */
   --rule: #e2e5e7;
   --accent: #e8a020;     /* entresol gold, the only accent */
   --measure: 36rem;
@@ -93,6 +93,8 @@ nav.toc ol { list-style: none; margin: 0; padding: 0; font: 400 0.9rem/1.45 var(
 nav.toc li { margin: 0 0 0.5rem; }
 nav.toc a { color: var(--muted); text-decoration: none; }
 nav.toc a:hover { color: var(--ink-deep); }
+/* the section being read, marked by the script */
+nav.toc a[aria-current] { color: var(--ink-deep); text-decoration: underline 1px var(--accent); text-underline-offset: 0.3em; }
 nav.toc p { font: 600 0.9rem/1 var(--font-text); margin: 0 0 1rem; color: var(--ink-deep); }
 
 /* Narrow screens: the contents become a panel from the left, opened by a menu button at the top left.

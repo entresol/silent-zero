@@ -140,6 +140,16 @@ revisions_html = ('<h2 id="changes">Changes</h2>'
                   f'This list says what changed in substance: in the paper, on this page and in the project. Its source is <a href="{REPO}/blob/main/CHANGELOG.md">CHANGELOG.md</a>.</p>'
                   f'<ol class="revisions">{"".join(rev_items)}</ol>')
 html_body = html_body + revisions_html
+
+# the page, not the paper, says how to take part: after In brief, before the Abstract
+REPO_URL = "https://github.com/entresol/silent-zero"
+involved = (f'<h2 id="get-involved">Get involved</h2>\n'
+            f'<p>We are looking for people who know firmware, formal verification or robots, and who want to test this argument before the architecture hardens around it.</p>\n'
+            f'<ul>\n<li>Discuss an idea or ask a question: <a href="{REPO_URL}/discussions" rel="noopener" target="_blank">Discussions</a>.</li>\n'
+            f'<li>Point out a flaw, a wrong claim or a missing source: <a href="{REPO_URL}/issues" rel="noopener" target="_blank">Issues</a>.</li>\n'
+            f'<li>Propose a change to the paper or the code: a pull request; <a href="{REPO_URL}/blob/main/CONTRIBUTING.md" rel="noopener" target="_blank">CONTRIBUTING.md</a> says how we work.</li>\n</ul>\n')
+assert html_body.count('<h2 id="abstract">') == 1
+html_body = html_body.replace('<h2 id="abstract">', involved + '<h2 id="abstract">')
 CURRENT_VERSION = changelog.current(changes)
 pdf_name = f"versions/zos-zero-os-{CURRENT_VERSION}.pdf"
 
@@ -182,6 +192,9 @@ page = f"""<!doctype html>
 <meta property="og:image:height" content="1260">
 <meta property="og:image:alt" content="Imagine it's 1991. We are about to release a few lines of code into a world that will be very different from today. Silent Zero OS: Bare minimum. Verified. Real-time. An OS for the AI era.">
 <meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon.ico" sizes="32x32">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="preload" href="assets/fonts/inter-latin-opsz-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/nunito-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
 <style>
@@ -201,7 +214,7 @@ page = f"""<!doctype html>
     </div>
     <p class="status" data-t="status">{en["status"]}</p>
     <div class="actions">
-      <a class="btn" href="{pdf_name}" data-t="btn">{en["btn"]}</a>
+      <a class="btn" href="{pdf_name}" download="silent-zero-{CURRENT_VERSION}.pdf" data-t="btn">{en["btn"]}</a>
       <span class="meta" data-t="meta">{en["meta"]}</span>
     </div>
   </div>
@@ -269,7 +282,7 @@ page = f"""<!doctype html>
 {html_body}
   </article>
 </div>
-<footer><div><span>Silent Zero OS. Working paper {CURRENT_VERSION}. <a href="https://github.com/entresol/silent-zero">Source and discussion on GitHub</a>. Text and figures: <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. <a href="{pdf_name}">Download the PDF</a>.</span></div></footer>
+<footer><div><span>Silent Zero OS. Working paper {CURRENT_VERSION}. <a href="https://github.com/entresol/silent-zero">Source and discussion on GitHub</a>. Text and figures: <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. <a href="{pdf_name}" download="silent-zero-{CURRENT_VERSION}.pdf">Download the PDF</a>. <a href="https://unwritten.studio/impressum">Imprint</a>.</span></div></footer>
 <script>
 // glossary tooltips open to the left where they would run off the right edge
 document.querySelectorAll('a.gl').forEach(a => a.addEventListener('pointerenter', () => {{
@@ -334,6 +347,17 @@ toc.addEventListener('click', e => {{ if (e.target.closest('a')) setMenu(false);
 document.addEventListener('click', e => {{ if (isOpen() && !toc.contains(e.target) && !menu.contains(e.target)) setMenu(false); }});
 document.addEventListener('keydown', e => {{ if (e.key === 'Escape' && isOpen()) {{ setMenu(false); menu.focus(); }} }});
 matchMedia('(min-width: 76rem)').addEventListener('change', e => {{ if (e.matches) setMenu(false); }});
+// the contents mark the section being read: the last heading that has passed the upper fifth of the screen
+const heads = [...document.querySelectorAll('article h2[id]')], links = new Map([...toc.querySelectorAll('a')].map(a => [a.hash.slice(1), a]));
+let current = null, queued = false;
+function mark() {{
+  queued = false;
+  const h = heads.filter(h => h.getBoundingClientRect().top < innerHeight / 5).pop(), a = h ? links.get(h.id) : null;
+  if (a === current) return;
+  current?.removeAttribute('aria-current'); a?.setAttribute('aria-current', 'location'); current = a;
+}}
+addEventListener('scroll', () => {{ if (!queued) {{ queued = true; requestAnimationFrame(mark); }} }}, {{ passive: true }});
+mark();
 </script>
 </body>
 </html>
