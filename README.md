@@ -11,7 +11,7 @@ Silent Zero is an operating system reduced to what cannot be removed: a bootload
 First light: [a boot screen](splash/) and a [loader](loader/) that checks the kernel image before starting it, 9 KB on RISC-V, tested in QEMU. The paper proposes what we intend to build and where it can fail.
 
 - Read the paper: https://silentzero.ooo
-- Download the PDF: [`zos-zero-os.pdf`](zos-zero-os.pdf) (always the newest version)
+- Download the PDF: [`silent-zero.pdf`](silent-zero.pdf) (always the newest version; the old name `zos-zero-os.pdf` still works)
 - Every version as its own file: [`versions/`](versions/), named `zos-zero-os-YYYY-MM-DD-vX.Y.pdf`
 - The paper's source and the build for PDF and page: [`paper/`](paper/)
 - Red-team report on an earlier draft (German): [`review/red-team-2026-10-18.md`](review/red-team-2026-10-18.md)

@@ -45,7 +45,7 @@ jobs:
       - name: Keep PDFs whose words did not change
         run: |
           words() { pdftotext "$1" - | python3 -c 'import re, sys; print(" ".join(re.sub(r"-\n", "", sys.stdin.read()).split()))'; }
-          for f in $(git diff --name-only -- versions zos-zero-os.pdf); do
+          for f in $(git diff --name-only -- versions silent-zero.pdf zos-zero-os.pdf); do
             git show "HEAD:$f" > /tmp/old.pdf
             if [ "$(words /tmp/old.pdf)" = "$(words "$f")" ]; then git checkout -- "$f"; fi
           done
@@ -54,7 +54,7 @@ jobs:
         env:
           SAME_REPO: ${{ github.event.pull_request.head.repo.full_name == github.repository }}
         run: |
-          git add -A index.html versions zos-zero-os.pdf
+          git add -A index.html versions silent-zero.pdf zos-zero-os.pdf
           if git diff --cached --quiet; then echo "page is up to date"; exit 0; fi
           git diff --cached --stat
           if [ "$SAME_REPO" != "true" ]; then

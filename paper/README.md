@@ -3,7 +3,7 @@
 `src.md` is the paper. Everything else here turns it into the PDF and the landing page.
 
 ```
-./build.sh      # needs Python 3 and pdfLaTeX; writes ../index.html, ../zos-zero-os.pdf and ../versions/
+./build.sh      # needs Python 3 and pdfLaTeX; writes ../index.html, ../silent-zero.pdf, ../zos-zero-os.pdf and ../versions/
 ```
 
 - `src.md`: the text, in Markdown. Edit this, nothing generated.
@@ -14,6 +14,6 @@
 - `tools/`: scripts that check a draft: `slop_lint.py` and `vorfeld.py` measure it for machine prose, `glossary_check.py` checks that terms are explained where a reader first meets them. See "Writing the paper" in `../CONTRIBUTING.md`. The build does not use them.
 - `figs.py`: draws Figures 1 and 2 as SVG and HTML; `figshot.py` turns the HTML into the PNGs in `figs/` (needs Playwright). The PNGs are committed, so `build.sh` does not need either.
 
-Every published version is kept as `../versions/zos-zero-os-YYYY-MM-DD-vX.Y.pdf`; `../zos-zero-os.pdf` is always the newest. Once a version's PDF is on `origin/main`, the build keeps it unchanged and warns if the paper it built differs; a changed paper needs a new version in `../CHANGELOG.md`. The check needs `pdftotext` (Poppler, like `pdfinfo`).
+Every published version is kept as `../versions/zos-zero-os-YYYY-MM-DD-vX.Y.pdf`; `../silent-zero.pdf` is always the newest, and `../zos-zero-os.pdf`, the same file under its old name, stays for existing links. Once a version's PDF is on `origin/main`, the build keeps it unchanged and warns if the paper it built differs; a changed paper needs a new version in `../CHANGELOG.md`. The check needs `pdftotext` (Poppler, like `pdfinfo`).
 
 Licence: the build scripts are BSD-2-Clause. The text and figures: [CC BY 4.0](../LICENSE-CC-BY-4.0.txt).
