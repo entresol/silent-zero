@@ -1,5 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <style>.o { stroke: #1a1d1f; } @media (prefers-color-scheme: dark) { .o { stroke: #f1f3f4; } }</style>
-  <ellipse class="o" cx="16" cy="16" rx="8.5" ry="12.5" fill="none" stroke-width="2.6"/>
-  <line x1="10.5" y1="25" x2="21.5" y2="7" stroke="#e8a020" stroke-width="2.6" stroke-linecap="round"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <style>.o { stroke: #1c1e1f; } @media (prefers-color-scheme: dark) { .o { stroke: #f1f3f4; } }</style>
+  <rect x="136" y="124" width="16" height="264" fill="#fe9f04"/>
+  <circle class="o" cx="328" cy="256" r="100" fill="none" stroke-width="16"/>
 </svg>
