@@ -53,3 +53,7 @@ Every figure and every quotation on every page was searched in its source or in 
 ## [2026-10-30] move | into the public repository
 
 The wiki moved from `wiki-draft/` of the private research repository to `wiki/` of the public one. `zos/` is now `design/`, and the page type `zos` is `design`. The status levels are `drafted`, `reviewed` and `doublechecked`. The project's name is written `zOS` and replaced by the build. The rings are a guide to the order, no longer a gate.
+
+## [2026-10-30] update | bootloader
+
+Added the project's boot video (seL4 16.0.0 release kernel to user space on RISC-V in QEMU, through OpenSBI and seL4's ELF loader) to [[bootloader]], with the reading that it shows seL4's boot chain, not the zOS loader, and not a verified configuration.
