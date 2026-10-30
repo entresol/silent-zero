@@ -6,6 +6,10 @@ Format: `## <version> · <scope>`, then one paragraph. A paper version is `YYYY-
 
 ## 2026-10-30 · Project
 
+The wiki on the paper's sources now lives in this repository, in `wiki/`: 63 pages on the sources, the concepts, the systems and the parts of the design, each saying what is proven, tested or assumed and on which source that rests. Claude writes and reviews it; a page shows whether a person has also checked it. The page does not show the wiki yet.
+
+## 2026-10-30 · Project
+
 A minifix may go straight to `main` without a pull request: a typo, a broken link, formatting, an outdated path or name, as long as it changes no claim, no source and no behaviour and leaves the files the page is built from alone. For now only the repository's admins may push directly. Such commits start with `Minifix:`, and the history keeps every one of them. CONTRIBUTING.md states the rule.
 
 ## 2026-10-29 · Site
