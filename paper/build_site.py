@@ -157,6 +157,7 @@ pdf_name = f"versions/zos-zero-os-{CURRENT_VERSION}.pdf"
 # table of contents from h2, led by a link back to the top
 toc = '<li><a href="#top">\u2191 Top</a></li>' + "".join(f'<li><a href="#{i}">{re.sub("<[^>]+>", "", t)}</a></li>'
               for i, t in re.findall(r'<h2 id="([^"]+)">(.*?)</h2>', html_body))
+toc += '<li class="toc-sep"><a href="wiki/">Wiki \u2192</a></li>'   # the paper's sources, page by page
 
 # A published version never changes. Once its PDF is on origin/main, the build keeps that file,
 # and the page describes the PDF it serves, not the one just built (another TeX gives other pages).

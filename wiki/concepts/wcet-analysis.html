@@ -290,10 +290,12 @@ ol.revisions .rev-date { color: var(--muted); font-size: 0.95rem; margin-bottom:
 .hero.slim .titleblock h1.name { font-size: clamp(40px, 4.4vw, 48px); line-height: 1.05; letter-spacing: -0.03em; margin: 0 0 0.5rem; }
 .hero.slim .titleblock .sub { max-width: var(--measure); }
 .hero.slim .titleblock .ver a { hyphens: manual; }
-nav.toc li.toc-back { margin-bottom: 1.1rem; }
+nav.toc li.toc-back { margin-bottom: 0.5rem; }
+nav.toc li.toc-back:not(:has(+ li.toc-back)) { margin-bottom: 1.4rem; padding-bottom: 1rem; border-bottom: 1px solid var(--rule); }
 nav.toc li.toc-back a { color: var(--ink-deep); }
 nav.toc li.toc-sep { margin-top: 1.4rem; padding-top: 1rem; border-top: 1px solid var(--rule); }
 ul.linked-from { list-style: none; padding: 0; }
+p.links-note { color: var(--muted); font-size: 0.95rem; margin-top: -0.6rem; }
 ul.linked-from .kind { color: var(--muted); font-size: 0.85rem; margin-left: 0.4rem; }
 
 /* narrow screens: jump targets land below the menu button (last, so it wins over the scroll margins above) */
@@ -315,7 +317,7 @@ ul.linked-from .kind { color: var(--muted); font-size: 0.85rem; margin-left: 0.4
 </header>
 <button class="menu" type="button" aria-controls="toc" aria-expanded="false" aria-label="Contents" hidden><span></span></button>
 <div class="layout">
-  <nav class="toc" id="toc" aria-label="Contents"><p>Contents</p><ol><li class="toc-back"><a href="/wiki/">← Wiki index</a></li><li><a href="#top">↑ Top</a></li><li><a href="#how-it-is-done">How it is done</a></li><li><a href="#state-for-sel4-october-2026">State for seL4, October 2026</a></li><li><a href="#open-questions">Open questions</a></li><li><a href="#linked-from">Linked from</a></li><li class="toc-sep"><a href="/">The paper</a></li></ol></nav>
+  <nav class="toc" id="toc" aria-label="Contents"><p>Contents</p><ol><li class="toc-back"><a href="/">← The paper</a></li><li class="toc-back"><a href="/wiki/">← Wiki index</a></li><li><a href="#top">↑ Top</a></li><li><a href="#how-it-is-done">How it is done</a></li><li><a href="#state-for-sel4-october-2026">State for seL4, October 2026</a></li><li><a href="#open-questions">Open questions</a></li><li><a href="#page-sources">Sources</a></li><li><a href="#related-pages">Related pages</a></li></ol></nav>
   <article>
 <p>Worst-case execution time analysis computes an upper bound on how long a piece of code can run. A real-time system needs such bounds for its tasks and for the kernel beneath them, or nobody can show that a deadline holds. A <em>sound</em> analysis never underestimates the true worst case, and static analysis of the code makes that possible (<a href="/wiki/sources/nd-trustworthy-wcet-worst-case.html">WCET analysis of seL4</a>).</p>
 <h2 id="how-it-is-done">How it is done</h2>
@@ -367,8 +369,12 @@ ul.linked-from .kind { color: var(--muted); font-size: 0.85rem; margin-left: 0.4
 <li>Some kernel loops have no static bound and are constrained by system design instead, among them the scheduling-context queues of MCS. A parameterised bound or more preemption points will be needed (<a href="/wiki/sources/2026-sillitoe-resurrecting-sel4-wcet.html">Resurrecting seL4’s WCET Analysis</a>, §5.1). What a static system description can contribute is open; see <a href="/wiki/design/kernel.html">The kernel</a>.</li>
 </ul>
 
-<h2 id="linked-from">Linked from</h2>
-<ul class="linked-from"><li><a href="/wiki/concepts/mixed-criticality.html">Mixed criticality</a> <span class="kind">Concepts</span></li></ul>
+<h2 id="page-sources">Sources</h2>
+<p class="links-note">What this page rests on.</p>
+<ul class="linked-from"><li><a href="/wiki/sources/2018-klein-formally-verified-software.html">Formally Verified Software in the Real World</a> <span class="kind">Klein et al. 2018</span></li><li><a href="/wiki/sources/2026-heiser-mcs-safety-os.html">MCS safety, an OS perspective</a> <span class="kind">Heiser 2026</span></li><li><a href="/wiki/sources/2026-sillitoe-resurrecting-sel4-wcet.html">Resurrecting seL4&#x27;s WCET Analysis</a> <span class="kind">Sillitoe et al. 2026</span></li><li><a href="/wiki/sources/2009-klein-sel4-formal-verification.html">seL4, Formal Verification of an OS Kernel</a> <span class="kind">Klein et al. 2009</span></li><li><a href="/wiki/sources/2026-trustworthy-guaranteeing-timeliness-mcs.html">Trustworthy Systems: Guaranteeing timeliness of MCS on seL4</a></li><li><a href="/wiki/sources/nd-trustworthy-wcet-worst-case.html">WCET analysis of seL4</a> <span class="kind">Trustworthy Systems (n.d.)</span></li></ul>
+<h2 id="related-pages">Related pages</h2>
+<p class="links-note">Pages this one links to, and pages that link here.</p>
+<ul class="linked-from"><li><a href="/wiki/design/kernel.html">The kernel</a> <span class="kind">Design</span></li><li><a href="/wiki/concepts/mixed-criticality.html">Mixed criticality</a> <span class="kind">Concept</span></li><li><a href="/wiki/systems/cva6.html">CVA6</a> <span class="kind">System</span></li><li><a href="/wiki/systems/sel4.html">seL4</a> <span class="kind">System</span></li></ul>
   </article>
 </div>
 <footer><div><span class="about"><span>Silent Zero OS</span><span class="sep"> · </span><span>Wiki</span><span class="sep"> · </span><span>Text <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></span></span><span class="links"><a href="/">Paper</a> <a href="https://github.com/entresol/silent-zero/tree/main/wiki">GitHub</a> <a href="https://unwritten.studio/impressum">Imprint</a></span></div></footer>

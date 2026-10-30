@@ -290,10 +290,12 @@ ol.revisions .rev-date { color: var(--muted); font-size: 0.95rem; margin-bottom:
 .hero.slim .titleblock h1.name { font-size: clamp(40px, 4.4vw, 48px); line-height: 1.05; letter-spacing: -0.03em; margin: 0 0 0.5rem; }
 .hero.slim .titleblock .sub { max-width: var(--measure); }
 .hero.slim .titleblock .ver a { hyphens: manual; }
-nav.toc li.toc-back { margin-bottom: 1.1rem; }
+nav.toc li.toc-back { margin-bottom: 0.5rem; }
+nav.toc li.toc-back:not(:has(+ li.toc-back)) { margin-bottom: 1.4rem; padding-bottom: 1rem; border-bottom: 1px solid var(--rule); }
 nav.toc li.toc-back a { color: var(--ink-deep); }
 nav.toc li.toc-sep { margin-top: 1.4rem; padding-top: 1rem; border-top: 1px solid var(--rule); }
 ul.linked-from { list-style: none; padding: 0; }
+p.links-note { color: var(--muted); font-size: 0.95rem; margin-top: -0.6rem; }
 ul.linked-from .kind { color: var(--muted); font-size: 0.85rem; margin-left: 0.4rem; }
 
 /* narrow screens: jump targets land below the menu button (last, so it wins over the scroll margins above) */
@@ -315,7 +317,7 @@ ul.linked-from .kind { color: var(--muted); font-size: 0.85rem; margin-left: 0.4
 </header>
 <button class="menu" type="button" aria-controls="toc" aria-expanded="false" aria-label="Contents" hidden><span></span></button>
 <div class="layout">
-  <nav class="toc" id="toc" aria-label="Contents"><p>Contents</p><ol><li class="toc-back"><a href="/wiki/">← Wiki index</a></li><li><a href="#top">↑ Top</a></li><li><a href="#in-sel4">In seL4</a></li><li><a href="#state-october-2026">State, October 2026</a></li><li><a href="#open-questions">Open questions</a></li><li class="toc-sep"><a href="/">The paper</a></li></ol></nav>
+  <nav class="toc" id="toc" aria-label="Contents"><p>Contents</p><ol><li class="toc-back"><a href="/">← The paper</a></li><li class="toc-back"><a href="/wiki/">← Wiki index</a></li><li><a href="#top">↑ Top</a></li><li><a href="#in-sel4">In seL4</a></li><li><a href="#state-october-2026">State, October 2026</a></li><li><a href="#open-questions">Open questions</a></li><li><a href="#page-sources">Sources</a></li><li><a href="#related-pages">Related pages</a></li></ol></nav>
   <article>
 <p>A mixed-criticality system runs software of different criticality on one platform, from safety-critical to non-critical. Criticality is set by the impact of a failure, from loss of life to inconvenience. The certification of a critical component must not depend on how less critical components behave, so the OS has to prevent interference in space and in time (<a href="/wiki/sources/2026-heiser-mcs-safety-os.html">MCS safety, an OS perspective</a>).</p>
 <h2 id="in-sel4">In seL4</h2>
@@ -330,6 +332,12 @@ ul.linked-from .kind { color: var(--muted); font-size: 0.85rem; margin-left: 0.4
 <li>Which reaction to budget overrun suits a control loop that must not miss its deadline. The slides list emergency budget, rollback, lowering a client’s priority and, reluctantly, priority inheritance, and say it is better to prevent timeouts completely (<a href="/wiki/sources/2026-heiser-mcs-safety-os.html">MCS safety, an OS perspective</a>).</li>
 </ul>
 
+<h2 id="page-sources">Sources</h2>
+<p class="links-note">What this page rests on.</p>
+<ul class="linked-from"><li><a href="/wiki/sources/2026-sel4-functional-correctness-proof.html">MCS functional-correctness proof completed on RISC-V</a> <span class="kind">seL4 Foundation 2026</span></li><li><a href="/wiki/sources/2026-heiser-mcs-safety-os.html">MCS safety, an OS perspective</a> <span class="kind">Heiser 2026</span></li><li><a href="/wiki/sources/2026-trustworthy-guaranteeing-timeliness-mcs.html">Trustworthy Systems: Guaranteeing timeliness of MCS on seL4</a></li></ul>
+<h2 id="related-pages">Related pages</h2>
+<p class="links-note">Pages this one links to, and pages that link here.</p>
+<ul class="linked-from"><li><a href="/wiki/design/real-time-loops.html">Real-time loops</a> <span class="kind">Design</span></li><li><a href="/wiki/design/kernel.html">The kernel</a> <span class="kind">Design</span></li><li><a href="/wiki/design/static-system.html">The static system</a> <span class="kind">Design</span></li><li><a href="/wiki/concepts/wcet-analysis.html">WCET analysis</a> <span class="kind">Concept</span></li><li><a href="/wiki/systems/microkit.html">Microkit</a> <span class="kind">System</span></li><li><a href="/wiki/systems/sel4.html">seL4</a> <span class="kind">System</span></li><li><a href="/wiki/sources/nd-sel4-microkit-user-manual.html">seL4 Microkit: User Manual, v2.3.0</a> <span class="kind">Source</span></li><li><a href="/wiki/sources/2022-parker-sel4-device-driver.html">The seL4 Device Driver Framework</a> <span class="kind">Source</span></li></ul>
   </article>
 </div>
 <footer><div><span class="about"><span>Silent Zero OS</span><span class="sep"> · </span><span>Wiki</span><span class="sep"> · </span><span>Text <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></span></span><span class="links"><a href="/">Paper</a> <a href="https://github.com/entresol/silent-zero/tree/main/wiki">GitHub</a> <a href="https://unwritten.studio/impressum">Imprint</a></span></div></footer>
