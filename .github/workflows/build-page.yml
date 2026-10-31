@@ -30,6 +30,32 @@ jobs:
       - name: Know what is published
         run: git fetch --no-tags "https://github.com/${GITHUB_REPOSITORY}" "+refs/heads/main:refs/remotes/origin/main"
 
+      # The wiki is written from sources in a private repository; only its own pages may come over, never a
+      # source text. A file under wiki/ that is not a page, the index, the log, the rings or the schema fails
+      # the pull request, as does a page without front matter or far longer than any page. Every commit counts,
+      # not only the result: a merge commit would carry a file that a later commit removed.
+      - name: Only wiki pages in wiki/
+        run: |
+          bad=0
+          while IFS= read -r f; do
+            [ -n "$f" ] || continue
+            if ! printf '%s\n' "$f" | grep -qE '^wiki/((CLAUDE|index|log|rings)\.md|index\.html|(sources|concepts|systems|design)/[a-z0-9-]+\.(md|html))$'; then
+              echo "::error file=$f::Not a wiki page. Only pages, the index, the log, the rings and the schema belong in wiki/."; bad=1; continue
+            fi
+            [ -f "$f" ] || continue   # added by one commit, removed by a later one: the path check above is enough
+            case "$f" in wiki/*/*.md)
+              if ! head -n 1 "$f" | grep -qx -- '---' || ! sed -n '2,12p' "$f" | grep -q '^type: '; then
+                echo "::error file=$f::A wiki page starts with its front matter (type, status, sources, updated)."; bad=1
+              fi
+              if [ "$(wc -c < "$f")" -gt 20000 ]; then
+                echo "::error file=$f::Over 20 KB, twice the longest page so far. Is this a source text?"; bad=1
+              fi;;
+            esac
+          done <<EOF
+          $(git log --format= --name-only --diff-filter=ACMR origin/main..HEAD -- wiki/ | sort -u)
+          EOF
+          exit $bad
+
       - name: Install pandoc 3.6.4, LaTeX and Poppler
         run: |
           sudo apt-get update -qq

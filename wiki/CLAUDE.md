@@ -22,7 +22,7 @@ Write the project's name as `zOS`. It is the team's working name; the build of t
 The sources live in the private research repository, usually cloned next to this one as `../silent-zero-research` (from this directory: `../../silent-zero-research`).
 
 - Its `pool.json` is the list of sources and the source of truth for authors, year, title and link. A wiki source page carries the pool id and nothing contradicts the pool.
-- The texts are its `papers/<id>.pdf` and `sources/web/<id>--<date>.html`. They never change. Extract text with `pdftotext -layout`; the result goes to `/tmp/wiki-text/<id>.txt`, outside both repositories, so that no source text can be committed by mistake. The texts stay in the private repository; the public one holds only what the wiki says about them.
+- The texts are its `papers/<id>.pdf` and `sources/web/<id>--<date>.html`. They never change. Extract text with `pdftotext -layout`; the result goes to `/tmp/wiki-text/<id>.txt`, outside both repositories, so that no source text can be committed by mistake. Only the wiki's own pages cross from the private repository to this one: the pages, `index.md`, `log.md`, `rings.md` and this file, and the HTML the build renders from them. Commit them by name, never a whole directory; the workflow *Build page* fails a pull request in which any commit brings anything else into `wiki/`, a page without front matter, or a page over 20 KB. The texts stay in the private repository; the public one holds only what the wiki says about them.
 - A source we can read only in part (abstract, a talk's slides, a press release) can have a page, and the page says so.
 
 ## Pages

@@ -77,3 +77,7 @@ The team decided that the daily run's pages go live without waiting for a person
 ## [2026-10-31] rule | source texts outside the repositories; when the build counts
 
 The daily run extracts source texts to `/tmp/wiki-text/`, outside both repositories, instead of `wiki/.cache/text/`. The merge condition on the build now names the commit it can be met on: the build pushes the rendered HTML as a commit of its own, and no check runs on that one.
+
+## [2026-10-31] rule | only wiki pages cross over
+
+The build now fails a pull request in which any commit brings into `wiki/` something other than the pages, the index, the log, the rings, the schema and their HTML, a page without front matter, or a page over 20 KB. It checks every commit, not only the result, because a merge commit keeps what a later commit removed.
