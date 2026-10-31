@@ -10,6 +10,10 @@ Format: `## <version> · <scope>`, then one paragraph. A paper version is `YYYY-
 
 ## 2026-10-31 · Site
 
+The page and the wiki load their icons under addresses that carry a version taken from the icons' content. Browsers keep favicons in a cache of their own and went on showing the old slashed zero, or a letter in its place; a changed icon now gets a new address and is fetched again.
+
+## 2026-10-31 · Site
+
 The loader video calls its second run what it stands for: a tampered image, one byte changed after it was built and hashed, instead of a flipped bit. A card says what the stored hash does not catch, an attacker who rewrites the hash as well, and that signing the image comes next. The labels read in plainer English.
 
 ## 2026-10-31 · Project

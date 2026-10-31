@@ -5,6 +5,7 @@
 The Markdown in wiki/ is the source; Claude writes it to the rules in wiki/CLAUDE.md. This script only renders it:
 [[links]] become links, the working name zOS becomes the public name, and every page shows its status and the pages
 that link to it. Pages without a type (the schema, the log, the rings) stay Markdown on GitHub."""
+import hashlib
 import html as _h
 import re
 import subprocess
@@ -13,6 +14,8 @@ from pathlib import Path
 
 PUBLIC_NAME = "Silent Zero"           # the one place the wiki's working name zOS is translated
 root = Path(sys.argv[1]) if len(sys.argv) > 1 else Path(__file__).resolve().parent.parent
+# the same version as on the main page (build_site.py): a changed icon gets a new address, so browsers fetch it
+iv = hashlib.sha256(b"".join((root / f).read_bytes() for f in ("favicon.ico", "assets/favicon.svg", "assets/apple-touch-icon.png"))).hexdigest()[:8]
 wiki = root / "wiki"
 REPO = "https://github.com/entresol/silent-zero"
 
@@ -133,9 +136,9 @@ def page(title, head, body, crumb):
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>{PUBLIC_NAME + " wiki" if title == "Wiki" else _h.escape(title) + " · " + PUBLIC_NAME + " wiki"}</title>
-<link rel="icon" href="/favicon.ico" sizes="32x32">
-<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="icon" href="/favicon.ico?v={iv}" sizes="32x32">
+<link rel="icon" href="/assets/favicon.svg?v={iv}" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png?v={iv}">
 <style>
 {css}
 </style>
