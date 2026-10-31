@@ -10,7 +10,11 @@ Format: `## <version> · <scope>`, then one paragraph. A paper version is `YYYY-
 
 ## 2026-10-31 · Site
 
+<<<<<<< HEAD
 The loader video says on which board it runs: a SiFive HiFive Unleashed from 2018, the board seL4's MCS proof is for, simulated in QEMU.
+=======
+The page and the wiki load their icons under addresses that carry a version taken from the icons' content. Browsers keep favicons in a cache of their own and went on showing the old slashed zero, or a letter in its place; a changed icon now gets a new address and is fetched again.
+>>>>>>> origin/main
 
 ## 2026-10-31 · Site
 
