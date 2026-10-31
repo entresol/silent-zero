@@ -8,7 +8,7 @@ Every change in substance is listed in [`CHANGELOG.md`](CHANGELOG.md) and at the
 
 Silent Zero is an operating system reduced to what cannot be removed: a bootloader, a formally verified microkernel, and the bare minimum needed to run AI agents safely and in real time. Nothing at its base is new; the seL4 microkernel, its system framework and drivers, open roots of trust and open agent protocols all exist as open-source work. What has to be built is the layer between agents and the world: a broker that turns human intent into bounded authority, and a safety path that keeps every motion under a verified loop. Silent Zero starts where agents act physically: one robot, one task.
 
-First light: [a boot screen](splash/) and a [loader](loader/) that checks the kernel image before starting it, 9 KB on RISC-V, tested in QEMU. The paper proposes what we intend to build and where it can fail.
+First light: [a boot screen](splash/) and a [loader](loader/) that checks the kernel image before starting it, under 8 KB on RISC-V, tested in QEMU; [video](assets/video/loader-sel4-boot.mp4) of it starting the official seL4 kernel. The paper proposes what we intend to build and where it can fail.
 
 - Read the paper: https://silentzero.ooo
 - Download the PDF: [`silent-zero.pdf`](silent-zero.pdf) (always the newest version; the old name `zos-zero-os.pdf` still works)

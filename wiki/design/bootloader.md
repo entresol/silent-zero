@@ -7,7 +7,7 @@ updated: 2026-10-31
 
 # The bootloader
 
-In zOS the bootloader "checks one signed, static system image and starts it, or stops. There is no menu, no configuration and no fallback, and nothing of it stays resident." It draws the first screen, showing only compiled-in text and what it has measured itself, and marks as assumed what it cannot check, itself included. It belongs to the trusted base as *assumed*. A first prototype for RISC-V checks a hash rather than a signature and is just under 9 KB, about two thirds of it the renderer and its font data (paper, Section 3).
+In zOS the bootloader "checks one signed, static system image and starts it, or stops. There is no menu, no configuration and no fallback, and nothing of it stays resident." It draws the first screen, showing only compiled-in text and what it has measured itself, and marks as assumed what it cannot check, itself included. It belongs to the trusted base as *assumed*. A first prototype for RISC-V checks a hash rather than a signature and is just under 8 KB, more than two thirds of it the renderer and its font data (paper, Section 3).
 
 ## What it must do
 
@@ -39,7 +39,7 @@ In zOS the bootloader "checks one signed, static system image and starts it, or 
 
 Our reading: the video shows seL4's own boot chain, not the zOS loader. The kernel is built with the preset seL4 16.0.0 provides for its MCS verification on this platform, `hifive` ([configuration files](https://github.com/seL4/seL4/tree/16.0.0/configs)). So the video shows that kernel booting. It does not show a proof of the binary: the proofs are about the C code, and the compiler is trusted. QEMU stands in for the hardware, and firmware and ELF loader lie outside every proof.
 
-Our reading of the second video: the zOS loader now sits where the paper puts it, between the firmware and the kernel, and the check works on the real kernel image, not on a stand-in. It is still a hash stored next to the image, so it catches accidents, not someone who can rewrite both; the signature is the next step. The loader itself, OpenSBI and seL4's ELF loader remain assumed. Built with GCC 15.2 the loader is 7,211 bytes for this model and 7,687 bytes for QEMU's `virt` machine, between seven tenths and three quarters of it the renderer and its font data; the paper's "just under 9 KB" was measured with clang before the drawn mark replaced the set wordmark ([loader README](https://github.com/entresol/silent-zero/tree/main/loader#size)).
+Our reading of the second video: the zOS loader now sits where the paper puts it, between the firmware and the kernel, and the check works on the real kernel image, not on a stand-in. It is still a hash stored next to the image, so it catches accidents, not someone who can rewrite both; the signature is the next step. The loader itself, OpenSBI and seL4's ELF loader remain assumed. Built with GCC 15.2 the loader is 7,211 bytes for this model and 7,687 bytes for QEMU's `virt` machine, between seven tenths and three quarters of it the renderer and its font data ([loader README](https://github.com/entresol/silent-zero/tree/main/loader#size)).
 
 ## The paper and its sources
 
