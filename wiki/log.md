@@ -65,3 +65,7 @@ The boot video now shows the official seL4 16.0.0 kernel built with the preset `
 ## [2026-10-31] ingest | 2026-anthropic-project-glasswing-securing, 2026-anthropic-project-glasswing-initial, 2026-bower-cohesix-research-operating
 
 Daily run, backlog of ring 2. Created: three source pages, [[ai-vulnerability-discovery]], [[cohesix]]. Changed: [[broker]] (Related), [[raspberry-pi]]. Cohesix was read from its landing page only (`partial`). 2023-amar-cheriot-complete-memory was skipped: the pool holds no text for it, only a landing-page link.
+
+## [2026-10-31] rule | the daily run merges its own wiki pull request
+
+The team decided that the daily run's pages go live without waiting for a person, once every page is `reviewed`, no open question concerns a wiki page and the build has run. It merges with squash; `wiki/.cache/` is now ignored, after a run had committed extracted source texts.
