@@ -2,6 +2,7 @@
 type: system
 status: reviewed
 sources: [2009-klein-sel4-formal-verification, 2018-klein-formally-verified-software, nd-sel4-verified-configurations, 2026-sel4-functional-correctness-proof, 2026-heiser-mcs-safety-os, 2026-trustworthy-guaranteeing-timeliness-mcs, nd-trustworthy-wcet-worst-case, 2026-sillitoe-resurrecting-sel4-wcet, 2026-sel4-release-17]
+glossary: seL4
 updated: 2026-10-31
 ---
 

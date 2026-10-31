@@ -2,6 +2,7 @@
 type: concept
 status: reviewed
 sources: [2022-wistoff-systematic-prevention-core, 2026-trustworthy-where-are-we, 2018-klein-formally-verified-software]
+short: Closing timing channels between domains
 updated: 2026-10-29
 ---
 

@@ -268,6 +268,10 @@ ol.revisions li { padding: 0.9rem 0; border-top: 1px solid var(--rule); margin: 
 ol.revisions li > div { min-width: 0; }
 ol.revisions p { margin: 0; }
 ol.revisions .rev-ver { font-weight: 600; color: var(--ink-deep); font-variant-numeric: tabular-nums; }
+details.revisions-more { margin-top: 0; border-top: 1px solid var(--rule); }
+details.revisions-more > summary { cursor: pointer; padding: 0.9rem 0; color: var(--ink-deep); font-weight: 600; }
+details.revisions-more > summary::marker { color: var(--accent); }
+details.revisions-more ol.revisions { margin-top: 0; }
 ol.revisions .rev-date { color: var(--muted); font-size: 0.95rem; margin-bottom: 0.2rem; }
 
 /* title block: slogan, authors, version */
@@ -293,3 +297,26 @@ ul.linked-from .kind { color: var(--muted); font-size: 0.85rem; margin-left: 0.4
 @media (max-width: 75.98rem) {
   h2, [id^="gl-"], #references + ul li { scroll-margin-top: 4rem; }
 }
+
+/* the lexicon: an A-Z line above the footer and one line per term on /lexicon/ */
+.az-band { border-top: 1px solid var(--rule); padding-block: 1.6rem; padding-left: var(--gutter-l); padding-right: var(--gutter-r); }
+.az-band > div { max-width: var(--wide); margin: 0 auto; display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.4rem 1.2rem; }
+.az-title { font: 600 0.95rem/1 var(--font-text); }
+nav.az { display: flex; flex-wrap: wrap; gap: 0.2rem; font: 500 0.95rem/1 var(--font-text); }
+nav.az a, nav.az span { display: inline-block; min-width: 1.6rem; padding: 0.45rem 0; text-align: center; }
+nav.az a { text-decoration: none; color: var(--ink-deep); }
+nav.az a:hover { text-decoration: underline; text-decoration-color: var(--accent); }
+nav.az span { color: var(--muted); opacity: 0.45; }
+article > nav.az { margin-bottom: 1rem; }
+h2.lx-letter { font: 600 0.95rem/1 var(--font-text); color: var(--accent); margin: 1.6rem 0 0.3rem; letter-spacing: 0.04em; }
+h2.lx-letter::before { display: none; }
+dl.lexicon { margin: 0; }
+dl.lexicon > div { display: flex; flex-wrap: wrap; column-gap: 0.6rem; padding: 0.35rem 0; border-bottom: 1px solid var(--rule); }
+dl.lexicon dt { font-weight: 600; color: var(--ink-deep); flex: 0 0 18.5rem; }
+@media (min-width: 40rem) { dl.lexicon dt { white-space: nowrap; } }
+dl.lexicon .nw { white-space: nowrap; }
+dl.lexicon dd { margin: 0; flex: 1 1 18rem; }
+@media (max-width: 40rem) { dl.lexicon dt { flex-basis: 100%; } }
+sup.refs { font-size: 0.72em; margin-left: 0.25em; }
+sup.refs a { display: inline-block; padding: 0 0.3em; text-decoration: none; color: var(--accent); font-weight: 600; }
+sup.refs a:hover { text-decoration: underline; }

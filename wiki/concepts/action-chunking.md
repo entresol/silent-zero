@@ -2,6 +2,7 @@
 type: concept
 status: reviewed
 sources: [2025-black-real-time-execution]
+glossary: Action chunking
 updated: 2026-10-29
 ---
 

@@ -2,6 +2,7 @@
 type: system
 status: reviewed
 sources: [2026-google-opentitan-shipping-production, nd-caliptra]
+glossary: OpenTitan
 updated: 2026-10-30
 ---
 

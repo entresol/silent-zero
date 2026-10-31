@@ -80,7 +80,7 @@ jobs:
         env:
           SAME_REPO: ${{ github.event.pull_request.head.repo.full_name == github.repository }}
         run: |
-          git add -A index.html wiki versions silent-zero.pdf zos-zero-os.pdf
+          git add -A index.html wiki lexicon versions silent-zero.pdf zos-zero-os.pdf
           if git diff --cached --quiet; then echo "page is up to date"; exit 0; fi
           git diff --cached --stat
           if [ "$SAME_REPO" != "true" ]; then

@@ -2,6 +2,7 @@
 type: system
 status: reviewed
 sources: [2026-trustworthy-lionsos, 2026-heiser-mcs-safety-os, 2022-parker-sel4-device-driver, 2026-tyler-smt-based-deductive]
+glossary: LionsOS
 updated: 2026-10-29
 ---
 

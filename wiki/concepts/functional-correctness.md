@@ -2,6 +2,7 @@
 type: concept
 status: reviewed
 sources: [2009-klein-sel4-formal-verification, 2018-klein-formally-verified-software, nd-sel4-verified-configurations, 2026-sel4-functional-correctness-proof]
+glossary: Functional correctness
 updated: 2026-10-29
 ---
 

@@ -2,6 +2,7 @@
 type: system
 status: reviewed
 sources: [nd-raspberrypi-boot, nd-sel4-verified-configurations, nd-sel4-microkit-user-manual, 2026-bower-cohesix-research-operating]
+short: Single-board computers; pib runs on one
 updated: 2026-10-31
 ---
 

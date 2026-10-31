@@ -2,6 +2,7 @@
 type: concept
 status: reviewed
 sources: [2025-nesti-use-simplex-architecture]
+glossary: Simplex architecture
 updated: 2026-10-29
 ---
 

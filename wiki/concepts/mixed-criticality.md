@@ -2,6 +2,7 @@
 type: concept
 status: reviewed
 sources: [2026-heiser-mcs-safety-os, 2026-trustworthy-guaranteeing-timeliness-mcs, 2026-sel4-functional-correctness-proof]
+glossary: Mixed criticality (MCS)
 updated: 2026-10-29
 ---
 

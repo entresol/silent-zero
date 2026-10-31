@@ -2,6 +2,7 @@
 type: concept
 status: reviewed
 sources: [2011-waterman-risc-v-instruction, 2014-asanovic-instruction-sets-free, 2024-riscv-unprivileged-isa-manual, 2024-riscv-privileged-isa-manual, nd-riscv-international-about, nd-sifive-risc-v-history, 2026-sel4-release-17, nd-opensbi, nd-sel4-supported-platforms, nd-sifive-hifive-unleashed, 2024-sifive-hifive-premier-p550]
+glossary: RISC-V and CVA6
 updated: 2026-10-31
 ---
 
