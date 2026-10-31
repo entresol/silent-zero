@@ -61,3 +61,7 @@ Added the project's boot video (seL4 16.0.0 release kernel to user space on RISC
 ## [2026-10-30] update | bootloader
 
 The boot video now shows the official seL4 16.0.0 kernel built with the preset `RISCV64_MCS_verified`, rebuildable from `loader/sel4-demo/`. [[bootloader]] says so, and that the proofs cover the C code, not the binary, the emulated hardware or the boot chain before the kernel.
+
+## [2026-10-31] rule | the daily run merges its own wiki pull request
+
+The team decided that the daily run's pages go live without waiting for a person, once every page is `reviewed`, no open question concerns a wiki page and the build has run. It merges with squash; `wiki/.cache/` is now ignored, after a run had committed extracted source texts.
