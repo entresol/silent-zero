@@ -311,7 +311,7 @@ ul.linked-from .kind { color: var(--muted); font-size: 0.85rem; margin-left: 0.4
     <div class="titleblock">
       <h1 class="name">Raspberry Pi</h1>
       <p class="sub">the pib’s board: closed ROM and EEPROM boot, secure-boot key in OTP on the Pi 4, seL4 verified without MCS.</p>
-      <p class="ver">System · <a href="/wiki/#how">LLM reviewed</a> · updated 30 Oct 2026 · 3 sources</p>
+      <p class="ver">System · <a href="/wiki/#how">LLM reviewed</a> · updated 31 Oct 2026 · 4 sources</p>
     </div>
   </div>
 </header>
@@ -323,7 +323,7 @@ ul.linked-from .kind { color: var(--muted); font-size: 0.85rem; margin-left: 0.4
 <h2 id="boot-october-2026">Boot, October 2026</h2>
 <p>Since the Pi 4, a ROM runs a second-stage bootloader from SPI EEPROM, which loads firmware from SD card, USB, network or NVMe. On the Pi 4 that firmware includes the GPU firmware file <code>start4.elf</code>; on the Pi 5 the bootloader embeds it and loads the kernel itself. A <code>recovery.bin</code> on the SD card replaces the EEPROM bootloader unless OTP settings forbid it, and self-update applies new images from the boot file system; the files that accompany them carry SHA-256 checksums, not signatures. The EEPROMs can be write-protected in hardware. For non-BCM2712 devices, the Pi 4 among them, OTP holds the hash of a secure-boot public key; for the Pi 5 the public OTP list shows no such rows (<a href="/wiki/sources/nd-raspberrypi-boot.html">Raspberry Pi documentation: boot</a>).</p>
 <h2 id="sel4-and-microkit">seL4 and Microkit</h2>
-<p>The Pi 4B and 5B are verified AArch64 platforms for seL4, without MCS (<a href="/wiki/sources/nd-sel4-verified-configurations.html">seL4 Foundation: Verified Configurations</a>). Microkit supports the Pi 4B in four memory sizes, booted through U-Boot (<a href="/wiki/sources/nd-sel4-microkit-user-manual.html">seL4 Microkit: User Manual, v2.3.0</a>); since Microkit always uses MCS, a Microkit system on the Pi runs on an unverified kernel configuration today (see <a href="/wiki/design/kernel.html">The kernel</a>).</p>
+<p>The Pi 4B and 5B are verified AArch64 platforms for seL4, without MCS (<a href="/wiki/sources/nd-sel4-verified-configurations.html">seL4 Foundation: Verified Configurations</a>). Microkit supports the Pi 4B in four memory sizes, booted through U-Boot (<a href="/wiki/sources/nd-sel4-microkit-user-manual.html">seL4 Microkit: User Manual, v2.3.0</a>); since Microkit always uses MCS, a Microkit system on the Pi runs on an unverified kernel configuration today (see <a href="/wiki/design/kernel.html">The kernel</a>). Cohesix names the Pi 4 as a target for its seL4-based control layer (<a href="/wiki/systems/cohesix.html">Cohesix</a>).</p>
 <h2 id="licence-and-code">Licence and code</h2>
 <p>The ROM, EEPROM bootloader and GPU firmware are closed; our reading from <a href="/wiki/sources/nd-raspberrypi-boot.html">Raspberry Pi documentation: boot</a>, which documents their behaviour but not their source.</p>
 <h2 id="open-questions">Open questions</h2>
@@ -335,10 +335,10 @@ ul.linked-from .kind { color: var(--muted); font-size: 0.85rem; margin-left: 0.4
 
 <h2 id="page-sources">Sources</h2>
 <p class="links-note">What this page rests on.</p>
-<ul class="linked-from"><li><a href="/wiki/sources/nd-raspberrypi-boot.html">Raspberry Pi documentation: boot</a></li><li><a href="/wiki/sources/nd-sel4-verified-configurations.html">seL4 Foundation: Verified Configurations</a></li><li><a href="/wiki/sources/nd-sel4-microkit-user-manual.html">seL4 Microkit: User Manual, v2.3.0</a></li></ul>
+<ul class="linked-from"><li><a href="/wiki/sources/2026-bower-cohesix-research-operating.html">Cohesix, a research operating system for edge AI</a> <span class="kind">Bower 2026</span></li><li><a href="/wiki/sources/nd-raspberrypi-boot.html">Raspberry Pi documentation: boot</a></li><li><a href="/wiki/sources/nd-sel4-verified-configurations.html">seL4 Foundation: Verified Configurations</a></li><li><a href="/wiki/sources/nd-sel4-microkit-user-manual.html">seL4 Microkit: User Manual, v2.3.0</a></li></ul>
 <h2 id="related-pages">Related pages</h2>
 <p class="links-note">Pages this one links to, and pages that link here.</p>
-<ul class="linked-from"><li><a href="/wiki/design/kernel.html">The kernel</a> <span class="kind">Design</span></li></ul>
+<ul class="linked-from"><li><a href="/wiki/design/kernel.html">The kernel</a> <span class="kind">Design</span></li><li><a href="/wiki/systems/cohesix.html">Cohesix</a> <span class="kind">System</span></li></ul>
   </article>
 </div>
 <footer><div><span class="about"><span>Silent Zero OS</span><span class="sep"> · </span><span>Wiki</span><span class="sep"> · </span><span>Text <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></span></span><span class="links"><a href="/">Paper</a> <a href="https://github.com/entresol/silent-zero/tree/main/wiki">GitHub</a> <a href="https://unwritten.studio/impressum">Imprint</a></span></div></footer>

@@ -58,9 +58,9 @@ One group per part of the zOS design. These sources carry what the paper claims 
 Work that extends the design, competes with it or attacks its assumptions: other agent operating systems, prompt injection and MCP, AI-generated proofs, CHERI, verified drivers, real-time policies and safety filters, hardened Linux. The order within this ring is still rough.
 
 - [ ] 2023-amar-cheriot-complete-memory
-- [ ] 2026-anthropic-project-glasswing-securing
-- [ ] 2026-anthropic-project-glasswing-initial
-- [ ] 2026-bower-cohesix-research-operating
+- [x] 2026-anthropic-project-glasswing-securing
+- [x] 2026-anthropic-project-glasswing-initial
+- [x] 2026-bower-cohesix-research-operating
 - [ ] 2025-cnx-nuvoton-introduces-first
 - [ ] 2025-costa-securing-ai-agents
 - [ ] 2025-darpa-ai-cyber-challenge
