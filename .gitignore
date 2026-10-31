@@ -1,2 +1,3 @@
 .DS_Store
 wiki/.cache/
+__pycache__/
