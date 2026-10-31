@@ -9,3 +9,5 @@ sha256_tables.h
 test_sha
 /bad-*.png
 !/bad-payload.png
+hifive/
+recording-tampered/tampered.zimg

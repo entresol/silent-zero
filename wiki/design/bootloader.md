@@ -2,12 +2,12 @@
 type: design
 status: reviewed
 sources: [nd-coreboot-architecture, nd-coreboot-vboot, nd-chromeos-verified-boot, nd-uboot-verified-boot, nd-raspberrypi-boot, nd-tfa-firmware-design, nd-opensbi, nd-sel4-x64-platform, nd-sel4-microkit-user-manual, nd-sel4-verified-configurations, 2018-cook-model-checking-boot, 2020-straznickas-verified-first-stage, 2021-tao-dice-formally-verified]
-updated: 2026-10-30
+updated: 2026-10-31
 ---
 
 # The bootloader
 
-In zOS the bootloader "checks one signed, static system image and starts it, or stops. There is no menu, no configuration and no fallback, and nothing of it stays resident." It draws the first screen, showing only compiled-in text and what it has measured itself, and marks as assumed what it cannot check, itself included. It belongs to the trusted base as *assumed*. A first prototype for RISC-V checks a hash rather than a signature and is just under 9 KB, about two thirds of it the renderer and its font data (paper, Section 3).
+In zOS the bootloader "checks one signed, static system image and starts it, or stops. There is no menu, no configuration and no fallback, and nothing of it stays resident." It draws the first screen, showing only compiled-in text and what it has measured itself, and marks as assumed what it cannot check, itself included. It belongs to the trusted base as *assumed*. A first prototype for RISC-V checks a hash rather than a signature and is just under 8 KB, more than two thirds of it the renderer and its font data (paper, Section 3).
 
 ## What it must do
 
@@ -35,8 +35,11 @@ In zOS the bootloader "checks one signed, static system image and starts it, or 
 | Kernel boot inside seL4's proofs | outside every verified configuration | assumed | [[nd-sel4-verified-configurations]] |
 | The zOS loader | prototype for RISC-V, hash only | assumed | paper, Section 3 |
 | The official seL4 16.0.0 kernel, built with the unmodified preset `RISCV64_MCS_verified`, booting to user space on RISC-V | demonstrated in QEMU's model of the HiFive Unleashed: OpenSBI, then seL4's ELF loader, then the kernel and a root task that maps a UART through capabilities; one of five harts used; the build checks all 22 preset settings and the kernel's SHA-256 | test (a recorded serial console, rebuildable) | [the project's video](/assets/video/sel4-riscv-boot.mp4) and [its build](https://github.com/entresol/silent-zero/tree/main/loader/sel4-demo), 30 October 2026 |
+| The zOS loader in front of that kernel | demonstrated in the same QEMU model: OpenSBI, then the zOS loader, which hashes the image holding seL4's ELF loader, kernel and root task, shows the result and starts it; the same image with one bit flipped is stopped before seL4's ELF loader; the model has no display, so the loader's pictures are copied out of guest memory | test (recorded serial console and pictures, rebuildable) | [the video](https://github.com/entresol/silent-zero/blob/main/loader/recording/loader-sel4-boot.mp4) and [the loader](https://github.com/entresol/silent-zero/tree/main/loader), 31 October 2026 |
 
 Our reading: the video shows seL4's own boot chain, not the zOS loader. The kernel is built with the preset seL4 16.0.0 provides for its MCS verification on this platform, `hifive` ([configuration files](https://github.com/seL4/seL4/tree/16.0.0/configs)). So the video shows that kernel booting. It does not show a proof of the binary: the proofs are about the C code, and the compiler is trusted. QEMU stands in for the hardware, and firmware and ELF loader lie outside every proof.
+
+Our reading of the second video: the zOS loader now sits where the paper puts it, between the firmware and the kernel, and the check works on the real kernel image, not on a stand-in. It is still a hash stored next to the image, so it catches accidents, not someone who can rewrite both; the signature is the next step. The loader itself, OpenSBI and seL4's ELF loader remain assumed. Built with GCC 15.2 the loader is 7,211 bytes for this model and 7,687 bytes for QEMU's `virt` machine, between seven tenths and three quarters of it the renderer and its font data ([loader README](https://github.com/entresol/silent-zero/tree/main/loader#size)).
 
 ## The paper and its sources
 

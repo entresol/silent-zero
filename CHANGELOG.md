@@ -4,6 +4,18 @@ What changed in substance, newest first: in the paper, on its page and in the pr
 
 Format: `## <version> · <scope>`, then one paragraph. A paper version is `YYYY-MM-DD-vX.Y` and has its own PDF in `versions/`; the newest one is the version the build prints on the paper and the page. A change without a new paper version carries only its date (`YYYY-MM-DD`). Scope is `Paper`, `Site` or `Project`. The build turns this file into the list at the end of the page.
 
+## 2026-10-31-v0.17 · Paper
+
+Section 3 gives the loader's current size: just under 8 KB instead of just under 9 KB, more than two thirds of it the renderer and its font data. The boot screen now draws the project's mark instead of setting a large wordmark in a font of its own; the figures are measured with GCC 15.2, 7,687 bytes for QEMU's `virt` machine and 7,211 bytes for its HiFive model.
+
+## 2026-10-31 · Site
+
+The header's First light line now links the video of the loader starting the official seL4 kernel: the image checks out and seL4 runs to user space, then the same image with one bit flipped is stopped (24 seconds). The source code is linked behind it. The separate line for the earlier video of seL4's own boot chain is gone; the wiki's bootloader page still lists that video.
+
+## 2026-10-31 · Project
+
+The zOS loader now boots the official seL4 kernel. On QEMU's model of the HiFive Unleashed, the platform of seL4's verified MCS configuration, the chain runs OpenSBI, the loader, its hash check, seL4's ELF loader, the kernel and a root task; the same image with one bit flipped is stopped before seL4's ELF loader. The model has no display, so the loader draws into memory and a recorder copies each picture out; `loader/recording/` holds a video of both runs. The boot screen shows the project's mark, a bar and a ring, in place of the large "zOS"; the title bar keeps "zOS". Drawing the mark instead of setting it in Inter Thin makes the renderer 745 bytes smaller. `assets/brand/` holds the round group icon and the brand sheet.
+
 ## 2026-10-30 · Project
 
 The boot video can be rebuilt. `loader/sel4-demo/` fetches the official seL4 16.0.0 sources at fixed commits, builds the kernel with the unmodified preset `RISCV64_MCS_verified`, checks all 22 settings and the kernel's hash, boots it in QEMU and records the serial console. The video on the page is now this build: 58,300 bytes instead of the earlier build without MCS. The wiki's bootloader page says what it shows and what it does not.

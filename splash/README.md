@@ -1,13 +1,13 @@
 # zOS boot splash (prototype)
 
-The first screen after power-on: a grey panel in four shades, bevelled edges, crisp grey-scale type, and the boot report of what was loaded and what we know about each part.
+The first screen after power-on: a grey panel in four shades, bevelled edges, the mark (a bar and a ring, as in the project's icon), crisp grey-scale type, and the boot report of what was loaded and what we know about each part.
 
 ![boot splash, final frame](preview.png)
 
-Freestanding C: no libc, no heap, no floating point. `zos_splash(fb, w, h, step)` draws one boot step of the demonstration report into a framebuffer of one byte per pixel holding a shade 0..3. The loader (`../loader`) instead draws the frame once and fills the report with what it has measured: `zos_splash_frame`, `zos_splash_row`, `zos_splash_progress`, `zos_splash_footer`. Size of `splash.c` including its glyphs (`clang -Os -ffreestanding`, text + data of the object file): 6,436 bytes for RISC-V (rv64gc), 8,696 bytes for AArch64. The growth from 5,172 and 8,460 is the glyph set for the loader's texts (hex digits and the hash and header verdicts); the drawing code itself did not grow.
+Freestanding C: no libc, no heap, no floating point. `zos_splash(fb, w, h, step)` draws one boot step of the demonstration report into a framebuffer of one byte per pixel holding a shade 0..3. The loader (`../loader`) instead draws the frame once and fills the report with what it has measured: `zos_splash_frame`, `zos_splash_row`, `zos_splash_progress`, `zos_splash_footer`. Size of `splash.c` including its glyphs (text + data of the object file, `-Os -ffreestanding`, rv64imac): 5,464 bytes with GCC 15.2, 6,209 before the mark replaced the "zOS" wordmark set in Inter Thin. The earlier clang figures (6,436 bytes for rv64gc, 8,696 for AArch64, with the wordmark) have not been measured again.
 
-- `gen_glyphs.py` rasterises the needed glyphs into 2-bit coverage, run-length coded, as `glyphs.h`. The typography is the site's: Inter only as Thin and only large (the wordmark), Nunito Sans for everything else. Both are licensed under the SIL Open Font License 1.1 (`../assets/fonts/`).
-- `splash.c` draws panel, bevels, type and the boot report.
+- `gen_glyphs.py` rasterises the needed glyphs into 2-bit coverage, run-length coded, as `glyphs.h`. The typography is the site's Nunito Sans, licensed under the SIL Open Font License 1.1 (`../assets/fonts/`). The mark is drawn by `splash.c` with integer arithmetic, four by four samples per pixel; the title bar keeps "zOS".
+- `splash.c` draws panel, bevels, the mark, type and the boot report.
 - `harness.c` renders every boot step to PGM files on an ordinary computer.
 
 Build and render on a normal host:

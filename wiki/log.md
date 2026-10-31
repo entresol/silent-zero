@@ -69,3 +69,7 @@ Daily run, backlog of ring 2. Created: three source pages, [[ai-vulnerability-di
 ## [2026-10-31] rule | the daily run merges its own wiki pull request
 
 The team decided that the daily run's pages go live without waiting for a person, once every page is `reviewed`, no open question concerns a wiki page and the build has run. It merges with squash; `wiki/.cache/` is now ignored, after a run had committed extracted source texts.
+
+## [2026-10-31] update | bootloader
+
+[[bootloader]] lists the zOS loader in front of the official seL4 kernel on QEMU's HiFive model: good image to user space, one flipped bit stopped before seL4's ELF loader, with a video of both runs. The reading says what the hash check does not cover and gives the loader's current size.

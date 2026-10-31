@@ -202,7 +202,6 @@ footer .links { display: flex; gap: 1.4rem; }
 
 /* status line under the title block */
 .hero .status { max-width: var(--measure); margin: 1.6rem 0 0; color: var(--ink); }
-.hero .status + .status { margin-top: 0.6rem; }
 .hero .status a { hyphens: manual; }   /* no "Is-sues" in German */
 
 /* wide figures extend only to the right while the contents column is visible */
@@ -312,7 +311,7 @@ ul.linked-from .kind { color: var(--muted); font-size: 0.85rem; margin-left: 0.4
     <div class="titleblock">
       <h1 class="name">The bootloader</h1>
       <p class="sub">where the Silent Zero loader sits on each platform, signed and measured boot, proofs about boot code so far; the loader itself unproven.</p>
-      <p class="ver">Design · <a href="/wiki/#how">LLM reviewed</a> · updated 30 Oct 2026 · 13 sources</p>
+      <p class="ver">Design · <a href="/wiki/#how">LLM reviewed</a> · updated 31 Oct 2026 · 13 sources</p>
     </div>
   </div>
 </header>
@@ -320,7 +319,7 @@ ul.linked-from .kind { color: var(--muted); font-size: 0.85rem; margin-left: 0.4
 <div class="layout">
   <nav class="toc" id="toc" aria-label="Contents"><p>Contents</p><ol><li class="toc-back"><a href="/">← The paper</a></li><li class="toc-back"><a href="/wiki/">← Wiki index</a></li><li><a href="#top">↑ Top</a></li><li><a href="#what-it-must-do">What it must do</a></li><li><a href="#where-it-sits">Where it sits</a></li><li><a href="#what-exists-and-what-kind-of-evidence-it-is">What exists, and what kind of evidence it is</a></li><li><a href="#the-paper-and-its-sources">The paper and its sources</a></li><li><a href="#open">Open</a></li><li><a href="#page-sources">Sources</a></li><li><a href="#related-pages">Related pages</a></li></ol></nav>
   <article>
-<p>In Silent Zero the bootloader “checks one signed, static system image and starts it, or stops. There is no menu, no configuration and no fallback, and nothing of it stays resident.” It draws the first screen, showing only compiled-in text and what it has measured itself, and marks as assumed what it cannot check, itself included. It belongs to the trusted base as <em>assumed</em>. A first prototype for RISC-V checks a hash rather than a signature and is just under 9 KB, about two thirds of it the renderer and its font data (paper, Section 3).</p>
+<p>In Silent Zero the bootloader “checks one signed, static system image and starts it, or stops. There is no menu, no configuration and no fallback, and nothing of it stays resident.” It draws the first screen, showing only compiled-in text and what it has measured itself, and marks as assumed what it cannot check, itself included. It belongs to the trusted base as <em>assumed</em>. A first prototype for RISC-V checks a hash rather than a signature and is just under 8 KB, more than two thirds of it the renderer and its font data (paper, Section 3).</p>
 <h2 id="what-it-must-do">What it must do</h2>
 <ul>
 <li>Accept only an image signed with a key the attacker cannot change.</li>
@@ -429,9 +428,16 @@ ul.linked-from .kind { color: var(--muted); font-size: 0.85rem; margin-left: 0.4
 <td data-label="Evidence">test (a recorded serial console, rebuildable)</td>
 <td data-label="Source"><a href="/assets/video/sel4-riscv-boot.mp4">the project’s video</a> and <a href="https://github.com/entresol/silent-zero/tree/main/loader/sel4-demo" rel="noopener" target="_blank">its build</a>, 30 October 2026</td>
 </tr>
+<tr>
+<td data-label="Claim">The Silent Zero loader in front of that kernel</td>
+<td data-label="State in the paper’s terms">demonstrated in the same QEMU model: OpenSBI, then the Silent Zero loader, which hashes the image holding seL4’s ELF loader, kernel and root task, shows the result and starts it; the same image with one bit flipped is stopped before seL4’s ELF loader; the model has no display, so the loader’s pictures are copied out of guest memory</td>
+<td data-label="Evidence">test (recorded serial console and pictures, rebuildable)</td>
+<td data-label="Source"><a href="https://github.com/entresol/silent-zero/blob/main/loader/recording/loader-sel4-boot.mp4" rel="noopener" target="_blank">the video</a> and <a href="https://github.com/entresol/silent-zero/tree/main/loader" rel="noopener" target="_blank">the loader</a>, 31 October 2026</td>
+</tr>
 </tbody>
 </table></div>
 <p>Our reading: the video shows seL4’s own boot chain, not the Silent Zero loader. The kernel is built with the preset seL4 16.0.0 provides for its MCS verification on this platform, <code>hifive</code> (<a href="https://github.com/seL4/seL4/tree/16.0.0/configs" rel="noopener" target="_blank">configuration files</a>). So the video shows that kernel booting. It does not show a proof of the binary: the proofs are about the C code, and the compiler is trusted. QEMU stands in for the hardware, and firmware and ELF loader lie outside every proof.</p>
+<p>Our reading of the second video: the Silent Zero loader now sits where the paper puts it, between the firmware and the kernel, and the check works on the real kernel image, not on a stand-in. It is still a hash stored next to the image, so it catches accidents, not someone who can rewrite both; the signature is the next step. The loader itself, OpenSBI and seL4’s ELF loader remain assumed. Built with GCC 15.2 the loader is 7,211 bytes for this model and 7,687 bytes for QEMU’s <code>virt</code> machine, between seven tenths and three quarters of it the renderer and its font data (<a href="https://github.com/entresol/silent-zero/tree/main/loader#size" rel="noopener" target="_blank">loader README</a>).</p>
 <h2 id="the-paper-and-its-sources">The paper and its sources</h2>
 <ul>
 <li>Section 3’s “Boot code lies outside seL4’s verified configurations” is confirmed by <a href="/wiki/sources/nd-sel4-verified-configurations.html">seL4 Foundation: Verified Configurations</a>.</li>

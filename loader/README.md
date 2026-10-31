@@ -30,33 +30,51 @@ Hashing the header fields as well as the payload means length, version and entry
 ## Modules
 
 - `start.S`: entry, one hart, stack, clears `.bss`.
-- `loader.c`: serial output, the display (fw_cfg and the ram framebuffer), the checks, the jump. The display is the only platform-specific part: it obtains a framebuffer and converts the splash's four shades to its pixel format. Other platforms (a framebuffer from the device tree, UEFI, the Raspberry Pi's GPU firmware) add a module of their own behind the same two functions; the renderer does not change.
+- `loader.c`: serial output, the display (fw_cfg and the ram framebuffer; on the HiFive model memory only), the checks, the jump. The display is the only platform-specific part: it obtains a framebuffer and converts the splash's four shades to its pixel format. Other platforms (a framebuffer from the device tree, UEFI, the Raspberry Pi's GPU firmware) add a module of their own behind the same two functions; the renderer does not change.
 - `sha256.c`: SHA-256, incremental. The constants are computed by `gen_sha_tables.py` rather than typed, and the implementation is compared against Python's `hashlib` by `test_sha.c` for lengths around the block boundaries.
 - `../splash/splash.c`: the renderer.
 - `kernel_stub.c`, `kernel_start.S`, `kernel.ld`: a stand-in kernel that prints one line and stops QEMU, to prove that control was handed over.
 - `mkimage.py`: wraps a flat binary in the header.
 
-## The seL4 boot demo
+## In front of seL4, on the HiFive Unleashed model
 
-`sel4-demo/` boots the official seL4 kernel in its verified MCS configuration through seL4's own boot chain, in QEMU, and records it. It is the other half of what this loader is for; the next step puts the loader in front of it.
+`sel4-demo/` builds the official seL4 16.0.0 kernel in its verified MCS configuration, `RISCV64_MCS_verified`, whose platform is the HiFive Unleashed. `make hifive` builds this loader for QEMU's model of that board (`-DPLAT_HIFIVE`) and wraps seL4's ELF loader, with the kernel and the demo's root task inside it, as a zOS image. The chain is then: OpenSBI in machine mode, this loader in supervisor mode at `0x80200000`, the hash check, seL4's ELF loader at `0x82000000`, the kernel, the root task.
+
+![the loader in front of seL4: good image, then one bit flipped](recording/still-good.png)
+
+What is different on this machine:
+
+- **No display.** QEMU's `sifive_u` has no display device; `ramfb`, `virtio-gpu` and `bochs-display` are all refused. The loader draws into memory at `0x81000000` all the same. `record_hifive.py` stops QEMU through its debugger each time the loader has finished a picture (the empty function `zos_frame_shown`), copies the framebuffer out of guest memory and lets it go on. The pictures in `recording/` are those copies; on a board with a display they would be the screen.
+- **Five harts.** OpenSBI starts the loader on one hart; the loader does not park the others, because OpenSBI keeps them stopped until someone asks for them.
+- **The SiFive UART** at `0x10010000` instead of the 16550 of `virt`.
+
+`make test-hifive` boots the good image and the same image with one payload bit flipped and fails unless the good one reaches user space (five heartbeats from the root task) and the tampered one stops before seL4's ELF loader. `make video-hifive` renders both runs into `recording/loader-sel4-boot.mp4`: the serial console left, the loader's panel right, at the time they were recorded. QEMU stands still while a picture is copied, so those pauses are in the timing.
 
 ## Build and test
 
 ```
-make           # needs clang with the RISC-V target and ld.lld
-make test      # needs qemu-system-riscv64 and Pillow; writes a screenshot per case
-make test-sha  # our SHA-256 against Python's hashlib
+make              # needs clang with the RISC-V target and ld.lld
+make test         # needs qemu-system-riscv64 and Pillow; writes a screenshot per case
+make test-sha     # our SHA-256 against Python's hashlib
+make hifive       # needs the xPack RISC-V GCC (riscv-none-elf-) and sel4-demo/build.sh run first
+make test-hifive  # also needs riscv-none-elf-gdb; records recording/ and recording-tampered/
+make video-hifive # needs ffmpeg and the macOS fonts Menlo and SF
 ```
+
+With GCC instead of clang, `make CC="riscv-none-elf-gcc -march=rv64imac_zicsr_zifencei -mabi=lp64 -mcmodel=medany" LD="riscv-none-elf-ld -m elf64lriscv --gc-sections -nostdlib"` builds the same objects; the link for `virt` then also needs `libgcc.a` (the byte swaps of fw_cfg).
 
 `make test` boots the loader in QEMU's `virt` machine with a ram framebuffer, once with the good image and five times with a flipped bit (payload, stored hash, entry point, length, magic). For each run it reads the serial verdict, takes a screenshot through the QEMU monitor and checks that the screenshot holds exactly the four grey shades. The good image must reach the kernel stub; every other image must not. Disabling the hash comparison in `loader.c` turns the four hash cases red, so the test can fail.
 
 ## Size
 
-`clang -Os`, `rv64imac`, text + data. Whole loader: 8,896 bytes.
+Text + data, `-Os`, `rv64imac`. The large wordmark is now drawn (bar and ring) instead of set as "zOS" in Inter Thin, which takes 745 bytes off the renderer (6,209 before, with GCC). Measured with GCC 15.2 (xPack); the earlier clang figure, 8,896 bytes for `virt`, has not been measured again.
 
-| part | bytes |
-|---|---|
-| `start.S` | 52 |
-| `loader.c` (display, checks, jump) | 2,190 |
-| `sha256.c` including its constants | 1,000 |
-| `splash.c` including its glyphs | 6,435 |
+| part | `virt` | HiFive |
+|---|---|---|
+| `start.S` | 52 | 50 |
+| `loader.c` (display, checks, jump) | 1,841 | 1,481 |
+| `sha256.c` including its constants | 1,000 | 1,000 |
+| `splash.c` including its glyphs | 5,464 | 5,464 |
+| whole loader | 7,687 | 7,211 |
+
+For `virt` add the two byte-swap routines GCC takes from `libgcc.a`; they are in the whole-loader figure.

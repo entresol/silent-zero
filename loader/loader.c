@@ -1,6 +1,8 @@
 /* SPDX-License-Identifier: BSD-2-Clause */
 /*
- * zOS loader, prototype for the QEMU RISC-V "virt" machine.
+ * zOS loader, prototype for two QEMU RISC-V machines: "virt" (the default) and,
+ * built with -DPLAT_HIFIVE, the model of the HiFive Unleashed, the platform of
+ * seL4's verified RISC-V configurations.
  *
  * Shows the boot screen, checks the kernel image against the hash in its
  * header, shows the result, and starts the kernel only if the hash matches.
@@ -29,9 +31,17 @@ void zos_splash_row(uint8_t *px, int w, int h, int row, const char *left, const 
 void zos_splash_progress(uint8_t *px, int w, int h, int step, int total);
 void zos_splash_footer(uint8_t *px, int w, int h, const char *s);
 
+#ifdef PLAT_HIFIVE
+/* Runs in supervisor mode as OpenSBI's payload. The board has no display, and QEMU's model cannot be given one, so the
+ * loader draws into memory only; a recorder reads the picture there at every update (see zos_frame_shown). The image
+ * header sits 64 bytes before 0x82000000, so that a payload linked there, such as seL4's ELF loader, starts in place. */
+#define UART      0x10010000UL      /* SiFive UART: txdata +0, bit 31 = full */
+#define IMG_BASE  0x81ffffc0UL
+#else
 #define UART      0x10000000UL      /* ns16550a */
 #define FWCFG     0x10100000UL      /* QEMU fw_cfg: data +0, selector +8, DMA +16 */
 #define IMG_BASE  0x80400000UL      /* where QEMU puts the kernel image */
+#endif
 #define FB_ADDR   0x81000000UL      /* 32-bit pixels the display scans out */
 #define SHADE_BUF 0x81800000UL      /* one shade 0..3 per byte, what the splash draws into */
 #define MAX_PAYLOAD (8UL << 20)
@@ -42,14 +52,20 @@ struct zimg { uint32_t magic, version; uint64_t length, entry; uint8_t sha256[32
 
 /* ---- serial ---- */
 static void putc_(char c) {
+#ifdef PLAT_HIFIVE
+    while (*(volatile uint32_t *)UART & 0x80000000U) {}
+    *(volatile uint32_t *)UART = (uint8_t)c;
+#else
     while (!(*(volatile uint8_t *)(UART + 5) & 0x20)) {}
     *(volatile uint8_t *)UART = (uint8_t)c;
+#endif
 }
 static void puts_(const char *s) { for (; *s; s++) putc_(*s); }
 static void hex(const uint8_t *p, int n) {
     for (int i = 0; i < n; i++) { putc_("0123456789abcdef"[p[i] >> 4]); putc_("0123456789abcdef"[p[i] & 15]); }
 }
 
+#ifndef PLAT_HIFIVE
 /* ---- fw_cfg and the ram framebuffer ---- */
 static void fw_select(uint16_t sel) { *(volatile uint16_t *)(FWCFG + 8) = __builtin_bswap16(sel); }
 static uint8_t fw_byte(void) { return *(volatile uint8_t *)FWCFG; }
@@ -99,6 +115,10 @@ static int ramfb_init(void) {
     c.width = __builtin_bswap32(W); c.height = __builtin_bswap32(H); c.stride = __builtin_bswap32(W * 4);
     return fw_write(sel, &c, sizeof c);
 }
+#endif
+
+/* Called after every finished picture. It does nothing; a recorder sets a breakpoint here and reads FB_ADDR. */
+__attribute__((noinline)) void zos_frame_shown(void) { __asm__ volatile(""); }
 
 /* four shades to real pixels: the thin layer between the splash and the display */
 static void present(int have_display) {
@@ -107,6 +127,7 @@ static void present(int have_display) {
     const uint8_t *s = (const uint8_t *)SHADE_BUF;
     volatile uint32_t *d = (volatile uint32_t *)FB_ADDR;
     for (long i = 0; i < (long)W * H; i++) d[i] = pal[s[i] & 3];
+    zos_frame_shown();
 }
 
 static void halt(void) { for (;;) __asm__ volatile("wfi"); }
@@ -118,8 +139,13 @@ void loader_main(unsigned long hartid, unsigned long dtb) {
     char line[36];
 
     puts_("zOS loader\n");
+#ifdef PLAT_HIFIVE
+    int disp = 1;
+    puts_("display: memory only\n");
+#else
     int disp = ramfb_init();
     puts_(disp ? "display: ramfb\n" : "display: none\n");
+#endif
 
     zos_splash_frame(px, W, H);
     zos_splash_row(px, W, H, 0, "firmware \xb7 root of trust", "assumed", 0);

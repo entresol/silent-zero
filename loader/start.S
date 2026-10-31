@@ -1,9 +1,12 @@
 # SPDX-License-Identifier: BSD-2-Clause
-# Entry of the zOS loader on QEMU "virt" (-bios none): machine mode, a0 = hart id, a1 = device tree.
+# Entry of the zOS loader: a0 = hart id, a1 = device tree. On QEMU "virt" (-bios none) every hart starts here in
+# machine mode; behind OpenSBI (PLAT_HIFIVE) only the boot hart arrives, in supervisor mode, and its id need not be 0.
         .section .text.start
         .global _start
 _start:
+#ifndef PLAT_HIFIVE
         bnez    a0, park                # one hart runs the loader, the others wait
+#endif
         la      sp, _stack_top
         la      t0, _bss_start
         la      t1, _bss_end

@@ -169,7 +169,7 @@ pages = re.search(r"Pages:\s+(\d+)", pages).group(1)
 # the header in five languages; English is in the page, the script swaps in the others
 hero_src = json.loads((Path(__file__).resolve().parent / "hero.json").read_text(encoding="utf-8"))
 fill = {"version": CURRENT_VERSION, "pdf": pdf_name, "pages": pages, "refs": n_refs,
-        "loader": "https://github.com/entresol/silent-zero/tree/main/loader", "issues": "https://github.com/entresol/silent-zero/issues", "video": "assets/video/sel4-riscv-boot.mp4"}
+        "loader": "https://github.com/entresol/silent-zero/tree/main/loader", "issues": "https://github.com/entresol/silent-zero/issues", "video": "assets/video/loader-sel4-boot.mp4"}
 hero = {l: {k: v.format_map(fill) for k, v in t.items()} for l, t in hero_src.items() if not l.startswith("_")}
 en = hero["en"]
 langs = "".join(f'<button type="button" lang="{l}" aria-pressed="{str(l == "en").lower()}">{t["label"]}</button>' for l, t in hero.items())
@@ -215,7 +215,6 @@ page = f"""<!doctype html>
       <p class="ver" data-t="ver">{en["ver"]}</p>
     </div>
     <p class="status" data-t="status">{en["status"]}</p>
-    <p class="status" data-t="video">{en["video"]}</p>
     <div class="actions">
       <a class="btn" href="silent-zero.pdf" download="silent-zero.pdf" data-t="btn">{en["btn"]}</a>
       <span class="meta" data-t="meta">{en["meta"]}</span>
