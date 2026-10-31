@@ -338,19 +338,21 @@ sup.refs a:hover { text-decoration: underline; }
     <div class="titleblock">
       <h1 class="name">Action chunking</h1>
       <p class="sub">slow robot models emitting action sequences for a fast loop; no bound on delay.</p>
-      <p class="ver">Concept · <a href="/wiki/#how">LLM reviewed</a> · updated 29 Oct 2026 · 1 source</p>
+      <p class="ver">Concept · <a href="/wiki/#how">LLM reviewed</a> · updated 31 Oct 2026 · 2 sources</p>
     </div>
   </div>
 </header>
 <button class="menu" type="button" aria-controls="toc" aria-expanded="false" aria-label="Contents" hidden><span></span></button>
 <div class="layout">
-  <nav class="toc" id="toc" aria-label="Contents"><p>Contents</p><ol><li class="toc-back"><a href="/">← The paper</a></li><li class="toc-back"><a href="/wiki/">← Wiki index</a></li><li><a href="#top">↑ Top</a></li><li><a href="#state-october-2026">State, October 2026</a></li><li><a href="#what-it-does-not-do">What it does not do</a></li><li><a href="#open-questions">Open questions</a></li><li><a href="#page-sources">Sources</a></li><li><a href="#related-pages">Related pages</a></li></ol></nav>
+  <nav class="toc" id="toc" aria-label="Contents"><p>Contents</p><ol><li class="toc-back"><a href="/">← The paper</a></li><li class="toc-back"><a href="/wiki/">← Wiki index</a></li><li><a href="#top">↑ Top</a></li><li><a href="#state-october-2026">State, October 2026</a></li><li><a href="#what-it-does-not-do">What it does not do</a></li><li><a href="#above-the-chunks">Above the chunks</a></li><li><a href="#open-questions">Open questions</a></li><li><a href="#page-sources">Sources</a></li><li><a href="#related-pages">Related pages</a></li></ol></nav>
   <article>
 <p>A learned robot policy emits a sequence of future actions for each call, a <em>chunk</em>, and the robot executes several of them before the next call. This keeps motion consistent over time, but it costs reactivity, and switching between chunks can cause pauses or jumps; on its own it “does not fully address the latency problem” (<a href="/wiki/sources/2025-black-real-time-execution.html">Real-Time Execution of Action Chunking Flow Policies</a>, abstract, §1, §2).</p>
 <h2 id="state-october-2026">State, October 2026</h2>
 <p>Real-time chunking (RTC) computes the next chunk while the current one runs and makes it consistent with the actions that will execute in the meantime. With π0.5 at 50 Hz and model latencies around 100 ms, it held task throughput under up to 200 ms of extra delay, where synchronous chunking degraded (<a href="/wiki/sources/2025-black-real-time-execution.html">Real-Time Execution of Action Chunking Flow Policies</a>).</p>
 <h2 id="what-it-does-not-do">What it does not do</h2>
 <p>It does not bound the delay. The scheme works while the inference delay stays within the chunk’s slack, estimated from past delays. Such policies are often used above a faster loop that turns their actions into motor signals (<a href="/wiki/sources/2025-black-real-time-execution.html">Real-Time Execution of Action Chunking Flow Policies</a>, Algorithm 1, §5).</p>
+<h2 id="above-the-chunks">Above the chunks</h2>
+<p>A reasoning model can sit above the action model and call it as a tool; in Google’s Gemini Robotics-ER 1.5 that model’s thinking budget trades latency against accuracy (<a href="/wiki/sources/2025-google-building-next-generation.html">Gemini Robotics-ER 1.5</a>).</p>
 <h2 id="open-questions">Open questions</h2>
 <ul>
 <li>What the lower loop must do when a chunk arrives late or not at all. See <a href="/wiki/design/real-time-loops.html">Real-time loops</a>.</li>
@@ -358,7 +360,7 @@ sup.refs a:hover { text-decoration: underline; }
 
 <h2 id="page-sources">Sources</h2>
 <p class="links-note">What this page rests on.</p>
-<ul class="linked-from"><li><a href="/wiki/sources/2025-black-real-time-execution.html">Real-Time Execution of Action Chunking Flow Policies</a> <span class="kind">Black, Galliker and Levine 2025</span></li></ul>
+<ul class="linked-from"><li><a href="/wiki/sources/2025-google-building-next-generation.html">Gemini Robotics-ER 1.5</a> <span class="kind">Google 2025</span></li><li><a href="/wiki/sources/2025-black-real-time-execution.html">Real-Time Execution of Action Chunking Flow Policies</a> <span class="kind">Black, Galliker and Levine 2025</span></li></ul>
 <h2 id="related-pages">Related pages</h2>
 <p class="links-note">Pages this one links to, and pages that link here.</p>
 <ul class="linked-from"><li><a href="/wiki/design/real-time-loops.html">Real-time loops</a> <span class="kind">Design</span></li></ul>
