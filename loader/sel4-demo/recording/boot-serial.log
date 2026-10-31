@@ -35,7 +35,7 @@ Standard SBI Extensions     : time,rfnc,ipi,base,hsm,srst,pmu,dbcn,fwft,legacy,d
 Experimental SBI Extensions : none
 
 Domain0 Name                : root
-Domain0 Boot HART           : 2
+Domain0 Boot HART           : 1
 Domain0 HARTs               : 0*,1*,2*,3*,4*
 Domain0 Region00            : 0x0000000080040000-0x000000008005ffff M: (F,R,W) S/U: ()
 Domain0 Region01            : 0x0000000080000000-0x000000008003ffff M: (F,R,X) S/U: ()
@@ -49,7 +49,7 @@ Domain0 Next Mode           : S-mode
 Domain0 SysReset            : yes
 Domain0 SysSuspend          : yes
 
-Boot HART ID                : 2
+Boot HART ID                : 1
 Boot HART Domain            : root
 Boot HART Priv Version      : v1.10
 Boot HART Base ISA          : rv64imafdc
@@ -63,25 +63,25 @@ Boot HART MIDELEG           : 0x0000000000000222
 Boot HART MEDELEG           : 0x000000000004b109
 ELF-loader started on (HART 1) (NODES 1)
   paddr=[82000000..8201ffff]
-Looking for DTB in CPIO archive...found at 82015720.
-Loaded DTB from 82015720.
-   paddr=[80223000..80225fff]
+Looking for DTB in CPIO archive...found at 820157a0.
+Loaded DTB from 820157a0.
+   paddr=[80224000..80226fff]
 ELF-loading image 'kernel' to 80200000
-  paddr=[80200000..80222fff]
-  vaddr=[ffffffff80200000..ffffffff80222fff]
+  paddr=[80200000..80223fff]
+  vaddr=[ffffffff80200000..ffffffff80223fff]
   virt_entry=ffffffff80200000
-ELF-loading image 'rootserver' to 80226000
-  paddr=[80226000..8022afff]
+ELF-loading image 'rootserver' to 80227000
+  paddr=[80227000..8022bfff]
   vaddr=[10000..14fff]
   virt_entry=10000
 Enabling MMU and paging
 Jumping to kernel-image entry point...
 
 
-USERSPACE: Hello from seL4 16.0.0 on RISC-V 64!
+USERSPACE: Hello from seL4 17.0.0 on RISC-V 64!
 USERSPACE: Root task is running in U-mode.
 CAPABILITIES: UART frame and page tables created and mapped.
-KERNEL: official RISCV64_MCS_verified configuration, 58,300 bytes; no debug console.
+KERNEL: official RISCV64_MCS_verified configuration, 58,428 bytes; no debug console.
 BOOTINFO: CPUs exposed to seL4 = 1
 RUNNING: heartbeat 1/5 -- seL4_Yield returned
 RUNNING: heartbeat 2/5 -- seL4_Yield returned

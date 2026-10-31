@@ -1,5 +1,5 @@
 {
-  "_note": "The settings of seL4 16.0.0's configs/RISCV64_MCS_verified.cmake and configs/include/RISCV64_verified_include.cmake, and the kernel they produce with xPack RISC-V GCC 15.2.0-1.",
+  "_note": "The settings of seL4 17.0.0's configs/RISCV64_MCS_verified.cmake and configs/include/RISCV64_verified_include.cmake, and the kernel they produce with xPack RISC-V GCC 15.2.0-1.",
   "preset": {
     "KernelSel4Arch": "riscv64",
     "KernelPTLevels": "3",
@@ -24,6 +24,6 @@
     "KernelIsMCS": "ON",
     "KernelStaticMaxPeriodUs": "(60 * 60 * MS_IN_S * US_IN_MS)"
   },
-  "kernel_bytes": 58300,
-  "kernel_sha256": "c292bfbec43bcd451f5ac1a40830dc9626afa8a1f6b5f579c01ad0f7eed75ca6"
+  "kernel_bytes": 58428,
+  "kernel_sha256": "4cb459188ab9c1461533751a536c5d2cfe5ac3ac216217b5b2bf58fb904d5a52"
 }

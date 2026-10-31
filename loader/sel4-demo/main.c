@@ -101,10 +101,10 @@ int main(seL4_BootInfo *bi)
     uart = (volatile unsigned int *)uart_virt;
     uart[2] |= 1; /* Enable SiFive UART transmitter. */
     boot_stage = 3;
-    puts_uart("\nUSERSPACE: Hello from seL4 16.0.0 on RISC-V 64!\n");
+    puts_uart("\nUSERSPACE: Hello from seL4 17.0.0 on RISC-V 64!\n");
     puts_uart("USERSPACE: Root task is running in U-mode.\n");
     puts_uart("CAPABILITIES: UART frame and page tables created and mapped.\n");
-    puts_uart("KERNEL: official RISCV64_MCS_verified configuration, 58,300 bytes; no debug console.\n");
+    puts_uart("KERNEL: official RISCV64_MCS_verified configuration, 58,428 bytes; no debug console.\n");
     puts_uart("BOOTINFO: CPUs exposed to seL4 = "); decimal(bi->numNodes); puts_uart("\n");
     for (int i = 1; i <= 5; i++) {
         seL4_Word start = ticks();
