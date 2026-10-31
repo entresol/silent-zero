@@ -61,3 +61,7 @@ Added the project's boot video (seL4 16.0.0 release kernel to user space on RISC
 ## [2026-10-30] update | bootloader
 
 The boot video now shows the official seL4 16.0.0 kernel built with the preset `RISCV64_MCS_verified`, rebuildable from `loader/sel4-demo/`. [[bootloader]] says so, and that the proofs cover the C code, not the binary, the emulated hardware or the boot chain before the kernel.
+
+## [2026-10-31] ingest | 2026-anthropic-project-glasswing-securing, 2026-anthropic-project-glasswing-initial, 2026-bower-cohesix-research-operating
+
+Daily run, backlog of ring 2. Created: three source pages, [[ai-vulnerability-discovery]], [[cohesix]]. Changed: [[broker]] (Related), [[raspberry-pi]]. Cohesix was read from its landing page only (`partial`). 2023-amar-cheriot-complete-memory was skipped: the pool holds no text for it, only a landing-page link.
