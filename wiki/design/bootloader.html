@@ -312,7 +312,7 @@ ul.linked-from .kind { color: var(--muted); font-size: 0.85rem; margin-left: 0.4
     <div class="titleblock">
       <h1 class="name">The bootloader</h1>
       <p class="sub">where the Silent Zero loader sits on each platform, signed and measured boot, proofs about boot code so far; the loader itself unproven.</p>
-      <p class="ver">Design · <a href="/wiki/#how">LLM reviewed</a> · updated 30 Oct 2026 · 13 sources</p>
+      <p class="ver">Design · <a href="/wiki/#how">LLM reviewed</a> · updated 31 Oct 2026 · 13 sources</p>
     </div>
   </div>
 </header>
@@ -429,9 +429,16 @@ ul.linked-from .kind { color: var(--muted); font-size: 0.85rem; margin-left: 0.4
 <td data-label="Evidence">test (a recorded serial console, rebuildable)</td>
 <td data-label="Source"><a href="/assets/video/sel4-riscv-boot.mp4">the project’s video</a> and <a href="https://github.com/entresol/silent-zero/tree/main/loader/sel4-demo" rel="noopener" target="_blank">its build</a>, 30 October 2026</td>
 </tr>
+<tr>
+<td data-label="Claim">The Silent Zero loader in front of that kernel</td>
+<td data-label="State in the paper’s terms">demonstrated in the same QEMU model: OpenSBI, then the Silent Zero loader, which hashes the image holding seL4’s ELF loader, kernel and root task, shows the result and starts it; the same image with one bit flipped is stopped before seL4’s ELF loader; the model has no display, so the loader’s pictures are copied out of guest memory</td>
+<td data-label="Evidence">test (recorded serial console and pictures, rebuildable)</td>
+<td data-label="Source"><a href="https://github.com/entresol/silent-zero/blob/main/loader/recording/loader-sel4-boot.mp4" rel="noopener" target="_blank">the video</a> and <a href="https://github.com/entresol/silent-zero/tree/main/loader" rel="noopener" target="_blank">the loader</a>, 31 October 2026</td>
+</tr>
 </tbody>
 </table></div>
 <p>Our reading: the video shows seL4’s own boot chain, not the Silent Zero loader. The kernel is built with the preset seL4 16.0.0 provides for its MCS verification on this platform, <code>hifive</code> (<a href="https://github.com/seL4/seL4/tree/16.0.0/configs" rel="noopener" target="_blank">configuration files</a>). So the video shows that kernel booting. It does not show a proof of the binary: the proofs are about the C code, and the compiler is trusted. QEMU stands in for the hardware, and firmware and ELF loader lie outside every proof.</p>
+<p>Our reading of the second video: the Silent Zero loader now sits where the paper puts it, between the firmware and the kernel, and the check works on the real kernel image, not on a stand-in. It is still a hash stored next to the image, so it catches accidents, not someone who can rewrite both; the signature is the next step. The loader itself, OpenSBI and seL4’s ELF loader remain assumed. Built with GCC 15.2 the loader is 7,211 bytes for this model and 7,687 bytes for QEMU’s <code>virt</code> machine, between seven tenths and three quarters of it the renderer and its font data; the paper’s “just under 9 KB” was measured with clang before the drawn mark replaced the set wordmark (<a href="https://github.com/entresol/silent-zero/tree/main/loader#size" rel="noopener" target="_blank">loader README</a>).</p>
 <h2 id="the-paper-and-its-sources">The paper and its sources</h2>
 <ul>
 <li>Section 3’s “Boot code lies outside seL4’s verified configurations” is confirmed by <a href="/wiki/sources/nd-sel4-verified-configurations.html">seL4 Foundation: Verified Configurations</a>.</li>

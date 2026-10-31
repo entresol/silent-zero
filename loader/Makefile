@@ -31,6 +31,33 @@ kernel.bin: kernel.elf
 	llvm-objcopy -O binary $< $@
 kernel.zimg: kernel.bin mkimage.py
 	python3 -I mkimage.py kernel.bin $@
+# The HiFive Unleashed model, behind OpenSBI, starting seL4's ELF loader from sel4-demo/ (run its build.sh first).
+# Built with the xPack RISC-V GCC that sel4-demo needs anyway.
+HCC     := riscv-none-elf-gcc -march=rv64imac_zicsr_zifencei -mabi=lp64 -mcmodel=medany -DPLAT_HIFIVE
+HLD     := riscv-none-elf-ld -m elf64lriscv --gc-sections -nostdlib
+HOBJ    := hifive/start.o hifive/loader.o hifive/sha256.o hifive/splash.o
+SEL4_ELFLOADER := sel4-demo/build/elfloader/elfloader
+
+hifive: hifive/loader.elf hifive/sel4.zimg
+hifive/%.o: %.c sha256.h sha256_tables.h | hifive-dir
+	$(HCC) $(CFLAGS) -c $< -o $@
+hifive/splash.o: ../splash/splash.c ../splash/glyphs.h | hifive-dir
+	$(HCC) $(CFLAGS) -c $< -o $@
+hifive/start.o: start.S | hifive-dir
+	$(HCC) -c $< -o $@
+hifive/loader.elf: $(HOBJ) loader-hifive.ld
+	$(HLD) -T loader-hifive.ld -o $@ $(HOBJ)
+hifive/sel4.zimg: $(SEL4_ELFLOADER) mkimage.py | hifive-dir
+	riscv-none-elf-objcopy -O binary $< hifive/sel4.bin
+	python3 -I mkimage.py hifive/sel4.bin $@
+hifive-dir:
+	@mkdir -p hifive
+# Boots the good and a tampered image and records both (asserts on the outcome); then the video of both runs.
+test-hifive: hifive
+	python3 -I record_hifive.py && python3 -I record_hifive.py --tamper
+video-hifive:
+	python3 -I render_hifive.py
+
 test: all
 	python3 -I test.py
 
@@ -39,3 +66,4 @@ test-sha:
 
 clean:
 	rm -f *.o *.elf *.bin *.zimg *.ppm *.log *.sock test_sha sha256_tables.h bad-*.png
+	rm -rf hifive
