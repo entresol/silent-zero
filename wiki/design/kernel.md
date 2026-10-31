@@ -1,8 +1,8 @@
 ---
 type: design
 status: reviewed
-sources: [nd-sel4-microkit-user-manual, 2022-wistoff-systematic-prevention-core, 2026-trustworthy-where-are-we, 2009-klein-sel4-formal-verification, 2018-klein-formally-verified-software, nd-sel4-verified-configurations, 2026-sel4-functional-correctness-proof, 2026-heiser-mcs-safety-os, 2026-trustworthy-guaranteeing-timeliness-mcs, nd-trustworthy-wcet-worst-case, 2026-sillitoe-resurrecting-sel4-wcet]
-updated: 2026-10-29
+sources: [nd-sel4-microkit-user-manual, 2022-wistoff-systematic-prevention-core, 2026-trustworthy-where-are-we, 2009-klein-sel4-formal-verification, 2018-klein-formally-verified-software, nd-sel4-verified-configurations, 2026-sel4-functional-correctness-proof, 2026-heiser-mcs-safety-os, 2026-trustworthy-guaranteeing-timeliness-mcs, nd-trustworthy-wcet-worst-case, 2026-sillitoe-resurrecting-sel4-wcet, 2026-sel4-release-17]
+updated: 2026-10-31
 ---
 
 # The kernel
@@ -21,6 +21,7 @@ In zOS the kernel is [[sel4]] with its mixed-criticality extensions. It isolates
 | --- | --- | --- | --- |
 | Functional correctness of the C code | proven, for the verified configurations | refinement proof in Isabelle/HOL | [[2009-klein-sel4-formal-verification]], [[nd-sel4-verified-configurations]] |
 | Functional correctness of the MCS kernel on RISC-V | proven, announced June 2026 (the announcement names neither the level nor 64-bit; RISC-V verified configurations are 64-bit and C-level, per [[nd-sel4-verified-configurations]]) | proof, announced | [[2026-sel4-functional-correctness-proof]] |
+| Platforms of the MCS proof on RISC-V | `hifive` (HiFive Unleashed, no longer sold) only; the proof without MCS covers further RISC-V boards, among them the HiFive Premier P550, since release 17.0.0 | release notes | [[2026-sel4-release-17]], [[sifive-hifive]] |
 | MCS on 64-bit Arm | under way | none yet | [[2026-sel4-functional-correctness-proof]] |
 | Integrity and confidentiality (no timing channels) | proven on AArch32, AArch64, RISC-V; not stated for MCS | proof | [[nd-sel4-verified-configurations]] |
 | Binary correctness | listed for AArch32 only; other architectures not stated | proof | [[nd-sel4-verified-configurations]] |

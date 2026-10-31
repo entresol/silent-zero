@@ -1,8 +1,8 @@
 ---
 type: system
 status: reviewed
-sources: [nd-trustworthy-wcet-worst-case, 2026-sillitoe-resurrecting-sel4-wcet, 2022-wistoff-systematic-prevention-core, nd-sel4-microkit-user-manual, nd-sel4-verified-configurations]
-updated: 2026-10-29
+sources: [nd-trustworthy-wcet-worst-case, 2026-sillitoe-resurrecting-sel4-wcet, 2022-wistoff-systematic-prevention-core, nd-sel4-microkit-user-manual, nd-sel4-verified-configurations, 2026-sel4-release-17]
+updated: 2026-10-31
 ---
 
 # CVA6
@@ -21,7 +21,7 @@ On CVA6 a custom instruction, `fence.t`, resets all non-architectural state on a
 
 ## Boards
 
-Microkit supports CVA6 on the Digilent Genesys2 FPGA board ([[nd-sel4-microkit-user-manual]]); seL4's verified configurations include Ariane ([[nd-sel4-verified-configurations]]), which the Microkit manual calls the former name of CVA6 ([[nd-sel4-microkit-user-manual]]).
+Microkit supports CVA6 on the Digilent Genesys2 FPGA board ([[nd-sel4-microkit-user-manual]]); seL4's verified configurations include Ariane ([[nd-sel4-verified-configurations]]), which the Microkit manual calls the former name of CVA6 ([[nd-sel4-microkit-user-manual]]). Since seL4 release 17.0.0, `ariane` is among the RISC-V platforms with a C-level proof, without MCS ([[2026-sel4-release-17]]).
 
 ## Not yet in the wiki
 

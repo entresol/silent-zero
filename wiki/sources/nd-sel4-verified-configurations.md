@@ -5,7 +5,7 @@ status: reviewed
 read: full
 kind: report
 sources: [nd-sel4-verified-configurations]
-updated: 2026-10-30
+updated: 2026-10-31
 ---
 
 # seL4 Foundation: Verified Configurations
@@ -46,6 +46,7 @@ A careful reader adds:
 
 - [[sel4]]: **extends** it with which properties hold where.
 - [[2026-sel4-functional-correctness-proof]]: the news item is newer on MCS; this page has not been updated.
+- [[2026-sel4-release-17]]: the release notes of 30 October 2026 are newer. They say which platforms the proofs cover, which this page does not: the C-level RISC-V proof covers all eight RISC-V platforms with a configuration file, the MCS proof only `hifive`. On AArch64 they list integrity only and call confidentiality in progress, where this page lists confidentiality as well.
 
 ## For zOS
 

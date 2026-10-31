@@ -1,13 +1,13 @@
 ---
 type: system
 status: reviewed
-sources: [nd-opensbi]
-updated: 2026-10-30
+sources: [nd-opensbi, 2024-riscv-privileged-isa-manual, nd-sel4-supported-platforms]
+updated: 2026-10-31
 ---
 
 # OpenSBI
 
-The open-source reference implementation of the RISC-V Supervisor Binary Interface for firmware in machine mode, the level below any S-mode kernel. It is built as a library plus platform-specific firmwares and works with bootloaders such as U-Boot ([[nd-opensbi]]).
+The open-source reference implementation of the RISC-V Supervisor Binary Interface for firmware in machine mode, the level below any S-mode kernel. It is built as a library plus platform-specific firmwares and works with bootloaders such as U-Boot ([[nd-opensbi]]). Machine mode is the most privileged of [[risc-v]]'s levels; the specification calls code there "usually inherently trusted" ([[2024-riscv-privileged-isa-manual]]). On the HiFive Premier P550, OpenSBI comes from the board's SPI flash, between the firmware and U-Boot ([[nd-sel4-supported-platforms]]).
 
 ## State, October 2026
 

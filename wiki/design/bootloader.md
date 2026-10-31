@@ -1,7 +1,7 @@
 ---
 type: design
 status: reviewed
-sources: [nd-coreboot-architecture, nd-coreboot-vboot, nd-chromeos-verified-boot, nd-uboot-verified-boot, nd-raspberrypi-boot, nd-tfa-firmware-design, nd-opensbi, nd-sel4-x64-platform, nd-sel4-microkit-user-manual, nd-sel4-verified-configurations, 2018-cook-model-checking-boot, 2020-straznickas-verified-first-stage, 2021-tao-dice-formally-verified]
+sources: [nd-coreboot-architecture, nd-coreboot-vboot, nd-chromeos-verified-boot, nd-uboot-verified-boot, nd-raspberrypi-boot, nd-tfa-firmware-design, nd-opensbi, nd-sel4-x64-platform, nd-sel4-microkit-user-manual, nd-sel4-verified-configurations, 2018-cook-model-checking-boot, 2020-straznickas-verified-first-stage, 2021-tao-dice-formally-verified, 2026-sel4-release-17, nd-sel4-supported-platforms, 2024-riscv-privileged-isa-manual]
 updated: 2026-10-31
 ---
 
@@ -22,7 +22,7 @@ In zOS the bootloader "checks one signed, static system image and starts it, or 
 | PC (x86-64) | vendor firmware and, with coreboot, its stages up to the payload | a Multiboot loader such as GRUB or syslinux; Microkit requires a Multiboot 2 loader | [[nd-coreboot-architecture]], [[nd-sel4-x64-platform]], [[nd-sel4-microkit-user-manual]] |
 | Arm boards | on Arm's reference platforms TF-A's BL1, BL2 and BL31; on vendor boards often a vendor ROM in place of BL1 and BL2 | U-Boot loads the Microkit image, and the Microkit loader starts seL4 | [[nd-tfa-firmware-design]], [[nd-sel4-microkit-user-manual]] |
 | Raspberry Pi 4 and 5 | ROM and EEPROM bootloader, on the Pi 4 also the GPU firmware; on the Pi 5 the bootloader loads the kernel image itself | for Microkit on the Pi 4B, U-Boot, then the Microkit loader | [[nd-raspberrypi-boot]], [[nd-sel4-microkit-user-manual]] |
-| RISC-V | OpenSBI in machine mode | U-Boot, or OpenSBI with the image as its payload, then the Microkit loader | [[nd-opensbi]], [[nd-sel4-microkit-user-manual]] |
+| RISC-V | OpenSBI in machine mode; on the HiFive Premier P550 firmware, then OpenSBI and U-Boot from SPI flash | U-Boot, or OpenSBI with the image as its payload, then the Microkit loader | [[nd-opensbi]], [[nd-sel4-microkit-user-manual]], [[nd-sel4-supported-platforms]] |
 
 ## What exists, and what kind of evidence it is
 
@@ -38,6 +38,8 @@ In zOS the bootloader "checks one signed, static system image and starts it, or 
 | The zOS loader in front of that kernel | demonstrated in the same QEMU model: OpenSBI, then the zOS loader, which hashes the image holding seL4's ELF loader, kernel and root task, shows the result and starts it; the same image with one bit flipped is stopped before seL4's ELF loader; the model has no display, so the loader's pictures are copied out of guest memory | test (recorded serial console and pictures, rebuildable) | [the video](https://github.com/entresol/silent-zero/blob/main/loader/recording/loader-sel4-boot.mp4) and [the loader](https://github.com/entresol/silent-zero/tree/main/loader), 31 October 2026 |
 
 Our reading: the video shows seL4's own boot chain, not the zOS loader. The kernel is built with the preset seL4 16.0.0 provides for its MCS verification on this platform, `hifive` ([configuration files](https://github.com/seL4/seL4/tree/16.0.0/configs)). So the video shows that kernel booting. It does not show a proof of the binary: the proofs are about the C code, and the compiler is trusted. QEMU stands in for the hardware, and firmware and ELF loader lie outside every proof.
+
+Release 17.0.0 of seL4 (30 October 2026) fixes a missing instruction-cache flush that affected all RISC-V configurations, the verified ones included; the video's kernel is 16.0.0 ([[2026-sel4-release-17]]).
 
 Our reading of the second video: the zOS loader now sits where the paper puts it, between the firmware and the kernel, and the check works on the real kernel image, not on a stand-in. It is still a hash stored next to the image, so it catches accidents, not someone who can rewrite both; the signature is the next step. The loader itself, OpenSBI and seL4's ELF loader remain assumed. Built with GCC 15.2 the loader is 7,333 bytes for this model and 7,809 bytes for QEMU's `virt` machine, between seven tenths and three quarters of it the renderer and its font data ([loader README](https://github.com/entresol/silent-zero/tree/main/loader#size)).
 
