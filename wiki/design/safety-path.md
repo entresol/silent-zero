@@ -1,8 +1,8 @@
 ---
 type: design
 status: reviewed
-sources: [2025-nesti-use-simplex-architecture, 2025-black-real-time-execution, 2018-klein-formally-verified-software]
-updated: 2026-10-29
+sources: [2025-nesti-use-simplex-architecture, 2025-black-real-time-execution, 2018-klein-formally-verified-software, 2025-google-building-next-generation]
+updated: 2026-10-31
 ---
 
 # The safety path
@@ -25,7 +25,7 @@ In zOS the agent and its action model play the complex controller of a [[simplex
 | Safe side owns the sensors; camera input only on the learned side | demonstrated on the rover | test | [[2025-nesti-use-simplex-architecture]] |
 | A proven safety controller and switching logic | not found in the sources | none | — |
 
-Related evidence that is not Simplex: a robot's protective stop caught an oscillating learned controller in an experiment ([[2025-black-real-time-execution]], §4.2), and HACMS showed a compromised component contained in flight ([[2018-klein-formally-verified-software]]).
+A robot model's vendor says its model-level safety filters "are not a substitute for the rigorous safety engineering required for physical systems" and asks for several layers, with emergency stops and collision avoidance outside the model ([[2025-google-building-next-generation]]). Related evidence that is not Simplex: a robot's protective stop caught an oscillating learned controller in an experiment ([[2025-black-real-time-execution]], §4.2), and HACMS showed a compromised component contained in flight ([[2018-klein-formally-verified-software]]).
 
 ## The paper and its sources
 

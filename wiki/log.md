@@ -93,3 +93,11 @@ Every concept and system page joins the lexicon at `/lexicon/`: with `glossary:`
 ## [2026-10-31] update | bootloader, 2026-sel4-release-17
 
 The boot demo now builds seL4 17.0.0 (commit `62e345c`, with the seL4_tools and util_libs commits of the release manifest, unchanged from 16.0.0). Same preset files, kernel 58,428 bytes. Both videos re-recorded; [[bootloader]] and [[2026-sel4-release-17]] say so.
+
+## [2026-10-31] ingest | 2023-amar-cheriot-complete-memory, 2025-cnx-nuvoton-introduces-first, 2025-costa-securing-ai-agents, 2025-darpa-ai-cyber-challenge
+
+Ring 2, in a session. Created: four source pages, [[cheriot]], [[information-flow-control]]. Changed: [[object-capabilities]], [[opentitan]], [[prompt-injection]], [[broker]], [[ai-vulnerability-discovery]]. The CHERIoT paper was fetched from cheriot.org into the pool first. The paper's Table 1 row on agent authority gives CaMeL's figures; FIDES enforces information flow, not capabilities.
+
+## [2026-10-31] ingest | 2022-google-announcing-kataos-sparrow, 2025-google-building-next-generation, 2023-greshake-not-what-you, 2026-he-neuro-symbolic-proof
+
+Ring 2, in a session. Created: four source pages, [[kataos]], [[proof-automation]]. Changed: [[sel4]], [[opentitan]], [[broker]], [[confused-deputy]], [[prompt-injection]], [[real-time-loops]], [[safety-path]], [[action-chunking]]. He et al.'s 77.6 per cent covers three evaluation splits of FVEL; the OSDI version is a separate pool entry, still open.

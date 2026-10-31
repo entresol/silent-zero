@@ -1,9 +1,9 @@
 ---
 type: concept
 status: reviewed
-sources: [1988-hardy-confused-deputy-or, 2006-miller-robust-composition-towards]
+sources: [1988-hardy-confused-deputy-or, 2006-miller-robust-composition-towards, 2023-greshake-not-what-you]
 glossary: Confused deputy
-updated: 2026-10-29
+updated: 2026-10-31
 ---
 
 # Confused deputy
@@ -24,4 +24,4 @@ The pattern and its remedy have been established since 1988; Miller generalises 
 
 ## Open questions
 
-- How far the analogy to agents holds. The zOS paper argues that indirect prompt injection follows the same pattern (Section 2.4) and states that capabilities only limit how far a deceived agent can reach (Section 6). Our reading: the pattern matches, the remedy does not fully carry over. Hardy's deputy was confused by an ambiguous name; an injected agent is subverted in its own decisions and uses capabilities it really holds. See [[prompt-injection]] and [[broker]].
+- How far the analogy to agents holds. The zOS paper argues that indirect prompt injection follows the same pattern (Section 2.4), citing [[2023-greshake-not-what-you]], which frames retrieved prompts as "arbitrary code" and does not use the term, and states that capabilities only limit how far a deceived agent can reach (Section 6). Our reading: the pattern matches, the remedy does not fully carry over. Hardy's deputy was confused by an ambiguous name; an injected agent is subverted in its own decisions and uses capabilities it really holds. See [[prompt-injection]] and [[broker]].

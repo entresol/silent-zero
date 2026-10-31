@@ -1,8 +1,8 @@
 ---
 type: design
 status: reviewed
-sources: [2025-black-real-time-execution, 2025-nesti-use-simplex-architecture, 2026-sel4-functional-correctness-proof, 2026-heiser-mcs-safety-os, 2022-wistoff-systematic-prevention-core, nd-sel4-microkit-user-manual]
-updated: 2026-10-29
+sources: [2025-black-real-time-execution, 2025-nesti-use-simplex-architecture, 2026-sel4-functional-correctness-proof, 2026-heiser-mcs-safety-os, 2022-wistoff-systematic-prevention-core, nd-sel4-microkit-user-manual, 2025-google-building-next-generation]
+updated: 2026-10-31
 ---
 
 # Real-time loops
@@ -28,6 +28,7 @@ The control loops at the bottom of zOS move the motors on a fixed period and hav
 
 ## The paper and its sources
 
+- Section 2.4 says robot stacks separate a reasoning model that plans and calls tools from an action model that drives the motors, citing [[2025-google-building-next-generation]]. Confirmed for Google's stack, where the reasoning model calls a vision-language-action model for motor control; its thinking budget makes its latency a setting; our reading: a setting, not a bound.
 - Section 2.4 says action models emit commands in chunks so a robot can hold a 50 Hz rate while the slower model thinks, citing [[2025-black-real-time-execution]]. Partly confirmed: the source shows that chunking alone pauses, and that holding the rate needs asynchronous execution.
 - The paper calls the loop *verified* (abstract, Section 4) and in Section 4 calls the safety controller a candidate for proof. No source so far shows a control loop on seL4 with a proven deadline; the kernel's WCET is missing (see [[kernel]], [[safety-path]]).
 

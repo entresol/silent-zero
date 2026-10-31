@@ -1,9 +1,9 @@
 ---
 type: concept
 status: reviewed
-sources: [2006-miller-robust-composition-towards, 2018-klein-formally-verified-software, 2025-debenedetti-defeating-prompt-injections]
+sources: [2006-miller-robust-composition-towards, 2018-klein-formally-verified-software, 2025-debenedetti-defeating-prompt-injections, 2023-amar-cheriot-complete-memory, 2025-costa-securing-ai-agents]
 glossary: Capability
-updated: 2026-10-29
+updated: 2026-10-31
 ---
 
 # Object capabilities
@@ -22,6 +22,8 @@ A capability by itself gives full and lasting access. Restrictions are built fro
 
 - In [[sel4]], all kernel objects are reached through capabilities, and the authority-confinement proof shows that no component gains more authority than the access-control policy predicts ([[2018-klein-formally-verified-software]], §3.1, §3.2). Our reading: in Miller's terms this bounds permission at the kernel level.
 - CaMeL attaches tags for provenance and allowed readers to every value an agent handles and checks them before tool calls, calling them capabilities in "the standard security definition" ([[2025-debenedetti-defeating-prompt-injections]], §1, §5.3). Our reading: these are labels for information flow; they designate no resource and convey no authority, so they are related to object capabilities but are not the same thing.
+- In hardware, CHERI makes every pointer a capability with bounds and permissions that the processor checks on each memory access and that cannot be forged or widened. CHERIoT adapts it to 32-bit RISC-V embedded cores and adds revocation of capabilities to freed memory ([[2023-amar-cheriot-complete-memory]], §2.4, §3.3). See [[cheriot]].
+- FIDES, like CaMeL, labels data for information flow; the labels convey no authority ([[2025-costa-securing-ai-agents]]; our reading). See [[information-flow-control]].
 
 ## Open questions
 
