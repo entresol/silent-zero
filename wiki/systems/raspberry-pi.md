@@ -1,8 +1,8 @@
 ---
 type: system
 status: reviewed
-sources: [nd-raspberrypi-boot, nd-sel4-verified-configurations, nd-sel4-microkit-user-manual]
-updated: 2026-10-30
+sources: [nd-raspberrypi-boot, nd-sel4-verified-configurations, nd-sel4-microkit-user-manual, 2026-bower-cohesix-research-operating]
+updated: 2026-10-31
 ---
 
 # Raspberry Pi
@@ -15,7 +15,7 @@ Since the Pi 4, a ROM runs a second-stage bootloader from SPI EEPROM, which load
 
 ## seL4 and Microkit
 
-The Pi 4B and 5B are verified AArch64 platforms for seL4, without MCS ([[nd-sel4-verified-configurations]]). Microkit supports the Pi 4B in four memory sizes, booted through U-Boot ([[nd-sel4-microkit-user-manual]]); since Microkit always uses MCS, a Microkit system on the Pi runs on an unverified kernel configuration today (see [[kernel]]).
+The Pi 4B and 5B are verified AArch64 platforms for seL4, without MCS ([[nd-sel4-verified-configurations]]). Microkit supports the Pi 4B in four memory sizes, booted through U-Boot ([[nd-sel4-microkit-user-manual]]); since Microkit always uses MCS, a Microkit system on the Pi runs on an unverified kernel configuration today (see [[kernel]]). Cohesix names the Pi 4 as a target for its seL4-based control layer ([[cohesix]]).
 
 ## Licence and code
 

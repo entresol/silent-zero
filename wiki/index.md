@@ -1,6 +1,6 @@
 ---
 type: index
-updated: 2026-10-30
+updated: 2026-10-31
 ---
 
 # zOS wiki
@@ -32,6 +32,7 @@ The zOS part *agents* has no page yet. Firmware on PCs (Intel ME, AMD PSP, FSP, 
 - [[opensbi]] · RISC-V firmware in machine mode below the kernel. 1 source.
 - [[raspberry-pi]] · the pib's board: closed ROM and EEPROM boot, secure-boot key in OTP on the Pi 4, seL4 verified without MCS. 3 sources.
 - [[opentitan]] · open-source silicon root of trust, shipping in Chromebooks since March 2026. 2 sources.
+- [[cohesix]] · seL4-based control layer for edge AI fleets: a Queen decides what hosts' models may do; landing page only. 1 source.
 - [[cva6]] · open 64-bit RISC-V core whose design lets latency bounds be proved; fence.t prototype. 5 sources.
 
 ## Concepts
@@ -46,10 +47,14 @@ The zOS part *agents* has no page yet. Firmware on PCs (Intel ME, AMD PSP, FSP, 
 - [[time-protection]] · closing timing channels between domains; prototypes on CVA6, proof for seL4 in progress. 3 sources.
 - [[simplex]] · a simple safe controller guarding an untrusted one; tested with learned controllers. 1 source.
 - [[action-chunking]] · slow robot models emitting action sequences for a fast loop; no bound on delay. 1 source.
+- [[ai-vulnerability-discovery]] · AI models finding software flaws at scale; the company's own figures, and the bottleneck moving to patching. 2 sources.
 - [[mixed-criticality]] · software of different criticality on one platform; processor time as a capability in seL4 MCS. 3 sources.
 
 ## Sources
 
+- [[2026-anthropic-project-glasswing-securing]] · an unreleased model finds thousands of high-severity flaws; the company's own claim, April 2026. report, full text.
+- [[2026-anthropic-project-glasswing-initial]] · over ten thousand partner findings; of 1,752 open-source findings assessed, 62.4 % confirmed high or critical. report, full text.
+- [[2026-bower-cohesix-research-operating]] · Cohesix: Queen and Workers on seL4, AI proposes and the target decides. report, landing page only.
 - [[2026-sillitoe-resurrecting-sel4-wcet]] · seL4's WCET analysis runs again on RV64 MCS, with placeholder values; sound CVA6 latencies expected Q1 2027. progress, full text.
 - [[nd-trustworthy-wcet-worst-case]] · the archived project page: the sound ARM11 analysis and why it stopped. report, full text.
 - [[2009-klein-sel4-formal-verification]] · the first proof that seL4's C code implements its specification; assumptions, cost, bugs found. proof, full text.

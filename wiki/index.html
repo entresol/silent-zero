@@ -312,7 +312,7 @@ ul.linked-from .kind { color: var(--muted); font-size: 0.85rem; margin-left: 0.4
     <div class="titleblock">
       <h1 class="name">Wiki</h1>
       <p class="sub">What the sources behind the paper show, page by page.</p>
-      <p class="ver">63 pages · updated 30 Oct 2026 · <a href="#how">How this wiki is made</a></p>
+      <p class="ver">68 pages · updated 31 Oct 2026 · <a href="#how">How this wiki is made</a></p>
     </div>
   </div>
 </header>
@@ -320,7 +320,7 @@ ul.linked-from .kind { color: var(--muted); font-size: 0.85rem; margin-left: 0.4
 <div class="layout">
   <nav class="toc" id="toc" aria-label="Contents"><p>Contents</p><ol><li class="toc-back"><a href="/">← The paper</a></li><li><a href="#top">↑ Top</a></li><li><a href="#how">How this wiki is made</a></li><li><a href="#design">Design</a></li><li><a href="#systems">Systems</a></li><li><a href="#concepts">Concepts</a></li><li><a href="#sources">Sources</a></li><li><a href="#not-yet-covered">Not yet covered</a></li></ol></nav>
   <article>
-<p>This wiki gathers what the sources behind the paper show. It has a page for each source, each concept, each system the paper builds on and each part of the design: 35 sources, 11 concepts, 9 systems and 8 parts of the design so far. Every page says what is proven, tested or assumed, and on which source that rests.</p>
+<p>This wiki gathers what the sources behind the paper show. It has a page for each source, each concept, each system the paper builds on and each part of the design: 38 sources, 12 concepts, 10 systems and 8 parts of the design so far. Every page says what is proven, tested or assumed, and on which source that rests.</p>
 <h2 id="how">How this wiki is made</h2>
 <p>A language model writes the wiki and keeps it up to date from the sources in the project’s research pool, after Andrej Karpathy’s idea of a wiki that a language model maintains. A daily run adds new sources and works older ones in.</p>
 <ul>
@@ -350,6 +350,7 @@ ul.linked-from .kind { color: var(--muted); font-size: 0.85rem; margin-left: 0.4
 <li><a href="/wiki/systems/opensbi.html">OpenSBI</a> · RISC-V firmware in machine mode below the kernel. 1 source.</li>
 <li><a href="/wiki/systems/raspberry-pi.html">Raspberry Pi</a> · the pib’s board: closed ROM and EEPROM boot, secure-boot key in OTP on the Pi 4, seL4 verified without MCS. 3 sources.</li>
 <li><a href="/wiki/systems/opentitan.html">OpenTitan</a> · open-source silicon root of trust, shipping in Chromebooks since March 2026. 2 sources.</li>
+<li><a href="/wiki/systems/cohesix.html">Cohesix</a> · seL4-based control layer for edge AI fleets: a Queen decides what hosts’ models may do; landing page only. 1 source.</li>
 <li><a href="/wiki/systems/cva6.html">CVA6</a> · open 64-bit RISC-V core whose design lets latency bounds be proved; fence.t prototype. 5 sources.</li>
 </ul>
 <h2 id="concepts">Concepts</h2>
@@ -364,10 +365,14 @@ ul.linked-from .kind { color: var(--muted); font-size: 0.85rem; margin-left: 0.4
 <li><a href="/wiki/concepts/time-protection.html">Time protection</a> · closing timing channels between domains; prototypes on CVA6, proof for seL4 in progress. 3 sources.</li>
 <li><a href="/wiki/concepts/simplex.html">Simplex architecture</a> · a simple safe controller guarding an untrusted one; tested with learned controllers. 1 source.</li>
 <li><a href="/wiki/concepts/action-chunking.html">Action chunking</a> · slow robot models emitting action sequences for a fast loop; no bound on delay. 1 source.</li>
+<li><a href="/wiki/concepts/ai-vulnerability-discovery.html">AI vulnerability discovery</a> · AI models finding software flaws at scale; the company’s own figures, and the bottleneck moving to patching. 2 sources.</li>
 <li><a href="/wiki/concepts/mixed-criticality.html">Mixed criticality</a> · software of different criticality on one platform; processor time as a capability in seL4 MCS. 3 sources.</li>
 </ul>
 <h2 id="sources">Sources</h2>
 <ul>
+<li><a href="/wiki/sources/2026-anthropic-project-glasswing-securing.html">Anthropic 2026a: Project Glasswing, securing critical software for the AI era</a> · an unreleased model finds thousands of high-severity flaws; the company’s own claim, April 2026. report, full text.</li>
+<li><a href="/wiki/sources/2026-anthropic-project-glasswing-initial.html">Anthropic 2026b: Project Glasswing, an initial update</a> · over ten thousand partner findings; of 1,752 open-source findings assessed, 62.4 % confirmed high or critical. report, full text.</li>
+<li><a href="/wiki/sources/2026-bower-cohesix-research-operating.html">Cohesix, a research operating system for edge AI</a> (Bower 2026) · Cohesix: Queen and Workers on seL4, AI proposes and the target decides. report, landing page only.</li>
 <li><a href="/wiki/sources/2026-sillitoe-resurrecting-sel4-wcet.html">Resurrecting seL4’s WCET Analysis</a> (Sillitoe et al. 2026) · seL4’s WCET analysis runs again on RV64 MCS, with placeholder values; sound CVA6 latencies expected Q1 2027. progress, full text.</li>
 <li><a href="/wiki/sources/nd-trustworthy-wcet-worst-case.html">WCET analysis of seL4</a> (Trustworthy Systems (n.d.)) · the archived project page: the sound ARM11 analysis and why it stopped. report, full text.</li>
 <li><a href="/wiki/sources/2009-klein-sel4-formal-verification.html">seL4, Formal Verification of an OS Kernel</a> (Klein et al. 2009) · the first proof that seL4’s C code implements its specification; assumptions, cost, bugs found. proof, full text.</li>
