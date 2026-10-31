@@ -2,7 +2,7 @@
 type: system
 status: reviewed
 sources: [nd-tfa-firmware-design, nd-sel4-microkit-user-manual]
-short: Arm's reference firmware, resident at EL3
+short: Arm's reference firmware; its BL31 stays at EL3
 updated: 2026-10-30
 ---
 
