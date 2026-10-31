@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # SPDX-License-Identifier: BSD-2-Clause
 """Builds the GitHub Pages landing page (index.html) for the Silent Zero paper. No author names."""
+import hashlib
 import re
 import shutil
 import subprocess
@@ -175,6 +176,9 @@ en = hero["en"]
 langs = "".join(f'<button type="button" lang="{l}" aria-pressed="{str(l == "en").lower()}">{t["label"]}</button>' for l, t in hero.items())
 hero_json = json.dumps({l: {k: v for k, v in t.items() if k != "label"} for l, t in hero.items()}, ensure_ascii=False).replace("</", "<\\/")
 css = (Path(__file__).resolve().parent / "site.css").read_text(encoding="utf-8")
+# browsers keep favicons in a cache of their own; a version from the icons' content makes them fetch a changed icon
+_top = Path(__file__).resolve().parent.parent
+iv = hashlib.sha256(b"".join((_top / f).read_bytes() for f in ("favicon.ico", "assets/favicon.svg", "assets/apple-touch-icon.png"))).hexdigest()[:8]
 css = "\n".join(l for l in css.splitlines() if "SPDX-License-Identifier" not in l) + "\n"
 page = f"""<!doctype html>
 <html lang="en">
@@ -194,9 +198,9 @@ page = f"""<!doctype html>
 <meta property="og:image:height" content="1260">
 <meta property="og:image:alt" content="Imagine it's 1991. We are about to release a few lines of code into a world that will be very different from today. Silent Zero OS: Bare minimum. Verified. Real-time. An OS for the AI era.">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="favicon.ico" sizes="32x32">
-<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="icon" href="favicon.ico?v={iv}" sizes="32x32">
+<link rel="icon" href="assets/favicon.svg?v={iv}" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png?v={iv}">
 <link rel="preload" href="assets/fonts/inter-latin-opsz-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/nunito-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
 <style>
