@@ -1,8 +1,8 @@
 ---
 type: design
 status: reviewed
-sources: [1988-hardy-confused-deputy-or, 2006-miller-robust-composition-towards, 2025-debenedetti-defeating-prompt-injections, 2026-nasr-attacker-moves-second, 2018-klein-formally-verified-software, nd-sel4-verified-configurations, 2026-sel4-functional-correctness-proof, nd-sel4-microkit-user-manual, 2026-heiser-mcs-safety-os]
-updated: 2026-10-29
+sources: [1988-hardy-confused-deputy-or, 2006-miller-robust-composition-towards, 2025-debenedetti-defeating-prompt-injections, 2026-nasr-attacker-moves-second, 2018-klein-formally-verified-software, nd-sel4-verified-configurations, 2026-sel4-functional-correctness-proof, nd-sel4-microkit-user-manual, 2026-heiser-mcs-safety-os, 2026-bower-cohesix-research-operating]
+updated: 2026-10-31
 ---
 
 # The broker
@@ -31,6 +31,10 @@ The only component in zOS that hands out authority. It grants capabilities that 
 
 - Section 2.4 cites [[1988-hardy-confused-deputy-or]] for the confused deputy, [[2026-nasr-attacker-moves-second]] for the twelve broken defences and [[2006-miller-robust-composition-towards]] for passing authority as capabilities. All three confirmed; Nasr et al. say the defences were broken "either fully or substantially". The step from confused deputy to prompt injection is the paper's own analogy; Greshake et al. 2023, not yet covered here, is cited for the phenomenon. Section 6 limits the analogy: capabilities bound how far a deceived agent reaches.
 - Table 1 cites [[2025-debenedetti-defeating-prompt-injections]]: "77 % of tasks with provable security versus 84 % undefended". The figure is confirmed. Our reading: "provable" in CaMeL means a formally stated property that holds by construction under a correct interpreter and correct policies; nothing is formally proven, so "secure by design" would be the accurate wording.
+
+## Related
+
+- [[cohesix]] is a neighbouring design on seL4: models and agents stay on the host, and a target-side Queen with tickets and role checks decides what is accepted ([[2026-bower-cohesix-research-operating]], landing page only).
 
 ## Open
 
