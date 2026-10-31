@@ -6,6 +6,10 @@ Format: `## <version> · <scope>`, then one paragraph. A paper version is `YYYY-
 
 ## 2026-10-31 · Site
 
+The loader video says on which board it runs: a SiFive HiFive Unleashed from 2018, the board seL4's MCS proof is for, simulated in QEMU.
+
+## 2026-10-31 · Site
+
 The loader video calls its second run what it stands for: a tampered image, one byte changed after it was built and hashed, instead of a flipped bit. A card says what the stored hash does not catch, an attacker who rewrites the hash as well, and that signing the image comes next. The labels read in plainer English.
 
 ## 2026-10-31 · Project
