@@ -1,7 +1,7 @@
 ---
 type: design
 status: reviewed
-sources: [1988-hardy-confused-deputy-or, 2006-miller-robust-composition-towards, 2025-debenedetti-defeating-prompt-injections, 2026-nasr-attacker-moves-second, 2018-klein-formally-verified-software, nd-sel4-verified-configurations, 2026-sel4-functional-correctness-proof, nd-sel4-microkit-user-manual, 2026-heiser-mcs-safety-os, 2026-bower-cohesix-research-operating]
+sources: [1988-hardy-confused-deputy-or, 2006-miller-robust-composition-towards, 2025-debenedetti-defeating-prompt-injections, 2026-nasr-attacker-moves-second, 2018-klein-formally-verified-software, nd-sel4-verified-configurations, 2026-sel4-functional-correctness-proof, nd-sel4-microkit-user-manual, 2026-heiser-mcs-safety-os, 2026-bower-cohesix-research-operating, 2025-costa-securing-ai-agents, 2023-greshake-not-what-you, 2022-google-announcing-kataos-sparrow]
 updated: 2026-10-31
 ---
 
@@ -25,15 +25,18 @@ The only component in zOS that hands out authority. It grants capabilities that 
 | Heuristic and model-based defences fail against adaptive attackers | 12 of 12 broken fully or substantially, most above 90 % | test | [[2026-nasr-attacker-moves-second]] |
 | Capability and policy checks around the model stop known injection attacks | 0 successful attacks within the threat model on AgentDojo; 77 % utility vs 84 % | guarantee by construction under an unverified interpreter; tested with static attacks only | [[2025-debenedetti-defeating-prompt-injections]] |
 | A passive server runs on its caller's budget | in seL4 MCS and Microkit | design; MCS functional-correctness proof on RISC-V | [[2026-heiser-mcs-safety-os]], [[nd-sel4-microkit-user-manual]], [[2026-sel4-functional-correctness-proof]] |
+| Information-flow labels keep untrusted data from choosing consequential tool calls (FIDES) | no AgentDojo attack counted against its policies succeeded; explicit flows only | noninterference for integrity stated as a proposition without proof; unverified planner; static attacks | [[2025-costa-securing-ai-agents]] |
 | A proven broker | none in the sources | none | — |
 
 ## The paper and its sources
 
-- Section 2.4 cites [[1988-hardy-confused-deputy-or]] for the confused deputy, [[2026-nasr-attacker-moves-second]] for the twelve broken defences and [[2006-miller-robust-composition-towards]] for passing authority as capabilities. All three confirmed; Nasr et al. say the defences were broken "either fully or substantially". The step from confused deputy to prompt injection is the paper's own analogy; Greshake et al. 2023, not yet covered here, is cited for the phenomenon. Section 6 limits the analogy: capabilities bound how far a deceived agent reaches.
-- Table 1 cites [[2025-debenedetti-defeating-prompt-injections]]: "77 % of tasks with provable security versus 84 % undefended". The figure is confirmed. Our reading: "provable" in CaMeL means a formally stated property that holds by construction under a correct interpreter and correct policies; nothing is formally proven, so "secure by design" would be the accurate wording.
+- Section 2.4 cites [[1988-hardy-confused-deputy-or]] for the confused deputy, [[2026-nasr-attacker-moves-second]] for the twelve broken defences and [[2006-miller-robust-composition-towards]] for passing authority as capabilities. All three confirmed; Nasr et al. say the defences were broken "either fully or substantially". The step from confused deputy to prompt injection is the paper's own analogy; [[2023-greshake-not-what-you]], cited for the phenomenon, confirms the phenomenon and does not use the term. Section 6 limits the analogy: capabilities bound how far a deceived agent reaches.
+- Table 1 cites [[2025-debenedetti-defeating-prompt-injections]]: "77 % of tasks with provable security versus 84 % undefended". The figure is confirmed. Our reading: "provable" in CaMeL means a formally stated property that holds by construction under a correct interpreter and correct policies; nothing is formally proven, so "secure by design" would be the accurate wording. The same row names FIDES ([[2025-costa-securing-ai-agents]]), which enforces information flow rather than capabilities; the figures in the row are CaMeL's.
+- Section 6 cites [[2025-costa-securing-ai-agents]] for adding information-flow control to capabilities. Confirmed for what information-flow control does; the pairing with capabilities is the paper's step. FIDES leaves implicit flows open, which fits the paper's point that data leaks through allowed channels. See [[information-flow-control]].
 
 ## Related
 
+- [[kataos]] put seL4 under machine-learning devices in 2022, with a dynamic root server rather than a static system ([[2022-google-announcing-kataos-sparrow]]).
 - [[cohesix]] is a neighbouring design on seL4: models and agents stay on the host, and target-side role, ticket, lifecycle and bounds checks decide what is accepted ([[2026-bower-cohesix-research-operating]], landing page only).
 
 ## Open

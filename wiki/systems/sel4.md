@@ -1,7 +1,7 @@
 ---
 type: system
 status: reviewed
-sources: [2009-klein-sel4-formal-verification, 2018-klein-formally-verified-software, nd-sel4-verified-configurations, 2026-sel4-functional-correctness-proof, 2026-heiser-mcs-safety-os, 2026-trustworthy-guaranteeing-timeliness-mcs, nd-trustworthy-wcet-worst-case, 2026-sillitoe-resurrecting-sel4-wcet, 2026-sel4-release-17]
+sources: [2009-klein-sel4-formal-verification, 2018-klein-formally-verified-software, nd-sel4-verified-configurations, 2026-sel4-functional-correctness-proof, 2026-heiser-mcs-safety-os, 2026-trustworthy-guaranteeing-timeliness-mcs, nd-trustworthy-wcet-worst-case, 2026-sillitoe-resurrecting-sel4-wcet, 2026-sel4-release-17, 2026-he-neuro-symbolic-proof, 2022-google-announcing-kataos-sparrow]
 glossary: seL4
 updated: 2026-10-31
 ---
@@ -26,7 +26,7 @@ The documentation page's RISC-V section still called the MCS verification ongoin
 
 ## Size and cost
 
-8,700 lines of C and 600 of assembler in 2009 ([[2009-klein-sel4-formal-verification]]); about 10,000 lines of C later ([[2018-klein-formally-verified-software]], §3; [[nd-trustworthy-wcet-worst-case]]); just over 11,000 lines in the 64-bit RISC-V build analysed in 2026 ([[2026-sillitoe-resurrecting-sel4-wcet]], §3). The first proof took about 20 person-years, 11 of them seL4-specific ([[2009-klein-sel4-formal-verification]], §5.2); all seL4-specific proofs to 2018 add up to 18 ([[2018-klein-formally-verified-software]], sidebar).
+8,700 lines of C and 600 of assembler in 2009 ([[2009-klein-sel4-formal-verification]]); about 10,000 lines of C later ([[2018-klein-formally-verified-software]], §3; [[nd-trustworthy-wcet-worst-case]]); just over 11,000 lines in the 64-bit RISC-V build analysed in 2026 ([[2026-sillitoe-resurrecting-sel4-wcet]], §3). The first proof took about 20 person-years, 11 of them seL4-specific ([[2009-klein-sel4-formal-verification]], §5.2); all seL4-specific proofs to 2018 add up to 18 ([[2018-klein-formally-verified-software]], sidebar). In 2026 a method with a small language model and Isabelle as checker re-proved 77.6 per cent of the still-valid theorems in three evaluation splits of the FVEL benchmark, drawn from seL4's proofs ([[2026-he-neuro-symbolic-proof]]). See [[proof-automation]].
 
 ## Time
 
@@ -43,4 +43,4 @@ Round-trip IPC on Intel Skylake: 986 cycles, against 2,717 for Fiasco.OC and 8,1
 
 ## Not yet in the wiki
 
-CAmkES, the roadmap, the multicore proof. See also [[time-protection]]; systems built on seL4: [[microkit]], [[lionsos]].
+CAmkES, the roadmap, the multicore proof. See also [[time-protection]]; systems built on seL4: [[microkit]], [[lionsos]], [[kataos]], [[cohesix]].

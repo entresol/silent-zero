@@ -11,28 +11,30 @@ The catalogue of every page, with one line each. Read this first.
 
 - [[kernel]] · seL4 with MCS as the zOS kernel: proven (C-level correctness; MCS functional correctness on RISC-V), not stated for MCS (integrity, confidentiality), tested (HACMS), assumed (boot, IOMMU); no WCET bound on any 64-bit core yet. 12 sources.
 - [[static-system]] · one description, one image: what Microkit checks, what is not proved, and the run-time swap in LionsOS, the kernel underneath. 5 sources.
-- [[broker]] · the only component that hands out authority: capability patterns, CaMeL, why model-based defences fail; nothing proven yet. 9 sources.
-- [[real-time-loops]] · the loops that move the motors: asynchronous chunks from slow models, observed timings, no proven bound yet. 6 sources.
-- [[safety-path]] · Simplex in zOS: the agent proposes, the loop disposes; tested, not proven; the paper's 2001 date disputed by a 1994 origin. 3 sources.
+- [[broker]] · the only component that hands out authority: capability patterns, CaMeL and FIDES, why model-based defences fail; nothing proven yet. 13 sources.
+- [[real-time-loops]] · the loops that move the motors: asynchronous chunks from slow models, observed timings, no proven bound yet. 7 sources.
+- [[safety-path]] · Simplex in zOS: the agent proposes, the loop disposes; tested, not proven; the paper's 2001 date disputed by a 1994 origin. 4 sources.
 - [[root-of-trust]] · the firmware below the kernel on Arm, RISC-V, PC and Raspberry Pi; OpenTitan, Caliptra, DICE; all *assumed* in the paper's terms. 12 sources.
 - [[bootloader]] · where the zOS loader sits on each platform, signed and measured boot, proofs about boot code so far; the loader itself unproven. 16 sources.
 - [[drivers]] · user-mode drivers, the first verified Ethernet driver, DMA and the IOMMU as assumed. 7 sources.
 
 ## Not yet covered
 
-The zOS part *agents* has no page yet. Firmware on PCs (Intel ME, AMD PSP, FSP, open alternatives) and on Apple silicon is in the backlog. Also not yet covered: the seL4 roadmap and multicore, CHERI, DMA attacks and the IOMMU, the seams between proven parts, information-flow control for agents, the driver island, and competing agent operating systems.
+The zOS part *agents* has no page yet. Firmware on PCs (Intel ME, AMD PSP, FSP, open alternatives) and on Apple silicon is in the backlog. Also not yet covered: the seL4 roadmap and multicore, the standardisation of CHERI for RISC-V, DMA attacks and the IOMMU, the seams between proven parts, the driver island, and most competing agent operating systems.
 
 ## Systems
 
-- [[sel4]] · the verified microkernel zOS builds on: proofs per architecture and platform, cost, MCS, timing, HACMS. 9 sources.
+- [[sel4]] · the verified microkernel zOS builds on: proofs per architecture and platform, cost, MCS, timing, HACMS. 11 sources.
 - [[microkit]] · the build system for static seL4 systems: protection domains, channels, budgets, one image. 3 sources.
 - [[lionsos]] · static OS from small components on seL4 and Microkit; first driver verified. 4 sources.
 - [[coreboot]] · open firmware in stages with a fixed payload; verified and measured boot; closed vendor parts on x86. 3 sources.
 - [[tf-a]] · Arm's reference firmware; BL31 stays resident at EL3 below the kernel. 2 sources.
 - [[opensbi]] · RISC-V firmware in machine mode below the kernel. 3 sources.
-- [[raspberry-pi]] · the pib's board: closed ROM and EEPROM boot, secure-boot key in OTP on the Pi 4, seL4 verified without MCS. 3 sources.
-- [[opentitan]] · open-source silicon root of trust, shipping in Chromebooks since March 2026. 2 sources.
+- [[raspberry-pi]] · the pib's board: closed ROM and EEPROM boot, secure-boot key in OTP on the Pi 4, seL4 verified without MCS. 4 sources.
+- [[opentitan]] · open-source silicon root of trust, shipping in Chromebooks since March 2026. 5 sources.
 - [[cohesix]] · seL4-based control layer for edge AI fleets: a Queen decides what hosts' models may do; landing page only. 1 source.
+- [[kataos]] · Google's seL4 and Rust OS for machine-learning devices, 2022; OpenTitan in its Sparrow plan. 1 source.
+- [[cheriot]] · CHERI capabilities on small RISC-V cores with its own RTOS: memory safety in hardware, measured, not proven. 1 source.
 - [[cva6]] · open 64-bit RISC-V core whose design lets latency bounds be proved; fence.t prototype. 6 sources.
 - [[sifive-hifive]] · SiFive and its boards: the discontinued HiFive Unleashed with seL4's MCS proof, the HiFive Premier P550 one can buy. 5 sources.
 
@@ -41,15 +43,17 @@ The zOS part *agents* has no page yet. Firmware on PCs (Intel ME, AMD PSP, FSP, 
 - [[risc-v]] · the open instruction set: what is open (the ISA) and what need not be (cores, chips, boards); privilege levels and the SBI. 11 sources.
 - [[wcet-analysis]] · upper bounds on execution time, what they need, and where seL4 stands. 6 sources.
 - [[functional-correctness]] · what seL4's refinement proof gives, what it assumes, where it holds. 4 sources.
-- [[object-capabilities]] · references that both designate and authorise; permission versus authority; caretaker and membrane. 3 sources.
-- [[confused-deputy]] · a program misusing one party's authority for another's request; capabilities as the remedy. 2 sources.
-- [[prompt-injection]] · instructions hidden in data an agent reads; heuristic defences fail, defences around the model hold within limits. 2 sources.
+- [[object-capabilities]] · references that both designate and authorise; permission versus authority; caretaker and membrane. 5 sources.
+- [[confused-deputy]] · a program misusing one party's authority for another's request; capabilities as the remedy. 3 sources.
+- [[prompt-injection]] · instructions hidden in data an agent reads; heuristic defences fail, defences around the model hold within limits. 4 sources.
 - [[verified-boot]] · each stage checks the next against a key the attacker cannot change; proofs about boot code so far. 6 sources.
 - [[measured-boot]] · each stage records what runs next; TPM and DICE; a verified DICE implementation. 4 sources.
 - [[time-protection]] · closing timing channels between domains; prototypes on CVA6, proof for seL4 in progress. 3 sources.
 - [[simplex]] · a simple safe controller guarding an untrusted one; tested with learned controllers. 1 source.
-- [[action-chunking]] · slow robot models emitting action sequences for a fast loop; no bound on delay. 1 source.
-- [[ai-vulnerability-discovery]] · AI models finding software flaws at scale; the company's own figures, and the bottleneck moving to patching. 2 sources.
+- [[action-chunking]] · slow robot models emitting action sequences for a fast loop; no bound on delay. 2 sources.
+- [[ai-vulnerability-discovery]] · AI models finding software flaws at scale: DARPA's challenge and Anthropic's figures, the bottleneck moving to patching. 3 sources.
+- [[information-flow-control]] · labels for where data came from and who may see it; FIDES and CaMeL for agents; explicit flows only. 2 sources.
+- [[proof-automation]] · machines proposing proof steps, Isabelle checking them; 77.6 % of a seL4 benchmark sample. 2 sources.
 - [[mixed-criticality]] · software of different criticality on one platform; processor time as a capability in seL4 MCS. 3 sources.
 
 ## Sources
@@ -67,6 +71,14 @@ The zOS part *agents* has no page yet. Firmware on PCs (Intel ME, AMD PSP, FSP, 
 - [[2026-anthropic-project-glasswing-securing]] · an unreleased model finds thousands of high-severity flaws; the company's own claim, April 2026. report, full text.
 - [[2026-anthropic-project-glasswing-initial]] · over ten thousand partner findings; of 1,752 open-source findings assessed, 62.4 % confirmed high or critical. report, full text.
 - [[2026-bower-cohesix-research-operating]] · Cohesix: Queen and Workers on seL4, AI proposes and the target decides. report, landing page only.
+- [[2023-amar-cheriot-complete-memory]] · CHERIoT: CHERI on 32-bit RISC-V with its own RTOS; under 10 % more gates than a PMP core, 21 % CoreMark cost on Ibex. measurement, full text.
+- [[2025-cnx-nuvoton-introduces-first]] · fabrication of the first production OpenTitan chip, by Nuvoton, February 2025. report, full text.
+- [[2025-costa-securing-ai-agents]] · FIDES: information-flow labels in the agent's planner; noninterference for integrity, explicit flows only. test, full text.
+- [[2025-darpa-ai-cyber-challenge]] · AIxCC final: 54 of 63 planted flaws found, 43 patched, 18 real ones, about $152 a task. report, full text.
+- [[2022-google-announcing-kataos-sparrow]] · KataOS on seL4 in Rust for ML devices; Sparrow with OpenTitan planned. report, full text.
+- [[2025-google-building-next-generation]] · Gemini Robotics-ER 1.5: a reasoning model that calls an action model; safety filters no substitute for engineering. report, full text.
+- [[2023-greshake-not-what-you]] · indirect prompt injection: instructions in retrieved data steer LLM applications; demonstrations, no rates. test, full text.
+- [[2026-he-neuro-symbolic-proof]] · step-wise proof search with a small model proves 77.6 % of a seL4 benchmark sample, about 20 % of long proofs. measurement, full text.
 - [[2026-sillitoe-resurrecting-sel4-wcet]] · seL4's WCET analysis runs again on RV64 MCS, with placeholder values; sound CVA6 latencies expected Q1 2027. progress, full text.
 - [[nd-trustworthy-wcet-worst-case]] · the archived project page: the sound ARM11 analysis and why it stopped. report, full text.
 - [[2009-klein-sel4-formal-verification]] · the first proof that seL4's C code implements its specification; assumptions, cost, bugs found. proof, full text.

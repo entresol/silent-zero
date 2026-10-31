@@ -1,9 +1,9 @@
 ---
 type: concept
 status: reviewed
-sources: [2025-black-real-time-execution]
+sources: [2025-black-real-time-execution, 2025-google-building-next-generation]
 glossary: Action chunking
-updated: 2026-10-29
+updated: 2026-10-31
 ---
 
 # Action chunking
@@ -17,6 +17,10 @@ Real-time chunking (RTC) computes the next chunk while the current one runs and 
 ## What it does not do
 
 It does not bound the delay. The scheme works while the inference delay stays within the chunk's slack, estimated from past delays. Such policies are often used above a faster loop that turns their actions into motor signals ([[2025-black-real-time-execution]], Algorithm 1, §5).
+
+## Above the chunks
+
+A reasoning model can sit above the action model and call it as a tool; in Google's Gemini Robotics-ER 1.5 that model's thinking budget trades latency against accuracy ([[2025-google-building-next-generation]]).
 
 ## Open questions
 

@@ -338,7 +338,7 @@ sup.refs a:hover { text-decoration: underline; }
     <div class="titleblock">
       <h1 class="name">Real-time loops</h1>
       <p class="sub">the loops that move the motors: asynchronous chunks from slow models, observed timings, no proven bound yet.</p>
-      <p class="ver">Design · <a href="/wiki/#how">LLM reviewed</a> · updated 29 Oct 2026 · 6 sources</p>
+      <p class="ver">Design · <a href="/wiki/#how">LLM reviewed</a> · updated 31 Oct 2026 · 7 sources</p>
     </div>
   </div>
 </header>
@@ -410,6 +410,7 @@ sup.refs a:hover { text-decoration: underline; }
 </table></div>
 <h2 id="the-paper-and-its-sources">The paper and its sources</h2>
 <ul>
+<li>Section 2.4 says robot stacks separate a reasoning model that plans and calls tools from an action model that drives the motors, citing <a href="/wiki/sources/2025-google-building-next-generation.html">Gemini Robotics-ER 1.5</a>. Confirmed for Google’s stack, where the reasoning model calls a vision-language-action model for motor control; its thinking budget makes its latency a setting; our reading: a setting, not a bound.</li>
 <li>Section 2.4 says action models emit commands in chunks so a robot can hold a 50 Hz rate while the slower model thinks, citing <a href="/wiki/sources/2025-black-real-time-execution.html">Real-Time Execution of Action Chunking Flow Policies</a>. Partly confirmed: the source shows that chunking alone pauses, and that holding the rate needs asynchronous execution.</li>
 <li>The paper calls the loop <em>verified</em> (abstract, Section 4) and in Section 4 calls the safety controller a candidate for proof. No source so far shows a control loop on seL4 with a proven deadline; the kernel’s WCET is missing (see <a href="/wiki/design/kernel.html">The kernel</a>, <a href="/wiki/design/safety-path.html">The safety path</a>).</li>
 </ul>
@@ -422,7 +423,7 @@ sup.refs a:hover { text-decoration: underline; }
 
 <h2 id="page-sources">Sources</h2>
 <p class="links-note">What this page rests on.</p>
-<ul class="linked-from"><li><a href="/wiki/sources/2026-sel4-functional-correctness-proof.html">MCS functional-correctness proof completed on RISC-V</a> <span class="kind">seL4 Foundation 2026</span></li><li><a href="/wiki/sources/2026-heiser-mcs-safety-os.html">MCS safety, an OS perspective</a> <span class="kind">Heiser 2026</span></li><li><a href="/wiki/sources/2025-black-real-time-execution.html">Real-Time Execution of Action Chunking Flow Policies</a> <span class="kind">Black, Galliker and Levine 2025</span></li><li><a href="/wiki/sources/nd-sel4-microkit-user-manual.html">seL4 Microkit: User Manual, v2.3.0</a></li><li><a href="/wiki/sources/2022-wistoff-systematic-prevention-core.html">Systematic Prevention of On-Core Timing Channels</a> <span class="kind">Wistoff et al. 2022</span></li><li><a href="/wiki/sources/2025-nesti-use-simplex-architecture.html">The Use of the Simplex Architecture to Enhance Safety in Deep-Learning-Powered Autonomous Systems</a> <span class="kind">Nesti et al. 2025</span></li></ul>
+<ul class="linked-from"><li><a href="/wiki/sources/2025-google-building-next-generation.html">Gemini Robotics-ER 1.5</a> <span class="kind">Google 2025</span></li><li><a href="/wiki/sources/2026-sel4-functional-correctness-proof.html">MCS functional-correctness proof completed on RISC-V</a> <span class="kind">seL4 Foundation 2026</span></li><li><a href="/wiki/sources/2026-heiser-mcs-safety-os.html">MCS safety, an OS perspective</a> <span class="kind">Heiser 2026</span></li><li><a href="/wiki/sources/2025-black-real-time-execution.html">Real-Time Execution of Action Chunking Flow Policies</a> <span class="kind">Black, Galliker and Levine 2025</span></li><li><a href="/wiki/sources/nd-sel4-microkit-user-manual.html">seL4 Microkit: User Manual, v2.3.0</a></li><li><a href="/wiki/sources/2022-wistoff-systematic-prevention-core.html">Systematic Prevention of On-Core Timing Channels</a> <span class="kind">Wistoff et al. 2022</span></li><li><a href="/wiki/sources/2025-nesti-use-simplex-architecture.html">The Use of the Simplex Architecture to Enhance Safety in Deep-Learning-Powered Autonomous Systems</a> <span class="kind">Nesti et al. 2025</span></li></ul>
 <h2 id="related-pages">Related pages</h2>
 <p class="links-note">Pages this one links to, and pages that link here.</p>
 <ul class="linked-from"><li><a href="/wiki/design/kernel.html">The kernel</a> <span class="kind">Design</span></li><li><a href="/wiki/design/safety-path.html">The safety path</a> <span class="kind">Design</span></li><li><a href="/wiki/concepts/action-chunking.html">Action chunking</a> <span class="kind">Concept</span></li><li><a href="/wiki/concepts/mixed-criticality.html">Mixed criticality</a> <span class="kind">Concept</span></li></ul>
