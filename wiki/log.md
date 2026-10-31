@@ -73,3 +73,7 @@ The team decided that the daily run's pages go live without waiting for a person
 ## [2026-10-31] update | bootloader
 
 [[bootloader]] lists the zOS loader in front of the official seL4 kernel on QEMU's HiFive model: good image to user space, one flipped bit stopped before seL4's ELF loader, with a video of both runs. The reading says what the hash check does not cover and gives the loader's current size.
+
+## [2026-10-31] rule | source texts outside the repositories; when the build counts
+
+The daily run extracts source texts to `/tmp/wiki-text/`, outside both repositories, instead of `wiki/.cache/text/`. The merge condition on the build now names the commit it can be met on: the build pushes the rendered HTML as a commit of its own, and no check runs on that one.
