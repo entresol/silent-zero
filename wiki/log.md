@@ -81,3 +81,7 @@ The daily run extracts source texts to `/tmp/wiki-text/`, outside both repositor
 ## [2026-10-31] rule | only wiki pages cross over
 
 The build now fails a pull request in which any commit brings into `wiki/` something other than the pages, the index, the log, the rings, the schema and their HTML, a page without front matter, or a page over 20 KB. It checks every commit, not only the result, because a merge commit keeps what a later commit removed.
+
+## [2026-10-31] ingest | 2011-waterman-risc-v-instruction, 2014-asanovic-instruction-sets-free, 2024-riscv-unprivileged-isa-manual, 2024-riscv-privileged-isa-manual, nd-riscv-international-about, nd-sifive-risc-v-history, nd-sifive-hifive-unleashed, 2024-sifive-hifive-premier-p550, nd-sel4-supported-platforms, 2026-sel4-release-17
+
+RISC-V in the wiki, asked for by the team. Created: ten source pages, [[risc-v]], [[sifive-hifive]]. Changed: [[sel4]], [[kernel]], [[cva6]], [[opensbi]], [[bootloader]], [[nd-sel4-verified-configurations]], index. The specifications were read in part (introductions). seL4 17.0.0, released the day before, extends the C-level RISC-V proof to every supported board; MCS stays on `hifive`. Question raised: AArch64 confidentiality, listed by the documentation page, in progress by the release notes; [[kernel]] and [[sel4]] left unchanged on this point.

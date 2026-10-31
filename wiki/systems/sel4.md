@@ -1,8 +1,8 @@
 ---
 type: system
 status: reviewed
-sources: [2009-klein-sel4-formal-verification, 2018-klein-formally-verified-software, nd-sel4-verified-configurations, 2026-sel4-functional-correctness-proof, 2026-heiser-mcs-safety-os, 2026-trustworthy-guaranteeing-timeliness-mcs, nd-trustworthy-wcet-worst-case, 2026-sillitoe-resurrecting-sel4-wcet]
-updated: 2026-10-29
+sources: [2009-klein-sel4-formal-verification, 2018-klein-formally-verified-software, nd-sel4-verified-configurations, 2026-sel4-functional-correctness-proof, 2026-heiser-mcs-safety-os, 2026-trustworthy-guaranteeing-timeliness-mcs, nd-trustworthy-wcet-worst-case, 2026-sillitoe-resurrecting-sel4-wcet, 2026-sel4-release-17]
+updated: 2026-10-31
 ---
 
 # seL4
@@ -17,6 +17,7 @@ A microkernel of the L4 family whose C implementation has a machine-checked proo
 | Integrity and confidentiality (storage channels, not timing) | AArch32, AArch64, RISC-V; not stated for MCS | [[nd-sel4-verified-configurations]]; [[2018-klein-formally-verified-software]], §3.2 |
 | Binary correctness | listed for AArch32 | [[nd-sel4-verified-configurations]] |
 | Functional correctness of the MCS configuration | RISC-V, announced 29 June 2026; port to 64-bit Arm under DARPA's PROVERS programme | [[2026-sel4-functional-correctness-proof]] |
+| Platforms with the C-level proof | since release 17.0.0 (30 October 2026), by the release notes' own words, "all 64-bit platforms seL4 support"; they list eight RISC-V platforms and fifteen AArch64 ones. The MCS proof on RISC-V covers `hifive` (HiFive Unleashed) only | [[2026-sel4-release-17]] |
 | Kernel boot, IOMMU and SMMU, debug interfaces | not covered by any verified configuration | [[nd-sel4-verified-configurations]] |
 | Multicore | verification in progress | [[2026-heiser-mcs-safety-os]] |
 

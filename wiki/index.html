@@ -311,7 +311,7 @@ ul.linked-from .kind { color: var(--muted); font-size: 0.85rem; margin-left: 0.4
     <div class="titleblock">
       <h1 class="name">Wiki</h1>
       <p class="sub">What the sources behind the paper show, page by page.</p>
-      <p class="ver">68 pages · updated 31 Oct 2026 · <a href="#how">How this wiki is made</a></p>
+      <p class="ver">80 pages · updated 31 Oct 2026 · <a href="#how">How this wiki is made</a></p>
     </div>
   </div>
 </header>
@@ -319,7 +319,7 @@ ul.linked-from .kind { color: var(--muted); font-size: 0.85rem; margin-left: 0.4
 <div class="layout">
   <nav class="toc" id="toc" aria-label="Contents"><p>Contents</p><ol><li class="toc-back"><a href="/">← The paper</a></li><li><a href="#top">↑ Top</a></li><li><a href="#how">How this wiki is made</a></li><li><a href="#design">Design</a></li><li><a href="#systems">Systems</a></li><li><a href="#concepts">Concepts</a></li><li><a href="#sources">Sources</a></li><li><a href="#not-yet-covered">Not yet covered</a></li></ol></nav>
   <article>
-<p>This wiki gathers what the sources behind the paper show. It has a page for each source, each concept, each system the paper builds on and each part of the design: 38 sources, 12 concepts, 10 systems and 8 parts of the design so far. Every page says what is proven, tested or assumed, and on which source that rests.</p>
+<p>This wiki gathers what the sources behind the paper show. It has a page for each source, each concept, each system the paper builds on and each part of the design: 48 sources, 13 concepts, 11 systems and 8 parts of the design so far. Every page says what is proven, tested or assumed, and on which source that rests.</p>
 <h2 id="how">How this wiki is made</h2>
 <p>A language model writes the wiki and keeps it up to date from the sources in the project’s research pool, after Andrej Karpathy’s idea of a wiki that a language model maintains. A daily run adds new sources and works older ones in.</p>
 <ul>
@@ -330,30 +330,32 @@ ul.linked-from .kind { color: var(--muted); font-size: 0.85rem; margin-left: 0.4
 <p>A page can still be wrong or misleading in detail. If you find a mistake, please <a href="https://github.com/entresol/silent-zero/issues" rel="noopener" target="_blank">open an issue</a>. Wiki rules are noted <a href="https://github.com/entresol/silent-zero/blob/main/wiki/CLAUDE.md" rel="noopener" target="_blank">here</a>, changes are followed <a href="https://github.com/entresol/silent-zero/blob/main/wiki/log.md" rel="noopener" target="_blank">here</a>.</p>
 <h2 id="design">Design</h2>
 <ul>
-<li><a href="/wiki/design/kernel.html">The kernel</a> · seL4 with MCS as the Silent Zero kernel: proven (C-level correctness; MCS functional correctness on RISC-V), not stated for MCS (integrity, confidentiality), tested (HACMS), assumed (boot, IOMMU); no WCET bound on any 64-bit core yet. 11 sources.</li>
+<li><a href="/wiki/design/kernel.html">The kernel</a> · seL4 with MCS as the Silent Zero kernel: proven (C-level correctness; MCS functional correctness on RISC-V), not stated for MCS (integrity, confidentiality), tested (HACMS), assumed (boot, IOMMU); no WCET bound on any 64-bit core yet. 12 sources.</li>
 <li><a href="/wiki/design/static-system.html">The static system</a> · one description, one image: what Microkit checks, what is not proved, and the run-time swap in LionsOS, the kernel underneath. 5 sources.</li>
 <li><a href="/wiki/design/broker.html">The broker</a> · the only component that hands out authority: capability patterns, CaMeL, why model-based defences fail; nothing proven yet. 9 sources.</li>
 <li><a href="/wiki/design/real-time-loops.html">Real-time loops</a> · the loops that move the motors: asynchronous chunks from slow models, observed timings, no proven bound yet. 6 sources.</li>
 <li><a href="/wiki/design/safety-path.html">The safety path</a> · Simplex in Silent Zero: the agent proposes, the loop disposes; tested, not proven; the paper’s 2001 date disputed by a 1994 origin. 3 sources.</li>
 <li><a href="/wiki/design/root-of-trust.html">Root of trust and firmware</a> · the firmware below the kernel on Arm, RISC-V, PC and Raspberry Pi; OpenTitan, Caliptra, DICE; all <em>assumed</em> in the paper’s terms. 12 sources.</li>
-<li><a href="/wiki/design/bootloader.html">The bootloader</a> · where the Silent Zero loader sits on each platform, signed and measured boot, proofs about boot code so far; the loader itself unproven. 13 sources.</li>
+<li><a href="/wiki/design/bootloader.html">The bootloader</a> · where the Silent Zero loader sits on each platform, signed and measured boot, proofs about boot code so far; the loader itself unproven. 16 sources.</li>
 <li><a href="/wiki/design/drivers.html">Drivers</a> · user-mode drivers, the first verified Ethernet driver, DMA and the IOMMU as assumed. 7 sources.</li>
 </ul>
 <h2 id="systems">Systems</h2>
 <ul>
-<li><a href="/wiki/systems/sel4.html">seL4</a> · the verified microkernel Silent Zero builds on: proofs per architecture, cost, MCS, timing, HACMS. 8 sources.</li>
+<li><a href="/wiki/systems/sel4.html">seL4</a> · the verified microkernel Silent Zero builds on: proofs per architecture and platform, cost, MCS, timing, HACMS. 9 sources.</li>
 <li><a href="/wiki/systems/microkit.html">Microkit</a> · the build system for static seL4 systems: protection domains, channels, budgets, one image. 3 sources.</li>
 <li><a href="/wiki/systems/lionsos.html">LionsOS</a> · static OS from small components on seL4 and Microkit; first driver verified. 4 sources.</li>
 <li><a href="/wiki/systems/coreboot.html">coreboot</a> · open firmware in stages with a fixed payload; verified and measured boot; closed vendor parts on x86. 3 sources.</li>
 <li><a href="/wiki/systems/tf-a.html">Trusted Firmware-A</a> · Arm’s reference firmware; BL31 stays resident at EL3 below the kernel. 2 sources.</li>
-<li><a href="/wiki/systems/opensbi.html">OpenSBI</a> · RISC-V firmware in machine mode below the kernel. 1 source.</li>
+<li><a href="/wiki/systems/opensbi.html">OpenSBI</a> · RISC-V firmware in machine mode below the kernel. 3 sources.</li>
 <li><a href="/wiki/systems/raspberry-pi.html">Raspberry Pi</a> · the pib’s board: closed ROM and EEPROM boot, secure-boot key in OTP on the Pi 4, seL4 verified without MCS. 3 sources.</li>
 <li><a href="/wiki/systems/opentitan.html">OpenTitan</a> · open-source silicon root of trust, shipping in Chromebooks since March 2026. 2 sources.</li>
 <li><a href="/wiki/systems/cohesix.html">Cohesix</a> · seL4-based control layer for edge AI fleets: a Queen decides what hosts’ models may do; landing page only. 1 source.</li>
-<li><a href="/wiki/systems/cva6.html">CVA6</a> · open 64-bit RISC-V core whose design lets latency bounds be proved; fence.t prototype. 5 sources.</li>
+<li><a href="/wiki/systems/cva6.html">CVA6</a> · open 64-bit RISC-V core whose design lets latency bounds be proved; fence.t prototype. 6 sources.</li>
+<li><a href="/wiki/systems/sifive-hifive.html">SiFive and the HiFive boards</a> · SiFive and its boards: the discontinued HiFive Unleashed with seL4’s MCS proof, the HiFive Premier P550 one can buy. 5 sources.</li>
 </ul>
 <h2 id="concepts">Concepts</h2>
 <ul>
+<li><a href="/wiki/concepts/risc-v.html">RISC-V</a> · the open instruction set: what is open (the ISA) and what need not be (cores, chips, boards); privilege levels and the SBI. 11 sources.</li>
 <li><a href="/wiki/concepts/wcet-analysis.html">WCET analysis</a> · upper bounds on execution time, what they need, and where seL4 stands. 6 sources.</li>
 <li><a href="/wiki/concepts/functional-correctness.html">Functional correctness</a> · what seL4’s refinement proof gives, what it assumes, where it holds. 4 sources.</li>
 <li><a href="/wiki/concepts/object-capabilities.html">Object capabilities</a> · references that both designate and authorise; permission versus authority; caretaker and membrane. 3 sources.</li>
@@ -369,6 +371,16 @@ ul.linked-from .kind { color: var(--muted); font-size: 0.85rem; margin-left: 0.4
 </ul>
 <h2 id="sources">Sources</h2>
 <ul>
+<li><a href="/wiki/sources/2011-waterman-risc-v-instruction.html">The RISC-V Instruction Set Manual, Version 1.0</a> (Waterman et al. 2011) · the first RISC-V manual, Berkeley, May 2011: an open ISA for research and teaching. design, introduction only.</li>
+<li><a href="/wiki/sources/2014-asanovic-instruction-sets-free.html">Instruction Sets Should Be Free</a> (Asanović and Patterson 2014) · why instruction sets should be free, and why RISC-V. position, full text.</li>
+<li><a href="/wiki/sources/2024-riscv-unprivileged-isa-manual.html">The RISC-V Instruction Set Manual, Volume I</a> (RISC-V International 2024) · the ratified ISA: base ISAs, standard extensions, harts. design, introduction only.</li>
+<li><a href="/wiki/sources/2024-riscv-privileged-isa-manual.html">The RISC-V Instruction Set Manual, Volume II</a> (RISC-V International 2024) · privilege levels M, S, U and the SBI. design, introduction only.</li>
+<li><a href="/wiki/sources/nd-riscv-international-about.html">RISC-V International: About</a> · who keeps the RISC-V standard: a Swiss non-profit; royalty-free ISA, no implementations. report, full text.</li>
+<li><a href="/wiki/sources/nd-sifive-risc-v-history.html">SiFive: RISC-V History</a> · SiFive’s account of RISC-V and of itself. report, full text.</li>
+<li><a href="/wiki/sources/nd-sifive-hifive-unleashed.html">SiFive: HiFive Unleashed</a> · the HiFive Unleashed, discontinued: FU540, U54 cores and a monitor core. report, full text.</li>
+<li><a href="/wiki/sources/2024-sifive-hifive-premier-p550.html">the HiFive Premier P550</a> (SiFive 2024) · the HiFive Premier P550, announced in Nuremberg, April 2024. report, full text.</li>
+<li><a href="/wiki/sources/nd-sel4-supported-platforms.html">seL4 Foundation: Supported platforms</a> · the boards seL4 runs on; boot chain of the P550. report, RISC-V and board pages.</li>
+<li><a href="/wiki/sources/2026-sel4-release-17.html">release 17.0.0</a> (seL4 Foundation 2026) · seL4 17.0.0: C-level proof on every 64-bit platform, MCS on <code>hifive</code> only; an icache fix. report, CAVEATS and 17.0.0 notes.</li>
 <li><a href="/wiki/sources/2026-anthropic-project-glasswing-securing.html">Anthropic 2026a: Project Glasswing, securing critical software for the AI era</a> · an unreleased model finds thousands of high-severity flaws; the company’s own claim, April 2026. report, full text.</li>
 <li><a href="/wiki/sources/2026-anthropic-project-glasswing-initial.html">Anthropic 2026b: Project Glasswing, an initial update</a> · over ten thousand partner findings; of 1,752 open-source findings assessed, 62.4 % confirmed high or critical. report, full text.</li>
 <li><a href="/wiki/sources/2026-bower-cohesix-research-operating.html">Cohesix, a research operating system for edge AI</a> (Bower 2026) · Cohesix: Queen and Workers on seL4, AI proposes and the target decides. report, landing page only.</li>

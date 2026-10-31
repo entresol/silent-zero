@@ -311,7 +311,7 @@ ul.linked-from .kind { color: var(--muted); font-size: 0.85rem; margin-left: 0.4
     <div class="titleblock">
       <h1 class="name">CVA6</h1>
       <p class="sub">open 64-bit RISC-V core whose design lets latency bounds be proved; fence.t prototype.</p>
-      <p class="ver">System · <a href="/wiki/#how">LLM reviewed</a> · updated 29 Oct 2026 · 5 sources</p>
+      <p class="ver">System · <a href="/wiki/#how">LLM reviewed</a> · updated 31 Oct 2026 · 6 sources</p>
     </div>
   </div>
 </header>
@@ -326,16 +326,16 @@ ul.linked-from .kind { color: var(--muted); font-size: 0.85rem; margin-left: 0.4
 <h2 id="why-it-matters-for-timing-channels">Why it matters for timing channels</h2>
 <p>On CVA6 a custom instruction, <code>fence.t</code>, resets all non-architectural state on a context switch. In an FPGA prototype it closed every measured on-core timing channel, at under 1 per cent slowdown with a context switch every 10 million cycles, equivalent to 10 ms at 1 GHz (<a href="/wiki/sources/2022-wistoff-systematic-prevention-core.html">Systematic Prevention of On-Core Timing Channels</a>). See <a href="/wiki/concepts/time-protection.html">Time protection</a>.</p>
 <h2 id="boards">Boards</h2>
-<p>Microkit supports CVA6 on the Digilent Genesys2 FPGA board (<a href="/wiki/sources/nd-sel4-microkit-user-manual.html">seL4 Microkit: User Manual, v2.3.0</a>); seL4’s verified configurations include Ariane (<a href="/wiki/sources/nd-sel4-verified-configurations.html">seL4 Foundation: Verified Configurations</a>), which the Microkit manual calls the former name of CVA6 (<a href="/wiki/sources/nd-sel4-microkit-user-manual.html">seL4 Microkit: User Manual, v2.3.0</a>).</p>
+<p>Microkit supports CVA6 on the Digilent Genesys2 FPGA board (<a href="/wiki/sources/nd-sel4-microkit-user-manual.html">seL4 Microkit: User Manual, v2.3.0</a>); seL4’s verified configurations include Ariane (<a href="/wiki/sources/nd-sel4-verified-configurations.html">seL4 Foundation: Verified Configurations</a>), which the Microkit manual calls the former name of CVA6 (<a href="/wiki/sources/nd-sel4-microkit-user-manual.html">seL4 Microkit: User Manual, v2.3.0</a>). Since seL4 release 17.0.0, <code>ariane</code> is among the RISC-V platforms with a C-level proof, without MCS (<a href="/wiki/sources/2026-sel4-release-17.html">release 17.0.0</a>).</p>
 <h2 id="not-yet-in-the-wiki">Not yet in the wiki</h2>
 <p>Silicon with CVA6, licence.</p>
 
 <h2 id="page-sources">Sources</h2>
 <p class="links-note">What this page rests on.</p>
-<ul class="linked-from"><li><a href="/wiki/sources/2026-sillitoe-resurrecting-sel4-wcet.html">Resurrecting seL4&#x27;s WCET Analysis</a> <span class="kind">Sillitoe et al. 2026</span></li><li><a href="/wiki/sources/nd-sel4-verified-configurations.html">seL4 Foundation: Verified Configurations</a></li><li><a href="/wiki/sources/nd-sel4-microkit-user-manual.html">seL4 Microkit: User Manual, v2.3.0</a></li><li><a href="/wiki/sources/2022-wistoff-systematic-prevention-core.html">Systematic Prevention of On-Core Timing Channels</a> <span class="kind">Wistoff et al. 2022</span></li><li><a href="/wiki/sources/nd-trustworthy-wcet-worst-case.html">WCET analysis of seL4</a> <span class="kind">Trustworthy Systems (n.d.)</span></li></ul>
+<ul class="linked-from"><li><a href="/wiki/sources/2026-sel4-release-17.html">release 17.0.0</a> <span class="kind">seL4 Foundation 2026</span></li><li><a href="/wiki/sources/2026-sillitoe-resurrecting-sel4-wcet.html">Resurrecting seL4&#x27;s WCET Analysis</a> <span class="kind">Sillitoe et al. 2026</span></li><li><a href="/wiki/sources/nd-sel4-verified-configurations.html">seL4 Foundation: Verified Configurations</a></li><li><a href="/wiki/sources/nd-sel4-microkit-user-manual.html">seL4 Microkit: User Manual, v2.3.0</a></li><li><a href="/wiki/sources/2022-wistoff-systematic-prevention-core.html">Systematic Prevention of On-Core Timing Channels</a> <span class="kind">Wistoff et al. 2022</span></li><li><a href="/wiki/sources/nd-trustworthy-wcet-worst-case.html">WCET analysis of seL4</a> <span class="kind">Trustworthy Systems (n.d.)</span></li></ul>
 <h2 id="related-pages">Related pages</h2>
 <p class="links-note">Pages this one links to, and pages that link here.</p>
-<ul class="linked-from"><li><a href="/wiki/concepts/time-protection.html">Time protection</a> <span class="kind">Concept</span></li><li><a href="/wiki/concepts/wcet-analysis.html">WCET analysis</a> <span class="kind">Concept</span></li></ul>
+<ul class="linked-from"><li><a href="/wiki/concepts/risc-v.html">RISC-V</a> <span class="kind">Concept</span></li><li><a href="/wiki/concepts/time-protection.html">Time protection</a> <span class="kind">Concept</span></li><li><a href="/wiki/concepts/wcet-analysis.html">WCET analysis</a> <span class="kind">Concept</span></li></ul>
   </article>
 </div>
 <footer><div><span class="about"><span>Silent Zero OS</span><span class="sep"> · </span><span>Wiki</span><span class="sep"> · </span><span>Text <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></span></span><span class="links"><a href="/">Paper</a> <a href="https://github.com/entresol/silent-zero/tree/main/wiki">GitHub</a> <a href="https://unwritten.studio/impressum">Imprint</a></span></div></footer>

@@ -9,13 +9,13 @@ The catalogue of every page, with one line each. Read this first.
 
 ## zOS
 
-- [[kernel]] · seL4 with MCS as the zOS kernel: proven (C-level correctness; MCS functional correctness on RISC-V), not stated for MCS (integrity, confidentiality), tested (HACMS), assumed (boot, IOMMU); no WCET bound on any 64-bit core yet. 11 sources.
+- [[kernel]] · seL4 with MCS as the zOS kernel: proven (C-level correctness; MCS functional correctness on RISC-V), not stated for MCS (integrity, confidentiality), tested (HACMS), assumed (boot, IOMMU); no WCET bound on any 64-bit core yet. 12 sources.
 - [[static-system]] · one description, one image: what Microkit checks, what is not proved, and the run-time swap in LionsOS, the kernel underneath. 5 sources.
 - [[broker]] · the only component that hands out authority: capability patterns, CaMeL, why model-based defences fail; nothing proven yet. 9 sources.
 - [[real-time-loops]] · the loops that move the motors: asynchronous chunks from slow models, observed timings, no proven bound yet. 6 sources.
 - [[safety-path]] · Simplex in zOS: the agent proposes, the loop disposes; tested, not proven; the paper's 2001 date disputed by a 1994 origin. 3 sources.
 - [[root-of-trust]] · the firmware below the kernel on Arm, RISC-V, PC and Raspberry Pi; OpenTitan, Caliptra, DICE; all *assumed* in the paper's terms. 12 sources.
-- [[bootloader]] · where the zOS loader sits on each platform, signed and measured boot, proofs about boot code so far; the loader itself unproven. 13 sources.
+- [[bootloader]] · where the zOS loader sits on each platform, signed and measured boot, proofs about boot code so far; the loader itself unproven. 16 sources.
 - [[drivers]] · user-mode drivers, the first verified Ethernet driver, DMA and the IOMMU as assumed. 7 sources.
 
 ## Not yet covered
@@ -24,19 +24,21 @@ The zOS part *agents* has no page yet. Firmware on PCs (Intel ME, AMD PSP, FSP, 
 
 ## Systems
 
-- [[sel4]] · the verified microkernel zOS builds on: proofs per architecture, cost, MCS, timing, HACMS. 8 sources.
+- [[sel4]] · the verified microkernel zOS builds on: proofs per architecture and platform, cost, MCS, timing, HACMS. 9 sources.
 - [[microkit]] · the build system for static seL4 systems: protection domains, channels, budgets, one image. 3 sources.
 - [[lionsos]] · static OS from small components on seL4 and Microkit; first driver verified. 4 sources.
 - [[coreboot]] · open firmware in stages with a fixed payload; verified and measured boot; closed vendor parts on x86. 3 sources.
 - [[tf-a]] · Arm's reference firmware; BL31 stays resident at EL3 below the kernel. 2 sources.
-- [[opensbi]] · RISC-V firmware in machine mode below the kernel. 1 source.
+- [[opensbi]] · RISC-V firmware in machine mode below the kernel. 3 sources.
 - [[raspberry-pi]] · the pib's board: closed ROM and EEPROM boot, secure-boot key in OTP on the Pi 4, seL4 verified without MCS. 3 sources.
 - [[opentitan]] · open-source silicon root of trust, shipping in Chromebooks since March 2026. 2 sources.
 - [[cohesix]] · seL4-based control layer for edge AI fleets: a Queen decides what hosts' models may do; landing page only. 1 source.
-- [[cva6]] · open 64-bit RISC-V core whose design lets latency bounds be proved; fence.t prototype. 5 sources.
+- [[cva6]] · open 64-bit RISC-V core whose design lets latency bounds be proved; fence.t prototype. 6 sources.
+- [[sifive-hifive]] · SiFive and its boards: the discontinued HiFive Unleashed with seL4's MCS proof, the HiFive Premier P550 one can buy. 5 sources.
 
 ## Concepts
 
+- [[risc-v]] · the open instruction set: what is open (the ISA) and what need not be (cores, chips, boards); privilege levels and the SBI. 11 sources.
 - [[wcet-analysis]] · upper bounds on execution time, what they need, and where seL4 stands. 6 sources.
 - [[functional-correctness]] · what seL4's refinement proof gives, what it assumes, where it holds. 4 sources.
 - [[object-capabilities]] · references that both designate and authorise; permission versus authority; caretaker and membrane. 3 sources.
@@ -52,6 +54,16 @@ The zOS part *agents* has no page yet. Firmware on PCs (Intel ME, AMD PSP, FSP, 
 
 ## Sources
 
+- [[2011-waterman-risc-v-instruction]] · the first RISC-V manual, Berkeley, May 2011: an open ISA for research and teaching. design, introduction only.
+- [[2014-asanovic-instruction-sets-free]] · why instruction sets should be free, and why RISC-V. position, full text.
+- [[2024-riscv-unprivileged-isa-manual]] · the ratified ISA: base ISAs, standard extensions, harts. design, introduction only.
+- [[2024-riscv-privileged-isa-manual]] · privilege levels M, S, U and the SBI. design, introduction only.
+- [[nd-riscv-international-about]] · who keeps the RISC-V standard: a Swiss non-profit; royalty-free ISA, no implementations. report, full text.
+- [[nd-sifive-risc-v-history]] · SiFive's account of RISC-V and of itself. report, full text.
+- [[nd-sifive-hifive-unleashed]] · the HiFive Unleashed, discontinued: FU540, U54 cores and a monitor core. report, full text.
+- [[2024-sifive-hifive-premier-p550]] · the HiFive Premier P550, announced in Nuremberg, April 2024. report, full text.
+- [[nd-sel4-supported-platforms]] · the boards seL4 runs on; boot chain of the P550. report, RISC-V and board pages.
+- [[2026-sel4-release-17]] · seL4 17.0.0: C-level proof on every 64-bit platform, MCS on `hifive` only; an icache fix. report, CAVEATS and 17.0.0 notes.
 - [[2026-anthropic-project-glasswing-securing]] · an unreleased model finds thousands of high-severity flaws; the company's own claim, April 2026. report, full text.
 - [[2026-anthropic-project-glasswing-initial]] · over ten thousand partner findings; of 1,752 open-source findings assessed, 62.4 % confirmed high or critical. report, full text.
 - [[2026-bower-cohesix-research-operating]] · Cohesix: Queen and Workers on seL4, AI proposes and the target decides. report, landing page only.
