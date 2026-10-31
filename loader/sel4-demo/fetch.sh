@@ -5,7 +5,7 @@
 set -eu
 here=$(cd "$(dirname "$0")" && pwd)
 mkdir -p "$here/deps"
-get() {   # name, repository, commit (seL4 16.0.0 and the seL4_tools and util_libs it was released with)
+get() {   # name, repository, commit (seL4 17.0.0 and the seL4_tools and util_libs its release manifest names)
   dir="$here/deps/$1"
   if [ ! -d "$dir/.git" ]; then git init -q "$dir"; git -C "$dir" remote add origin "$2"; fi
   git -C "$dir" fetch -q --depth 1 origin "$3"
@@ -14,6 +14,6 @@ get() {   # name, repository, commit (seL4 16.0.0 and the seL4_tools and util_li
   test -z "$(git -C "$dir" status --porcelain)" || { echo "$1: has local changes" >&2; exit 1; }
   echo "$1 $3"
 }
-get seL4       https://github.com/seL4/seL4.git       6e7c3b733d296cfd88d5fbf635c96e447a882374
+get seL4       https://github.com/seL4/seL4.git       62e345c240a15671484530b4e6e069ce266c28d7
 get seL4_tools https://github.com/seL4/seL4_tools.git 6493e0c6fab360eb81a8115a49c9ca7bc280c48a
 get util_libs  https://github.com/seL4/util_libs.git  ef49a397b7044fc38b609a99a8c6265a97913b8e

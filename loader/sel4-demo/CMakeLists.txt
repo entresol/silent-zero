@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: BSD-2-Clause
-# The boot demo: the official seL4 16.0.0 kernel in a configuration given on the command line (build.sh uses the
+# The boot demo: the official seL4 17.0.0 kernel in a configuration given on the command line (build.sh uses the
 # preset RISCV64_MCS_verified), seL4's ELF loader, and our root task, as one image for QEMU's HiFive Unleashed model.
 cmake_minimum_required(VERSION 3.16)
 set(DEPS "${CMAKE_CURRENT_LIST_DIR}/deps")

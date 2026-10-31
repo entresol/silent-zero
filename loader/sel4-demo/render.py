@@ -63,7 +63,7 @@ def draw_frame(t):
     loader = 'ELF-loader started' in text
     firmware = 'OpenSBI' in text
     d.text((40,26), 'seL4 boots on RISC-V', font=title, fill='#f2f6fc')
-    d.text((42,91), f"HiFive Unleashed in QEMU  ·  seL4 16.0.0, official configuration {capture['configuration']}", font=ui, fill='#9cabbd')
+    d.text((42,91), f"HiFive Unleashed in QEMU  ·  seL4 17.0.0, official configuration {capture['configuration']}", font=ui, fill='#9cabbd')
     d.rounded_rectangle((40,140,1435,1110), radius=16, fill='#101925', outline='#29364a', width=2)
     d.rectangle((42,190,1433,192), fill='#29364a')
     for x,c in [(64,'#fa6a71'),(90,'#e8bd60'),(116,'#65cc9d')]:

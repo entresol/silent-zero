@@ -38,7 +38,7 @@ Hashing the header fields as well as the payload means length, version and entry
 
 ## In front of seL4, on the HiFive Unleashed model
 
-`sel4-demo/` builds the official seL4 16.0.0 kernel in its verified MCS configuration, `RISCV64_MCS_verified`, whose platform is the HiFive Unleashed. `make hifive` builds this loader for QEMU's model of that board (`-DPLAT_HIFIVE`) and wraps seL4's ELF loader, with the kernel and the demo's root task inside it, as a zOS image. The chain is then: OpenSBI in machine mode, this loader in supervisor mode at `0x80200000`, the hash check, seL4's ELF loader at `0x82000000`, the kernel, the root task.
+`sel4-demo/` builds the official seL4 17.0.0 kernel in its verified MCS configuration, `RISCV64_MCS_verified`, whose platform is the HiFive Unleashed. `make hifive` builds this loader for QEMU's model of that board (`-DPLAT_HIFIVE`) and wraps seL4's ELF loader, with the kernel and the demo's root task inside it, as a zOS image. The chain is then: OpenSBI in machine mode, this loader in supervisor mode at `0x80200000`, the hash check, seL4's ELF loader at `0x82000000`, the kernel, the root task.
 
 ![the loader in front of seL4: good image, then one bit flipped](recording/still-good.png)
 

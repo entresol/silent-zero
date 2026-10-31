@@ -99,7 +99,7 @@ def card(line1, line2, line3=''):
 
 good, bad = load('recording'), load('recording-tampered')
 scenes = [  # seconds, frame for a time within the scene, name of the still taken from its last frame
-    (3.0, lambda t: card('Power-on to user space', 'OpenSBI, the zOS loader, seL4 16.0.0 (MCS, verified configuration)',
+    (3.0, lambda t: card('Power-on to user space', 'OpenSBI, the zOS loader, seL4 17.0.0 (MCS, verified configuration)',
                          'Simulated in QEMU: a SiFive HiFive Unleashed, the 2018 board that seL4\'s MCS proof is for.'), None),
     (good['end'] + 4.0, lambda t: draw(good, t, 'The image checks out',
                                        'the loader hashes the kernel image, shows the result and only then starts it'), 'still-good.png'),

@@ -450,10 +450,10 @@ sup.refs a:hover { text-decoration: underline; }
 <td data-label="Source">paper, Section 3</td>
 </tr>
 <tr>
-<td data-label="Claim">The official seL4 16.0.0 kernel, built with the unmodified preset <code>RISCV64_MCS_verified</code>, booting to user space on RISC-V</td>
+<td data-label="Claim">The official seL4 kernel, release 17.0.0, built with the unmodified preset <code>RISCV64_MCS_verified</code>, booting to user space on RISC-V</td>
 <td data-label="State in the paper’s terms">demonstrated in QEMU’s model of the SiFive HiFive Unleashed, a board from 2018: OpenSBI, then seL4’s ELF loader, then the kernel and a root task that maps a UART through capabilities; one of five harts used; the build checks all 22 preset settings and the kernel’s SHA-256</td>
 <td data-label="Evidence">test (a recorded serial console, rebuildable)</td>
-<td data-label="Source"><a href="/assets/video/sel4-riscv-boot.mp4">the project’s video</a> and <a href="https://github.com/entresol/silent-zero/tree/main/loader/sel4-demo" rel="noopener" target="_blank">its build</a>, 30 October 2026</td>
+<td data-label="Source"><a href="/assets/video/sel4-riscv-boot.mp4">the project’s video</a> and <a href="https://github.com/entresol/silent-zero/tree/main/loader/sel4-demo" rel="noopener" target="_blank">its build</a>, 30 October 2026 with 16.0.0, again on 31 October 2026 with 17.0.0</td>
 </tr>
 <tr>
 <td data-label="Claim">The Silent Zero loader in front of that kernel</td>
@@ -463,8 +463,8 @@ sup.refs a:hover { text-decoration: underline; }
 </tr>
 </tbody>
 </table></div>
-<p>Our reading: the video shows seL4’s own boot chain, not the Silent Zero loader. The kernel is built with the preset seL4 16.0.0 provides for its MCS verification on this platform, <code>hifive</code> (<a href="https://github.com/seL4/seL4/tree/16.0.0/configs" rel="noopener" target="_blank">configuration files</a>). So the video shows that kernel booting. It does not show a proof of the binary: the proofs are about the C code, and the compiler is trusted. QEMU stands in for the hardware, and firmware and ELF loader lie outside every proof.</p>
-<p>Release 17.0.0 of seL4 (30 October 2026) fixes a missing instruction-cache flush that affected all RISC-V configurations, the verified ones included; the video’s kernel is 16.0.0 (<a href="/wiki/sources/2026-sel4-release-17.html">release 17.0.0</a>).</p>
+<p>Our reading: the video shows seL4’s own boot chain, not the Silent Zero loader. The kernel is built with the preset seL4 provides for its MCS verification on this platform, <code>hifive</code> (<a href="https://github.com/seL4/seL4/tree/17.0.0/configs" rel="noopener" target="_blank">configuration files</a>); the preset files are the same in 16.0.0 and 17.0.0. So the video shows that kernel booting. It does not show a proof of the binary: the proofs are about the C code, and the compiler is trusted. QEMU stands in for the hardware, and firmware and ELF loader lie outside every proof.</p>
+<p>Release 17.0.0 of seL4 (30 October 2026) fixes a missing instruction-cache flush that affected all RISC-V configurations, the verified ones included (<a href="/wiki/sources/2026-sel4-release-17.html">release 17.0.0</a>). Both videos were recorded first with 16.0.0 and again, on 31 October 2026, with 17.0.0; the kernel grew from 58,300 to 58,428 bytes.</p>
 <p>Our reading of the second video: the Silent Zero loader now sits where the paper puts it, between the firmware and the kernel, and the check works on the real kernel image, not on a stand-in. It is still a hash stored next to the image, so it catches accidents, not someone who can rewrite both; the signature is the next step. The loader itself, OpenSBI and seL4’s ELF loader remain assumed. Built with GCC 15.2 the loader is 7,333 bytes for this model and 7,809 bytes for QEMU’s <code>virt</code> machine, between seven tenths and three quarters of it the renderer and its font data (<a href="https://github.com/entresol/silent-zero/tree/main/loader#size" rel="noopener" target="_blank">loader README</a>).</p>
 <h2 id="the-paper-and-its-sources">The paper and its sources</h2>
 <ul>

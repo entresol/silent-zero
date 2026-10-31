@@ -40,4 +40,4 @@ The notes state which proofs exist; they do not show them. The proofs themselves
 ## For zOS
 
 - [[kernel]]: the HiFive Premier P550, a board SiFive announced for sale in 2024 ([[2024-sifive-hifive-premier-p550]]), now has a proven seL4 configuration, without MCS. The MCS kernel the paper chooses is proven only for the HiFive Unleashed, which SiFive no longer sells ([[nd-sifive-hifive-unleashed]]).
-- [[bootloader]]: the project's boot video uses seL4 16.0.0. The instruction-cache fix of 17.0.0 applies to its configuration.
+- [[bootloader]]: the project's boot videos used seL4 16.0.0 until 31 October 2026 and use 17.0.0 since; the instruction-cache fix applies to their configuration.

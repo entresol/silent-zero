@@ -89,3 +89,7 @@ RISC-V in the wiki, asked for by the team. Created: ten source pages, [[risc-v]]
 ## [2026-10-31] rule | the lexicon
 
 Every concept and system page joins the lexicon at `/lexicon/`: with `glossary:` when the paper's glossary has the term, otherwise with its own `short:` line. Added to all 25 concept and system pages.
+
+## [2026-10-31] update | bootloader, 2026-sel4-release-17
+
+The boot demo now builds seL4 17.0.0 (commit `62e345c`, with the seL4_tools and util_libs commits of the release manifest, unchanged from 16.0.0). Same preset files, kernel 58,428 bytes. Both videos re-recorded; [[bootloader]] and [[2026-sel4-release-17]] say so.
