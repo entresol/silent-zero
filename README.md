@@ -20,4 +20,4 @@ Criticism and support are warmly welcome as [issues](https://github.com/entresol
 
 ## Licence
 
-Code, including the build scripts: [BSD-2-Clause](LICENSE). Fonts: [SIL Open Font License 1.1](assets/fonts/). Paper, texts and figures: [CC BY 4.0](LICENSE-CC-BY-4.0.txt).
+Code, including the build scripts: [BSD-2-Clause](LICENSE). Fonts: [SIL Open Font License 1.1](assets/fonts/). Paper, texts and figures: [CC BY 4.0](LICENSE-CC-BY-4.0.txt). Everything we use from others, with source, version and licence: [THIRD-PARTY.md](THIRD-PARTY.md).
