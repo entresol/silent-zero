@@ -82,7 +82,7 @@ def draw(run, t, title, note):
         d.text((x, 956), name, font=ui, fill=TEXT if reached[k] else DIM)
         sub = 'stopped: hash mismatch' if halted and k == 1 else 'not started' if halted and k > 1 else what
         d.text((x, 988), sub, font=small, fill=STOP if halted and k >= 1 else DIM)
-    d.text((32, 1040), f'time since QEMU started: {clock:5.2f} s   ·   QEMU sifive_u (HiFive Unleashed model)   ·   '
+    d.text((32, 1040), f'time since QEMU started: {clock:5.2f} s   ·   SiFive HiFive Unleashed (2018), simulated in QEMU   ·   '
            'QEMU pauses while each frame is copied; the pauses are included in the timing', font=small, fill=DIM)
     return im
 
@@ -99,7 +99,8 @@ def card(line1, line2, line3=''):
 
 good, bad = load('recording'), load('recording-tampered')
 scenes = [  # seconds, frame for a time within the scene, name of the still taken from its last frame
-    (3.0, lambda t: card('Power-on to user space', 'OpenSBI, the zOS loader, seL4 16.0.0 (MCS, verified configuration)'), None),
+    (3.0, lambda t: card('Power-on to user space', 'OpenSBI, the zOS loader, seL4 16.0.0 (MCS, verified configuration)',
+                         'Simulated in QEMU: a SiFive HiFive Unleashed, the 2018 board that seL4\'s MCS proof is for.'), None),
     (good['end'] + 4.0, lambda t: draw(good, t, 'The image checks out',
                                        'the loader hashes the kernel image, shows the result and only then starts it'), 'still-good.png'),
     (3.0, lambda t: card('The same image, tampered with', 'one byte changed after the image was built and hashed',
