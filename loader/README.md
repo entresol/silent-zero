@@ -78,3 +78,7 @@ Text + data, `-Os`, `rv64imac`, measured with GCC 15.2 (xPack); the earlier clan
 | whole loader | 7,809 | 7,333 |
 
 For `virt` add the two byte-swap routines GCC takes from `libgcc.a`; they are in the whole-loader figure.
+
+## Releases
+
+`release.sh <version>` collects what a release carries: the loader and the boot image for the HiFive model, the video, the complete source of the seL4 commits inside the boot image (`git archive`), seL4's licence texts and ours, `THIRD-PARTY.md` and SHA-256 sums. The boot image contains GPL-2.0 code (seL4 kernel and ELF loader), so its source travels with it. Built twice in different directories on the same machine, the boot image came out bit for bit the same.
