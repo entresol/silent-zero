@@ -101,3 +101,7 @@ Ring 2, in a session. Created: four source pages, [[cheriot]], [[information-flo
 ## [2026-10-31] ingest | 2022-google-announcing-kataos-sparrow, 2025-google-building-next-generation, 2023-greshake-not-what-you, 2026-he-neuro-symbolic-proof
 
 Ring 2, in a session. Created: four source pages, [[kataos]], [[proof-automation]]. Changed: [[sel4]], [[opentitan]], [[broker]], [[confused-deputy]], [[prompt-injection]], [[real-time-loops]], [[safety-path]], [[action-chunking]]. He et al.'s 77.6 per cent covers three evaluation splits of FVEL; the OSDI version is a separate pool entry, still open.
+
+## [2026-10-31] rule | every wiki pull request brings its changelog entry
+
+A wiki pull request adds one entry `· Site` to `CHANGELOG.md`, listing sources, new and changed pages and new lexicon terms, so the changelog keeps pace with the wiki without a separate step. The merge conditions of the daily run now also cover a session working through the rings.
