@@ -2,6 +2,7 @@
 type: concept
 status: reviewed
 sources: [2006-miller-robust-composition-towards, 2018-klein-formally-verified-software, 2025-debenedetti-defeating-prompt-injections]
+glossary: Capability
 updated: 2026-10-29
 ---
 

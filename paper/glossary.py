@@ -22,8 +22,9 @@ def parse(path):
             assert head and role.startswith("In Silent Zero:"), chunk
             term = head.group(1)
             matches = [m.strip() for m in head.group(2).split(";")] if head.group(2) else []
+            short = lines[3][len("Short:"):].strip() if len(lines) > 3 and lines[3].startswith("Short:") else None
             entries.append({"term": term, "matches": matches, "meaning": lines[1],
-                            "role": role[len("In Silent Zero:"):].strip(), "id": slug(term)})
+                            "role": role[len("In Silent Zero:"):].strip(), "id": slug(term), "short": short})
         groups.append((name.strip(), entries))
     return groups
 

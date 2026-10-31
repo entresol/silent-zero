@@ -2,6 +2,7 @@
 type: concept
 status: reviewed
 sources: [2026-nasr-attacker-moves-second, 2025-debenedetti-defeating-prompt-injections]
+glossary: Prompt injection
 updated: 2026-10-29
 ---
 

@@ -2,6 +2,7 @@
 type: concept
 status: reviewed
 sources: [2009-klein-sel4-formal-verification, nd-trustworthy-wcet-worst-case, 2026-sillitoe-resurrecting-sel4-wcet, 2026-trustworthy-guaranteeing-timeliness-mcs, 2026-heiser-mcs-safety-os, 2018-klein-formally-verified-software]
+glossary: Worst-case execution time (WCET)
 updated: 2026-10-29
 ---
 

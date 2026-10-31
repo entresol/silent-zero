@@ -49,6 +49,8 @@ updated: YYYY-MM-DD
 ---
 ```
 
+A concept or system page also joins the lexicon, the one-line A to Z at `/lexicon/` (`paper/lexicon.py`). If the paper's glossary (`paper/glossary.md`) has the term, the page names it with `glossary: <Term>` and the glossary entry carries the short line (`Short:`); otherwise the page carries it itself as `short:`, at most 50 characters, a plain description without the term. The build warns about a page with neither, and about a short line that is too long.
+
 A source page adds `id`, `read: full | partial` and `kind`, which says what kind of evidence the source gives: `proof`, `measurement`, `test`, `progress` (work under way, with a method and results that are not final), `design` (an architecture without results), `survey`, `position` or `report` (news, project pages, vendor statements).
 
 `status` says who has looked at a page, and the page shows it to the reader.

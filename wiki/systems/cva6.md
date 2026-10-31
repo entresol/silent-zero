@@ -2,6 +2,7 @@
 type: system
 status: reviewed
 sources: [nd-trustworthy-wcet-worst-case, 2026-sillitoe-resurrecting-sel4-wcet, 2022-wistoff-systematic-prevention-core, nd-sel4-microkit-user-manual, nd-sel4-verified-configurations, 2026-sel4-release-17]
+short: Open-source 64-bit RISC-V core, also Ariane
 updated: 2026-10-31
 ---
 

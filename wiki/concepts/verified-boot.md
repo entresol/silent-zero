@@ -2,6 +2,7 @@
 type: concept
 status: reviewed
 sources: [nd-uboot-verified-boot, nd-coreboot-vboot, nd-chromeos-verified-boot, 2018-cook-model-checking-boot, 2020-straznickas-verified-first-stage, 2022-zhang-pa-boot-formally]
+short: Each boot stage checks the next's signature
 updated: 2026-10-30
 ---
 

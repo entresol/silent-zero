@@ -2,6 +2,7 @@
 type: system
 status: reviewed
 sources: [2026-bower-cohesix-research-operating]
+short: seL4-based control layer for edge AI fleets
 updated: 2026-10-31
 ---
 

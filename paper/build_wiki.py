@@ -12,6 +12,9 @@ import subprocess
 import sys
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import lexicon
+
 PUBLIC_NAME = "Silent Zero"           # the one place the wiki's working name zOS is translated
 root = Path(sys.argv[1]) if len(sys.argv) > 1 else Path(__file__).resolve().parent.parent
 # the same version as on the main page (build_site.py): a changed icon gets a new address, so browsers fetch it
@@ -229,3 +232,25 @@ index_head = (f'    <div class="titleblock">\n      <h1 class="name">Wiki</h1>\n
               f'      <p class="ver">{len(pages) - 1} pages · updated {date(pages["index"]["meta"].get("updated", "2026-01-01"))} · <a href="#how">How this wiki is made</a></p>\n    </div>')
 (wiki / "index.html").write_text(page("Wiki", index_head, index_body, f'<a href="/">{PUBLIC_NAME} OS</a>'), encoding="utf-8")
 print(f"wiki: {written + 1} pages")
+
+# the lexicon: one line per term, collected from glossary and wiki (lexicon.py); G and W lead to the longer texts
+lx, lx_problems = lexicon.collect(root)
+for msg in lx_problems:
+    print("lexicon:", msg, file=sys.stderr)
+lx_body = ['<div class="wide">', lexicon.az_bar(lx, ""), ""]
+for c in sorted({lexicon.letter(e) for e in lx}):
+    lx_body.append(f'<h2 class="lx-letter" id="{c.lower()}">{c}</h2>\n<dl class="lexicon">')
+    for e in (e for e in lx if lexicon.letter(e) == c):
+        refs = []
+        if e["glossary"]:
+            refs.append(f'<a href="/#{e["glossary"]}" aria-label="{_h.escape(e["term"])} in the glossary">G</a>')
+        if e["wiki"]:
+            refs.append(f'<a href="{e["wiki"]}" aria-label="{_h.escape(e["term"])} in the wiki">W</a>')
+        head_words, _, last = _h.escape(public(e["short"])).rpartition(" ")   # the references stay with the last word
+        lx_body.append(f'<div><dt>{_h.escape(public(e["term"]))}</dt><dd>{head_words} <span class="nw">{last}<sup class="refs">{"".join(refs)}</sup></span></dd></div>')
+    lx_body.append("</dl>")
+lx_body.append("</div>")
+lx_head = (f'    <div class="titleblock">\n      <h1 class="name">Lexicon</h1>\n'
+           f'      <p class="sub">Every term in one line. G leads to the glossary, W to the wiki.</p>\n    </div>')
+(root / "lexicon").mkdir(exist_ok=True)
+(root / "lexicon" / "index.html").write_text(page("Lexicon", lx_head, "\n".join(lx_body), f'<a href="/">{PUBLIC_NAME} OS</a>'), encoding="utf-8")

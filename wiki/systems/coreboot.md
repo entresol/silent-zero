@@ -2,6 +2,7 @@
 type: system
 status: reviewed
 sources: [nd-coreboot-architecture, nd-coreboot-vboot, nd-coreboot-measured-boot]
+short: Open firmware in stages with a fixed payload
 updated: 2026-10-30
 ---
 

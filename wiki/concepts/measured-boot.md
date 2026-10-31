@@ -2,6 +2,7 @@
 type: concept
 status: reviewed
 sources: [nd-coreboot-measured-boot, 2021-tao-dice-formally-verified, nd-caliptra, 2020-straznickas-verified-first-stage]
+short: Each boot stage records what runs next
 updated: 2026-10-30
 ---
 

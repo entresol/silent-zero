@@ -2,6 +2,7 @@
 type: system
 status: reviewed
 sources: [nd-opensbi, 2024-riscv-privileged-isa-manual, nd-sel4-supported-platforms]
+short: RISC-V firmware in machine mode, below the OS
 updated: 2026-10-31
 ---
 

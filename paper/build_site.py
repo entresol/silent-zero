@@ -15,6 +15,7 @@ sys.dont_write_bytecode = True
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import changelog
 import glossary
+import lexicon
 gl_groups = glossary.parse(Path(__file__).resolve().parent / "glossary.md")
 
 md = (src_dir / "src.md").read_text(encoding="utf-8")
@@ -133,13 +134,18 @@ html_body = re.sub(r"<table>.*?</table>", label_table, html_body, flags=re.S)
 REPO = "https://github.com/entresol/silent-zero"
 changes = changelog.parse()
 rev_items = []
+SHOWN = 5   # the newest changes are open; the rest of the history is one click away
 for ver, scope, text in changes:
     pdf = f' · <a href="versions/zos-zero-os-{ver}.pdf">PDF of this version</a>' if changelog.has_pdf(ver) else ""
+    text = re.sub(r"`([^`]+)`", r"<code>\1</code>", text)                       # the changelog is Markdown:
+    text = re.sub(r"\[([^\]]+)\]\(([^)\s]+)\)", r'<a href="\2">\1</a>', text)   # code spans and links
     rev_items.append(f'<li><p class="rev-date"><span class="rev-ver">{ver}</span> · {scope}{pdf}</p><p>{text}</p></li>')
 revisions_html = ('<h2 id="changes">Changes</h2>'
                   f'<p>Every change is recorded in the <a href="{REPO}/commits/main">commit history</a>. '
                   f'This list says what changed in substance: in the paper, on this page and in the project. Its source is <a href="{REPO}/blob/main/CHANGELOG.md">CHANGELOG.md</a>.</p>'
-                  f'<ol class="revisions">{"".join(rev_items)}</ol>')
+                  f'<ol class="revisions">{"".join(rev_items[:SHOWN])}</ol>'
+                  + (f'<details class="revisions-more"><summary>All {len(rev_items) - SHOWN} earlier changes</summary>'
+                     f'<ol class="revisions">{"".join(rev_items[SHOWN:])}</ol></details>' if len(rev_items) > SHOWN else ''))
 html_body = html_body + revisions_html
 
 # the page, not the paper, says how to take part: after In brief, before the Abstract
@@ -159,6 +165,7 @@ pdf_name = f"versions/zos-zero-os-{CURRENT_VERSION}.pdf"
 toc = '<li><a href="#top">\u2191 Top</a></li>' + "".join(f'<li><a href="#{i}">{re.sub("<[^>]+>", "", t)}</a></li>'
               for i, t in re.findall(r'<h2 id="([^"]+)">(.*?)</h2>', html_body))
 toc += '<li class="toc-sep"><a href="wiki/">Wiki \u2192</a></li>'   # the paper's sources, page by page
+toc += '<li><a href="#lexicon">Lexicon A\u2013Z</a></li>'   # the A-Z line above the footer
 
 # A published version never changes. Once its PDF is on origin/main, the build keeps that file,
 # and the page describes the PDF it serves, not the one just built (another TeX gives other pages).
@@ -178,6 +185,7 @@ hero_json = json.dumps({l: {k: v for k, v in t.items() if k != "label"} for l, t
 css = (Path(__file__).resolve().parent / "site.css").read_text(encoding="utf-8")
 # browsers keep favicons in a cache of their own; a version from the icons' content makes them fetch a changed icon
 _top = Path(__file__).resolve().parent.parent
+az = lexicon.az_bar(lexicon.collect(_top)[0], "lexicon/")
 iv = hashlib.sha256(b"".join((_top / f).read_bytes() for f in ("favicon.ico", "assets/favicon.svg", "assets/apple-touch-icon.png"))).hexdigest()[:8]
 css = "\n".join(l for l in css.splitlines() if "SPDX-License-Identifier" not in l) + "\n"
 page = f"""<!doctype html>
@@ -288,6 +296,7 @@ page = f"""<!doctype html>
 {html_body}
   </article>
 </div>
+<section class="az-band" id="lexicon" aria-label="Lexicon"><div><a class="az-title" href="lexicon/">Lexicon</a>{az}</div></section>
 <footer><div><span class="about"><span>Silent Zero OS</span><span class="sep"> · </span><span>Working paper {CURRENT_VERSION}</span><span class="sep"> · </span><span>Text and figures <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></span></span><span class="links"><a href="silent-zero.pdf" download="silent-zero.pdf">PDF</a> <a href="wiki/">Wiki</a> <a href="https://github.com/entresol/silent-zero">GitHub</a> <a href="https://unwritten.studio/impressum">Imprint</a></span></div></footer>
 <script>
 // glossary tooltips open to the left where they would run off the right edge

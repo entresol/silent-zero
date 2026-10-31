@@ -2,6 +2,7 @@
 type: concept
 status: reviewed
 sources: [1988-hardy-confused-deputy-or, 2006-miller-robust-composition-towards]
+glossary: Confused deputy
 updated: 2026-10-29
 ---
 

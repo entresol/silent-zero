@@ -2,6 +2,7 @@
 type: system
 status: reviewed
 sources: [nd-sel4-microkit-user-manual, 2026-trustworthy-lionsos, 2018-klein-formally-verified-software]
+glossary: Microkit
 updated: 2026-10-29
 ---
 

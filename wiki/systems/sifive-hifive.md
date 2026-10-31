@@ -2,6 +2,7 @@
 type: system
 status: reviewed
 sources: [nd-sifive-risc-v-history, nd-sifive-hifive-unleashed, 2024-sifive-hifive-premier-p550, nd-sel4-supported-platforms, 2026-sel4-release-17]
+short: RISC-V core designer and its development boards
 updated: 2026-10-31
 ---
 
