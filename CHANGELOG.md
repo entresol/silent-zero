@@ -4,6 +4,10 @@ What changed in substance, newest first: in the paper, on its page and in the pr
 
 Format: `## <version> · <scope>`, then one paragraph. A paper version is `YYYY-MM-DD-vX.Y` and has its own PDF in `versions/`; the newest one is the version the build prints on the paper and the page. A change without a new paper version carries only its date (`YYYY-MM-DD`). Scope is `Paper`, `Site` or `Project`. The build turns this file into the list at the end of the page.
 
+## 2026-10-31 · Project
+
+`THIRD-PARTY.md` lists everything the project uses from others: source, exact version, licence, and whether we pass it on. The seL4 kernel and ELF loader in the boot image are GPL-2.0; seL4's licence note keeps our own code, which only starts the image or runs on the kernel, outside the GPL. A release that contains GPL code carries the complete source of the exact seL4 commits and all licence texts as attachments; `loader/release.sh` assembles them. The boot image builds bit for bit the same in two directories on one machine; on other machines this is not yet checked.
+
 ## 2026-10-31 · Site
 
 The loader video says on which board it runs: a SiFive HiFive Unleashed from 2018, the board seL4's MCS proof is for, simulated in QEMU.
