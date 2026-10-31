@@ -11,3 +11,4 @@ test_sha
 !/bad-payload.png
 hifive/
 recording-tampered/tampered.zimg
+release/
