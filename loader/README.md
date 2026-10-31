@@ -67,14 +67,14 @@ With GCC instead of clang, `make CC="riscv-none-elf-gcc -march=rv64imac_zicsr_zi
 
 ## Size
 
-Text + data, `-Os`, `rv64imac`. The large wordmark is now drawn (bar and ring) instead of set as "zOS" in Inter Thin, which takes 745 bytes off the renderer (6,209 before, with GCC). Measured with GCC 15.2 (xPack); the earlier clang figure, 8,896 bytes for `virt`, has not been measured again.
+Text + data, `-Os`, `rv64imac`, measured with GCC 15.2 (xPack); the earlier clang figure, 8,896 bytes for `virt`, has not been measured again. The glyphs store only the pixels that are drawn and skip the background, which made the existing type almost 600 bytes smaller; that paid for the name "silent zero OS" in Inter Thin, which costs 118 bytes net.
 
 | part | `virt` | HiFive |
 |---|---|---|
 | `start.S` | 52 | 50 |
 | `loader.c` (display, checks, jump) | 1,841 | 1,481 |
 | `sha256.c` including its constants | 1,000 | 1,000 |
-| `splash.c` including its glyphs | 5,464 | 5,464 |
-| whole loader | 7,687 | 7,211 |
+| `splash.c` including its glyphs | 5,582 | 5,582 |
+| whole loader | 7,809 | 7,333 |
 
 For `virt` add the two byte-swap routines GCC takes from `libgcc.a`; they are in the whole-loader figure.
