@@ -3,8 +3,8 @@
  * zOS boot splash, prototype.
  *
  * Draws the first screen a person sees after power-on: a grey panel in four
- * shades, bevelled edges, the mark (bar and ring), crisp grey-scale type, and
- * the boot report of what was loaded and what we know about each part.
+ * shades, bevelled edges, crisp grey-scale type, and the boot report of what
+ * was loaded and what we know about each part.
  *
  * Freestanding: no libc, no heap, no floating point. The caller hands in a
  * framebuffer of one byte per pixel holding a shade 0..3 (black, dark grey,
@@ -19,7 +19,7 @@
 #include <stdint.h>
 
 struct glyph { uint8_t ch, w, adv; int8_t left; uint16_t off; };
-struct font { uint8_t height, count; const struct glyph *g; const uint8_t *data; };
+struct font { uint8_t height, count; uint16_t size; const struct glyph *g; const uint8_t *data; };
 #include "glyphs.h"
 
 enum { BLACK, DARK, LIGHT, WHITE };
@@ -65,33 +65,16 @@ static void text(struct fb *f, const struct font *fo, int x, int y, const char *
     for (; *s; s++) {
         const struct glyph *g = find(fo, (uint8_t)*s);
         if (!g) { x += 4; continue; }
-        const uint8_t *d = fo->data + g->off;
-        int n = 0, total = g->w * fo->height;
-        while (n < total) {
-            uint8_t v = *d >> 6, run = (uint8_t)((*d & 63) + 1);
-            d++;
-            for (; run; run--, n++) plot(f, x + g->left + n % g->w, y + n / g->w, v, c);
+        const uint8_t *d = fo->data + g->off, *end = fo->data + (g + 1 < fo->g + fo->count ? g[1].off : fo->size);
+        for (int n = 0; d < end; d++) {                   /* see gen_glyphs.py, encode() */
+            uint8_t v = *d >> 6, skip = *d & 63;
+            if (!v) { n += skip + 1; continue; }
+            n += skip;
+            plot(f, x + g->left + n % g->w, y + n / g->w, v, c);
+            n++;
         }
         x += g->adv;
     }
-}
-
-/* the mark: a bar and a ring, in the proportions of the project's icon, drawn
- * with 4x4 subsamples per pixel; integer only */
-static void mark(struct fb *f, int x, int y) {
-    enum { BAR_W = 4, BAR_H = 76, CX = 58, RO = 32, RI = 28 };    /* ring centre is x + CX, y + BAR_H / 2 */
-    rect(f, x, y, BAR_W, BAR_H, DARK);
-    int cx = (x + CX) * 4 + 2, cy = (y + BAR_H / 2) * 4 + 2;      /* in quarter pixels */
-    for (int j = y + BAR_H / 2 - RO - 1; j <= y + BAR_H / 2 + RO; j++)
-        for (int i = x + CX - RO - 1; i <= x + CX + RO; i++) {
-            int n = 0;
-            for (int sy = 0; sy < 4; sy++)
-                for (int sx = 0; sx < 4; sx++) {
-                    int dx = i * 4 + sx - cx, dy = j * 4 + sy - cy, d = dx * dx + dy * dy;
-                    n += d <= RO * RO * 16 && d >= RI * RI * 16;
-                }
-            plot(f, i, j, (uint8_t)((n * 3 + 8) / 16), BLACK);
-        }
 }
 
 /* layout, derived from the screen size */
@@ -106,7 +89,7 @@ static struct geo geometry(int w, int h) {
     return g;
 }
 
-/* panel, title, mark, tagline, empty report well and empty progress bar */
+/* panel, title, name, tagline, empty report well and empty progress bar */
 void zos_splash_frame(uint8_t *px, int w, int h) {
     struct fb f = { px, w, h };
     struct geo g = geometry(w, h);
@@ -118,9 +101,9 @@ void zos_splash_frame(uint8_t *px, int w, int h) {
     rect(&f, g.px0 + 2, g.py0 + 2, PW - 4, 22, BLACK);            /* title bar */
     text(&f, &font_semibold, g.px0 + (PW - text_width(&font_semibold, "zOS")) / 2, g.py0 + 5, "zOS", WHITE);
 
-    mark(&f, g.px0 + (PW - 90) / 2, g.py0 + 32);                 /* 90: bar to the ring's outer edge */
-    const char *tag = "Bare minimum. Verified. Real-time. An OS for the AI era.";
-    text(&f, &font_regular, g.px0 + (PW - text_width(&font_regular, tag)) / 2, g.py0 + 118, tag, DARK);
+    const char *name = "silent zero OS", *tag = "Bare minimum. Verified. Real-time. An OS for the AI era.";
+    text(&f, &font_thin, g.px0 + (PW - text_width(&font_thin, name)) / 2, g.py0 + 50, name, BLACK);
+    text(&f, &font_regular, g.px0 + (PW - text_width(&font_regular, tag)) / 2, g.py0 + 96, tag, DARK);
 
     rect(&f, g.bx, g.by, g.bw, g.bh, WHITE);                      /* report well */
     bevel(&f, g.bx, g.by, g.bw, g.bh, 0);

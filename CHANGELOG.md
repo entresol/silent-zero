@@ -4,6 +4,10 @@ What changed in substance, newest first: in the paper, on its page and in the pr
 
 Format: `## <version> · <scope>`, then one paragraph. A paper version is `YYYY-MM-DD-vX.Y` and has its own PDF in `versions/`; the newest one is the version the build prints on the paper and the page. A change without a new paper version carries only its date (`YYYY-MM-DD`). Scope is `Paper`, `Site` or `Project`. The build turns this file into the list at the end of the page.
 
+## 2026-10-31 · Project
+
+The boot screen names the project: "zOS" stays in the title bar, and below it "silent zero OS" in Inter Thin, close above the slogan. The bar and ring are gone from the screen. The glyphs now store only the pixels that are drawn, which made the existing type almost 600 bytes smaller and paid for the name; the loader is 7,809 bytes for QEMU's `virt` and 7,333 for its HiFive model, still just under 8 KB. The video of the loader starting seL4 shows the new screen.
+
 ## 2026-10-31-v0.17 · Paper
 
 Section 3 gives the loader's current size: just under 8 KB instead of just under 9 KB, more than two thirds of it the renderer and its font data. The boot screen now draws the project's mark instead of setting a large wordmark in a font of its own; the figures are measured with GCC 15.2, 7,687 bytes for QEMU's `virt` machine and 7,211 bytes for its HiFive model.
