@@ -1,7 +1,7 @@
 ---
 type: source
 id: 2026-anthropic-project-glasswing-securing
-status: drafted
+status: reviewed
 read: full
 kind: report
 sources: [2026-anthropic-project-glasswing-securing]
@@ -19,7 +19,7 @@ Anthropic, announcement of 7 April 2026, with a notice dated 6 October 2026 at i
 - **One benchmark for the security claim.** On CyberGym (vulnerability reproduction) Mythos Preview scores 83.1 per cent, Claude Opus 4.6 66.6 per cent. The page also lists coding and reasoning scores, for instance 93.9 against 80.8 per cent on SWE-bench Verified.
 - **The programme.** Twelve launch partners (Amazon Web Services, Anthropic, Apple, Broadcom, Cisco, CrowdStrike, Google, JPMorganChase, the Linux Foundation, Microsoft, NVIDIA, Palo Alto Networks) and more than 40 further organisations get access to find and fix flaws in their own and open-source software. Anthropic commits up to $100M in usage credits and $4M in donations to open-source security organisations.
 - **No general release.** Anthropic does not plan to make Mythos Preview generally available and wants safeguards first, to be launched with a coming Claude Opus model.
-- **Promised next.** A public report within 90 days, and practical recommendations on, among others, disclosure, updates, supply-chain security and secure-by-design practice.
+- **Announced next.** A public report within 90 days, and recommendations that "potentially" cover, among others, disclosure, updates, supply-chain security and secure-by-design practice.
 - **The notice of 6 October 2026** announces an expanded Cyber Verification Program with three access tiers; it does not bear on the claims above.
 
 ## How
@@ -28,7 +28,7 @@ A company announcement with partner statements. It reports no method and no coun
 
 ## Limits
 
-What the page says itself: the examples are only a subset, and most findings are withheld until patched.
+What the page says itself: the examples are only a subset, and many findings are withheld until patched (the page gives a hash of the details instead).
 
 A careful reader adds:
 
@@ -44,4 +44,4 @@ A careful reader adds:
 
 ## For zOS
 
-The paper cites this page for the 2026 claim in its Section 1 that an unreleased model found thousands of high-severity vulnerabilities, among them a 27-year-old OpenBSD flaw (Anthropic 2026a). Confirmed as stated. The paper's Section 1 also marks these as the company's own figures, which fits this page. No `design/` page changes state: the source is context for why zOS stays small and proven rather than patched, and our reading is that it says nothing about any proof.
+The paper cites this page in Section 2.2 for the 2026 claim that an unreleased model found thousands of high-severity vulnerabilities, among them a 27-year-old OpenBSD flaw (Anthropic 2026a). Confirmed as stated. Section 2.2 calls the figures that follow the company's own, which fits this page. No `design/` page changes state: the source is context for why zOS stays small and proven rather than patched, and our reading is that it says nothing about any proof.

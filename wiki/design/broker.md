@@ -34,7 +34,7 @@ The only component in zOS that hands out authority. It grants capabilities that 
 
 ## Related
 
-- [[cohesix]] is a neighbouring design on seL4: models and agents stay on the host, and a target-side Queen with tickets and role checks decides what is accepted ([[2026-bower-cohesix-research-operating]], landing page only).
+- [[cohesix]] is a neighbouring design on seL4: models and agents stay on the host, and target-side role, ticket, lifecycle and bounds checks decide what is accepted ([[2026-bower-cohesix-research-operating]], landing page only).
 
 ## Open
 
