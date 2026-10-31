@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 # SPDX-License-Identifier: BSD-2-Clause
-"""Renders the two recordings of record_hifive.py as one video: the good image, then the same image with one bit flipped.
+"""Renders the two recordings of record_hifive.py as one video: the good image, then the same image tampered with.
 
-Left the serial console as QEMU wrote it, right the loader's screen, both at the time they were recorded. The HiFive
+Left the unedited serial console, right the loader's screen, both at the time they were recorded. The HiFive
 model has no display: the screen is the framebuffer the loader drew into, copied out of guest memory each time it
-finished a picture. QEMU stands still while a picture is copied, so those pauses are in the timing. Nothing is added to
+finished a frame. QEMU pauses while a frame is copied, and the pauses are included in the timing. Nothing is added to
 or removed from the console output. Uses the macOS system fonts Menlo and SF; writes recording/loader-sel4-boot.mp4."""
 from bisect import bisect_right
 import json, math, subprocess
@@ -56,7 +56,7 @@ def draw(run, t, title, note):
     i = bisect_right(run['times'], clock) - 1
     text = run['prefixes'][i] if i >= 0 else ''
     d.rectangle((CX, CY, CX + CW, CY + CH), fill=PANEL, outline=LINE)
-    d.text((CX + 16, CY - 26), 'Serial console, as QEMU wrote it', font=small, fill=DIM)
+    d.text((CX + 16, CY - 26), 'Serial console, unedited QEMU output', font=small, fill=DIM)
     lines = text.split('\n')[-(CH - 24) // 18:]
     for n, line in enumerate(lines):
         colour = OK if line.startswith(('USERSPACE:', 'CAPABILITIES:', 'RUNNING:', 'BOOT SUCCESS:')) else \
@@ -64,12 +64,12 @@ def draw(run, t, title, note):
         d.text((CX + 14, CY + 12 + n * 18), line[:90], font=mono, fill=colour)
 
     j = bisect_right([t for t, _ in run['frames']], clock) - 1
-    d.text((SX, CY - 26), 'The loader\'s screen, read from guest memory (the panel, enlarged)', font=small, fill=DIM)
+    d.text((SX, CY - 26), 'Loader screen, copied from guest memory (panel enlarged)', font=small, fill=DIM)
     if j >= 0:
         im.paste(run['frames'][j][1], (SX, SY))
     else:
         d.rectangle((SX, SY, SX + SW, SY + SH), fill='#000000', outline=LINE)
-        d.text((SX + SW // 2, SY + SH // 2), 'no picture yet: the firmware runs first', font=ui, fill=DIM, anchor='mm')
+        d.text((SX + SW // 2, SY + SH // 2), 'No frame yet: the firmware is still running', font=ui, fill=DIM, anchor='mm')
 
     halted = 'halt: image rejected' in text
     reached = [p[2] in text for p in PHASES]
@@ -80,19 +80,20 @@ def draw(run, t, title, note):
         state = (STOP if halted and k == 1 else OK if reached[k] and not current else ACCENT if current else LINE)
         d.rectangle((x, 940, x + pw - 12, 944), fill=state)
         d.text((x, 956), name, font=ui, fill=TEXT if reached[k] else DIM)
-        sub = 'stopped: hash differs' if halted and k == 1 else 'not started' if halted and k > 1 else what
+        sub = 'stopped: hash mismatch' if halted and k == 1 else 'not started' if halted and k > 1 else what
         d.text((x, 988), sub, font=small, fill=STOP if halted and k >= 1 else DIM)
     d.text((32, 1040), f'time since QEMU started: {clock:5.2f} s   ·   QEMU sifive_u (HiFive Unleashed model)   ·   '
-           'QEMU stands still while a picture is copied out; those pauses are in the timing', font=small, fill=DIM)
+           'QEMU pauses while each frame is copied; the pauses are included in the timing', font=small, fill=DIM)
     return im
 
 
-def card(line1, line2):
+def card(line1, line2, line3=''):
     im = Image.new('RGB', (W, H), BG)
     d = ImageDraw.Draw(im)
-    d.rectangle((W // 2 - 420, H // 2 - 62, W // 2 - 415, H // 2 + 50), fill=ACCENT)
+    d.rectangle((W // 2 - 420, H // 2 - 62, W // 2 - 415, H // 2 + (88 if line3 else 50)), fill=ACCENT)
     d.text((W // 2 - 392, H // 2 - 64), line1, font=big, fill=TEXT)
     d.text((W // 2 - 390, H // 2 + 6), line2, font=ui, fill=DIM)
+    d.text((W // 2 - 390, H // 2 + 46), line3, font=small, fill=DIM)
     return im
 
 
@@ -101,9 +102,10 @@ scenes = [  # seconds, frame for a time within the scene, name of the still take
     (3.0, lambda t: card('Power-on to user space', 'OpenSBI, the zOS loader, seL4 16.0.0 (MCS, verified configuration)'), None),
     (good['end'] + 4.0, lambda t: draw(good, t, 'The image checks out',
                                        'the loader hashes the kernel image, shows the result and only then starts it'), 'still-good.png'),
-    (3.0, lambda t: card('The same image, one bit flipped', 'byte 70 of the image, inside the hashed payload'), None),
-    (bad['end'] + 5.0, lambda t: draw(bad, t, 'One bit flipped',
-                                      'the hash differs: the loader says so on screen and does not start the kernel'), 'still-tampered.png'),
+    (3.0, lambda t: card('The same image, tampered with', 'one byte changed after the image was built and hashed',
+                         'A hash stored with the image catches this, not an attacker who rewrites the hash too; signing the image comes next.'), None),
+    (bad['end'] + 5.0, lambda t: draw(bad, t, 'Tampered image',
+                                      'the hash no longer matches: the loader says so on screen and does not start the kernel'), 'still-tampered.png'),
 ]
 out = HERE / 'recording' / 'loader-sel4-boot.mp4'
 enc = subprocess.Popen(['ffmpeg', '-hide_banner', '-loglevel', 'error', '-y', '-f', 'rawvideo', '-pixel_format', 'rgb24',
