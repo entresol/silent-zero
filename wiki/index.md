@@ -1,6 +1,6 @@
 ---
 type: index
-updated: 2026-10-31
+updated: 2026-11-01
 ---
 
 # zOS wiki
@@ -16,7 +16,7 @@ The catalogue of every page, with one line each. Read this first.
 - [[safety-path]] · Simplex in zOS: the agent proposes, the loop disposes; tested, not proven; the paper's 2001 date disputed by a 1994 origin. 4 sources.
 - [[root-of-trust]] · the firmware below the kernel on Arm, RISC-V, PC and Raspberry Pi; OpenTitan, Caliptra, DICE; all *assumed* in the paper's terms. 12 sources.
 - [[bootloader]] · where the zOS loader sits on each platform, signed and measured boot, proofs about boot code so far; the loader itself unproven. 16 sources.
-- [[drivers]] · user-mode drivers, the first verified Ethernet driver, DMA and the IOMMU as assumed. 7 sources.
+- [[drivers]] · user-mode drivers, the first verified Ethernet driver, DMA and the IOMMU as assumed. 8 sources.
 
 ## Not yet covered
 
@@ -26,12 +26,14 @@ The zOS part *agents* has no page yet. Firmware on PCs (Intel ME, AMD PSP, FSP, 
 
 - [[sel4]] · the verified microkernel zOS builds on: proofs per architecture and platform, cost, MCS, timing, HACMS. 11 sources.
 - [[microkit]] · the build system for static seL4 systems: protection domains, channels, budgets, one image. 3 sources.
-- [[lionsos]] · static OS from small components on seL4 and Microkit; first driver verified. 4 sources.
+- [[lionsos]] · static OS from small components on seL4 and Microkit; first driver verified. 5 sources.
 - [[coreboot]] · open firmware in stages with a fixed payload; verified and measured boot; closed vendor parts on x86. 3 sources.
 - [[tf-a]] · Arm's reference firmware; BL31 stays resident at EL3 below the kernel. 2 sources.
 - [[opensbi]] · RISC-V firmware in machine mode below the kernel. 3 sources.
 - [[raspberry-pi]] · the pib's board: closed ROM and EEPROM boot, secure-boot key in OTP on the Pi 4, seL4 verified without MCS. 4 sources.
 - [[opentitan]] · open-source silicon root of trust, shipping in Chromebooks since March 2026. 5 sources.
+- [[agentos]] · seL4-based I/O platform for agents: device-owning domains, Linux and FreeBSD guests under QEMU; agent services not yet booted. 1 source.
+- [[verus]] · verifier for Rust code with SMT solving; case studies, no kernel. 1 source.
 - [[cohesix]] · seL4-based control layer for edge AI fleets: a Queen decides what hosts' models may do; landing page only. 1 source.
 - [[kataos]] · Google's seL4 and Rust OS for machine-learning devices, 2022; OpenTitan in its Sparrow plan. 1 source.
 - [[cheriot]] · CHERI capabilities on small RISC-V cores with its own RTOS: memory safety in hardware, measured, not proven. 1 source.
@@ -53,7 +55,7 @@ The zOS part *agents* has no page yet. Firmware on PCs (Intel ME, AMD PSP, FSP, 
 - [[action-chunking]] · slow robot models emitting action sequences for a fast loop; no bound on delay. 2 sources.
 - [[ai-vulnerability-discovery]] · AI models finding software flaws at scale: DARPA's challenge and Anthropic's figures, the bottleneck moving to patching. 3 sources.
 - [[information-flow-control]] · labels for where data came from and who may see it; FIDES and CaMeL for agents; explicit flows only. 2 sources.
-- [[proof-automation]] · machines proposing proof steps, Isabelle checking them; 77.6 % of a seL4 benchmark sample. 2 sources.
+- [[proof-automation]] · machines proposing proof steps, Isabelle checking them; 77.6 % of a seL4 benchmark sample; Verus as a faster verifier. 3 sources.
 - [[mixed-criticality]] · software of different criticality on one platform; processor time as a capability in seL4 MCS. 3 sources.
 
 ## Sources
@@ -67,6 +69,9 @@ The zOS part *agents* has no page yet. Firmware on PCs (Intel ME, AMD PSP, FSP, 
 - [[nd-sifive-hifive-unleashed]] · the HiFive Unleashed, discontinued: FU540, U54 cores and a monitor core. report, full text.
 - [[2024-sifive-hifive-premier-p550]] · the HiFive Premier P550, announced in Nuremberg, April 2024. report, full text.
 - [[nd-sel4-supported-platforms]] · the boards seL4 runs on; boot chain of the P550. report, RISC-V and board pages.
+- [[2025-heiser-fast-secure-adaptable]] · LionsOS design and benchmarks: a full gigabit on one Arm core where Linux plateaus at about 500 Mb/s; no worst-case figures. measurement, full text.
+- [[2024-lattuada-verus-practical-foundation]] · Verus: 3 to 61 times faster than other verifiers on list benchmarks; a page table at 13.3 lines of proof per line of code. measurement, full text.
+- [[2026-hubbard-agentos-operating-system]] · agentOS README: guests under QEMU proven by test, agent services not in the image. report, README as saved.
 - [[2026-sel4-release-17]] · seL4 17.0.0: C-level proof on every 64-bit platform, MCS on `hifive` only; an icache fix. report, CAVEATS and 17.0.0 notes.
 - [[2026-anthropic-project-glasswing-securing]] · an unreleased model finds thousands of high-severity flaws; the company's own claim, April 2026. report, full text.
 - [[2026-anthropic-project-glasswing-initial]] · over ten thousand partner findings; of 1,752 open-source findings assessed, 62.4 % confirmed high or critical. report, full text.

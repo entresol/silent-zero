@@ -68,9 +68,9 @@ Work that extends the design, competes with it or attacks its assumptions: other
 - [x] 2025-google-building-next-generation
 - [x] 2023-greshake-not-what-you
 - [x] 2026-he-neuro-symbolic-proof
-- [ ] 2025-heiser-fast-secure-adaptable
-- [ ] 2026-hubbard-agentos-operating-system
-- [ ] 2024-lattuada-verus-practical-foundation
+- [x] 2025-heiser-fast-secure-adaptable
+- [x] 2026-hubbard-agentos-operating-system
+- [x] 2024-lattuada-verus-practical-foundation
 - [ ] 2026-lide-arsenal-assured-robotics
 - [ ] nd-linux-landlock-unprivileged-access
 - [ ] nd-linux-real-time-preemption

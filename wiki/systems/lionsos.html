@@ -338,7 +338,7 @@ sup.refs a:hover { text-decoration: underline; }
     <div class="titleblock">
       <h1 class="name">LionsOS</h1>
       <p class="sub">static OS from small components on seL4 and Microkit; first driver verified.</p>
-      <p class="ver">System · <a href="/wiki/#how">LLM reviewed</a> · updated 29 Oct 2026 · 4 sources</p>
+      <p class="ver">System · <a href="/wiki/#how">LLM reviewed</a> · updated 1 Nov 2026 · 5 sources</p>
     </div>
   </div>
 </header>
@@ -355,7 +355,8 @@ sup.refs a:hover { text-decoration: underline; }
 <li>Lock-free, bounded, single-producer, single-consumer queues in shared memory, zero copy, signalled by notifications (<a href="/wiki/sources/2022-parker-sel4-device-driver.html">The seL4 Device Driver Framework</a>, <a href="/wiki/sources/2026-heiser-mcs-safety-os.html">MCS safety, an OS perspective</a>).</li>
 <li>Virtualisers multiplex devices and translate addresses; copiers separate clients where needed (<a href="/wiki/sources/2026-trustworthy-lionsos.html">Trustworthy Systems: LionsOS</a>, <a href="/wiki/sources/2026-heiser-mcs-safety-os.html">MCS safety, an OS perspective</a>).</li>
 <li>Unmodified Linux drivers can run in a virtual machine as a driver VM (<a href="/wiki/sources/2026-heiser-mcs-safety-os.html">MCS safety, an OS perspective</a>).</li>
-<li>Small code: in a point-of-sale demonstrator the trusted components average about 210 lines (<a href="/wiki/sources/2026-heiser-mcs-safety-os.html">MCS safety, an OS perspective</a>).</li>
+<li>Small code: in a point-of-sale demonstrator the trusted components average about 210 lines (<a href="/wiki/sources/2026-heiser-mcs-safety-os.html">MCS safety, an OS perspective</a>); the design paper counts about 3.1 kSLOC of trusted code there (<a href="/wiki/sources/2025-heiser-fast-secure-adaptable.html">Fast, Secure, Adaptable: LionsOS Design, Implementation and Performance</a>, §6.2.1).</li>
+<li>Measured against Linux: on a 1 Gb/s Arm board one core carries the full gigabit with a third to spare where Linux plateaus at about 500 Mb/s, with round-trip times three to ten times lower. Free IPC would change little, by the authors’ simulation. The numbers are throughput, load and round-trip times, not bounds (<a href="/wiki/sources/2025-heiser-fast-secure-adaptable.html">Fast, Secure, Adaptable: LionsOS Design, Implementation and Performance</a>, §6.3).</li>
 </ul>
 <p>The device driver framework behind this design, sDDF, was first presented in 2022 (<a href="/wiki/sources/2022-parker-sel4-device-driver.html">The seL4 Device Driver Framework</a>).</p>
 <h2 id="licence-and-code">Licence and code</h2>
@@ -363,15 +364,15 @@ sup.refs a:hover { text-decoration: underline; }
 <h2 id="open-questions">Open questions</h2>
 <ul>
 <li>What the run-time swap of components permits, and who may trigger it. See <a href="/wiki/design/static-system.html">The static system</a>.</li>
-<li>The design paper, Heiser et al. 2025, is not yet covered here.</li>
+<li>Worst-case latency: the design paper reports none (<a href="/wiki/sources/2025-heiser-fast-secure-adaptable.html">Fast, Secure, Adaptable: LionsOS Design, Implementation and Performance</a>).</li>
 </ul>
 
 <h2 id="page-sources">Sources</h2>
 <p class="links-note">What this page rests on.</p>
-<ul class="linked-from"><li><a href="/wiki/sources/2026-heiser-mcs-safety-os.html">MCS safety, an OS perspective</a> <span class="kind">Heiser 2026</span></li><li><a href="/wiki/sources/2026-tyler-smt-based-deductive.html">SMT-based Deductive Verification of Device Drivers</a> <span class="kind">Tyler et al. 2026</span></li><li><a href="/wiki/sources/2022-parker-sel4-device-driver.html">The seL4 Device Driver Framework</a> <span class="kind">Parker 2022</span></li><li><a href="/wiki/sources/2026-trustworthy-lionsos.html">Trustworthy Systems: LionsOS</a></li></ul>
+<ul class="linked-from"><li><a href="/wiki/sources/2025-heiser-fast-secure-adaptable.html">Fast, Secure, Adaptable: LionsOS Design, Implementation and Performance</a> <span class="kind">Heiser et al. 2025</span></li><li><a href="/wiki/sources/2026-heiser-mcs-safety-os.html">MCS safety, an OS perspective</a> <span class="kind">Heiser 2026</span></li><li><a href="/wiki/sources/2026-tyler-smt-based-deductive.html">SMT-based Deductive Verification of Device Drivers</a> <span class="kind">Tyler et al. 2026</span></li><li><a href="/wiki/sources/2022-parker-sel4-device-driver.html">The seL4 Device Driver Framework</a> <span class="kind">Parker 2022</span></li><li><a href="/wiki/sources/2026-trustworthy-lionsos.html">Trustworthy Systems: LionsOS</a></li></ul>
 <h2 id="related-pages">Related pages</h2>
 <p class="links-note">Pages this one links to, and pages that link here.</p>
-<ul class="linked-from"><li><a href="/wiki/design/static-system.html">The static system</a> <span class="kind">Design</span></li><li><a href="/wiki/systems/microkit.html">Microkit</a> <span class="kind">System</span></li><li><a href="/wiki/systems/sel4.html">seL4</a> <span class="kind">System</span></li></ul>
+<ul class="linked-from"><li><a href="/wiki/design/static-system.html">The static system</a> <span class="kind">Design</span></li><li><a href="/wiki/systems/agentos.html">agentOS</a> <span class="kind">System</span></li><li><a href="/wiki/systems/microkit.html">Microkit</a> <span class="kind">System</span></li><li><a href="/wiki/systems/sel4.html">seL4</a> <span class="kind">System</span></li><li><a href="/wiki/sources/2026-hubbard-agentos-operating-system.html">agentOS, an operating system for agents on seL4</a> <span class="kind">Source</span></li></ul>
   </article>
 </div>
 <footer><div><span class="about"><span>Silent Zero OS</span><span class="sep"> · </span><span>Wiki</span><span class="sep"> · </span><span>Text <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></span></span><span class="links"><a href="/">Paper</a> <a href="https://github.com/entresol/silent-zero/tree/main/wiki">GitHub</a> <a href="https://unwritten.studio/impressum">Imprint</a></span></div></footer>

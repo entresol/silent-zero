@@ -26,7 +26,7 @@ Apache-2.0, as the page's licence section says; it links a GitHub repository and
 
 ## Related
 
-[[broker]] for the same job in zOS, [[sel4]], [[raspberry-pi]].
+[[broker]] for the same job in zOS, [[sel4]], [[raspberry-pi]], and [[agentos]], another agent system on seL4.
 
 ## Open questions
 
