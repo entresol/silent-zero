@@ -4,6 +4,10 @@ What changed in substance, newest first: in the paper, on its page and in the pr
 
 Format: `## <version> · <scope>`, then one paragraph. A paper version is `YYYY-MM-DD-vX.Y` and has its own PDF in `versions/`; the newest one is the version the build prints on the paper and the page. A change without a new paper version carries only its date (`YYYY-MM-DD`). Scope is `Paper`, `Site` or `Project`. The build turns this file into the list at the end of the page.
 
+## 2026-11-01 · Site
+
+The wiki grew by three sources to 59: the LionsOS design paper (Heiser et al. 2025), the Verus paper (Lattuada et al. 2024) and the agentOS repository (Hubbard 2026), and by two pages on systems, agentOS and Verus. The pages on LionsOS, drivers and proof automation now say what the sources measure and where they stop: LionsOS is measured for throughput and mean times against Linux, with no worst-case latency; Verus's speed-up is that of list benchmarks. The lexicon has two new terms, agentOS and Verus, 54 in all.
+
 ## 2026-10-31 · Site
 
 The wiki grew by 21 sources to 56, and by eight pages on concepts and systems: RISC-V and SiFive's boards, AI vulnerability discovery (DARPA's AI Cyber Challenge and Anthropic's Project Glasswing), information-flow control for agents (FIDES), proof automation for seL4, CHERIoT, KataOS and Cohesix. The pages on the broker, prompt injection, OpenTitan, seL4, the kernel and the real-time loops say what the new sources add or correct. The lexicon has three new terms, CHERIoT, KataOS and proof automation, 52 in all, and information-flow control now links to its wiki page. Wiki pages from the daily research run go live the same day, once a second agent's fact check is worked in and the build has passed; the build now rejects a pull request that brings anything into `wiki/` other than wiki pages.

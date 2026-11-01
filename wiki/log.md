@@ -105,3 +105,7 @@ Ring 2, in a session. Created: four source pages, [[kataos]], [[proof-automation
 ## [2026-10-31] rule | every wiki pull request brings its changelog entry
 
 A wiki pull request adds one entry `· Site` to `CHANGELOG.md`, listing sources, new and changed pages and new lexicon terms, so the changelog keeps pace with the wiki without a separate step. The merge conditions of the daily run now also cover a session working through the rings.
+
+## [2026-11-01] ingest | 2025-heiser-fast-secure-adaptable, 2024-lattuada-verus-practical-foundation, 2026-hubbard-agentos-operating-system
+
+Ring 2, daily run. Created: three source pages, [[agentos]], [[verus]]. Changed: [[lionsos]], [[drivers]], [[proof-automation]], [[cohesix]], index, rings. Notes for the paper, not decided here: Section 3 says legacy drivers "above all for graphics and AI accelerators" cite Heiser et al. 2025, whose driver VMs cover a framebuffer, Ethernet, SD and sound; Verus's "3 to 61 times" is the range of two list benchmarks. Candidate for the pool, not yet in it: Zhao et al. 2025, the verified NIC driver that Heiser et al. cite.

@@ -1,8 +1,8 @@
 ---
 type: design
 status: reviewed
-sources: [2022-parker-sel4-device-driver, 2026-tyler-smt-based-deductive, 2026-trustworthy-lionsos, 2026-heiser-mcs-safety-os, nd-sel4-microkit-user-manual, nd-sel4-verified-configurations, 2009-klein-sel4-formal-verification]
-updated: 2026-10-29
+sources: [2025-heiser-fast-secure-adaptable, 2022-parker-sel4-device-driver, 2026-tyler-smt-based-deductive, 2026-trustworthy-lionsos, 2026-heiser-mcs-safety-os, nd-sel4-microkit-user-manual, nd-sel4-verified-configurations, 2009-klein-sel4-formal-verification]
+updated: 2026-11-01
 ---
 
 # Drivers
@@ -21,10 +21,10 @@ In zOS drivers run in user mode, each with access only to its own device. Legacy
 | --- | --- | --- | --- |
 | Drivers as user-level programs, except the kernel's timer | since the first seL4 | design | [[2009-klein-sel4-formal-verification]] |
 | sDDF: single-threaded drivers, lock-free queues, the driver never touching the data | in use in LionsOS | design, benchmarks on slides | [[2022-parker-sel4-device-driver]], [[2026-trustworthy-lionsos]] |
-| Performance comparable to or better than Linux | claimed in 2022 talk and 2026 slides | measurement, details not in the sources | [[2022-parker-sel4-device-driver]], [[2026-heiser-mcs-safety-os]] |
+| Performance comparable to or better than Linux | measured for networking and SD storage on Arm and x86, plotted figures, no worst case | measurement, by the system's authors | [[2025-heiser-fast-secure-adaptable]], [[2022-parker-sel4-device-driver]], [[2026-heiser-mcs-safety-os]] |
 | A Pancake version of a LionsOS Ethernet driver, and the queue library, follow the device and OS protocols, move buffers correctly and meet a completion condition | proven, 2026 | SMT-based proof; trusted: the transpiler, the Viper backend and solver, a hand-written weak-memory encoding, a device model taken from the manual; the OS side is assumed to keep its queue contracts | [[2026-tyler-smt-based-deductive]] |
 | Other LionsOS drivers verified | under way | none yet | [[2026-trustworthy-lionsos]] |
-| Unmodified Linux drivers in a driver VM | available in LionsOS | design | [[2026-heiser-mcs-safety-os]] |
+| Unmodified Linux drivers in a driver VM | available in LionsOS; drivers shown: GPU framebuffer, Ethernet, SD block, sound on one Arm board; a few weeks per device class | design and use | [[2025-heiser-fast-secure-adaptable]], [[2026-heiser-mcs-safety-os]] |
 | Each driver sees only its own device | a configuration choice in Microkit; only interrupts are exclusive to one PD | design | [[nd-sel4-microkit-user-manual]] |
 | IOMMU/SMMU covered by the kernel proof | no verified configuration covers it | assumed | [[nd-sel4-verified-configurations]] |
 
@@ -32,7 +32,7 @@ In zOS drivers run in user mode, each with access only to its own device. Legacy
 
 - Section 3's "each with access only to its own device registers (Parker 2022)": the slides support user-mode drivers with fewer privileges, not this wording. Our reading: [[microkit]] lets the system description give each driver only its own registers, but does not enforce that, except for interrupts.
 - Section 5 and In brief on the verified Ethernet driver: confirmed by [[2026-tyler-smt-based-deductive]], with the trusted parts listed above. Whether LionsOS ships the verified Pancake driver is not stated.
-- The driver VM is cited to Heiser et al. 2025, which the wiki does not cover yet.
+- The driver VM is cited to Heiser et al. 2025 ([[2025-heiser-fast-secure-adaptable]]), which shows a framebuffer, Ethernet, SD and sound driver in VMs. The paper's "above all graphics and AI accelerators" goes beyond that list: no accelerator appears there.
 
 ## Open
 
