@@ -337,8 +337,8 @@ sup.refs a:hover { text-decoration: underline; }
     <p class="crumbs"><a href="/">Silent Zero OS</a> · <a href="/wiki/">Wiki</a></p>
     <div class="titleblock">
       <h1 class="name">Proof automation</h1>
-      <p class="sub">machines proposing proof steps, Isabelle checking them; 77.6 % of a seL4 benchmark sample.</p>
-      <p class="ver">Concept · <a href="/wiki/#how">LLM reviewed</a> · updated 31 Oct 2026 · 2 sources</p>
+      <p class="sub">machines proposing proof steps, Isabelle checking them; 77.6 % of a seL4 benchmark sample; Verus as a faster verifier.</p>
+      <p class="ver">Concept · <a href="/wiki/#how">LLM reviewed</a> · updated 1 Nov 2026 · 3 sources</p>
     </div>
   </div>
 </header>
@@ -351,7 +351,8 @@ sup.refs a:hover { text-decoration: underline; }
 <ul>
 <li>For seL4, a method that has a small fine-tuned model propose single proof steps, prunes with counterexample finders and searches a tree proves 77.6 per cent of the still-valid theorems in three evaluation splits of the FVEL benchmark, and about 20 per cent of those whose human proofs exceed ten lines (<a href="/wiki/sources/2026-he-neuro-symbolic-proof.html">Neuro-symbolic proof generation for seL4</a>).</li>
 <li>The first seL4 proof took about 20 person-years, 11 of them specific to seL4 and much of the rest research, frameworks and tools (<a href="/wiki/sources/2009-klein-sel4-formal-verification.html">seL4, Formal Verification of an OS Kernel</a>, §5.2); the automated proofs cover existing theorem statements, so they measure the cost of re-proving, not of specifying (<a href="/wiki/sources/2026-he-neuro-symbolic-proof.html">Neuro-symbolic proof generation for seL4</a>; our reading).</li>
-<li>Verus and AutoVerus, which the Silent Zero paper also cites for cheaper proofs, are not yet covered here.</li>
+<li><a href="/wiki/systems/verus.html">Verus</a> is a different kind of help: the verifier itself is built for fast SMT checking of Rust. Its authors report 3 to 61 times shorter verification times than other tools on list benchmarks, and a page table, an allocator and a log verified with proof-to-code ratios of 3.9 to 13.3 (<a href="/wiki/sources/2024-lattuada-verus-practical-foundation.html">Verus, a practical foundation for systems verification</a>). Neither source is about the other: the models of <a href="/wiki/sources/2026-he-neuro-symbolic-proof.html">Neuro-symbolic proof generation for seL4</a> work in Isabelle on seL4.</li>
+<li>AutoVerus, which the Silent Zero paper cites for models that write Verus proofs, is not yet covered here.</li>
 </ul>
 <h2 id="open-questions">Open questions</h2>
 <ul>
@@ -361,10 +362,10 @@ sup.refs a:hover { text-decoration: underline; }
 
 <h2 id="page-sources">Sources</h2>
 <p class="links-note">What this page rests on.</p>
-<ul class="linked-from"><li><a href="/wiki/sources/2026-he-neuro-symbolic-proof.html">Neuro-symbolic proof generation for seL4</a> <span class="kind">He et al. 2026</span></li><li><a href="/wiki/sources/2009-klein-sel4-formal-verification.html">seL4, Formal Verification of an OS Kernel</a> <span class="kind">Klein et al. 2009</span></li></ul>
+<ul class="linked-from"><li><a href="/wiki/sources/2026-he-neuro-symbolic-proof.html">Neuro-symbolic proof generation for seL4</a> <span class="kind">He et al. 2026</span></li><li><a href="/wiki/sources/2009-klein-sel4-formal-verification.html">seL4, Formal Verification of an OS Kernel</a> <span class="kind">Klein et al. 2009</span></li><li><a href="/wiki/sources/2024-lattuada-verus-practical-foundation.html">Verus, a practical foundation for systems verification</a> <span class="kind">Lattuada et al. 2024</span></li></ul>
 <h2 id="related-pages">Related pages</h2>
 <p class="links-note">Pages this one links to, and pages that link here.</p>
-<ul class="linked-from"><li><a href="/wiki/design/drivers.html">Drivers</a> <span class="kind">Design</span></li><li><a href="/wiki/design/broker.html">The broker</a> <span class="kind">Design</span></li><li><a href="/wiki/design/kernel.html">The kernel</a> <span class="kind">Design</span></li><li><a href="/wiki/design/safety-path.html">The safety path</a> <span class="kind">Design</span></li><li><a href="/wiki/systems/sel4.html">seL4</a> <span class="kind">System</span></li></ul>
+<ul class="linked-from"><li><a href="/wiki/design/drivers.html">Drivers</a> <span class="kind">Design</span></li><li><a href="/wiki/design/broker.html">The broker</a> <span class="kind">Design</span></li><li><a href="/wiki/design/kernel.html">The kernel</a> <span class="kind">Design</span></li><li><a href="/wiki/design/safety-path.html">The safety path</a> <span class="kind">Design</span></li><li><a href="/wiki/systems/sel4.html">seL4</a> <span class="kind">System</span></li><li><a href="/wiki/systems/verus.html">Verus</a> <span class="kind">System</span></li></ul>
   </article>
 </div>
 <footer><div><span class="about"><span>Silent Zero OS</span><span class="sep"> · </span><span>Wiki</span><span class="sep"> · </span><span>Text <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></span></span><span class="links"><a href="/">Paper</a> <a href="https://github.com/entresol/silent-zero/tree/main/wiki">GitHub</a> <a href="https://unwritten.studio/impressum">Imprint</a></span></div></footer>
