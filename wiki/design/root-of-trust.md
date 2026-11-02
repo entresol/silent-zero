@@ -1,8 +1,8 @@
 ---
 type: design
 status: reviewed
-sources: [2026-google-opentitan-shipping-production, nd-caliptra, nd-coreboot-architecture, nd-coreboot-vboot, nd-coreboot-measured-boot, nd-tfa-firmware-design, nd-opensbi, nd-raspberrypi-boot, 2021-tao-dice-formally-verified, 2022-zhang-pa-boot-formally, nd-sel4-verified-configurations, nd-sel4-microkit-user-manual]
-updated: 2026-10-30
+sources: [2026-google-opentitan-shipping-production, nd-caliptra, nd-coreboot-architecture, nd-coreboot-vboot, nd-coreboot-measured-boot, nd-tfa-firmware-design, nd-opensbi, nd-raspberrypi-boot, 2021-tao-dice-formally-verified, 2022-zhang-pa-boot-formally, nd-sel4-verified-configurations, nd-sel4-microkit-user-manual, 2019-markettos-thunderclap-exploring-vulnerabilities]
+updated: 2026-11-02
 ---
 
 # Root of trust and firmware
@@ -36,6 +36,7 @@ The bottom of zOS: a root of trust that measures the first code to run, together
 | Processors themselves as a supply-chain risk to secure boot | a protocol for multi-chip systems, proved at model level, needs changes to the CPU's boot ROM | proof of a model | [[2022-zhang-pa-boot-formally]] |
 | Bootloader replaceable from the SD card on the Pi | `recovery.bin` and self-update, unless OTP settings, `FREEZE_VERSION` or write protection prevent it | documentation | [[nd-raspberrypi-boot]] |
 | Kernel boot and IOMMU in seL4's proofs | outside every verified configuration | assumed | [[nd-sel4-verified-configurations]] |
+| An enabled IOMMU confines a malicious device | attacked successfully on general-purpose systems in 2019, see [[iommu]] | test | [[2019-markettos-thunderclap-exploring-vulnerabilities]] |
 | Microkit boot chain: loader, kernel, capDL initialiser | implemented; the loader is never executed again | documentation | [[nd-sel4-microkit-user-manual]] |
 
 ## The paper and its sources

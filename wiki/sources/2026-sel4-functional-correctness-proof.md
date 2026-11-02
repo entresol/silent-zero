@@ -27,7 +27,7 @@ An announcement of three paragraphs. It names neither the configuration file, th
 A careful reader adds:
 
 - **Functional correctness only.** The item says nothing about integrity or confidentiality for MCS, and nothing about binary verification.
-- **No date for AArch64.** The paper gives the third quarter of 2027 for AArch64 and cites the seL4 roadmap for it; that source is not yet in the wiki.
+- **No date for AArch64.** The announcement gives none. The paper cites the seL4 roadmap for the third quarter of 2027, and [[nd-sel4-sel4-roadmap]] says so.
 - [[nd-sel4-verified-configurations]] still called the MCS verification ongoing on 23 October 2026. This item is newer and more specific.
 - [[2026-heiser-mcs-safety-os]], a talk from May 2026, gave "mid-'27" for the functional verification of seL4-MCS. It does not say for which architecture. The proof on RISC-V came a month after the talk.
 
