@@ -107,6 +107,8 @@ Run `slop_lint.py` and `vorfeld.py` from `paper/tools/` of the public repository
 
 Some decisions are not Claude's alone. Do not decide them; stop, leave the page as `drafted` without the change in question, and put the question to the team: in the session if a person is there, otherwise in the pull request under the heading **Needs a decision**.
 
+A question that outlives its pull request is lost once the pull request is merged. So each question under **Needs a decision** also becomes an issue in this repository with the label `needs-decision`: one question per issue, with the page or the section of the paper it concerns and a link to the pull request. Whoever decides closes the issue and says how. The issue is public, so it holds only what the pull request may hold.
+
 - A source contradicts a claim in the paper, or changes the state of a `design/` page from proven to tested or assumed, or the other way round.
 - Two sources contradict each other and neither is clearly newer or better.
 - A source's standing is unclear: withdrawn, disputed, or only the vendor's own word on a figure that matters.
@@ -116,7 +118,9 @@ Some decisions are not Claude's alone. Do not decide them; stop, leave the page 
 
 ## The daily run
 
-The routine "Silent Zero research pool – daily" works the wiki in two ways. Each source it adds to the pool is worked in on the same day, following "Ingest" above. Then it takes up to three sources from the backlog in `rings.md`, in the order of the rings, top to bottom, and marks them done there. Its wiki changes and their changelog entry come as a pull request to this repository; pool entries and digests go to the private one. Each ingest gets the fact check by a second agent with fresh context. The pull request lists the pages it touched and every open question under **Needs a decision**. Decided on 2026-10-31: the routine merges its own wiki pull request, and so does a session that works through the rings, so its pages go live the same day, when three things hold: every page it created or changed is `reviewed`, no question under **Needs a decision** concerns a wiki page, and the latest run of the workflow *Build page* on the pull request has succeeded, on the pull request's last commit or on the commit before the one it pushed itself (it commits the rendered HTML into the branch, and no check runs on that commit). A question about the paper alone does not hold the merge back, because the wiki does not change the paper. Otherwise the pull request stays open for the team. It merges with squash, so that nothing a branch carried on its way stays in the public history.
+The routine "Silent Zero research pool – daily" works the wiki in two ways. On Mondays it starts with the lint ("Lint" below). Each source it adds to the pool is worked in on the same day, following "Ingest" above. Then it takes up to three sources from the backlog in `rings.md`, in the order of the rings, top to bottom, and marks them done there. Its wiki changes and their changelog entry come as a pull request to this repository; pool entries and digests go to the private one. Each ingest gets the fact check by a second agent with fresh context. The pull request lists the pages it touched and every open question under **Needs a decision**. Decided on 2026-10-31: the routine merges its own wiki pull request, and so does a session that works through the rings, so its pages go live the same day, when three things hold: every page it created or changed is `reviewed`, no question under **Needs a decision** concerns a wiki page, and the latest run of the workflow *Build page* on the pull request has succeeded, on the pull request's last commit or on the commit before the one it pushed itself (it commits the rendered HTML into the branch, and no check runs on that commit). A question about the paper alone does not hold the merge back, because the wiki does not change the paper. Otherwise the pull request stays open for the team. It merges with squash, so that nothing a branch carried on its way stays in the public history.
+
+Open decisions limit new work. Before it takes sources from the backlog, the run counts the open issues labelled `needs-decision`. If there are more than five, it works in only the sources it added to the pool that day, takes nothing from `rings.md`, and says so in its pull request. The backlog waits until the team has decided enough to bring the count down to five. The limit is a first try, decided on 2026-11-02; the team may change it.
 
 ## Rings
 
@@ -124,7 +128,7 @@ The routine "Silent Zero research pool – daily" works the wiki in two ways. Ea
 
 ## log.md
 
-One entry per ingest, query worth keeping or lint pass, with a fixed prefix so it can be searched:
+One entry per ingest, rule, query worth keeping or lint pass, with a fixed prefix so it can be searched:
 
 ```
 ## [YYYY-MM-DD] ingest | <pool id>
@@ -134,4 +138,16 @@ Then two or three lines: pages created, pages changed, questions raised.
 
 ## Lint
 
-From time to time, and before the wiki moves: contradictions between pages, claims a newer source has replaced, pages nothing links to, concepts used on several pages without a page of their own, missing links, and `drafted` pages that are older than a month.
+The lint keeps the wiki in order as it grows. It has two halves.
+
+The mechanical half is `paper/wiki_lint.py`. It finds links to pages that do not exist, pages missing from `index.md`, pages no other page links to, sources named in front matter without a page, and `drafted` pages not updated for more than 30 days. The build runs it and prints what it finds as warnings; `python3 paper/wiki_lint.py` on its own exits with 1 when it finds anything. Fix what it finds in the pull request that caused it.
+
+The reading half needs the pages themselves. The daily run does it on Mondays, before it works in any source, and a session may do it at any time. It runs `wiki_lint.py`, then reads the wiki for:
+
+- contradictions between pages,
+- claims a newer source in the wiki has replaced,
+- concepts or systems used on several pages without a page of their own,
+- places where a page names another page's subject without linking it,
+- `drafted` pages whose reason for being held back no longer holds.
+
+What has a clear answer in the sources it fixes in its wiki pull request: a missing link, a date or figure a newer source has replaced, a page for a concept several pages need, written by "Ingest". A contradiction it cannot settle from the sources, and anything under "When to stop and ask", goes under **Needs a decision** and into an issue. Each lint pass gets one entry in `log.md`, `## [YYYY-MM-DD] lint`, with what it found, what it fixed and what it left open; a pass that finds nothing says so in one line.

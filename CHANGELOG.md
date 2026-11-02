@@ -4,6 +4,10 @@ What changed in substance, newest first: in the paper, on its page and in the pr
 
 Format: `## <version> · <scope>`, then one paragraph. A paper version is `YYYY-MM-DD-vX.Y` and has its own PDF in `versions/`; the newest one is the version the build prints on the paper and the page. A change without a new paper version carries only its date (`YYYY-MM-DD`). Scope is `Paper`, `Site` or `Project`. The build turns this file into the list at the end of the page.
 
+## 2026-11-02 · Site
+
+The wiki checks itself. Every build now reports links to missing pages, pages missing from the catalogue or linked from nowhere, and draft pages older than a month; once a week the daily run also reads the wiki for contradictions and claims a newer source has replaced. Open questions from wiki pull requests become issues labelled `needs-decision`, and while more than five are open, the run adds only new sources and leaves the backlog alone.
+
 ## 2026-11-01 · Site
 
 The wiki grew by three sources to 59: the LionsOS design paper (Heiser et al. 2025), the Verus paper (Lattuada et al. 2024) and the agentOS repository (Hubbard 2026), and by two pages on systems, agentOS and Verus. The pages on LionsOS, drivers and proof automation now say what the sources measure and where they stop: LionsOS is measured for throughput and mean times against Linux, with no worst-case latency; Verus's speed-up is that of list benchmarks. The lexicon has two new terms, agentOS and Verus, 54 in all.

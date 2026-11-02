@@ -14,6 +14,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import lexicon
+import wiki_lint
 
 PUBLIC_NAME = "Silent Zero"           # the one place the wiki's working name zOS is translated
 root = Path(sys.argv[1]) if len(sys.argv) > 1 else Path(__file__).resolve().parent.parent
@@ -68,8 +69,7 @@ def wikilinks(md, here):
     def rep(m):
         target, text = m.group(1).strip(), (m.group(2) or "").strip()
         p = pages.get(target)
-        if not p:
-            print(f"wiki: [[{target}]] in {here} has no page", file=sys.stderr)
+        if not p:   # wiki_lint reports it
             return text or target
         by = f" ({p['by']})" if here == "index" and not text and p["by"] else ""   # the catalogue keeps who wrote it
         return f"[{text or p['title']}]({p['url']}){by}"
@@ -232,6 +232,10 @@ index_head = (f'    <div class="titleblock">\n      <h1 class="name">Wiki</h1>\n
               f'      <p class="ver">{len(pages) - 1} pages · updated {date(pages["index"]["meta"].get("updated", "2026-01-01"))} · <a href="#how">How this wiki is made</a></p>\n    </div>')
 (wiki / "index.html").write_text(page("Wiki", index_head, index_body, f'<a href="/">{PUBLIC_NAME} OS</a>'), encoding="utf-8")
 print(f"wiki: {written + 1} pages")
+
+# what a script can find wrong with the wiki (wiki_lint.py); the reading half is the weekly run's
+for msg in wiki_lint.check(root):
+    print("wiki lint:", msg, file=sys.stderr)
 
 # the lexicon: one line per term, collected from glossary and wiki (lexicon.py); G and W lead to the longer texts
 lx, lx_problems = lexicon.collect(root)
