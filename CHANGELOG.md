@@ -6,6 +6,10 @@ Format: `## <version> · <scope>`, then one paragraph. A paper version is `YYYY-
 
 ## 2026-11-02 · Site
 
+The wiki checks itself. Every build now reports links to missing pages, pages missing from the catalogue or linked from nowhere, and draft pages older than a month; once a week the daily run also reads the wiki for contradictions and claims a newer source has replaced. Open questions from wiki pull requests become issues labelled `needs-decision`, and while more than five are open, the run adds only new sources and leaves the backlog alone.
+
+## 2026-11-02 · Site
+
 The wiki grew by three sources: Thunderclap (Markettos et al. 2019), the CHERI Blossoms 2026 slides (Moore 2026) and the seL4 roadmap, and by one concept page, the IOMMU. The page on drivers now says that an enabled IOMMU did not keep a malicious device out in the 2019 tests on macOS, FreeBSD and Linux, and that Windows mostly did not use it; the page on the kernel gives the roadmap's quarters for MCS on AArch64 (third quarter of 2027) and for the multikernel proof (third quarter of 2028); the page on CHERIoT notes that CHERI for RISC-V was "being standardised" in March 2026, without a ratification. New lexicon term: IOMMU.
 
 ## 2026-11-01 · Site

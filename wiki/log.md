@@ -113,3 +113,7 @@ Ring 2, daily run. Created: three source pages, [[agentos]], [[verus]]. Changed:
 ## [2026-11-02] ingest | 2019-markettos-thunderclap-exploring-vulnerabilities, 2026-moore-cheri-is-being, nd-sel4-sel4-roadmap
 
 Rings 1 and 2, daily run. Created: three source pages, [[iommu]]. Changed: [[drivers]], [[root-of-trust]], [[kernel]], [[sel4]], [[cheriot]], [[2026-sel4-functional-correctness-proof]], index, rings. The roadmap confirms the paper's third quarter of 2027 for AArch64 (MCS, C level). Thunderclap confirms the paper's sentence with two qualifications, stated in [[drivers]]. Skipped, no text available: nd-linux-landlock-unprivileged-access, nd-linux-real-time-preemption (docs.kernel.org not reachable from the run). Held back for a decision: the ARSENAL talk page.
+
+## [2026-11-02] rule | lint every week, open decisions as issues, a limit on the backlog
+
+The lint now runs: its mechanical half as `paper/wiki_lint.py` in every build, its reading half in the daily run on Mondays. Each question under **Needs a decision** also becomes an issue labelled `needs-decision`, so it is not lost when its pull request is merged. With more than five such issues open, the daily run works in only the day's new sources and leaves `rings.md` alone. The first run of `wiki_lint.py` found nothing.
