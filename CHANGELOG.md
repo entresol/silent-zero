@@ -8,6 +8,10 @@ Format: `## <version> · <scope>`, then one paragraph. A paper version is `YYYY-
 
 The wiki checks itself. Every build now reports links to missing pages, pages missing from the catalogue or linked from nowhere, and draft pages older than a month; once a week the daily run also reads the wiki for contradictions and claims a newer source has replaced. Open questions from wiki pull requests become issues labelled `needs-decision`, and while more than five are open, the run adds only new sources and leaves the backlog alone.
 
+## 2026-11-02 · Site
+
+The wiki grew by three sources: Thunderclap (Markettos et al. 2019), the CHERI Blossoms 2026 slides (Moore 2026) and the seL4 roadmap, and by one concept page, the IOMMU. The page on drivers now says that an enabled IOMMU did not keep a malicious device out in the 2019 tests on macOS, FreeBSD and Linux, and that Windows mostly did not use it; the page on the kernel gives the roadmap's quarters for MCS on AArch64 (third quarter of 2027) and for the multikernel proof (third quarter of 2028); the page on CHERIoT notes that CHERI for RISC-V was "being standardised" in March 2026, without a ratification. New lexicon term: IOMMU.
+
 ## 2026-11-01 · Site
 
 The wiki grew by three sources to 59: the LionsOS design paper (Heiser et al. 2025), the Verus paper (Lattuada et al. 2024) and the agentOS repository (Hubbard 2026), and by two pages on systems, agentOS and Verus. The pages on LionsOS, drivers and proof automation now say what the sources measure and where they stop: LionsOS is measured for throughput and mean times against Linux, with no worst-case latency; Verus's speed-up is that of list benchmarks. The lexicon has two new terms, agentOS and Verus, 54 in all.

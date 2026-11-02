@@ -9,18 +9,18 @@ The catalogue of every page, with one line each. Read this first.
 
 ## zOS
 
-- [[kernel]] · seL4 with MCS as the zOS kernel: proven (C-level correctness; MCS functional correctness on RISC-V), not stated for MCS (integrity, confidentiality), tested (HACMS), assumed (boot, IOMMU); no WCET bound on any 64-bit core yet. 12 sources.
+- [[kernel]] · seL4 with MCS as the zOS kernel: proven (C-level correctness; MCS functional correctness on RISC-V), not stated for MCS (integrity, confidentiality), tested (HACMS), assumed (boot, IOMMU); no WCET bound on any 64-bit core yet; the roadmap dates MCS on AArch64 to Q3 2027. 13 sources.
 - [[static-system]] · one description, one image: what Microkit checks, what is not proved, and the run-time swap in LionsOS, the kernel underneath. 5 sources.
 - [[broker]] · the only component that hands out authority: capability patterns, CaMeL and FIDES, why model-based defences fail; nothing proven yet. 13 sources.
 - [[real-time-loops]] · the loops that move the motors: asynchronous chunks from slow models, observed timings, no proven bound yet. 7 sources.
 - [[safety-path]] · Simplex in zOS: the agent proposes, the loop disposes; tested, not proven; the paper's 2001 date disputed by a 1994 origin. 4 sources.
-- [[root-of-trust]] · the firmware below the kernel on Arm, RISC-V, PC and Raspberry Pi; OpenTitan, Caliptra, DICE; all *assumed* in the paper's terms. 12 sources.
+- [[root-of-trust]] · the firmware below the kernel on Arm, RISC-V, PC and Raspberry Pi; OpenTitan, Caliptra, DICE; all *assumed* in the paper's terms. 13 sources.
 - [[bootloader]] · where the zOS loader sits on each platform, signed and measured boot, proofs about boot code so far; the loader itself unproven. 16 sources.
-- [[drivers]] · user-mode drivers, the first verified Ethernet driver, DMA and the IOMMU as assumed. 8 sources.
+- [[drivers]] · user-mode drivers, the first verified Ethernet driver, DMA and the IOMMU as assumed, attacked in 2019 although enabled. 9 sources.
 
 ## Not yet covered
 
-The zOS part *agents* has no page yet. Firmware on PCs (Intel ME, AMD PSP, FSP, open alternatives) and on Apple silicon is in the backlog. Also not yet covered: the seL4 roadmap and multicore, the standardisation of CHERI for RISC-V, DMA attacks and the IOMMU, the seams between proven parts, the driver island, and most competing agent operating systems.
+The zOS part *agents* has no page yet. Firmware on PCs (Intel ME, AMD PSP, FSP, open alternatives) and on Apple silicon is in the backlog. Also not yet covered: the multicore proof, the ratification status of CHERI for RISC-V, the seams between proven parts, the driver island, and most competing agent operating systems.
 
 ## Systems
 
@@ -36,13 +36,14 @@ The zOS part *agents* has no page yet. Firmware on PCs (Intel ME, AMD PSP, FSP, 
 - [[verus]] · verifier for Rust code with SMT solving; case studies, no kernel. 1 source.
 - [[cohesix]] · seL4-based control layer for edge AI fleets: a Queen decides what hosts' models may do; landing page only. 1 source.
 - [[kataos]] · Google's seL4 and Rust OS for machine-learning devices, 2022; OpenTitan in its Sparrow plan. 1 source.
-- [[cheriot]] · CHERI capabilities on small RISC-V cores with its own RTOS: memory safety in hardware, measured, not proven. 1 source.
+- [[cheriot]] · CHERI capabilities on small RISC-V cores with its own RTOS: memory safety in hardware, measured, not proven; CHERI for RISC-V "being standardised" in 2026. 2 sources.
 - [[cva6]] · open 64-bit RISC-V core whose design lets latency bounds be proved; fence.t prototype. 6 sources.
 - [[sifive-hifive]] · SiFive and its boards: the discontinued HiFive Unleashed with seL4's MCS proof, the HiFive Premier P550 one can buy. 5 sources.
 
 ## Concepts
 
 - [[risc-v]] · the open instruction set: what is open (the ISA) and what need not be (cores, chips, boards); privilege levels and the SBI. 11 sources.
+- [[iommu]] · the memory management unit for devices: what it limits, and the 2019 attacks that worked although it was on. 1 source.
 - [[wcet-analysis]] · upper bounds on execution time, what they need, and where seL4 stands. 6 sources.
 - [[functional-correctness]] · what seL4's refinement proof gives, what it assumes, where it holds. 4 sources.
 - [[object-capabilities]] · references that both designate and authorise; permission versus authority; caretaker and membrane. 5 sources.
@@ -119,3 +120,6 @@ The zOS part *agents* has no page yet. Firmware on PCs (Intel ME, AMD PSP, FSP, 
 - [[2020-straznickas-verified-first-stage]] · a RISC-V measurement root in Coq that signs what it loads; theorem stated, not fully proved. progress, full text.
 - [[2021-tao-dice-formally-verified]] · DICE, verify-and-measure boot, verified at the level of generated C; on an STM32. proof, full text.
 - [[2022-zhang-pa-boot-formally]] · processor authentication for multi-chip secure boot, proved in Isabelle/HOL. proof, main sections.
+- [[2019-markettos-thunderclap-exploring-vulnerabilities]] · Thunderclap, NDSS 2019: attacks by a malicious device on macOS, FreeBSD and Linux with the IOMMU on; Windows mostly unprotected. test, full text.
+- [[2026-moore-cheri-is-being]] · Moore, CHERI Blossoms 2026: CHERI for RISC-V is "being standardised"; criteria and open research. position, slides, full text.
+- [[nd-sel4-sel4-roadmap]] · the seL4 roadmap: MCS C-level proof done on RISC-V, AArch64 Q3 2027; multikernel proofs Q3 2028. report, full text.

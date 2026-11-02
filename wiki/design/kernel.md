@@ -1,8 +1,8 @@
 ---
 type: design
 status: reviewed
-sources: [nd-sel4-microkit-user-manual, 2022-wistoff-systematic-prevention-core, 2026-trustworthy-where-are-we, 2009-klein-sel4-formal-verification, 2018-klein-formally-verified-software, nd-sel4-verified-configurations, 2026-sel4-functional-correctness-proof, 2026-heiser-mcs-safety-os, 2026-trustworthy-guaranteeing-timeliness-mcs, nd-trustworthy-wcet-worst-case, 2026-sillitoe-resurrecting-sel4-wcet, 2026-sel4-release-17]
-updated: 2026-10-31
+sources: [nd-sel4-microkit-user-manual, 2022-wistoff-systematic-prevention-core, 2026-trustworthy-where-are-we, 2009-klein-sel4-formal-verification, 2018-klein-formally-verified-software, nd-sel4-verified-configurations, 2026-sel4-functional-correctness-proof, 2026-heiser-mcs-safety-os, 2026-trustworthy-guaranteeing-timeliness-mcs, nd-trustworthy-wcet-worst-case, 2026-sillitoe-resurrecting-sel4-wcet, 2026-sel4-release-17, nd-sel4-sel4-roadmap]
+updated: 2026-11-02
 ---
 
 # The kernel
@@ -22,7 +22,8 @@ In zOS the kernel is [[sel4]] with its mixed-criticality extensions. It isolates
 | Functional correctness of the C code | proven, for the verified configurations | refinement proof in Isabelle/HOL | [[2009-klein-sel4-formal-verification]], [[nd-sel4-verified-configurations]] |
 | Functional correctness of the MCS kernel on RISC-V | proven, announced June 2026 (the announcement names neither the level nor 64-bit; RISC-V verified configurations are 64-bit and C-level, per [[nd-sel4-verified-configurations]]) | proof, announced | [[2026-sel4-functional-correctness-proof]] |
 | Platforms of the MCS proof on RISC-V | `hifive` (HiFive Unleashed, no longer sold) only; the proof without MCS covers further RISC-V boards, among them the HiFive Premier P550, since release 17.0.0 | release notes | [[2026-sel4-release-17]], [[sifive-hifive]] |
-| MCS on 64-bit Arm | under way | none yet | [[2026-sel4-functional-correctness-proof]] |
+| MCS on 64-bit Arm | under way; the roadmap plans C-level verification for the third quarter of 2027 | plan, none yet | [[2026-sel4-functional-correctness-proof]], [[nd-sel4-sel4-roadmap]] |
+| Multikernel configuration for multi-core systems | verification scheduled to complete in the third quarter of 2028 | plan | [[nd-sel4-sel4-roadmap]] |
 | Integrity and confidentiality (no timing channels) | proven on AArch32, AArch64, RISC-V; not stated for MCS | proof | [[nd-sel4-verified-configurations]] |
 | Binary correctness | listed for AArch32 only; other architectures not stated | proof | [[nd-sel4-verified-configurations]] |
 | Verified kernel under Microkit on the Raspberry Pi 4 | none: the Pi 4B is verified only without MCS, and Microkit always uses MCS | our reading from two sources | [[nd-sel4-verified-configurations]], [[nd-sel4-microkit-user-manual]] |
@@ -42,7 +43,7 @@ No current seL4 has a WCET bound on a 64-bit core. Budgets keep an agent from ta
 - Section 3 cites the seL4 roadmap (seL4 Foundation n.d.-b) for "Its C-level verification is complete for RISC-V"; the primary source is now in the wiki, [[2026-sel4-functional-correctness-proof]], which could be cited directly.
 - Section 4 cites [[2026-heiser-mcs-safety-os]] for "Provable schedulability for MCS remains ongoing research". Confirmed: the slides give September 2027 for the schedulability framework.
 - Section 2.3 cites [[2009-klein-sel4-formal-verification]] for the cost of the first proof ("roughly 25 person-years", a repeat "under ten"). The source gives about 22 in total and estimates 8 for a repeat; the paper also cites a project page not yet in the wiki.
-- Section 3 cites [[nd-sel4-verified-configurations]] for boot and IOMMU lying outside the proof, and the roadmap for AArch64 in the third quarter of 2027. The first is confirmed; the roadmap is not yet in the wiki.
+- Section 3 cites [[nd-sel4-verified-configurations]] for boot and IOMMU lying outside the proof, and the roadmap for AArch64 in the third quarter of 2027. Both are confirmed: [[nd-sel4-sel4-roadmap]] says "C verification completed for RISC-V, to complete for AArch64 Q3/27" for the MCS extensions.
 - Section 4 cites [[2018-klein-formally-verified-software]] for HACMS. The full text confirms the paper's account.
 - Sections 3 and 4 cite [[2026-heiser-mcs-safety-os]] for time as a protected resource. The slides confirm it.
 - Section 4 says closing timing side channels needs a hardware instruction that exists only as prototypes, citing [[2022-wistoff-systematic-prevention-core]]. Confirmed for on-core state; [[2026-trustworthy-where-are-we]] shows the proof of time protection for seL4 still in progress.
@@ -58,4 +59,4 @@ No current seL4 has a WCET bound on a 64-bit core. Budgets keep an agent from ta
 
 ## Not yet in the wiki
 
-The roadmap, the multicore proof. See also [[time-protection]] and, for the layer above, [[static-system]].
+The multicore proof itself. See also [[time-protection]] and, for the layer above, [[static-system]].
