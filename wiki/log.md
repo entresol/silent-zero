@@ -109,3 +109,7 @@ A wiki pull request adds one entry `· Site` to `CHANGELOG.md`, listing sources,
 ## [2026-11-01] ingest | 2025-heiser-fast-secure-adaptable, 2024-lattuada-verus-practical-foundation, 2026-hubbard-agentos-operating-system
 
 Ring 2, daily run. Created: three source pages, [[agentos]], [[verus]]. Changed: [[lionsos]], [[drivers]], [[proof-automation]], [[cohesix]], index, rings. Notes for the paper, not decided here: Section 3 says legacy drivers "above all for graphics and AI accelerators" cite Heiser et al. 2025, whose driver VMs cover a framebuffer, Ethernet, SD and sound; Verus's "3 to 61 times" is the range of two list benchmarks. Candidate for the pool, not yet in it: Zhao et al. 2025, the verified NIC driver that Heiser et al. cite.
+
+## [2026-11-02] ingest | 2019-markettos-thunderclap-exploring-vulnerabilities, 2026-moore-cheri-is-being, nd-sel4-sel4-roadmap
+
+Rings 1 and 2, daily run. Created: three source pages, [[iommu]]. Changed: [[drivers]], [[root-of-trust]], [[kernel]], [[sel4]], [[cheriot]], [[2026-sel4-functional-correctness-proof]], index, rings. The roadmap confirms the paper's third quarter of 2027 for AArch64 (MCS, C level). Thunderclap confirms the paper's sentence with two qualifications, stated in [[drivers]]. Skipped, no text available: nd-linux-landlock-unprivileged-access, nd-linux-real-time-preemption (docs.kernel.org not reachable from the run). Held back for a decision: the ARSENAL talk page.

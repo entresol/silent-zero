@@ -1,8 +1,8 @@
 ---
 type: design
 status: reviewed
-sources: [2025-heiser-fast-secure-adaptable, 2022-parker-sel4-device-driver, 2026-tyler-smt-based-deductive, 2026-trustworthy-lionsos, 2026-heiser-mcs-safety-os, nd-sel4-microkit-user-manual, nd-sel4-verified-configurations, 2009-klein-sel4-formal-verification]
-updated: 2026-11-01
+sources: [2025-heiser-fast-secure-adaptable, 2022-parker-sel4-device-driver, 2026-tyler-smt-based-deductive, 2026-trustworthy-lionsos, 2026-heiser-mcs-safety-os, nd-sel4-microkit-user-manual, nd-sel4-verified-configurations, 2009-klein-sel4-formal-verification, 2019-markettos-thunderclap-exploring-vulnerabilities]
+updated: 2026-11-02
 ---
 
 # Drivers
@@ -27,10 +27,12 @@ In zOS drivers run in user mode, each with access only to its own device. Legacy
 | Unmodified Linux drivers in a driver VM | available in LionsOS; drivers shown: GPU framebuffer, Ethernet, SD block, sound on one Arm board; a few weeks per device class | design and use | [[2025-heiser-fast-secure-adaptable]], [[2026-heiser-mcs-safety-os]] |
 | Each driver sees only its own device | a configuration choice in Microkit; only interrupts are exclusive to one PD | design | [[nd-sel4-microkit-user-manual]] |
 | IOMMU/SMMU covered by the kernel proof | no verified configuration covers it | assumed | [[nd-sel4-verified-configurations]] |
+| An enabled IOMMU keeps a malicious device out of kernel memory | not so in general: attacks worked on macOS, FreeBSD and Linux with the IOMMU on; Windows mostly did not use it (2019, Intel and AMD hardware) | tests on nine machines | [[2019-markettos-thunderclap-exploring-vulnerabilities]] |
 
 ## The paper and its sources
 
 - Section 3's "each with access only to its own device registers (Parker 2022)": the slides support user-mode drivers with fewer privileges, not this wording. Our reading: [[microkit]] lets the system description give each driver only its own registers, but does not enforce that, except for interrupts.
+- Section 6 says devices that write to memory directly "have defeated IOMMU protection in Linux, macOS and FreeBSD" (Markettos et al. 2019). [[2019-markettos-thunderclap-exploring-vulnerabilities]] confirms it, with two qualifications: on Linux and FreeBSD the authors had to switch the IOMMU on, and Windows was open too, because it mostly did not use the IOMMU. The tests ran on Intel and AMD machines in 2019; the Arm SMMU was not tested. See [[iommu]].
 - Section 5 and In brief on the verified Ethernet driver: confirmed by [[2026-tyler-smt-based-deductive]], with the trusted parts listed above. Whether LionsOS ships the verified Pancake driver is not stated.
 - The driver VM is cited to Heiser et al. 2025 ([[2025-heiser-fast-secure-adaptable]]), which shows a framebuffer, Ethernet, SD and sound driver in VMs. The paper's "above all graphics and AI accelerators" goes beyond that list: no accelerator appears there.
 
@@ -39,3 +41,4 @@ In zOS drivers run in user mode, each with access only to its own device. Legacy
 - No verified driver for a bus to motor controllers (serial, CAN, I²C) exists in the sources, though drivers on the motion path are where correctness matters most.
 - The verified driver's device model is translated from the manual by hand; specifications from the device's Verilog are work in progress ([[2026-tyler-smt-based-deductive]], §3.3.1).
 - Microkit describes IO address spaces backed by an IOMMU or SMMU in general terms, and states the mapping explicitly only for x86 ([[nd-sel4-microkit-user-manual]]); no verified kernel configuration covers the IOMMU. Whether the pib's Raspberry Pi has an IOMMU at all is not answered by a source in the wiki.
+- Which Thunderclap attack classes reach a system whose drivers run in user mode with page-aligned buffers is not answered by any source in the wiki; our reading is in [[2019-markettos-thunderclap-exploring-vulnerabilities]].

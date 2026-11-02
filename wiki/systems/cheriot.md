@@ -1,9 +1,9 @@
 ---
 type: system
 status: reviewed
-sources: [2023-amar-cheriot-complete-memory]
+sources: [2023-amar-cheriot-complete-memory, 2026-moore-cheri-is-being]
 short: CHERI capabilities on small RISC-V cores
-updated: 2026-10-31
+updated: 2026-11-02
 ---
 
 # CHERIoT
@@ -30,5 +30,5 @@ The paper links the RTOS source on GitHub (`microsoft/CHERIoT-RTOS`); its licenc
 
 ## Open questions
 
-- Whether CHERIoT hardware, or CHERI for RISC-V generally, is standardised and available; the paper's Table 1 cites a source on standardisation not yet covered.
+- Whether CHERIoT hardware, or CHERI for RISC-V generally, is standardised and available. A talk of March 2026 calls it "being standardised" and lists the criteria, a Sail specification, simulation and a test suite among them, without a ratification or a date ([[2026-moore-cheri-is-being]]).
 - Whether a zOS board could use capability hardware below seL4, and what that would add to the kernel's proofs.
