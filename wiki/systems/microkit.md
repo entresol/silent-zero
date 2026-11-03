@@ -1,18 +1,18 @@
 ---
 type: system
 status: reviewed
-sources: [nd-sel4-microkit-user-manual, 2026-trustworthy-lionsos, 2018-klein-formally-verified-software]
+sources: [nd-sel4-microkit-user-manual, 2026-trustworthy-lionsos, 2018-klein-formally-verified-software, 2026-microkit-release-2-4-0]
 glossary: Microkit
-updated: 2026-10-29
+updated: 2026-11-03
 ---
 
 # Microkit
 
 A small operating system on [[sel4]] for systems whose structure is fixed at build time. One XML description declares the protection domains, memory regions, channels and interrupts, and the Microkit tool turns it into a single bootable image on Arm and RISC-V ([[nd-sel4-microkit-user-manual]]). [[lionsos]] is built with it ([[2026-trustworthy-lionsos]]).
 
-## State, October 2026
+## State, November 2026
 
-Version 2.3.0. It always uses seL4's MCS configuration; multicore configurations exist beside the single-core default; boards include the Raspberry Pi 4B and CVA6 on a Genesys2 FPGA board ([[nd-sel4-microkit-user-manual]]). The manual calls Microkit "in principle, amenable to formal analysis" of safety and security, leaves such analysis "beyond the initial scope", and claims no verification of its tool, loader or initialiser; the tool can export each protection domain's capabilities in the Viper language for verification ([[nd-sel4-microkit-user-manual]]).
+Version 2.4.0, dated 30 October on the releases page (year inferred), on seL4 17.0.0. It closed two authority leaks: a server could send capabilities over a reply, and a child domain received its parent's fault endpoint, so that in 2.3.1 it could send its parent fake faults and in 2.3.0 and earlier it could receive and consume the parent's faults ([[2026-microkit-release-2-4-0]]). The manual read for this page describes version 2.3.0 ([[nd-sel4-microkit-user-manual]]). It always uses seL4's MCS configuration; multicore configurations exist beside the single-core default; boards include the Raspberry Pi 4B and CVA6 on a Genesys2 FPGA board ([[nd-sel4-microkit-user-manual]]). The manual calls Microkit "in principle, amenable to formal analysis" of safety and security, leaves such analysis "beyond the initial scope", and claims no verification of its tool, loader or initialiser; the tool can export each protection domain's capabilities in the Viper language for verification ([[nd-sel4-microkit-user-manual]]).
 
 ## The model in brief
 

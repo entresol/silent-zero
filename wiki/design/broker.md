@@ -1,8 +1,8 @@
 ---
 type: design
 status: reviewed
-sources: [1988-hardy-confused-deputy-or, 2006-miller-robust-composition-towards, 2025-debenedetti-defeating-prompt-injections, 2026-nasr-attacker-moves-second, 2018-klein-formally-verified-software, nd-sel4-verified-configurations, 2026-sel4-functional-correctness-proof, nd-sel4-microkit-user-manual, 2026-heiser-mcs-safety-os, 2026-bower-cohesix-research-operating, 2025-costa-securing-ai-agents, 2023-greshake-not-what-you, 2022-google-announcing-kataos-sparrow]
-updated: 2026-10-31
+sources: [1988-hardy-confused-deputy-or, 2006-miller-robust-composition-towards, 2025-debenedetti-defeating-prompt-injections, 2026-nasr-attacker-moves-second, 2018-klein-formally-verified-software, nd-sel4-verified-configurations, 2026-sel4-functional-correctness-proof, nd-sel4-microkit-user-manual, 2026-heiser-mcs-safety-os, 2026-bower-cohesix-research-operating, 2025-costa-securing-ai-agents, 2023-greshake-not-what-you, 2022-google-announcing-kataos-sparrow, 2026-zou-agentkernel-trust-native]
+updated: 2026-11-03
 ---
 
 # The broker
@@ -38,6 +38,8 @@ The only component in zOS that hands out authority. It grants capabilities that 
 
 - [[kataos]] put seL4 under machine-learning devices in 2022, with a dynamic root server rather than a static system ([[2022-google-announcing-kataos-sparrow]]).
 - [[cohesix]] is a neighbouring design on seL4: models and agents stay on the host, and target-side role, ticket, lifecycle and bounds checks decide what is accepted ([[2026-bower-cohesix-research-operating]], landing page only).
+
+- [[2026-zou-agentkernel-trust-native]] is a design for the same job on a conventional host kernel: an external monitor outside the model, delegation that can only narrow a child's capabilities, and information-flow labels on memory. Its model-based classifier and eBPF enforcement rest on the host operating system, which the authors assume enforces them correctly, and they defer proofs of their invariants (design paper, partly read). Our reading: the host is not a verified kernel.
 
 ## Open
 

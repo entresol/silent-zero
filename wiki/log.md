@@ -117,3 +117,11 @@ Rings 1 and 2, daily run. Created: three source pages, [[iommu]]. Changed: [[dri
 ## [2026-11-02] rule | lint every week, open decisions as issues, a limit on the backlog
 
 The lint now runs: its mechanical half as `paper/wiki_lint.py` in every build, its reading half in the daily run on Mondays. Each question under **Needs a decision** also becomes an issue labelled `needs-decision`, so it is not lost when its pull request is merged. With more than five such issues open, the daily run works in only the day's new sources and leaves `rings.md` alone. The first run of `wiki_lint.py` found nothing.
+
+## [2026-11-03] ingest | 2026-microkit-release-2-4-0, 2026-zou-agentkernel-trust-native, 2026-ahn-promise-proof-automation
+
+Sources added to the pool today, daily run. Created: three source pages. Changed: [[microkit]] (now 2.4.0), [[static-system]], [[proof-automation]], [[broker]], index, rings. Microkit 2.4.0 closes two authority leaks (reply capabilities, parent fault endpoint). AgentKernel and PROMISE were read in part, and the pages say which parts.
+
+## [2026-11-03] ingest | nd-linux-landlock-unprivileged-access, nd-linux-real-time-preemption, 2024-trail-leftoverlocals-listening-llm
+
+Ring 2, daily run. Created: three source pages, [[landlock]], [[preempt-rt]]. Changed: [[drivers]], [[real-time-loops]], index, rings. The two Linux pages were saved on 2 November and are now read; for PREEMPT_RT three subpages of the kernel documentation were also read and saved in the private repository, the other chapters were not. LeftoverLocals confirms the paper's sentence in Section 6 with the device and model named. Skipped, held for a decision: the ARSENAL talk page (open issue).

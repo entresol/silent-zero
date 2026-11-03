@@ -1,8 +1,8 @@
 ---
 type: design
 status: reviewed
-sources: [2025-heiser-fast-secure-adaptable, 2022-parker-sel4-device-driver, 2026-tyler-smt-based-deductive, 2026-trustworthy-lionsos, 2026-heiser-mcs-safety-os, nd-sel4-microkit-user-manual, nd-sel4-verified-configurations, 2009-klein-sel4-formal-verification, 2019-markettos-thunderclap-exploring-vulnerabilities]
-updated: 2026-11-02
+sources: [2025-heiser-fast-secure-adaptable, 2022-parker-sel4-device-driver, 2026-tyler-smt-based-deductive, 2026-trustworthy-lionsos, 2026-heiser-mcs-safety-os, nd-sel4-microkit-user-manual, nd-sel4-verified-configurations, 2009-klein-sel4-formal-verification, 2019-markettos-thunderclap-exploring-vulnerabilities, 2024-trail-leftoverlocals-listening-llm]
+updated: 2026-11-03
 ---
 
 # Drivers
@@ -35,6 +35,8 @@ In zOS drivers run in user mode, each with access only to its own device. Legacy
 - Section 6 says devices that write to memory directly "have defeated IOMMU protection in Linux, macOS and FreeBSD" (Markettos et al. 2019). [[2019-markettos-thunderclap-exploring-vulnerabilities]] confirms it, with two qualifications: on Linux and FreeBSD the authors had to switch the IOMMU on, and Windows was open too, because it mostly did not use the IOMMU. The tests ran on Intel and AMD machines in 2019; the Arm SMMU was not tested. See [[iommu]].
 - Section 5 and In brief on the verified Ethernet driver: confirmed by [[2026-tyler-smt-based-deductive]], with the trusted parts listed above. Whether LionsOS ships the verified Pancake driver is not stated.
 - The driver VM is cited to Heiser et al. 2025 ([[2025-heiser-fast-secure-adaptable]]), which shows a framebuffer, Ethernet, SD and sound driver in VMs. The paper's "above all graphics and AI accelerators" goes beyond that list: no accelerator appears there.
+
+- Section 6 says GPUs "have leaked memory between processes" with one flaw exposing about 181 MB per query (Trail of Bits 2024). [[2024-trail-leftoverlocals-listening-llm]] confirms it for AMD, Apple and Qualcomm GPUs from the authors' tests, and for some Imagination GPUs on Google's confirmation, as of January 2024; the 181 MB was measured on an AMD Radeon RX 7900 XT with a 7B model in llama.cpp. Our reading: the leak occurs inside the GPU, which the source does not relate to IOMMUs, so a driver VM that passes a GPU through would inherit whatever isolation the GPU itself gives.
 
 ## Open
 
