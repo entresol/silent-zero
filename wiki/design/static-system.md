@@ -1,8 +1,8 @@
 ---
 type: design
 status: reviewed
-sources: [nd-sel4-microkit-user-manual, 2026-trustworthy-lionsos, 2018-klein-formally-verified-software, 2026-trustworthy-guaranteeing-timeliness-mcs, nd-sel4-verified-configurations]
-updated: 2026-10-29
+sources: [nd-sel4-microkit-user-manual, 2026-trustworthy-lionsos, 2018-klein-formally-verified-software, 2026-trustworthy-guaranteeing-timeliness-mcs, nd-sel4-verified-configurations, 2026-microkit-release-2-4-0]
+updated: 2026-11-03
 ---
 
 # The static system
@@ -19,7 +19,7 @@ The layer between the kernel and the components. In zOS one description declares
 
 | Claim | State | Evidence | Source |
 | --- | --- | --- | --- |
-| One description, one bootable image (Arm, RISC-V); all paths between components (channels, shared memory regions, extra capabilities) fixed in it | implemented (Microkit 2.3.0) | documentation | [[nd-sel4-microkit-user-manual]] |
+| One description, one bootable image (Arm, RISC-V); all paths between components (channels, shared memory regions, extra capabilities) fixed in it | implemented (manual for Microkit 2.3.0; current release 2.4.0) | documentation | [[nd-sel4-microkit-user-manual]], [[2026-microkit-release-2-4-0]] |
 | The generated capDL specification can be set up on the board (memory, frames) | checked at build time on Arm and RISC-V | tool check, not proof | [[nd-sel4-microkit-user-manual]] |
 | The generated capabilities match the description | not proved for Microkit; Viper export of each component's capabilities exists | none yet | [[nd-sel4-microkit-user-manual]] |
 | The same, for CAmkES | proved for the capDL refinement and the RPC glue; initialiser proved against a model | proof (2018) | [[2018-klein-formally-verified-software]] |
@@ -31,6 +31,8 @@ The layer between the kernel and the components. In zOS one description declares
 
 - The paper's description of the static system (Section 3) matches [[nd-sel4-microkit-user-manual]].
 - LionsOS loads no components at run time, but can swap a component for one of the same type, to change a policy or to reboot a virtual machine with a new Linux kernel ([[2026-trustworthy-lionsos]]). Our reading: the VM case concerns the driver island, which the paper keeps outside the trusted base, so it does not conflict with "nothing is loaded into the core". Microkit's restart of a child runs code already in the image. What remains open is whether a policy component inside the trusted base may be swapped at run time, and who may trigger it; the paper's Section 5 already rejects services that agents replace at run time.
+
+- Microkit 2.4.0 (30 October, year inferred) fixed two leaks in the authority the layer hands out: reply capabilities no longer carry grant-reply permission, and a child no longer receives its parent's fault endpoint. In 2.3.1 a child could send its parent fake faults; in 2.3.0 and earlier it could receive and consume the parent's faults ([[2026-microkit-release-2-4-0]]). Our reading: the authority a description declares was not, until then, all the authority a component held, which is why the generated-capabilities row above matters.
 
 ## Open
 

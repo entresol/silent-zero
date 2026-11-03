@@ -72,12 +72,12 @@ Work that extends the design, competes with it or attacks its assumptions: other
 - [x] 2026-hubbard-agentos-operating-system
 - [x] 2024-lattuada-verus-practical-foundation
 - [ ] 2026-lide-arsenal-assured-robotics
-- [ ] nd-linux-landlock-unprivileged-access
-- [ ] nd-linux-real-time-preemption
+- [x] nd-linux-landlock-unprivileged-access
+- [x] nd-linux-real-time-preemption
 - [x] 2019-markettos-thunderclap-exploring-vulnerabilities
 - [x] 2026-moore-cheri-is-being
 - [x] nd-sel4-sel4-roadmap
-- [ ] 2024-trail-leftoverlocals-listening-llm
+- [x] 2024-trail-leftoverlocals-listening-llm
 - [ ] nd-trustworthy-proof-statistics
 - [ ] 2025-vander-rust-android-move
 - [ ] 2025-yang-autoverus-automated-proof
