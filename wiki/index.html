@@ -338,7 +338,7 @@ sup.refs a:hover { text-decoration: underline; }
     <div class="titleblock">
       <h1 class="name">Wiki</h1>
       <p class="sub">What the sources behind the paper show, page by page.</p>
-      <p class="ver">101 pages · updated 1 Nov 2026 · <a href="#how">How this wiki is made</a></p>
+      <p class="ver">109 pages · updated 3 Nov 2026 · <a href="#how">How this wiki is made</a></p>
     </div>
   </div>
 </header>
@@ -346,7 +346,7 @@ sup.refs a:hover { text-decoration: underline; }
 <div class="layout">
   <nav class="toc" id="toc" aria-label="Contents"><p>Contents</p><ol><li class="toc-back"><a href="/">← The paper</a></li><li><a href="#top">↑ Top</a></li><li><a href="#how">How this wiki is made</a></li><li><a href="#design">Design</a></li><li><a href="#systems">Systems</a></li><li><a href="#concepts">Concepts</a></li><li><a href="#sources">Sources</a></li><li><a href="#not-yet-covered">Not yet covered</a></li></ol></nav>
   <article>
-<p>This wiki gathers what the sources behind the paper show. It has a page for each source, each concept, each system the paper builds on and each part of the design: 62 sources, 16 concepts, 15 systems and 8 parts of the design so far. Every page says what is proven, tested or assumed, and on which source that rests.</p>
+<p>This wiki gathers what the sources behind the paper show. It has a page for each source, each concept, each system the paper builds on and each part of the design: 68 sources, 16 concepts, 17 systems and 8 parts of the design so far. Every page says what is proven, tested or assumed, and on which source that rests.</p>
 <h2 id="how">How this wiki is made</h2>
 <p>A language model writes the wiki and keeps it up to date from the sources in the project’s research pool, after Andrej Karpathy’s idea of a wiki that a language model maintains. A daily run adds new sources and works older ones in.</p>
 <ul>
@@ -358,18 +358,18 @@ sup.refs a:hover { text-decoration: underline; }
 <h2 id="design">Design</h2>
 <ul>
 <li><a href="/wiki/design/kernel.html">The kernel</a> · seL4 with MCS as the Silent Zero kernel: proven (C-level correctness; MCS functional correctness on RISC-V), not stated for MCS (integrity, confidentiality), tested (HACMS), assumed (boot, IOMMU); no WCET bound on any 64-bit core yet; the roadmap dates MCS on AArch64 to Q3 2027. 13 sources.</li>
-<li><a href="/wiki/design/static-system.html">The static system</a> · one description, one image: what Microkit checks, what is not proved, and the run-time swap in LionsOS, the kernel underneath. 5 sources.</li>
-<li><a href="/wiki/design/broker.html">The broker</a> · the only component that hands out authority: capability patterns, CaMeL and FIDES, why model-based defences fail; nothing proven yet. 13 sources.</li>
-<li><a href="/wiki/design/real-time-loops.html">Real-time loops</a> · the loops that move the motors: asynchronous chunks from slow models, observed timings, no proven bound yet. 7 sources.</li>
+<li><a href="/wiki/design/static-system.html">The static system</a> · one description, one image: what Microkit checks, what is not proved, and the run-time swap in LionsOS, the kernel underneath. 6 sources.</li>
+<li><a href="/wiki/design/broker.html">The broker</a> · the only component that hands out authority: capability patterns, CaMeL and FIDES, why model-based defences fail; nothing proven yet. 14 sources.</li>
+<li><a href="/wiki/design/real-time-loops.html">Real-time loops</a> · the loops that move the motors: asynchronous chunks from slow models, observed timings, no proven bound yet. 8 sources.</li>
 <li><a href="/wiki/design/safety-path.html">The safety path</a> · Simplex in Silent Zero: the agent proposes, the loop disposes; tested, not proven; the paper’s 2001 date disputed by a 1994 origin. 4 sources.</li>
 <li><a href="/wiki/design/root-of-trust.html">Root of trust and firmware</a> · the firmware below the kernel on Arm, RISC-V, PC and Raspberry Pi; OpenTitan, Caliptra, DICE; all <em>assumed</em> in the paper’s terms. 13 sources.</li>
 <li><a href="/wiki/design/bootloader.html">The bootloader</a> · where the Silent Zero loader sits on each platform, signed and measured boot, proofs about boot code so far; the loader itself unproven. 16 sources.</li>
-<li><a href="/wiki/design/drivers.html">Drivers</a> · user-mode drivers, the first verified Ethernet driver, DMA and the IOMMU as assumed, attacked in 2019 although enabled. 9 sources.</li>
+<li><a href="/wiki/design/drivers.html">Drivers</a> · user-mode drivers, the first verified Ethernet driver, DMA and the IOMMU as assumed, attacked in 2019 although enabled. 10 sources.</li>
 </ul>
 <h2 id="systems">Systems</h2>
 <ul>
 <li><a href="/wiki/systems/sel4.html">seL4</a> · the verified microkernel Silent Zero builds on: proofs per architecture and platform, cost, MCS, timing, HACMS. 11 sources.</li>
-<li><a href="/wiki/systems/microkit.html">Microkit</a> · the build system for static seL4 systems: protection domains, channels, budgets, one image. 3 sources.</li>
+<li><a href="/wiki/systems/microkit.html">Microkit</a> · the build system for static seL4 systems: protection domains, channels, budgets, one image. 4 sources.</li>
 <li><a href="/wiki/systems/lionsos.html">LionsOS</a> · static OS from small components on seL4 and Microkit; first driver verified. 5 sources.</li>
 <li><a href="/wiki/systems/coreboot.html">coreboot</a> · open firmware in stages with a fixed payload; verified and measured boot; closed vendor parts on x86. 3 sources.</li>
 <li><a href="/wiki/systems/tf-a.html">Trusted Firmware-A</a> · Arm’s reference firmware; BL31 stays resident at EL3 below the kernel. 2 sources.</li>
@@ -378,6 +378,8 @@ sup.refs a:hover { text-decoration: underline; }
 <li><a href="/wiki/systems/opentitan.html">OpenTitan</a> · open-source silicon root of trust, shipping in Chromebooks since March 2026. 5 sources.</li>
 <li><a href="/wiki/systems/agentos.html">agentOS</a> · seL4-based I/O platform for agents: device-owning domains, Linux and FreeBSD guests under QEMU; agent services not yet booted. 1 source.</li>
 <li><a href="/wiki/systems/verus.html">Verus</a> · verifier for Rust code with SMT solving; case studies, no kernel. 1 source.</li>
+<li><a href="/wiki/systems/landlock.html">Landlock</a> · Linux sandbox a process applies to itself: filesystem, network, capability and namespace rules; part of the hardened-Linux route. 1 source.</li>
+<li><a href="/wiki/systems/preempt-rt.html">PREEMPT_RT</a> · the Linux real-time configuration: preemptible kernel, threaded interrupts; no latency bound stated. 1 source.</li>
 <li><a href="/wiki/systems/cohesix.html">Cohesix</a> · seL4-based control layer for edge AI fleets: a Queen decides what hosts’ models may do; landing page only. 1 source.</li>
 <li><a href="/wiki/systems/kataos.html">KataOS</a> · Google’s seL4 and Rust OS for machine-learning devices, 2022; OpenTitan in its Sparrow plan. 1 source.</li>
 <li><a href="/wiki/systems/cheriot.html">CHERIoT</a> · CHERI capabilities on small RISC-V cores with its own RTOS: memory safety in hardware, measured, not proven; CHERI for RISC-V “being standardised” in 2026. 2 sources.</li>
@@ -400,7 +402,7 @@ sup.refs a:hover { text-decoration: underline; }
 <li><a href="/wiki/concepts/action-chunking.html">Action chunking</a> · slow robot models emitting action sequences for a fast loop; no bound on delay. 2 sources.</li>
 <li><a href="/wiki/concepts/ai-vulnerability-discovery.html">AI vulnerability discovery</a> · AI models finding software flaws at scale: DARPA’s challenge and Anthropic’s figures, the bottleneck moving to patching. 3 sources.</li>
 <li><a href="/wiki/concepts/information-flow-control.html">Information-flow control</a> · labels for where data came from and who may see it; FIDES and CaMeL for agents; explicit flows only. 2 sources.</li>
-<li><a href="/wiki/concepts/proof-automation.html">Proof automation</a> · machines proposing proof steps, Isabelle checking them; 77.6 % of a seL4 benchmark sample; Verus as a faster verifier. 3 sources.</li>
+<li><a href="/wiki/concepts/proof-automation.html">Proof automation</a> · machines proposing proof steps, Isabelle checking them; 77.6 % of a seL4 benchmark sample; Verus as a faster verifier. PROMISE as a second method. 4 sources.</li>
 <li><a href="/wiki/concepts/mixed-criticality.html">Mixed criticality</a> · software of different criticality on one platform; processor time as a capability in seL4 MCS. 3 sources.</li>
 </ul>
 <h2 id="sources">Sources</h2>
@@ -467,6 +469,12 @@ sup.refs a:hover { text-decoration: underline; }
 <li><a href="/wiki/sources/2019-markettos-thunderclap-exploring-vulnerabilities.html">Thunderclap</a> (Markettos et al. 2019) · Thunderclap, NDSS 2019: attacks by a malicious device on macOS, FreeBSD and Linux with the IOMMU on; Windows mostly unprotected. test, full text.</li>
 <li><a href="/wiki/sources/2026-moore-cheri-is-being.html">CHERI is being standardised</a> (Moore 2026) · Moore, CHERI Blossoms 2026: CHERI for RISC-V is “being standardised”; criteria and open research. position, slides, full text.</li>
 <li><a href="/wiki/sources/nd-sel4-sel4-roadmap.html">seL4 Foundation: Development roadmap</a> · the seL4 roadmap: MCS C-level proof done on RISC-V, AArch64 Q3 2027; multikernel proofs Q3 2028. report, full text.</li>
+<li><a href="/wiki/sources/2026-microkit-release-2-4-0.html">Microkit 2.4.0 release notes</a> · Microkit 2.4.0 on seL4 17.0.0: reply capabilities and parent fault endpoints no longer leak authority. report, full text.</li>
+<li><a href="/wiki/sources/2026-zou-agentkernel-trust-native.html">AgentKernel</a> (Zou et al. 2026) · AgentKernel: an agent OS on a conventional host with an external monitor and capability intersection; proofs deferred. design, partly read.</li>
+<li><a href="/wiki/sources/2026-ahn-promise-proof-automation.html">PROMISE</a> (Ahn et al. 2026) · PROMISE: structure-guided LLM proof search on 223 seL4 theorems, 55.7 % averaged over seven settings. measurement, partly read.</li>
+<li><a href="/wiki/sources/nd-linux-landlock-unprivileged-access.html">Linux kernel documentation: Landlock</a> · Landlock, the Linux self-sandboxing module, kernel documentation of October 2026. report, partly read.</li>
+<li><a href="/wiki/sources/nd-linux-real-time-preemption.html">Linux kernel documentation: real-time preemption</a> · PREEMPT_RT in the kernel documentation: sleeping locks, threaded interrupts, shared-hardware limits. report, partly read.</li>
+<li><a href="/wiki/sources/2024-trail-leftoverlocals-listening-llm.html">LeftoverLocals</a> (Khlaaf and Sorensen 2024) · LeftoverLocals: GPU local memory leaks between processes; 181 MB per LLM query on one AMD GPU. test, partly read.</li>
 </ul>
 <h2 id="not-yet-covered">Not yet covered</h2>
 <p>The Silent Zero part <em>agents</em> has no page yet. Firmware on PCs (Intel ME, AMD PSP, FSP, open alternatives) and on Apple silicon is in the backlog. Also not yet covered: the multicore proof, the ratification status of CHERI for RISC-V, the seams between proven parts, the driver island, and most competing agent operating systems.</p>

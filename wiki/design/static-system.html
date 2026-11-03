@@ -338,7 +338,7 @@ sup.refs a:hover { text-decoration: underline; }
     <div class="titleblock">
       <h1 class="name">The static system</h1>
       <p class="sub">one description, one image: what Microkit checks, what is not proved, and the run-time swap in LionsOS, the kernel underneath.</p>
-      <p class="ver">Design · <a href="/wiki/#how">LLM reviewed</a> · updated 29 Oct 2026 · 5 sources</p>
+      <p class="ver">Design · <a href="/wiki/#how">LLM reviewed</a> · updated 3 Nov 2026 · 6 sources</p>
     </div>
   </div>
 </header>
@@ -372,9 +372,9 @@ sup.refs a:hover { text-decoration: underline; }
 <tbody>
 <tr>
 <td data-label="Claim">One description, one bootable image (Arm, RISC-V); all paths between components (channels, shared memory regions, extra capabilities) fixed in it</td>
-<td data-label="State">implemented (Microkit 2.3.0)</td>
+<td data-label="State">implemented (manual for Microkit 2.3.0; current release 2.4.0)</td>
 <td data-label="Evidence">documentation</td>
-<td data-label="Source"><a href="/wiki/sources/nd-sel4-microkit-user-manual.html">seL4 Microkit: User Manual, v2.3.0</a></td>
+<td data-label="Source"><a href="/wiki/sources/nd-sel4-microkit-user-manual.html">seL4 Microkit: User Manual, v2.3.0</a>, <a href="/wiki/sources/2026-microkit-release-2-4-0.html">Microkit 2.4.0 release notes</a></td>
 </tr>
 <tr>
 <td data-label="Claim">The generated capDL specification can be set up on the board (memory, frames)</td>
@@ -416,8 +416,9 @@ sup.refs a:hover { text-decoration: underline; }
 </table></div>
 <h2 id="the-paper-and-its-sources">The paper and its sources</h2>
 <ul>
-<li>The paper’s description of the static system (Section 3) matches <a href="/wiki/sources/nd-sel4-microkit-user-manual.html">seL4 Microkit: User Manual, v2.3.0</a>.</li>
-<li>LionsOS loads no components at run time, but can swap a component for one of the same type, to change a policy or to reboot a virtual machine with a new Linux kernel (<a href="/wiki/sources/2026-trustworthy-lionsos.html">Trustworthy Systems: LionsOS</a>). Our reading: the VM case concerns the driver island, which the paper keeps outside the trusted base, so it does not conflict with “nothing is loaded into the core”. Microkit’s restart of a child runs code already in the image. What remains open is whether a policy component inside the trusted base may be swapped at run time, and who may trigger it; the paper’s Section 5 already rejects services that agents replace at run time.</li>
+<li><p>The paper’s description of the static system (Section 3) matches <a href="/wiki/sources/nd-sel4-microkit-user-manual.html">seL4 Microkit: User Manual, v2.3.0</a>.</p></li>
+<li><p>LionsOS loads no components at run time, but can swap a component for one of the same type, to change a policy or to reboot a virtual machine with a new Linux kernel (<a href="/wiki/sources/2026-trustworthy-lionsos.html">Trustworthy Systems: LionsOS</a>). Our reading: the VM case concerns the driver island, which the paper keeps outside the trusted base, so it does not conflict with “nothing is loaded into the core”. Microkit’s restart of a child runs code already in the image. What remains open is whether a policy component inside the trusted base may be swapped at run time, and who may trigger it; the paper’s Section 5 already rejects services that agents replace at run time.</p></li>
+<li><p>Microkit 2.4.0 (30 October, year inferred) fixed two leaks in the authority the layer hands out: reply capabilities no longer carry grant-reply permission, and a child no longer receives its parent’s fault endpoint. In 2.3.1 a child could send its parent fake faults; in 2.3.0 and earlier it could receive and consume the parent’s faults (<a href="/wiki/sources/2026-microkit-release-2-4-0.html">Microkit 2.4.0 release notes</a>). Our reading: the authority a description declares was not, until then, all the authority a component held, which is why the generated-capabilities row above matters.</p></li>
 </ul>
 <h2 id="open">Open</h2>
 <ul>
@@ -429,7 +430,7 @@ sup.refs a:hover { text-decoration: underline; }
 
 <h2 id="page-sources">Sources</h2>
 <p class="links-note">What this page rests on.</p>
-<ul class="linked-from"><li><a href="/wiki/sources/2018-klein-formally-verified-software.html">Formally Verified Software in the Real World</a> <span class="kind">Klein et al. 2018</span></li><li><a href="/wiki/sources/nd-sel4-verified-configurations.html">seL4 Foundation: Verified Configurations</a></li><li><a href="/wiki/sources/nd-sel4-microkit-user-manual.html">seL4 Microkit: User Manual, v2.3.0</a></li><li><a href="/wiki/sources/2026-trustworthy-guaranteeing-timeliness-mcs.html">Trustworthy Systems: Guaranteeing timeliness of MCS on seL4</a></li><li><a href="/wiki/sources/2026-trustworthy-lionsos.html">Trustworthy Systems: LionsOS</a></li></ul>
+<ul class="linked-from"><li><a href="/wiki/sources/2018-klein-formally-verified-software.html">Formally Verified Software in the Real World</a> <span class="kind">Klein et al. 2018</span></li><li><a href="/wiki/sources/2026-microkit-release-2-4-0.html">Microkit 2.4.0 release notes</a></li><li><a href="/wiki/sources/nd-sel4-verified-configurations.html">seL4 Foundation: Verified Configurations</a></li><li><a href="/wiki/sources/nd-sel4-microkit-user-manual.html">seL4 Microkit: User Manual, v2.3.0</a></li><li><a href="/wiki/sources/2026-trustworthy-guaranteeing-timeliness-mcs.html">Trustworthy Systems: Guaranteeing timeliness of MCS on seL4</a></li><li><a href="/wiki/sources/2026-trustworthy-lionsos.html">Trustworthy Systems: LionsOS</a></li></ul>
 <h2 id="related-pages">Related pages</h2>
 <p class="links-note">Pages this one links to, and pages that link here.</p>
 <ul class="linked-from"><li><a href="/wiki/design/drivers.html">Drivers</a> <span class="kind">Design</span></li><li><a href="/wiki/design/kernel.html">The kernel</a> <span class="kind">Design</span></li><li><a href="/wiki/concepts/mixed-criticality.html">Mixed criticality</a> <span class="kind">Concept</span></li><li><a href="/wiki/systems/lionsos.html">LionsOS</a> <span class="kind">System</span></li><li><a href="/wiki/systems/microkit.html">Microkit</a> <span class="kind">System</span></li></ul>
