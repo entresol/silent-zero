@@ -50,4 +50,4 @@ A careful reader adds: the result is from 2009, for ARMv6. Later work closed sev
 ## For zOS
 
 - [[kernel]]: this is the source of the paper's claim that the kernel's functional correctness is *proven*. It holds for the configuration it covers and under the assumptions above.
-- The paper (Section 2.3) puts the first proof at "roughly 25 person-years" with a repeat "under ten", citing this source and a project page. This source gives about 22 (2.2 for the kernel, about 20 for the proof) and estimates 8 for a repeat. The paper's figure is compatible if the project page gives 25; that page is not yet in the wiki.
+- The paper (Section 2.3) puts the first proof at "roughly 25 person-years" with a repeat "under ten", citing this source and a project page. This source gives about 22 (2.2 for the kernel, about 20 for the proof) and estimates 8 for a repeat. The project page gives about 25 in total, including documentation, and a repeat under ten ([[nd-trustworthy-proof-statistics]]). The paper's effort figures follow the project page.

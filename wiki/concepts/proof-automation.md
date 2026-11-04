@@ -1,9 +1,9 @@
 ---
 type: concept
 status: reviewed
-sources: [2024-lattuada-verus-practical-foundation, 2026-he-neuro-symbolic-proof, 2009-klein-sel4-formal-verification, 2026-ahn-promise-proof-automation]
+sources: [2024-lattuada-verus-practical-foundation, 2026-he-neuro-symbolic-proof, 2009-klein-sel4-formal-verification, 2026-ahn-promise-proof-automation, 2025-yang-autoverus-automated-proof]
 short: Machine-made proofs that a checker accepts
-updated: 2026-11-03
+updated: 2026-11-04
 ---
 
 # Proof automation
@@ -16,7 +16,7 @@ Generating the proofs of a formal verification by machine instead of by hand. A 
 - The first seL4 proof took about 20 person-years, 11 of them specific to seL4 and much of the rest research, frameworks and tools ([[2009-klein-sel4-formal-verification]], §5.2); the automated proofs cover existing theorem statements, so they measure the cost of re-proving, not of specifying ([[2026-he-neuro-symbolic-proof]]; our reading).
 - [[verus]] is a different kind of help: the verifier itself is built for fast SMT checking of Rust. Its authors report 3 to 61 times shorter verification times than other tools on list benchmarks, and a page table, an allocator and a log verified with proof-to-code ratios of 3.9 to 13.3 ([[2024-lattuada-verus-practical-foundation]]). Neither source is about the other: the models of [[2026-he-neuro-symbolic-proof]] work in Isabelle on seL4.
 - A second method, PROMISE, retrieves structurally similar proof fragments from existing Isabelle proofs to guide a beam search. On a benchmark of 223 theorems from seL4's l4v it reaches 55.7 per cent averaged over seven model settings, against 34.0 for Rango and 26.8 for Selene with five attempts; the authors re-implemented the baselines, and the benchmark and metric differ from the FVEL work above; our reading: the two percentages cannot be compared ([[2026-ahn-promise-proof-automation]], §4, §5).
-- AutoVerus, which the zOS paper cites for models that write Verus proofs, is not yet covered here.
+- AutoVerus, a network of model agents that writes proofs for [[verus]], reports correct proofs for more than 90 per cent of 150 Rust proof tasks, more than half in under 30 seconds or three model calls. The wiki read only the abstract. The tasks come from code-generation and verification benchmarks; our reading: the rate cannot be compared with the seL4 figures above ([[2025-yang-autoverus-automated-proof]]).
 
 ## Open questions
 

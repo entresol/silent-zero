@@ -78,9 +78,9 @@ Work that extends the design, competes with it or attacks its assumptions: other
 - [x] 2026-moore-cheri-is-being
 - [x] nd-sel4-sel4-roadmap
 - [x] 2024-trail-leftoverlocals-listening-llm
-- [ ] nd-trustworthy-proof-statistics
-- [ ] 2025-vander-rust-android-move
-- [ ] 2025-yang-autoverus-automated-proof
+- [x] nd-trustworthy-proof-statistics
+- [x] 2025-vander-rust-android-move
+- [x] 2025-yang-autoverus-automated-proof
 - [ ] 2026-zhang-agent-libos-runtime
 - [ ] 2026-zhao-agenticos-intent-oriented
 - [ ] 2026-ke-quine-realizing-llm

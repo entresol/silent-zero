@@ -25,7 +25,7 @@ Partly open source on GitHub: the announcement released several components, "mos
 
 ## Related
 
-[[sel4]], [[opentitan]], [[cohesix]] (a later seL4-based system for AI fleets), [[broker]].
+[[sel4]], [[opentitan]], [[cohesix]] (a later seL4-based system for AI fleets), [[broker]], [[memory-safe-code]].
 
 ## Open questions
 
