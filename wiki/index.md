@@ -1,6 +1,6 @@
 ---
 type: index
-updated: 2026-11-03
+updated: 2026-11-04
 ---
 
 # zOS wiki
@@ -9,7 +9,7 @@ The catalogue of every page, with one line each. Read this first.
 
 ## zOS
 
-- [[kernel]] · seL4 with MCS as the zOS kernel: proven (C-level correctness; MCS functional correctness on RISC-V), not stated for MCS (integrity, confidentiality), tested (HACMS), assumed (boot, IOMMU); no WCET bound on any 64-bit core yet; the roadmap dates MCS on AArch64 to Q3 2027. 13 sources.
+- [[kernel]] · seL4 with MCS as the zOS kernel: proven (C-level correctness; MCS functional correctness on RISC-V), not stated for MCS (integrity, confidentiality), tested (HACMS), assumed (boot, IOMMU); no WCET bound on any 64-bit core yet; the roadmap dates MCS on AArch64 to Q3 2027. 14 sources.
 - [[static-system]] · one description, one image: what Microkit checks, what is not proved, and the run-time swap in LionsOS, the kernel underneath. 6 sources.
 - [[broker]] · the only component that hands out authority: capability patterns, CaMeL and FIDES, why model-based defences fail; nothing proven yet. 14 sources.
 - [[real-time-loops]] · the loops that move the motors: asynchronous chunks from slow models, observed timings, no proven bound yet. 8 sources.
@@ -24,7 +24,7 @@ The zOS part *agents* has no page yet. Firmware on PCs (Intel ME, AMD PSP, FSP, 
 
 ## Systems
 
-- [[sel4]] · the verified microkernel zOS builds on: proofs per architecture and platform, cost, MCS, timing, HACMS. 11 sources.
+- [[sel4]] · the verified microkernel zOS builds on: proofs per architecture and platform, cost, MCS, timing, HACMS. 12 sources.
 - [[microkit]] · the build system for static seL4 systems: protection domains, channels, budgets, one image. 4 sources.
 - [[lionsos]] · static OS from small components on seL4 and Microkit; first driver verified. 5 sources.
 - [[coreboot]] · open firmware in stages with a fixed payload; verified and measured boot; closed vendor parts on x86. 3 sources.
@@ -33,7 +33,7 @@ The zOS part *agents* has no page yet. Firmware on PCs (Intel ME, AMD PSP, FSP, 
 - [[raspberry-pi]] · the pib's board: closed ROM and EEPROM boot, secure-boot key in OTP on the Pi 4, seL4 verified without MCS. 4 sources.
 - [[opentitan]] · open-source silicon root of trust, shipping in Chromebooks since March 2026. 5 sources.
 - [[agentos]] · seL4-based I/O platform for agents: device-owning domains, Linux and FreeBSD guests under QEMU; agent services not yet booted. 1 source.
-- [[verus]] · verifier for Rust code with SMT solving; case studies, no kernel. 1 source.
+- [[verus]] · verifier for Rust code with SMT solving; case studies, no kernel; AutoVerus writes proofs for it. 2 sources.
 - [[landlock]] · Linux sandbox a process applies to itself: filesystem, network, capability and namespace rules; part of the hardened-Linux route. 1 source.
 - [[preempt-rt]] · the Linux real-time configuration: preemptible kernel, threaded interrupts; no latency bound stated. 1 source.
 - [[cohesix]] · seL4-based control layer for edge AI fleets: a Queen decides what hosts' models may do; landing page only. 1 source.
@@ -58,7 +58,8 @@ The zOS part *agents* has no page yet. Firmware on PCs (Intel ME, AMD PSP, FSP, 
 - [[action-chunking]] · slow robot models emitting action sequences for a fast loop; no bound on delay. 2 sources.
 - [[ai-vulnerability-discovery]] · AI models finding software flaws at scale: DARPA's challenge and Anthropic's figures, the bottleneck moving to patching. 3 sources.
 - [[information-flow-control]] · labels for where data came from and who may see it; FIDES and CaMeL for agents; explicit flows only. 2 sources.
-- [[proof-automation]] · machines proposing proof steps, Isabelle checking them; 77.6 % of a seL4 benchmark sample; Verus as a faster verifier. PROMISE as a second method. 4 sources.
+- [[proof-automation]] · machines proposing proof steps, Isabelle checking them; 77.6 % of a seL4 benchmark sample; Verus as a faster verifier. PROMISE as a second method; AutoVerus for Rust. 5 sources.
+- [[memory-safe-code]] · new code in Rust instead of C: Android's memory-safety flaws below 20 % in 2025; the hardening rival to a verified base. 2 sources.
 - [[mixed-criticality]] · software of different criticality on one platform; processor time as a capability in seL4 MCS. 3 sources.
 
 ## Sources
@@ -117,6 +118,9 @@ The zOS part *agents* has no page yet. Firmware on PCs (Intel ME, AMD PSP, FSP, 
 - [[nd-uboot-verified-boot]] · signed FIT images; the public key must be unchangeable. report, full text.
 - [[nd-raspberrypi-boot]] · ROM and EEPROM bootloader on Pi 4 and 5; secure-boot key hash in the Pi 4's OTP. report, boot chapters.
 - [[nd-sel4-x64-platform]] · seL4 on PCs boots through a Multiboot loader. report, full text.
+- [[nd-trustworthy-proof-statistics]] · the 2009 seL4 proof in numbers: 8,700 lines of C, 200,000 lines of proof, about 25 person-years, 160 bugs. report, full text.
+- [[2025-vander-rust-android-move]] · Android 2025: memory-safety flaws below 20 % of vulnerabilities, Rust at about 0.2 per million lines against 1,000 for C and C++. measurement, full text.
+- [[2025-yang-autoverus-automated-proof]] · AutoVerus: model agents write Verus proofs, over 90 % of 150 Rust tasks. measurement, abstract only.
 - [[nd-caliptra]] · open root of trust for measurement inside data-centre SoCs. report, README.
 - [[2018-cook-model-checking-boot]] · 783 lines of AWS boot code proved memory safe by bounded model checking. proof, full text.
 - [[2020-straznickas-verified-first-stage]] · a RISC-V measurement root in Coq that signs what it loads; theorem stated, not fully proved. progress, full text.

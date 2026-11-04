@@ -20,7 +20,7 @@ Part of the Linux kernel; the sources read do not state the licence.
 
 ## Related
 
-[[preempt-rt]], [[object-capabilities]], [[confused-deputy]].
+[[preempt-rt]], [[object-capabilities]], [[confused-deputy]], [[memory-safe-code]].
 
 ## Open questions
 

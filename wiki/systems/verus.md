@@ -1,9 +1,9 @@
 ---
 type: system
 status: reviewed
-sources: [2024-lattuada-verus-practical-foundation]
+sources: [2024-lattuada-verus-practical-foundation, 2025-yang-autoverus-automated-proof]
 short: Verifier for Rust code, SMT-based
-updated: 2026-11-01
+updated: 2026-11-04
 ---
 
 # Verus
@@ -20,7 +20,7 @@ The paper says Verus, its artifact and its case studies are open source ([[2024-
 
 ## Related
 
-[[proof-automation]] for models that write proofs for tools like this one.
+[[proof-automation]] for models that write proofs for tools like this one. AutoVerus, which writes Verus proofs, is described in [[2025-yang-autoverus-automated-proof]]. [[memory-safe-code]] for the wider case for Rust.
 
 ## Open questions
 

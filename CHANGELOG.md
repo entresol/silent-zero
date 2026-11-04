@@ -4,6 +4,10 @@ What changed in substance, newest first: in the paper, on its page and in the pr
 
 Format: `## <version> · <scope>`, then one paragraph. A paper version is `YYYY-MM-DD-vX.Y` and has its own PDF in `versions/`; the newest one is the version the build prints on the paper and the page. A change without a new paper version carries only its date (`YYYY-MM-DD`). Scope is `Paper`, `Site` or `Project`. The build turns this file into the list at the end of the page.
 
+## 2026-11-04 · Site
+
+Three sources worked into the wiki: the Trustworthy Systems proof statistics for seL4, Google's 2025 report on Rust in Android, and the abstract of AutoVerus. New pages: three source pages and the concept page Memory-safe code. Changed in substance: seL4 (size, effort and bug counts of the first proof), the kernel (the paper's person-year figures now checked against the project page), proof automation and Verus. New lexicon terms: Memory-safe code.
+
 ## 2026-11-03 · Site
 
 Six sources worked into the wiki: Microkit 2.4.0, AgentKernel, PROMISE, the Linux documentation on Landlock and on real-time preemption, and LeftoverLocals. New pages: six source pages and the system pages Landlock and PREEMPT_RT. Changed in substance: Microkit (now version 2.4.0, which closes two authority leaks of earlier releases), the static system, the broker, the drivers, real-time loops and proof automation. New lexicon terms: Landlock, PREEMPT_RT.
