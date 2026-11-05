@@ -1,9 +1,9 @@
 ---
 type: concept
 status: reviewed
-sources: [2026-nasr-attacker-moves-second, 2025-debenedetti-defeating-prompt-injections, 2023-greshake-not-what-you, 2025-costa-securing-ai-agents]
+sources: [2026-nasr-attacker-moves-second, 2025-debenedetti-defeating-prompt-injections, 2023-greshake-not-what-you, 2025-costa-securing-ai-agents, 2026-shen-mcp-38-comprehensive]
 glossary: Prompt injection
-updated: 2026-10-31
+updated: 2026-11-05
 ---
 
 # Prompt injection
@@ -17,7 +17,7 @@ An attacker places instructions in data that a language-model agent reads, such 
 
 ## State, October 2026
 
-No defence in the sources survives an adaptive attacker by evaluation alone; evaluations can only fail to break a defence ([[2026-nasr-attacker-moves-second]], §6). Defences around the model hold by construction within their threat model, and have not been tested adaptively ([[2025-debenedetti-defeating-prompt-injections]], [[2025-costa-securing-ai-agents]]). In 2023 effective mitigations were "currently lacking" ([[2023-greshake-not-what-you]], abstract).
+No defence in the sources survives an adaptive attacker by evaluation alone; evaluations can only fail to break a defence ([[2026-nasr-attacker-moves-second]], §6). Defences around the model hold by construction within their threat model, and have not been tested adaptively ([[2025-debenedetti-defeating-prompt-injections]], [[2025-costa-securing-ai-agents]]). In 2023 effective mitigations were "currently lacking" ([[2023-greshake-not-what-you]], abstract). For the Model Context Protocol, a 2026 preprint lists 38 threat categories, among them the injection of instructions through tool descriptions and chains of benign tools; it states that five open-source scanners and proxies together cover at most 18 of them ([[2026-shen-mcp-38-comprehensive]]).
 
 ## Open questions
 

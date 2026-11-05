@@ -1,6 +1,6 @@
 ---
 type: index
-updated: 2026-11-04
+updated: 2026-11-05
 ---
 
 # zOS wiki
@@ -9,10 +9,10 @@ The catalogue of every page, with one line each. Read this first.
 
 ## zOS
 
-- [[kernel]] · seL4 with MCS as the zOS kernel: proven (C-level correctness; MCS functional correctness on RISC-V), not stated for MCS (integrity, confidentiality), tested (HACMS), assumed (boot, IOMMU); no WCET bound on any 64-bit core yet; the roadmap dates MCS on AArch64 to Q3 2027. 14 sources.
+- [[kernel]] · seL4 with MCS as the zOS kernel: proven (C-level correctness; MCS functional correctness on RISC-V), not stated for MCS (integrity, confidentiality), tested (HACMS), assumed (boot, IOMMU); no WCET bound on any 64-bit core yet; the roadmap dates MCS on AArch64 to Q3 2027. 15 sources.
 - [[static-system]] · one description, one image: what Microkit checks, what is not proved, and the run-time swap in LionsOS, the kernel underneath. 6 sources.
-- [[broker]] · the only component that hands out authority: capability patterns, CaMeL and FIDES, why model-based defences fail; nothing proven yet. 14 sources.
-- [[real-time-loops]] · the loops that move the motors: asynchronous chunks from slow models, observed timings, no proven bound yet. 8 sources.
+- [[broker]] · the only component that hands out authority: capability patterns, CaMeL and FIDES, why model-based defences fail; nothing proven yet. 15 sources.
+- [[real-time-loops]] · the loops that move the motors: asynchronous chunks from slow models, observed timings, no proven bound yet. 9 sources.
 - [[safety-path]] · Simplex in zOS: the agent proposes, the loop disposes; tested, not proven; the paper's 2001 date disputed by a 1994 origin. 4 sources.
 - [[root-of-trust]] · the firmware below the kernel on Arm, RISC-V, PC and Raspberry Pi; OpenTitan, Caliptra, DICE; all *assumed* in the paper's terms. 13 sources.
 - [[bootloader]] · where the zOS loader sits on each platform, signed and measured boot, proofs about boot code so far; the loader itself unproven. 16 sources.
@@ -24,7 +24,7 @@ The zOS part *agents* has no page yet. Firmware on PCs (Intel ME, AMD PSP, FSP, 
 
 ## Systems
 
-- [[sel4]] · the verified microkernel zOS builds on: proofs per architecture and platform, cost, MCS, timing, HACMS. 12 sources.
+- [[sel4]] · the verified microkernel zOS builds on: proofs per architecture and platform, cost, MCS, timing, HACMS. 13 sources.
 - [[microkit]] · the build system for static seL4 systems: protection domains, channels, budgets, one image. 4 sources.
 - [[lionsos]] · static OS from small components on seL4 and Microkit; first driver verified. 5 sources.
 - [[coreboot]] · open firmware in stages with a fixed payload; verified and measured boot; closed vendor parts on x86. 3 sources.
@@ -50,12 +50,12 @@ The zOS part *agents* has no page yet. Firmware on PCs (Intel ME, AMD PSP, FSP, 
 - [[functional-correctness]] · what seL4's refinement proof gives, what it assumes, where it holds. 4 sources.
 - [[object-capabilities]] · references that both designate and authorise; permission versus authority; caretaker and membrane. 5 sources.
 - [[confused-deputy]] · a program misusing one party's authority for another's request; capabilities as the remedy. 3 sources.
-- [[prompt-injection]] · instructions hidden in data an agent reads; heuristic defences fail, defences around the model hold within limits. 4 sources.
+- [[prompt-injection]] · instructions hidden in data an agent reads; heuristic defences fail, defences around the model hold within limits. 5 sources.
 - [[verified-boot]] · each stage checks the next against a key the attacker cannot change; proofs about boot code so far. 6 sources.
 - [[measured-boot]] · each stage records what runs next; TPM and DICE; a verified DICE implementation. 4 sources.
 - [[time-protection]] · closing timing channels between domains; prototypes on CVA6, proof for seL4 in progress. 3 sources.
 - [[simplex]] · a simple safe controller guarding an untrusted one; tested with learned controllers. 1 source.
-- [[action-chunking]] · slow robot models emitting action sequences for a fast loop; no bound on delay. 2 sources.
+- [[action-chunking]] · slow robot models emitting action sequences for a fast loop; no bound on delay. 3 sources.
 - [[ai-vulnerability-discovery]] · AI models finding software flaws at scale: DARPA's challenge and Anthropic's figures, the bottleneck moving to patching. 3 sources.
 - [[information-flow-control]] · labels for where data came from and who may see it; FIDES and CaMeL for agents; explicit flows only. 2 sources.
 - [[proof-automation]] · machines proposing proof steps, Isabelle checking them; 77.6 % of a seL4 benchmark sample; Verus as a faster verifier. PROMISE as a second method; AutoVerus for Rust. 5 sources.
@@ -130,6 +130,9 @@ The zOS part *agents* has no page yet. Firmware on PCs (Intel ME, AMD PSP, FSP, 
 - [[2026-moore-cheri-is-being]] · Moore, CHERI Blossoms 2026: CHERI for RISC-V is "being standardised"; criteria and open research. position, slides, full text.
 - [[nd-sel4-sel4-roadmap]] · the seL4 roadmap: MCS C-level proof done on RISC-V, AArch64 Q3 2027; multikernel proofs Q3 2028. report, full text.
 - [[2026-microkit-release-2-4-0]] · Microkit 2.4.0 on seL4 17.0.0: reply capabilities and parent fault endpoints no longer leak authority. report, full text.
+- [[2026-proofcraft-sel4-security-proofs]] · seL4 news item, 24 August 2026: the confidentiality proof on AArch64 is finished, isolation complete under listed assumptions. report, full text.
+- [[2026-jiang-futurertc-real-time]] · FutureRTC: an adapter that predicts the inputs of the next action chunk to tolerate inference delay; preprint. measurement, full text.
+- [[2026-shen-mcp-38-comprehensive]] · MCP-38: 38 threat categories for the Model Context Protocol and the coverage of five tools; preprint. survey, full text.
 - [[2026-zou-agentkernel-trust-native]] · AgentKernel: an agent OS on a conventional host with an external monitor and capability intersection; proofs deferred. design, partly read.
 - [[2026-ahn-promise-proof-automation]] · PROMISE: structure-guided LLM proof search on 223 seL4 theorems, 55.7 % averaged over seven settings. measurement, partly read.
 - [[nd-linux-landlock-unprivileged-access]] · Landlock, the Linux self-sandboxing module, kernel documentation of October 2026. report, partly read.

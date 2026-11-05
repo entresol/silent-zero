@@ -1,8 +1,8 @@
 ---
 type: design
 status: reviewed
-sources: [2025-black-real-time-execution, 2025-nesti-use-simplex-architecture, 2026-sel4-functional-correctness-proof, 2026-heiser-mcs-safety-os, 2022-wistoff-systematic-prevention-core, nd-sel4-microkit-user-manual, 2025-google-building-next-generation, nd-linux-real-time-preemption]
-updated: 2026-11-03
+sources: [2025-black-real-time-execution, 2025-nesti-use-simplex-architecture, 2026-sel4-functional-correctness-proof, 2026-heiser-mcs-safety-os, 2022-wistoff-systematic-prevention-core, nd-sel4-microkit-user-manual, 2025-google-building-next-generation, nd-linux-real-time-preemption, 2026-jiang-futurertc-real-time]
+updated: 2026-11-05
 ---
 
 # Real-time loops
@@ -21,6 +21,7 @@ The control loops at the bottom of zOS move the motors on a fixed period and hav
 | --- | --- | --- | --- |
 | Learned models are slower than the control loop (π0 at 50 Hz with 46 ms prefill on an RTX 4090; OpenVLA 321 ms on an A100) | measured | measurement | [[2025-black-real-time-execution]] |
 | Asynchronous chunking (RTC) holds throughput under up to 200 ms extra delay; synchronous chunking degrades | measured on real robots | measurement; no bound on delay | [[2025-black-real-time-execution]] |
+| Asynchronous chunking with predicted inputs (FutureRTC) loses 5.7 to 6.4 points of success from delays of 5 to 20 control steps (LIBERO) | measured in simulation and on one real robot; preprint, no bound on delay | measurement | [[2026-jiang-futurertc-real-time]] |
 | Isolated safe domain with the learned controller in the loop at a 4 ms period | worst observed round trip 3,976 µs over 10,000 samples, 24 µs margin, no bound | measurement on a hypervisor not claimed to be verified | [[2025-nesti-use-simplex-architecture]] |
 | Processor-time budgets enforced by the kernel | implemented in seL4 MCS | MCS functional-correctness proof on RISC-V; no theorem on temporal isolation | [[2026-sel4-functional-correctness-proof]], [[2026-heiser-mcs-safety-os]], [[kernel]] |
 | Kernel WCET and schedulability | not yet | none | [[kernel]] |
