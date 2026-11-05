@@ -6,6 +6,10 @@ Format: `## <version> · <scope>`, then one paragraph. A paper version is `YYYY-
 
 ## 2026-11-05 · Site
 
+Eight further sources worked into the wiki: the Agent libOS runtime, AgenticOS, Quine, an adaptive evaluation of out-of-band prompt-injection defences, two analyses of the Model Context Protocol (protocol and clients), the OSDI version of the neuro-symbolic seL4 proof work and the Selene benchmark. New pages: eight source pages and the concept pages Model Context Protocol and Agent operating systems. Changed in substance: the broker, prompt injection, information-flow control, object capabilities and proof automation. New lexicon terms: Agent operating systems; Model Context Protocol (MCP) now has a wiki page.
+
+## 2026-11-05 · Site
+
 Three sources worked into the wiki: the seL4 news item of 24 August 2026 on the finished confidentiality proof for AArch64, the FutureRTC preprint on asynchronous robot-policy execution, and the MCP-38 threat taxonomy for the Model Context Protocol. New pages: three source pages. Changed in substance: seL4 and kernel (a second source for confidentiality on AArch64), action chunking, real-time loops, prompt injection and broker (one further source each). No new lexicon terms.
 
 ## 2026-11-04 · Site

@@ -20,7 +20,7 @@ BSD 2-Clause; the repository is github.com/jordanhubbard/agentos, with libvmm ve
 
 ## Related
 
-[[cohesix]], [[lionsos]], [[microkit]].
+[[cohesix]], [[lionsos]], [[microkit]], [[agent-operating-systems]].
 
 ## Open questions
 

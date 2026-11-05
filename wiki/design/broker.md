@@ -1,7 +1,7 @@
 ---
 type: design
 status: reviewed
-sources: [1988-hardy-confused-deputy-or, 2006-miller-robust-composition-towards, 2025-debenedetti-defeating-prompt-injections, 2026-nasr-attacker-moves-second, 2018-klein-formally-verified-software, nd-sel4-verified-configurations, 2026-sel4-functional-correctness-proof, nd-sel4-microkit-user-manual, 2026-heiser-mcs-safety-os, 2026-bower-cohesix-research-operating, 2025-costa-securing-ai-agents, 2023-greshake-not-what-you, 2022-google-announcing-kataos-sparrow, 2026-zou-agentkernel-trust-native, 2026-shen-mcp-38-comprehensive]
+sources: [1988-hardy-confused-deputy-or, 2006-miller-robust-composition-towards, 2025-debenedetti-defeating-prompt-injections, 2026-nasr-attacker-moves-second, 2018-klein-formally-verified-software, nd-sel4-verified-configurations, 2026-sel4-functional-correctness-proof, nd-sel4-microkit-user-manual, 2026-heiser-mcs-safety-os, 2026-bower-cohesix-research-operating, 2025-costa-securing-ai-agents, 2023-greshake-not-what-you, 2022-google-announcing-kataos-sparrow, 2026-zou-agentkernel-trust-native, 2026-shen-mcp-38-comprehensive, 2026-zhao-agenticos-intent-oriented, 2026-zhang-agent-libos-runtime, 2026-narisetty-adaptive-evaluation-out]
 updated: 2026-11-05
 ---
 
@@ -26,6 +26,7 @@ The only component in zOS that hands out authority. It grants capabilities that 
 | Capability and policy checks around the model stop known injection attacks | 0 successful attacks within the threat model on AgentDojo; 77 % utility vs 84 % | guarantee by construction under an unverified interpreter; tested with static attacks only | [[2025-debenedetti-defeating-prompt-injections]] |
 | A passive server runs on its caller's budget | in seL4 MCS and Microkit | design; MCS functional-correctness proof on RISC-V | [[2026-heiser-mcs-safety-os]], [[nd-sel4-microkit-user-manual]], [[2026-sel4-functional-correctness-proof]] |
 | Information-flow labels keep untrusted data from choosing consequential tool calls (FIDES) | no AgentDojo attack counted against its policies succeeded; explicit flows only | noninterference for integrity stated as a proposition without proof; unverified planner; static attacks | [[2025-costa-securing-ai-agents]] |
+| A deterministic gate holds against a hand-made adaptive attack | attack success 25.8 % undefended, 4.2 % defended, 2.6 % under the adaptive attack; utility 45.2 % to 27.1 % | one defence (Progent), whose model-based policy updater was the attack's target, one weak open model, one attack template; mean over three suites, one of which shows no attacks even undefended; preprint | [[2026-narisetty-adaptive-evaluation-out]] |
 | A proven broker | none in the sources | none | — |
 
 ## The paper and its sources
@@ -40,6 +41,8 @@ The only component in zOS that hands out authority. It grants capabilities that 
 - [[cohesix]] is a neighbouring design on seL4: models and agents stay on the host, and target-side role, ticket, lifecycle and bounds checks decide what is accepted ([[2026-bower-cohesix-research-operating]], landing page only).
 
 - [[2026-zou-agentkernel-trust-native]] is a design for the same job on a conventional host kernel: an external monitor outside the model, delegation that can only narrow a child's capabilities, and information-flow labels on memory. Its model-based classifier and eBPF enforcement rest on the host operating system, which the authors assume enforces them correctly, and they defer proofs of their invariants (design paper, partly read). Our reading: the host is not a verified kernel.
+- [[2026-zhao-agenticos-intent-oriented]] proposes the job as an intent filter: an agent declares a manifest, and only the semantic calls it names exist in its capsule, with capability tokens, label checks and a gateway that keeps credentials. It is a conceptual architecture with no implementation, and its kernel is assumed to be formally verifiable or intensively audited (design paper, read in full).
+- [[2026-zhang-agent-libos-runtime]] is a library above a conventional host that admits an operation only when a live process, a capability, the task ceiling, policy or a person's approval, a budget and a primitive all agree, and checks information flow separately, with a person's one-shot release for conditionally permitted high-sensitivity egress. Its own suites pass, on scripted plans and one model; the host, the Python interpreter and the storage are trusted (design paper with evaluation, read in full). See [[agent-operating-systems]].
 - [[2026-shen-mcp-38-comprehensive]] catalogues 38 threats to systems built on the Model Context Protocol, many of them ways in which text persuades a model, the rest classical flaws. Our reading: for the first kind the broker need not recognise the text, since it grants only declared authority, which limits reach but not leakage through allowed channels; the paper offers no evidence on that and the broker is not built.
 
 ## Open
