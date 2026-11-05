@@ -17,3 +17,7 @@
 Every published version is kept as `../versions/zos-zero-os-YYYY-MM-DD-vX.Y.pdf`; `../silent-zero.pdf` is always the newest, and `../zos-zero-os.pdf`, the same file under its old name, stays for existing links. Once a version's PDF is on `origin/main`, the build keeps it unchanged and warns if the paper it built differs; a changed paper needs a new version in `../CHANGELOG.md`. The check needs `pdftotext` (Poppler, like `pdfinfo`).
 
 Licence: the build scripts are BSD-2-Clause. The text and figures: [CC BY 4.0](../LICENSE-CC-BY-4.0.txt).
+
+## For search engines and assistants
+
+`robots.txt` is written by hand and allows everything. `build_wiki.py` writes `sitemap.xml`, `llms.txt` (format: https://llmstxt.org/) and, beside every wiki page, its clean Markdown version `page.html.md` (public name, links to the other pages' Markdown). Do not edit these by hand; change the source and run `paper/build.sh`. `build_site.py` adds the canonical address and the JSON-LD to the paper's page.

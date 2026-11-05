@@ -1,0 +1,149 @@
+# Silent Zero OS
+
+> Bare minimum. Verified. Real-time. An OS for the AI era. A working paper: a bootloader, a formally verified microkernel and the bare minimum to run AI agents safely and in real time, built entirely from existing open source.
+
+This is a design, not a release: the paper makes the argument and says what is proven, tested or assumed. Text and figures are CC BY 4.0, code is BSD-2-Clause. The wiki is written by a language model from the project's sources; every page states its review status. Each wiki page has a clean Markdown version at its address plus `.md` (`page.html` is `page.html.md`).
+
+## Paper
+
+- [Silent Zero OS, working paper (v0.17)](https://silentzero.ooo/silent-zero.pdf): the full paper as PDF, always the newest version
+- [The paper as a web page](https://silentzero.ooo/): the same argument with a short summary first, in English (header also in German, French, Spanish, Italian)
+
+## Wiki
+
+- [Wiki index](https://silentzero.ooo/wiki/index.html.md): how the wiki is made, and the catalogue of all pages
+
+## Design
+
+- [Drivers](https://silentzero.ooo/wiki/design/drivers.html.md): user-mode drivers, the first verified Ethernet driver, DMA and the IOMMU as assumed, attacked in 2019 although enabled.
+- [Real-time loops](https://silentzero.ooo/wiki/design/real-time-loops.html.md): the loops that move the motors: asynchronous chunks from slow models, observed timings, no proven bound yet.
+- [Root of trust and firmware](https://silentzero.ooo/wiki/design/root-of-trust.html.md): the firmware below the kernel on Arm, RISC-V, PC and Raspberry Pi; OpenTitan, Caliptra, DICE; all assumed in the paper’s terms.
+- [The bootloader](https://silentzero.ooo/wiki/design/bootloader.html.md): where the Silent Zero loader sits on each platform, signed and measured boot, proofs about boot code so far; the loader itself unproven.
+- [The broker](https://silentzero.ooo/wiki/design/broker.html.md): the only component that hands out authority: capability patterns, CaMeL and FIDES, why model-based defences fail; nothing proven yet.
+- [The kernel](https://silentzero.ooo/wiki/design/kernel.html.md): seL4 with MCS as the Silent Zero kernel: proven (C-level correctness; MCS functional correctness on RISC-V), not stated for MCS (integrity, confidentiality), tested (HACMS), assumed (boot, IOMMU); no WCET bound on any 64-bit core yet; the roadmap dates MCS on AArch64 to Q3 2027.
+- [The safety path](https://silentzero.ooo/wiki/design/safety-path.html.md): Simplex in Silent Zero: the agent proposes, the loop disposes; tested, not proven; the paper’s 2001 date disputed by a 1994 origin.
+- [The static system](https://silentzero.ooo/wiki/design/static-system.html.md): one description, one image: what Microkit checks, what is not proved, and the run-time swap in LionsOS, the kernel underneath.
+
+## Concepts
+
+- [Action chunking](https://silentzero.ooo/wiki/concepts/action-chunking.html.md): slow robot models emitting action sequences for a fast loop; no bound on delay.
+- [AI vulnerability discovery](https://silentzero.ooo/wiki/concepts/ai-vulnerability-discovery.html.md): AI models finding software flaws at scale: DARPA’s challenge and Anthropic’s figures, the bottleneck moving to patching.
+- [Confused deputy](https://silentzero.ooo/wiki/concepts/confused-deputy.html.md): a program misusing one party’s authority for another’s request; capabilities as the remedy.
+- [Functional correctness](https://silentzero.ooo/wiki/concepts/functional-correctness.html.md): what seL4’s refinement proof gives, what it assumes, where it holds.
+- [Information-flow control](https://silentzero.ooo/wiki/concepts/information-flow-control.html.md): labels for where data came from and who may see it; FIDES and CaMeL for agents; explicit flows only.
+- [IOMMU](https://silentzero.ooo/wiki/concepts/iommu.html.md): the memory management unit for devices: what it limits, and the 2019 attacks that worked although it was on.
+- [Measured boot](https://silentzero.ooo/wiki/concepts/measured-boot.html.md): each stage records what runs next; TPM and DICE; a verified DICE implementation.
+- [Memory-safe code](https://silentzero.ooo/wiki/concepts/memory-safe-code.html.md): new code in Rust instead of C: Android’s memory-safety flaws below 20 % in 2025; the hardening rival to a verified base.
+- [Mixed criticality](https://silentzero.ooo/wiki/concepts/mixed-criticality.html.md): software of different criticality on one platform; processor time as a capability in seL4 MCS.
+- [Object capabilities](https://silentzero.ooo/wiki/concepts/object-capabilities.html.md): references that both designate and authorise; permission versus authority; caretaker and membrane.
+- [Prompt injection](https://silentzero.ooo/wiki/concepts/prompt-injection.html.md): instructions hidden in data an agent reads; heuristic defences fail, defences around the model hold within limits.
+- [Proof automation](https://silentzero.ooo/wiki/concepts/proof-automation.html.md): machines proposing proof steps, Isabelle checking them; 77.6 % of a seL4 benchmark sample; Verus as a faster verifier. PROMISE as a second method; AutoVerus for Rust.
+- [RISC-V](https://silentzero.ooo/wiki/concepts/risc-v.html.md): the open instruction set: what is open (the ISA) and what need not be (cores, chips, boards); privilege levels and the SBI.
+- [Simplex architecture](https://silentzero.ooo/wiki/concepts/simplex.html.md): a simple safe controller guarding an untrusted one; tested with learned controllers.
+- [Time protection](https://silentzero.ooo/wiki/concepts/time-protection.html.md): closing timing channels between domains; prototypes on CVA6, proof for seL4 in progress.
+- [Verified boot](https://silentzero.ooo/wiki/concepts/verified-boot.html.md): each stage checks the next against a key the attacker cannot change; proofs about boot code so far.
+- [WCET analysis](https://silentzero.ooo/wiki/concepts/wcet-analysis.html.md): upper bounds on execution time, what they need, and where seL4 stands.
+
+## Systems
+
+- [agentOS](https://silentzero.ooo/wiki/systems/agentos.html.md): seL4-based I/O platform for agents: device-owning domains, Linux and FreeBSD guests under QEMU; agent services not yet booted.
+- [CHERIoT](https://silentzero.ooo/wiki/systems/cheriot.html.md): CHERI capabilities on small RISC-V cores with its own RTOS: memory safety in hardware, measured, not proven; CHERI for RISC-V “being standardised” in 2026.
+- [Cohesix](https://silentzero.ooo/wiki/systems/cohesix.html.md): seL4-based control layer for edge AI fleets: a Queen decides what hosts’ models may do; landing page only.
+- [coreboot](https://silentzero.ooo/wiki/systems/coreboot.html.md): open firmware in stages with a fixed payload; verified and measured boot; closed vendor parts on x86.
+- [CVA6](https://silentzero.ooo/wiki/systems/cva6.html.md): open 64-bit RISC-V core whose design lets latency bounds be proved; fence.t prototype.
+- [KataOS](https://silentzero.ooo/wiki/systems/kataos.html.md): Google’s seL4 and Rust OS for machine-learning devices, 2022; OpenTitan in its Sparrow plan.
+- [Landlock](https://silentzero.ooo/wiki/systems/landlock.html.md): Linux sandbox a process applies to itself: filesystem, network, capability and namespace rules; part of the hardened-Linux route.
+- [LionsOS](https://silentzero.ooo/wiki/systems/lionsos.html.md): static OS from small components on seL4 and Microkit; first driver verified.
+- [Microkit](https://silentzero.ooo/wiki/systems/microkit.html.md): the build system for static seL4 systems: protection domains, channels, budgets, one image.
+- [OpenSBI](https://silentzero.ooo/wiki/systems/opensbi.html.md): RISC-V firmware in machine mode below the kernel.
+- [OpenTitan](https://silentzero.ooo/wiki/systems/opentitan.html.md): open-source silicon root of trust, shipping in Chromebooks since March 2026.
+- [PREEMPT_RT](https://silentzero.ooo/wiki/systems/preempt-rt.html.md): the Linux real-time configuration: preemptible kernel, threaded interrupts; no latency bound stated.
+- [Raspberry Pi](https://silentzero.ooo/wiki/systems/raspberry-pi.html.md): the pib’s board: closed ROM and EEPROM boot, secure-boot key in OTP on the Pi 4, seL4 verified without MCS.
+- [seL4](https://silentzero.ooo/wiki/systems/sel4.html.md): the verified microkernel Silent Zero builds on: proofs per architecture and platform, cost, MCS, timing, HACMS.
+- [SiFive and the HiFive boards](https://silentzero.ooo/wiki/systems/sifive-hifive.html.md): SiFive and its boards: the discontinued HiFive Unleashed with seL4’s MCS proof, the HiFive Premier P550 one can buy.
+- [Trusted Firmware-A](https://silentzero.ooo/wiki/systems/tf-a.html.md): Arm’s reference firmware; BL31 stays resident at EL3 below the kernel.
+- [Verus](https://silentzero.ooo/wiki/systems/verus.html.md): verifier for Rust code with SMT solving; case studies, no kernel; AutoVerus writes proofs for it.
+
+## Project
+
+- [Repository](https://github.com/entresol/silent-zero): code, paper source, wiki source
+- [CONTRIBUTING.md](https://github.com/entresol/silent-zero/blob/main/CONTRIBUTING.md): how the team works and how to take part
+- [CHANGELOG.md](https://github.com/entresol/silent-zero/blob/main/CHANGELOG.md): where things stand, newest first
+
+## Optional
+
+- [Lexicon](https://silentzero.ooo/lexicon/): every term of the paper and wiki in one line
+- [AgentKernel](https://silentzero.ooo/wiki/sources/2026-zou-agentkernel-trust-native.html.md) (Zou et al. 2026)
+- [agentOS, an operating system for agents on seL4](https://silentzero.ooo/wiki/sources/2026-hubbard-agentos-operating-system.html.md) (Hubbard 2026)
+- [Announcing KataOS and Sparrow](https://silentzero.ooo/wiki/sources/2022-google-announcing-kataos-sparrow.html.md) (Google 2022)
+- [Anthropic 2026a: Project Glasswing, securing critical software for the AI era](https://silentzero.ooo/wiki/sources/2026-anthropic-project-glasswing-securing.html.md)
+- [Anthropic 2026b: Project Glasswing, an initial update](https://silentzero.ooo/wiki/sources/2026-anthropic-project-glasswing-initial.html.md)
+- [AutoVerus](https://silentzero.ooo/wiki/sources/2025-yang-autoverus-automated-proof.html.md) (Yang et al. 2025)
+- [Caliptra](https://silentzero.ooo/wiki/sources/nd-caliptra.html.md)
+- [CHERI is being standardised](https://silentzero.ooo/wiki/sources/2026-moore-cheri-is-being.html.md) (Moore 2026)
+- [CHERIoT, complete memory safety for embedded devices](https://silentzero.ooo/wiki/sources/2023-amar-cheriot-complete-memory.html.md) (Amar et al. 2023)
+- [Chromium OS: Verified Boot (design document)](https://silentzero.ooo/wiki/sources/nd-chromeos-verified-boot.html.md)
+- [Cohesix, a research operating system for edge AI](https://silentzero.ooo/wiki/sources/2026-bower-cohesix-research-operating.html.md) (Bower 2026)
+- [coreboot: architecture and boot stages](https://silentzero.ooo/wiki/sources/nd-coreboot-architecture.html.md)
+- [coreboot: measured boot](https://silentzero.ooo/wiki/sources/nd-coreboot-measured-boot.html.md)
+- [coreboot: verified boot (vboot)](https://silentzero.ooo/wiki/sources/nd-coreboot-vboot.html.md)
+- [Defeating Prompt Injections by Design (CaMeL)](https://silentzero.ooo/wiki/sources/2025-debenedetti-defeating-prompt-injections.html.md) (Debenedetti et al. 2025)
+- [DICE\*, a Formally Verified Implementation of DICE Measured Boot](https://silentzero.ooo/wiki/sources/2021-tao-dice-formally-verified.html.md) (Tao et al. 2021)
+- [Fast, Secure, Adaptable: LionsOS Design, Implementation and Performance](https://silentzero.ooo/wiki/sources/2025-heiser-fast-secure-adaptable.html.md) (Heiser et al. 2025)
+- [Formally Verified Software in the Real World](https://silentzero.ooo/wiki/sources/2018-klein-formally-verified-software.html.md) (Klein et al. 2018)
+- [FutureRTC](https://silentzero.ooo/wiki/sources/2026-jiang-futurertc-real-time.html.md) (Jiang et al. 2026)
+- [Gemini Robotics-ER 1.5](https://silentzero.ooo/wiki/sources/2025-google-building-next-generation.html.md) (Google 2025)
+- [Indirect prompt injection](https://silentzero.ooo/wiki/sources/2023-greshake-not-what-you.html.md) (Greshake et al. 2023)
+- [Instruction Sets Should Be Free](https://silentzero.ooo/wiki/sources/2014-asanovic-instruction-sets-free.html.md) (Asanović and Patterson 2014)
+- [LeftoverLocals](https://silentzero.ooo/wiki/sources/2024-trail-leftoverlocals-listening-llm.html.md) (Khlaaf and Sorensen 2024)
+- [Linux kernel documentation: Landlock](https://silentzero.ooo/wiki/sources/nd-linux-landlock-unprivileged-access.html.md)
+- [Linux kernel documentation: real-time preemption](https://silentzero.ooo/wiki/sources/nd-linux-real-time-preemption.html.md)
+- [MCP-38](https://silentzero.ooo/wiki/sources/2026-shen-mcp-38-comprehensive.html.md) (Shen, Toyoda and Leung 2026)
+- [MCS functional-correctness proof completed on RISC-V](https://silentzero.ooo/wiki/sources/2026-sel4-functional-correctness-proof.html.md) (seL4 Foundation 2026)
+- [MCS safety, an OS perspective](https://silentzero.ooo/wiki/sources/2026-heiser-mcs-safety-os.html.md) (Heiser 2026)
+- [Microkit 2.4.0 release notes](https://silentzero.ooo/wiki/sources/2026-microkit-release-2-4-0.html.md)
+- [Model Checking Boot Code from AWS Data Centers](https://silentzero.ooo/wiki/sources/2018-cook-model-checking-boot.html.md) (Cook et al. 2018)
+- [Neuro-symbolic proof generation for seL4](https://silentzero.ooo/wiki/sources/2026-he-neuro-symbolic-proof.html.md) (He et al. 2026)
+- [Nuvoton's OpenTitan chip](https://silentzero.ooo/wiki/sources/2025-cnx-nuvoton-introduces-first.html.md) (CNX Software 2025)
+- [OpenSBI](https://silentzero.ooo/wiki/sources/nd-opensbi.html.md)
+- [OpenTitan shipping in production](https://silentzero.ooo/wiki/sources/2026-google-opentitan-shipping-production.html.md) (Google 2026)
+- [PA-Boot, a Formally Verified Authentication Protocol for Multiprocessor Secure Boot under Hardware Supply-chain Attacks](https://silentzero.ooo/wiki/sources/2022-zhang-pa-boot-formally.html.md) (Zhang et al. 2022)
+- [PROMISE](https://silentzero.ooo/wiki/sources/2026-ahn-promise-proof-automation.html.md) (Ahn et al. 2026)
+- [Raspberry Pi documentation: boot](https://silentzero.ooo/wiki/sources/nd-raspberrypi-boot.html.md)
+- [Real-Time Execution of Action Chunking Flow Policies](https://silentzero.ooo/wiki/sources/2025-black-real-time-execution.html.md) (Black, Galliker and Levine 2025)
+- [release 17.0.0](https://silentzero.ooo/wiki/sources/2026-sel4-release-17.html.md) (seL4 Foundation 2026)
+- [results of the AI Cyber Challenge](https://silentzero.ooo/wiki/sources/2025-darpa-ai-cyber-challenge.html.md) (DARPA 2025)
+- [Resurrecting seL4's WCET Analysis](https://silentzero.ooo/wiki/sources/2026-sillitoe-resurrecting-sel4-wcet.html.md) (Sillitoe et al. 2026)
+- [RISC-V International: About](https://silentzero.ooo/wiki/sources/nd-riscv-international-about.html.md)
+- [Robust Composition](https://silentzero.ooo/wiki/sources/2006-miller-robust-composition-towards.html.md) (Miller 2006)
+- [Rust in Android](https://silentzero.ooo/wiki/sources/2025-vander-rust-android-move.html.md) (Vander Stoep 2025)
+- [Securing AI agents with information-flow control](https://silentzero.ooo/wiki/sources/2025-costa-securing-ai-agents.html.md) (Costa et al. 2025)
+- [security proofs complete on AArch64](https://silentzero.ooo/wiki/sources/2026-proofcraft-sel4-security-proofs.html.md) (seL4 Foundation 2026)
+- [seL4 Foundation: Development roadmap](https://silentzero.ooo/wiki/sources/nd-sel4-sel4-roadmap.html.md)
+- [seL4 Foundation: Supported platforms](https://silentzero.ooo/wiki/sources/nd-sel4-supported-platforms.html.md)
+- [seL4 Foundation: Verified Configurations](https://silentzero.ooo/wiki/sources/nd-sel4-verified-configurations.html.md)
+- [seL4 Microkit: User Manual, v2.3.0](https://silentzero.ooo/wiki/sources/nd-sel4-microkit-user-manual.html.md)
+- [seL4 on PC99 (x86-64)](https://silentzero.ooo/wiki/sources/nd-sel4-x64-platform.html.md)
+- [seL4, Formal Verification of an OS Kernel](https://silentzero.ooo/wiki/sources/2009-klein-sel4-formal-verification.html.md) (Klein et al. 2009)
+- [SiFive: HiFive Unleashed](https://silentzero.ooo/wiki/sources/nd-sifive-hifive-unleashed.html.md)
+- [SiFive: RISC-V History](https://silentzero.ooo/wiki/sources/nd-sifive-risc-v-history.html.md)
+- [SMT-based Deductive Verification of Device Drivers](https://silentzero.ooo/wiki/sources/2026-tyler-smt-based-deductive.html.md) (Tyler et al. 2026)
+- [Systematic Prevention of On-Core Timing Channels](https://silentzero.ooo/wiki/sources/2022-wistoff-systematic-prevention-core.html.md) (Wistoff et al. 2022)
+- [The Attacker Moves Second](https://silentzero.ooo/wiki/sources/2026-nasr-attacker-moves-second.html.md) (Nasr et al. 2026)
+- [The Confused Deputy](https://silentzero.ooo/wiki/sources/1988-hardy-confused-deputy-or.html.md) (Hardy 1988)
+- [the HiFive Premier P550](https://silentzero.ooo/wiki/sources/2024-sifive-hifive-premier-p550.html.md) (SiFive 2024)
+- [The RISC-V Instruction Set Manual, Version 1.0](https://silentzero.ooo/wiki/sources/2011-waterman-risc-v-instruction.html.md) (Waterman et al. 2011)
+- [The RISC-V Instruction Set Manual, Volume I](https://silentzero.ooo/wiki/sources/2024-riscv-unprivileged-isa-manual.html.md) (RISC-V International 2024)
+- [The RISC-V Instruction Set Manual, Volume II](https://silentzero.ooo/wiki/sources/2024-riscv-privileged-isa-manual.html.md) (RISC-V International 2024)
+- [The seL4 Device Driver Framework](https://silentzero.ooo/wiki/sources/2022-parker-sel4-device-driver.html.md) (Parker 2022)
+- [The Use of the Simplex Architecture to Enhance Safety in Deep-Learning-Powered Autonomous Systems](https://silentzero.ooo/wiki/sources/2025-nesti-use-simplex-architecture.html.md) (Nesti et al. 2025)
+- [Thunderclap](https://silentzero.ooo/wiki/sources/2019-markettos-thunderclap-exploring-vulnerabilities.html.md) (Markettos et al. 2019)
+- [Towards a Verified First-Stage Bootloader in Coq](https://silentzero.ooo/wiki/sources/2020-straznickas-verified-first-stage.html.md) (Straznickas 2020)
+- [Trusted Firmware-A: firmware design](https://silentzero.ooo/wiki/sources/nd-tfa-firmware-design.html.md)
+- [Trustworthy Systems n.d.: Proof Statistics](https://silentzero.ooo/wiki/sources/nd-trustworthy-proof-statistics.html.md)
+- [Trustworthy Systems: Guaranteeing timeliness of MCS on seL4](https://silentzero.ooo/wiki/sources/2026-trustworthy-guaranteeing-timeliness-mcs.html.md)
+- [Trustworthy Systems: LionsOS](https://silentzero.ooo/wiki/sources/2026-trustworthy-lionsos.html.md)
+- [U-Boot: verified boot](https://silentzero.ooo/wiki/sources/nd-uboot-verified-boot.html.md)
+- [Verus, a practical foundation for systems verification](https://silentzero.ooo/wiki/sources/2024-lattuada-verus-practical-foundation.html.md) (Lattuada et al. 2024)
+- [WCET analysis of seL4](https://silentzero.ooo/wiki/sources/nd-trustworthy-wcet-worst-case.html.md) (Trustworthy Systems (n.d.))
+- [Where are we with Time Protection?](https://silentzero.ooo/wiki/sources/2026-trustworthy-where-are-we.html.md) (Sison 2026)
