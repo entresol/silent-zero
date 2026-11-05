@@ -1,8 +1,8 @@
 ---
 type: design
 status: reviewed
-sources: [nd-sel4-microkit-user-manual, 2022-wistoff-systematic-prevention-core, 2026-trustworthy-where-are-we, 2009-klein-sel4-formal-verification, 2018-klein-formally-verified-software, nd-sel4-verified-configurations, 2026-sel4-functional-correctness-proof, 2026-heiser-mcs-safety-os, 2026-trustworthy-guaranteeing-timeliness-mcs, nd-trustworthy-wcet-worst-case, 2026-sillitoe-resurrecting-sel4-wcet, 2026-sel4-release-17, nd-sel4-sel4-roadmap, nd-trustworthy-proof-statistics]
-updated: 2026-11-04
+sources: [nd-sel4-microkit-user-manual, 2022-wistoff-systematic-prevention-core, 2026-trustworthy-where-are-we, 2009-klein-sel4-formal-verification, 2018-klein-formally-verified-software, nd-sel4-verified-configurations, 2026-sel4-functional-correctness-proof, 2026-heiser-mcs-safety-os, 2026-trustworthy-guaranteeing-timeliness-mcs, nd-trustworthy-wcet-worst-case, 2026-sillitoe-resurrecting-sel4-wcet, 2026-sel4-release-17, nd-sel4-sel4-roadmap, nd-trustworthy-proof-statistics, 2026-proofcraft-sel4-security-proofs]
+updated: 2026-11-05
 ---
 
 # The kernel
@@ -24,7 +24,7 @@ In zOS the kernel is [[sel4]] with its mixed-criticality extensions. It isolates
 | Platforms of the MCS proof on RISC-V | `hifive` (HiFive Unleashed, no longer sold) only; the proof without MCS covers further RISC-V boards, among them the HiFive Premier P550, since release 17.0.0 | release notes | [[2026-sel4-release-17]], [[sifive-hifive]] |
 | MCS on 64-bit Arm | under way; the roadmap plans C-level verification for the third quarter of 2027 | plan, none yet | [[2026-sel4-functional-correctness-proof]], [[nd-sel4-sel4-roadmap]] |
 | Multikernel configuration for multi-core systems | verification scheduled to complete in the third quarter of 2028 | plan | [[nd-sel4-sel4-roadmap]] |
-| Integrity and confidentiality (no timing channels) | proven on AArch32, AArch64, RISC-V; not stated for MCS | proof | [[nd-sel4-verified-configurations]] |
+| Integrity and confidentiality (no timing channels) | proven on AArch32, AArch64, RISC-V; not stated for MCS | proof; on AArch64 a news item of 24 August 2026 also announces the confidentiality proof | [[nd-sel4-verified-configurations]], [[2026-proofcraft-sel4-security-proofs]] |
 | Binary correctness | listed for AArch32 only; other architectures not stated | proof | [[nd-sel4-verified-configurations]] |
 | Verified kernel under Microkit on the Raspberry Pi 4 | none: the Pi 4B is verified only without MCS, and Microkit always uses MCS | our reading from two sources | [[nd-sel4-verified-configurations]], [[nd-sel4-microkit-user-manual]] |
 | Kernel boot, IOMMU/SMMU | outside every verified configuration | assumed | [[nd-sel4-verified-configurations]] |

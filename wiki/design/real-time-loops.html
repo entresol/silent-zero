@@ -338,7 +338,7 @@ sup.refs a:hover { text-decoration: underline; }
     <div class="titleblock">
       <h1 class="name">Real-time loops</h1>
       <p class="sub">the loops that move the motors: asynchronous chunks from slow models, observed timings, no proven bound yet.</p>
-      <p class="ver">Design · <a href="/wiki/#how">LLM reviewed</a> · updated 3 Nov 2026 · 8 sources</p>
+      <p class="ver">Design · <a href="/wiki/#how">LLM reviewed</a> · updated 5 Nov 2026 · 9 sources</p>
     </div>
   </div>
 </header>
@@ -383,6 +383,12 @@ sup.refs a:hover { text-decoration: underline; }
 <td data-label="Source"><a href="/wiki/sources/2025-black-real-time-execution.html">Real-Time Execution of Action Chunking Flow Policies</a></td>
 </tr>
 <tr>
+<td data-label="Claim">Asynchronous chunking with predicted inputs (FutureRTC) loses 5.7 to 6.4 points of success from delays of 5 to 20 control steps (LIBERO)</td>
+<td data-label="State">measured in simulation and on one real robot; preprint, no bound on delay</td>
+<td data-label="Evidence">measurement</td>
+<td data-label="Source"><a href="/wiki/sources/2026-jiang-futurertc-real-time.html">FutureRTC</a></td>
+</tr>
+<tr>
 <td data-label="Claim">Isolated safe domain with the learned controller in the loop at a 4 ms period</td>
 <td data-label="State">worst observed round trip 3,976 µs over 10,000 samples, 24 µs margin, no bound</td>
 <td data-label="Evidence">measurement on a hypervisor not claimed to be verified</td>
@@ -424,7 +430,7 @@ sup.refs a:hover { text-decoration: underline; }
 
 <h2 id="page-sources">Sources</h2>
 <p class="links-note">What this page rests on.</p>
-<ul class="linked-from"><li><a href="/wiki/sources/2025-google-building-next-generation.html">Gemini Robotics-ER 1.5</a> <span class="kind">Google 2025</span></li><li><a href="/wiki/sources/nd-linux-real-time-preemption.html">Linux kernel documentation: real-time preemption</a></li><li><a href="/wiki/sources/2026-sel4-functional-correctness-proof.html">MCS functional-correctness proof completed on RISC-V</a> <span class="kind">seL4 Foundation 2026</span></li><li><a href="/wiki/sources/2026-heiser-mcs-safety-os.html">MCS safety, an OS perspective</a> <span class="kind">Heiser 2026</span></li><li><a href="/wiki/sources/2025-black-real-time-execution.html">Real-Time Execution of Action Chunking Flow Policies</a> <span class="kind">Black, Galliker and Levine 2025</span></li><li><a href="/wiki/sources/nd-sel4-microkit-user-manual.html">seL4 Microkit: User Manual, v2.3.0</a></li><li><a href="/wiki/sources/2022-wistoff-systematic-prevention-core.html">Systematic Prevention of On-Core Timing Channels</a> <span class="kind">Wistoff et al. 2022</span></li><li><a href="/wiki/sources/2025-nesti-use-simplex-architecture.html">The Use of the Simplex Architecture to Enhance Safety in Deep-Learning-Powered Autonomous Systems</a> <span class="kind">Nesti et al. 2025</span></li></ul>
+<ul class="linked-from"><li><a href="/wiki/sources/2026-jiang-futurertc-real-time.html">FutureRTC</a> <span class="kind">Jiang et al. 2026</span></li><li><a href="/wiki/sources/2025-google-building-next-generation.html">Gemini Robotics-ER 1.5</a> <span class="kind">Google 2025</span></li><li><a href="/wiki/sources/nd-linux-real-time-preemption.html">Linux kernel documentation: real-time preemption</a></li><li><a href="/wiki/sources/2026-sel4-functional-correctness-proof.html">MCS functional-correctness proof completed on RISC-V</a> <span class="kind">seL4 Foundation 2026</span></li><li><a href="/wiki/sources/2026-heiser-mcs-safety-os.html">MCS safety, an OS perspective</a> <span class="kind">Heiser 2026</span></li><li><a href="/wiki/sources/2025-black-real-time-execution.html">Real-Time Execution of Action Chunking Flow Policies</a> <span class="kind">Black, Galliker and Levine 2025</span></li><li><a href="/wiki/sources/nd-sel4-microkit-user-manual.html">seL4 Microkit: User Manual, v2.3.0</a></li><li><a href="/wiki/sources/2022-wistoff-systematic-prevention-core.html">Systematic Prevention of On-Core Timing Channels</a> <span class="kind">Wistoff et al. 2022</span></li><li><a href="/wiki/sources/2025-nesti-use-simplex-architecture.html">The Use of the Simplex Architecture to Enhance Safety in Deep-Learning-Powered Autonomous Systems</a> <span class="kind">Nesti et al. 2025</span></li></ul>
 <h2 id="related-pages">Related pages</h2>
 <p class="links-note">Pages this one links to, and pages that link here.</p>
 <ul class="linked-from"><li><a href="/wiki/design/kernel.html">The kernel</a> <span class="kind">Design</span></li><li><a href="/wiki/design/safety-path.html">The safety path</a> <span class="kind">Design</span></li><li><a href="/wiki/concepts/action-chunking.html">Action chunking</a> <span class="kind">Concept</span></li><li><a href="/wiki/concepts/memory-safe-code.html">Memory-safe code</a> <span class="kind">Concept</span></li><li><a href="/wiki/concepts/mixed-criticality.html">Mixed criticality</a> <span class="kind">Concept</span></li><li><a href="/wiki/systems/preempt-rt.html">PREEMPT_RT</a> <span class="kind">System</span></li><li><a href="/wiki/sources/2025-heiser-fast-secure-adaptable.html">Fast, Secure, Adaptable: LionsOS Design, Implementation and Performance</a> <span class="kind">Source</span></li></ul>
