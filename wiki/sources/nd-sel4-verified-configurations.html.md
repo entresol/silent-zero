@@ -1,0 +1,76 @@
+# seL4 Foundation: Verified Configurations
+
+> Which properties are proved on which architecture; boot and IOMMU outside every proof. report, full text.
+
+Source · LLM reviewed · updated 2026-10-31 · https://silentzero.ooo/wiki/sources/nd-sel4-verified-configurations.html
+
+A documentation page of the seL4 Foundation, undated, read as it stood on 23 October 2026. [Page](https://docs.sel4.systems/projects/sel4/verified-configurations.html).
+
+## What it shows
+
+The page lists which combinations of architecture, platform and kernel configuration have verified properties, and which properties.
+
+| Architecture | Kernel mode, FPU | Verified properties |
+| --- | --- | --- |
+| AArch32 (ARMv7-A) | EL1, no FPU | C-level functional correctness including fast path; integrity and availability; confidentiality; binary correctness for the C functions with C-level verification; model-level correctness of the capDL system initialiser |
+| AArch32 with hypervisor | EL2, no FPU | C-level functional correctness including fast path |
+| AArch64 (ARMv8-A) | EL2, FPU | C-level functional correctness including fast path; integrity and availability; confidentiality |
+| RISC-V 64-bit | no FPU, no hypervisor | C-level functional correctness without fast path; integrity and availability; confidentiality |
+| x86-64 | FPU, no VT-x | C-level functional correctness without fast path |
+
+- No verified configuration covers address translation for devices (SMMU or IOMMU), debug, profiling and printing interfaces, and kernel startup at boot.
+- **MCS.** The page calls the configurations with MCS in their name the "ongoing MCS verification" and says the proofs for the Arm MCS configurations are in progress.
+- **Platforms.** Among the AArch64 platforms listed are the Raspberry Pi 4B and 5B; among the RISC-V platforms, Ariane (another name for [CVA6](https://silentzero.ooo/wiki/systems/cva6.html.md)), Cheshire and the HiFive Premier P550. The configuration files include `AARCH64_bcm2711_verified.cmake` and `RISCV64_MCS_verified.cmake`.
+- **Proofs.** The proofs are in Isabelle/HOL in the `seL4/l4v` repository.
+
+## How
+
+A reference page that points to the configuration files in the seL4 sources and to the proofs. It gives no dates for the properties it lists.
+
+## Limits
+
+A careful reader adds:
+
+- **The page is only partly updated on MCS.** Its list of unverified features names only the Arm MCS proofs as in progress, but its RISC-V section still calls the MCS configurations those "for the ongoing MCS verification". The seL4 Foundation announced on 29 June 2026 that the functional-correctness proof for MCS on RISC-V is complete ([MCS functional-correctness proof completed on RISC-V](https://silentzero.ooo/wiki/sources/2026-sel4-functional-correctness-proof.html.md)); the RISC-V section had not caught up by 23 October 2026.
+- **Binary correctness is listed for AArch32 only.** For AArch64 and RISC-V the page lists C-level properties. Whether binary verification exists elsewhere for these architectures is not said here.
+- **The page's platform list is shorter than the configuration files.** A careful reader adds: in the seL4 16.0.0 sources, the general RISC-V configurations `RISCV64_verified` and `RISCV64_MCS_verified` are set for the platform `hifive` (the HiFive Unleashed), and further files exist for Ariane, Cheshire, the HiFive Premier P550, PolarFire, Star64, Banana Pi F3 and Rocket Chip ([configuration files](https://github.com/seL4/seL4/tree/16.0.0/configs), read on 30 October 2026).
+- **Platform support is the configuration, not the whole board.** A board on the list is supported by a verified kernel configuration. The IOMMU and boot code on that board stay outside the proof, as above.
+
+## Against the wiki
+
+- [seL4](https://silentzero.ooo/wiki/systems/sel4.html.md): **extends** it with which properties hold where.
+- [MCS functional-correctness proof completed on RISC-V](https://silentzero.ooo/wiki/sources/2026-sel4-functional-correctness-proof.html.md): the news item is newer on MCS; this page has not been updated.
+- [release 17.0.0](https://silentzero.ooo/wiki/sources/2026-sel4-release-17.html.md): the release notes of 30 October 2026 are newer. They say which platforms the proofs cover, which this page does not: the C-level RISC-V proof covers all eight RISC-V platforms with a configuration file, the MCS proof only `hifive`. On AArch64 they list integrity only and call confidentiality in progress, where this page lists confidentiality as well.
+
+## For Silent Zero
+
+- [The kernel](https://silentzero.ooo/wiki/design/kernel.html.md): the paper cites this page for the gaps (kernel boot and IOMMU outside the proof). The page confirms both.
+- Our reading: for a first Silent Zero on RISC-V, the verified properties are C-level functional correctness, integrity and confidentiality, without a fast path and without floating point in the kernel configuration. The page does not say whether the MCS proof extends to integrity and confidentiality.
+- The pib robot runs on a Raspberry Pi (paper, Section 7). The Pi 4B appears here as a verified AArch64 platform, without MCS. Whether the Pi 4's system has an IOMMU is not answered here.
+
+## Related pages
+
+- [Drivers](https://silentzero.ooo/wiki/design/drivers.html.md)
+- [Root of trust and firmware](https://silentzero.ooo/wiki/design/root-of-trust.html.md)
+- [The bootloader](https://silentzero.ooo/wiki/design/bootloader.html.md)
+- [The broker](https://silentzero.ooo/wiki/design/broker.html.md)
+- [The kernel](https://silentzero.ooo/wiki/design/kernel.html.md)
+- [The static system](https://silentzero.ooo/wiki/design/static-system.html.md)
+- [Functional correctness](https://silentzero.ooo/wiki/concepts/functional-correctness.html.md)
+- [IOMMU](https://silentzero.ooo/wiki/concepts/iommu.html.md)
+- [CVA6](https://silentzero.ooo/wiki/systems/cva6.html.md)
+- [Raspberry Pi](https://silentzero.ooo/wiki/systems/raspberry-pi.html.md)
+- [seL4](https://silentzero.ooo/wiki/systems/sel4.html.md)
+- [Announcing KataOS and Sparrow](https://silentzero.ooo/wiki/sources/2022-google-announcing-kataos-sparrow.html.md)
+- [Fast, Secure, Adaptable: LionsOS Design, Implementation and Performance](https://silentzero.ooo/wiki/sources/2025-heiser-fast-secure-adaptable.html.md)
+- [Formally Verified Software in the Real World](https://silentzero.ooo/wiki/sources/2018-klein-formally-verified-software.html.md)
+- [MCS functional-correctness proof completed on RISC-V](https://silentzero.ooo/wiki/sources/2026-sel4-functional-correctness-proof.html.md)
+- [release 17.0.0](https://silentzero.ooo/wiki/sources/2026-sel4-release-17.html.md)
+- [security proofs complete on AArch64](https://silentzero.ooo/wiki/sources/2026-proofcraft-sel4-security-proofs.html.md)
+- [seL4 Foundation: Supported platforms](https://silentzero.ooo/wiki/sources/nd-sel4-supported-platforms.html.md)
+- [seL4 Microkit: User Manual, v2.3.0](https://silentzero.ooo/wiki/sources/nd-sel4-microkit-user-manual.html.md)
+- [seL4 on PC99 (x86-64)](https://silentzero.ooo/wiki/sources/nd-sel4-x64-platform.html.md)
+- [seL4, Formal Verification of an OS Kernel](https://silentzero.ooo/wiki/sources/2009-klein-sel4-formal-verification.html.md)
+- [The RISC-V Instruction Set Manual, Volume I](https://silentzero.ooo/wiki/sources/2024-riscv-unprivileged-isa-manual.html.md)
+- [Thunderclap](https://silentzero.ooo/wiki/sources/2019-markettos-thunderclap-exploring-vulnerabilities.html.md)
+- [Trustworthy Systems n.d.: Proof Statistics](https://silentzero.ooo/wiki/sources/nd-trustworthy-proof-statistics.html.md)

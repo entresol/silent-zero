@@ -188,6 +188,16 @@ _top = Path(__file__).resolve().parent.parent
 az = lexicon.az_bar(lexicon.collect(_top)[0], "lexicon/")
 iv = hashlib.sha256(b"".join((_top / f).read_bytes() for f in ("favicon.ico", "assets/favicon.svg", "assets/apple-touch-icon.png"))).hexdigest()[:8]
 css = "\n".join(l for l in css.splitlines() if "SPDX-License-Identifier" not in l) + "\n"
+# structured data for search engines and assistants: what the site is and what the paper is; no names, as the page has none
+SITE = "https://silentzero.ooo"
+jsonld = json.dumps({"@context": "https://schema.org", "@graph": [
+    {"@type": "WebSite", "@id": SITE + "/#site", "url": SITE + "/", "name": "Silent Zero OS", "inLanguage": "en"},
+    {"@type": "TechArticle", "@id": SITE + "/#paper", "isPartOf": {"@id": SITE + "/#site"}, "url": SITE + "/",
+     "headline": "Silent Zero OS \u2013 a working paper", "version": "v" + CURRENT_VERSION.split("-v")[-1],
+     "datePublished": CURRENT_VERSION[:10], "inLanguage": "en", "license": "https://creativecommons.org/licenses/by/4.0/",
+     "description": "A bootloader, a formally verified microkernel and the bare minimum to run AI safely and in real time, built entirely from existing open source.",
+     "encoding": {"@type": "MediaObject", "contentUrl": SITE + "/silent-zero.pdf", "encodingFormat": "application/pdf"},
+     "sameAs": ["https://github.com/entresol/silent-zero"]}]}, ensure_ascii=False, indent=1).replace("</", "<\\/")
 page = f"""<!doctype html>
 <html lang="en">
 <head>
@@ -195,6 +205,7 @@ page = f"""<!doctype html>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Silent Zero OS</title>
 <meta name="description" content="Silent Zero OS – Bare minimum. Verified. Real-time. An OS for the AI era. A working paper: a bootloader, a formally verified microkernel and the bare minimum to run AI safely and in real time, built entirely from existing open source.">
+<link rel="canonical" href="{SITE}/">
 <!-- link previews in social media and chats; the image comes from paper/ogshot.py -->
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://silentzero.ooo/">
@@ -206,6 +217,9 @@ page = f"""<!doctype html>
 <meta property="og:image:height" content="1260">
 <meta property="og:image:alt" content="Imagine it's 1991. We are about to release a few lines of code into a world that will be very different from today. Silent Zero OS: Bare minimum. Verified. Real-time. An OS for the AI era.">
 <meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{jsonld}
+</script>
 <link rel="icon" href="favicon.ico?v={iv}" sizes="32x32">
 <link rel="icon" href="assets/favicon.svg?v={iv}" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png?v={iv}">

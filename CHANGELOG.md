@@ -6,6 +6,10 @@ Format: `## <version> · <scope>`, then one paragraph. A paper version is `YYYY-
 
 ## 2026-11-05 · Site
 
+The site can now be found and read by search engines and AI assistants, and nothing is held back: `robots.txt` allows every crawler, those for search, for answers and for training, and names the main ones so the position is on record. New: `sitemap.xml`; `llms.txt`, a short guide to the paper and the wiki in the format of llmstxt.org; a clean Markdown version of every wiki page beside it (`page.html.md`), announced in each page's head; a canonical address and a description on each page; structured data (JSON-LD) on the paper's page, without names. Built by `paper/build.sh` with the rest, so it stays current.
+
+## 2026-11-05 · Site
+
 Three sources worked into the wiki: the seL4 news item of 24 August 2026 on the finished confidentiality proof for AArch64, the FutureRTC preprint on asynchronous robot-policy execution, and the MCP-38 threat taxonomy for the Model Context Protocol. New pages: three source pages. Changed in substance: seL4 and kernel (a second source for confidentiality on AArch64), action chunking, real-time loops, prompt injection and broker (one further source each). No new lexicon terms.
 
 ## 2026-11-04 · Site
