@@ -1,7 +1,7 @@
 ---
 type: concept
 status: reviewed
-sources: [2026-nasr-attacker-moves-second, 2025-debenedetti-defeating-prompt-injections, 2023-greshake-not-what-you, 2025-costa-securing-ai-agents, 2026-shen-mcp-38-comprehensive]
+sources: [2026-nasr-attacker-moves-second, 2025-debenedetti-defeating-prompt-injections, 2023-greshake-not-what-you, 2025-costa-securing-ai-agents, 2026-shen-mcp-38-comprehensive, 2026-narisetty-adaptive-evaluation-out, 2026-maloyan-breaking-protocol-security, 2026-huang-model-context-protocol]
 glossary: Prompt injection
 updated: 2026-11-05
 ---
@@ -17,7 +17,7 @@ An attacker places instructions in data that a language-model agent reads, such 
 
 ## State, October 2026
 
-No defence in the sources survives an adaptive attacker by evaluation alone; evaluations can only fail to break a defence ([[2026-nasr-attacker-moves-second]], §6). Defences around the model hold by construction within their threat model, and have not been tested adaptively ([[2025-debenedetti-defeating-prompt-injections]], [[2025-costa-securing-ai-agents]]). In 2023 effective mitigations were "currently lacking" ([[2023-greshake-not-what-you]], abstract). For the Model Context Protocol, a 2026 preprint lists 38 threat categories, among them the injection of instructions through tool descriptions and chains of benign tools; it states that five open-source scanners and proxies together cover at most 18 of them ([[2026-shen-mcp-38-comprehensive]]).
+No defence in the sources survives an adaptive attacker by evaluation alone; evaluations can only fail to break a defence ([[2026-nasr-attacker-moves-second]], §6). Defences around the model hold by construction within their threat model, and CaMeL and FIDES have not been tested adaptively ([[2025-debenedetti-defeating-prompt-injections]], [[2025-costa-securing-ai-agents]]). A June 2026 preprint ran one such defence, Progent, against a hand-made adaptive attack on a weak open-weight model; attack success stayed low, at 2.6 per cent; the authors call it one small data point that is consistent with, and does not establish, the idea that such defences are harder to attack than detectors ([[2026-narisetty-adaptive-evaluation-out]]). It also names the open weak spots: who assigns the labels, tasks that must act on untrusted content, and side channels. In 2023 effective mitigations were "currently lacking" ([[2023-greshake-not-what-you]], abstract). For the Model Context Protocol, a 2026 preprint lists 38 threat categories, among them the injection of instructions through tool descriptions and chains of benign tools; it states that five open-source scanners and proxies together cover at most 18 of them, though its own table does not match that ([[2026-shen-mcp-38-comprehensive]]). Two further preprints measure it: in the authors' own harness attack success rose from 26.4 to 52.8 per cent when equivalent tools were reached through MCP ([[2026-maloyan-breaking-protocol-security]]), and of seven MCP clients tested with poisoned tool descriptions one failed all four attacks, while for file reading and remote scripts those that held did so largely through the model's refusal ([[2026-huang-model-context-protocol]]). See [[model-context-protocol]].
 
 ## Open questions
 

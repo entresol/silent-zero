@@ -81,14 +81,14 @@ Work that extends the design, competes with it or attacks its assumptions: other
 - [x] nd-trustworthy-proof-statistics
 - [x] 2025-vander-rust-android-move
 - [x] 2025-yang-autoverus-automated-proof
-- [ ] 2026-zhang-agent-libos-runtime
-- [ ] 2026-zhao-agenticos-intent-oriented
-- [ ] 2026-ke-quine-realizing-llm
-- [ ] 2026-narisetty-adaptive-evaluation-out
-- [ ] 2026-maloyan-breaking-protocol-security
-- [ ] 2026-huang-model-context-protocol
-- [ ] 2026-he-neuro-symbolic-proof-osdi
-- [ ] 2024-zhang-selene-pioneering-automated
+- [x] 2026-zhang-agent-libos-runtime
+- [x] 2026-zhao-agenticos-intent-oriented
+- [x] 2026-ke-quine-realizing-llm
+- [x] 2026-narisetty-adaptive-evaluation-out
+- [x] 2026-maloyan-breaking-protocol-security
+- [x] 2026-huang-model-context-protocol
+- [x] 2026-he-neuro-symbolic-proof-osdi
+- [x] 2024-zhang-selene-pioneering-automated
 - [ ] 2025-li-osvbench-benchmarking-llms
 - [ ] 2025-tu-agentic-verification-software
 - [ ] 2025-zhao-verifying-device-drivers

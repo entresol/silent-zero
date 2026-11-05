@@ -11,7 +11,7 @@ The catalogue of every page, with one line each. Read this first.
 
 - [[kernel]] · seL4 with MCS as the zOS kernel: proven (C-level correctness; MCS functional correctness on RISC-V), not stated for MCS (integrity, confidentiality), tested (HACMS), assumed (boot, IOMMU); no WCET bound on any 64-bit core yet; the roadmap dates MCS on AArch64 to Q3 2027. 15 sources.
 - [[static-system]] · one description, one image: what Microkit checks, what is not proved, and the run-time swap in LionsOS, the kernel underneath. 6 sources.
-- [[broker]] · the only component that hands out authority: capability patterns, CaMeL and FIDES, why model-based defences fail; nothing proven yet. 15 sources.
+- [[broker]] · the only component that hands out authority: capability patterns, CaMeL and FIDES, why model-based defences fail, three agent-OS designs for the same job; nothing proven yet. 18 sources.
 - [[real-time-loops]] · the loops that move the motors: asynchronous chunks from slow models, observed timings, no proven bound yet. 9 sources.
 - [[safety-path]] · Simplex in zOS: the agent proposes, the loop disposes; tested, not proven; the paper's 2001 date disputed by a 1994 origin. 4 sources.
 - [[root-of-trust]] · the firmware below the kernel on Arm, RISC-V, PC and Raspberry Pi; OpenTitan, Caliptra, DICE; all *assumed* in the paper's terms. 13 sources.
@@ -20,7 +20,7 @@ The catalogue of every page, with one line each. Read this first.
 
 ## Not yet covered
 
-The zOS part *agents* has no page yet. Firmware on PCs (Intel ME, AMD PSP, FSP, open alternatives) and on Apple silicon is in the backlog. Also not yet covered: the multicore proof, the ratification status of CHERI for RISC-V, the seams between proven parts, the driver island, and most competing agent operating systems.
+The zOS part *agents* has no page yet; [[agent-operating-systems]] covers the designs that touch it. Firmware on PCs (Intel ME, AMD PSP, FSP, open alternatives) and on Apple silicon is in the backlog. Also not yet covered: the multicore proof, the ratification status of CHERI for RISC-V, the seams between proven parts and the driver island.
 
 ## Systems
 
@@ -48,19 +48,21 @@ The zOS part *agents* has no page yet. Firmware on PCs (Intel ME, AMD PSP, FSP, 
 - [[iommu]] · the memory management unit for devices: what it limits, and the 2019 attacks that worked although it was on. 1 source.
 - [[wcet-analysis]] · upper bounds on execution time, what they need, and where seL4 stands. 6 sources.
 - [[functional-correctness]] · what seL4's refinement proof gives, what it assumes, where it holds. 4 sources.
-- [[object-capabilities]] · references that both designate and authorise; permission versus authority; caretaker and membrane. 5 sources.
+- [[object-capabilities]] · references that both designate and authorise; permission versus authority; caretaker and membrane. 6 sources.
 - [[confused-deputy]] · a program misusing one party's authority for another's request; capabilities as the remedy. 3 sources.
-- [[prompt-injection]] · instructions hidden in data an agent reads; heuristic defences fail, defences around the model hold within limits. 5 sources.
+- [[prompt-injection]] · instructions hidden in data an agent reads; heuristic defences fail, defences around the model hold within limits; MCP measured. 8 sources.
 - [[verified-boot]] · each stage checks the next against a key the attacker cannot change; proofs about boot code so far. 6 sources.
 - [[measured-boot]] · each stage records what runs next; TPM and DICE; a verified DICE implementation. 4 sources.
 - [[time-protection]] · closing timing channels between domains; prototypes on CVA6, proof for seL4 in progress. 3 sources.
 - [[simplex]] · a simple safe controller guarding an untrusted one; tested with learned controllers. 1 source.
 - [[action-chunking]] · slow robot models emitting action sequences for a fast loop; no bound on delay. 3 sources.
 - [[ai-vulnerability-discovery]] · AI models finding software flaws at scale: DARPA's challenge and Anthropic's figures, the bottleneck moving to patching. 3 sources.
-- [[information-flow-control]] · labels for where data came from and who may see it; FIDES and CaMeL for agents; explicit flows only. 2 sources.
-- [[proof-automation]] · machines proposing proof steps, Isabelle checking them; 77.6 % of a seL4 benchmark sample; Verus as a faster verifier. PROMISE as a second method; AutoVerus for Rust. 5 sources.
+- [[information-flow-control]] · labels for where data came from and who may see it; FIDES, CaMeL and Agent libOS for agents; explicit flows only. 5 sources.
+- [[proof-automation]] · machines proposing proof steps, Isabelle checking them; 77.6 % of a seL4 benchmark sample; Verus as a faster verifier. PROMISE as a second method; AutoVerus for Rust; the peer-reviewed OSDI version and the Selene benchmark. 7 sources.
 - [[memory-safe-code]] · new code in Rust instead of C: Android's memory-safety flaws below 20 % in 2025; the hardening rival to a verified base. 2 sources.
 - [[mixed-criticality]] · software of different criticality on one platform; processor time as a capability in seL4 MCS. 3 sources.
+- [[model-context-protocol]] · the open protocol that connects agents to tools; three preprints measure its security, one runtime treats it as a client only. 4 sources.
+- [[agent-operating-systems]] · designs that put the limit on an agent in the OS layer: agentOS, Cohesix, KataOS, AgentKernel, AgenticOS, Agent libOS, Quine. 7 sources.
 
 ## Sources
 
@@ -138,3 +140,11 @@ The zOS part *agents* has no page yet. Firmware on PCs (Intel ME, AMD PSP, FSP, 
 - [[nd-linux-landlock-unprivileged-access]] · Landlock, the Linux self-sandboxing module, kernel documentation of October 2026. report, partly read.
 - [[nd-linux-real-time-preemption]] · PREEMPT_RT in the kernel documentation: sleeping locks, threaded interrupts, shared-hardware limits. report, partly read.
 - [[2024-trail-leftoverlocals-listening-llm]] · LeftoverLocals: GPU local memory leaks between processes; 181 MB per LLM query on one AMD GPU. test, partly read.
+- [[2026-zhang-agent-libos-runtime]] · Agent libOS: capability, ceiling, approval and budget must all agree before an operation runs; information flow checked apart; own suites pass. design, full text.
+- [[2026-zhao-agenticos-intent-oriented]] · AgenticOS: an agent declares a manifest and only the semantic calls it names exist; a conceptual architecture, no implementation. design, full text.
+- [[2026-ke-quine-realizing-llm]] · Quine: an agent as a POSIX process, renewed by exec; isolation inherited from the kernel, no capability model. design, full text.
+- [[2026-narisetty-adaptive-evaluation-out]] · out-of-band defences compared; Progent against a hand-made adaptive attack on a 7B model: 25.8 % to 4.2 % to 2.6 %. test, full text.
+- [[2026-maloyan-breaking-protocol-security]] · MCP's protocol-level weaknesses: attack success 26.4 % without MCP, 52.8 % with it; a signing extension brings it to 12.4 %. test, full text.
+- [[2026-huang-model-context-protocol]] · seven MCP clients against poisoned tool descriptions: one failed all four attacks, the rest relied largely on the model's refusal. test, full text.
+- [[2026-he-neuro-symbolic-proof-osdi]] · the OSDI version of the seL4 proof-search work: same 77.6 %, effort saving now 79.8 %. measurement, full text.
+- [[2024-zhang-selene-pioneering-automated]] · Selene: a benchmark of 340 seL4 lemmas; GPT-4 proves 41.7 % of the easy set on the first try, almost none of the hard one. measurement, full text.
