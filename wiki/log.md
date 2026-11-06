@@ -133,3 +133,7 @@ Ring 2, daily run. Created: three source pages, [[memory-safe-code]]. Changed: [
 ## [2026-11-05] ingest | 2026-proofcraft-sel4-security-proofs, 2026-jiang-futurertc-real-time, 2026-shen-mcp-38-comprehensive
 
 Sources added to the pool today, daily run; the backlog was held back because more than five decisions are open. Created: three source pages. Changed: [[sel4]], [[kernel]], [[broker]], [[real-time-loops]], [[prompt-injection]], [[action-chunking]], index, rings. The news item on AArch64 confidentiality was read on the seL4 news page; the Proofcraft announcement it links was not reachable from the research environment, and the assumptions page was not read. FutureRTC's real-robot numbers are not quoted because the text extraction garbled them.
+
+## [2026-11-06] ingest | 2026-sharma-agent-operating-systems, 2026-rinard-testing-credible-compilation
+
+Sources added to the pool today, daily run; the backlog was held back because more than five decisions are open. Created: two source pages. Changed: [[broker]], [[proof-automation]], index, rings. Both sources were read in part, and the pages say which parts. The agent-OS paper is another design above a conventional kernel with no implementation; the paper's Section 5 does not cite it. The Axon compiler is one author's report of proofs written by a coding agent, not about seL4.
