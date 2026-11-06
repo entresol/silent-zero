@@ -1,8 +1,8 @@
 ---
 type: design
 status: reviewed
-sources: [1988-hardy-confused-deputy-or, 2006-miller-robust-composition-towards, 2025-debenedetti-defeating-prompt-injections, 2026-nasr-attacker-moves-second, 2018-klein-formally-verified-software, nd-sel4-verified-configurations, 2026-sel4-functional-correctness-proof, nd-sel4-microkit-user-manual, 2026-heiser-mcs-safety-os, 2026-bower-cohesix-research-operating, 2025-costa-securing-ai-agents, 2023-greshake-not-what-you, 2022-google-announcing-kataos-sparrow, 2026-zou-agentkernel-trust-native, 2026-shen-mcp-38-comprehensive]
-updated: 2026-11-05
+sources: [1988-hardy-confused-deputy-or, 2006-miller-robust-composition-towards, 2025-debenedetti-defeating-prompt-injections, 2026-nasr-attacker-moves-second, 2018-klein-formally-verified-software, nd-sel4-verified-configurations, 2026-sel4-functional-correctness-proof, nd-sel4-microkit-user-manual, 2026-heiser-mcs-safety-os, 2026-bower-cohesix-research-operating, 2025-costa-securing-ai-agents, 2023-greshake-not-what-you, 2022-google-announcing-kataos-sparrow, 2026-zou-agentkernel-trust-native, 2026-shen-mcp-38-comprehensive, 2026-sharma-agent-operating-systems]
+updated: 2026-11-06
 ---
 
 # The broker
@@ -41,6 +41,7 @@ The only component in zOS that hands out authority. It grants capabilities that 
 
 - [[2026-zou-agentkernel-trust-native]] is a design for the same job on a conventional host kernel: an external monitor outside the model, delegation that can only narrow a child's capabilities, and information-flow labels on memory. Its model-based classifier and eBPF enforcement rest on the host operating system, which the authors assume enforces them correctly, and they defer proofs of their invariants (design paper, partly read). Our reading: the host is not a verified kernel.
 - [[2026-shen-mcp-38-comprehensive]] catalogues 38 threats to systems built on the Model Context Protocol, many of them ways in which text persuades a model, the rest classical flaws. Our reading: for the first kind the broker need not recognise the text, since it grants only declared authority, which limits reach but not leakage through allowed channels; the paper offers no evidence on that and the broker is not built.
+- [[2026-sharma-agent-operating-systems]] proposes an agent operating system as a control plane over Linux or Windows: model output is a proposal, tool calls pass deny-by-default capability checks, and a registry admits tools found at run time. It is a design without implementation, measurements or proofs, and it names no real-time goal. It lists sequences of individually allowed actions as a gap: per-action enforcement is "necessary but not sufficient" and stateful evaluation may be needed (§8.2), which is the open question on sequences below.
 
 ## Open
 

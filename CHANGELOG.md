@@ -4,6 +4,10 @@ What changed in substance, newest first: in the paper, on its page and in the pr
 
 Format: `## <version> · <scope>`, then one paragraph. A paper version is `YYYY-MM-DD-vX.Y` and has its own PDF in `versions/`; the newest one is the version the build prints on the paper and the page. A change without a new paper version carries only its date (`YYYY-MM-DD`). Scope is `Paper`, `Site` or `Project`. The build turns this file into the list at the end of the page.
 
+## 2026-11-06 · Site
+
+Two sources worked into the wiki: the Agent Operating Systems design paper and the report on the Axon compiler, whose Lean proofs a coding agent wrote. New pages: two source pages. Changed in substance: the broker (a further design for the authority layer on a conventional host) and proof automation (a compiler built with machine-written proofs, a different task from the seL4 benchmarks). No new lexicon terms.
+
 ## 2026-11-05 · Site
 
 Three sources worked into the wiki: the seL4 news item of 24 August 2026 on the finished confidentiality proof for AArch64, the FutureRTC preprint on asynchronous robot-policy execution, and the MCP-38 threat taxonomy for the Model Context Protocol. New pages: three source pages. Changed in substance: seL4 and kernel (a second source for confidentiality on AArch64), action chunking, real-time loops, prompt injection and broker (one further source each). No new lexicon terms.
