@@ -1,7 +1,7 @@
 ---
 type: source
 id: 2026-rinard-testing-credible-compilation
-status: drafted
+status: reviewed
 read: partial
 kind: report
 sources: [2026-rinard-testing-credible-compilation]

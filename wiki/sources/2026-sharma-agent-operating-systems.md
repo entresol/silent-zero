@@ -1,7 +1,7 @@
 ---
 type: source
 id: 2026-sharma-agent-operating-systems
-status: drafted
+status: reviewed
 read: partial
 kind: design
 sources: [2026-sharma-agent-operating-systems]
