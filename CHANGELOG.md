@@ -4,6 +4,10 @@ What changed in substance, newest first: in the paper, on its page and in the pr
 
 Format: `## <version> · <scope>`, then one paragraph. A paper version is `YYYY-MM-DD-vX.Y` and has its own PDF in `versions/`; the newest one is the version the build prints on the paper and the page. A change without a new paper version carries only its date (`YYYY-MM-DD`). Scope is `Paper`, `Site` or `Project`. The build turns this file into the list at the end of the page.
 
+## 2026-11-07 · Site
+
+One source worked into the wiki: the MOSAIC preprint, which measures attacks on coding agents made of benign command-line steps that pass state through the system, and two defences over tool calls that did not reduce them. New pages: one source page. Changed in substance: the broker (a further limit of checks at the tool-call level) and prompt injection. No new lexicon terms.
+
 ## 2026-11-06 · Site
 
 Two sources worked into the wiki: the Agent Operating Systems design paper and the report on the Axon compiler, whose Lean proofs a coding agent wrote. New pages: two source pages. Changed in substance: the broker (a further design for the authority layer on a conventional host) and proof automation (a compiler built with machine-written proofs, a different task from the seL4 benchmarks). No new lexicon terms.
