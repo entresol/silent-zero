@@ -137,3 +137,7 @@ Sources added to the pool today, daily run; the backlog was held back because mo
 ## [2026-11-06] ingest | 2026-sharma-agent-operating-systems, 2026-rinard-testing-credible-compilation
 
 Sources added to the pool today, daily run; the backlog was held back because more than five decisions are open. Created: two source pages. Changed: [[broker]], [[proof-automation]], index, rings. Both sources were read in part, and the pages say which parts. The agent-OS paper is another design above a conventional kernel with no implementation; the paper's Section 5 does not cite it. The Axon compiler is one author's report of proofs written by a coding agent, not about seL4.
+
+## [2026-11-07] ingest | 2026-wu-mosaic-knowledge-guided
+
+Source added to the pool today, daily run; the backlog was held back because more than five decisions are open. Created: one source page, read in part (the evaluation and discussion in full, the method in outline). Changed: [[broker]] (a table row, a related entry, the open question on sequences), [[prompt-injection]], index, rings. No question for the team: the source measures attacks on other systems' defences and contradicts no claim of the paper, whose sentence on enforcement at every tool call is addressed by the reading under 'For zOS' on the source page.

@@ -193,3 +193,4 @@ Systems and sources the wiki will need that the pool lacks. They go into the poo
 - [x] 2026-shen-mcp-38-comprehensive
 - [x] 2026-sharma-agent-operating-systems
 - [x] 2026-rinard-testing-credible-compilation
+- [x] 2026-wu-mosaic-knowledge-guided
