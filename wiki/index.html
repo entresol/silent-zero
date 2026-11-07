@@ -338,7 +338,7 @@ sup.refs a:hover { text-decoration: underline; }
     <div class="titleblock">
       <h1 class="name">Wiki</h1>
       <p class="sub">What the sources behind the paper show, page by page.</p>
-      <p class="ver">118 pages · updated 6 Nov 2026 · <a href="#how">How this wiki is made</a></p>
+      <p class="ver">119 pages · updated 7 Nov 2026 · <a href="#how">How this wiki is made</a></p>
     </div>
   </div>
 </header>
@@ -346,7 +346,7 @@ sup.refs a:hover { text-decoration: underline; }
 <div class="layout">
   <nav class="toc" id="toc" aria-label="Contents"><p>Contents</p><ol><li class="toc-back"><a href="/">← The paper</a></li><li><a href="#top">↑ Top</a></li><li><a href="#how">How this wiki is made</a></li><li><a href="#design">Design</a></li><li><a href="#systems">Systems</a></li><li><a href="#concepts">Concepts</a></li><li><a href="#sources">Sources</a></li><li><a href="#not-yet-covered">Not yet covered</a></li></ol></nav>
   <article>
-<p>This wiki gathers what the sources behind the paper show. It has a page for each source, each concept, each system the paper builds on and each part of the design: 76 sources, 17 concepts, 17 systems and 8 parts of the design so far. Every page says what is proven, tested or assumed, and on which source that rests.</p>
+<p>This wiki gathers what the sources behind the paper show. It has a page for each source, each concept, each system the paper builds on and each part of the design: 77 sources, 17 concepts, 17 systems and 8 parts of the design so far. Every page says what is proven, tested or assumed, and on which source that rests.</p>
 <h2 id="how">How this wiki is made</h2>
 <p>A language model writes the wiki and keeps it up to date from the sources in the project’s research pool, after Andrej Karpathy’s idea of a wiki that a language model maintains. A daily run adds new sources and works older ones in.</p>
 <ul>
@@ -359,7 +359,7 @@ sup.refs a:hover { text-decoration: underline; }
 <ul>
 <li><a href="/wiki/design/kernel.html">The kernel</a> · seL4 with MCS as the Silent Zero kernel: proven (C-level correctness; MCS functional correctness on RISC-V), not stated for MCS (integrity, confidentiality), tested (HACMS), assumed (boot, IOMMU); no WCET bound on any 64-bit core yet; the roadmap dates MCS on AArch64 to Q3 2027. 15 sources.</li>
 <li><a href="/wiki/design/static-system.html">The static system</a> · one description, one image: what Microkit checks, what is not proved, and the run-time swap in LionsOS, the kernel underneath. 6 sources.</li>
-<li><a href="/wiki/design/broker.html">The broker</a> · the only component that hands out authority: capability patterns, CaMeL and FIDES, why model-based defences fail; nothing proven yet. 16 sources.</li>
+<li><a href="/wiki/design/broker.html">The broker</a> · the only component that hands out authority: capability patterns, CaMeL and FIDES, why model-based defences fail; nothing proven yet. 17 sources.</li>
 <li><a href="/wiki/design/real-time-loops.html">Real-time loops</a> · the loops that move the motors: asynchronous chunks from slow models, observed timings, no proven bound yet. 9 sources.</li>
 <li><a href="/wiki/design/safety-path.html">The safety path</a> · Simplex in Silent Zero: the agent proposes, the loop disposes; tested, not proven; the paper’s 2001 date disputed by a 1994 origin. 4 sources.</li>
 <li><a href="/wiki/design/root-of-trust.html">Root of trust and firmware</a> · the firmware below the kernel on Arm, RISC-V, PC and Raspberry Pi; OpenTitan, Caliptra, DICE; all <em>assumed</em> in the paper’s terms. 13 sources.</li>
@@ -394,7 +394,7 @@ sup.refs a:hover { text-decoration: underline; }
 <li><a href="/wiki/concepts/functional-correctness.html">Functional correctness</a> · what seL4’s refinement proof gives, what it assumes, where it holds. 4 sources.</li>
 <li><a href="/wiki/concepts/object-capabilities.html">Object capabilities</a> · references that both designate and authorise; permission versus authority; caretaker and membrane. 5 sources.</li>
 <li><a href="/wiki/concepts/confused-deputy.html">Confused deputy</a> · a program misusing one party’s authority for another’s request; capabilities as the remedy. 3 sources.</li>
-<li><a href="/wiki/concepts/prompt-injection.html">Prompt injection</a> · instructions hidden in data an agent reads; heuristic defences fail, defences around the model hold within limits. 5 sources.</li>
+<li><a href="/wiki/concepts/prompt-injection.html">Prompt injection</a> · instructions hidden in data an agent reads; heuristic defences fail, defences around the model hold within limits; benign command chains through shared state beat two of them. 6 sources.</li>
 <li><a href="/wiki/concepts/verified-boot.html">Verified boot</a> · each stage checks the next against a key the attacker cannot change; proofs about boot code so far. 6 sources.</li>
 <li><a href="/wiki/concepts/measured-boot.html">Measured boot</a> · each stage records what runs next; TPM and DICE; a verified DICE implementation. 4 sources.</li>
 <li><a href="/wiki/concepts/time-protection.html">Time protection</a> · closing timing channels between domains; prototypes on CVA6, proof for seL4 in progress. 3 sources.</li>
@@ -483,6 +483,7 @@ sup.refs a:hover { text-decoration: underline; }
 <li><a href="/wiki/sources/nd-linux-real-time-preemption.html">Linux kernel documentation: real-time preemption</a> · PREEMPT_RT in the kernel documentation: sleeping locks, threaded interrupts, shared-hardware limits. report, partly read.</li>
 <li><a href="/wiki/sources/2024-trail-leftoverlocals-listening-llm.html">LeftoverLocals</a> (Khlaaf and Sorensen 2024) · LeftoverLocals: GPU local memory leaks between processes; 181 MB per LLM query on one AMD GPU. test, partly read.</li>
 <li><a href="/wiki/sources/2026-sharma-agent-operating-systems.html">Agent Operating Systems</a> (Sharma and Shah 2026) · AOS: an agentic control plane over Linux or Windows; reasoning untrusted, deny-by-default tool mediation; no implementation. design, partly read.</li>
+<li><a href="/wiki/sources/2026-wu-mosaic-knowledge-guided.html">MOSAIC</a> (Wu et al. 2026) · MOSAIC: benign CLI commands that compose through shared OS state beat Progent and CaMeL as tool-call hooks (96.63 % on Claude Code); preprint. measurement, partly read.</li>
 <li><a href="/wiki/sources/2026-rinard-testing-credible-compilation.html">the Axon compiler</a> (Rinard 2026) · Axon: a compiler and its Lean proofs written by a coding agent in 34 days; optimisations checked by a verified certificate checker. report, partly read.</li>
 </ul>
 <h2 id="not-yet-covered">Not yet covered</h2>
