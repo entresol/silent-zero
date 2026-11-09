@@ -141,3 +141,11 @@ Sources added to the pool today, daily run; the backlog was held back because mo
 ## [2026-11-07] ingest | 2026-wu-mosaic-knowledge-guided
 
 Source added to the pool today, daily run; the backlog was held back because more than five decisions are open. Created: one source page, read in part (the evaluation and discussion in full, the method in outline). Changed: [[broker]] (a table row, a related entry, the open question on sequences), [[prompt-injection]], index, rings. No question for the team: the source measures attacks on other systems' defences and contradicts no claim of the paper, whose sentence on enforcement at every tool call is addressed by the reading under 'For zOS' on the source page.
+
+## [2026-11-09] ingest | 2026-sharma-agent-operating-system, 2026-liao-llvm-translation-validation
+
+Sources added to the pool today, daily run; the backlog was held back because more than five decisions are open. Created: two source pages, both read in part and so `drafted`; the pages say which parts. Changed: [[broker]] (a row on the second AOS paper and its delegation rule), [[proof-automation]] (Trivet), [[2026-rinard-testing-credible-compilation]], index, rings. The AOS-0001 paper extends the authors' earlier one and is again a design without implementation or proof. Trivet validates or refutes 147 of 148 LLVM transformations with a Lean kernel as the checker; it is about compilers, not seL4.
+
+## [2026-11-09] lint
+
+`wiki_lint.py` found nothing. Reading pass over the index counts and unlinked subjects, not over every page. Fixed: two source counts in the index that disagreed with the front matter ([[memory-safe-code]], [[iommu]]); the [[iommu]] page is now linked from [[kernel]], [[static-system]], [[microkit]], [[raspberry-pi]] and [[sel4]], which named the subject without a link. No `drafted` page existed before today's two, so none to release. Contradictions between pages and claims replaced by newer sources were not searched page by page; left open for a fuller pass.

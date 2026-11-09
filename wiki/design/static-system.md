@@ -38,5 +38,5 @@ The layer between the kernel and the components. In zOS one description declares
 
 - HACMS proved for CAmkES that the generated capDL matches the architecture ([[2018-klein-formally-verified-software]], §5.2). Nothing comparable exists for Microkit in the sources so far.
 - If no component holds the right to destroy kernel objects after boot, the kernel's worst case drops ([[2026-trustworthy-guaranteeing-timeliness-mcs]]). Our reading: a Microkit system creates its objects at boot through the capDL initialiser, which suggests it can be set up that way; no source confirms it.
-- Microkit describes IO address spaces backed by an IOMMU or SMMU in general terms and states the mapping explicitly only for x86; see [[drivers]].
+- Microkit describes IO address spaces backed by an [[iommu|IOMMU]] or SMMU in general terms and states the mapping explicitly only for x86; see [[drivers]].
 - Microkit's domain scheduler, which separates groups of components on a fixed schedule, is supported only on single-core configurations ([[nd-sel4-microkit-user-manual]]).

@@ -27,7 +27,7 @@ In zOS the kernel is [[sel4]] with its mixed-criticality extensions. It isolates
 | Integrity and confidentiality (no timing channels) | proven on AArch32, AArch64, RISC-V; not stated for MCS | proof; on AArch64 a news item of 24 August 2026 also announces the confidentiality proof | [[nd-sel4-verified-configurations]], [[2026-proofcraft-sel4-security-proofs]] |
 | Binary correctness | listed for AArch32 only; other architectures not stated | proof | [[nd-sel4-verified-configurations]] |
 | Verified kernel under Microkit on the Raspberry Pi 4 | none: the Pi 4B is verified only without MCS, and Microkit always uses MCS | our reading from two sources | [[nd-sel4-verified-configurations]], [[nd-sel4-microkit-user-manual]] |
-| Kernel boot, IOMMU/SMMU | outside every verified configuration | assumed | [[nd-sel4-verified-configurations]] |
+| Kernel boot, [[iommu|IOMMU]]/SMMU | outside every verified configuration | assumed | [[nd-sel4-verified-configurations]] |
 | Processor time as capability with enforced budgets | implemented in MCS | covered by the C-level refinement proof in our reading; no theorem on temporal isolation | [[2026-heiser-mcs-safety-os]], [[2026-sel4-functional-correctness-proof]] |
 | Containment of a compromised component in the field | demonstrated under a white-box red-team attack, 2017 | test | [[2018-klein-formally-verified-software]] |
 | Sound kernel WCET on 32-bit Arm before MCS | existed, archived | static analysis; loop bounds set by hand on ARM11, later proved by translation validation (processor not stated) | [[nd-trustworthy-wcet-worst-case]], [[2026-sillitoe-resurrecting-sel4-wcet]], [[2026-trustworthy-guaranteeing-timeliness-mcs]] |

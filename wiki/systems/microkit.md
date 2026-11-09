@@ -31,5 +31,5 @@ Not yet covered by the wiki's sources.
 
 ## Open questions
 
-- How IOMMU-backed IO address spaces work on Arm and RISC-V; the manual describes them in general terms and states the mapping explicitly only for x86.
+- How [[iommu|IOMMU]]-backed IO address spaces work on Arm and RISC-V; the manual describes them in general terms and states the mapping explicitly only for x86.
 - What it would take to prove that a system description and its generated capDL specification enforce the intended authority, as CAmkES did for its descriptions ([[2018-klein-formally-verified-software]], §5.2).

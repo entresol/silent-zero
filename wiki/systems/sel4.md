@@ -19,7 +19,7 @@ A microkernel of the L4 family whose C implementation has a machine-checked proo
 | Binary correctness | listed for AArch32 | [[nd-sel4-verified-configurations]] |
 | Functional correctness of the MCS configuration | RISC-V, announced 29 June 2026; port to 64-bit Arm under DARPA's PROVERS programme | [[2026-sel4-functional-correctness-proof]] |
 | Platforms with the C-level proof | since release 17.0.0 (30 October 2026), by the release notes' own words, "all 64-bit platforms seL4 support"; they list eight RISC-V platforms and fifteen AArch64 ones. The MCS proof on RISC-V covers `hifive` (HiFive Unleashed) only | [[2026-sel4-release-17]] |
-| Kernel boot, IOMMU and SMMU, debug interfaces | not covered by any verified configuration | [[nd-sel4-verified-configurations]] |
+| Kernel boot, [[iommu|IOMMU]] and SMMU, debug interfaces | not covered by any verified configuration | [[nd-sel4-verified-configurations]] |
 | Multicore | verification in progress | [[2026-heiser-mcs-safety-os]] |
 
 The documentation page's RISC-V section still called the MCS verification ongoing on 23 October 2026 ([[nd-sel4-verified-configurations]]).

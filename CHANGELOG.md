@@ -4,6 +4,10 @@ What changed in substance, newest first: in the paper, on its page and in the pr
 
 Format: `## <version> · <scope>`, then one paragraph. A paper version is `YYYY-MM-DD-vX.Y` and has its own PDF in `versions/`; the newest one is the version the build prints on the paper and the page. A change without a new paper version carries only its date (`YYYY-MM-DD`). Scope is `Paper`, `Site` or `Project`. The build turns this file into the list at the end of the page.
 
+## 2026-11-09 · Site
+
+Two sources worked into the wiki: the second paper of the AOS series on a reference architecture for agent systems, and Trivet, a model-assisted validator for LLVM transformations checked by Lean. New pages: two source pages, both read in part. Changed in substance: the broker (delegation rule of the AOS paper) and proof automation. No new lexicon terms. The Monday lint fixed two source counts in the index and linked the IOMMU page from five pages that named it.
+
 ## 2026-11-07 · Site
 
 One source worked into the wiki: the MOSAIC preprint, which measures attacks on coding agents made of benign command-line steps that pass state through the system, and two defences over tool calls that did not reduce them. New pages: one source page. Changed in substance: the broker (a further limit of checks at the tool-call level) and prompt injection. No new lexicon terms.
