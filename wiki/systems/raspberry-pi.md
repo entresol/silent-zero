@@ -25,5 +25,5 @@ The ROM, EEPROM bootloader and GPU firmware are closed; our reading from [[nd-ra
 ## Open questions
 
 - How secure boot is enabled and what it verifies on the Pi 4 and Pi 5; the documentation for it is not yet covered here.
-- Whether the Pi's system-on-chip has an IOMMU. The paper says "its public documentation describes no IOMMU" (Section 7); no source in the wiki backs that yet.
+- Whether the Pi's system-on-chip has an [[iommu|IOMMU]]. The paper says "its public documentation describes no IOMMU" (Section 7); no source in the wiki backs that yet.
 - What stays resident below the kernel on the Pi, in EL3 or in the GPU firmware; the sources do not say.
