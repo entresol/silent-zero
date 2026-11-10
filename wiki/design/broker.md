@@ -1,8 +1,8 @@
 ---
 type: design
 status: reviewed
-sources: [1988-hardy-confused-deputy-or, 2006-miller-robust-composition-towards, 2025-debenedetti-defeating-prompt-injections, 2026-nasr-attacker-moves-second, 2018-klein-formally-verified-software, nd-sel4-verified-configurations, 2026-sel4-functional-correctness-proof, nd-sel4-microkit-user-manual, 2026-heiser-mcs-safety-os, 2026-bower-cohesix-research-operating, 2025-costa-securing-ai-agents, 2023-greshake-not-what-you, 2022-google-announcing-kataos-sparrow, 2026-zou-agentkernel-trust-native, 2026-shen-mcp-38-comprehensive, 2026-sharma-agent-operating-systems, 2026-wu-mosaic-knowledge-guided]
-updated: 2026-11-07
+sources: [1988-hardy-confused-deputy-or, 2006-miller-robust-composition-towards, 2025-debenedetti-defeating-prompt-injections, 2026-nasr-attacker-moves-second, 2018-klein-formally-verified-software, nd-sel4-verified-configurations, 2026-sel4-functional-correctness-proof, nd-sel4-microkit-user-manual, 2026-heiser-mcs-safety-os, 2026-bower-cohesix-research-operating, 2025-costa-securing-ai-agents, 2023-greshake-not-what-you, 2022-google-announcing-kataos-sparrow, 2026-zou-agentkernel-trust-native, 2026-shen-mcp-38-comprehensive, 2026-sharma-agent-operating-systems, 2026-wu-mosaic-knowledge-guided, 2026-peters-gill-can-camels]
+updated: 2026-11-10
 ---
 
 # The broker
@@ -27,6 +27,7 @@ The only component in zOS that hands out authority. It grants capabilities that 
 | A passive server runs on its caller's budget | in seL4 MCS and Microkit | design; MCS functional-correctness proof on RISC-V | [[2026-heiser-mcs-safety-os]], [[nd-sel4-microkit-user-manual]], [[2026-sel4-functional-correctness-proof]] |
 | Information-flow labels keep untrusted data from choosing consequential tool calls (FIDES) | no AgentDojo attack counted against its policies succeeded; explicit flows only | noninterference for integrity stated as a proposition without proof; unverified planner; static attacks | [[2025-costa-securing-ai-agents]] |
 | Defences over tool calls (Progent, CaMeL) stop attacks made of composed benign commands that share OS state | no: both left the success rate at 96.63 % in the authors' setup on Claude Code | test; one agent (Claude Code), authors' own policies, CaMeL as an adapted trace monitor, 101 constructed exploit paths, preprint | [[2026-wu-mosaic-knowledge-guided]] |
+| CaMeL's plan integrity holds when agents call agents | no, not in general: untrusted data crossed the agent boundary in the instruction text and changed a child's plan; a protocol with a separate data channel (multi-CaMeL) removed the residual attacks | constructed counterexample and case analysis; 949 injected tasks per model on the authors' multi-agent benchmark, five models, trivial policy, preprint | [[2026-peters-gill-can-camels]] |
 | A proven broker | none in the sources | none | — |
 
 ## The paper and its sources
@@ -45,12 +46,15 @@ The only component in zOS that hands out authority. It grants capabilities that 
 - [[2026-sharma-agent-operating-systems]] proposes an agent operating system as a control plane over Linux or Windows: model output is a proposal, tool calls pass deny-by-default capability checks, and a registry admits tools found at run time. It is a design without implementation, measurements or proofs, and it names no real-time goal. It lists sequences of individually allowed actions as a gap: per-action enforcement is "necessary but not sufficient" and stateful evaluation may be needed (§8.2), which is the open question on sequences below.
 - [[2026-wu-mosaic-knowledge-guided]] measures attacks that carry no explicit malicious instruction: benign command-line steps that pass state to each other through files, environment and hooks. Progent and CaMeL, run as hooks over an agent's tool calls, left their success rate unchanged at 96.63 per cent in the authors' setup on Claude Code. They explain it by the state passing between commands and not through tool-call arguments (CaMeL ran there as an adapted trace monitor). Our reading: a broker that checks tool calls cannot be the whole guarantee; what the agent's domain shares with other components must be bounded below it, by the capabilities it holds. See [[static-system]].
 
+- [[2026-peters-gill-can-camels]] shows that CaMeL's guarantee does not carry over when one agent calls another as a tool: the parent's instruction text can carry untrusted data into the child's planner. The authors fix it with a trusted message and a separate data channel, in trees of agents only. Our reading: the paper has several untrusted agents and does not discuss agents calling each other; if zOS lets agents delegate, the instruction a delegating agent writes is a channel the broker would have to control.
+
 ## Open
 
 - The integrity proof the broker relies on is not stated for MCS, and Microkit always uses MCS. Until it is, the kernel's guarantee under the broker is functional correctness only. See [[kernel]].
 - CaMeL's policies are defined by its engine; users, tool providers or automatic derivation are envisaged later ([[2025-debenedetti-defeating-prompt-injections]], §5.2, §10). For zOS: who writes them, and from what?
 - Blocked calls go to a person, and too many approvals breed fatigue ([[2025-debenedetti-defeating-prompt-injections]], §9.2). In CaMeL's STRICT mode policies fired in about half the tasks run without attack, with wide differences between task suites (Appendix D). The paper adds that requests must be worded so the agent cannot imitate them, which needs a trusted path to a screen.
 - When a task is to act on instructions found in data, isolating the planner alone cannot help; policies and capabilities must carry the load ([[2025-debenedetti-defeating-prompt-injections]], §6.4).
+- Whether zOS agents may call other agents, and what the broker then sees of the instruction passed between them ([[2026-peters-gill-can-camels]]). The source covers trees of agents only.
 - Sequences of individually allowed calls may add up to a harmful one, as return-oriented programming chains allowed code fragments ([[2025-debenedetti-defeating-prompt-injections]], §9.3). A 2026 preprint reports such chains through shared system state succeeding against deployed coding agents in the authors' constructed attacks ([[2026-wu-mosaic-knowledge-guided]]); whether zOS leaves an agent any such state is open.
 - CaMeL leaks through loops and exceptions unless restricted, with a residual exception path; its authors do not exclude timing channels ([[2025-debenedetti-defeating-prompt-injections]], §7). In zOS the same holds one level down; see [[time-protection]].
 - Revoking authority over a lost connection fails unsafe; a grant should lapse by itself when the broker cannot reach it ([[2006-miller-robust-composition-towards]], §11.5.3).

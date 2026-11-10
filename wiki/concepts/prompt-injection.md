@@ -1,9 +1,9 @@
 ---
 type: concept
 status: reviewed
-sources: [2026-nasr-attacker-moves-second, 2025-debenedetti-defeating-prompt-injections, 2023-greshake-not-what-you, 2025-costa-securing-ai-agents, 2026-shen-mcp-38-comprehensive, 2026-wu-mosaic-knowledge-guided]
+sources: [2026-nasr-attacker-moves-second, 2025-debenedetti-defeating-prompt-injections, 2023-greshake-not-what-you, 2025-costa-securing-ai-agents, 2026-shen-mcp-38-comprehensive, 2026-wu-mosaic-knowledge-guided, 2026-peters-gill-can-camels]
 glossary: Prompt injection
-updated: 2026-11-07
+updated: 2026-11-10
 ---
 
 # Prompt injection
@@ -20,6 +20,8 @@ An attacker places instructions in data that a language-model agent reads, such 
 No defence in the sources survives an adaptive attacker by evaluation alone; evaluations can only fail to break a defence ([[2026-nasr-attacker-moves-second]], §6). Defences around the model hold by construction within their threat model, and have not been tested adaptively ([[2025-debenedetti-defeating-prompt-injections]], [[2025-costa-securing-ai-agents]]). In 2023 effective mitigations were "currently lacking" ([[2023-greshake-not-what-you]], abstract). For the Model Context Protocol, a 2026 preprint lists 38 threat categories, among them the injection of instructions through tool descriptions and chains of benign tools; it states that five open-source scanners and proxies together cover at most 18 of them ([[2026-shen-mcp-38-comprehensive]]).
 
 A July 2026 preprint adds an attack that carries no explicit malicious instruction: benign command-line steps of a coding agent that pass state to each other through files, environment variables and hooks. In the authors' 2,525 trials, built from 101 attack paths they constructed, it succeeded in 96.59 per cent. On Claude Code a capability policy (Progent) and an information-flow policy (CaMeL, run there as a monitor over the trace) did not lower the rate ([[2026-wu-mosaic-knowledge-guided]]).
+
+An October 2026 preprint shows that the guarantee of CaMeL does not carry over to agents that call other agents. Untrusted data that one agent hands to another in the instruction text is read there as trusted, and changes the second agent's plan. The authors built such an attack. On their own multi-agent benchmark, averaged over five models, attack success was 12.9 per cent without CaMeL, 0.2 per cent with CaMeL on each agent and 0.0 per cent with a protocol that keeps data apart from instructions ([[2026-peters-gill-can-camels]]).
 
 ## Open questions
 
