@@ -4,6 +4,10 @@ What changed in substance, newest first: in the paper, on its page and in the pr
 
 Format: `## <version> · <scope>`, then one paragraph. A paper version is `YYYY-MM-DD-vX.Y` and has its own PDF in `versions/`; the newest one is the version the build prints on the paper and the page. A change without a new paper version carries only its date (`YYYY-MM-DD`). Scope is `Paper`, `Site` or `Project`. The build turns this file into the list at the end of the page.
 
+## 2026-11-10 · Site
+
+Wiki, two sources worked in, the day's new ones; the backlog waited because more than five decisions are open. Created: source pages on "Can CaMeLs Talk?" (CaMeL's guarantee fails when agents call agents, with a protocol fix for trees of agents) and on Trivet (LLM-built Lean proofs of LLVM optimisations). Changed in substance: the broker page (a new table row, a related entry and an open question), prompt injection, proof automation. No new lexicon terms.
+
 ## 2026-11-07 · Site
 
 One source worked into the wiki: the MOSAIC preprint, which measures attacks on coding agents made of benign command-line steps that pass state through the system, and two defences over tool calls that did not reduce them. New pages: one source page. Changed in substance: the broker (a further limit of checks at the tool-call level) and prompt injection. No new lexicon terms.
