@@ -141,3 +141,7 @@ Sources added to the pool today, daily run; the backlog was held back because mo
 ## [2026-11-07] ingest | 2026-wu-mosaic-knowledge-guided
 
 Source added to the pool today, daily run; the backlog was held back because more than five decisions are open. Created: one source page, read in part (the evaluation and discussion in full, the method in outline). Changed: [[broker]] (a table row, a related entry, the open question on sequences), [[prompt-injection]], index, rings. No question for the team: the source measures attacks on other systems' defences and contradicts no claim of the paper, whose sentence on enforcement at every tool call is addressed by the reading under 'For zOS' on the source page.
+
+## [2026-11-13] ingest | 2026-heiser-sel4-operating-systems, 2026-bansal-synergistic-simplex-cooperative, 2026-liao-llvm-translation-validation, 2026-liu-agentos-application-silos
+
+Sources added to the pool today, daily run; the backlog was held back because more than five decisions are open. Created: four source pages. Changed: [[sel4]], [[kernel]], [[lionsos]], [[simplex]], [[safety-path]], [[proof-automation]], [[broker]], index, rings. Heiser's overview was read in full and gives a third count of C lines for the first proof (8,500), recorded on [[kernel]] and [[sel4]] and linked to the open question. The other three were read in part, and each page says which parts. No new question for the team.

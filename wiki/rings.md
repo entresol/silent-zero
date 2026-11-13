@@ -194,3 +194,7 @@ Systems and sources the wiki will need that the pool lacks. They go into the poo
 - [x] 2026-sharma-agent-operating-systems
 - [x] 2026-rinard-testing-credible-compilation
 - [x] 2026-wu-mosaic-knowledge-guided
+- [x] 2026-heiser-sel4-operating-systems
+- [x] 2026-bansal-synergistic-simplex-cooperative
+- [x] 2026-liao-llvm-translation-validation
+- [x] 2026-liu-agentos-application-silos

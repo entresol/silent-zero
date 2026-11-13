@@ -338,7 +338,7 @@ sup.refs a:hover { text-decoration: underline; }
     <div class="titleblock">
       <h1 class="name">The safety path</h1>
       <p class="sub">Simplex in Silent Zero: the agent proposes, the loop disposes; tested, not proven; the paper’s 2001 date disputed by a 1994 origin.</p>
-      <p class="ver">Design · <a href="/wiki/#how">LLM reviewed</a> · updated 31 Oct 2026 · 4 sources</p>
+      <p class="ver">Design · <a href="/wiki/#how">LLM reviewed</a> · updated 13 Nov 2026 · 5 sources</p>
     </div>
   </div>
 </header>
@@ -397,6 +397,7 @@ sup.refs a:hover { text-decoration: underline; }
 </tr>
 </tbody>
 </table></div>
+<p>The 2026 Synergistic Simplex variant relaxes the rule for its safety layer: it may read a learned output, such as lane boundaries, when it is independent of the function protected; in one simulated scenario the strict form meant more stops (route completion 0.1 against 0.7), and the authors note that certification standards prohibit such use. Its evidence is a car in CARLA with static obstacles, ten runs per cell in CARLA, and proofs on paper (<a href="/wiki/sources/2026-bansal-synergistic-simplex-cooperative.html">Synergistic Simplex</a>). Our reading: Silent Zero keeps the strict form, since its loop owns its sensors and takes nothing from the model.</p>
 <p>A robot model’s vendor says its model-level safety filters “are not a substitute for the rigorous safety engineering required for physical systems” and asks for several layers, with emergency stops and collision avoidance outside the model (<a href="/wiki/sources/2025-google-building-next-generation.html">Gemini Robotics-ER 1.5</a>). Related evidence that is not Simplex: a robot’s protective stop caught an oscillating learned controller in an experiment (<a href="/wiki/sources/2025-black-real-time-execution.html">Real-Time Execution of Action Chunking Flow Policies</a>, §4.2), and HACMS showed a compromised component contained in flight (<a href="/wiki/sources/2018-klein-formally-verified-software.html">Formally Verified Software in the Real World</a>).</p>
 <h2 id="the-paper-and-its-sources">The paper and its sources</h2>
 <ul>
@@ -413,7 +414,7 @@ sup.refs a:hover { text-decoration: underline; }
 
 <h2 id="page-sources">Sources</h2>
 <p class="links-note">What this page rests on.</p>
-<ul class="linked-from"><li><a href="/wiki/sources/2018-klein-formally-verified-software.html">Formally Verified Software in the Real World</a> <span class="kind">Klein et al. 2018</span></li><li><a href="/wiki/sources/2025-google-building-next-generation.html">Gemini Robotics-ER 1.5</a> <span class="kind">Google 2025</span></li><li><a href="/wiki/sources/2025-black-real-time-execution.html">Real-Time Execution of Action Chunking Flow Policies</a> <span class="kind">Black, Galliker and Levine 2025</span></li><li><a href="/wiki/sources/2025-nesti-use-simplex-architecture.html">The Use of the Simplex Architecture to Enhance Safety in Deep-Learning-Powered Autonomous Systems</a> <span class="kind">Nesti et al. 2025</span></li></ul>
+<ul class="linked-from"><li><a href="/wiki/sources/2018-klein-formally-verified-software.html">Formally Verified Software in the Real World</a> <span class="kind">Klein et al. 2018</span></li><li><a href="/wiki/sources/2025-google-building-next-generation.html">Gemini Robotics-ER 1.5</a> <span class="kind">Google 2025</span></li><li><a href="/wiki/sources/2025-black-real-time-execution.html">Real-Time Execution of Action Chunking Flow Policies</a> <span class="kind">Black, Galliker and Levine 2025</span></li><li><a href="/wiki/sources/2026-bansal-synergistic-simplex-cooperative.html">Synergistic Simplex</a> <span class="kind">Bansal et al. 2026</span></li><li><a href="/wiki/sources/2025-nesti-use-simplex-architecture.html">The Use of the Simplex Architecture to Enhance Safety in Deep-Learning-Powered Autonomous Systems</a> <span class="kind">Nesti et al. 2025</span></li></ul>
 <h2 id="related-pages">Related pages</h2>
 <p class="links-note">Pages this one links to, and pages that link here.</p>
 <ul class="linked-from"><li><a href="/wiki/design/real-time-loops.html">Real-time loops</a> <span class="kind">Design</span></li><li><a href="/wiki/concepts/proof-automation.html">Proof automation</a> <span class="kind">Concept</span></li><li><a href="/wiki/concepts/simplex.html">Simplex architecture</a> <span class="kind">Concept</span></li><li><a href="/wiki/systems/verus.html">Verus</a> <span class="kind">System</span></li><li><a href="/wiki/sources/2026-rinard-testing-credible-compilation.html">the Axon compiler</a> <span class="kind">Source</span></li></ul>
