@@ -1,8 +1,8 @@
 ---
 type: design
 status: reviewed
-sources: [2025-nesti-use-simplex-architecture, 2025-black-real-time-execution, 2018-klein-formally-verified-software, 2025-google-building-next-generation]
-updated: 2026-10-31
+sources: [2025-nesti-use-simplex-architecture, 2025-black-real-time-execution, 2018-klein-formally-verified-software, 2025-google-building-next-generation, 2026-bansal-synergistic-simplex-cooperative]
+updated: 2026-11-13
 ---
 
 # The safety path
@@ -24,6 +24,8 @@ In zOS the agent and its action model play the complex controller of a [[simplex
 | Simplex with learned controllers on a pendulum and a rover, AI isolated by a hypervisor | demonstrated | tests on two systems; switching rule designed per system | [[2025-nesti-use-simplex-architecture]] |
 | Safe side owns the sensors; camera input only on the learned side | demonstrated on the rover | test | [[2025-nesti-use-simplex-architecture]] |
 | A proven safety controller and switching logic | not found in the sources | none | — |
+
+The 2026 Synergistic Simplex variant relaxes the rule for its safety layer: it may read a learned output, such as lane boundaries, when it is independent of the function protected; in one simulated scenario the strict form meant more stops (route completion 0.1 against 0.7), and the authors note that certification standards prohibit such use. Its evidence is a car in CARLA with static obstacles, ten runs per cell in CARLA, and proofs on paper ([[2026-bansal-synergistic-simplex-cooperative]]). Our reading: zOS keeps the strict form, since its loop owns its sensors and takes nothing from the model.
 
 A robot model's vendor says its model-level safety filters "are not a substitute for the rigorous safety engineering required for physical systems" and asks for several layers, with emergency stops and collision avoidance outside the model ([[2025-google-building-next-generation]]). Related evidence that is not Simplex: a robot's protective stop caught an oscillating learned controller in an experiment ([[2025-black-real-time-execution]], §4.2), and HACMS showed a compromised component contained in flight ([[2018-klein-formally-verified-software]]).
 

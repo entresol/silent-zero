@@ -1,9 +1,9 @@
 ---
 type: concept
 status: reviewed
-sources: [2025-nesti-use-simplex-architecture]
+sources: [2025-nesti-use-simplex-architecture, 2026-bansal-synergistic-simplex-cooperative]
 glossary: Simplex architecture
-updated: 2026-10-29
+updated: 2026-11-13
 ---
 
 # Simplex architecture
@@ -20,6 +20,8 @@ A pattern for running a controller one cannot trust: a high-performance controll
 ## State, October 2026
 
 Demonstrated with learned controllers on a pendulum and a rover, on a hypervisor not claimed to be verified, with tests rather than proofs ([[2025-nesti-use-simplex-architecture]]).
+
+A 2026 variant, Synergistic Simplex, lets information flow both ways: the safety layer may ask the learned layer to replan within safe bounds, and may use a learned output that is independent of the function it protects, under conditions the authors derive on paper. In simulation of a car it cut stops where an undetected obstacle lay in a neighbouring lane, with no collisions; its assumptions include static obstacles and correct lane detection ([[2026-bansal-synergistic-simplex-cooperative]]).
 
 ## Open questions
 

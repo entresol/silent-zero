@@ -1,8 +1,8 @@
 ---
 type: design
 status: reviewed
-sources: [nd-sel4-microkit-user-manual, 2022-wistoff-systematic-prevention-core, 2026-trustworthy-where-are-we, 2009-klein-sel4-formal-verification, 2018-klein-formally-verified-software, nd-sel4-verified-configurations, 2026-sel4-functional-correctness-proof, 2026-heiser-mcs-safety-os, 2026-trustworthy-guaranteeing-timeliness-mcs, nd-trustworthy-wcet-worst-case, 2026-sillitoe-resurrecting-sel4-wcet, 2026-sel4-release-17, nd-sel4-sel4-roadmap, nd-trustworthy-proof-statistics, 2026-proofcraft-sel4-security-proofs]
-updated: 2026-11-05
+sources: [nd-sel4-microkit-user-manual, 2022-wistoff-systematic-prevention-core, 2026-trustworthy-where-are-we, 2009-klein-sel4-formal-verification, 2018-klein-formally-verified-software, nd-sel4-verified-configurations, 2026-sel4-functional-correctness-proof, 2026-heiser-mcs-safety-os, 2026-trustworthy-guaranteeing-timeliness-mcs, nd-trustworthy-wcet-worst-case, 2026-sillitoe-resurrecting-sel4-wcet, 2026-sel4-release-17, nd-sel4-sel4-roadmap, nd-trustworthy-proof-statistics, 2026-proofcraft-sel4-security-proofs, 2026-heiser-sel4-operating-systems]
+updated: 2026-11-13
 ---
 
 # The kernel
@@ -33,6 +33,7 @@ In zOS the kernel is [[sel4]] with its mixed-criticality extensions. It isolates
 | Sound kernel WCET on 32-bit Arm before MCS | existed, archived | static analysis; loop bounds set by hand on ARM11, later proved by translation validation (processor not stated) | [[nd-trustworthy-wcet-worst-case]], [[2026-sillitoe-resurrecting-sel4-wcet]], [[2026-trustworthy-guaranteeing-timeliness-mcs]] |
 | WCET of the MCS kernel on 64-bit RISC-V | runs, placeholder values | none yet: no bound | [[2026-sillitoe-resurrecting-sel4-wcet]] |
 | Sound instruction latencies for CVA6 | expected Q1 2027 | to be proved against the design | [[2026-sillitoe-resurrecting-sel4-wcet]] |
+| Verified scope of the proofs | single-core configurations; time mechanisms (MCS) not covered when Heiser's overview was published (April to June 2026) | statement by the article's author | [[2026-heiser-sel4-operating-systems]] |
 | Schedulability framework for MCS | planned, September 2027 | none yet | [[2026-heiser-mcs-safety-os]] |
 | Time protection against timing channels | implemented in research versions on Arm, x86, RISC-V; proof in progress | measurement on prototypes; no proof | [[2022-wistoff-systematic-prevention-core]], [[2026-trustworthy-where-are-we]] |
 
@@ -42,6 +43,7 @@ No current seL4 has a WCET bound on a 64-bit core. Budgets keep an agent from ta
 
 - Section 3 cites the seL4 roadmap (seL4 Foundation n.d.-b) for "Its C-level verification is complete for RISC-V"; the primary source is now in the wiki, [[2026-sel4-functional-correctness-proof]], which could be cited directly.
 - Section 4 cites [[2026-heiser-mcs-safety-os]] for "Provable schedulability for MCS remains ongoing research". Confirmed: the slides give September 2027 for the schedulability framework.
+- Section 2.3's figure of about 8,700 lines of C meets a third count: a 2026 overview by Heiser gives 8,500 lines of C for 200,000 lines of proof script and 11 person-years ([[2026-heiser-sel4-operating-systems]]). A question on the 8,700 figure is already open as an issue.
 - Section 2.3 cites [[2009-klein-sel4-formal-verification]] for the cost of the first proof ("roughly 25 person-years", a repeat "under ten"). The source gives about 22 in total and estimates 8 for a repeat; the project page the paper also cites gives about 25 and a repeat under ten ([[nd-trustworthy-proof-statistics]]). Confirmed against that page, which counts documentation in its total. The same sentence says the proof "covered about 8,700 lines of C"; the page says 7,500 of 8,700 lines were verified.
 - Section 3 cites [[nd-sel4-verified-configurations]] for boot and IOMMU lying outside the proof, and the roadmap for AArch64 in the third quarter of 2027. Both are confirmed: [[nd-sel4-sel4-roadmap]] says "C verification completed for RISC-V, to complete for AArch64 Q3/27" for the MCS extensions.
 - Section 4 cites [[2018-klein-formally-verified-software]] for HACMS. The full text confirms the paper's account.

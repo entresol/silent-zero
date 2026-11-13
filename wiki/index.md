@@ -1,6 +1,6 @@
 ---
 type: index
-updated: 2026-11-07
+updated: 2026-11-13
 ---
 
 # zOS wiki
@@ -9,11 +9,11 @@ The catalogue of every page, with one line each. Read this first.
 
 ## zOS
 
-- [[kernel]] · seL4 with MCS as the zOS kernel: proven (C-level correctness; MCS functional correctness on RISC-V), not stated for MCS (integrity, confidentiality), tested (HACMS), assumed (boot, IOMMU); no WCET bound on any 64-bit core yet; the roadmap dates MCS on AArch64 to Q3 2027. 15 sources.
+- [[kernel]] · seL4 with MCS as the zOS kernel: proven (C-level correctness; MCS functional correctness on RISC-V), not stated for MCS (integrity, confidentiality), tested (HACMS), assumed (boot, IOMMU); no WCET bound on any 64-bit core yet; the roadmap dates MCS on AArch64 to Q3 2027. 16 sources.
 - [[static-system]] · one description, one image: what Microkit checks, what is not proved, and the run-time swap in LionsOS, the kernel underneath. 6 sources.
-- [[broker]] · the only component that hands out authority: capability patterns, CaMeL and FIDES, why model-based defences fail; nothing proven yet. 17 sources.
+- [[broker]] · the only component that hands out authority: capability patterns, CaMeL and FIDES, why model-based defences fail; nothing proven yet. 18 sources.
 - [[real-time-loops]] · the loops that move the motors: asynchronous chunks from slow models, observed timings, no proven bound yet. 9 sources.
-- [[safety-path]] · Simplex in zOS: the agent proposes, the loop disposes; tested, not proven; the paper's 2001 date disputed by a 1994 origin. 4 sources.
+- [[safety-path]] · Simplex in zOS: the agent proposes, the loop disposes; tested, not proven; the paper's 2001 date disputed by a 1994 origin. 5 sources.
 - [[root-of-trust]] · the firmware below the kernel on Arm, RISC-V, PC and Raspberry Pi; OpenTitan, Caliptra, DICE; all *assumed* in the paper's terms. 13 sources.
 - [[bootloader]] · where the zOS loader sits on each platform, signed and measured boot, proofs about boot code so far; the loader itself unproven. 16 sources.
 - [[drivers]] · user-mode drivers, the first verified Ethernet driver, DMA and the IOMMU as assumed, attacked in 2019 although enabled. 10 sources.
@@ -24,9 +24,9 @@ The zOS part *agents* has no page yet. Firmware on PCs (Intel ME, AMD PSP, FSP, 
 
 ## Systems
 
-- [[sel4]] · the verified microkernel zOS builds on: proofs per architecture and platform, cost, MCS, timing, HACMS. 13 sources.
+- [[sel4]] · the verified microkernel zOS builds on: proofs per architecture and platform, cost, MCS, timing, HACMS. 14 sources.
 - [[microkit]] · the build system for static seL4 systems: protection domains, channels, budgets, one image. 4 sources.
-- [[lionsos]] · static OS from small components on seL4 and Microkit; first driver verified. 5 sources.
+- [[lionsos]] · static OS from small components on seL4 and Microkit; first driver verified. 6 sources.
 - [[coreboot]] · open firmware in stages with a fixed payload; verified and measured boot; closed vendor parts on x86. 3 sources.
 - [[tf-a]] · Arm's reference firmware; BL31 stays resident at EL3 below the kernel. 2 sources.
 - [[opensbi]] · RISC-V firmware in machine mode below the kernel. 3 sources.
@@ -54,11 +54,11 @@ The zOS part *agents* has no page yet. Firmware on PCs (Intel ME, AMD PSP, FSP, 
 - [[verified-boot]] · each stage checks the next against a key the attacker cannot change; proofs about boot code so far. 6 sources.
 - [[measured-boot]] · each stage records what runs next; TPM and DICE; a verified DICE implementation. 4 sources.
 - [[time-protection]] · closing timing channels between domains; prototypes on CVA6, proof for seL4 in progress. 3 sources.
-- [[simplex]] · a simple safe controller guarding an untrusted one; tested with learned controllers. 1 source.
+- [[simplex]] · a simple safe controller guarding an untrusted one; tested with learned controllers. 2 sources.
 - [[action-chunking]] · slow robot models emitting action sequences for a fast loop; no bound on delay. 3 sources.
 - [[ai-vulnerability-discovery]] · AI models finding software flaws at scale: DARPA's challenge and Anthropic's figures, the bottleneck moving to patching. 3 sources.
 - [[information-flow-control]] · labels for where data came from and who may see it; FIDES and CaMeL for agents; explicit flows only. 2 sources.
-- [[proof-automation]] · machines proposing proof steps, Isabelle checking them; 77.6 % of a seL4 benchmark sample; Verus as a faster verifier. PROMISE as a second method; AutoVerus for Rust; a coding agent's compiler proofs in Lean. 6 sources.
+- [[proof-automation]] · machines proposing proof steps, Isabelle checking them; 77.6 % of a seL4 benchmark sample; Verus as a faster verifier. PROMISE as a second method; AutoVerus for Rust; a coding agent's compiler proofs in Lean. 7 sources.
 - [[memory-safe-code]] · new code in Rust instead of C: Android's memory-safety flaws below 20 % in 2025; the hardening rival to a verified base. 2 sources.
 - [[mixed-criticality]] · software of different criticality on one platform; processor time as a capability in seL4 MCS. 3 sources.
 
@@ -141,3 +141,7 @@ The zOS part *agents* has no page yet. Firmware on PCs (Intel ME, AMD PSP, FSP, 
 - [[2026-sharma-agent-operating-systems]] · AOS: an agentic control plane over Linux or Windows; reasoning untrusted, deny-by-default tool mediation; no implementation. design, partly read.
 - [[2026-wu-mosaic-knowledge-guided]] · MOSAIC: benign CLI commands that compose through shared OS state beat Progent and CaMeL as tool-call hooks (96.63 % on Claude Code); preprint. measurement, partly read.
 - [[2026-rinard-testing-credible-compilation]] · Axon: a compiler and its Lean proofs written by a coding agent in 34 days; optimisations checked by a verified certificate checker. report, partly read.
+- [[2026-heiser-sel4-operating-systems]] · seL4 for reliability engineers: proof scope (single-core, MCS and Arm64 confidentiality pending in spring 2026), cost, LionsOS driver sizes. survey, full.
+- [[2026-bansal-synergistic-simplex-cooperative]] · Synergistic Simplex: ML and safety layer exchange information in both directions; CARLA and nuPlan, ten runs per cell. test, partly read.
+- [[2026-liao-llvm-translation-validation]] · Trivet: a model builds Lean proofs of LLVM transformations; 147 of 148 cases decided, against 20 of 30 for Alive2 on fixed-width loop-free cases. measurement, partly read.
+- [[2026-liu-agentos-application-silos]] · AgentOS: a personal agent OS with an Agent Kernel and a semantic firewall over a legacy kernel; vision, no implementation. design, partly read.

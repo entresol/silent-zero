@@ -1,9 +1,9 @@
 ---
 type: system
 status: reviewed
-sources: [2009-klein-sel4-formal-verification, 2018-klein-formally-verified-software, nd-sel4-verified-configurations, 2026-sel4-functional-correctness-proof, 2026-heiser-mcs-safety-os, 2026-trustworthy-guaranteeing-timeliness-mcs, nd-trustworthy-wcet-worst-case, 2026-sillitoe-resurrecting-sel4-wcet, 2026-sel4-release-17, 2026-he-neuro-symbolic-proof, 2022-google-announcing-kataos-sparrow, nd-trustworthy-proof-statistics, 2026-proofcraft-sel4-security-proofs]
+sources: [2009-klein-sel4-formal-verification, 2018-klein-formally-verified-software, nd-sel4-verified-configurations, 2026-sel4-functional-correctness-proof, 2026-heiser-mcs-safety-os, 2026-trustworthy-guaranteeing-timeliness-mcs, nd-trustworthy-wcet-worst-case, 2026-sillitoe-resurrecting-sel4-wcet, 2026-sel4-release-17, 2026-he-neuro-symbolic-proof, 2022-google-announcing-kataos-sparrow, nd-trustworthy-proof-statistics, 2026-proofcraft-sel4-security-proofs, 2026-heiser-sel4-operating-systems]
 glossary: seL4
-updated: 2026-11-05
+updated: 2026-11-13
 ---
 
 # seL4
@@ -20,13 +20,13 @@ A microkernel of the L4 family whose C implementation has a machine-checked proo
 | Functional correctness of the MCS configuration | RISC-V, announced 29 June 2026; port to 64-bit Arm under DARPA's PROVERS programme | [[2026-sel4-functional-correctness-proof]] |
 | Platforms with the C-level proof | since release 17.0.0 (30 October 2026), by the release notes' own words, "all 64-bit platforms seL4 support"; they list eight RISC-V platforms and fifteen AArch64 ones. The MCS proof on RISC-V covers `hifive` (HiFive Unleashed) only | [[2026-sel4-release-17]] |
 | Kernel boot, IOMMU and SMMU, debug interfaces | not covered by any verified configuration | [[nd-sel4-verified-configurations]] |
-| Multicore | verification in progress | [[2026-heiser-mcs-safety-os]] |
+| Multicore | verification in progress; the verified scope is single-core, with a multikernel configuration under way | [[2026-heiser-mcs-safety-os]]; [[2026-heiser-sel4-operating-systems]] (article dated April to June 2026) |
 
-The documentation page's RISC-V section still called the MCS verification ongoing on 23 October 2026 ([[nd-sel4-verified-configurations]]).
+An overview by Heiser (published 30 April, current version 26 June 2026) says the MCS time mechanisms were then outside the proofs, with verification expected in 2027; its version date is three days before the announcement of 29 June 2026 above ([[2026-heiser-sel4-operating-systems]]). The documentation page's RISC-V section still called the MCS verification ongoing on 23 October 2026 ([[nd-sel4-verified-configurations]]).
 
 ## Size and cost
 
-8,700 lines of C and 600 of assembler in 2009 ([[2009-klein-sel4-formal-verification]]); about 10,000 lines of C later ([[2018-klein-formally-verified-software]], §3; [[nd-trustworthy-wcet-worst-case]]); just over 11,000 lines in the 64-bit RISC-V build analysed in 2026 ([[2026-sillitoe-resurrecting-sel4-wcet]], §3). The first proof took about 20 person-years, 11 of them seL4-specific ([[2009-klein-sel4-formal-verification]], §5.2); all seL4-specific proofs to 2018 add up to 18 ([[2018-klein-formally-verified-software]], sidebar). The group's project page gives about 25 person-years for design, documentation, implementation and verification together, a repeat under ten, about 200,000 lines of Isabelle proof script for the 2009 kernel and about 500,000 lines of proof files by 2015. It counts 160 bugs found in the C code, 144 of them during verification, and says the assembler and the boot code, 1,200 lines, are unverified ([[nd-trustworthy-proof-statistics]]). In 2026 a method with a small language model and Isabelle as checker re-proved 77.6 per cent of the still-valid theorems in three evaluation splits of the FVEL benchmark, drawn from seL4's proofs ([[2026-he-neuro-symbolic-proof]]). See [[proof-automation]].
+8,700 lines of C and 600 of assembler in 2009 ([[2009-klein-sel4-formal-verification]]); about 10,000 lines of C later ([[2018-klein-formally-verified-software]], §3; [[nd-trustworthy-wcet-worst-case]]); just over 11,000 lines in the 64-bit RISC-V build analysed in 2026 ([[2026-sillitoe-resurrecting-sel4-wcet]], §3). The first proof took about 20 person-years, 11 of them seL4-specific ([[2009-klein-sel4-formal-verification]], §5.2); all seL4-specific proofs to 2018 add up to 18 ([[2018-klein-formally-verified-software]], sidebar). The group's project page gives about 25 person-years for design, documentation, implementation and verification together, a repeat under ten, about 200,000 lines of Isabelle proof script for the 2009 kernel and about 500,000 lines of proof files by 2015. It counts 160 bugs found in the C code, 144 of them during verification, and says the assembler and the boot code, 1,200 lines, are unverified ([[nd-trustworthy-proof-statistics]]). In 2026 a method with a small language model and Isabelle as checker re-proved 77.6 per cent of the still-valid theorems in three evaluation splits of the FVEL benchmark, drawn from seL4's proofs ([[2026-he-neuro-symbolic-proof]]). Heiser's 2026 overview gives 11 person-years, 200,000 lines of proof script and 8,500 lines of C for the first proof, citing Klein et al. 2014; its count of C lines differs from the two above, and it says the proof base is now well over a million lines ([[2026-heiser-sel4-operating-systems]]). See [[proof-automation]].
 
 ## Time
 

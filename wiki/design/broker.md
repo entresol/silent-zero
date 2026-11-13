@@ -1,8 +1,8 @@
 ---
 type: design
 status: reviewed
-sources: [1988-hardy-confused-deputy-or, 2006-miller-robust-composition-towards, 2025-debenedetti-defeating-prompt-injections, 2026-nasr-attacker-moves-second, 2018-klein-formally-verified-software, nd-sel4-verified-configurations, 2026-sel4-functional-correctness-proof, nd-sel4-microkit-user-manual, 2026-heiser-mcs-safety-os, 2026-bower-cohesix-research-operating, 2025-costa-securing-ai-agents, 2023-greshake-not-what-you, 2022-google-announcing-kataos-sparrow, 2026-zou-agentkernel-trust-native, 2026-shen-mcp-38-comprehensive, 2026-sharma-agent-operating-systems, 2026-wu-mosaic-knowledge-guided]
-updated: 2026-11-07
+sources: [1988-hardy-confused-deputy-or, 2006-miller-robust-composition-towards, 2025-debenedetti-defeating-prompt-injections, 2026-nasr-attacker-moves-second, 2018-klein-formally-verified-software, nd-sel4-verified-configurations, 2026-sel4-functional-correctness-proof, nd-sel4-microkit-user-manual, 2026-heiser-mcs-safety-os, 2026-bower-cohesix-research-operating, 2025-costa-securing-ai-agents, 2023-greshake-not-what-you, 2022-google-announcing-kataos-sparrow, 2026-zou-agentkernel-trust-native, 2026-shen-mcp-38-comprehensive, 2026-sharma-agent-operating-systems, 2026-wu-mosaic-knowledge-guided, 2026-liu-agentos-application-silos]
+updated: 2026-11-13
 ---
 
 # The broker
@@ -44,6 +44,7 @@ The only component in zOS that hands out authority. It grants capabilities that 
 - [[2026-shen-mcp-38-comprehensive]] catalogues 38 threats to systems built on the Model Context Protocol, many of them ways in which text persuades a model, the rest classical flaws. Our reading: for the first kind the broker need not recognise the text, since it grants only declared authority, which limits reach but not leakage through allowed channels; the paper offers no evidence on that and the broker is not built.
 - [[2026-sharma-agent-operating-systems]] proposes an agent operating system as a control plane over Linux or Windows: model output is a proposal, tool calls pass deny-by-default capability checks, and a registry admits tools found at run time. It is a design without implementation, measurements or proofs, and it names no real-time goal. It lists sequences of individually allowed actions as a gap: per-action enforcement is "necessary but not sufficient" and stateful evaluation may be needed (§8.2), which is the open question on sequences below.
 - [[2026-wu-mosaic-knowledge-guided]] measures attacks that carry no explicit malicious instruction: benign command-line steps that pass state to each other through files, environment and hooks. Progent and CaMeL, run as hooks over an agent's tool calls, left their success rate unchanged at 96.63 per cent in the authors' setup on Claude Code. They explain it by the state passing between commands and not through tool-call arguments (CaMeL ran there as an adapted trace monitor). Our reading: a broker that checks tool calls cannot be the whole guarantee; what the agent's domain shares with other components must be bounded below it, by the capabilities it holds. See [[static-system]].
+- [[2026-liu-agentos-application-silos]] is a vision paper for a personal agent OS with an "Agent Kernel" above a legacy kernel. Its security idea is a semantic firewall that checks intent and marks untrusted data as tainted; in the sections read it has no implementation and no capability mechanism. Our reading: another design in the line of [[2026-zou-agentkernel-trust-native]] and [[2026-sharma-agent-operating-systems]], with checks on intent where the broker has checks on authority.
 
 ## Open
 

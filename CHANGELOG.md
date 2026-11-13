@@ -4,6 +4,10 @@ What changed in substance, newest first: in the paper, on its page and in the pr
 
 Format: `## <version> · <scope>`, then one paragraph. A paper version is `YYYY-MM-DD-vX.Y` and has its own PDF in `versions/`; the newest one is the version the build prints on the paper and the page. A change without a new paper version carries only its date (`YYYY-MM-DD`). Scope is `Paper`, `Site` or `Project`. The build turns this file into the list at the end of the page.
 
+## 2026-11-13 · Site
+
+Four sources worked into the wiki: Heiser's 2026 overview of what seL4's proofs cover, the Synergistic Simplex preprint, the Trivet preprint on machine-built Lean proofs for LLVM transformations, and a vision paper for a personal agent OS. New pages: four source pages. Changed in substance: seL4 and the kernel (single-core scope and a third count of C lines in the first proof), LionsOS (driver size, verification expected in 2027), Simplex and the safety path (a variant in which the safety layer reads learned output), proof automation and the broker. No new lexicon terms.
+
 ## 2026-11-07 · Site
 
 One source worked into the wiki: the MOSAIC preprint, which measures attacks on coding agents made of benign command-line steps that pass state through the system, and two defences over tool calls that did not reduce them. New pages: one source page. Changed in substance: the broker (a further limit of checks at the tool-call level) and prompt injection. No new lexicon terms.
