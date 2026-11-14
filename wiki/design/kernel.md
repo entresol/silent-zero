@@ -1,8 +1,8 @@
 ---
 type: design
 status: reviewed
-sources: [nd-sel4-microkit-user-manual, 2022-wistoff-systematic-prevention-core, 2026-trustworthy-where-are-we, 2009-klein-sel4-formal-verification, 2018-klein-formally-verified-software, nd-sel4-verified-configurations, 2026-sel4-functional-correctness-proof, 2026-heiser-mcs-safety-os, 2026-trustworthy-guaranteeing-timeliness-mcs, nd-trustworthy-wcet-worst-case, 2026-sillitoe-resurrecting-sel4-wcet, 2026-sel4-release-17, nd-sel4-sel4-roadmap, nd-trustworthy-proof-statistics, 2026-proofcraft-sel4-security-proofs, 2026-heiser-sel4-operating-systems]
-updated: 2026-11-13
+sources: [nd-sel4-microkit-user-manual, 2022-wistoff-systematic-prevention-core, 2026-trustworthy-where-are-we, 2009-klein-sel4-formal-verification, 2018-klein-formally-verified-software, nd-sel4-verified-configurations, 2026-sel4-functional-correctness-proof, 2026-heiser-mcs-safety-os, 2026-trustworthy-guaranteeing-timeliness-mcs, nd-trustworthy-wcet-worst-case, 2026-sillitoe-resurrecting-sel4-wcet, 2026-sel4-release-17, nd-sel4-sel4-roadmap, nd-trustworthy-proof-statistics, 2026-proofcraft-sel4-security-proofs, 2026-heiser-sel4-operating-systems, 2026-heiser-trustworthy-systems-update]
+updated: 2026-11-14
 ---
 
 # The kernel
@@ -31,7 +31,7 @@ In zOS the kernel is [[sel4]] with its mixed-criticality extensions. It isolates
 | Processor time as capability with enforced budgets | implemented in MCS | covered by the C-level refinement proof in our reading; no theorem on temporal isolation | [[2026-heiser-mcs-safety-os]], [[2026-sel4-functional-correctness-proof]] |
 | Containment of a compromised component in the field | demonstrated under a white-box red-team attack, 2017 | test | [[2018-klein-formally-verified-software]] |
 | Sound kernel WCET on 32-bit Arm before MCS | existed, archived | static analysis; loop bounds set by hand on ARM11, later proved by translation validation (processor not stated) | [[nd-trustworthy-wcet-worst-case]], [[2026-sillitoe-resurrecting-sel4-wcet]], [[2026-trustworthy-guaranteeing-timeliness-mcs]] |
-| WCET of the MCS kernel on 64-bit RISC-V | runs, placeholder values | none yet: no bound | [[2026-sillitoe-resurrecting-sel4-wcet]] |
+| WCET of the MCS kernel on 64-bit RISC-V | runs, placeholder values; full-kernel cache analyses (not the whole pipeline) take about an hour (September 2026 slides) | none yet: no bound | [[2026-sillitoe-resurrecting-sel4-wcet]], [[2026-heiser-trustworthy-systems-update]] |
 | Sound instruction latencies for CVA6 | expected Q1 2027 | to be proved against the design | [[2026-sillitoe-resurrecting-sel4-wcet]] |
 | Verified scope of the proofs | single-core configurations; time mechanisms (MCS) not covered when Heiser's overview was published (April to June 2026) | statement by the article's author | [[2026-heiser-sel4-operating-systems]] |
 | Schedulability framework for MCS | planned, September 2027 | none yet | [[2026-heiser-mcs-safety-os]] |
