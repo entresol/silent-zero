@@ -1,6 +1,6 @@
 ---
 type: index
-updated: 2026-11-13
+updated: 2026-11-14
 ---
 
 # zOS wiki
@@ -145,3 +145,4 @@ The zOS part *agents* has no page yet. Firmware on PCs (Intel ME, AMD PSP, FSP, 
 - [[2026-bansal-synergistic-simplex-cooperative]] · Synergistic Simplex: ML and safety layer exchange information in both directions; CARLA and nuPlan, ten runs per cell. test, partly read.
 - [[2026-liao-llvm-translation-validation]] · Trivet: a model builds Lean proofs of LLVM transformations; 147 of 148 cases decided, against 20 of 30 for Alive2 on fixed-width loop-free cases. measurement, partly read.
 - [[2026-liu-agentos-application-silos]] · AgentOS: a personal agent OS with an Agent Kernel and a semantic firewall over a legacy kernel; vision, no implementation. design, partly read.
+- [[2026-heiser-trustworthy-systems-update]] · seL4 Summit 2026 slides: WCET revival scales (cache analysis from infeasible to about an hour), Microkit runs x86-64 UEFI, SMP against multikernel benchmarks. progress, partly read.
