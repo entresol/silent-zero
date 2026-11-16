@@ -1,6 +1,6 @@
 ---
 type: index
-updated: 2026-11-14
+updated: 2026-11-16
 ---
 
 # zOS wiki
@@ -16,7 +16,7 @@ The catalogue of every page, with one line each. Read this first.
 - [[safety-path]] · Simplex in zOS: the agent proposes, the loop disposes; tested, not proven; the paper's 2001 date disputed by a 1994 origin. 5 sources.
 - [[root-of-trust]] · the firmware below the kernel on Arm, RISC-V, PC and Raspberry Pi; OpenTitan, Caliptra, DICE; all *assumed* in the paper's terms. 13 sources.
 - [[bootloader]] · where the zOS loader sits on each platform, signed and measured boot, proofs about boot code so far; the loader itself unproven. 16 sources.
-- [[drivers]] · user-mode drivers, the first verified Ethernet driver, DMA and the IOMMU as assumed, attacked in 2019 although enabled. 10 sources.
+- [[drivers]] · user-mode drivers, the first verified Ethernet driver, DMA and the IOMMU as assumed, attacked in 2019 although enabled; device models from Verilog and Windows on x86-64 as first steps. 12 sources.
 
 ## Not yet covered
 
@@ -26,7 +26,7 @@ The zOS part *agents* has no page yet. Firmware on PCs (Intel ME, AMD PSP, FSP, 
 
 - [[sel4]] · the verified microkernel zOS builds on: proofs per architecture and platform, cost, MCS, timing, HACMS. 14 sources.
 - [[microkit]] · the build system for static seL4 systems: protection domains, channels, budgets, one image. 4 sources.
-- [[lionsos]] · static OS from small components on seL4 and Microkit; first driver verified. 6 sources.
+- [[lionsos]] · static OS from small components on seL4 and Microkit; first driver verified; Summit 2026 talks on x86-64 VMs and driver specifications. 9 sources.
 - [[coreboot]] · open firmware in stages with a fixed payload; verified and measured boot; closed vendor parts on x86. 3 sources.
 - [[tf-a]] · Arm's reference firmware; BL31 stays resident at EL3 below the kernel. 2 sources.
 - [[opensbi]] · RISC-V firmware in machine mode below the kernel. 3 sources.
@@ -146,3 +146,5 @@ The zOS part *agents* has no page yet. Firmware on PCs (Intel ME, AMD PSP, FSP, 
 - [[2026-liao-llvm-translation-validation]] · Trivet: a model builds Lean proofs of LLVM transformations; 147 of 148 cases decided, against 20 of 30 for Alive2 on fixed-width loop-free cases. measurement, partly read.
 - [[2026-liu-agentos-application-silos]] · AgentOS: a personal agent OS with an Agent Kernel and a semantic firewall over a legacy kernel; vision, no implementation. design, partly read.
 - [[2026-heiser-trustworthy-systems-update]] · seL4 Summit 2026 slides: WCET revival scales (cache analysis from infeasible to about an hour), Microkit runs x86-64 UEFI, SMP against multikernel benchmarks. progress, partly read.
+- [[2026-murphy-formalising-device-protocols]] · seL4 Summit 2026 talk: device models from a device's Verilog in HOL4, a rely-guarantee format for Pancake drivers; no device proved end to end on the slides. progress, partly read.
+- [[2026-nguyen-booting-windows-x86-64]] · seL4 Summit 2026 talk: libvmm boots unmodified Windows 11 on x86-64 through UEFI; APICv cuts the boot from over ten minutes to 60 seconds; no isolation claim. report, partly read.

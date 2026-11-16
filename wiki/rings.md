@@ -198,3 +198,5 @@ Systems and sources the wiki will need that the pool lacks. They go into the poo
 - [x] 2026-bansal-synergistic-simplex-cooperative
 - [x] 2026-liao-llvm-translation-validation
 - [x] 2026-liu-agentos-application-silos
+- [x] 2026-murphy-formalising-device-protocols
+- [x] 2026-nguyen-booting-windows-x86-64

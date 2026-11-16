@@ -337,8 +337,8 @@ sup.refs a:hover { text-decoration: underline; }
     <p class="crumbs"><a href="/">Silent Zero OS</a> · <a href="/wiki/">Wiki</a></p>
     <div class="titleblock">
       <h1 class="name">Drivers</h1>
-      <p class="sub">user-mode drivers, the first verified Ethernet driver, DMA and the IOMMU as assumed, attacked in 2019 although enabled.</p>
-      <p class="ver">Design · <a href="/wiki/#how">LLM reviewed</a> · updated 3 Nov 2026 · 10 sources</p>
+      <p class="sub">user-mode drivers, the first verified Ethernet driver, DMA and the IOMMU as assumed, attacked in 2019 although enabled; device models from Verilog and Windows on x86-64 as first steps.</p>
+      <p class="ver">Design · <a href="/wiki/#how">LLM reviewed</a> · updated 16 Nov 2026 · 12 sources</p>
     </div>
   </div>
 </header>
@@ -401,10 +401,22 @@ sup.refs a:hover { text-decoration: underline; }
 <td data-label="Source"><a href="/wiki/sources/2026-trustworthy-lionsos.html">Trustworthy Systems: LionsOS</a></td>
 </tr>
 <tr>
+<td data-label="Claim">Device models derived from a device’s Verilog, as the specification a driver is verified against</td>
+<td data-label="State">first steps, September 2026: a HOL4 workflow and an annotation scheme, the specification format shown on OpenTitan’s I²C controller; on the slides only address-decoding logic is marked verified</td>
+<td data-label="Evidence">slides of a talk, no figures</td>
+<td data-label="Source"><a href="/wiki/sources/2026-murphy-formalising-device-protocols.html">Formalising device protocols for sDDF driver verification</a></td>
+</tr>
+<tr>
 <td data-label="Claim">Unmodified Linux drivers in a driver VM</td>
 <td data-label="State">available in LionsOS; drivers shown: GPU framebuffer, Ethernet, SD block, sound on one Arm board; a few weeks per device class</td>
 <td data-label="Evidence">design and use</td>
 <td data-label="Source"><a href="/wiki/sources/2025-heiser-fast-secure-adaptable.html">Fast, Secure, Adaptable: LionsOS Design, Implementation and Performance</a>, <a href="/wiki/sources/2026-heiser-mcs-safety-os.html">MCS safety, an OS perspective</a></td>
+</tr>
+<tr>
+<td data-label="Claim">The VM machinery on x86-64</td>
+<td data-label="State">libvmm boots an unmodified Windows 11 and Linux guests, through UEFI firmware, with sDDF drivers; no isolation claim</td>
+<td data-label="Evidence">a talk with a live demonstration</td>
+<td data-label="Source"><a href="/wiki/sources/2026-nguyen-booting-windows-x86-64.html">Booting Windows on an x86-64 seL4-based VMM</a></td>
 </tr>
 <tr>
 <td data-label="Claim">Each driver sees only its own device</td>
@@ -437,14 +449,14 @@ sup.refs a:hover { text-decoration: underline; }
 <h2 id="open">Open</h2>
 <ul>
 <li>No verified driver for a bus to motor controllers (serial, CAN, I²C) exists in the sources, though drivers on the motion path are where correctness matters most.</li>
-<li>The verified driver’s device model is translated from the manual by hand; specifications from the device’s Verilog are work in progress (<a href="/wiki/sources/2026-tyler-smt-based-deductive.html">SMT-based Deductive Verification of Device Drivers</a>, §3.3.1).</li>
+<li>The verified driver’s device model is translated from the manual by hand; specifications from the device’s Verilog are work in progress (<a href="/wiki/sources/2026-tyler-smt-based-deductive.html">SMT-based Deductive Verification of Device Drivers</a>, §3.3.1). The September 2026 talk describes the workflow on an open RISC-V system on chip and lists a decompiler from Verilog as future work (<a href="/wiki/sources/2026-murphy-formalising-device-protocols.html">Formalising device protocols for sDDF driver verification</a>). Our reading: it needs the device’s Verilog, which the slides do not discuss and which a board such as the pib’s Raspberry Pi does not offer in the sources here.</li>
 <li>Microkit describes IO address spaces backed by an IOMMU or SMMU in general terms, and states the mapping explicitly only for x86 (<a href="/wiki/sources/nd-sel4-microkit-user-manual.html">seL4 Microkit: User Manual, v2.3.0</a>); no verified kernel configuration covers the IOMMU. Whether the pib’s Raspberry Pi has an IOMMU at all is not answered by a source in the wiki.</li>
 <li>Which Thunderclap attack classes reach a system whose drivers run in user mode with page-aligned buffers is not answered by any source in the wiki; our reading is in <a href="/wiki/sources/2019-markettos-thunderclap-exploring-vulnerabilities.html">Thunderclap</a>.</li>
 </ul>
 
 <h2 id="page-sources">Sources</h2>
 <p class="links-note">What this page rests on.</p>
-<ul class="linked-from"><li><a href="/wiki/sources/2025-heiser-fast-secure-adaptable.html">Fast, Secure, Adaptable: LionsOS Design, Implementation and Performance</a> <span class="kind">Heiser et al. 2025</span></li><li><a href="/wiki/sources/2024-trail-leftoverlocals-listening-llm.html">LeftoverLocals</a> <span class="kind">Khlaaf and Sorensen 2024</span></li><li><a href="/wiki/sources/2026-heiser-mcs-safety-os.html">MCS safety, an OS perspective</a> <span class="kind">Heiser 2026</span></li><li><a href="/wiki/sources/nd-sel4-verified-configurations.html">seL4 Foundation: Verified Configurations</a></li><li><a href="/wiki/sources/nd-sel4-microkit-user-manual.html">seL4 Microkit: User Manual, v2.3.0</a></li><li><a href="/wiki/sources/2009-klein-sel4-formal-verification.html">seL4, Formal Verification of an OS Kernel</a> <span class="kind">Klein et al. 2009</span></li><li><a href="/wiki/sources/2026-tyler-smt-based-deductive.html">SMT-based Deductive Verification of Device Drivers</a> <span class="kind">Tyler et al. 2026</span></li><li><a href="/wiki/sources/2022-parker-sel4-device-driver.html">The seL4 Device Driver Framework</a> <span class="kind">Parker 2022</span></li><li><a href="/wiki/sources/2019-markettos-thunderclap-exploring-vulnerabilities.html">Thunderclap</a> <span class="kind">Markettos et al. 2019</span></li><li><a href="/wiki/sources/2026-trustworthy-lionsos.html">Trustworthy Systems: LionsOS</a></li></ul>
+<ul class="linked-from"><li><a href="/wiki/sources/2026-nguyen-booting-windows-x86-64.html">Booting Windows on an x86-64 seL4-based VMM</a> <span class="kind">Nguyen 2026</span></li><li><a href="/wiki/sources/2025-heiser-fast-secure-adaptable.html">Fast, Secure, Adaptable: LionsOS Design, Implementation and Performance</a> <span class="kind">Heiser et al. 2025</span></li><li><a href="/wiki/sources/2026-murphy-formalising-device-protocols.html">Formalising device protocols for sDDF driver verification</a> <span class="kind">Murphy 2026</span></li><li><a href="/wiki/sources/2024-trail-leftoverlocals-listening-llm.html">LeftoverLocals</a> <span class="kind">Khlaaf and Sorensen 2024</span></li><li><a href="/wiki/sources/2026-heiser-mcs-safety-os.html">MCS safety, an OS perspective</a> <span class="kind">Heiser 2026</span></li><li><a href="/wiki/sources/nd-sel4-verified-configurations.html">seL4 Foundation: Verified Configurations</a></li><li><a href="/wiki/sources/nd-sel4-microkit-user-manual.html">seL4 Microkit: User Manual, v2.3.0</a></li><li><a href="/wiki/sources/2009-klein-sel4-formal-verification.html">seL4, Formal Verification of an OS Kernel</a> <span class="kind">Klein et al. 2009</span></li><li><a href="/wiki/sources/2026-tyler-smt-based-deductive.html">SMT-based Deductive Verification of Device Drivers</a> <span class="kind">Tyler et al. 2026</span></li><li><a href="/wiki/sources/2022-parker-sel4-device-driver.html">The seL4 Device Driver Framework</a> <span class="kind">Parker 2022</span></li><li><a href="/wiki/sources/2019-markettos-thunderclap-exploring-vulnerabilities.html">Thunderclap</a> <span class="kind">Markettos et al. 2019</span></li><li><a href="/wiki/sources/2026-trustworthy-lionsos.html">Trustworthy Systems: LionsOS</a></li></ul>
 <h2 id="related-pages">Related pages</h2>
 <p class="links-note">Pages this one links to, and pages that link here.</p>
 <ul class="linked-from"><li><a href="/wiki/design/static-system.html">The static system</a> <span class="kind">Design</span></li><li><a href="/wiki/concepts/iommu.html">IOMMU</a> <span class="kind">Concept</span></li><li><a href="/wiki/concepts/proof-automation.html">Proof automation</a> <span class="kind">Concept</span></li><li><a href="/wiki/systems/microkit.html">Microkit</a> <span class="kind">System</span></li><li><a href="/wiki/sources/2026-heiser-sel4-operating-systems.html">seL4 for reliability</a> <span class="kind">Source</span></li><li><a href="/wiki/sources/2024-lattuada-verus-practical-foundation.html">Verus, a practical foundation for systems verification</a> <span class="kind">Source</span></li></ul>

@@ -1,9 +1,9 @@
 ---
 type: system
 status: reviewed
-sources: [2025-heiser-fast-secure-adaptable, 2026-trustworthy-lionsos, 2026-heiser-mcs-safety-os, 2022-parker-sel4-device-driver, 2026-tyler-smt-based-deductive, 2026-heiser-sel4-operating-systems, 2026-heiser-trustworthy-systems-update]
+sources: [2025-heiser-fast-secure-adaptable, 2026-trustworthy-lionsos, 2026-heiser-mcs-safety-os, 2022-parker-sel4-device-driver, 2026-tyler-smt-based-deductive, 2026-heiser-sel4-operating-systems, 2026-heiser-trustworthy-systems-update, 2026-murphy-formalising-device-protocols, 2026-nguyen-booting-windows-x86-64]
 glossary: LionsOS
-updated: 2026-11-14
+updated: 2026-11-16
 ---
 
 # LionsOS
@@ -15,6 +15,8 @@ An operating system from composable components on [[sel4]] and [[microkit]], fro
 Version 0.4.0, "undergoing active research and development". Base device classes (network, block, serial, I²C) are expected to be mostly stable ([[2026-trustworthy-lionsos]]). A Pancake version of a LionsOS Ethernet driver and the queue library are verified with SMT-based proofs; whether LionsOS ships that version is not stated ([[2026-tyler-smt-based-deductive]]). Verification of the other drivers and components is under way ([[2026-trustworthy-lionsos]]); Heiser expects the verification of LionsOS to be completed in 2027 and says initial explorations show verifying small components, mostly under 500 lines in the reference design, to be feasible ([[2026-heiser-sel4-operating-systems]]).
 
 Slides of September 2026 add a community firewall project, released in November 2025, a virtual network switch, and sDDF support for ACPI and PCIe ([[2026-heiser-trustworthy-systems-update]], slides 5 to 8). The same slides say that [[microkit]] can now start, stop and upgrade protection domains at run time, used by the Carrels project; whether LionsOS uses this is not stated, and the static description above is from the project page.
+
+Two more talks of the same summit: libvmm, the VMM library on Microkit, boots an unmodified Windows 11 and Linux guests on x86-64, through UEFI firmware, with sDDF drivers underneath ([[2026-nguyen-booting-windows-x86-64]]); and work on driver specifications taken from a device's Verilog, with a rely-guarantee style for device specifications and Pancake drivers, aims at end-to-end driver proofs and a system specification composed of client, virtualiser and driver specifications ([[2026-murphy-formalising-device-protocols]]). Neither talk mentions LionsOS by name, and neither says whether LionsOS ships the result.
 
 ## Design
 

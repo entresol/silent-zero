@@ -149,3 +149,11 @@ Sources added to the pool today, daily run; the backlog was held back because mo
 ## [2026-11-14] ingest | 2026-heiser-trustworthy-systems-update
 
 Source added to the pool today, daily run; the backlog was held back because more than five decisions are open (eight). Created: one source page, read from the slides alone. Changed: [[wcet-analysis]] (the scaling fix and the build time, next to the July paper's three hours), [[kernel]], [[sel4]], [[microkit]], [[lionsos]], index. The slides state no proof status for multikernel seL4, so the plan of the roadmap stands. No question for the team.
+
+## [2026-11-16] lint
+
+Monday pass. `wiki_lint.py` found nothing. The reading half was partial: no page is `drafted` apart from today's two (so no held-back reason to re-examine), and the pages touched today were compared with their neighbours; a full read of all pages for contradictions was not done in this run. Found and fixed: nothing. Left open: the questions already open as issues.
+
+## [2026-11-16] ingest | 2026-murphy-formalising-device-protocols, 2026-nguyen-booting-windows-x86-64
+
+Sources added to the pool today, daily run; the backlog was held back because more than five decisions are open (eight). Created: two source pages, both read from the slides alone; the fact check by a second agent flagged about 20 claims (stronger wording, missing hedges, unmarked inferences, one wrong direction of an implication), all fixed, both pages `reviewed`. Changed: [[drivers]] (a row on device models from Verilog, a row on the x86-64 VM machinery, the open point on the device model), [[lionsos]], index, rings. Murphy's talk is the Verilog work that the verified-driver paper names as concurrent; no device is proved end to end on the slides. Nguyen's talk makes no isolation claim. No question for the team.

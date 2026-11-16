@@ -1,8 +1,8 @@
 ---
 type: design
 status: reviewed
-sources: [2025-heiser-fast-secure-adaptable, 2022-parker-sel4-device-driver, 2026-tyler-smt-based-deductive, 2026-trustworthy-lionsos, 2026-heiser-mcs-safety-os, nd-sel4-microkit-user-manual, nd-sel4-verified-configurations, 2009-klein-sel4-formal-verification, 2019-markettos-thunderclap-exploring-vulnerabilities, 2024-trail-leftoverlocals-listening-llm]
-updated: 2026-11-03
+sources: [2025-heiser-fast-secure-adaptable, 2022-parker-sel4-device-driver, 2026-tyler-smt-based-deductive, 2026-murphy-formalising-device-protocols, 2026-nguyen-booting-windows-x86-64, 2026-trustworthy-lionsos, 2026-heiser-mcs-safety-os, nd-sel4-microkit-user-manual, nd-sel4-verified-configurations, 2009-klein-sel4-formal-verification, 2019-markettos-thunderclap-exploring-vulnerabilities, 2024-trail-leftoverlocals-listening-llm]
+updated: 2026-11-16
 ---
 
 # Drivers
@@ -24,7 +24,9 @@ In zOS drivers run in user mode, each with access only to its own device. Legacy
 | Performance comparable to or better than Linux | measured for networking and SD storage on Arm and x86, plotted figures, no worst case | measurement, by the system's authors | [[2025-heiser-fast-secure-adaptable]], [[2022-parker-sel4-device-driver]], [[2026-heiser-mcs-safety-os]] |
 | A Pancake version of a LionsOS Ethernet driver, and the queue library, follow the device and OS protocols, move buffers correctly and meet a completion condition | proven, 2026 | SMT-based proof; trusted: the transpiler, the Viper backend and solver, a hand-written weak-memory encoding, a device model taken from the manual; the OS side is assumed to keep its queue contracts | [[2026-tyler-smt-based-deductive]] |
 | Other LionsOS drivers verified | under way | none yet | [[2026-trustworthy-lionsos]] |
+| Device models derived from a device's Verilog, as the specification a driver is verified against | first steps, September 2026: a HOL4 workflow and an annotation scheme, the specification format shown on OpenTitan's I²C controller; on the slides only address-decoding logic is marked verified | slides of a talk, no figures | [[2026-murphy-formalising-device-protocols]] |
 | Unmodified Linux drivers in a driver VM | available in LionsOS; drivers shown: GPU framebuffer, Ethernet, SD block, sound on one Arm board; a few weeks per device class | design and use | [[2025-heiser-fast-secure-adaptable]], [[2026-heiser-mcs-safety-os]] |
+| The VM machinery on x86-64 | libvmm boots an unmodified Windows 11 and Linux guests, through UEFI firmware, with sDDF drivers; no isolation claim | a talk with a live demonstration | [[2026-nguyen-booting-windows-x86-64]] |
 | Each driver sees only its own device | a configuration choice in Microkit; only interrupts are exclusive to one PD | design | [[nd-sel4-microkit-user-manual]] |
 | IOMMU/SMMU covered by the kernel proof | no verified configuration covers it | assumed | [[nd-sel4-verified-configurations]] |
 | An enabled IOMMU keeps a malicious device out of kernel memory | not so in general: attacks worked on macOS, FreeBSD and Linux with the IOMMU on; Windows mostly did not use it (2019, Intel and AMD hardware) | tests on nine machines | [[2019-markettos-thunderclap-exploring-vulnerabilities]] |
@@ -41,6 +43,6 @@ In zOS drivers run in user mode, each with access only to its own device. Legacy
 ## Open
 
 - No verified driver for a bus to motor controllers (serial, CAN, I²C) exists in the sources, though drivers on the motion path are where correctness matters most.
-- The verified driver's device model is translated from the manual by hand; specifications from the device's Verilog are work in progress ([[2026-tyler-smt-based-deductive]], §3.3.1).
+- The verified driver's device model is translated from the manual by hand; specifications from the device's Verilog are work in progress ([[2026-tyler-smt-based-deductive]], §3.3.1). The September 2026 talk describes the workflow on an open RISC-V system on chip and lists a decompiler from Verilog as future work ([[2026-murphy-formalising-device-protocols]]). Our reading: it needs the device's Verilog, which the slides do not discuss and which a board such as the pib's Raspberry Pi does not offer in the sources here.
 - Microkit describes IO address spaces backed by an IOMMU or SMMU in general terms, and states the mapping explicitly only for x86 ([[nd-sel4-microkit-user-manual]]); no verified kernel configuration covers the IOMMU. Whether the pib's Raspberry Pi has an IOMMU at all is not answered by a source in the wiki.
 - Which Thunderclap attack classes reach a system whose drivers run in user mode with page-aligned buffers is not answered by any source in the wiki; our reading is in [[2019-markettos-thunderclap-exploring-vulnerabilities]].
