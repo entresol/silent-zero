@@ -46,3 +46,4 @@ The paper cites this source twice. Table 1 (Section 5) lists "CaMeL, FIDES" unde
 - [Information-flow control](https://silentzero.ooo/wiki/concepts/information-flow-control.html.md)
 - [Object capabilities](https://silentzero.ooo/wiki/concepts/object-capabilities.html.md)
 - [Prompt injection](https://silentzero.ooo/wiki/concepts/prompt-injection.html.md)
+- [Agent libOS](https://silentzero.ooo/wiki/sources/2026-zhang-agent-libos-runtime.html.md)

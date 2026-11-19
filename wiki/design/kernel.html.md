@@ -85,6 +85,7 @@ The multicore proof itself. See also [Time protection](https://silentzero.ooo/wi
 - [Real-time loops](https://silentzero.ooo/wiki/design/real-time-loops.html.md)
 - [The broker](https://silentzero.ooo/wiki/design/broker.html.md)
 - [The static system](https://silentzero.ooo/wiki/design/static-system.html.md)
+- [Agent operating systems](https://silentzero.ooo/wiki/concepts/agent-operating-systems.html.md)
 - [Functional correctness](https://silentzero.ooo/wiki/concepts/functional-correctness.html.md)
 - [Mixed criticality](https://silentzero.ooo/wiki/concepts/mixed-criticality.html.md)
 - [Proof automation](https://silentzero.ooo/wiki/concepts/proof-automation.html.md)

@@ -37,6 +37,7 @@ Apache-2.0, as the page's licence section says; it links a GitHub repository and
 ## Related pages
 
 - [The broker](https://silentzero.ooo/wiki/design/broker.html.md)
+- [Agent operating systems](https://silentzero.ooo/wiki/concepts/agent-operating-systems.html.md)
 - [agentOS](https://silentzero.ooo/wiki/systems/agentos.html.md)
 - [KataOS](https://silentzero.ooo/wiki/systems/kataos.html.md)
 - [Raspberry Pi](https://silentzero.ooo/wiki/systems/raspberry-pi.html.md)

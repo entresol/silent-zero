@@ -45,5 +45,7 @@ A careful reader adds:
 
 - [The broker](https://silentzero.ooo/wiki/design/broker.html.md)
 - [Prompt injection](https://silentzero.ooo/wiki/concepts/prompt-injection.html.md)
+- [adaptive evaluation of out-of-band defenses](https://silentzero.ooo/wiki/sources/2026-narisetty-adaptive-evaluation-out.html.md)
 - [Defeating Prompt Injections by Design (CaMeL)](https://silentzero.ooo/wiki/sources/2025-debenedetti-defeating-prompt-injections.html.md)
 - [Indirect prompt injection](https://silentzero.ooo/wiki/sources/2023-greshake-not-what-you.html.md)
+- [MCP threat modelling and tool poisoning](https://silentzero.ooo/wiki/sources/2026-huang-model-context-protocol.html.md)

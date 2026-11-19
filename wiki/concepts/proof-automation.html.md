@@ -1,14 +1,15 @@
 # Proof automation
 
-> Machines proposing proof steps, Isabelle checking them; 77.6 % of a seL4 benchmark sample; Verus as a faster verifier. PROMISE as a second method; AutoVerus for Rust; a coding agent’s compiler proofs in Lean.
+> Machines proposing proof steps, Isabelle checking them; 77.6 % of a seL4 benchmark sample; Verus as a faster verifier. PROMISE as a second method; AutoVerus for Rust; a coding agent’s compiler proofs in Lean; the OSDI version and the Selene benchmark.
 
-Concept · LLM reviewed · updated 2026-11-13 · 7 sources · https://silentzero.ooo/wiki/concepts/proof-automation.html
+Concept · LLM reviewed · updated 2026-11-13 · 9 sources · https://silentzero.ooo/wiki/concepts/proof-automation.html
 
 Generating the proofs of a formal verification by machine instead of by hand. A proof checker such as Isabelle accepts only correct proofs, so a model that proposes proof steps may be wrong as often as the time budget allows; only what the checker accepts counts ([Neuro-symbolic proof generation for seL4](https://silentzero.ooo/wiki/sources/2026-he-neuro-symbolic-proof.html.md), §1, §3).
 
 ## State, October 2026
 
-- For seL4, a method that has a small fine-tuned model propose single proof steps, prunes with counterexample finders and searches a tree proves 77.6 per cent of the still-valid theorems in three evaluation splits of the FVEL benchmark, and about 20 per cent of those whose human proofs exceed ten lines ([Neuro-symbolic proof generation for seL4](https://silentzero.ooo/wiki/sources/2026-he-neuro-symbolic-proof.html.md)).
+- For seL4, a method that has a small fine-tuned model propose single proof steps, prunes with counterexample finders and searches a tree proves 77.6 per cent of the still-valid theorems in three evaluation splits of the FVEL benchmark, and about 20 per cent of those whose human proofs exceed ten lines ([Neuro-symbolic proof generation for seL4](https://silentzero.ooo/wiki/sources/2026-he-neuro-symbolic-proof.html.md)). The peer-reviewed OSDI version repeats these figures, reports an average saving of 79.8 per cent of proof-writing effort where the preprint said 71.1 ([neuro-symbolic proof generation, OSDI version](https://silentzero.ooo/wiki/sources/2026-he-neuro-symbolic-proof-osdi.html.md)).
+- Selene of 2024, which its authors call the first project-level benchmark from seL4's proofs, tested GPT-3.5-turbo and GPT-4 on 340 lemmas: GPT-4 proved 41.7 per cent of the easiest set on the first try and almost none of the hardest ([Selene](https://silentzero.ooo/wiki/sources/2024-zhang-selene-pioneering-automated.html.md)). Later work names it as the baseline it improves on.
 - The first seL4 proof took about 20 person-years, 11 of them specific to seL4 and much of the rest research, frameworks and tools ([seL4, Formal Verification of an OS Kernel](https://silentzero.ooo/wiki/sources/2009-klein-sel4-formal-verification.html.md), §5.2); the automated proofs cover existing theorem statements, so they measure the cost of re-proving, not of specifying ([Neuro-symbolic proof generation for seL4](https://silentzero.ooo/wiki/sources/2026-he-neuro-symbolic-proof.html.md); our reading).
 - [Verus](https://silentzero.ooo/wiki/systems/verus.html.md) is a different kind of help: the verifier itself is built for fast SMT checking of Rust. Its authors report 3 to 61 times shorter verification times than other tools on list benchmarks, and a page table, an allocator and a log verified with proof-to-code ratios of 3.9 to 13.3 ([Verus, a practical foundation for systems verification](https://silentzero.ooo/wiki/sources/2024-lattuada-verus-practical-foundation.html.md)). Neither source is about the other: the models of [Neuro-symbolic proof generation for seL4](https://silentzero.ooo/wiki/sources/2026-he-neuro-symbolic-proof.html.md) work in Isabelle on seL4.
 - A second method, PROMISE, retrieves structurally similar proof fragments from existing Isabelle proofs to guide a beam search. On a benchmark of 223 theorems from seL4's l4v it reaches 55.7 per cent averaged over seven model settings, against 34.0 for Rango and 26.8 for Selene with five attempts; the authors re-implemented the baselines, and the benchmark and metric differ from the FVEL work above; our reading: the two percentages cannot be compared ([PROMISE](https://silentzero.ooo/wiki/sources/2026-ahn-promise-proof-automation.html.md), §4, §5).
@@ -25,8 +26,10 @@ Generating the proofs of a formal verification by machine instead of by hand. A 
 
 - [AutoVerus](https://silentzero.ooo/wiki/sources/2025-yang-autoverus-automated-proof.html.md)
 - [Neuro-symbolic proof generation for seL4](https://silentzero.ooo/wiki/sources/2026-he-neuro-symbolic-proof.html.md)
+- [neuro-symbolic proof generation, OSDI version](https://silentzero.ooo/wiki/sources/2026-he-neuro-symbolic-proof-osdi.html.md)
 - [PROMISE](https://silentzero.ooo/wiki/sources/2026-ahn-promise-proof-automation.html.md)
 - [seL4, Formal Verification of an OS Kernel](https://silentzero.ooo/wiki/sources/2009-klein-sel4-formal-verification.html.md)
+- [Selene](https://silentzero.ooo/wiki/sources/2024-zhang-selene-pioneering-automated.html.md)
 - [the Axon compiler](https://silentzero.ooo/wiki/sources/2026-rinard-testing-credible-compilation.html.md)
 - [Trivet](https://silentzero.ooo/wiki/sources/2026-liao-llvm-translation-validation.html.md)
 - [Verus, a practical foundation for systems verification](https://silentzero.ooo/wiki/sources/2024-lattuada-verus-practical-foundation.html.md)

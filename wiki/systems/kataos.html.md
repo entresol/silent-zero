@@ -34,6 +34,7 @@ Partly open source on GitHub: the announcement released several components, "mos
 ## Related pages
 
 - [The broker](https://silentzero.ooo/wiki/design/broker.html.md)
+- [Agent operating systems](https://silentzero.ooo/wiki/concepts/agent-operating-systems.html.md)
 - [Memory-safe code](https://silentzero.ooo/wiki/concepts/memory-safe-code.html.md)
 - [Cohesix](https://silentzero.ooo/wiki/systems/cohesix.html.md)
 - [OpenTitan](https://silentzero.ooo/wiki/systems/opentitan.html.md)

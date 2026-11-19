@@ -16,7 +16,7 @@ BSD 2-Clause; the repository is github.com/jordanhubbard/agentos, with libvmm ve
 
 ## Related
 
-[Cohesix](https://silentzero.ooo/wiki/systems/cohesix.html.md), [LionsOS](https://silentzero.ooo/wiki/systems/lionsos.html.md), [Microkit](https://silentzero.ooo/wiki/systems/microkit.html.md).
+[Cohesix](https://silentzero.ooo/wiki/systems/cohesix.html.md), [LionsOS](https://silentzero.ooo/wiki/systems/lionsos.html.md), [Microkit](https://silentzero.ooo/wiki/systems/microkit.html.md), [Agent operating systems](https://silentzero.ooo/wiki/concepts/agent-operating-systems.html.md).
 
 ## Open questions
 
@@ -30,6 +30,7 @@ BSD 2-Clause; the repository is github.com/jordanhubbard/agentos, with libvmm ve
 
 ## Related pages
 
+- [Agent operating systems](https://silentzero.ooo/wiki/concepts/agent-operating-systems.html.md)
 - [Cohesix](https://silentzero.ooo/wiki/systems/cohesix.html.md)
 - [LionsOS](https://silentzero.ooo/wiki/systems/lionsos.html.md)
 - [Microkit](https://silentzero.ooo/wiki/systems/microkit.html.md)

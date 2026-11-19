@@ -1,8 +1,8 @@
 # The broker
 
-> The only component that hands out authority: capability patterns, CaMeL and FIDES, why model-based defences fail; nothing proven yet.
+> The only component that hands out authority: capability patterns, CaMeL and FIDES, why model-based defences fail, three agent-OS designs for the same job, CaMeL between agents; nothing proven yet.
 
-Design · LLM reviewed · updated 2026-11-19 · 20 sources · https://silentzero.ooo/wiki/design/broker.html
+Design · LLM reviewed · updated 2026-11-19 · 24 sources · https://silentzero.ooo/wiki/design/broker.html
 
 The only component in Silent Zero that hands out authority. It grants capabilities that are attenuated, time-limited and revocable, and it words every request a human sees, so the agent never does. It runs isolated and still belongs to the trusted base, because its decisions are the guarantee. It will be *tested* first, with *proven* as the target (paper, Section 3).
 
@@ -24,8 +24,10 @@ The only component in Silent Zero that hands out authority. It grants capabiliti
 | A passive server runs on its caller's budget | in seL4 MCS and Microkit | design; MCS functional-correctness proof on RISC-V | [MCS safety, an OS perspective](https://silentzero.ooo/wiki/sources/2026-heiser-mcs-safety-os.html.md), [seL4 Microkit: User Manual, v2.3.0](https://silentzero.ooo/wiki/sources/nd-sel4-microkit-user-manual.html.md), [MCS functional-correctness proof completed on RISC-V](https://silentzero.ooo/wiki/sources/2026-sel4-functional-correctness-proof.html.md) |
 | Information-flow labels keep untrusted data from choosing consequential tool calls (FIDES) | no AgentDojo attack counted against its policies succeeded; explicit flows only | noninterference for integrity stated as a proposition without proof; unverified planner; static attacks | [Securing AI agents with information-flow control](https://silentzero.ooo/wiki/sources/2025-costa-securing-ai-agents.html.md) |
 | Defences over tool calls (Progent, CaMeL) stop attacks made of composed benign commands that share OS state | no: both left the success rate at 96.63 % in the authors' setup on Claude Code | test; one agent (Claude Code), authors' own policies, CaMeL as an adapted trace monitor, 101 constructed exploit paths, preprint | [MOSAIC](https://silentzero.ooo/wiki/sources/2026-wu-mosaic-knowledge-guided.html.md) |
+| CaMeL's plan integrity holds when agents call agents | no, not in general: untrusted data crossed the agent boundary in the instruction text and changed a child's plan; a protocol with a separate data channel (multi-CaMeL) removed the residual attacks | constructed counterexample and case analysis; 949 injected tasks per model on the authors' multi-agent benchmark, five models, trivial policy, preprint | [Can CaMeLs Talk?](https://silentzero.ooo/wiki/sources/2026-peters-gill-can-camels.html.md) |
 | Binding each sensitive argument to where it may come from (the request, a named earlier tool) cuts hijacked arguments | 0.20 % attack success on AgentDojo with Qwen3-max (CaMeL 0.42 %), 0.90 % with GPT-4o, 0.80 % and 2.10 % for within-tool attacks; runtime 1.63 and 3.79 times the undefended agent; a model compiles the policy and judges grants | test; AgentDojo's fixed attacks, no formal guarantee, preprint | [ToolFence](https://silentzero.ooo/wiki/sources/2026-li-toolfence-fine-grained.html.md) |
 | A refusal reveals nothing the agent may not know | not shown; a preprint argues the opposite for tool-call monitors and proposes recording denials | argument and three constructed scenarios; single author, preprint | [Causality laundering](https://silentzero.ooo/wiki/sources/2026-chinaei-causality-laundering-denial.html.md) |
+| A deterministic gate holds against a hand-made adaptive attack | attack success 25.8 % undefended, 4.2 % defended, 2.6 % under the adaptive attack; utility 45.2 % to 27.1 % | one defence (Progent), whose model-based policy updater was the attack's target, one weak open model, one attack template; mean over three suites, one of which shows no attacks even undefended; preprint | [adaptive evaluation of out-of-band defenses](https://silentzero.ooo/wiki/sources/2026-narisetty-adaptive-evaluation-out.html.md) |
 | A proven broker | none in the sources | none | — |
 
 ## The paper and its sources
@@ -40,6 +42,8 @@ The only component in Silent Zero that hands out authority. It grants capabiliti
 - [Cohesix](https://silentzero.ooo/wiki/systems/cohesix.html.md) is a neighbouring design on seL4: models and agents stay on the host, and target-side role, ticket, lifecycle and bounds checks decide what is accepted ([Cohesix, a research operating system for edge AI](https://silentzero.ooo/wiki/sources/2026-bower-cohesix-research-operating.html.md), landing page only).
 
 - [AgentKernel](https://silentzero.ooo/wiki/sources/2026-zou-agentkernel-trust-native.html.md) is a design for the same job on a conventional host kernel: an external monitor outside the model, delegation that can only narrow a child's capabilities, and information-flow labels on memory. Its model-based classifier and eBPF enforcement rest on the host operating system, which the authors assume enforces them correctly, and they defer proofs of their invariants (design paper, partly read). Our reading: the host is not a verified kernel.
+- [AgenticOS](https://silentzero.ooo/wiki/sources/2026-zhao-agenticos-intent-oriented.html.md) proposes the job as an intent filter: an agent declares a manifest, and only the semantic calls it names exist in its capsule, with capability tokens, label checks and a gateway that keeps credentials. It is a conceptual architecture with no implementation, and its kernel is assumed to be formally verifiable or intensively audited (design paper, read in full).
+- [Agent libOS](https://silentzero.ooo/wiki/sources/2026-zhang-agent-libos-runtime.html.md) is a library above a conventional host that admits an operation only when a live process, a capability, the task ceiling, policy or a person's approval, a budget and a primitive all agree, and checks information flow separately, with a person's one-shot release for conditionally permitted high-sensitivity egress. Its own suites pass, on scripted plans and one model; the host, the Python interpreter and the storage are trusted (design paper with evaluation, read in full). See [Agent operating systems](https://silentzero.ooo/wiki/concepts/agent-operating-systems.html.md).
 - [MCP-38](https://silentzero.ooo/wiki/sources/2026-shen-mcp-38-comprehensive.html.md) catalogues 38 threats to systems built on the Model Context Protocol, many of them ways in which text persuades a model, the rest classical flaws. Our reading: for the first kind the broker need not recognise the text, since it grants only declared authority, which limits reach but not leakage through allowed channels; the paper offers no evidence on that and the broker is not built.
 - [Agent Operating Systems](https://silentzero.ooo/wiki/sources/2026-sharma-agent-operating-systems.html.md) proposes an agent operating system as a control plane over Linux or Windows: model output is a proposal, tool calls pass deny-by-default capability checks, and a registry admits tools found at run time. It is a design without implementation, measurements or proofs, and it names no real-time goal. It lists sequences of individually allowed actions as a gap: per-action enforcement is "necessary but not sufficient" and stateful evaluation may be needed (§8.2), which is the open question on sequences below.
 - [MOSAIC](https://silentzero.ooo/wiki/sources/2026-wu-mosaic-knowledge-guided.html.md) measures attacks that carry no explicit malicious instruction: benign command-line steps that pass state to each other through files, environment and hooks. Progent and CaMeL, run as hooks over an agent's tool calls, left their success rate unchanged at 96.63 per cent in the authors' setup on Claude Code. They explain it by the state passing between commands and not through tool-call arguments (CaMeL ran there as an adapted trace monitor). Our reading: a broker that checks tool calls cannot be the whole guarantee; what the agent's domain shares with other components must be bounded below it, by the capabilities it holds. See [The static system](https://silentzero.ooo/wiki/design/static-system.html.md).
@@ -47,12 +51,15 @@ The only component in Silent Zero that hands out authority. It grants capabiliti
 - [ToolFence](https://silentzero.ooo/wiki/sources/2026-li-toolfence-fine-grained.html.md) is a tool-layer monitor that binds each sensitive argument to a provenance, with a model writing the policy from the user's request and a model judge granting what it missed. Our reading: it comes close to the paper's wording on binding actions to recipients, data and parameters, with a model in the grant path, which differs from a broker whose decisions are the guarantee; the evidence is AgentDojo's fixed attacks.
 - [Causality laundering](https://silentzero.ooo/wiki/sources/2026-chinaei-causality-laundering-denial.html.md) argues that denied calls leak, since an agent can infer from a refusal what exists and pass it on later. It is a single-author preprint with three constructed scenarios, and the paper does not say what the broker returns on a refusal. Our reading: an agent that holds no capability to an object has no name to probe, which would narrow the channel; this is design intent and not a result of the source.
 
+- [Can CaMeLs Talk?](https://silentzero.ooo/wiki/sources/2026-peters-gill-can-camels.html.md) shows that CaMeL's guarantee does not carry over when one agent calls another as a tool: the parent's instruction text can carry untrusted data into the child's planner. The authors fix it with a trusted message and a separate data channel, in trees of agents only. Our reading: the paper has several untrusted agents and does not discuss agents calling each other; if Silent Zero lets agents delegate, the instruction a delegating agent writes is a channel the broker would have to control.
+
 ## Open
 
 - The integrity proof the broker relies on is not stated for MCS, and Microkit always uses MCS. Until it is, the kernel's guarantee under the broker is functional correctness only. See [The kernel](https://silentzero.ooo/wiki/design/kernel.html.md).
 - CaMeL's policies are defined by its engine; users, tool providers or automatic derivation are envisaged later ([Defeating Prompt Injections by Design (CaMeL)](https://silentzero.ooo/wiki/sources/2025-debenedetti-defeating-prompt-injections.html.md), §5.2, §10). For Silent Zero: who writes them, and from what?
 - Blocked calls go to a person, and too many approvals breed fatigue ([Defeating Prompt Injections by Design (CaMeL)](https://silentzero.ooo/wiki/sources/2025-debenedetti-defeating-prompt-injections.html.md), §9.2). In CaMeL's STRICT mode policies fired in about half the tasks run without attack, with wide differences between task suites (Appendix D). The paper adds that requests must be worded so the agent cannot imitate them, which needs a trusted path to a screen.
 - When a task is to act on instructions found in data, isolating the planner alone cannot help; policies and capabilities must carry the load ([Defeating Prompt Injections by Design (CaMeL)](https://silentzero.ooo/wiki/sources/2025-debenedetti-defeating-prompt-injections.html.md), §6.4).
+- Whether Silent Zero agents may call other agents, and what the broker then sees of the instruction passed between them ([Can CaMeLs Talk?](https://silentzero.ooo/wiki/sources/2026-peters-gill-can-camels.html.md)). The source covers trees of agents only.
 - Sequences of individually allowed calls may add up to a harmful one, as return-oriented programming chains allowed code fragments ([Defeating Prompt Injections by Design (CaMeL)](https://silentzero.ooo/wiki/sources/2025-debenedetti-defeating-prompt-injections.html.md), §9.3). A 2026 preprint reports such chains through shared system state succeeding against deployed coding agents in the authors' constructed attacks ([MOSAIC](https://silentzero.ooo/wiki/sources/2026-wu-mosaic-knowledge-guided.html.md)); whether Silent Zero leaves an agent any such state is open.
 - CaMeL leaks through loops and exceptions unless restricted, with a residual exception path; its authors do not exclude timing channels ([Defeating Prompt Injections by Design (CaMeL)](https://silentzero.ooo/wiki/sources/2025-debenedetti-defeating-prompt-injections.html.md), §7). In Silent Zero the same holds one level down; see [Time protection](https://silentzero.ooo/wiki/concepts/time-protection.html.md).
 - What the broker tells an agent when it refuses a request. A denial that names a cause or a category can disclose what the agent may not read ([Causality laundering](https://silentzero.ooo/wiki/sources/2026-chinaei-causality-laundering-denial.html.md), §3); ToolFence returns an explicit denial with a diagnostic message by design ([ToolFence](https://silentzero.ooo/wiki/sources/2026-li-toolfence-fine-grained.html.md), §3.1). The paper is silent on it.
@@ -61,10 +68,14 @@ The only component in Silent Zero that hands out authority. It grants capabiliti
 
 ## Sources
 
+- [adaptive evaluation of out-of-band defenses](https://silentzero.ooo/wiki/sources/2026-narisetty-adaptive-evaluation-out.html.md)
+- [Agent libOS](https://silentzero.ooo/wiki/sources/2026-zhang-agent-libos-runtime.html.md)
 - [Agent Operating Systems](https://silentzero.ooo/wiki/sources/2026-sharma-agent-operating-systems.html.md)
+- [AgenticOS](https://silentzero.ooo/wiki/sources/2026-zhao-agenticos-intent-oriented.html.md)
 - [AgentKernel](https://silentzero.ooo/wiki/sources/2026-zou-agentkernel-trust-native.html.md)
 - [AgentOS](https://silentzero.ooo/wiki/sources/2026-liu-agentos-application-silos.html.md)
 - [Announcing KataOS and Sparrow](https://silentzero.ooo/wiki/sources/2022-google-announcing-kataos-sparrow.html.md)
+- [Can CaMeLs Talk?](https://silentzero.ooo/wiki/sources/2026-peters-gill-can-camels.html.md)
 - [Causality laundering](https://silentzero.ooo/wiki/sources/2026-chinaei-causality-laundering-denial.html.md)
 - [Cohesix, a research operating system for edge AI](https://silentzero.ooo/wiki/sources/2026-bower-cohesix-research-operating.html.md)
 - [Defeating Prompt Injections by Design (CaMeL)](https://silentzero.ooo/wiki/sources/2025-debenedetti-defeating-prompt-injections.html.md)
@@ -86,9 +97,11 @@ The only component in Silent Zero that hands out authority. It grants capabiliti
 
 - [The kernel](https://silentzero.ooo/wiki/design/kernel.html.md)
 - [The static system](https://silentzero.ooo/wiki/design/static-system.html.md)
+- [Agent operating systems](https://silentzero.ooo/wiki/concepts/agent-operating-systems.html.md)
 - [Confused deputy](https://silentzero.ooo/wiki/concepts/confused-deputy.html.md)
 - [Information-flow control](https://silentzero.ooo/wiki/concepts/information-flow-control.html.md)
 - [Memory-safe code](https://silentzero.ooo/wiki/concepts/memory-safe-code.html.md)
+- [Model Context Protocol](https://silentzero.ooo/wiki/concepts/model-context-protocol.html.md)
 - [Object capabilities](https://silentzero.ooo/wiki/concepts/object-capabilities.html.md)
 - [Prompt injection](https://silentzero.ooo/wiki/concepts/prompt-injection.html.md)
 - [Proof automation](https://silentzero.ooo/wiki/concepts/proof-automation.html.md)
@@ -97,6 +110,9 @@ The only component in Silent Zero that hands out authority. It grants capabiliti
 - [KataOS](https://silentzero.ooo/wiki/systems/kataos.html.md)
 - [Landlock](https://silentzero.ooo/wiki/systems/landlock.html.md)
 - [Verus](https://silentzero.ooo/wiki/systems/verus.html.md)
+- [breaking the protocol](https://silentzero.ooo/wiki/sources/2026-maloyan-breaking-protocol-security.html.md)
 - [LeftoverLocals](https://silentzero.ooo/wiki/sources/2024-trail-leftoverlocals-listening-llm.html.md)
 - [Linux kernel documentation: Landlock](https://silentzero.ooo/wiki/sources/nd-linux-landlock-unprivileged-access.html.md)
+- [MCP threat modelling and tool poisoning](https://silentzero.ooo/wiki/sources/2026-huang-model-context-protocol.html.md)
+- [Quine](https://silentzero.ooo/wiki/sources/2026-ke-quine-realizing-llm.html.md)
 - [the Axon compiler](https://silentzero.ooo/wiki/sources/2026-rinard-testing-credible-compilation.html.md)

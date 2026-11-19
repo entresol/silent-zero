@@ -6,6 +6,10 @@ Format: `## <version> · <scope>`, then one paragraph. A paper version is `YYYY-
 
 ## 2026-11-19 · Site
 
+The site can now be found and read by search engines and AI assistants, and nothing is held back: `robots.txt` allows every crawler, those for search, for answers and for training, and names the main ones so the position is on record. New: `sitemap.xml`; `llms.txt`, a short guide to the paper and the wiki in the format of llmstxt.org; a clean Markdown version of every wiki page beside it (`page.html.md`), announced in each page's head; a canonical address and a description on each page; structured data (JSON-LD) on the paper's page, without names. Built by `paper/build.sh` with the rest, so it stays current.
+
+## 2026-11-19 · Site
+
 Two sources worked into the wiki, both preprints on defences that check an agent's tool calls: ToolFence, which binds each sensitive argument to where its value may come from (Li et al.), and a paper on denied calls as a leak (Chinaei). New pages: two source pages. Changed in substance: the broker page (two table rows, two related entries, a new open question on what a refusal discloses); smaller changes to the pages on prompt injection and information-flow control. No new lexicon terms. The backlog stayed closed because eight decisions are open.
 
 ## 2026-11-16 · Site
@@ -20,6 +24,10 @@ One source worked into the wiki: Heiser's Trustworthy Systems update from the 20
 
 Four sources worked into the wiki: Heiser's 2026 overview of what seL4's proofs cover, the Synergistic Simplex preprint, the Trivet preprint on machine-built Lean proofs for LLVM transformations, and a vision paper for a personal agent OS. New pages: four source pages. Changed in substance: seL4 and the kernel (single-core scope and a third count of C lines in the first proof), LionsOS (driver size, verification expected in 2027), Simplex and the safety path (a variant in which the safety layer reads learned output), proof automation and the broker. No new lexicon terms.
 
+## 2026-11-10 · Site
+
+Wiki, one source worked in; the backlog waited because more than five decisions are open. Created: a source page on "Can CaMeLs Talk?" (CaMeL's guarantee fails when agents call agents, with a protocol fix for trees of agents). Changed in substance: the broker page (a new table row, a related entry and an open question) and prompt injection. The day's second source, Trivet, was worked in again on 2026-11-13; that page, with its fact check, replaced the one first written here. No new lexicon terms.
+
 ## 2026-11-07 · Site
 
 One source worked into the wiki: the MOSAIC preprint, which measures attacks on coding agents made of benign command-line steps that pass state through the system, and two defences over tool calls that did not reduce them. New pages: one source page. Changed in substance: the broker (a further limit of checks at the tool-call level) and prompt injection. No new lexicon terms.
@@ -30,7 +38,7 @@ Two sources worked into the wiki: the Agent Operating Systems design paper and t
 
 ## 2026-11-05 · Site
 
-The site can now be found and read by search engines and AI assistants, and nothing is held back: `robots.txt` allows every crawler, those for search, for answers and for training, and names the main ones so the position is on record. New: `sitemap.xml`; `llms.txt`, a short guide to the paper and the wiki in the format of llmstxt.org; a clean Markdown version of every wiki page beside it (`page.html.md`), announced in each page's head; a canonical address and a description on each page; structured data (JSON-LD) on the paper's page, without names. Built by `paper/build.sh` with the rest, so it stays current.
+Eight further sources worked into the wiki: the Agent libOS runtime, AgenticOS, Quine, an adaptive evaluation of out-of-band prompt-injection defences, two analyses of the Model Context Protocol (protocol and clients), the OSDI version of the neuro-symbolic seL4 proof work and the Selene benchmark. New pages: eight source pages and the concept pages Model Context Protocol and Agent operating systems. Changed in substance: the broker, prompt injection, information-flow control, object capabilities and proof automation. New lexicon terms: Agent operating systems; Model Context Protocol (MCP) now has a wiki page.
 
 ## 2026-11-05 · Site
 

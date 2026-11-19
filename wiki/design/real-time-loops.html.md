@@ -55,6 +55,7 @@ The control loops at the bottom of Silent Zero move the motors on a fixed period
 - [The kernel](https://silentzero.ooo/wiki/design/kernel.html.md)
 - [The safety path](https://silentzero.ooo/wiki/design/safety-path.html.md)
 - [Action chunking](https://silentzero.ooo/wiki/concepts/action-chunking.html.md)
+- [Agent operating systems](https://silentzero.ooo/wiki/concepts/agent-operating-systems.html.md)
 - [Memory-safe code](https://silentzero.ooo/wiki/concepts/memory-safe-code.html.md)
 - [Mixed criticality](https://silentzero.ooo/wiki/concepts/mixed-criticality.html.md)
 - [PREEMPT_RT](https://silentzero.ooo/wiki/systems/preempt-rt.html.md)

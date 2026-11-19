@@ -34,5 +34,8 @@ The paper aims at comprehensiveness of the specification's elements, but its evi
 ## Related pages
 
 - [The broker](https://silentzero.ooo/wiki/design/broker.html.md)
+- [Model Context Protocol](https://silentzero.ooo/wiki/concepts/model-context-protocol.html.md)
 - [Object capabilities](https://silentzero.ooo/wiki/concepts/object-capabilities.html.md)
 - [Prompt injection](https://silentzero.ooo/wiki/concepts/prompt-injection.html.md)
+- [breaking the protocol](https://silentzero.ooo/wiki/sources/2026-maloyan-breaking-protocol-security.html.md)
+- [MCP threat modelling and tool poisoning](https://silentzero.ooo/wiki/sources/2026-huang-model-context-protocol.html.md)

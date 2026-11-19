@@ -36,6 +36,7 @@ Section 6 of the paper, under "Others are building this", names designs for the 
 ## Related pages
 
 - [The broker](https://silentzero.ooo/wiki/design/broker.html.md)
+- [Agent operating systems](https://silentzero.ooo/wiki/concepts/agent-operating-systems.html.md)
 - [Information-flow control](https://silentzero.ooo/wiki/concepts/information-flow-control.html.md)
 - [Object capabilities](https://silentzero.ooo/wiki/concepts/object-capabilities.html.md)
 - [Prompt injection](https://silentzero.ooo/wiki/concepts/prompt-injection.html.md)

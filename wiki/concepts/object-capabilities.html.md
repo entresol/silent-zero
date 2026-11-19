@@ -2,7 +2,7 @@
 
 > References that both designate and authorise; permission versus authority; caretaker and membrane.
 
-Concept · LLM reviewed · updated 2026-10-31 · 5 sources · https://silentzero.ooo/wiki/concepts/object-capabilities.html
+Concept · LLM reviewed · updated 2026-11-05 · 6 sources · https://silentzero.ooo/wiki/concepts/object-capabilities.html
 
 A capability is a reference that indivisibly combines designating an object, the permission to use it, and the means to use it. In the object-capability model, a program can obtain a reference only by holding it from the start, by creating the object, by being created with it, or by being handed it by someone who holds it: "only connectivity begets connectivity" ([Robust Composition](https://silentzero.ooo/wiki/sources/2006-miller-robust-composition-towards.html.md), §9.1, §9.2).
 
@@ -20,6 +20,7 @@ A capability by itself gives full and lasting access. Restrictions are built fro
 - CaMeL attaches tags for provenance and allowed readers to every value an agent handles and checks them before tool calls, calling them capabilities in "the standard security definition" ([Defeating Prompt Injections by Design (CaMeL)](https://silentzero.ooo/wiki/sources/2025-debenedetti-defeating-prompt-injections.html.md), §1, §5.3). Our reading: these are labels for information flow; they designate no resource and convey no authority, so they are related to object capabilities but are not the same thing.
 - In hardware, CHERI makes every pointer a capability with bounds and permissions that the processor checks on each memory access and that cannot be forged or widened. CHERIoT adapts it to 32-bit RISC-V embedded cores and adds revocation of capabilities to freed memory ([CHERIoT, complete memory safety for embedded devices](https://silentzero.ooo/wiki/sources/2023-amar-cheriot-complete-memory.html.md), §2.4, §3.3). See [CHERIoT](https://silentzero.ooo/wiki/systems/cheriot.html.md).
 - FIDES, like CaMeL, labels data for information flow; the labels convey no authority ([Securing AI agents with information-flow control](https://silentzero.ooo/wiki/sources/2025-costa-securing-ai-agents.html.md); our reading). See [Information-flow control](https://silentzero.ooo/wiki/concepts/information-flow-control.html.md).
+- Agent libOS builds typed capabilities in a library: resource, rights, expiry and use counts, with delegation that may narrow a grant but never widen it, and checks at the primitive that touches the resource. Its capabilities live in a Python process on a host and rest on that host ([Agent libOS](https://silentzero.ooo/wiki/sources/2026-zhang-agent-libos-runtime.html.md), §3.1, §9.1).
 
 ## Open questions
 
@@ -27,6 +28,7 @@ A capability by itself gives full and lasting access. Restrictions are built fro
 
 ## Sources
 
+- [Agent libOS](https://silentzero.ooo/wiki/sources/2026-zhang-agent-libos-runtime.html.md)
 - [CHERIoT, complete memory safety for embedded devices](https://silentzero.ooo/wiki/sources/2023-amar-cheriot-complete-memory.html.md)
 - [Defeating Prompt Injections by Design (CaMeL)](https://silentzero.ooo/wiki/sources/2025-debenedetti-defeating-prompt-injections.html.md)
 - [Formally Verified Software in the Real World](https://silentzero.ooo/wiki/sources/2018-klein-formally-verified-software.html.md)
@@ -41,7 +43,9 @@ A capability by itself gives full and lasting access. Restrictions are built fro
 - [Landlock](https://silentzero.ooo/wiki/systems/landlock.html.md)
 - [seL4](https://silentzero.ooo/wiki/systems/sel4.html.md)
 - [Agent Operating Systems](https://silentzero.ooo/wiki/sources/2026-sharma-agent-operating-systems.html.md)
+- [AgenticOS](https://silentzero.ooo/wiki/sources/2026-zhao-agenticos-intent-oriented.html.md)
 - [AgentKernel](https://silentzero.ooo/wiki/sources/2026-zou-agentkernel-trust-native.html.md)
 - [Linux kernel documentation: Landlock](https://silentzero.ooo/wiki/sources/nd-linux-landlock-unprivileged-access.html.md)
 - [MCP-38](https://silentzero.ooo/wiki/sources/2026-shen-mcp-38-comprehensive.html.md)
 - [MOSAIC](https://silentzero.ooo/wiki/sources/2026-wu-mosaic-knowledge-guided.html.md)
+- [Quine](https://silentzero.ooo/wiki/sources/2026-ke-quine-realizing-llm.html.md)
