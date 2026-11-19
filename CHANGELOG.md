@@ -4,9 +4,25 @@ What changed in substance, newest first: in the paper, on its page and in the pr
 
 Format: `## <version> · <scope>`, then one paragraph. A paper version is `YYYY-MM-DD-vX.Y` and has its own PDF in `versions/`; the newest one is the version the build prints on the paper and the page. A change without a new paper version carries only its date (`YYYY-MM-DD`). Scope is `Paper`, `Site` or `Project`. The build turns this file into the list at the end of the page.
 
+## 2026-11-19 · Site
+
+Two sources worked into the wiki, both preprints on defences that check an agent's tool calls: ToolFence, which binds each sensitive argument to where its value may come from (Li et al.), and a paper on denied calls as a leak (Chinaei). New pages: two source pages. Changed in substance: the broker page (two table rows, two related entries, a new open question on what a refusal discloses); smaller changes to the pages on prompt injection and information-flow control. No new lexicon terms. The backlog stayed closed because eight decisions are open.
+
+## 2026-11-16 · Site
+
+Two sources worked into the wiki, both talks of the 2026 seL4 Summit read from the slides: device models taken from a device's Verilog for driver verification (Murphy) and Windows 11 booting on an x86-64 seL4 virtual machine monitor (Nguyen). New pages: two source pages. Changed in substance: the drivers page (two table rows, one open point); smaller change to LionsOS. No new lexicon terms. The Monday lint found nothing to fix; its reading half covered only the pages touched. The backlog stayed closed because eight decisions are open.
+
+## 2026-11-14 · Site
+
+One source worked into the wiki: Heiser's Trustworthy Systems update from the 2026 seL4 Summit, read from the slides. New page: one source page. Changed in substance: WCET analysis (the fix that made the kernel's cache analysis finish, in about an hour, against about three hours per run in the July paper) and the kernel page; smaller changes to seL4, Microkit (run-time start, stop and upgrade of protection domains, x86-64 UEFI) and LionsOS. No new lexicon terms. The backlog stayed closed because eight decisions are open.
+
+## 2026-11-13 · Site
+
+Four sources worked into the wiki: Heiser's 2026 overview of what seL4's proofs cover, the Synergistic Simplex preprint, the Trivet preprint on machine-built Lean proofs for LLVM transformations, and a vision paper for a personal agent OS. New pages: four source pages. Changed in substance: seL4 and the kernel (single-core scope and a third count of C lines in the first proof), LionsOS (driver size, verification expected in 2027), Simplex and the safety path (a variant in which the safety layer reads learned output), proof automation and the broker. No new lexicon terms.
+
 ## 2026-11-10 · Site
 
-Wiki, two sources worked in, the day's new ones; the backlog waited because more than five decisions are open. Created: source pages on "Can CaMeLs Talk?" (CaMeL's guarantee fails when agents call agents, with a protocol fix for trees of agents) and on Trivet (LLM-built Lean proofs of LLVM optimisations). Changed in substance: the broker page (a new table row, a related entry and an open question), prompt injection, proof automation. No new lexicon terms.
+Wiki, one source worked in; the backlog waited because more than five decisions are open. Created: a source page on "Can CaMeLs Talk?" (CaMeL's guarantee fails when agents call agents, with a protocol fix for trees of agents). Changed in substance: the broker page (a new table row, a related entry and an open question) and prompt injection. The day's second source, Trivet, was worked in again on 2026-11-13; that page, with its fact check, replaced the one first written here. No new lexicon terms.
 
 ## 2026-11-07 · Site
 

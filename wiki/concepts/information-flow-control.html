@@ -337,8 +337,8 @@ sup.refs a:hover { text-decoration: underline; }
     <p class="crumbs"><a href="/">Silent Zero OS</a> · <a href="/wiki/">Wiki</a></p>
     <div class="titleblock">
       <h1 class="name">Information-flow control</h1>
-      <p class="sub">labels for where data came from and who may see it; FIDES and CaMeL for agents; explicit flows only.</p>
-      <p class="ver">Concept · <a href="/wiki/#how">LLM reviewed</a> · updated 31 Oct 2026 · 2 sources</p>
+      <p class="sub">labels for where data came from and who may see it; FIDES and CaMeL for agents; explicit flows only; refusals as a channel.</p>
+      <p class="ver">Concept · <a href="/wiki/#how">LLM reviewed</a> · updated 19 Nov 2026 · 3 sources</p>
     </div>
   </div>
 </header>
@@ -358,12 +358,13 @@ sup.refs a:hover { text-decoration: underline; }
 <h2 id="open-questions">Open questions</h2>
 <ul>
 <li>Where labels would be enforced in Silent Zero: in the <a href="/wiki/design/broker.html">The broker</a>, in the agent’s runtime, or both.</li>
+<li>A refusal is a flow too. A 2026 preprint argues that what an agent infers from a denied tool call leaves no trace for flat tracking over successful calls, naming FIDES as the closest system, and proposes recording denials as events in a provenance graph; its evidence is three constructed scenarios and it does not claim full non-interference for implicit flows (<a href="/wiki/sources/2026-chinaei-causality-laundering-denial.html">Causality laundering</a>, §2.5, §7.6). For Silent Zero: what the broker’s replies to refused requests disclose.</li>
 <li>Implicit flows and timing: what the agent’s runtime leaks below the labels. See <a href="/wiki/concepts/time-protection.html">Time protection</a>.</li>
 </ul>
 
 <h2 id="page-sources">Sources</h2>
 <p class="links-note">What this page rests on.</p>
-<ul class="linked-from"><li><a href="/wiki/sources/2025-debenedetti-defeating-prompt-injections.html">Defeating Prompt Injections by Design (CaMeL)</a> <span class="kind">Debenedetti et al. 2025</span></li><li><a href="/wiki/sources/2025-costa-securing-ai-agents.html">Securing AI agents with information-flow control</a> <span class="kind">Costa et al. 2025</span></li></ul>
+<ul class="linked-from"><li><a href="/wiki/sources/2026-chinaei-causality-laundering-denial.html">Causality laundering</a> <span class="kind">Chinaei 2026</span></li><li><a href="/wiki/sources/2025-debenedetti-defeating-prompt-injections.html">Defeating Prompt Injections by Design (CaMeL)</a> <span class="kind">Debenedetti et al. 2025</span></li><li><a href="/wiki/sources/2025-costa-securing-ai-agents.html">Securing AI agents with information-flow control</a> <span class="kind">Costa et al. 2025</span></li></ul>
 <h2 id="related-pages">Related pages</h2>
 <p class="links-note">Pages this one links to, and pages that link here.</p>
 <ul class="linked-from"><li><a href="/wiki/design/broker.html">The broker</a> <span class="kind">Design</span></li><li><a href="/wiki/concepts/object-capabilities.html">Object capabilities</a> <span class="kind">Concept</span></li><li><a href="/wiki/concepts/prompt-injection.html">Prompt injection</a> <span class="kind">Concept</span></li><li><a href="/wiki/concepts/time-protection.html">Time protection</a> <span class="kind">Concept</span></li><li><a href="/wiki/sources/2026-zou-agentkernel-trust-native.html">AgentKernel</a> <span class="kind">Source</span></li><li><a href="/wiki/sources/2026-peters-gill-can-camels.html">Can CaMeLs Talk?</a> <span class="kind">Source</span></li></ul>

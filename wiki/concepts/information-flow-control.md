@@ -1,9 +1,9 @@
 ---
 type: concept
 status: reviewed
-sources: [2025-costa-securing-ai-agents, 2025-debenedetti-defeating-prompt-injections]
+sources: [2025-costa-securing-ai-agents, 2025-debenedetti-defeating-prompt-injections, 2026-chinaei-causality-laundering-denial]
 glossary: Information-flow control
-updated: 2026-10-31
+updated: 2026-11-19
 ---
 
 # Information-flow control
@@ -23,4 +23,5 @@ Our reading: capabilities limit what a component can reach; labels limit where d
 ## Open questions
 
 - Where labels would be enforced in zOS: in the [[broker]], in the agent's runtime, or both.
+- A refusal is a flow too. A 2026 preprint argues that what an agent infers from a denied tool call leaves no trace for flat tracking over successful calls, naming FIDES as the closest system, and proposes recording denials as events in a provenance graph; its evidence is three constructed scenarios and it does not claim full non-interference for implicit flows ([[2026-chinaei-causality-laundering-denial]], §2.5, §7.6). For zOS: what the broker's replies to refused requests disclose.
 - Implicit flows and timing: what the agent's runtime leaks below the labels. See [[time-protection]].
