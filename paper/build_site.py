@@ -16,6 +16,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import changelog
 import glossary
 import lexicon
+import pulse
 gl_groups = glossary.parse(Path(__file__).resolve().parent / "glossary.md")
 
 md = (src_dir / "src.md").read_text(encoding="utf-8")
@@ -239,6 +240,7 @@ page = f"""<!doctype html>
       <p class="name">Silent Zero OS</p>
       <p class="sub" data-t="sub">{en["sub"]}</p>
       <p class="ver" data-t="ver">{en["ver"]}</p>
+      {pulse.hint(_top)}
     </div>
     <p class="status" data-t="status">{en["status"]}</p>
     <div class="actions">
@@ -247,7 +249,7 @@ page = f"""<!doctype html>
     </div>
   </div>
 </header>
-<script>
+{pulse.band(_top)}<script>
 // the header in five languages. Plain lines flip like a split-flap board, lines with links are swapped;
 // the choice is remembered. On a first visit whose browser prefers German, French, Spanish or Italian, the header
 // starts in English and flips into that language after two seconds, unless the visitor arrived at an anchor

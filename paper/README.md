@@ -21,3 +21,7 @@ Licence: the build scripts are BSD-2-Clause. The text and figures: [CC BY 4.0](.
 ## For search engines and assistants
 
 `robots.txt` is written by hand and allows everything. `build_wiki.py` writes `sitemap.xml`, `llms.txt` (format: https://llmstxt.org/) and, beside every wiki page, its clean Markdown version `page.html.md` (public name, links to the other pages' Markdown). Do not edit these by hand; change the source and run `paper/build.sh`. `build_site.py` adds the canonical address and the JSON-LD to the paper's page.
+
+## The activity band
+
+`pulse.py` writes the activity band under the header and the one-line hint above it from `wiki/log.md` and the wiki pages: the date of the last entry, a 28-day strip ending on it, the newest sources worked in. It reads no clock, so the build stays reproducible; do not edit the band by hand.
