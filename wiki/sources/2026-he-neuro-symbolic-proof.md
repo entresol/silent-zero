@@ -10,7 +10,7 @@ updated: 2026-10-31
 
 # He et al. 2026: Neuro-symbolic proof generation for seL4
 
-Baoding He, Zenan Li, Wei Sun, Yuan Yao, Taolue Chen, Xiaoxing Ma and Zhendong Su (Nanjing University, ETH Zurich, Birkbeck), in the order of the OSDI version; arXiv version 2 lists Xiaoxing Ma before Yuan Yao. "Neuro-Symbolic Proof Generation for Scaling Systems Software Verification". [arXiv:2603.19715](https://arxiv.org/abs/2603.19715), version 2 of 7 May 2026, whose acknowledgements thank reviewers and a shepherd. The zOS paper cites the version in Proc. OSDI '26, which is not yet covered here.
+Baoding He, Zenan Li, Wei Sun, Yuan Yao, Taolue Chen, Xiaoxing Ma and Zhendong Su (Nanjing University, ETH Zurich, Birkbeck), in the order of the OSDI version; arXiv version 2 lists Xiaoxing Ma before Yuan Yao. "Neuro-Symbolic Proof Generation for Scaling Systems Software Verification". [arXiv:2603.19715](https://arxiv.org/abs/2603.19715), version 2 of 7 May 2026, whose acknowledgements thank reviewers and a shepherd. The zOS paper cites the version in Proc. OSDI '26, covered in [[2026-he-neuro-symbolic-proof-osdi]], which repeats the figures below and gives a higher effort saving (79.8 per cent against 71.1).
 
 ## What it shows
 
