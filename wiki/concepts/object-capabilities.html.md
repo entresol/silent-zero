@@ -40,6 +40,8 @@ A capability by itself gives full and lasting access. Restrictions are built fro
 - [CHERIoT](https://silentzero.ooo/wiki/systems/cheriot.html.md)
 - [Landlock](https://silentzero.ooo/wiki/systems/landlock.html.md)
 - [seL4](https://silentzero.ooo/wiki/systems/sel4.html.md)
+- [Agent Operating Systems](https://silentzero.ooo/wiki/sources/2026-sharma-agent-operating-systems.html.md)
 - [AgentKernel](https://silentzero.ooo/wiki/sources/2026-zou-agentkernel-trust-native.html.md)
 - [Linux kernel documentation: Landlock](https://silentzero.ooo/wiki/sources/nd-linux-landlock-unprivileged-access.html.md)
 - [MCP-38](https://silentzero.ooo/wiki/sources/2026-shen-mcp-38-comprehensive.html.md)
+- [MOSAIC](https://silentzero.ooo/wiki/sources/2026-wu-mosaic-knowledge-guided.html.md)

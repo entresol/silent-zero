@@ -35,5 +35,6 @@ Off-core caches can be partitioned by the OS through cache colouring. On-core st
 - [CVA6](https://silentzero.ooo/wiki/systems/cva6.html.md)
 - [seL4](https://silentzero.ooo/wiki/systems/sel4.html.md)
 - [CHERIoT, complete memory safety for embedded devices](https://silentzero.ooo/wiki/sources/2023-amar-cheriot-complete-memory.html.md)
+- [Formalising device protocols for sDDF driver verification](https://silentzero.ooo/wiki/sources/2026-murphy-formalising-device-protocols.html.md)
 - [Linux kernel documentation: real-time preemption](https://silentzero.ooo/wiki/sources/nd-linux-real-time-preemption.html.md)
 - [security proofs complete on AArch64](https://silentzero.ooo/wiki/sources/2026-proofcraft-sel4-security-proofs.html.md)

@@ -50,3 +50,4 @@ A careful reader adds:
 - [The safety path](https://silentzero.ooo/wiki/design/safety-path.html.md)
 - [Simplex architecture](https://silentzero.ooo/wiki/concepts/simplex.html.md)
 - [Formally Verified Software in the Real World](https://silentzero.ooo/wiki/sources/2018-klein-formally-verified-software.html.md)
+- [Synergistic Simplex](https://silentzero.ooo/wiki/sources/2026-bansal-synergistic-simplex-cooperative.html.md)

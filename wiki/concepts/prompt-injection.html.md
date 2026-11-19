@@ -1,8 +1,8 @@
 # Prompt injection
 
-> Instructions hidden in data an agent reads; heuristic defences fail, defences around the model hold within limits.
+> Instructions hidden in data an agent reads; heuristic defences fail, defences around the model hold within limits; benign command chains through shared state beat two of them; argument-level authorization and refusals as a leak.
 
-Concept · LLM reviewed · updated 2026-11-05 · 5 sources · https://silentzero.ooo/wiki/concepts/prompt-injection.html
+Concept · LLM reviewed · updated 2026-11-19 · 8 sources · https://silentzero.ooo/wiki/concepts/prompt-injection.html
 
 An attacker places instructions in data that a language-model agent reads, such as an email, a document or a web page, so that the agent acts on them instead of on its user's request. A jailbreak, by contrast, is the user working against the model designer's intent ([The Attacker Moves Second](https://silentzero.ooo/wiki/sources/2026-nasr-attacker-moves-second.html.md), §5). The *indirect* variant, with the instructions placed in data the application retrieves rather than typed by its user, was analysed in 2023 in what its authors present as the first systematic treatment, with demonstrations against Bing Chat and applications built on GPT-4 ([Indirect prompt injection](https://silentzero.ooo/wiki/sources/2023-greshake-not-what-you.html.md)).
 
@@ -15,6 +15,10 @@ An attacker places instructions in data that a language-model agent reads, such 
 
 No defence in the sources survives an adaptive attacker by evaluation alone; evaluations can only fail to break a defence ([The Attacker Moves Second](https://silentzero.ooo/wiki/sources/2026-nasr-attacker-moves-second.html.md), §6). Defences around the model hold by construction within their threat model, and have not been tested adaptively ([Defeating Prompt Injections by Design (CaMeL)](https://silentzero.ooo/wiki/sources/2025-debenedetti-defeating-prompt-injections.html.md), [Securing AI agents with information-flow control](https://silentzero.ooo/wiki/sources/2025-costa-securing-ai-agents.html.md)). In 2023 effective mitigations were "currently lacking" ([Indirect prompt injection](https://silentzero.ooo/wiki/sources/2023-greshake-not-what-you.html.md), abstract). For the Model Context Protocol, a 2026 preprint lists 38 threat categories, among them the injection of instructions through tool descriptions and chains of benign tools; it states that five open-source scanners and proxies together cover at most 18 of them ([MCP-38](https://silentzero.ooo/wiki/sources/2026-shen-mcp-38-comprehensive.html.md)).
 
+A July 2026 preprint adds an attack that carries no explicit malicious instruction: benign command-line steps of a coding agent that pass state to each other through files, environment variables and hooks. In the authors' 2,525 trials, built from 101 attack paths they constructed, it succeeded in 96.59 per cent. On Claude Code a capability policy (Progent) and an information-flow policy (CaMeL, run there as a monitor over the trace) did not lower the rate ([MOSAIC](https://silentzero.ooo/wiki/sources/2026-wu-mosaic-knowledge-guided.html.md)).
+
+Two further preprints bear on the defences around the model. ToolFence compiles a typed authorization blueprint from the user's request, with a model call that sees only the request and the tool schemas, and checks every tool call against it with a deterministic monitor; a model judge may grant capabilities the blueprint missed, seeing their shape and not the argument values. On AgentDojo it reached 0.20 per cent attack success with Qwen3-max against 0.42 per cent for CaMeL, with a lower runtime cost, against AgentDojo's fixed attacks; the authors claim no formal guarantee ([ToolFence](https://silentzero.ooo/wiki/sources/2026-li-toolfence-fine-grained.html.md)). A single-author preprint argues that a denied tool call is itself a channel, since the agent can infer from the refusal what exists and pass it on, and proposes a monitor that records denials; its evidence is three constructed scenarios ([Causality laundering](https://silentzero.ooo/wiki/sources/2026-chinaei-causality-laundering-denial.html.md)).
+
 ## Open questions
 
 - When the user asks the agent to follow instructions found in data, data becomes control; isolating the planner alone cannot stop it, and policies and capabilities have to carry the load ([Defeating Prompt Injections by Design (CaMeL)](https://silentzero.ooo/wiki/sources/2025-debenedetti-defeating-prompt-injections.html.md), §6.4).
@@ -23,16 +27,21 @@ No defence in the sources survives an adaptive attacker by evaluation alone; eva
 
 ## Sources
 
+- [Causality laundering](https://silentzero.ooo/wiki/sources/2026-chinaei-causality-laundering-denial.html.md)
 - [Defeating Prompt Injections by Design (CaMeL)](https://silentzero.ooo/wiki/sources/2025-debenedetti-defeating-prompt-injections.html.md)
 - [Indirect prompt injection](https://silentzero.ooo/wiki/sources/2023-greshake-not-what-you.html.md)
 - [MCP-38](https://silentzero.ooo/wiki/sources/2026-shen-mcp-38-comprehensive.html.md)
+- [MOSAIC](https://silentzero.ooo/wiki/sources/2026-wu-mosaic-knowledge-guided.html.md)
 - [Securing AI agents with information-flow control](https://silentzero.ooo/wiki/sources/2025-costa-securing-ai-agents.html.md)
 - [The Attacker Moves Second](https://silentzero.ooo/wiki/sources/2026-nasr-attacker-moves-second.html.md)
+- [ToolFence](https://silentzero.ooo/wiki/sources/2026-li-toolfence-fine-grained.html.md)
 
 ## Related pages
 
 - [The broker](https://silentzero.ooo/wiki/design/broker.html.md)
 - [Confused deputy](https://silentzero.ooo/wiki/concepts/confused-deputy.html.md)
 - [Information-flow control](https://silentzero.ooo/wiki/concepts/information-flow-control.html.md)
+- [Agent Operating Systems](https://silentzero.ooo/wiki/sources/2026-sharma-agent-operating-systems.html.md)
 - [AgentKernel](https://silentzero.ooo/wiki/sources/2026-zou-agentkernel-trust-native.html.md)
+- [AgentOS](https://silentzero.ooo/wiki/sources/2026-liu-agentos-application-silos.html.md)
 - [LeftoverLocals](https://silentzero.ooo/wiki/sources/2024-trail-leftoverlocals-listening-llm.html.md)

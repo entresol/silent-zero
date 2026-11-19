@@ -45,5 +45,6 @@ Section 2.3 of the paper cites this page together with the 2009 paper for "rough
 - [The kernel](https://silentzero.ooo/wiki/design/kernel.html.md)
 - [Functional correctness](https://silentzero.ooo/wiki/concepts/functional-correctness.html.md)
 - [seL4](https://silentzero.ooo/wiki/systems/sel4.html.md)
+- [seL4 for reliability](https://silentzero.ooo/wiki/sources/2026-heiser-sel4-operating-systems.html.md)
 - [seL4 Foundation: Verified Configurations](https://silentzero.ooo/wiki/sources/nd-sel4-verified-configurations.html.md)
 - [seL4, Formal Verification of an OS Kernel](https://silentzero.ooo/wiki/sources/2009-klein-sel4-formal-verification.html.md)

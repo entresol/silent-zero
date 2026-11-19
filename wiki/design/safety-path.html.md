@@ -2,7 +2,7 @@
 
 > Simplex in Silent Zero: the agent proposes, the loop disposes; tested, not proven; the paper’s 2001 date disputed by a 1994 origin.
 
-Design · LLM reviewed · updated 2026-10-31 · 4 sources · https://silentzero.ooo/wiki/design/safety-path.html
+Design · LLM reviewed · updated 2026-11-13 · 5 sources · https://silentzero.ooo/wiki/design/safety-path.html
 
 In Silent Zero the agent and its action model play the complex controller of a [Simplex architecture](https://silentzero.ooo/wiki/concepts/simplex.html.md) architecture: powerful, unproven, isolated and lower in criticality. The safety controller and the switching logic play the simple one; they are small, run at the highest criticality and are candidates for proof. "The agent may suggest any motion. Only the loop moves the motor." (paper, Section 4).
 
@@ -21,6 +21,8 @@ In Silent Zero the agent and its action model play the complex controller of a [
 | Simplex with learned controllers on a pendulum and a rover, AI isolated by a hypervisor | demonstrated | tests on two systems; switching rule designed per system | [The Use of the Simplex Architecture to Enhance Safety in Deep-Learning-Powered Autonomous Systems](https://silentzero.ooo/wiki/sources/2025-nesti-use-simplex-architecture.html.md) |
 | Safe side owns the sensors; camera input only on the learned side | demonstrated on the rover | test | [The Use of the Simplex Architecture to Enhance Safety in Deep-Learning-Powered Autonomous Systems](https://silentzero.ooo/wiki/sources/2025-nesti-use-simplex-architecture.html.md) |
 | A proven safety controller and switching logic | not found in the sources | none | — |
+
+The 2026 Synergistic Simplex variant relaxes the rule for its safety layer: it may read a learned output, such as lane boundaries, when it is independent of the function protected; in one simulated scenario the strict form meant more stops (route completion 0.1 against 0.7), and the authors note that certification standards prohibit such use. Its evidence is a car in CARLA with static obstacles, ten runs per cell in CARLA, and proofs on paper ([Synergistic Simplex](https://silentzero.ooo/wiki/sources/2026-bansal-synergistic-simplex-cooperative.html.md)). Our reading: Silent Zero keeps the strict form, since its loop owns its sensors and takes nothing from the model.
 
 A robot model's vendor says its model-level safety filters "are not a substitute for the rigorous safety engineering required for physical systems" and asks for several layers, with emergency stops and collision avoidance outside the model ([Gemini Robotics-ER 1.5](https://silentzero.ooo/wiki/sources/2025-google-building-next-generation.html.md)). Related evidence that is not Simplex: a robot's protective stop caught an oscillating learned controller in an experiment ([Real-Time Execution of Action Chunking Flow Policies](https://silentzero.ooo/wiki/sources/2025-black-real-time-execution.html.md), §4.2), and HACMS showed a compromised component contained in flight ([Formally Verified Software in the Real World](https://silentzero.ooo/wiki/sources/2018-klein-formally-verified-software.html.md)).
 
@@ -41,6 +43,7 @@ A robot model's vendor says its model-level safety filters "are not a substitute
 - [Formally Verified Software in the Real World](https://silentzero.ooo/wiki/sources/2018-klein-formally-verified-software.html.md)
 - [Gemini Robotics-ER 1.5](https://silentzero.ooo/wiki/sources/2025-google-building-next-generation.html.md)
 - [Real-Time Execution of Action Chunking Flow Policies](https://silentzero.ooo/wiki/sources/2025-black-real-time-execution.html.md)
+- [Synergistic Simplex](https://silentzero.ooo/wiki/sources/2026-bansal-synergistic-simplex-cooperative.html.md)
 - [The Use of the Simplex Architecture to Enhance Safety in Deep-Learning-Powered Autonomous Systems](https://silentzero.ooo/wiki/sources/2025-nesti-use-simplex-architecture.html.md)
 
 ## Related pages
@@ -49,3 +52,4 @@ A robot model's vendor says its model-level safety filters "are not a substitute
 - [Proof automation](https://silentzero.ooo/wiki/concepts/proof-automation.html.md)
 - [Simplex architecture](https://silentzero.ooo/wiki/concepts/simplex.html.md)
 - [Verus](https://silentzero.ooo/wiki/systems/verus.html.md)
+- [the Axon compiler](https://silentzero.ooo/wiki/sources/2026-rinard-testing-credible-compilation.html.md)

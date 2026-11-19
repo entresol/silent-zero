@@ -31,7 +31,8 @@ jobs:
         run: git fetch --no-tags "https://github.com/${GITHUB_REPOSITORY}" "+refs/heads/main:refs/remotes/origin/main"
 
       # The wiki is written from sources in a private repository; only its own pages may come over, never a
-      # source text. A file under wiki/ that is not a page, the index, the log, the rings or the schema fails
+      # source text. A file under wiki/ that is not a page (or its generated Markdown twin, name.html.md), the
+      # index, the log, the rings or the schema fails
       # the pull request, as does a page without front matter or far longer than any page. Every commit counts,
       # not only the result: a merge commit would carry a file that a later commit removed.
       - name: Only wiki pages in wiki/
@@ -39,12 +40,13 @@ jobs:
           bad=0
           while IFS= read -r f; do
             [ -n "$f" ] || continue
-            if ! printf '%s\n' "$f" | grep -qE '^wiki/((CLAUDE|index|log|rings)\.md|index\.html|(sources|concepts|systems|design)/[a-z0-9-]+\.(md|html))$'; then
+            if ! printf '%s\n' "$f" | grep -qE '^wiki/((CLAUDE|index|log|rings)\.md|index\.html(\.md)?|(sources|concepts|systems|design)/[a-z0-9-]+\.(md|html|html\.md))$'; then
               echo "::error file=$f::Not a wiki page. Only pages, the index, the log, the rings and the schema belong in wiki/."; bad=1; continue
             fi
             [ -f "$f" ] || continue   # added by one commit, removed by a later one: the path check above is enough
             case "$f" in wiki/*/*.md)
-              if ! head -n 1 "$f" | grep -qx -- '---' || ! sed -n '2,12p' "$f" | grep -q '^type: '; then
+              # a page's generated Markdown twin (name.html.md) has no front matter of its own
+              if [ "${f%.html.md}" = "$f" ] && { ! head -n 1 "$f" | grep -qx -- '---' || ! sed -n '2,12p' "$f" | grep -q '^type: '; }; then
                 echo "::error file=$f::A wiki page starts with its front matter (type, status, sources, updated)."; bad=1
               fi
               if [ "$(wc -c < "$f")" -gt 20000 ]; then
@@ -80,7 +82,7 @@ jobs:
         env:
           SAME_REPO: ${{ github.event.pull_request.head.repo.full_name == github.repository }}
         run: |
-          git add -A index.html wiki lexicon versions silent-zero.pdf zos-zero-os.pdf
+          git add -A index.html wiki lexicon versions silent-zero.pdf zos-zero-os.pdf sitemap.xml llms.txt
           if git diff --cached --quiet; then echo "page is up to date"; exit 0; fi
           git diff --cached --stat
           if [ "$SAME_REPO" != "true" ]; then

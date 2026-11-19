@@ -36,3 +36,4 @@ Section 3 of the paper names Microkit as the static system but no version. No cl
 - [agentOS](https://silentzero.ooo/wiki/systems/agentos.html.md)
 - [LionsOS](https://silentzero.ooo/wiki/systems/lionsos.html.md)
 - [Microkit](https://silentzero.ooo/wiki/systems/microkit.html.md)
+- [Booting Windows on an x86-64 seL4-based VMM](https://silentzero.ooo/wiki/sources/2026-nguyen-booting-windows-x86-64.html.md)

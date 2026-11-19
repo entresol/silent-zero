@@ -56,5 +56,6 @@ A careful reader adds:
 - [Drivers](https://silentzero.ooo/wiki/design/drivers.html.md)
 - [LionsOS](https://silentzero.ooo/wiki/systems/lionsos.html.md)
 - [Fast, Secure, Adaptable: LionsOS Design, Implementation and Performance](https://silentzero.ooo/wiki/sources/2025-heiser-fast-secure-adaptable.html.md)
+- [Formalising device protocols for sDDF driver verification](https://silentzero.ooo/wiki/sources/2026-murphy-formalising-device-protocols.html.md)
 - [MCS safety, an OS perspective](https://silentzero.ooo/wiki/sources/2026-heiser-mcs-safety-os.html.md)
 - [The seL4 Device Driver Framework](https://silentzero.ooo/wiki/sources/2022-parker-sel4-device-driver.html.md)

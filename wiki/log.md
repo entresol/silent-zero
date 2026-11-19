@@ -133,3 +133,31 @@ Ring 2, daily run. Created: three source pages, [[memory-safe-code]]. Changed: [
 ## [2026-11-05] ingest | 2026-proofcraft-sel4-security-proofs, 2026-jiang-futurertc-real-time, 2026-shen-mcp-38-comprehensive
 
 Sources added to the pool today, daily run; the backlog was held back because more than five decisions are open. Created: three source pages. Changed: [[sel4]], [[kernel]], [[broker]], [[real-time-loops]], [[prompt-injection]], [[action-chunking]], index, rings. The news item on AArch64 confidentiality was read on the seL4 news page; the Proofcraft announcement it links was not reachable from the research environment, and the assumptions page was not read. FutureRTC's real-robot numbers are not quoted because the text extraction garbled them.
+
+## [2026-11-06] ingest | 2026-sharma-agent-operating-systems, 2026-rinard-testing-credible-compilation
+
+Sources added to the pool today, daily run; the backlog was held back because more than five decisions are open. Created: two source pages. Changed: [[broker]], [[proof-automation]], index, rings. Both sources were read in part, and the pages say which parts. The agent-OS paper is another design above a conventional kernel with no implementation; the paper's Section 5 does not cite it. The Axon compiler is one author's report of proofs written by a coding agent, not about seL4.
+
+## [2026-11-07] ingest | 2026-wu-mosaic-knowledge-guided
+
+Source added to the pool today, daily run; the backlog was held back because more than five decisions are open. Created: one source page, read in part (the evaluation and discussion in full, the method in outline). Changed: [[broker]] (a table row, a related entry, the open question on sequences), [[prompt-injection]], index, rings. No question for the team: the source measures attacks on other systems' defences and contradicts no claim of the paper, whose sentence on enforcement at every tool call is addressed by the reading under 'For zOS' on the source page.
+
+## [2026-11-13] ingest | 2026-heiser-sel4-operating-systems, 2026-bansal-synergistic-simplex-cooperative, 2026-liao-llvm-translation-validation, 2026-liu-agentos-application-silos
+
+Sources added to the pool today, daily run; the backlog was held back because more than five decisions are open. Created: four source pages. Changed: [[sel4]], [[kernel]], [[lionsos]], [[simplex]], [[safety-path]], [[proof-automation]], [[broker]], index, rings. Heiser's overview was read in full and gives a third count of C lines for the first proof (8,500), recorded on [[kernel]] and [[sel4]] and linked to the open question. The other three were read in part, and each page says which parts. No new question for the team.
+
+## [2026-11-14] ingest | 2026-heiser-trustworthy-systems-update
+
+Source added to the pool today, daily run; the backlog was held back because more than five decisions are open (eight). Created: one source page, read from the slides alone. Changed: [[wcet-analysis]] (the scaling fix and the build time, next to the July paper's three hours), [[kernel]], [[sel4]], [[microkit]], [[lionsos]], index. The slides state no proof status for multikernel seL4, so the plan of the roadmap stands. No question for the team.
+
+## [2026-11-16] lint
+
+Monday pass. `wiki_lint.py` found nothing. The reading half was partial: no page is `drafted` apart from today's two (so no held-back reason to re-examine), and the pages touched today were compared with their neighbours; a full read of all pages for contradictions was not done in this run. Found and fixed: nothing. Left open: the questions already open as issues.
+
+## [2026-11-16] ingest | 2026-murphy-formalising-device-protocols, 2026-nguyen-booting-windows-x86-64
+
+Sources added to the pool today, daily run; the backlog was held back because more than five decisions are open (eight). Created: two source pages, both read from the slides alone; the fact check by a second agent flagged about 20 claims (stronger wording, missing hedges, unmarked inferences, one wrong direction of an implication), all fixed, both pages `reviewed`. Changed: [[drivers]] (a row on device models from Verilog, a row on the x86-64 VM machinery, the open point on the device model), [[lionsos]], index, rings. Murphy's talk is the Verilog work that the verified-driver paper names as concurrent; no device is proved end to end on the slides. Nguyen's talk makes no isolation claim. No question for the team.
+
+## [2026-11-19] ingest | 2026-li-toolfence-fine-grained, 2026-chinaei-causality-laundering-denial
+
+Sources added to the pool today, daily run; the backlog was held back because more than five decisions are open (eight). Created: two source pages, both read in part (the appendices of ToolFence and the layered design of the monitor were not). Changed: [[broker]] (two table rows, two related entries, an open question on what a refusal discloses), [[prompt-injection]], [[information-flow-control]], index, rings. Neither source contradicts a claim of the paper; the paper does not say what the broker returns on a refusal, which the open question records. No question for the team.

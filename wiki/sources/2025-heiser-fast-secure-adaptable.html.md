@@ -55,6 +55,7 @@ The paper cites this source for the driver island (Section 3) and in its table o
 - [LionsOS](https://silentzero.ooo/wiki/systems/lionsos.html.md)
 - [Microkit](https://silentzero.ooo/wiki/systems/microkit.html.md)
 - [seL4](https://silentzero.ooo/wiki/systems/sel4.html.md)
+- [Booting Windows on an x86-64 seL4-based VMM](https://silentzero.ooo/wiki/sources/2026-nguyen-booting-windows-x86-64.html.md)
 - [MCS safety, an OS perspective](https://silentzero.ooo/wiki/sources/2026-heiser-mcs-safety-os.html.md)
 - [seL4 Foundation: Verified Configurations](https://silentzero.ooo/wiki/sources/nd-sel4-verified-configurations.html.md)
 - [SMT-based Deductive Verification of Device Drivers](https://silentzero.ooo/wiki/sources/2026-tyler-smt-based-deductive.html.md)

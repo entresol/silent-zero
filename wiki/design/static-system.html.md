@@ -50,7 +50,10 @@ The layer between the kernel and the components. In Silent Zero one description 
 ## Related pages
 
 - [Drivers](https://silentzero.ooo/wiki/design/drivers.html.md)
+- [The broker](https://silentzero.ooo/wiki/design/broker.html.md)
 - [The kernel](https://silentzero.ooo/wiki/design/kernel.html.md)
 - [Mixed criticality](https://silentzero.ooo/wiki/concepts/mixed-criticality.html.md)
 - [LionsOS](https://silentzero.ooo/wiki/systems/lionsos.html.md)
 - [Microkit](https://silentzero.ooo/wiki/systems/microkit.html.md)
+- [MOSAIC](https://silentzero.ooo/wiki/sources/2026-wu-mosaic-knowledge-guided.html.md)
+- [seL4 for reliability](https://silentzero.ooo/wiki/sources/2026-heiser-sel4-operating-systems.html.md)

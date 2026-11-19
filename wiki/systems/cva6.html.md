@@ -38,3 +38,4 @@ Silicon with CVA6, licence.
 - [RISC-V](https://silentzero.ooo/wiki/concepts/risc-v.html.md)
 - [Time protection](https://silentzero.ooo/wiki/concepts/time-protection.html.md)
 - [WCET analysis](https://silentzero.ooo/wiki/concepts/wcet-analysis.html.md)
+- [Formalising device protocols for sDDF driver verification](https://silentzero.ooo/wiki/sources/2026-murphy-formalising-device-protocols.html.md)

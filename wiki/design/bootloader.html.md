@@ -79,6 +79,7 @@ Our reading of the second video: the Silent Zero loader now sits where the paper
 - [Verified boot](https://silentzero.ooo/wiki/concepts/verified-boot.html.md)
 - [coreboot](https://silentzero.ooo/wiki/systems/coreboot.html.md)
 - [SiFive and the HiFive boards](https://silentzero.ooo/wiki/systems/sifive-hifive.html.md)
+- [Booting Windows on an x86-64 seL4-based VMM](https://silentzero.ooo/wiki/sources/2026-nguyen-booting-windows-x86-64.html.md)
 - [coreboot: measured boot](https://silentzero.ooo/wiki/sources/nd-coreboot-measured-boot.html.md)
 - [SiFive: HiFive Unleashed](https://silentzero.ooo/wiki/sources/nd-sifive-hifive-unleashed.html.md)
 - [the HiFive Premier P550](https://silentzero.ooo/wiki/sources/2024-sifive-hifive-premier-p550.html.md)

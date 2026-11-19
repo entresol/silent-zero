@@ -1,8 +1,8 @@
 # Information-flow control
 
-> Labels for where data came from and who may see it; FIDES and CaMeL for agents; explicit flows only.
+> Labels for where data came from and who may see it; FIDES and CaMeL for agents; explicit flows only; refusals as a channel.
 
-Concept · LLM reviewed · updated 2026-10-31 · 2 sources · https://silentzero.ooo/wiki/concepts/information-flow-control.html
+Concept · LLM reviewed · updated 2026-11-19 · 3 sources · https://silentzero.ooo/wiki/concepts/information-flow-control.html
 
 Every piece of data carries labels for where it came from (integrity) and who may see it (confidentiality), and labels propagate with the data. A policy then decides from the labels whether an action may proceed, for instance whether an agent may send an email after reading an untrusted one ([Securing AI agents with information-flow control](https://silentzero.ooo/wiki/sources/2025-costa-securing-ai-agents.html.md), §1).
 
@@ -19,10 +19,12 @@ Our reading: capabilities limit what a component can reach; labels limit where d
 ## Open questions
 
 - Where labels would be enforced in Silent Zero: in the [The broker](https://silentzero.ooo/wiki/design/broker.html.md), in the agent's runtime, or both.
+- A refusal is a flow too. A 2026 preprint argues that what an agent infers from a denied tool call leaves no trace for flat tracking over successful calls, naming FIDES as the closest system, and proposes recording denials as events in a provenance graph; its evidence is three constructed scenarios and it does not claim full non-interference for implicit flows ([Causality laundering](https://silentzero.ooo/wiki/sources/2026-chinaei-causality-laundering-denial.html.md), §2.5, §7.6). For Silent Zero: what the broker's replies to refused requests disclose.
 - Implicit flows and timing: what the agent's runtime leaks below the labels. See [Time protection](https://silentzero.ooo/wiki/concepts/time-protection.html.md).
 
 ## Sources
 
+- [Causality laundering](https://silentzero.ooo/wiki/sources/2026-chinaei-causality-laundering-denial.html.md)
 - [Defeating Prompt Injections by Design (CaMeL)](https://silentzero.ooo/wiki/sources/2025-debenedetti-defeating-prompt-injections.html.md)
 - [Securing AI agents with information-flow control](https://silentzero.ooo/wiki/sources/2025-costa-securing-ai-agents.html.md)
 

@@ -1,8 +1,8 @@
 # Drivers
 
-> User-mode drivers, the first verified Ethernet driver, DMA and the IOMMU as assumed, attacked in 2019 although enabled.
+> User-mode drivers, the first verified Ethernet driver, DMA and the IOMMU as assumed, attacked in 2019 although enabled; device models from Verilog and Windows on x86-64 as first steps.
 
-Design · LLM reviewed · updated 2026-11-03 · 10 sources · https://silentzero.ooo/wiki/design/drivers.html
+Design · LLM reviewed · updated 2026-11-16 · 12 sources · https://silentzero.ooo/wiki/design/drivers.html
 
 In Silent Zero drivers run in user mode, each with access only to its own device. Legacy drivers, above all for graphics and AI accelerators, run in a Linux virtual machine on the agent's side. Where a device can write to memory directly and the IOMMU configuration is not proven, the driver joins the trusted base as *assumed* (paper, Section 3).
 
@@ -21,7 +21,9 @@ In Silent Zero drivers run in user mode, each with access only to its own device
 | Performance comparable to or better than Linux | measured for networking and SD storage on Arm and x86, plotted figures, no worst case | measurement, by the system's authors | [Fast, Secure, Adaptable: LionsOS Design, Implementation and Performance](https://silentzero.ooo/wiki/sources/2025-heiser-fast-secure-adaptable.html.md), [The seL4 Device Driver Framework](https://silentzero.ooo/wiki/sources/2022-parker-sel4-device-driver.html.md), [MCS safety, an OS perspective](https://silentzero.ooo/wiki/sources/2026-heiser-mcs-safety-os.html.md) |
 | A Pancake version of a LionsOS Ethernet driver, and the queue library, follow the device and OS protocols, move buffers correctly and meet a completion condition | proven, 2026 | SMT-based proof; trusted: the transpiler, the Viper backend and solver, a hand-written weak-memory encoding, a device model taken from the manual; the OS side is assumed to keep its queue contracts | [SMT-based Deductive Verification of Device Drivers](https://silentzero.ooo/wiki/sources/2026-tyler-smt-based-deductive.html.md) |
 | Other LionsOS drivers verified | under way | none yet | [Trustworthy Systems: LionsOS](https://silentzero.ooo/wiki/sources/2026-trustworthy-lionsos.html.md) |
+| Device models derived from a device's Verilog, as the specification a driver is verified against | first steps, September 2026: a HOL4 workflow and an annotation scheme, the specification format shown on OpenTitan's I²C controller; on the slides only address-decoding logic is marked verified | slides of a talk, no figures | [Formalising device protocols for sDDF driver verification](https://silentzero.ooo/wiki/sources/2026-murphy-formalising-device-protocols.html.md) |
 | Unmodified Linux drivers in a driver VM | available in LionsOS; drivers shown: GPU framebuffer, Ethernet, SD block, sound on one Arm board; a few weeks per device class | design and use | [Fast, Secure, Adaptable: LionsOS Design, Implementation and Performance](https://silentzero.ooo/wiki/sources/2025-heiser-fast-secure-adaptable.html.md), [MCS safety, an OS perspective](https://silentzero.ooo/wiki/sources/2026-heiser-mcs-safety-os.html.md) |
+| The VM machinery on x86-64 | libvmm boots an unmodified Windows 11 and Linux guests, through UEFI firmware, with sDDF drivers; no isolation claim | a talk with a live demonstration | [Booting Windows on an x86-64 seL4-based VMM](https://silentzero.ooo/wiki/sources/2026-nguyen-booting-windows-x86-64.html.md) |
 | Each driver sees only its own device | a configuration choice in Microkit; only interrupts are exclusive to one PD | design | [seL4 Microkit: User Manual, v2.3.0](https://silentzero.ooo/wiki/sources/nd-sel4-microkit-user-manual.html.md) |
 | IOMMU/SMMU covered by the kernel proof | no verified configuration covers it | assumed | [seL4 Foundation: Verified Configurations](https://silentzero.ooo/wiki/sources/nd-sel4-verified-configurations.html.md) |
 | An enabled IOMMU keeps a malicious device out of kernel memory | not so in general: attacks worked on macOS, FreeBSD and Linux with the IOMMU on; Windows mostly did not use it (2019, Intel and AMD hardware) | tests on nine machines | [Thunderclap](https://silentzero.ooo/wiki/sources/2019-markettos-thunderclap-exploring-vulnerabilities.html.md) |
@@ -38,13 +40,15 @@ In Silent Zero drivers run in user mode, each with access only to its own device
 ## Open
 
 - No verified driver for a bus to motor controllers (serial, CAN, I²C) exists in the sources, though drivers on the motion path are where correctness matters most.
-- The verified driver's device model is translated from the manual by hand; specifications from the device's Verilog are work in progress ([SMT-based Deductive Verification of Device Drivers](https://silentzero.ooo/wiki/sources/2026-tyler-smt-based-deductive.html.md), §3.3.1).
+- The verified driver's device model is translated from the manual by hand; specifications from the device's Verilog are work in progress ([SMT-based Deductive Verification of Device Drivers](https://silentzero.ooo/wiki/sources/2026-tyler-smt-based-deductive.html.md), §3.3.1). The September 2026 talk describes the workflow on an open RISC-V system on chip and lists a decompiler from Verilog as future work ([Formalising device protocols for sDDF driver verification](https://silentzero.ooo/wiki/sources/2026-murphy-formalising-device-protocols.html.md)). Our reading: it needs the device's Verilog, which the slides do not discuss and which a board such as the pib's Raspberry Pi does not offer in the sources here.
 - Microkit describes IO address spaces backed by an IOMMU or SMMU in general terms, and states the mapping explicitly only for x86 ([seL4 Microkit: User Manual, v2.3.0](https://silentzero.ooo/wiki/sources/nd-sel4-microkit-user-manual.html.md)); no verified kernel configuration covers the IOMMU. Whether the pib's Raspberry Pi has an IOMMU at all is not answered by a source in the wiki.
 - Which Thunderclap attack classes reach a system whose drivers run in user mode with page-aligned buffers is not answered by any source in the wiki; our reading is in [Thunderclap](https://silentzero.ooo/wiki/sources/2019-markettos-thunderclap-exploring-vulnerabilities.html.md).
 
 ## Sources
 
+- [Booting Windows on an x86-64 seL4-based VMM](https://silentzero.ooo/wiki/sources/2026-nguyen-booting-windows-x86-64.html.md)
 - [Fast, Secure, Adaptable: LionsOS Design, Implementation and Performance](https://silentzero.ooo/wiki/sources/2025-heiser-fast-secure-adaptable.html.md)
+- [Formalising device protocols for sDDF driver verification](https://silentzero.ooo/wiki/sources/2026-murphy-formalising-device-protocols.html.md)
 - [LeftoverLocals](https://silentzero.ooo/wiki/sources/2024-trail-leftoverlocals-listening-llm.html.md)
 - [MCS safety, an OS perspective](https://silentzero.ooo/wiki/sources/2026-heiser-mcs-safety-os.html.md)
 - [seL4 Foundation: Verified Configurations](https://silentzero.ooo/wiki/sources/nd-sel4-verified-configurations.html.md)
@@ -61,4 +65,5 @@ In Silent Zero drivers run in user mode, each with access only to its own device
 - [IOMMU](https://silentzero.ooo/wiki/concepts/iommu.html.md)
 - [Proof automation](https://silentzero.ooo/wiki/concepts/proof-automation.html.md)
 - [Microkit](https://silentzero.ooo/wiki/systems/microkit.html.md)
+- [seL4 for reliability](https://silentzero.ooo/wiki/sources/2026-heiser-sel4-operating-systems.html.md)
 - [Verus, a practical foundation for systems verification](https://silentzero.ooo/wiki/sources/2024-lattuada-verus-practical-foundation.html.md)
