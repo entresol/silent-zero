@@ -1,16 +1,16 @@
 ---
 type: source
 id: 2026-sharma-agent-operating-system
-status: drafted
+status: reviewed
 read: partial
 kind: design
 sources: [2026-sharma-agent-operating-system]
-updated: 2026-11-09
+updated: 2026-11-19
 ---
 
 # Sharma and Shah 2026: the AOS reference architecture
 
-Ankur Sharma and Deep Shah. "The Agent Operating System (AOS): A Reference Operating Architecture for Distributed Agentic Systems". [arXiv:2608.03214](https://arxiv.org/abs/2608.03214), version 1 of 4 August 2026; the document calls itself AOS-0001, Draft v0.8, in an "AOS Specification Series". It extends the authors' earlier paper [[2026-sharma-agent-operating-systems]]. Read in part: abstract, executive summary, problem statement, contributions, the delegation and scheduling parts of the mathematical model, the limitations and validation sections, section 16.8 and the table of contents. The long chapters on interfaces, deployment, reliability, the appendices and the reference list were searched for key terms only, and this page makes no claim about them. For that reason the page stays `drafted`.
+Ankur Sharma and Deep Shah. "The Agent Operating System (AOS): A Reference Operating Architecture for Distributed Agentic Systems". [arXiv:2608.03214](https://arxiv.org/abs/2608.03214), version 1 of 4 August 2026; the document calls itself AOS-0001, Draft v0.8, in an "AOS Specification Series". It extends the authors' earlier paper [[2026-sharma-agent-operating-systems]]. Read in part: abstract, executive summary, problem statement, contributions, the delegation and scheduling parts of the mathematical model, the limitations and validation sections, section 16.8 and the table of contents. The long chapters on interfaces, deployment, reliability, the appendices and the reference list were searched for key terms only, and this page makes no claim about them.
 
 ## What it shows
 

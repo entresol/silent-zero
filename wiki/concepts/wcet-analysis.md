@@ -1,9 +1,9 @@
 ---
 type: concept
 status: reviewed
-sources: [2009-klein-sel4-formal-verification, nd-trustworthy-wcet-worst-case, 2026-sillitoe-resurrecting-sel4-wcet, 2026-trustworthy-guaranteeing-timeliness-mcs, 2026-heiser-mcs-safety-os, 2018-klein-formally-verified-software]
+sources: [2026-heiser-trustworthy-systems-update, 2009-klein-sel4-formal-verification, nd-trustworthy-wcet-worst-case, 2026-sillitoe-resurrecting-sel4-wcet, 2026-trustworthy-guaranteeing-timeliness-mcs, 2026-heiser-mcs-safety-os, 2018-klein-formally-verified-software]
 glossary: Worst-case execution time (WCET)
-updated: 2026-10-29
+updated: 2026-11-14
 ---
 
 # WCET analysis
@@ -27,10 +27,12 @@ The cache adds pessimism. On ARM11 the sound bound for seL4 was about four times
 | Target | State | Source |
 | --- | --- | --- |
 | 32-bit Arm, kernel before MCS | complete, sound analysis existed; archived | [[nd-trustworthy-wcet-worst-case]] |
-| 64-bit RISC-V, MCS kernel | analysis runs, placeholder latencies and loop bounds, no bound yet; sound CVA6 latencies expected Q1 2027 | [[2026-sillitoe-resurrecting-sel4-wcet]] |
+| 64-bit RISC-V, MCS kernel | analysis runs, placeholder latencies and loop bounds, no bound yet; sound CVA6 latencies expected Q1 2027 | [[2026-sillitoe-resurrecting-sel4-wcet]]; slides of September 2026 give the same placeholders and no bound ([[2026-heiser-trustworthy-systems-update]]) |
 | Armv8, in-order core | planned | [[2026-sillitoe-resurrecting-sel4-wcet]], §5.2 |
 
 Which 32-bit cores the old analysis covered is told three ways, and the accounts conflict. The archived project page names ARM11, Sillitoe et al. say the first analysis, Blackham et al. 2011, was on Armv7 (§1), and the current project page and the 2026 slides say Armv6 and Armv7 ([[2026-trustworthy-guaranteeing-timeliness-mcs]], [[2026-heiser-mcs-safety-os]]). The ARM1136 is an Armv6 core ([[2009-klein-sel4-formal-verification]], §5.1). On ARM11 the loop bounds were set by hand; proved bounds came later ([[nd-trustworthy-wcet-worst-case]]). Our reading: the safe statement is "32-bit Arm, before MCS". [[2018-klein-formally-verified-software]] cites Blackham et al. 2011 and Sewell et al. 2016 for it; neither is covered here yet.
+
+Scale was the obstacle on RISC-V. The kernel expands to 1.5 million contextual basic blocks, and the cache analysis never finished; iterating strongly connected components in topological order, together with leaner memory use and fewer variables, brought every full-kernel cache analysis down to about an hour, according to slides of September 2026 ([[2026-heiser-trustworthy-systems-update]]). The July paper gives about three hours for one run, which may count differently ([[2026-sillitoe-resurrecting-sel4-wcet]], §3). The same slides tick the revival of the verified loop-bound import and leave infeasible paths open.
 
 The old work could not simply be reused. Besides the missing latencies, the old kernel predated MCS and was much simpler, and the analysis ran on a heavily modified fork of Chronos, which became unmaintained ([[2026-trustworthy-guaranteeing-timeliness-mcs]]).
 

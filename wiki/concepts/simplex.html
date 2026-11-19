@@ -4,6 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Simplex architecture · Silent Zero wiki</title>
+<meta name="description" content="a simple safe controller guarding an untrusted one; tested with learned controllers.">
+<link rel="canonical" href="https://silentzero.ooo/wiki/concepts/simplex.html">
+<link rel="alternate" type="text/markdown" href="/wiki/concepts/simplex.html.md">
 <link rel="icon" href="/favicon.ico?v=227f1130" sizes="32x32">
 <link rel="icon" href="/assets/favicon.svg?v=227f1130" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png?v=227f1130">
@@ -338,7 +341,7 @@ sup.refs a:hover { text-decoration: underline; }
     <div class="titleblock">
       <h1 class="name">Simplex architecture</h1>
       <p class="sub">a simple safe controller guarding an untrusted one; tested with learned controllers.</p>
-      <p class="ver">Concept · <a href="/wiki/#how">LLM reviewed</a> · updated 29 Oct 2026 · 1 source</p>
+      <p class="ver">Concept · <a href="/wiki/#how">LLM reviewed</a> · updated 13 Nov 2026 · 2 sources</p>
     </div>
   </div>
 </header>
@@ -356,6 +359,7 @@ sup.refs a:hover { text-decoration: underline; }
 </ul>
 <h2 id="state-october-2026">State, October 2026</h2>
 <p>Demonstrated with learned controllers on a pendulum and a rover, on a hypervisor not claimed to be verified, with tests rather than proofs (<a href="/wiki/sources/2025-nesti-use-simplex-architecture.html">The Use of the Simplex Architecture to Enhance Safety in Deep-Learning-Powered Autonomous Systems</a>).</p>
+<p>A 2026 variant, Synergistic Simplex, lets information flow both ways: the safety layer may ask the learned layer to replan within safe bounds, and may use a learned output that is independent of the function it protects, under conditions the authors derive on paper. In simulation of a car it cut stops where an undetected obstacle lay in a neighbouring lane, with no collisions; its assumptions include static obstacles and correct lane detection (<a href="/wiki/sources/2026-bansal-synergistic-simplex-cooperative.html">Synergistic Simplex</a>).</p>
 <h2 id="open-questions">Open questions</h2>
 <ul>
 <li>The Silent Zero paper dates the pattern to 2001 and cites Sha 2001; <a href="/wiki/sources/2025-nesti-use-simplex-architecture.html">The Use of the Simplex Architecture to Enhance Safety in Deep-Learning-Powered Autonomous Systems</a> dates it to 1994.</li>
@@ -364,10 +368,10 @@ sup.refs a:hover { text-decoration: underline; }
 
 <h2 id="page-sources">Sources</h2>
 <p class="links-note">What this page rests on.</p>
-<ul class="linked-from"><li><a href="/wiki/sources/2025-nesti-use-simplex-architecture.html">The Use of the Simplex Architecture to Enhance Safety in Deep-Learning-Powered Autonomous Systems</a> <span class="kind">Nesti et al. 2025</span></li></ul>
+<ul class="linked-from"><li><a href="/wiki/sources/2026-bansal-synergistic-simplex-cooperative.html">Synergistic Simplex</a> <span class="kind">Bansal et al. 2026</span></li><li><a href="/wiki/sources/2025-nesti-use-simplex-architecture.html">The Use of the Simplex Architecture to Enhance Safety in Deep-Learning-Powered Autonomous Systems</a> <span class="kind">Nesti et al. 2025</span></li></ul>
 <h2 id="related-pages">Related pages</h2>
 <p class="links-note">Pages this one links to, and pages that link here.</p>
-<ul class="linked-from"><li><a href="/wiki/design/safety-path.html">The safety path</a> <span class="kind">Design</span></li><li><a href="/wiki/sources/2026-rinard-testing-credible-compilation.html">the Axon compiler</a> <span class="kind">Source</span></li><li><a href="/wiki/sources/2026-liao-llvm-translation-validation.html">Trivet, LLVM translation validation with models and Lean</a> <span class="kind">Source</span></li></ul>
+<ul class="linked-from"><li><a href="/wiki/design/safety-path.html">The safety path</a> <span class="kind">Design</span></li><li><a href="/wiki/sources/2026-rinard-testing-credible-compilation.html">the Axon compiler</a> <span class="kind">Source</span></li></ul>
   </article>
 </div>
 <footer><div><span class="about"><span>Silent Zero OS</span><span class="sep"> · </span><span>Wiki</span><span class="sep"> · </span><span>Text <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></span></span><span class="links"><a href="/">Paper</a> <a href="https://github.com/entresol/silent-zero/tree/main/wiki">GitHub</a> <a href="https://unwritten.studio/impressum">Imprint</a></span></div></footer>

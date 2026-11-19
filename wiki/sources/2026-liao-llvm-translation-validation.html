@@ -3,7 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Trivet, LLVM translation validation with models and Lean · Silent Zero wiki</title>
+<title>Trivet · Silent Zero wiki</title>
+<meta name="description" content="Trivet: a model builds Lean proofs of LLVM transformations; 147 of 148 cases decided, against 20 of 30 for Alive2 on fixed-width loop-free cases. measurement, partly read.">
+<link rel="canonical" href="https://silentzero.ooo/wiki/sources/2026-liao-llvm-translation-validation.html">
+<link rel="alternate" type="text/markdown" href="/wiki/sources/2026-liao-llvm-translation-validation.html.md">
 <link rel="icon" href="/favicon.ico?v=227f1130" sizes="32x32">
 <link rel="icon" href="/assets/favicon.svg?v=227f1130" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png?v=227f1130">
@@ -336,9 +339,9 @@ sup.refs a:hover { text-decoration: underline; }
   <div class="hero-inner">
     <p class="crumbs"><a href="/">Silent Zero OS</a> · <a href="/wiki/">Wiki</a></p>
     <div class="titleblock">
-      <h1 class="name">Trivet, LLVM translation validation with models and Lean</h1>
-      <p class="sub">Trivet: a model fills Lean proof holes, the kernel checks; 147 of 148 LLVM rewrites validated or refuted. measurement, partly read.</p>
-      <p class="ver">Source · Liao and others 2026 · <a href="/wiki/#how">Draft</a> · updated 9 Nov 2026</p>
+      <h1 class="name">Trivet</h1>
+      <p class="sub">Trivet: a model builds Lean proofs of LLVM transformations; 147 of 148 cases decided, against 20 of 30 for Alive2 on fixed-width loop-free cases. measurement, partly read.</p>
+      <p class="ver">Source · Liao et al. 2026 · <a href="/wiki/#how">LLM reviewed</a> · updated 13 Nov 2026</p>
     </div>
   </div>
 </header>
@@ -346,31 +349,27 @@ sup.refs a:hover { text-decoration: underline; }
 <div class="layout">
   <nav class="toc" id="toc" aria-label="Contents"><p>Contents</p><ol><li class="toc-back"><a href="/">← The paper</a></li><li class="toc-back"><a href="/wiki/">← Wiki index</a></li><li><a href="#top">↑ Top</a></li><li><a href="#what-it-shows">What it shows</a></li><li><a href="#how">How</a></li><li><a href="#limits">Limits</a></li><li><a href="#against-the-wiki">Against the wiki</a></li><li><a href="#for-zos">For Silent Zero</a></li><li><a href="#related-pages">Related pages</a></li></ol></nav>
   <article>
-<p>Chunhao Liao, Hongxu Xu, Xintong Zhou, Yizhou Zhang and Chengnian Sun (University of Waterloo). “LLVM Translation Validation Automated with Large Language Models and Lean”. <a href="https://arxiv.org/abs/2609.19583" rel="noopener" target="_blank">arXiv:2609.19583</a>, version 1 of 17 September 2026. Read in part: abstract, introduction, background, the proof construction in §3.1 and §3.2, the implementation paragraph in §3.4 and the first part of the evaluation. The remaining evaluation, related work and the reference list were searched for key terms only, and this page makes no claim about them. For that reason the page stays <code>drafted</code>.</p>
+<p>Chunhao Liao, Hongxu Xu, Xintong Zhou, Yizhou Zhang and Chengnian Sun (University of Waterloo). “LLVM Translation Validation Automated with Large Language Models and Lean”. <a href="https://arxiv.org/abs/2609.19583" rel="noopener" target="_blank">arXiv:2609.19583</a>, version 1 of 17 September 2026. Read in part: abstract, introduction, background on Alive2, the method’s outline, implementation, the dataset and the first results (RQ1). The remaining results (RQ2 to RQ4) and the Lean proof details were skimmed, so this page quotes only the headline figures that the abstract and introduction state.</p>
 <h2 id="what-it-shows">What it shows</h2>
 <ul>
-<li><strong>The claim.</strong> Trivet checks that an LLVM optimisation keeps a program’s meaning by having a model fill proof holes in a Lean refinement theorem, or propose a counterexample; the Lean kernel checks every verdict (abstract, §1).</li>
-<li><strong>Result.</strong> On 148 transformations (74 valid, 74 invalid) it validates all 74 valid ones and refutes 73 invalid ones, leaving one invalid case open. Successes include 60 loop-free transformations with symbolic bitwidths, 27 from a restricted class with loops, and 10 hard fixed-bitwidth cases on which Alive2, an SMT-based validator, times out (abstract, §1; the 10 follow from Alive2 validating 5 of 15 such cases in two hours, §4).</li>
-<li><strong>Scaffolding helps.</strong> Against an unscaffolded baseline, the generated scaffold gives 26 more proofs and cuts mean proof time by 75.9 per cent and mean cost by 88 per cent on cases both solve (abstract).</li>
-<li><strong>Cost in time.</strong> Symbolic-bitwidth proofs took 138 to 1748 seconds, median 614. On 15 easy fixed-bitwidth cases Alive2 needed under one second each and Trivet a median of 463 seconds (§4).</li>
-<li><strong>What is trusted.</strong> The model only completes holes or proposes a counterexample; a deterministic harness accepts a result only after Lean’s kernel checks it. In the proof-completion branch a proof is accepted only without <code>sorry</code> or <code>admit</code> and with the standard axioms only (§3.1.3); in the counterexample branch a deterministic scaffold builds the proof, adds no axioms, and the proof is accepted once it passes the kernel (§3.2).</li>
+<li><strong>The tool.</strong> Trivet checks that an LLVM transformation preserves the meaning of a program. It builds a proof outline in Lean 4 from the source and target functions, discharges the routine obligations by deterministic steps, and hands the transformation-specific ones to a language model. A valid transformation gets a refinement proof; an invalid one gets a counterexample that the framework checks. Every verdict is accepted only after Lean’s kernel checks it (abstract, §1).</li>
+<li><strong>Results.</strong> On 148 real transformations (74 valid, 74 invalid) Trivet proves all valid ones and refutes 73 of the invalid ones, leaving one unresolved. The set includes 60 loop-free transformations with symbolic bit widths, which the SMT-based checker Alive2 cannot handle, and a restricted class of transformations with loops. Alive2 validates 20 of 30 loop-free fixed-width cases. Against a baseline without the proof outline, the outline enables 26 more proofs and cuts mean proof time by 75.9 per cent and mean cost by 88 per cent on cases both solve (abstract, §1, §4).</li>
 </ul>
 <h2 id="how">How</h2>
-<p>A framework built on the LLVM dialect of the Lean-MLIR project, which the authors extended with immediate undefined behaviour, preconditions, more bit operations and multiple symbolic bitwidths. The model runs as an agent through a command-line tool with the GPT-5.5 model (§3.4). All 148 cases are real-world transformation instances from the LLVM repository (§4.1). The valid symbolic cases come from generalising fixed-bitwidth ones with techniques of earlier work, and the authors built the invalid symbolic cases by hand by replacing the concrete bitwidth (§4).</p>
+<p>The model is an agent (the Codex command-line tool with the model gpt-5.5) that works inside a deterministic harness; the harness trusts Lean’s kernel, not the agent. The semantics are an extension of Lean-MLIR (§3).</p>
 <h2 id="limits">Limits</h2>
-<p>What the authors say: the formalisation covers integer instructions, loop-free single-block transformations and a restricted class with loops; memory operations, floating point and richer loops are future work; the deprecated <code>undef</code> is not supported (§2.1, §3.4). A careful reader adds: it checks single transformations of a compiler, not a whole compiler; it validates the rewrite rule, so a mistake in the Lean model of LLVM’s semantics would pass unnoticed; and the evaluation is on 148 cases, some of them generalised or constructed by the authors.</p>
+<p>What the authors say: the formalisation covers integer instructions; memory operations, floating point and richer loops are future work (§3). The symbolic-width invalid cases, and the symbolic-width loop cases, were derived by hand from fixed-width ones, because the generalisation techniques the authors use do not cover them (dataset description in §4). A careful reader adds: whether the Lean model of LLVM’s semantics matches LLVM is not checked by the proofs, and the costs and times depend on one commercial model’s pricing in September 2026.</p>
 <h2 id="against-the-wiki">Against the wiki</h2>
 <ul>
-<li><a href="/wiki/concepts/proof-automation.html">Proof automation</a>: extends it with a case where the model proposes and a proof kernel decides, as with seL4’s Isabelle proofs, but for compiler rewrites rather than kernel theorems.</li>
-<li><a href="/wiki/sources/2026-rinard-testing-credible-compilation.html">the Axon compiler</a>: related, since both check compiler output with a small trusted checker. There, an agent wrote the whole compiler and a verified checker accepts certificates; here, a model completes proofs per transformation.</li>
-<li><a href="/wiki/design/kernel.html">The kernel</a>: nothing in it touches seL4; the wiki makes no link.</li>
+<li><a href="/wiki/concepts/proof-automation.html">Proof automation</a>: extends it with a third kind of task. The sources there write proofs for seL4 theorems or Verus code, or, in the Axon report, for one compiler; here the proofs are about LLVM transformations, with a proof checker in the loop.</li>
+<li><a href="/wiki/sources/2026-rinard-testing-credible-compilation.html">the Axon compiler</a>: both use translation validation. There a verified checker accepts certificates from untrusted compiler passes; here a model builds the proof for a given transformation.</li>
 </ul>
 <h2 id="for-zos">For Silent Zero</h2>
-<p>Our reading: another instance of the pattern of an untrusted generator behind a trusted checker, the shape of <a href="/wiki/concepts/simplex.html">Simplex architecture</a> and of the machine-made proofs in <a href="/wiki/concepts/proof-automation.html">Proof automation</a>. It changes the state of no <code>design/</code> page.</p>
+<p>Context only. No <code>design/</code> page changes. <a href="/wiki/design/kernel.html">The kernel</a> lists binary correctness of seL4, which rests on translation validation of its own binary; nothing here bears on that, since Trivet concerns LLVM’s transformations.</p>
 
 <h2 id="related-pages">Related pages</h2>
 <p class="links-note">Pages this one links to, and pages that link here.</p>
-<ul class="linked-from"><li><a href="/wiki/design/kernel.html">The kernel</a> <span class="kind">Design</span></li><li><a href="/wiki/concepts/proof-automation.html">Proof automation</a> <span class="kind">Concept</span></li><li><a href="/wiki/concepts/simplex.html">Simplex architecture</a> <span class="kind">Concept</span></li><li><a href="/wiki/sources/2026-rinard-testing-credible-compilation.html">the Axon compiler</a> <span class="kind">Source</span></li></ul>
+<ul class="linked-from"><li><a href="/wiki/design/kernel.html">The kernel</a> <span class="kind">Design</span></li><li><a href="/wiki/concepts/proof-automation.html">Proof automation</a> <span class="kind">Concept</span></li><li><a href="/wiki/sources/2026-rinard-testing-credible-compilation.html">the Axon compiler</a> <span class="kind">Source</span></li></ul>
   </article>
 </div>
 <footer><div><span class="about"><span>Silent Zero OS</span><span class="sep"> · </span><span>Wiki</span><span class="sep"> · </span><span>Text <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></span></span><span class="links"><a href="/">Paper</a> <a href="https://github.com/entresol/silent-zero/tree/main/wiki">GitHub</a> <a href="https://unwritten.studio/impressum">Imprint</a></span></div></footer>

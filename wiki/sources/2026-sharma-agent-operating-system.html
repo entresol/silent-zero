@@ -4,6 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>the AOS reference architecture · Silent Zero wiki</title>
+<meta name="description" content="AOS-0001: a two-plane reference architecture for agent systems over Linux or Windows; monotone delegation; verification planned. design, partly read.">
+<link rel="canonical" href="https://silentzero.ooo/wiki/sources/2026-sharma-agent-operating-system.html">
+<link rel="alternate" type="text/markdown" href="/wiki/sources/2026-sharma-agent-operating-system.html.md">
 <link rel="icon" href="/favicon.ico?v=227f1130" sizes="32x32">
 <link rel="icon" href="/assets/favicon.svg?v=227f1130" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png?v=227f1130">
@@ -338,7 +341,7 @@ sup.refs a:hover { text-decoration: underline; }
     <div class="titleblock">
       <h1 class="name">the AOS reference architecture</h1>
       <p class="sub">AOS-0001: a two-plane reference architecture for agent systems over Linux or Windows; monotone delegation; verification planned. design, partly read.</p>
-      <p class="ver">Source · Sharma and Shah 2026 · <a href="/wiki/#how">Draft</a> · updated 9 Nov 2026</p>
+      <p class="ver">Source · Sharma and Shah 2026 · <a href="/wiki/#how">LLM reviewed</a> · updated 19 Nov 2026</p>
     </div>
   </div>
 </header>
@@ -346,7 +349,7 @@ sup.refs a:hover { text-decoration: underline; }
 <div class="layout">
   <nav class="toc" id="toc" aria-label="Contents"><p>Contents</p><ol><li class="toc-back"><a href="/">← The paper</a></li><li class="toc-back"><a href="/wiki/">← Wiki index</a></li><li><a href="#top">↑ Top</a></li><li><a href="#what-it-shows">What it shows</a></li><li><a href="#how">How</a></li><li><a href="#limits">Limits</a></li><li><a href="#against-the-wiki">Against the wiki</a></li><li><a href="#for-zos">For Silent Zero</a></li><li><a href="#related-pages">Related pages</a></li></ol></nav>
   <article>
-<p>Ankur Sharma and Deep Shah. “The Agent Operating System (AOS): A Reference Operating Architecture for Distributed Agentic Systems”. <a href="https://arxiv.org/abs/2608.03214" rel="noopener" target="_blank">arXiv:2608.03214</a>, version 1 of 4 August 2026; the document calls itself AOS-0001, Draft v0.8, in an “AOS Specification Series”. It extends the authors’ earlier paper <a href="/wiki/sources/2026-sharma-agent-operating-systems.html">Agent Operating Systems</a>. Read in part: abstract, executive summary, problem statement, contributions, the delegation and scheduling parts of the mathematical model, the limitations and validation sections, section 16.8 and the table of contents. The long chapters on interfaces, deployment, reliability, the appendices and the reference list were searched for key terms only, and this page makes no claim about them. For that reason the page stays <code>drafted</code>.</p>
+<p>Ankur Sharma and Deep Shah. “The Agent Operating System (AOS): A Reference Operating Architecture for Distributed Agentic Systems”. <a href="https://arxiv.org/abs/2608.03214" rel="noopener" target="_blank">arXiv:2608.03214</a>, version 1 of 4 August 2026; the document calls itself AOS-0001, Draft v0.8, in an “AOS Specification Series”. It extends the authors’ earlier paper <a href="/wiki/sources/2026-sharma-agent-operating-systems.html">Agent Operating Systems</a>. Read in part: abstract, executive summary, problem statement, contributions, the delegation and scheduling parts of the mathematical model, the limitations and validation sections, section 16.8 and the table of contents. The long chapters on interfaces, deployment, reliability, the appendices and the reference list were searched for key terms only, and this page makes no claim about them.</p>
 <h2 id="what-it-shows">What it shows</h2>
 <ul>
 <li><strong>The claim.</strong> Current agent stacks are “execution-centric”: frameworks, model servers, protocols and observability tools exist, but no implementation-independent operating architecture governs intent, authority and audit across them (abstract, §3.2). The paper proposes two logical planes: a Control and Governance Plane (intent, policy, trust, authority, confidence, audit, human oversight) and a Runtime and Coordination Plane (agent lifecycle, workflow, model and tool routing, memory, scheduling, assurance). Linux or Windows, container runtimes and hardware stay outside the boundary (abstract, §2).</li>
