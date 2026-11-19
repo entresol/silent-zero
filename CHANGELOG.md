@@ -6,6 +6,10 @@ Format: `## <version> · <scope>`, then one paragraph. A paper version is `YYYY-
 
 ## 2026-11-19 · Site
 
+The site can now be found and read by search engines and AI assistants, and nothing is held back: `robots.txt` allows every crawler, those for search, for answers and for training, and names the main ones so the position is on record. New: `sitemap.xml`; `llms.txt`, a short guide to the paper and the wiki in the format of llmstxt.org; a clean Markdown version of every wiki page beside it (`page.html.md`), announced in each page's head; a canonical address and a description on each page; structured data (JSON-LD) on the paper's page, without names. Built by `paper/build.sh` with the rest, so it stays current.
+
+## 2026-11-19 · Site
+
 Two sources worked into the wiki, both preprints on defences that check an agent's tool calls: ToolFence, which binds each sensitive argument to where its value may come from (Li et al.), and a paper on denied calls as a leak (Chinaei). New pages: two source pages. Changed in substance: the broker page (two table rows, two related entries, a new open question on what a refusal discloses); smaller changes to the pages on prompt injection and information-flow control. No new lexicon terms. The backlog stayed closed because eight decisions are open.
 
 ## 2026-11-16 · Site

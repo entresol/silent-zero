@@ -13,6 +13,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+import changelog
 import lexicon
 import wiki_lint
 
@@ -22,6 +23,7 @@ root = Path(sys.argv[1]) if len(sys.argv) > 1 else Path(__file__).resolve().pare
 iv = hashlib.sha256(b"".join((root / f).read_bytes() for f in ("favicon.ico", "assets/favicon.svg", "assets/apple-touch-icon.png"))).hexdigest()[:8]
 wiki = root / "wiki"
 REPO = "https://github.com/entresol/silent-zero"
+SITE = "https://silentzero.ooo"
 
 GROUPS = [("design", "Design", "The parts of the design: what each must do, what exists, and what is proven, tested or assumed."),
           ("concept", "Concepts", "The ideas the design relies on."),
@@ -65,14 +67,18 @@ LINK = re.compile(r"\[\[([^\]|]+)(?:\|([^\]]+))?\]\]")
 links_out = {n: {m.group(1).strip() for m in LINK.finditer(p["body"])} & set(pages) - {n, "index"}
              for n, p in pages.items() if n != "index"}
 linked_from = {n: {m for m, out in links_out.items() if n in out} for n in pages}
-def wikilinks(md, here):
+def md_url(url):
+    """The clean Markdown version of a page sits beside it: page.html.md (llmstxt.org)."""
+    return url + "index.html.md" if url.endswith("/") else url + ".md"
+
+def wikilinks(md, here, markdown=False):
     def rep(m):
         target, text = m.group(1).strip(), (m.group(2) or "").strip()
         p = pages.get(target)
         if not p:   # wiki_lint reports it
             return text or target
         by = f" ({p['by']})" if here == "index" and not text and p["by"] else ""   # the catalogue keeps who wrote it
-        return f"[{text or p['title']}]({p['url']}){by}"
+        return f"[{text or p['title']}]({SITE + md_url(p['url']) if markdown else p['url']}){by}"
     return LINK.sub(rep, md)
 
 def to_html(md):
@@ -129,7 +135,7 @@ addEventListener('scroll', () => { if (!queued) { queued = true; requestAnimatio
 mark();
 </script>"""
 
-def page(title, head, body, crumb):
+def page(title, head, body, crumb, path="/", description="", markdown=True):
     back = '<li><a href="/">\u2190 The paper</a></li>' + ('' if title == "Wiki" else '<li><a href="/wiki/">\u2190 Wiki index</a></li>')
     toc = back.replace('<li>', '<li class="toc-back">') + '<li><a href="#top">↑ Top</a></li>' + "".join(
         f'<li><a href="#{i}">{re.sub("<[^>]+>", "", t)}</a></li>' for i, t in re.findall(r'<h2 id="([^"]+)">(.*?)</h2>', body))
@@ -139,6 +145,9 @@ def page(title, head, body, crumb):
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>{PUBLIC_NAME + " wiki" if title == "Wiki" else _h.escape(title) + " · " + PUBLIC_NAME + " wiki"}</title>
+{('<meta name="description" content="' + _h.escape(description) + '">') if description else ""}
+<link rel="canonical" href="{SITE}{path}">
+{('<link rel="alternate" type="text/markdown" href="' + md_url(path) + '">') if markdown else ""}
 <link rel="icon" href="/favicon.ico?v={iv}" sizes="32x32">
 <link rel="icon" href="/assets/favicon.svg?v={iv}" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png?v={iv}">
@@ -167,6 +176,16 @@ def page(title, head, body, crumb):
 """
 
 CRUMB = f'<a href="/">{PUBLIC_NAME} OS</a> · <a href="/wiki/">Wiki</a>'
+def bits_plain(meta, p):
+    """The meta line of a page as plain text: kind, status, date, number of sources."""
+    kind = "Design" if meta["type"] == "design" else GROUP_NAME[meta["type"]][:-1]
+    out = [kind] + ([p["by"]] if p["by"] else []) + [STATUS.get(meta.get("status", "drafted"), meta.get("status", "drafted"))]
+    if meta.get("updated"):
+        out.append("updated " + meta["updated"])
+    if meta["type"] != "source" and p["n_sources"]:
+        out.append(f'{p["n_sources"]} source{"s" if p["n_sources"] != 1 else ""}')
+    return out
+catalogue = []
 written = 0
 for name, p in pages.items():
     if name == "index":
@@ -203,7 +222,18 @@ for name, p in pages.items():
             + (f'      <p class="sub">{sub}</p>\n' if sub else "")
             + f'      <p class="ver">{" · ".join(bits)}</p>\n    </div>')
     out = p["file"].with_suffix(".html")
-    out.write_text(page(public(p["title"]), head, html_body, CRUMB), encoding="utf-8")
+    plain = re.sub(r"\s+", " ", re.sub("<[^>]+>", "", _h.unescape(public(sub)))).strip()   # the one-line subtitle, for search results
+    out.write_text(page(public(p["title"]), head, html_body, CRUMB, path=p["url"], description=plain), encoding="utf-8")
+    # the same page as clean Markdown for assistants and agents: public name, links to the other pages' Markdown (llmstxt.org)
+    md = [f"# {public(p['title'])}", ""]
+    if plain:
+        md += [f"> {plain[0].upper() + plain[1:]}", ""]
+    md += [" · ".join([*bits_plain(meta, p), SITE + p["url"]]), "", public(wikilinks(body, name, markdown=True)).strip(), ""]
+    for h, group in (("Sources", sorted(rests, key=order)), ("Related pages", related)):
+        if group:
+            md += [f"## {h}", ""] + [f"- [{public(pages[n]['title'])}]({SITE + md_url(pages[n]['url'])})" for n in group] + [""]
+    out.with_suffix(".html.md").write_text("\n".join(md), encoding="utf-8")
+    catalogue.append((name, p, plain))
     written += 1
 
 # the wiki's front page: what it is, how it is made, then the catalogue
@@ -230,7 +260,9 @@ index_body = to_html(intro + wikilinks(cat, "index"))
 index_head = (f'    <div class="titleblock">\n      <h1 class="name">Wiki</h1>\n'
               f'      <p class="sub">What the sources behind the paper show, page by page.</p>\n'
               f'      <p class="ver">{len(pages) - 1} pages · updated {date(pages["index"]["meta"].get("updated", "2026-01-01"))} · <a href="#how">How this wiki is made</a></p>\n    </div>')
-(wiki / "index.html").write_text(page("Wiki", index_head, index_body, f'<a href="/">{PUBLIC_NAME} OS</a>'), encoding="utf-8")
+WIKI_DESC = "What the sources behind the Silent Zero paper show, page by page: designs, concepts, systems and sources, each with what is proven, tested or assumed."
+(wiki / "index.html").write_text(page("Wiki", index_head, index_body, f'<a href="/">{PUBLIC_NAME} OS</a>', path="/wiki/", description=WIKI_DESC), encoding="utf-8")
+(wiki / "index.html.md").write_text(f"# Silent Zero wiki\n\n> {WIKI_DESC}\n\n" + re.sub(r" \{#[\w-]+\}$", "", public(wikilinks(intro + cat, "index", markdown=True)), flags=re.M).strip() + "\n", encoding="utf-8")
 print(f"wiki: {written + 1} pages")
 
 # what a script can find wrong with the wiki (wiki_lint.py); the reading half is the weekly run's
@@ -257,4 +289,42 @@ lx_body.append("</div>")
 lx_head = (f'    <div class="titleblock">\n      <h1 class="name">Lexicon</h1>\n'
            f'      <p class="sub">Every term in one line. G leads to the glossary, W to the wiki.</p>\n    </div>')
 (root / "lexicon").mkdir(exist_ok=True)
-(root / "lexicon" / "index.html").write_text(page("Lexicon", lx_head, "\n".join(lx_body), f'<a href="/">{PUBLIC_NAME} OS</a>'), encoding="utf-8")
+(root / "lexicon" / "index.html").write_text(page("Lexicon", lx_head, "\n".join(lx_body), f'<a href="/">{PUBLIC_NAME} OS</a>', path="/lexicon/", description="Every term of the Silent Zero paper and wiki in one line.", markdown=False), encoding="utf-8")
+
+# --- what assistants and search engines read: sitemap.xml and llms.txt (the format: https://llmstxt.org/) ---
+version = changelog.current(changelog.parse())
+todate = version[:10]
+urls = [("/", todate), ("/wiki/", pages["index"]["meta"].get("updated", todate)), ("/lexicon/", None)]
+urls += [(p["url"], p["meta"].get("updated")) for _, p, _ in catalogue]
+sm = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
+for u, mod in urls:
+    sm.append(f"  <url><loc>{SITE}{u}</loc>" + (f"<lastmod>{mod}</lastmod>" if mod else "") + "</url>")
+(root / "sitemap.xml").write_text("\n".join(sm + ["</urlset>", ""]), encoding="utf-8")
+
+ll = [f"# {PUBLIC_NAME} OS", "",
+      "> Bare minimum. Verified. Real-time. An OS for the AI era. A working paper: a bootloader, a formally verified microkernel "
+      "and the bare minimum to run AI agents safely and in real time, built entirely from existing open source.", "",
+      f"This is a design, not a release: the paper makes the argument and says what is proven, tested or assumed. Text and figures are "
+      f"CC BY 4.0, code is BSD-2-Clause. The wiki is written by a language model from the project's sources; every page states its "
+      f"review status. Each wiki page has a clean Markdown version at its address plus `.md` (`page.html` is `page.html.md`).", "",
+      "## Paper", "",
+      f"- [{PUBLIC_NAME} OS, working paper ({'v' + version.split('-v')[-1]})]({SITE}/silent-zero.pdf): the full paper as PDF, always the newest version",
+      f"- [The paper as a web page]({SITE}/): the same argument with a short summary first, in English (header also in German, French, Spanish, Italian)", "",
+      "## Wiki", "",
+      f"- [Wiki index]({SITE + md_url('/wiki/')}): how the wiki is made, and the catalogue of all pages"]
+for key, title, blurb in GROUPS:
+    if key == "source":
+        continue
+    ll += ["", f"## {title}", ""]
+    ll += [f"- [{public(p['title'])}]({SITE + md_url(p['url'])})" + (f": {d}" if d else "")
+           for _, p, d in sorted(catalogue, key=lambda t: t[1]["title"].lower()) if p["meta"]["type"] == key]
+ll += ["", "## Project", "",
+       f"- [Repository]({REPO}): code, paper source, wiki source",
+       f"- [CONTRIBUTING.md]({REPO}/blob/main/CONTRIBUTING.md): how the team works and how to take part",
+       f"- [CHANGELOG.md]({REPO}/blob/main/CHANGELOG.md): where things stand, newest first", "",
+       "## Optional", "",
+       f"- [Lexicon]({SITE}/lexicon/): every term of the paper and wiki in one line"]
+ll += [f"- [{public(p['title'])}]({SITE + md_url(p['url'])})" + (f" ({p['by']})" if p["by"] else "")
+       for _, p, _ in sorted(catalogue, key=lambda t: t[1]["title"].lower()) if p["meta"]["type"] == "source"]
+(root / "llms.txt").write_text("\n".join(ll) + "\n", encoding="utf-8")
+print(f"agents: sitemap.xml ({len(urls)} urls), llms.txt, {len(catalogue) + 1} Markdown pages")
