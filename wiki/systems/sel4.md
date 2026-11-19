@@ -15,7 +15,7 @@ A microkernel of the L4 family whose C implementation has a machine-checked proo
 | Property | Where | Source |
 | --- | --- | --- |
 | Functional correctness at C level | AArch32, AArch64, RISC-V, x86-64, in the verified configurations; fast path covered on Arm only | [[nd-sel4-verified-configurations]] |
-| Integrity and confidentiality (storage channels, not timing) | AArch32, AArch64, RISC-V; not stated for MCS | [[nd-sel4-verified-configurations]]; [[2018-klein-formally-verified-software]], §3.2; on AArch64 also the seL4 news item of 24 August 2026, which says the confidentiality proof is finished there and security isolation complete under listed assumptions ([[2026-proofcraft-sel4-security-proofs]]) |
+| Integrity and confidentiality (storage channels, not timing) | AArch32, AArch64, RISC-V; not stated for MCS | [[nd-sel4-verified-configurations]]; [[2018-klein-formally-verified-software]], §3.2; on AArch64 also the seL4 news item of 24 August 2026, which says the confidentiality proof is finished there and security isolation complete under listed assumptions; `CAVEATS.md` of 17.0.0 says "in progress" for AArch64 with hypervisor extensions, see [[kernel]] ([[2026-proofcraft-sel4-security-proofs]], [[2026-sel4-release-17]]) |
 | Binary correctness | listed for AArch32 | [[nd-sel4-verified-configurations]] |
 | Functional correctness of the MCS configuration | RISC-V, announced 29 June 2026; port to 64-bit Arm under DARPA's PROVERS programme | [[2026-sel4-functional-correctness-proof]] |
 | Platforms with the C-level proof | since release 17.0.0 (30 October 2026), by the release notes' own words, "all 64-bit platforms seL4 support"; they list eight RISC-V platforms and fifteen AArch64 ones. The MCS proof on RISC-V covers `hifive` (HiFive Unleashed) only | [[2026-sel4-release-17]] |
@@ -35,7 +35,7 @@ An overview by Heiser (published 30 April, current version 26 June 2026) says th
 
 ## In use
 
-Under DARPA's HACMS programme, seL4 carried the mission computer of Boeing's Unmanned Little Bird, which stayed safe under a mid-flight cyberattack in 2017 ([[2018-klein-formally-verified-software]]).
+Under DARPA's HACMS programme, seL4 carried the mission computer of Boeing's Unmanned Little Bird, which stayed safe under a mid-flight cyberattack in 2017 ([[2018-klein-formally-verified-software]]). A 2026 talk abstract describes a project for Army ground vehicles that is building ROS 2 on seL4 as a separation kernel; it reports proofs of concept for two configurations, and the security services are planned ([[2026-lide-arsenal-assured-robotics]]).
 
 ## Performance
 

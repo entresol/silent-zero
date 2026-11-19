@@ -163,3 +163,4 @@ The zOS part *agents* has no page yet; [[agent-operating-systems]] covers the de
 - [[2026-nguyen-booting-windows-x86-64]] · seL4 Summit 2026 talk: libvmm boots unmodified Windows 11 on x86-64 through UEFI; APICv cuts the boot from over ten minutes to 60 seconds; no isolation claim. report, partly read.
 - [[2026-li-toolfence-fine-grained]] · ToolFence: a typed authorization blueprint from the user's request, a deterministic monitor and a model judge for gaps; 0.20 % attack success on AgentDojo with Qwen3-max; preprint. measurement, partly read.
 - [[2026-chinaei-causality-laundering-denial]] · causality laundering: a denied tool call leaks what exists; a monitor that records denials; three constructed scenarios, single author. design, partly read.
+- [[2026-lide-arsenal-assured-robotics]] · ARSENAL, seL4 Summit 2026 talk abstract: ROS 2 on seL4 for Army ground vehicles, two configurations, a proof of concept each; security services planned. report, abstract only.

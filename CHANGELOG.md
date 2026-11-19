@@ -10,6 +10,10 @@ Six sentences now say what their sources say. Section 2.3: the first seL4 proof 
 
 ## 2026-11-19 · Site
 
+One source worked into the wiki: the abstract of the ARSENAL talk (ROS 2 on seL4 for US Army ground vehicles, seL4 Summit 2026), with a note on its field of use. New pages: one source page. Changed in substance: the kernel and seL4 pages now record that the seL4 17.0.0 caveats file lists AArch64 confidentiality as in progress while the news item and the configurations page say it is proven. No new lexicon terms.
+
+## 2026-11-19 · Site
+
 The site can now be found and read by search engines and AI assistants, and nothing is held back: `robots.txt` allows every crawler, those for search, for answers and for training, and names the main ones so the position is on record. New: `sitemap.xml`; `llms.txt`, a short guide to the paper and the wiki in the format of llmstxt.org; a clean Markdown version of every wiki page beside it (`page.html.md`), announced in each page's head; a canonical address and a description on each page; structured data (JSON-LD) on the paper's page, without names. Built by `paper/build.sh` with the rest, so it stays current.
 
 ## 2026-11-19 · Site

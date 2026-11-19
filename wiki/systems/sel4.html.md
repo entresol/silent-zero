@@ -11,7 +11,7 @@ A microkernel of the L4 family whose C implementation has a machine-checked proo
 | Property | Where | Source |
 | --- | --- | --- |
 | Functional correctness at C level | AArch32, AArch64, RISC-V, x86-64, in the verified configurations; fast path covered on Arm only | [seL4 Foundation: Verified Configurations](https://silentzero.ooo/wiki/sources/nd-sel4-verified-configurations.html.md) |
-| Integrity and confidentiality (storage channels, not timing) | AArch32, AArch64, RISC-V; not stated for MCS | [seL4 Foundation: Verified Configurations](https://silentzero.ooo/wiki/sources/nd-sel4-verified-configurations.html.md); [Formally Verified Software in the Real World](https://silentzero.ooo/wiki/sources/2018-klein-formally-verified-software.html.md), §3.2; on AArch64 also the seL4 news item of 24 August 2026, which says the confidentiality proof is finished there and security isolation complete under listed assumptions ([security proofs complete on AArch64](https://silentzero.ooo/wiki/sources/2026-proofcraft-sel4-security-proofs.html.md)) |
+| Integrity and confidentiality (storage channels, not timing) | AArch32, AArch64, RISC-V; not stated for MCS | [seL4 Foundation: Verified Configurations](https://silentzero.ooo/wiki/sources/nd-sel4-verified-configurations.html.md); [Formally Verified Software in the Real World](https://silentzero.ooo/wiki/sources/2018-klein-formally-verified-software.html.md), §3.2; on AArch64 also the seL4 news item of 24 August 2026, which says the confidentiality proof is finished there and security isolation complete under listed assumptions; `CAVEATS.md` of 17.0.0 says "in progress" for AArch64 with hypervisor extensions, see [The kernel](https://silentzero.ooo/wiki/design/kernel.html.md) ([security proofs complete on AArch64](https://silentzero.ooo/wiki/sources/2026-proofcraft-sel4-security-proofs.html.md), [release 17.0.0](https://silentzero.ooo/wiki/sources/2026-sel4-release-17.html.md)) |
 | Binary correctness | listed for AArch32 | [seL4 Foundation: Verified Configurations](https://silentzero.ooo/wiki/sources/nd-sel4-verified-configurations.html.md) |
 | Functional correctness of the MCS configuration | RISC-V, announced 29 June 2026; port to 64-bit Arm under DARPA's PROVERS programme | [MCS functional-correctness proof completed on RISC-V](https://silentzero.ooo/wiki/sources/2026-sel4-functional-correctness-proof.html.md) |
 | Platforms with the C-level proof | since release 17.0.0 (30 October 2026), by the release notes' own words, "all 64-bit platforms seL4 support"; they list eight RISC-V platforms and fifteen AArch64 ones. The MCS proof on RISC-V covers `hifive` (HiFive Unleashed) only | [release 17.0.0](https://silentzero.ooo/wiki/sources/2026-sel4-release-17.html.md) |
@@ -31,7 +31,7 @@ An overview by Heiser (published 30 April, current version 26 June 2026) says th
 
 ## In use
 
-Under DARPA's HACMS programme, seL4 carried the mission computer of Boeing's Unmanned Little Bird, which stayed safe under a mid-flight cyberattack in 2017 ([Formally Verified Software in the Real World](https://silentzero.ooo/wiki/sources/2018-klein-formally-verified-software.html.md)).
+Under DARPA's HACMS programme, seL4 carried the mission computer of Boeing's Unmanned Little Bird, which stayed safe under a mid-flight cyberattack in 2017 ([Formally Verified Software in the Real World](https://silentzero.ooo/wiki/sources/2018-klein-formally-verified-software.html.md)). A 2026 talk abstract describes a project for Army ground vehicles that is building ROS 2 on seL4 as a separation kernel; it reports proofs of concept for two configurations, and the security services are planned ([ARSENAL](https://silentzero.ooo/wiki/sources/2026-lide-arsenal-assured-robotics.html.md)).
 
 ## Performance
 
@@ -77,6 +77,7 @@ CAmkES, the multicore proof. The roadmap is in [seL4 Foundation: Development roa
 - [AgentKernel](https://silentzero.ooo/wiki/sources/2026-zou-agentkernel-trust-native.html.md)
 - [agentOS, an operating system for agents on seL4](https://silentzero.ooo/wiki/sources/2026-hubbard-agentos-operating-system.html.md)
 - [Anthropic 2026a: Project Glasswing, securing critical software for the AI era](https://silentzero.ooo/wiki/sources/2026-anthropic-project-glasswing-securing.html.md)
+- [ARSENAL](https://silentzero.ooo/wiki/sources/2026-lide-arsenal-assured-robotics.html.md)
 - [Fast, Secure, Adaptable: LionsOS Design, Implementation and Performance](https://silentzero.ooo/wiki/sources/2025-heiser-fast-secure-adaptable.html.md)
 - [Robust Composition](https://silentzero.ooo/wiki/sources/2006-miller-robust-composition-towards.html.md)
 - [seL4 Foundation: Development roadmap](https://silentzero.ooo/wiki/sources/nd-sel4-sel4-roadmap.html.md)

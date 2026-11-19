@@ -47,6 +47,7 @@ Not yet covered by the wiki's sources.
 - [agentOS](https://silentzero.ooo/wiki/systems/agentos.html.md)
 - [LionsOS](https://silentzero.ooo/wiki/systems/lionsos.html.md)
 - [seL4](https://silentzero.ooo/wiki/systems/sel4.html.md)
+- [ARSENAL](https://silentzero.ooo/wiki/sources/2026-lide-arsenal-assured-robotics.html.md)
 - [Booting Windows on an x86-64 seL4-based VMM](https://silentzero.ooo/wiki/sources/2026-nguyen-booting-windows-x86-64.html.md)
 - [Fast, Secure, Adaptable: LionsOS Design, Implementation and Performance](https://silentzero.ooo/wiki/sources/2025-heiser-fast-secure-adaptable.html.md)
 - [seL4 Foundation: Development roadmap](https://silentzero.ooo/wiki/sources/nd-sel4-sel4-roadmap.html.md)
