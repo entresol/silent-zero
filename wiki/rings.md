@@ -71,7 +71,7 @@ Work that extends the design, competes with it or attacks its assumptions: other
 - [x] 2025-heiser-fast-secure-adaptable
 - [x] 2026-hubbard-agentos-operating-system
 - [x] 2024-lattuada-verus-practical-foundation
-- [ ] 2026-lide-arsenal-assured-robotics
+- [x] 2026-lide-arsenal-assured-robotics
 - [x] nd-linux-landlock-unprivileged-access
 - [x] nd-linux-real-time-preemption
 - [x] 2019-markettos-thunderclap-exploring-vulnerabilities
