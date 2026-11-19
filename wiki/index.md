@@ -1,6 +1,6 @@
 ---
 type: index
-updated: 2026-11-16
+updated: 2026-11-19
 ---
 
 # zOS wiki
@@ -11,7 +11,7 @@ The catalogue of every page, with one line each. Read this first.
 
 - [[kernel]] · seL4 with MCS as the zOS kernel: proven (C-level correctness; MCS functional correctness on RISC-V), not stated for MCS (integrity, confidentiality), tested (HACMS), assumed (boot, IOMMU); no WCET bound on any 64-bit core yet; the roadmap dates MCS on AArch64 to Q3 2027. 16 sources.
 - [[static-system]] · one description, one image: what Microkit checks, what is not proved, and the run-time swap in LionsOS, the kernel underneath. 6 sources.
-- [[broker]] · the only component that hands out authority: capability patterns, CaMeL and FIDES, why model-based defences fail; nothing proven yet. 18 sources.
+- [[broker]] · the only component that hands out authority: capability patterns, CaMeL and FIDES, why model-based defences fail; nothing proven yet. 20 sources.
 - [[real-time-loops]] · the loops that move the motors: asynchronous chunks from slow models, observed timings, no proven bound yet. 9 sources.
 - [[safety-path]] · Simplex in zOS: the agent proposes, the loop disposes; tested, not proven; the paper's 2001 date disputed by a 1994 origin. 5 sources.
 - [[root-of-trust]] · the firmware below the kernel on Arm, RISC-V, PC and Raspberry Pi; OpenTitan, Caliptra, DICE; all *assumed* in the paper's terms. 13 sources.
@@ -50,14 +50,14 @@ The zOS part *agents* has no page yet. Firmware on PCs (Intel ME, AMD PSP, FSP, 
 - [[functional-correctness]] · what seL4's refinement proof gives, what it assumes, where it holds. 4 sources.
 - [[object-capabilities]] · references that both designate and authorise; permission versus authority; caretaker and membrane. 5 sources.
 - [[confused-deputy]] · a program misusing one party's authority for another's request; capabilities as the remedy. 3 sources.
-- [[prompt-injection]] · instructions hidden in data an agent reads; heuristic defences fail, defences around the model hold within limits; benign command chains through shared state beat two of them. 6 sources.
+- [[prompt-injection]] · instructions hidden in data an agent reads; heuristic defences fail, defences around the model hold within limits; benign command chains through shared state beat two of them; argument-level authorization and refusals as a leak. 8 sources.
 - [[verified-boot]] · each stage checks the next against a key the attacker cannot change; proofs about boot code so far. 6 sources.
 - [[measured-boot]] · each stage records what runs next; TPM and DICE; a verified DICE implementation. 4 sources.
 - [[time-protection]] · closing timing channels between domains; prototypes on CVA6, proof for seL4 in progress. 3 sources.
 - [[simplex]] · a simple safe controller guarding an untrusted one; tested with learned controllers. 2 sources.
 - [[action-chunking]] · slow robot models emitting action sequences for a fast loop; no bound on delay. 3 sources.
 - [[ai-vulnerability-discovery]] · AI models finding software flaws at scale: DARPA's challenge and Anthropic's figures, the bottleneck moving to patching. 3 sources.
-- [[information-flow-control]] · labels for where data came from and who may see it; FIDES and CaMeL for agents; explicit flows only. 2 sources.
+- [[information-flow-control]] · labels for where data came from and who may see it; FIDES and CaMeL for agents; explicit flows only; refusals as a channel. 3 sources.
 - [[proof-automation]] · machines proposing proof steps, Isabelle checking them; 77.6 % of a seL4 benchmark sample; Verus as a faster verifier. PROMISE as a second method; AutoVerus for Rust; a coding agent's compiler proofs in Lean. 7 sources.
 - [[memory-safe-code]] · new code in Rust instead of C: Android's memory-safety flaws below 20 % in 2025; the hardening rival to a verified base. 2 sources.
 - [[mixed-criticality]] · software of different criticality on one platform; processor time as a capability in seL4 MCS. 3 sources.
@@ -148,3 +148,5 @@ The zOS part *agents* has no page yet. Firmware on PCs (Intel ME, AMD PSP, FSP, 
 - [[2026-heiser-trustworthy-systems-update]] · seL4 Summit 2026 slides: WCET revival scales (cache analysis from infeasible to about an hour), Microkit runs x86-64 UEFI, SMP against multikernel benchmarks. progress, partly read.
 - [[2026-murphy-formalising-device-protocols]] · seL4 Summit 2026 talk: device models from a device's Verilog in HOL4, a rely-guarantee format for Pancake drivers; no device proved end to end on the slides. progress, partly read.
 - [[2026-nguyen-booting-windows-x86-64]] · seL4 Summit 2026 talk: libvmm boots unmodified Windows 11 on x86-64 through UEFI; APICv cuts the boot from over ten minutes to 60 seconds; no isolation claim. report, partly read.
+- [[2026-li-toolfence-fine-grained]] · ToolFence: a typed authorization blueprint from the user's request, a deterministic monitor and a model judge for gaps; 0.20 % attack success on AgentDojo with Qwen3-max; preprint. measurement, partly read.
+- [[2026-chinaei-causality-laundering-denial]] · causality laundering: a denied tool call leaks what exists; a monitor that records denials; three constructed scenarios, single author. design, partly read.

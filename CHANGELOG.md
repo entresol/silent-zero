@@ -4,6 +4,10 @@ What changed in substance, newest first: in the paper, on its page and in the pr
 
 Format: `## <version> · <scope>`, then one paragraph. A paper version is `YYYY-MM-DD-vX.Y` and has its own PDF in `versions/`; the newest one is the version the build prints on the paper and the page. A change without a new paper version carries only its date (`YYYY-MM-DD`). Scope is `Paper`, `Site` or `Project`. The build turns this file into the list at the end of the page.
 
+## 2026-11-19 · Site
+
+Two sources worked into the wiki, both preprints on defences that check an agent's tool calls: ToolFence, which binds each sensitive argument to where its value may come from (Li et al.), and a paper on denied calls as a leak (Chinaei). New pages: two source pages. Changed in substance: the broker page (two table rows, two related entries, a new open question on what a refusal discloses); smaller changes to the pages on prompt injection and information-flow control. No new lexicon terms. The backlog stayed closed because eight decisions are open.
+
 ## 2026-11-16 · Site
 
 Two sources worked into the wiki, both talks of the 2026 seL4 Summit read from the slides: device models taken from a device's Verilog for driver verification (Murphy) and Windows 11 booting on an x86-64 seL4 virtual machine monitor (Nguyen). New pages: two source pages. Changed in substance: the drivers page (two table rows, one open point); smaller change to LionsOS. No new lexicon terms. The Monday lint found nothing to fix; its reading half covered only the pages touched. The backlog stayed closed because eight decisions are open.
