@@ -341,7 +341,7 @@ sup.refs a:hover { text-decoration: underline; }
     <div class="titleblock">
       <h1 class="name">Wiki</h1>
       <p class="sub">What the sources behind the paper show, page by page.</p>
-      <p class="ver">140 pages · updated 19 Nov 2026 · <a href="#how">How this wiki is made</a></p>
+      <p class="ver">141 pages · updated 19 Nov 2026 · <a href="#how">How this wiki is made</a></p>
     </div>
   </div>
 </header>
@@ -349,7 +349,7 @@ sup.refs a:hover { text-decoration: underline; }
 <div class="layout">
   <nav class="toc" id="toc" aria-label="Contents"><p>Contents</p><ol><li class="toc-back"><a href="/">← The paper</a></li><li><a href="#top">↑ Top</a></li><li><a href="#how">How this wiki is made</a></li><li><a href="#design">Design</a></li><li><a href="#systems">Systems</a></li><li><a href="#concepts">Concepts</a></li><li><a href="#sources">Sources</a></li><li><a href="#not-yet-covered">Not yet covered</a></li></ol></nav>
   <article>
-<p>This wiki gathers what the sources behind the paper show. It has a page for each source, each concept, each system the paper builds on and each part of the design: 96 sources, 19 concepts, 17 systems and 8 parts of the design so far. Every page says what is proven, tested or assumed, and on which source that rests.</p>
+<p>This wiki gathers what the sources behind the paper show. It has a page for each source, each concept, each system the paper builds on and each part of the design: 97 sources, 19 concepts, 17 systems and 8 parts of the design so far. Every page says what is proven, tested or assumed, and on which source that rests.</p>
 <h2 id="how">How this wiki is made</h2>
 <p>A language model writes the wiki and keeps it up to date from the sources in the project’s research pool, after Andrej Karpathy’s idea of a wiki that a language model maintains. A daily run adds new sources and works older ones in.</p>
 <ul>
@@ -510,6 +510,7 @@ sup.refs a:hover { text-decoration: underline; }
 <li><a href="/wiki/sources/2026-nguyen-booting-windows-x86-64.html">Booting Windows on an x86-64 seL4-based VMM</a> (Nguyen 2026) · seL4 Summit 2026 talk: libvmm boots unmodified Windows 11 on x86-64 through UEFI; APICv cuts the boot from over ten minutes to 60 seconds; no isolation claim. report, partly read.</li>
 <li><a href="/wiki/sources/2026-li-toolfence-fine-grained.html">ToolFence</a> (Li et al. 2026) · ToolFence: a typed authorization blueprint from the user’s request, a deterministic monitor and a model judge for gaps; 0.20 % attack success on AgentDojo with Qwen3-max; preprint. measurement, partly read.</li>
 <li><a href="/wiki/sources/2026-chinaei-causality-laundering-denial.html">Causality laundering</a> (Chinaei 2026) · causality laundering: a denied tool call leaks what exists; a monitor that records denials; three constructed scenarios, single author. design, partly read.</li>
+<li><a href="/wiki/sources/2026-lide-arsenal-assured-robotics.html">ARSENAL</a> (Lide 2026) · ARSENAL, seL4 Summit 2026 talk abstract: ROS 2 on seL4 for Army ground vehicles, two configurations, a proof of concept each; security services planned. report, abstract only.</li>
 </ul>
 <h2 id="not-yet-covered">Not yet covered</h2>
 <p>The Silent Zero part <em>agents</em> has no page yet; <a href="/wiki/concepts/agent-operating-systems.html">Agent operating systems</a> covers the designs that touch it. Firmware on PCs (Intel ME, AMD PSP, FSP, open alternatives) and on Apple silicon is in the backlog. Also not yet covered: the multicore proof, the ratification status of CHERI for RISC-V, the seams between proven parts and the driver island.</p>
