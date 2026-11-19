@@ -44,9 +44,9 @@ jobs:
               echo "::error file=$f::Not a wiki page. Only pages, the index, the log, the rings and the schema belong in wiki/."; bad=1; continue
             fi
             [ -f "$f" ] || continue   # added by one commit, removed by a later one: the path check above is enough
+            case "$f" in wiki/*/*.html.md) continue;; esac   # a page's generated Markdown twin: no front matter, and longer than the page
             case "$f" in wiki/*/*.md)
-              # a page's generated Markdown twin (name.html.md) has no front matter of its own
-              if [ "${f%.html.md}" = "$f" ] && { ! head -n 1 "$f" | grep -qx -- '---' || ! sed -n '2,12p' "$f" | grep -q '^type: '; }; then
+              if ! head -n 1 "$f" | grep -qx -- '---' || ! sed -n '2,12p' "$f" | grep -q '^type: '; then
                 echo "::error file=$f::A wiki page starts with its front matter (type, status, sources, updated)."; bad=1
               fi
               if [ "$(wc -c < "$f")" -gt 20000 ]; then
