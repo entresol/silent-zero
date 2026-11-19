@@ -2,7 +2,7 @@
 
 > What the sources behind the Silent Zero paper show, page by page: designs, concepts, systems and sources, each with what is proven, tested or assumed.
 
-This wiki gathers what the sources behind the paper show. It has a page for each source, each concept, each system the paper builds on and each part of the design: 96 sources, 19 concepts, 17 systems and 8 parts of the design so far. Every page says what is proven, tested or assumed, and on which source that rests.
+This wiki gathers what the sources behind the paper show. It has a page for each source, each concept, each system the paper builds on and each part of the design: 97 sources, 19 concepts, 17 systems and 8 parts of the design so far. Every page says what is proven, tested or assumed, and on which source that rests.
 
 ## How this wiki is made
 
@@ -167,6 +167,7 @@ A page can still be wrong or misleading in detail. If you find a mistake, please
 - [Booting Windows on an x86-64 seL4-based VMM](https://silentzero.ooo/wiki/sources/2026-nguyen-booting-windows-x86-64.html.md) (Nguyen 2026) · seL4 Summit 2026 talk: libvmm boots unmodified Windows 11 on x86-64 through UEFI; APICv cuts the boot from over ten minutes to 60 seconds; no isolation claim. report, partly read.
 - [ToolFence](https://silentzero.ooo/wiki/sources/2026-li-toolfence-fine-grained.html.md) (Li et al. 2026) · ToolFence: a typed authorization blueprint from the user's request, a deterministic monitor and a model judge for gaps; 0.20 % attack success on AgentDojo with Qwen3-max; preprint. measurement, partly read.
 - [Causality laundering](https://silentzero.ooo/wiki/sources/2026-chinaei-causality-laundering-denial.html.md) (Chinaei 2026) · causality laundering: a denied tool call leaks what exists; a monitor that records denials; three constructed scenarios, single author. design, partly read.
+- [ARSENAL](https://silentzero.ooo/wiki/sources/2026-lide-arsenal-assured-robotics.html.md) (Lide 2026) · ARSENAL, seL4 Summit 2026 talk abstract: ROS 2 on seL4 for Army ground vehicles, two configurations, a proof of concept each; security services planned. report, abstract only.
 
 ## Not yet covered
 

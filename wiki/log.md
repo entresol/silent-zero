@@ -177,3 +177,7 @@ Sources added to the pool today, daily run; the backlog was held back because mo
 ## [2026-11-19] ingest | 2026-li-toolfence-fine-grained, 2026-chinaei-causality-laundering-denial
 
 Sources added to the pool today, daily run; the backlog was held back because more than five decisions are open (eight). Created: two source pages, both read in part (the appendices of ToolFence and the layered design of the monitor were not). Changed: [[broker]] (two table rows, two related entries, an open question on what a refusal discloses), [[prompt-injection]], [[information-flow-control]], index, rings. Neither source contradicts a claim of the paper; the paper does not say what the broker returns on a refusal, which the open question records. No question for the team.
+
+## [2026-11-19] ingest | 2026-lide-arsenal-assured-robotics
+
+Worked in a session after the team decided on #68 to include it with a note on the field. Created: one source page, read from the abstract only. Changed: [[kernel]] and [[sel4]], which now record that `CAVEATS.md` of 17.0.0 says AArch64 confidentiality is "in progress" while the news item and the configurations page say it is proven (#69; the wiki follows the latter two), index, rings. The paper's sentences citing the talk are confirmed.
