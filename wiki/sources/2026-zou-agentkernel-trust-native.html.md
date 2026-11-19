@@ -45,3 +45,4 @@ Section 6 of the paper, under "Others are building this", names designs for the 
 - [seL4](https://silentzero.ooo/wiki/systems/sel4.html.md)
 - [Agent Operating Systems](https://silentzero.ooo/wiki/sources/2026-sharma-agent-operating-systems.html.md)
 - [AgentOS](https://silentzero.ooo/wiki/sources/2026-liu-agentos-application-silos.html.md)
+- [the AOS reference architecture](https://silentzero.ooo/wiki/sources/2026-sharma-agent-operating-system.html.md)

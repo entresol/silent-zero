@@ -28,6 +28,10 @@ Four sources worked into the wiki: Heiser's 2026 overview of what seL4's proofs 
 
 Wiki, one source worked in; the backlog waited because more than five decisions are open. Created: a source page on "Can CaMeLs Talk?" (CaMeL's guarantee fails when agents call agents, with a protocol fix for trees of agents). Changed in substance: the broker page (a new table row, a related entry and an open question) and prompt injection. The day's second source, Trivet, was worked in again on 2026-11-13; that page, with its fact check, replaced the one first written here. No new lexicon terms.
 
+## 2026-11-09 · Site
+
+One source worked into the wiki: the second paper of the AOS series, a reference architecture for agent systems. New page: one source page, read in part. Changed in substance: the broker (the delegation rule of the AOS paper). The day's other source, Trivet, was worked in again on 2026-11-13, and that page was kept. No new lexicon terms. The Monday lint fixed two source counts in the index and linked the IOMMU page from five pages that named it.
+
 ## 2026-11-07 · Site
 
 One source worked into the wiki: the MOSAIC preprint, which measures attacks on coding agents made of benign command-line steps that pass state through the system, and two defences over tool calls that did not reduce them. New pages: one source page. Changed in substance: the broker (a further limit of checks at the tool-call level) and prompt injection. No new lexicon terms.

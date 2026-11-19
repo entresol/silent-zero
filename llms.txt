@@ -148,6 +148,7 @@ This is a design, not a release: the paper makes the argument and says what is p
 - [SMT-based Deductive Verification of Device Drivers](https://silentzero.ooo/wiki/sources/2026-tyler-smt-based-deductive.html.md) (Tyler et al. 2026)
 - [Synergistic Simplex](https://silentzero.ooo/wiki/sources/2026-bansal-synergistic-simplex-cooperative.html.md) (Bansal et al. 2026)
 - [Systematic Prevention of On-Core Timing Channels](https://silentzero.ooo/wiki/sources/2022-wistoff-systematic-prevention-core.html.md) (Wistoff et al. 2022)
+- [the AOS reference architecture](https://silentzero.ooo/wiki/sources/2026-sharma-agent-operating-system.html.md) (Sharma and Shah 2026)
 - [The Attacker Moves Second](https://silentzero.ooo/wiki/sources/2026-nasr-attacker-moves-second.html.md) (Nasr et al. 2026)
 - [the Axon compiler](https://silentzero.ooo/wiki/sources/2026-rinard-testing-credible-compilation.html.md) (Rinard 2026)
 - [The Confused Deputy](https://silentzero.ooo/wiki/sources/1988-hardy-confused-deputy-or.html.md) (Hardy 1988)

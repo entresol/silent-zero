@@ -11,7 +11,7 @@ The catalogue of every page, with one line each. Read this first.
 
 - [[kernel]] · seL4 with MCS as the zOS kernel: proven (C-level correctness; MCS functional correctness on RISC-V), not stated for MCS (integrity, confidentiality), tested (HACMS), assumed (boot, IOMMU); no WCET bound on any 64-bit core yet; the roadmap dates MCS on AArch64 to Q3 2027. 16 sources.
 - [[static-system]] · one description, one image: what Microkit checks, what is not proved, and the run-time swap in LionsOS, the kernel underneath. 6 sources.
-- [[broker]] · the only component that hands out authority: capability patterns, CaMeL and FIDES, why model-based defences fail, three agent-OS designs for the same job, CaMeL between agents; nothing proven yet. 24 sources.
+- [[broker]] · the only component that hands out authority: capability patterns, CaMeL and FIDES, why model-based defences fail, three agent-OS designs for the same job, CaMeL between agents; nothing proven yet. 25 sources.
 - [[real-time-loops]] · the loops that move the motors: asynchronous chunks from slow models, observed timings, no proven bound yet. 9 sources.
 - [[safety-path]] · Simplex in zOS: the agent proposes, the loop disposes; tested, not proven; the paper's 2001 date disputed by a 1994 origin. 5 sources.
 - [[root-of-trust]] · the firmware below the kernel on Arm, RISC-V, PC and Raspberry Pi; OpenTitan, Caliptra, DICE; all *assumed* in the paper's terms. 13 sources.
@@ -45,7 +45,7 @@ The zOS part *agents* has no page yet; [[agent-operating-systems]] covers the de
 ## Concepts
 
 - [[risc-v]] · the open instruction set: what is open (the ISA) and what need not be (cores, chips, boards); privilege levels and the SBI. 11 sources.
-- [[iommu]] · the memory management unit for devices: what it limits, and the 2019 attacks that worked although it was on. 1 source.
+- [[iommu]] · the memory management unit for devices: what it limits, and the 2019 attacks that worked although it was on. 3 sources.
 - [[wcet-analysis]] · upper bounds on execution time, what they need, and where seL4 stands. 6 sources.
 - [[functional-correctness]] · what seL4's refinement proof gives, what it assumes, where it holds. 4 sources.
 - [[object-capabilities]] · references that both designate and authorise; permission versus authority; caretaker and membrane. 6 sources.
@@ -59,7 +59,7 @@ The zOS part *agents* has no page yet; [[agent-operating-systems]] covers the de
 - [[ai-vulnerability-discovery]] · AI models finding software flaws at scale: DARPA's challenge and Anthropic's figures, the bottleneck moving to patching. 3 sources.
 - [[information-flow-control]] · labels for where data came from and who may see it; FIDES and CaMeL for agents; explicit flows only; refusals as a channel; Agent libOS. 6 sources.
 - [[proof-automation]] · machines proposing proof steps, Isabelle checking them; 77.6 % of a seL4 benchmark sample; Verus as a faster verifier. PROMISE as a second method; AutoVerus for Rust; a coding agent's compiler proofs in Lean; the OSDI version and the Selene benchmark. 9 sources.
-- [[memory-safe-code]] · new code in Rust instead of C: Android's memory-safety flaws below 20 % in 2025; the hardening rival to a verified base. 2 sources.
+- [[memory-safe-code]] · new code in Rust instead of C: Android's memory-safety flaws below 20 % in 2025; the hardening rival to a verified base. 1 source.
 - [[mixed-criticality]] · software of different criticality on one platform; processor time as a capability in seL4 MCS. 3 sources.
 - [[model-context-protocol]] · the open protocol that connects agents to tools; three preprints measure its security, one runtime treats it as a client only. 4 sources.
 - [[agent-operating-systems]] · designs that put the limit on an agent in the OS layer: agentOS, Cohesix, KataOS, AgentKernel, AgenticOS, Agent libOS, Quine. 7 sources.
@@ -150,6 +150,7 @@ The zOS part *agents* has no page yet; [[agent-operating-systems]] covers the de
 - [[2024-zhang-selene-pioneering-automated]] · Selene: a benchmark of 340 seL4 lemmas; GPT-4 proves 41.7 % of the easy set on the first try, almost none of the hard one. measurement, full text.
 - [[2026-sharma-agent-operating-systems]] · AOS: an agentic control plane over Linux or Windows; reasoning untrusted, deny-by-default tool mediation; no implementation. design, partly read.
 - [[2026-wu-mosaic-knowledge-guided]] · MOSAIC: benign CLI commands that compose through shared OS state beat Progent and CaMeL as tool-call hooks (96.63 % on Claude Code); preprint. measurement, partly read.
+- [[2026-sharma-agent-operating-system]] · AOS-0001: a two-plane reference architecture for agent systems over Linux or Windows; monotone delegation; verification planned. design, partly read.
 - [[2026-liao-llvm-translation-validation]] · Trivet: Lean proofs of LLVM optimisations built from a scaffold, with a model filling the holes; 74 valid proved, 73 of 74 invalid refuted. measurement, partly read.
 - [[2026-peters-gill-can-camels]] · CaMeL's guarantee fails between agents (boundary laundering); multi-CaMeL fixes it for trees of agents; 0.2 to 0.0 % attack success. test, full text.
 - [[2026-rinard-testing-credible-compilation]] · Axon: a compiler and its Lean proofs written by a coding agent in 34 days; optimisations checked by a verified certificate checker. report, partly read.

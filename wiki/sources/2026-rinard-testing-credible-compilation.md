@@ -39,6 +39,7 @@ A careful reader adds: this is a single case with a single supervisor, and no in
 ## Against the wiki
 
 - [[proof-automation]]: extends it with a different task. The sources there let a model propose steps for existing seL4 theorems; here an agent wrote the statements, the programs and the proofs of a new system. It was a compiler, not a kernel, and nothing connects it to seL4.
+- [[2026-liao-llvm-translation-validation]]: a model-assisted check of compiler rewrites with a Lean kernel as the trusted part, from a different group.
 - [[kernel]]: its row on WCET mentions translation validation in the archived ARM11 analysis. The use here is another one, checking a compiler's output; the wiki makes no link between them.
 
 ## For zOS

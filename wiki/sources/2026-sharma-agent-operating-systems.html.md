@@ -46,3 +46,4 @@ It bears on the *broker* page as one more design for the authority layer on a co
 - [AgentKernel](https://silentzero.ooo/wiki/sources/2026-zou-agentkernel-trust-native.html.md)
 - [AgentOS](https://silentzero.ooo/wiki/sources/2026-liu-agentos-application-silos.html.md)
 - [Defeating Prompt Injections by Design (CaMeL)](https://silentzero.ooo/wiki/sources/2025-debenedetti-defeating-prompt-injections.html.md)
+- [the AOS reference architecture](https://silentzero.ooo/wiki/sources/2026-sharma-agent-operating-system.html.md)

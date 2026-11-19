@@ -39,3 +39,4 @@ BSD 2-Clause; the repository is github.com/jordanhubbard/agentos, with libvmm ve
 - [AgentKernel](https://silentzero.ooo/wiki/sources/2026-zou-agentkernel-trust-native.html.md)
 - [AgentOS](https://silentzero.ooo/wiki/sources/2026-liu-agentos-application-silos.html.md)
 - [Microkit 2.4.0 release notes](https://silentzero.ooo/wiki/sources/2026-microkit-release-2-4-0.html.md)
+- [the AOS reference architecture](https://silentzero.ooo/wiki/sources/2026-sharma-agent-operating-system.html.md)

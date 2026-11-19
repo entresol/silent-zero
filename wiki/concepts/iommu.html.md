@@ -31,6 +31,10 @@ A memory management unit for devices. Devices such as network cards, storage con
 
 - [Drivers](https://silentzero.ooo/wiki/design/drivers.html.md)
 - [Root of trust and firmware](https://silentzero.ooo/wiki/design/root-of-trust.html.md)
+- [The kernel](https://silentzero.ooo/wiki/design/kernel.html.md)
+- [The static system](https://silentzero.ooo/wiki/design/static-system.html.md)
 - [LionsOS](https://silentzero.ooo/wiki/systems/lionsos.html.md)
+- [Microkit](https://silentzero.ooo/wiki/systems/microkit.html.md)
+- [Raspberry Pi](https://silentzero.ooo/wiki/systems/raspberry-pi.html.md)
 - [seL4](https://silentzero.ooo/wiki/systems/sel4.html.md)
 - [LeftoverLocals](https://silentzero.ooo/wiki/sources/2024-trail-leftoverlocals-listening-llm.html.md)

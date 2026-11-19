@@ -35,7 +35,7 @@ The layer between the kernel and the components. In Silent Zero one description 
 
 - HACMS proved for CAmkES that the generated capDL matches the architecture ([Formally Verified Software in the Real World](https://silentzero.ooo/wiki/sources/2018-klein-formally-verified-software.html.md), §5.2). Nothing comparable exists for Microkit in the sources so far.
 - If no component holds the right to destroy kernel objects after boot, the kernel's worst case drops ([Trustworthy Systems: Guaranteeing timeliness of MCS on seL4](https://silentzero.ooo/wiki/sources/2026-trustworthy-guaranteeing-timeliness-mcs.html.md)). Our reading: a Microkit system creates its objects at boot through the capDL initialiser, which suggests it can be set up that way; no source confirms it.
-- Microkit describes IO address spaces backed by an IOMMU or SMMU in general terms and states the mapping explicitly only for x86; see [Drivers](https://silentzero.ooo/wiki/design/drivers.html.md).
+- Microkit describes IO address spaces backed by an [IOMMU](https://silentzero.ooo/wiki/concepts/iommu.html.md) or SMMU in general terms and states the mapping explicitly only for x86; see [Drivers](https://silentzero.ooo/wiki/design/drivers.html.md).
 - Microkit's domain scheduler, which separates groups of components on a fixed schedule, is supported only on single-core configurations ([seL4 Microkit: User Manual, v2.3.0](https://silentzero.ooo/wiki/sources/nd-sel4-microkit-user-manual.html.md)).
 
 ## Sources
@@ -52,6 +52,7 @@ The layer between the kernel and the components. In Silent Zero one description 
 - [Drivers](https://silentzero.ooo/wiki/design/drivers.html.md)
 - [The broker](https://silentzero.ooo/wiki/design/broker.html.md)
 - [The kernel](https://silentzero.ooo/wiki/design/kernel.html.md)
+- [IOMMU](https://silentzero.ooo/wiki/concepts/iommu.html.md)
 - [Mixed criticality](https://silentzero.ooo/wiki/concepts/mixed-criticality.html.md)
 - [LionsOS](https://silentzero.ooo/wiki/systems/lionsos.html.md)
 - [Microkit](https://silentzero.ooo/wiki/systems/microkit.html.md)

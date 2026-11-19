@@ -27,7 +27,7 @@ Not yet covered by the wiki's sources.
 
 ## Open questions
 
-- How IOMMU-backed IO address spaces work on Arm and RISC-V; the manual describes them in general terms and states the mapping explicitly only for x86.
+- How [IOMMU](https://silentzero.ooo/wiki/concepts/iommu.html.md)-backed IO address spaces work on Arm and RISC-V; the manual describes them in general terms and states the mapping explicitly only for x86.
 - What it would take to prove that a system description and its generated capDL specification enforce the intended authority, as CAmkES did for its descriptions ([Formally Verified Software in the Real World](https://silentzero.ooo/wiki/sources/2018-klein-formally-verified-software.html.md), §5.2).
 
 ## Sources
@@ -42,6 +42,7 @@ Not yet covered by the wiki's sources.
 
 - [Drivers](https://silentzero.ooo/wiki/design/drivers.html.md)
 - [The static system](https://silentzero.ooo/wiki/design/static-system.html.md)
+- [IOMMU](https://silentzero.ooo/wiki/concepts/iommu.html.md)
 - [Mixed criticality](https://silentzero.ooo/wiki/concepts/mixed-criticality.html.md)
 - [agentOS](https://silentzero.ooo/wiki/systems/agentos.html.md)
 - [LionsOS](https://silentzero.ooo/wiki/systems/lionsos.html.md)
