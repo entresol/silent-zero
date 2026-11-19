@@ -138,3 +138,34 @@ Sources added to the pool today, daily run; the backlog was held back because mo
 
 Ring 2, worked in a session, eight sources. Created: eight source pages, [[model-context-protocol]], [[agent-operating-systems]]. Changed: [[broker]], [[prompt-injection]], [[information-flow-control]], [[object-capabilities]], [[proof-automation]], [[agentos]], [[2026-he-neuro-symbolic-proof]], index, rings. The paper's two sentences on AgenticOS and Agent libOS (Section 5) are confirmed, the second with the qualification that Agent libOS keeps authority from growing with the action surface and still allows deliberate later grants. The OSDI version of He et al. confirms the 77.6 and 20 per cent and gives 79.8 per cent for the effort saving where the preprint says 71.1; the paper does not use that figure. Noted for the paper, not decided here: the Maloyan and Namiot tables disagree on the isolation level behind AttestMCP's 8.7 per cent. Held back for decisions: ARSENAL (open issue).
 
+## [2026-11-06] ingest | 2026-sharma-agent-operating-systems, 2026-rinard-testing-credible-compilation
+
+Sources added to the pool today, daily run; the backlog was held back because more than five decisions are open. Created: two source pages. Changed: [[broker]], [[proof-automation]], index, rings. Both sources were read in part, and the pages say which parts. The agent-OS paper is another design above a conventional kernel with no implementation; the paper's Section 5 does not cite it. The Axon compiler is one author's report of proofs written by a coding agent, not about seL4.
+
+## [2026-11-07] ingest | 2026-wu-mosaic-knowledge-guided
+
+Source added to the pool today, daily run; the backlog was held back because more than five decisions are open. Created: one source page, read in part (the evaluation and discussion in full, the method in outline). Changed: [[broker]] (a table row, a related entry, the open question on sequences), [[prompt-injection]], index, rings. No question for the team: the source measures attacks on other systems' defences and contradicts no claim of the paper, whose sentence on enforcement at every tool call is addressed by the reading under 'For zOS' on the source page.
+
+## [2026-11-10] ingest | 2026-peters-gill-can-camels
+
+Sources added to the pool today, daily run; the backlog was held back because more than five decisions are open. Created: one source page. Changed: [[broker]] (a table row, a related entry, an open question), [[prompt-injection]], index, rings. The CaMeL source shows by a constructed attack that CaMeL's guarantee does not carry over when agents call agents, and a protocol fix for trees of agents; the zOS paper does not discuss agents calling agents, so no question for the team. Trivet, the day's second source, was first written up here and again on 2026-11-13; when this branch was brought up to date with `main` the 2026-11-13 page and its fact check were kept. Candidates for the pool, named by the first source and not yet in it: Naik et al. (OMNI-Leak), Garby, Gordon and Sands (LLMbda calculus), Foerster et al. (CaMeL for computer-use agents). The second-agent fact check flagged nine points, all fixed; those on the CaMeL page were the zOS paper's agents in the plural, a formal ordering of two properties the authors leave open, an unmarked "static attacks" and figures needing their subset. The rest concerned the Trivet page that the 2026-11-13 page replaced.
+
+## [2026-11-13] ingest | 2026-heiser-sel4-operating-systems, 2026-bansal-synergistic-simplex-cooperative, 2026-liao-llvm-translation-validation, 2026-liu-agentos-application-silos
+
+Sources added to the pool today, daily run; the backlog was held back because more than five decisions are open. Created: four source pages. Changed: [[sel4]], [[kernel]], [[lionsos]], [[simplex]], [[safety-path]], [[proof-automation]], [[broker]], index, rings. Heiser's overview was read in full and gives a third count of C lines for the first proof (8,500), recorded on [[kernel]] and [[sel4]] and linked to the open question. The other three were read in part, and each page says which parts. No new question for the team.
+
+## [2026-11-14] ingest | 2026-heiser-trustworthy-systems-update
+
+Source added to the pool today, daily run; the backlog was held back because more than five decisions are open (eight). Created: one source page, read from the slides alone. Changed: [[wcet-analysis]] (the scaling fix and the build time, next to the July paper's three hours), [[kernel]], [[sel4]], [[microkit]], [[lionsos]], index. The slides state no proof status for multikernel seL4, so the plan of the roadmap stands. No question for the team.
+
+## [2026-11-16] lint
+
+Monday pass. `wiki_lint.py` found nothing. The reading half was partial: no page is `drafted` apart from today's two (so no held-back reason to re-examine), and the pages touched today were compared with their neighbours; a full read of all pages for contradictions was not done in this run. Found and fixed: nothing. Left open: the questions already open as issues.
+
+## [2026-11-16] ingest | 2026-murphy-formalising-device-protocols, 2026-nguyen-booting-windows-x86-64
+
+Sources added to the pool today, daily run; the backlog was held back because more than five decisions are open (eight). Created: two source pages, both read from the slides alone; the fact check by a second agent flagged about 20 claims (stronger wording, missing hedges, unmarked inferences, one wrong direction of an implication), all fixed, both pages `reviewed`. Changed: [[drivers]] (a row on device models from Verilog, a row on the x86-64 VM machinery, the open point on the device model), [[lionsos]], index, rings. Murphy's talk is the Verilog work that the verified-driver paper names as concurrent; no device is proved end to end on the slides. Nguyen's talk makes no isolation claim. No question for the team.
+
+## [2026-11-19] ingest | 2026-li-toolfence-fine-grained, 2026-chinaei-causality-laundering-denial
+
+Sources added to the pool today, daily run; the backlog was held back because more than five decisions are open (eight). Created: two source pages, both read in part (the appendices of ToolFence and the layered design of the monitor were not). Changed: [[broker]] (two table rows, two related entries, an open question on what a refusal discloses), [[prompt-injection]], [[information-flow-control]], index, rings. Neither source contradicts a claim of the paper; the paper does not say what the broker returns on a refusal, which the open question records. No question for the team.

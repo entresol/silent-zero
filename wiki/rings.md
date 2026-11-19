@@ -191,3 +191,15 @@ Systems and sources the wiki will need that the pool lacks. They go into the poo
 - [x] 2026-proofcraft-sel4-security-proofs
 - [x] 2026-jiang-futurertc-real-time
 - [x] 2026-shen-mcp-38-comprehensive
+- [x] 2026-sharma-agent-operating-systems
+- [x] 2026-rinard-testing-credible-compilation
+- [x] 2026-wu-mosaic-knowledge-guided
+- [x] 2026-peters-gill-can-camels
+- [x] 2026-heiser-sel4-operating-systems
+- [x] 2026-bansal-synergistic-simplex-cooperative
+- [x] 2026-liao-llvm-translation-validation
+- [x] 2026-liu-agentos-application-silos
+- [x] 2026-murphy-formalising-device-protocols
+- [x] 2026-nguyen-booting-windows-x86-64
+- [x] 2026-li-toolfence-fine-grained
+- [x] 2026-chinaei-causality-laundering-denial
