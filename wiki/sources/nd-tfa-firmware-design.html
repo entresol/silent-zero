@@ -341,7 +341,6 @@ ul.linked-from .kind { color: var(--muted); font-size: 0.85rem; margin-left: 0.4
   @keyframes pulse-ring { from { transform: scale(1); opacity: 0.9; } to { transform: scale(3.2); opacity: 0; } }
 }
 @media (max-width: 45rem) {
-  .pulse > div { grid-template-columns: minmax(0, 1fr); }
   .pulse-list li { grid-template-columns: auto 1fr; }
   .pulse-list .what { grid-column: 1 / -1; }
 }
@@ -430,8 +429,17 @@ html.sh-open { overflow: hidden; }
 :root[data-theme="dark"] .st-now { color: #6fbf87; }
 p.other { margin-top: 2.2rem; color: var(--muted); font-size: 0.95rem; }
 .sh-inline { display: none; }
-@media (max-width: 45rem) { :root { --sheet-w: 100vw; } .points li { grid-template-columns: 1fr; } .sh-tab { display: none; }
-  .sh-inline { display: block; margin: 0.7rem 0 0; font: 600 0.95rem/1.2 var(--font-text); } .sh-inline a { color: var(--ink-deep); } }
+@media (max-width: 63.99rem) {
+  .pulse > div { grid-template-columns: minmax(0, 1fr); }
+  :root { --sheet-w: calc(100vw - 1.25rem); }
+  .sh-tab { display: none; }
+  .sh-inline { display: flex; flex-wrap: wrap; gap: 0.6rem; margin: 1.1rem 0 0; }
+  .sh-inline a { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; border: 1px solid var(--rule); border-radius: 999px; background: var(--paper);
+    color: var(--ink-deep); font: 600 0.95rem/1 var(--font-text); text-decoration: none; }
+  .sh-inline a::after { content: "\2192"; color: var(--accent); }
+  .sh-inline a:hover { border-color: var(--accent); }
+}
+@media (max-width: 45rem) { .points li { grid-template-columns: 1fr; } }
 @media (prefers-reduced-motion: reduce) { :root { --sh-slide: 0.01s; } }
 </style>
 </head>
