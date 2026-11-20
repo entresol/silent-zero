@@ -8,7 +8,7 @@
     "ver": "<a href=\"#activity\"><span class=\"dot\" aria-hidden=\"true\"></span>latest changes · {last}</a>",
     "status": "First light: <a href=\"{video}\">a graphical loader that checks the seL4 kernel image, shows the result and starts the kernel</a> (video, 24s), under 8 KB on RISC-V, tested in QEMU (<a href=\"{loader}\">code</a>). This paper proposes what we are trying to build and where it can fail. Criticism and support are warmly welcome: <a href=\"{issues}\">issues</a>.",
     "btn": "Download the PDF",
-    "meta": "Version {version} · {pages} pages, {refs} references"
+    "meta": "{version} · {pages} pages, {refs} references"
   },
   "de": {
     "label": "DE",
@@ -18,7 +18,7 @@
     "ver": "<a href=\"#activity\"><span class=\"dot\" aria-hidden=\"true\"></span>letzte Änderungen · {last}</a>",
     "status": "Erstes Licht: <a href=\"{video}\">ein grafischer Loader, der das seL4-Kernel-Image prüft, das Ergebnis anzeigt und den Kernel startet</a> (Video, 24s), unter 8 KB auf RISC-V, getestet in QEMU (<a href=\"{loader}\">Code</a>). Dieses Papier beschreibt, was wir zu bauen versuchen und woran es scheitern kann. Kritik und Unterstützung sind herzlich willkommen: <a href=\"{issues}\">Issues</a>.",
     "btn": "PDF herunterladen",
-    "meta": "Version {version} · {pages} Seiten, {refs} Quellen, auf Englisch"
+    "meta": "{version} · {pages} Seiten, {refs} Quellen, auf Englisch"
   },
   "fr": {
     "label": "FR",
@@ -28,7 +28,7 @@
     "ver": "<a href=\"#activity\"><span class=\"dot\" aria-hidden=\"true\"></span>dernières modifications · {last}</a>",
     "status": "Première lumière : <a href=\"{video}\">un chargeur graphique qui contrôle l'image du noyau seL4, affiche le résultat et démarre le noyau</a> (vidéo, 24s), moins de 8 Ko sur RISC-V, testé dans QEMU (<a href=\"{loader}\">code</a>). Ce document expose ce que nous essayons de construire et où cela peut échouer. Critiques et soutiens sont les bienvenus : <a href=\"{issues}\">issues</a>.",
     "btn": "Télécharger le PDF",
-    "meta": "Version {version} · {pages} pages, {refs} références, en anglais"
+    "meta": "{version} · {pages} pages, {refs} références, en anglais"
   },
   "es": {
     "label": "ES",
@@ -38,7 +38,7 @@
     "ver": "<a href=\"#activity\"><span class=\"dot\" aria-hidden=\"true\"></span>últimos cambios · {last}</a>",
     "status": "Primera luz: <a href=\"{video}\">un cargador gráfico que comprueba la imagen del kernel de seL4, muestra el resultado y arranca el kernel</a> (vídeo, 24s), menos de 8 KB en RISC-V, probado en QEMU (<a href=\"{loader}\">código</a>). Este documento propone lo que intentamos construir y dónde puede fallar. Las críticas y el apoyo son muy bienvenidos: <a href=\"{issues}\">issues</a>.",
     "btn": "Descargar el PDF",
-    "meta": "Versión {version} · {pages} páginas, {refs} referencias, en inglés"
+    "meta": "{version} · {pages} páginas, {refs} referencias, en inglés"
   },
   "it": {
     "label": "IT",
@@ -48,6 +48,6 @@
     "ver": "<a href=\"#activity\"><span class=\"dot\" aria-hidden=\"true\"></span>ultime modifiche · {last}</a>",
     "status": "Prima luce: <a href=\"{video}\">un loader grafico che controlla l'immagine del kernel seL4, mostra il risultato e avvia il kernel</a> (video, 24s), meno di 8 KB su RISC-V, testato in QEMU (<a href=\"{loader}\">codice</a>). Questo documento propone ciò che cerchiamo di costruire e dove può fallire. Critiche e sostegno sono i benvenuti: <a href=\"{issues}\">issues</a>.",
     "btn": "Scarica il PDF",
-    "meta": "Versione {version} · {pages} pagine, {refs} riferimenti, in inglese"
+    "meta": "{version} · {pages} pagine, {refs} riferimenti, in inglese"
   }
 }
