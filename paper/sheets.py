@@ -88,4 +88,4 @@ def doors():
 
 def inline():
     """On narrow screens the tabs would cover the text, so the header carries the two doors as a line of links instead."""
-    return '<p class="sh-inline">' + " \u00b7 ".join(f'<a href="{DATA[n]["dir"]}/" data-sheet="{n}">{_h.escape(DATA[n]["tab"])}</a>' for n in NAMES) + "</p>"
+    return '<p class="sh-inline" aria-label="Doors">' + "".join(f'<a href="{DATA[n]["dir"]}/" data-sheet="{n}">{_h.escape(DATA[n]["tab"])}</a>' for n in NAMES) + "</p>"
