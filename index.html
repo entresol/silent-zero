@@ -424,7 +424,8 @@ html.sh-open { overflow: hidden; }
   background: var(--paper); border: 1px solid var(--rule); color: var(--ink-deep); font: 600 clamp(0.78rem, calc(0.4rem + 1.2vw), 0.9rem)/1 var(--font-text); letter-spacing: 0.05em; text-decoration: none; cursor: pointer; }
 .sh-tab span { writing-mode: vertical-rl; }
 .sh-tab::before { content: ""; position: absolute; top: 0; bottom: 0; width: 3px; background: var(--accent); opacity: 0; transition: opacity 0.25s; }
-.sh-tab:hover::before, .sh-tab:focus-visible::before, .sh-leaf.open .sh-tab::before { opacity: 1; }
+.sh-tab:focus-visible::before, .sh-leaf.open .sh-tab::before { opacity: 1; }
+@media (hover: hover) and (pointer: fine) { .sh-tab:hover::before { opacity: 1; } }
 .sh-tab:focus-visible, .sh-close:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 .sh-tab-l { left: 0; border-left: 0; border-radius: 0 10px 10px 0; box-shadow: 4px 0 14px -6px rgba(0, 0, 0, 0.2); }
 .sh-tab-l span { transform: rotate(180deg); }
@@ -437,8 +438,12 @@ html.sh-open { overflow: hidden; }
 .sh-leaf > * { pointer-events: auto; }
 .sh-leaf-l { left: 0; transform: translateX(-100%); }
 .sh-leaf-r { right: 0; transform: translateX(100%); }
-.sh-leaf-l:not(.open):has(.sh-tab:hover), .sh-leaf-l:not(.open):has(.sh-tab:focus-visible) { transform: translateX(calc(-100% + 0.9rem)); }
-.sh-leaf-r:not(.open):has(.sh-tab:hover), .sh-leaf-r:not(.open):has(.sh-tab:focus-visible) { transform: translateX(calc(100% - 0.9rem)); }
+.sh-leaf-l:not(.open):has(.sh-tab:focus-visible) { transform: translateX(calc(-100% + 0.9rem)); }
+.sh-leaf-r:not(.open):has(.sh-tab:focus-visible) { transform: translateX(calc(100% - 0.9rem)); }
+@media (hover: hover) and (pointer: fine) {
+  .sh-leaf-l:not(.open):has(.sh-tab:hover) { transform: translateX(calc(-100% + 0.9rem)); }
+  .sh-leaf-r:not(.open):has(.sh-tab:hover) { transform: translateX(calc(100% - 0.9rem)); }
+}
 .sh-leaf.open { transform: translateX(0); }
 .sh-leaf .sh-tab { position: absolute; }
 .sh-leaf-l .sh-tab { left: 100%; }
@@ -455,9 +460,9 @@ html.sh-open { overflow: hidden; }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .sh-scrim { background: rgba(0, 0, 0, 0.22); } }
 :root[data-theme="dark"] .sh-scrim { background: rgba(0, 0, 0, 0.22); }
 .sh-in { max-width: 44rem; margin: 0 auto; padding: 9vh var(--gutter-r) 12vh var(--gutter-l); }
-.sh-close { position: sticky; top: 0; float: right; margin: -4vh 0 0 1rem; background: var(--paper); border: 1px solid var(--rule); border-radius: 999px; padding: 0.45rem 0.95rem;
-  font: 600 0.85rem/1 var(--font-text); color: var(--ink-deep); cursor: pointer; z-index: 2; }
-.sh-close:hover { border-color: var(--accent); }
+.sh-close { position: sticky; top: 0; float: right; margin: -4vh -0.6rem 0 1rem; padding: 0.7rem 0.6rem; background: none; border: 0; border-radius: 0; cursor: pointer; z-index: 2;
+  font: 600 0.95rem/1 var(--font-text); color: var(--ink-deep); text-decoration: underline; text-decoration-color: var(--rule); text-underline-offset: 0.3em; }
+.sh-close:hover { text-decoration-color: var(--accent); }
 .sh-title { font: 100 clamp(2.6rem, 6vw, 4.6rem)/1 var(--font-display); letter-spacing: -0.035em; color: var(--ink-deep); margin: 0 0 1rem; }
 .sh-title::before { display: none; }
 .sh-lede { max-width: var(--measure); color: var(--ink); margin: 0 0 2.2rem; }
@@ -477,14 +482,16 @@ html.sh-open { overflow: hidden; }
 :root[data-theme="dark"] .st-now { color: #6fbf87; }
 p.other { margin-top: 2.2rem; color: var(--muted); font-size: 0.95rem; }
 /* the same tabs on every width: they scale with it, the page gets a margin of their width so they have free space, and below 64 rem the sheet
-   that lies on the page hides its own tab (Close, Esc and the strip close it) so that it does not sit on the tab of the other door */
+   that lies on the page keeps its own tab, labelled and in the strip beside it, and the other door's tab steps aside while it is open (a tap beside the sheet
+   closes it and cannot open the other door); the way to the other door is the link at the end of the sheet */
 .sh-leaf .sh-tab { transition: opacity 0.3s; }
 @media (max-width: 63.99rem) {
   .pulse > div { grid-template-columns: minmax(0, 1fr); }
   :root { --sheet-w: calc(100vw - var(--tab) - 0.4rem); }
   html:has(a.sh-tab) { --gutter-l: max(1.25rem, calc(var(--tab) + 0.5rem), env(safe-area-inset-left, 0px)); --gutter-r: max(1.25rem, calc(var(--tab) + 0.5rem), env(safe-area-inset-right, 0px)); }
-  .sh-leaf.open .sh-tab { opacity: 0; pointer-events: none; }
+  html.sh-open .sh-leaf:not(.open) .sh-tab { opacity: 0; pointer-events: none; }
   .sh-in { padding-left: 1.4rem; padding-right: 1.4rem; }
+  .sh-close { position: fixed; top: 0.5rem; right: 0.7rem; float: none; margin: 0; padding: 0.9rem 0.9rem; }
 }
 @media (max-width: 45rem) { .points li { grid-template-columns: 1fr; } }
 /* "reduce motion" means less movement, not no time: the sheet does not slide, it fades in and out */
@@ -493,8 +500,12 @@ p.other { margin-top: 2.2rem; color: var(--muted); font-size: 0.95rem; }
   .sh-leaf, .sh-leaf.moving { transition: none; }
   .sh-leaf.open .sh-page { animation: sh-fade-in var(--sh-slide) ease both; }
   .sh-leaf.closing { transform: translateX(0) !important; }   /* also over the peek of a tab that was just touched */
-  .sh-leaf.closing .sh-page { animation: sh-fade-out var(--sh-slide) ease both; }
+  .sh-leaf.closing .sh-page, .sh-leaf.closing .sh-tab { animation: sh-fade-out var(--sh-slide) ease both; }
+  /* backwards: afterwards the other rules decide, so the other door's tab can step aside; two names, so that the animation starts again when the sheet opens */
+  .sh-leaf:not(.open):not(.closing) .sh-tab { animation: sh-fade-in var(--sh-slide) ease backwards; }
+  .sh-leaf.open .sh-tab { animation: sh-fade-in-open var(--sh-slide) ease backwards; }
   @keyframes sh-fade-in { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes sh-fade-in-open { from { opacity: 0; } to { opacity: 1; } }
   @keyframes sh-fade-out { from { opacity: 1; } to { opacity: 0; } }
 }
 
@@ -888,7 +899,9 @@ p.other { margin-top: 2.2rem; color: var(--muted); font-size: 0.95rem; }
   scrim.className = 'sh-scrim';
   document.body.append(scrim);
   const leaves = new Map(), pages = new Map();
-  let current = null, lastTab = null, seq = 0, timer = null;
+  let current = null, lastTab = null, seq = 0, timer = null, byKey = false;
+  addEventListener('keydown', () => { byKey = true; }, true);
+  addEventListener('pointerdown', () => { byKey = false; }, true);
 
   function load(url) {
     if (!pages.has(url)) {
@@ -987,7 +1000,7 @@ p.other { margin-top: 2.2rem; color: var(--muted); font-size: 0.95rem; }
     scrim.classList.remove('on');
     root.classList.remove('sh-open');
     behind.forEach(el => { el.inert = false; });
-    setTimeout(() => { if (!current && lastTab) lastTab.focus({ preventScroll: true }); }, 200);
+    setTimeout(() => { if (!current && lastTab && byKey) lastTab.focus({ preventScroll: true }); }, 200);
   }
 
   function close() {

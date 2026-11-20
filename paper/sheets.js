@@ -12,7 +12,9 @@
   scrim.className = 'sh-scrim';
   document.body.append(scrim);
   const leaves = new Map(), pages = new Map();
-  let current = null, lastTab = null, seq = 0, timer = null;
+  let current = null, lastTab = null, seq = 0, timer = null, byKey = false;
+  addEventListener('keydown', () => { byKey = true; }, true);
+  addEventListener('pointerdown', () => { byKey = false; }, true);
 
   function load(url) {
     if (!pages.has(url)) {
@@ -111,7 +113,7 @@
     scrim.classList.remove('on');
     root.classList.remove('sh-open');
     behind.forEach(el => { el.inert = false; });
-    setTimeout(() => { if (!current && lastTab) lastTab.focus({ preventScroll: true }); }, 200);
+    setTimeout(() => { if (!current && lastTab && byKey) lastTab.focus({ preventScroll: true }); }, 200);
   }
 
   function close() {
