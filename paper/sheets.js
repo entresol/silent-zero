@@ -54,6 +54,14 @@
     page.querySelector('.sh-close').addEventListener('click', () => close());
   }
 
+  const still = matchMedia('(prefers-reduced-motion: reduce)');
+  function fadeOut(leaf) {   // with reduced motion the sheet that goes stays where it is while it fades
+    if (!still.matches || !leaf.classList.contains('open')) return;
+    leaf.classList.add('closing');
+    const s = parseFloat(getComputedStyle(root).getPropertyValue('--sh-slide')) || 0.5;
+    setTimeout(() => leaf.classList.remove('closing'), s * 1000 + 60);
+  }
+
   function slow() {
     for (const { leaf } of leaves.values()) leaf.classList.add('moving');
     clearTimeout(timer);
@@ -77,6 +85,7 @@
     slow();
     for (const [k, v] of leaves) {
       const on = k === name;
+      if (!on) fadeOut(v.leaf);
       v.leaf.classList.toggle('open', on);
       v.tab.setAttribute('aria-expanded', on);
       v.page.inert = !on;
@@ -98,7 +107,7 @@
     seq++;
     current = null;
     slow();
-    for (const v of leaves.values()) { v.leaf.classList.remove('open'); v.tab.setAttribute('aria-expanded', 'false'); v.page.inert = true; }
+    for (const v of leaves.values()) { fadeOut(v.leaf); v.leaf.classList.remove('open'); v.tab.setAttribute('aria-expanded', 'false'); v.page.inert = true; }
     scrim.classList.remove('on');
     root.classList.remove('sh-open');
     behind.forEach(el => { el.inert = false; });
