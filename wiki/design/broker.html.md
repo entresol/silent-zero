@@ -2,7 +2,7 @@
 
 > The only component that hands out authority: capability patterns, CaMeL and FIDES, why model-based defences fail, three agent-OS designs for the same job, CaMeL between agents; nothing proven yet.
 
-Design · LLM reviewed · updated 2026-11-19 · 25 sources · https://silentzero.ooo/wiki/design/broker.html
+Design · LLM reviewed · updated 2026-11-20 · 26 sources · https://silentzero.ooo/wiki/design/broker.html
 
 The only component in Silent Zero that hands out authority. It grants capabilities that are attenuated, time-limited and revocable, and it words every request a human sees, so the agent never does. It runs isolated and still belongs to the trusted base, because its decisions are the guarantee. It will be *tested* first, with *proven* as the target (paper, Section 3).
 
@@ -35,6 +35,8 @@ The only component in Silent Zero that hands out authority. It grants capabiliti
 - Section 2.4 cites [The Confused Deputy](https://silentzero.ooo/wiki/sources/1988-hardy-confused-deputy-or.html.md) for the confused deputy, [The Attacker Moves Second](https://silentzero.ooo/wiki/sources/2026-nasr-attacker-moves-second.html.md) for the twelve broken defences and [Robust Composition](https://silentzero.ooo/wiki/sources/2006-miller-robust-composition-towards.html.md) for passing authority as capabilities. All three confirmed; Nasr et al. say the defences were broken "either fully or substantially". The step from confused deputy to prompt injection is the paper's own analogy; [Indirect prompt injection](https://silentzero.ooo/wiki/sources/2023-greshake-not-what-you.html.md), cited for the phenomenon, confirms the phenomenon and does not use the term. Section 6 limits the analogy: capabilities bound how far a deceived agent reaches.
 - Table 1 cites [Defeating Prompt Injections by Design (CaMeL)](https://silentzero.ooo/wiki/sources/2025-debenedetti-defeating-prompt-injections.html.md): "77 % of tasks with provable security versus 84 % undefended". The figure is confirmed. Our reading: "provable" in CaMeL means a formally stated property that holds by construction under a correct interpreter and correct policies; nothing is formally proven, so "secure by design" would be the accurate wording. The same row names FIDES ([Securing AI agents with information-flow control](https://silentzero.ooo/wiki/sources/2025-costa-securing-ai-agents.html.md)), which enforces information flow rather than capabilities; the figures in the row are CaMeL's.
 - Section 6 cites [Securing AI agents with information-flow control](https://silentzero.ooo/wiki/sources/2025-costa-securing-ai-agents.html.md) for adding information-flow control to capabilities. Confirmed for what information-flow control does; the pairing with capabilities is the paper's step. FIDES leaves implicit flows open, which fits the paper's point that data leaks through allowed channels. See [Information-flow control](https://silentzero.ooo/wiki/concepts/information-flow-control.html.md).
+
+The IBM position paper lists tool mediation and identity as platform primitives, proposes classing calls as reversible, compensable or irreversible with stronger authorization for the last, and names fine-grained, context-dependent authorization as open. It specifies this for a cloud substrate, and nothing in it is verified ([Towards an Agent Operating System](https://silentzero.ooo/wiki/sources/2026-steinder-towards-agent-operating.html.md), §IV.D, §IV.H).
 
 ## Related
 
@@ -94,6 +96,7 @@ The only component in Silent Zero that hands out authority. It grants capabiliti
 - [The Attacker Moves Second](https://silentzero.ooo/wiki/sources/2026-nasr-attacker-moves-second.html.md)
 - [The Confused Deputy](https://silentzero.ooo/wiki/sources/1988-hardy-confused-deputy-or.html.md)
 - [ToolFence](https://silentzero.ooo/wiki/sources/2026-li-toolfence-fine-grained.html.md)
+- [Towards an Agent Operating System](https://silentzero.ooo/wiki/sources/2026-steinder-towards-agent-operating.html.md)
 
 ## Related pages
 
@@ -112,9 +115,12 @@ The only component in Silent Zero that hands out authority. It grants capabiliti
 - [KataOS](https://silentzero.ooo/wiki/systems/kataos.html.md)
 - [Landlock](https://silentzero.ooo/wiki/systems/landlock.html.md)
 - [Verus](https://silentzero.ooo/wiki/systems/verus.html.md)
+- [AutoRocq](https://silentzero.ooo/wiki/sources/2025-tu-agentic-verification-software.html.md)
 - [breaking the protocol](https://silentzero.ooo/wiki/sources/2026-maloyan-breaking-protocol-security.html.md)
+- [credible compilation against verification](https://silentzero.ooo/wiki/sources/2026-rinard-quantitative-comparison-credible.html.md)
 - [LeftoverLocals](https://silentzero.ooo/wiki/sources/2024-trail-leftoverlocals-listening-llm.html.md)
 - [Linux kernel documentation: Landlock](https://silentzero.ooo/wiki/sources/nd-linux-landlock-unprivileged-access.html.md)
 - [MCP threat modelling and tool poisoning](https://silentzero.ooo/wiki/sources/2026-huang-model-context-protocol.html.md)
+- [multi-link safety filtering for VLA policies](https://silentzero.ooo/wiki/sources/2026-agarwal-multi-link-safety.html.md)
 - [Quine](https://silentzero.ooo/wiki/sources/2026-ke-quine-realizing-llm.html.md)
 - [the Axon compiler](https://silentzero.ooo/wiki/sources/2026-rinard-testing-credible-compilation.html.md)

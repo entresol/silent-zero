@@ -32,4 +32,5 @@ Context only. No `design/` page changes. [The kernel](https://silentzero.ooo/wik
 
 - [The kernel](https://silentzero.ooo/wiki/design/kernel.html.md)
 - [Proof automation](https://silentzero.ooo/wiki/concepts/proof-automation.html.md)
+- [credible compilation against verification](https://silentzero.ooo/wiki/sources/2026-rinard-quantitative-comparison-credible.html.md)
 - [the Axon compiler](https://silentzero.ooo/wiki/sources/2026-rinard-testing-credible-compilation.html.md)

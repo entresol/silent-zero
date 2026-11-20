@@ -2,7 +2,7 @@
 
 > The loops that move the motors: asynchronous chunks from slow models, observed timings, no proven bound yet.
 
-Design · LLM reviewed · updated 2026-11-05 · 9 sources · https://silentzero.ooo/wiki/design/real-time-loops.html
+Design · LLM reviewed · updated 2026-11-20 · 10 sources · https://silentzero.ooo/wiki/design/real-time-loops.html
 
 The control loops at the bottom of Silent Zero move the motors on a fixed period and have the last word over motion. Learned models above them are slower and deliver commands early, in chunks; the loops execute them on time or fall back (paper, Sections 2.4 and 4).
 
@@ -23,6 +23,8 @@ The control loops at the bottom of Silent Zero move the motors on a fixed period
 | Processor-time budgets enforced by the kernel | implemented in seL4 MCS | MCS functional-correctness proof on RISC-V; no theorem on temporal isolation | [MCS functional-correctness proof completed on RISC-V](https://silentzero.ooo/wiki/sources/2026-sel4-functional-correctness-proof.html.md), [MCS safety, an OS perspective](https://silentzero.ooo/wiki/sources/2026-heiser-mcs-safety-os.html.md), [The kernel](https://silentzero.ooo/wiki/design/kernel.html.md) |
 | Kernel WCET and schedulability | not yet | none | [The kernel](https://silentzero.ooo/wiki/design/kernel.html.md) |
 | Fixed context-switch time with timing-channel protection | prototype on CVA6 | measurement | [Systematic Prevention of On-Core Timing Channels](https://silentzero.ooo/wiki/sources/2022-wistoff-systematic-prevention-core.html.md) |
+
+One timing reference on an edge platform: the barrier filter ran at every 50 ms step and a flow update every fifth step, both on the CPU, while the policy ran once per ten-action chunk on the integrated GPU, at 177.3 ms (p50) after trimming, against 343 ms in the released configuration; the trimming lowered task success by 4.17 percentage points on the 300 mm escape condition. No bound is proven ([multi-link safety filtering for VLA policies](https://silentzero.ooo/wiki/sources/2026-agarwal-multi-link-safety.html.md), §III-D, §V-B).
 
 ## The paper and its sources
 
@@ -45,6 +47,7 @@ The control loops at the bottom of Silent Zero move the motors on a fixed period
 - [Linux kernel documentation: real-time preemption](https://silentzero.ooo/wiki/sources/nd-linux-real-time-preemption.html.md)
 - [MCS functional-correctness proof completed on RISC-V](https://silentzero.ooo/wiki/sources/2026-sel4-functional-correctness-proof.html.md)
 - [MCS safety, an OS perspective](https://silentzero.ooo/wiki/sources/2026-heiser-mcs-safety-os.html.md)
+- [multi-link safety filtering for VLA policies](https://silentzero.ooo/wiki/sources/2026-agarwal-multi-link-safety.html.md)
 - [Real-Time Execution of Action Chunking Flow Policies](https://silentzero.ooo/wiki/sources/2025-black-real-time-execution.html.md)
 - [seL4 Microkit: User Manual, v2.3.0](https://silentzero.ooo/wiki/sources/nd-sel4-microkit-user-manual.html.md)
 - [Systematic Prevention of On-Core Timing Channels](https://silentzero.ooo/wiki/sources/2022-wistoff-systematic-prevention-core.html.md)
@@ -61,3 +64,4 @@ The control loops at the bottom of Silent Zero move the motors on a fixed period
 - [PREEMPT_RT](https://silentzero.ooo/wiki/systems/preempt-rt.html.md)
 - [ARSENAL](https://silentzero.ooo/wiki/sources/2026-lide-arsenal-assured-robotics.html.md)
 - [Fast, Secure, Adaptable: LionsOS Design, Implementation and Performance](https://silentzero.ooo/wiki/sources/2025-heiser-fast-secure-adaptable.html.md)
+- [Towards an Agent Operating System](https://silentzero.ooo/wiki/sources/2026-steinder-towards-agent-operating.html.md)

@@ -33,3 +33,4 @@ Our reading: the sources agree that the model reads unvalidated text from whoeve
 
 - [The broker](https://silentzero.ooo/wiki/design/broker.html.md)
 - [Prompt injection](https://silentzero.ooo/wiki/concepts/prompt-injection.html.md)
+- [Towards an Agent Operating System](https://silentzero.ooo/wiki/sources/2026-steinder-towards-agent-operating.html.md)

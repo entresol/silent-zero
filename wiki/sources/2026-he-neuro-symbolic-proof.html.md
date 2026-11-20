@@ -45,6 +45,8 @@ Section 2.3 of the paper: "A neuro-symbolic method, for instance, proves 77.6 pe
 - [Functional correctness](https://silentzero.ooo/wiki/concepts/functional-correctness.html.md)
 - [Proof automation](https://silentzero.ooo/wiki/concepts/proof-automation.html.md)
 - [seL4](https://silentzero.ooo/wiki/systems/sel4.html.md)
+- [AutoRocq](https://silentzero.ooo/wiki/sources/2025-tu-agentic-verification-software.html.md)
 - [AutoVerus](https://silentzero.ooo/wiki/sources/2025-yang-autoverus-automated-proof.html.md)
 - [neuro-symbolic proof generation, OSDI version](https://silentzero.ooo/wiki/sources/2026-he-neuro-symbolic-proof-osdi.html.md)
+- [OSVBench](https://silentzero.ooo/wiki/sources/2025-li-osvbench-benchmarking-llms.html.md)
 - [PROMISE](https://silentzero.ooo/wiki/sources/2026-ahn-promise-proof-automation.html.md)

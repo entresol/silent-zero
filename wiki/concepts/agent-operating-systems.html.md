@@ -1,8 +1,8 @@
 # Agent operating systems
 
-> Designs that put the limit on an agent in the OS layer: agentOS, Cohesix, KataOS, AgentKernel, AgenticOS, Agent libOS, Quine.
+> Designs that put the limit on an agent in the OS layer: agentOS, Cohesix, KataOS, AgentKernel, AgenticOS, Agent libOS, Quine; IBM’s Agent-OS position paper.
 
-Concept · LLM reviewed · updated 2026-11-05 · 7 sources · https://silentzero.ooo/wiki/concepts/agent-operating-systems.html
+Concept · LLM reviewed · updated 2026-11-20 · 8 sources · https://silentzero.ooo/wiki/concepts/agent-operating-systems.html
 
 Designs that give language-model agents a runtime in which the operating-system layer, not the agent or an application framework, limits what the agent may do. The wiki's sources show a spread, from a kernel of its own to a library inside a Python process.
 
@@ -19,6 +19,8 @@ Designs that give language-model agents a runtime in which the operating-system 
 | [Quine](https://silentzero.ooo/wiki/sources/2026-ke-quine-realizing-llm.html.md) | processes of an ordinary POSIX system | what the kernel gives any process; no capability model | feasibility runs |
 
 Three of the seven build on seL4, the others on a host kernel, a hypervisor or an ordinary process model. The paper makes the remark that none of the designs it names has real-time control as its aim, and it does not name Quine; it holds for AgenticOS, Agent libOS and Quine as read here; for [agentOS](https://silentzero.ooo/wiki/systems/agentos.html.md) whether it has a real-time aim is open.
+
+- IBM researchers argue for an "Agent-OS" for enterprise deployments with 13 platform primitives; their prototype, rossoctl, is a Kubernetes control plane with sidecars, authorization and an MCP gateway, limited to cloud and datacentre deployments. The paper reports no measurements and has no verified component ([Towards an Agent Operating System](https://silentzero.ooo/wiki/sources/2026-steinder-towards-agent-operating.html.md)).
 
 ## What they share
 
@@ -40,6 +42,7 @@ Three of the seven build on seL4, the others on a host kernel, a hypervisor or a
 - [Announcing KataOS and Sparrow](https://silentzero.ooo/wiki/sources/2022-google-announcing-kataos-sparrow.html.md)
 - [Cohesix, a research operating system for edge AI](https://silentzero.ooo/wiki/sources/2026-bower-cohesix-research-operating.html.md)
 - [Quine](https://silentzero.ooo/wiki/sources/2026-ke-quine-realizing-llm.html.md)
+- [Towards an Agent Operating System](https://silentzero.ooo/wiki/sources/2026-steinder-towards-agent-operating.html.md)
 
 ## Related pages
 

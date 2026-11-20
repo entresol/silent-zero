@@ -39,4 +39,5 @@ Table 1 of the paper lists AutoVerus with "over 90 % of 150 Rust proof tasks". C
 
 - [Proof automation](https://silentzero.ooo/wiki/concepts/proof-automation.html.md)
 - [Verus](https://silentzero.ooo/wiki/systems/verus.html.md)
+- [AutoRocq](https://silentzero.ooo/wiki/sources/2025-tu-agentic-verification-software.html.md)
 - [Neuro-symbolic proof generation for seL4](https://silentzero.ooo/wiki/sources/2026-he-neuro-symbolic-proof.html.md)

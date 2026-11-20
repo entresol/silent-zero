@@ -47,4 +47,6 @@ Our reading: the pattern of a verified checker around an untrusted component rec
 - [The safety path](https://silentzero.ooo/wiki/design/safety-path.html.md)
 - [Proof automation](https://silentzero.ooo/wiki/concepts/proof-automation.html.md)
 - [Simplex architecture](https://silentzero.ooo/wiki/concepts/simplex.html.md)
+- [AutoRocq](https://silentzero.ooo/wiki/sources/2025-tu-agentic-verification-software.html.md)
+- [credible compilation against verification](https://silentzero.ooo/wiki/sources/2026-rinard-quantitative-comparison-credible.html.md)
 - [Trivet](https://silentzero.ooo/wiki/sources/2026-liao-llvm-translation-validation.html.md)

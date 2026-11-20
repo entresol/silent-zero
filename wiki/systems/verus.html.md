@@ -33,4 +33,6 @@ The paper says Verus, its artifact and its case studies are open source ([Verus,
 - [The safety path](https://silentzero.ooo/wiki/design/safety-path.html.md)
 - [Memory-safe code](https://silentzero.ooo/wiki/concepts/memory-safe-code.html.md)
 - [Proof automation](https://silentzero.ooo/wiki/concepts/proof-automation.html.md)
+- [AutoRocq](https://silentzero.ooo/wiki/sources/2025-tu-agentic-verification-software.html.md)
 - [Rust in Android](https://silentzero.ooo/wiki/sources/2025-vander-rust-android-move.html.md)
+- [Verifying Device Drivers with Pancake](https://silentzero.ooo/wiki/sources/2025-zhao-verifying-device-drivers.html.md)
