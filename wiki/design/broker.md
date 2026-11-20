@@ -1,8 +1,8 @@
 ---
 type: design
 status: reviewed
-sources: [1988-hardy-confused-deputy-or, 2006-miller-robust-composition-towards, 2025-debenedetti-defeating-prompt-injections, 2026-nasr-attacker-moves-second, 2018-klein-formally-verified-software, nd-sel4-verified-configurations, 2026-sel4-functional-correctness-proof, nd-sel4-microkit-user-manual, 2026-heiser-mcs-safety-os, 2026-bower-cohesix-research-operating, 2025-costa-securing-ai-agents, 2023-greshake-not-what-you, 2022-google-announcing-kataos-sparrow, 2026-zou-agentkernel-trust-native, 2026-shen-mcp-38-comprehensive, 2026-sharma-agent-operating-systems, 2026-wu-mosaic-knowledge-guided, 2026-peters-gill-can-camels, 2026-liu-agentos-application-silos, 2026-li-toolfence-fine-grained, 2026-chinaei-causality-laundering-denial, 2026-zhao-agenticos-intent-oriented, 2026-zhang-agent-libos-runtime, 2026-narisetty-adaptive-evaluation-out, 2026-sharma-agent-operating-system]
-updated: 2026-11-19
+sources: [1988-hardy-confused-deputy-or, 2006-miller-robust-composition-towards, 2025-debenedetti-defeating-prompt-injections, 2026-nasr-attacker-moves-second, 2018-klein-formally-verified-software, nd-sel4-verified-configurations, 2026-sel4-functional-correctness-proof, nd-sel4-microkit-user-manual, 2026-heiser-mcs-safety-os, 2026-bower-cohesix-research-operating, 2025-costa-securing-ai-agents, 2023-greshake-not-what-you, 2022-google-announcing-kataos-sparrow, 2026-zou-agentkernel-trust-native, 2026-shen-mcp-38-comprehensive, 2026-sharma-agent-operating-systems, 2026-wu-mosaic-knowledge-guided, 2026-peters-gill-can-camels, 2026-liu-agentos-application-silos, 2026-li-toolfence-fine-grained, 2026-chinaei-causality-laundering-denial, 2026-zhao-agenticos-intent-oriented, 2026-zhang-agent-libos-runtime, 2026-narisetty-adaptive-evaluation-out, 2026-sharma-agent-operating-system, 2026-steinder-towards-agent-operating]
+updated: 2026-11-20
 ---
 
 # The broker
@@ -38,6 +38,8 @@ The only component in zOS that hands out authority. It grants capabilities that 
 - Section 2.4 cites [[1988-hardy-confused-deputy-or]] for the confused deputy, [[2026-nasr-attacker-moves-second]] for the twelve broken defences and [[2006-miller-robust-composition-towards]] for passing authority as capabilities. All three confirmed; Nasr et al. say the defences were broken "either fully or substantially". The step from confused deputy to prompt injection is the paper's own analogy; [[2023-greshake-not-what-you]], cited for the phenomenon, confirms the phenomenon and does not use the term. Section 6 limits the analogy: capabilities bound how far a deceived agent reaches.
 - Table 1 cites [[2025-debenedetti-defeating-prompt-injections]]: "77 % of tasks with provable security versus 84 % undefended". The figure is confirmed. Our reading: "provable" in CaMeL means a formally stated property that holds by construction under a correct interpreter and correct policies; nothing is formally proven, so "secure by design" would be the accurate wording. The same row names FIDES ([[2025-costa-securing-ai-agents]]), which enforces information flow rather than capabilities; the figures in the row are CaMeL's.
 - Section 6 cites [[2025-costa-securing-ai-agents]] for adding information-flow control to capabilities. Confirmed for what information-flow control does; the pairing with capabilities is the paper's step. FIDES leaves implicit flows open, which fits the paper's point that data leaks through allowed channels. See [[information-flow-control]].
+
+The IBM position paper lists tool mediation and identity as platform primitives, proposes classing calls as reversible, compensable or irreversible with stronger authorization for the last, and names fine-grained, context-dependent authorization as open. It specifies this for a cloud substrate, and nothing in it is verified ([[2026-steinder-towards-agent-operating]], §IV.D, §IV.H).
 
 ## Related
 

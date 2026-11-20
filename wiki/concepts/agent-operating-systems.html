@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Agent operating systems · Silent Zero wiki</title>
-<meta name="description" content="designs that put the limit on an agent in the OS layer: agentOS, Cohesix, KataOS, AgentKernel, AgenticOS, Agent libOS, Quine.">
+<meta name="description" content="designs that put the limit on an agent in the OS layer: agentOS, Cohesix, KataOS, AgentKernel, AgenticOS, Agent libOS, Quine; IBM’s Agent-OS position paper.">
 <link rel="canonical" href="https://silentzero.ooo/wiki/concepts/agent-operating-systems.html">
 <link rel="alternate" type="text/markdown" href="/wiki/concepts/agent-operating-systems.html.md">
 <link rel="icon" href="/favicon.ico?v=227f1130" sizes="32x32">
@@ -340,8 +340,8 @@ sup.refs a:hover { text-decoration: underline; }
     <p class="crumbs"><a href="/">Silent Zero OS</a> · <a href="/wiki/">Wiki</a></p>
     <div class="titleblock">
       <h1 class="name">Agent operating systems</h1>
-      <p class="sub">designs that put the limit on an agent in the OS layer: agentOS, Cohesix, KataOS, AgentKernel, AgenticOS, Agent libOS, Quine.</p>
-      <p class="ver">Concept · <a href="/wiki/#how">LLM reviewed</a> · updated 5 Nov 2026 · 7 sources</p>
+      <p class="sub">designs that put the limit on an agent in the OS layer: agentOS, Cohesix, KataOS, AgentKernel, AgenticOS, Agent libOS, Quine; IBM’s Agent-OS position paper.</p>
+      <p class="ver">Concept · <a href="/wiki/#how">LLM reviewed</a> · updated 20 Nov 2026 · 8 sources</p>
     </div>
   </div>
 </header>
@@ -412,6 +412,9 @@ sup.refs a:hover { text-decoration: underline; }
 </tbody>
 </table></div>
 <p>Three of the seven build on seL4, the others on a host kernel, a hypervisor or an ordinary process model. The paper makes the remark that none of the designs it names has real-time control as its aim, and it does not name Quine; it holds for AgenticOS, Agent libOS and Quine as read here; for <a href="/wiki/systems/agentos.html">agentOS</a> whether it has a real-time aim is open.</p>
+<ul>
+<li>IBM researchers argue for an “Agent-OS” for enterprise deployments with 13 platform primitives; their prototype, rossoctl, is a Kubernetes control plane with sidecars, authorization and an MCP gateway, limited to cloud and datacentre deployments. The paper reports no measurements and has no verified component (<a href="/wiki/sources/2026-steinder-towards-agent-operating.html">Towards an Agent Operating System</a>).</li>
+</ul>
 <h2 id="what-they-share">What they share</h2>
 <ul>
 <li>The agent and the model are untrusted, and the check sits outside the model, in the designs that have one.</li>
@@ -426,7 +429,7 @@ sup.refs a:hover { text-decoration: underline; }
 
 <h2 id="page-sources">Sources</h2>
 <p class="links-note">What this page rests on.</p>
-<ul class="linked-from"><li><a href="/wiki/sources/2026-zhang-agent-libos-runtime.html">Agent libOS</a> <span class="kind">Zhang 2026</span></li><li><a href="/wiki/sources/2026-zhao-agenticos-intent-oriented.html">AgenticOS</a> <span class="kind">Zhao et al. 2026</span></li><li><a href="/wiki/sources/2026-zou-agentkernel-trust-native.html">AgentKernel</a> <span class="kind">Zou et al. 2026</span></li><li><a href="/wiki/sources/2026-hubbard-agentos-operating-system.html">agentOS, an operating system for agents on seL4</a> <span class="kind">Hubbard 2026</span></li><li><a href="/wiki/sources/2022-google-announcing-kataos-sparrow.html">Announcing KataOS and Sparrow</a> <span class="kind">Google 2022</span></li><li><a href="/wiki/sources/2026-bower-cohesix-research-operating.html">Cohesix, a research operating system for edge AI</a> <span class="kind">Bower 2026</span></li><li><a href="/wiki/sources/2026-ke-quine-realizing-llm.html">Quine</a> <span class="kind">Ke 2026</span></li></ul>
+<ul class="linked-from"><li><a href="/wiki/sources/2026-zhang-agent-libos-runtime.html">Agent libOS</a> <span class="kind">Zhang 2026</span></li><li><a href="/wiki/sources/2026-zhao-agenticos-intent-oriented.html">AgenticOS</a> <span class="kind">Zhao et al. 2026</span></li><li><a href="/wiki/sources/2026-zou-agentkernel-trust-native.html">AgentKernel</a> <span class="kind">Zou et al. 2026</span></li><li><a href="/wiki/sources/2026-hubbard-agentos-operating-system.html">agentOS, an operating system for agents on seL4</a> <span class="kind">Hubbard 2026</span></li><li><a href="/wiki/sources/2022-google-announcing-kataos-sparrow.html">Announcing KataOS and Sparrow</a> <span class="kind">Google 2022</span></li><li><a href="/wiki/sources/2026-bower-cohesix-research-operating.html">Cohesix, a research operating system for edge AI</a> <span class="kind">Bower 2026</span></li><li><a href="/wiki/sources/2026-ke-quine-realizing-llm.html">Quine</a> <span class="kind">Ke 2026</span></li><li><a href="/wiki/sources/2026-steinder-towards-agent-operating.html">Towards an Agent Operating System</a> <span class="kind">Steinder and Franke 2026</span></li></ul>
 <h2 id="related-pages">Related pages</h2>
 <p class="links-note">Pages this one links to, and pages that link here.</p>
 <ul class="linked-from"><li><a href="/wiki/design/real-time-loops.html">Real-time loops</a> <span class="kind">Design</span></li><li><a href="/wiki/design/broker.html">The broker</a> <span class="kind">Design</span></li><li><a href="/wiki/design/kernel.html">The kernel</a> <span class="kind">Design</span></li><li><a href="/wiki/systems/agentos.html">agentOS</a> <span class="kind">System</span></li><li><a href="/wiki/systems/cohesix.html">Cohesix</a> <span class="kind">System</span></li><li><a href="/wiki/systems/kataos.html">KataOS</a> <span class="kind">System</span></li></ul>

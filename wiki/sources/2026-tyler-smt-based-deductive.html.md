@@ -59,3 +59,4 @@ A careful reader adds:
 - [Formalising device protocols for sDDF driver verification](https://silentzero.ooo/wiki/sources/2026-murphy-formalising-device-protocols.html.md)
 - [MCS safety, an OS perspective](https://silentzero.ooo/wiki/sources/2026-heiser-mcs-safety-os.html.md)
 - [The seL4 Device Driver Framework](https://silentzero.ooo/wiki/sources/2022-parker-sel4-device-driver.html.md)
+- [Verifying Device Drivers with Pancake](https://silentzero.ooo/wiki/sources/2025-zhao-verifying-device-drivers.html.md)

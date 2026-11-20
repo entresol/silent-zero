@@ -37,5 +37,6 @@ Section 2.3 of the paper cites He et al. for 77.6 per cent and the 20 per cent f
 ## Related pages
 
 - [Proof automation](https://silentzero.ooo/wiki/concepts/proof-automation.html.md)
+- [AutoRocq](https://silentzero.ooo/wiki/sources/2025-tu-agentic-verification-software.html.md)
 - [Neuro-symbolic proof generation for seL4](https://silentzero.ooo/wiki/sources/2026-he-neuro-symbolic-proof.html.md)
 - [Selene](https://silentzero.ooo/wiki/sources/2024-zhang-selene-pioneering-automated.html.md)

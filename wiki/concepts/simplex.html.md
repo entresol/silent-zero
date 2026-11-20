@@ -32,4 +32,6 @@ A 2026 variant, Synergistic Simplex, lets information flow both ways: the safety
 ## Related pages
 
 - [The safety path](https://silentzero.ooo/wiki/design/safety-path.html.md)
+- [credible compilation against verification](https://silentzero.ooo/wiki/sources/2026-rinard-quantitative-comparison-credible.html.md)
+- [multi-link safety filtering for VLA policies](https://silentzero.ooo/wiki/sources/2026-agarwal-multi-link-safety.html.md)
 - [the Axon compiler](https://silentzero.ooo/wiki/sources/2026-rinard-testing-credible-compilation.html.md)

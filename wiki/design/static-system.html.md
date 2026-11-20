@@ -58,3 +58,4 @@ The layer between the kernel and the components. In Silent Zero one description 
 - [Microkit](https://silentzero.ooo/wiki/systems/microkit.html.md)
 - [MOSAIC](https://silentzero.ooo/wiki/sources/2026-wu-mosaic-knowledge-guided.html.md)
 - [seL4 for reliability](https://silentzero.ooo/wiki/sources/2026-heiser-sel4-operating-systems.html.md)
+- [Verifying Device Drivers with Pancake](https://silentzero.ooo/wiki/sources/2025-zhao-verifying-device-drivers.html.md)

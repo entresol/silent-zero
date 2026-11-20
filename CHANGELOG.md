@@ -4,6 +4,10 @@ What changed in substance, newest first: in the paper, on its page and in the pr
 
 Format: `## <version> · <scope>`, then one paragraph. A paper version is `YYYY-MM-DD-vX.Y` and has its own PDF in `versions/`; the newest one is the version the build prints on the paper and the page. A change without a new paper version carries only its date (`YYYY-MM-DD`). Scope is `Paper`, `Site` or `Project`. The build turns this file into the list at the end of the page.
 
+## 2026-11-20 · Site
+
+Wiki: six sources worked in, six source pages created (IBM's Agent-OS position paper, a barrier-function shield for VLA policies, a quantitative comparison of credible compilation and verification, OSVBench, AutoRocq, and the Pancake driver paper). Changed in substance: the pages on proof automation (two new bullets and a follow-up on the compiler work), drivers (the Pancake paper's limits), safety path and real-time loops (the shield's timings), agent operating systems and the broker (the IBM paper). No new lexicon terms.
+
 ## 2026-11-19-v0.18 · Paper
 
 Six sentences now say what their sources say. Section 2.3: the first seL4 proof covered about 7,500 of the kernel's 8,700 lines of C; Verus checked linked-list benchmarks 3 to 61 times faster than other verifiers (also in the Section 5 table). Section 3: the driver island's legacy drivers are named for the devices of the source (framebuffer, Ethernet, SD, sound), and the island leaks model context only where local inference runs behind it. Section 5: agentOS is described by what its README shows, the access date is 23 October, and Agent libOS keeps the growth of tools and skills from expanding authority by itself, where it said the authority stays fixed. Section 6: Android's result is worded as what Google reports, that a focus on new code "can work".

@@ -181,3 +181,11 @@ Sources added to the pool today, daily run; the backlog was held back because mo
 ## [2026-11-19] ingest | 2026-lide-arsenal-assured-robotics
 
 Worked in a session after the team decided on #68 to include it with a note on the field. Created: one source page, read from the abstract only. Changed: [[kernel]] and [[sel4]], which now record that `CAVEATS.md` of 17.0.0 says AArch64 confidentiality is "in progress" while the news item and the configurations page say it is proven (#69; the wiki follows the latter two), index, rings. The paper's sentences citing the talk are confirmed.
+
+## [2026-11-20] ingest | 2026-steinder-towards-agent-operating, 2026-agarwal-multi-link-safety, 2026-rinard-quantitative-comparison-credible
+
+Sources added to the pool today, daily run. Created: three source pages, each read in full. Changed: [[agent-operating-systems]], [[broker]], [[safety-path]], [[real-time-loops]], [[proof-automation]], index. The IBM paper is a position paper without measurements. The safety-filter preprint is simulation and one edge platform; it does not meet the safety-path page's rule that the loop owns its sensors. The Rinard follow-up quantifies the effort gap between verified and checked compiler passes. No question for the team. Candidates for the pool named by the sources and not yet in it: Hyperkernel (Nelson et al., SOSP 2017), Sewell, Myreen and Klein on translation validation for seL4 (PLDI 2013), Alive2, AgentSpec, AC4A, OSCBF.
+
+## [2026-11-20] ingest | 2025-li-osvbench-benchmarking-llms, 2025-tu-agentic-verification-software, 2025-zhao-verifying-device-drivers
+
+Backlog, in the order of the rings; no decision is open, so the limit did not hold. Created: three source pages, each read in full. Changed: [[proof-automation]] (two bullets), [[drivers]] (a second source for the Pancake row, the unverified transpiler and the missing link between driver proof and compiler theorem), index, rings. The effort and overhead figures of the Pancake paper differ from those of the later SMT-based paper; the page records both. No question for the team.
