@@ -17,6 +17,7 @@ import changelog
 import glossary
 import lexicon
 import pulse
+import sheets
 gl_groups = glossary.parse(Path(__file__).resolve().parent / "glossary.md")
 
 md = (src_dir / "src.md").read_text(encoding="utf-8")
@@ -149,16 +150,7 @@ revisions_html = ('<h2 id="changes">Changes</h2>'
                      f'<ol class="revisions">{"".join(rev_items[SHOWN:])}</ol></details>' if len(rev_items) > SHOWN else ''))
 html_body = html_body + revisions_html
 
-# the page, not the paper, says how to take part: after In brief, before the Abstract
-REPO_URL = "https://github.com/entresol/silent-zero"
-involved = (f'<h2 id="get-involved">Get involved</h2>\n'
-            f'<p>We are looking for people who know firmware, formal verification or robots, and who want to test this argument before the architecture hardens around it.</p>\n'
-            f'<ul>\n<li>Discuss an idea or ask a question: <a href="{REPO_URL}/discussions" rel="noopener" target="_blank">Discussions</a>.</li>\n'
-            f'<li>See what the sources behind the paper show, page by page: the <a href="wiki/">wiki</a>.</li>\n'
-            f'<li>Point out a flaw, a wrong claim or a missing source: <a href="{REPO_URL}/issues" rel="noopener" target="_blank">Issues</a>.</li>\n'
-            f'<li>Propose a change to the paper or the code: a pull request; <a href="{REPO_URL}/blob/main/CONTRIBUTING.md" rel="noopener" target="_blank">CONTRIBUTING.md</a> says how we work.</li>\n</ul>\n')
-assert html_body.count('<h2 id="abstract">') == 1
-html_body = html_body.replace('<h2 id="abstract">', involved + '<h2 id="abstract">')
+# how to take part is on the Devel door (/devel/, also a sheet over this page): paper/sheets.json
 CURRENT_VERSION = changelog.current(changes)
 pdf_name = f"versions/zos-zero-os-{CURRENT_VERSION}.pdf"
 
@@ -186,6 +178,7 @@ hero_json = json.dumps({l: {k: v for k, v in t.items() if k != "label"} for l, t
 css = (Path(__file__).resolve().parent / "site.css").read_text(encoding="utf-8")
 # browsers keep favicons in a cache of their own; a version from the icons' content makes them fetch a changed icon
 _top = Path(__file__).resolve().parent.parent
+sheets_js = (Path(__file__).resolve().parent / "sheets.js").read_text(encoding="utf-8")
 az = lexicon.az_bar(lexicon.collect(_top)[0], "lexicon/")
 iv = hashlib.sha256(b"".join((_top / f).read_bytes() for f in ("favicon.ico", "assets/favicon.svg", "assets/apple-touch-icon.png"))).hexdigest()[:8]
 css = "\n".join(l for l in css.splitlines() if "SPDX-License-Identifier" not in l) + "\n"
@@ -240,6 +233,7 @@ page = f"""<!doctype html>
       <p class="name">Silent Zero OS</p>
       <p class="sub" data-t="sub">{en["sub"]}</p>
       <p class="ver" data-t="ver">{en["ver"]}</p>
+      {sheets.inline()}
     </div>
     <p class="status" data-t="status">{en["status"]}</p>
     <div class="actions">
@@ -305,6 +299,7 @@ page = f"""<!doctype html>
 }})();
 </script>
 <button class="menu" type="button" aria-controls="toc" aria-expanded="false" aria-label="Contents" hidden><span></span></button>
+{sheets.doors()}
 <div class="layout">
   <nav class="toc" id="toc" aria-label="Contents"><p>Contents</p><ol>{toc}</ol></nav>
   <article>
@@ -313,6 +308,9 @@ page = f"""<!doctype html>
 </div>
 <section class="az-band" id="lexicon" aria-label="Lexicon"><div><a class="az-title" href="lexicon/">Lexicon</a>{az}</div></section>
 <footer><div><span class="about"><span>Silent Zero OS</span><span class="sep"> · </span><span>Working paper {CURRENT_VERSION}</span><span class="sep"> · </span><span>Text and figures <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></span></span><span class="links"><a href="silent-zero.pdf" download="silent-zero.pdf">PDF</a> <a href="wiki/">Wiki</a> <a href="https://github.com/entresol/silent-zero">GitHub</a> <a href="https://unwritten.studio/impressum">Imprint</a></span></div></footer>
+<script>
+{sheets_js}
+</script>
 <script>
 // glossary tooltips open to the left where they would run off the right edge
 document.querySelectorAll('a.gl').forEach(a => a.addEventListener('pointerenter', () => {{

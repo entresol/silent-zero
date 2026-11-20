@@ -15,6 +15,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import changelog
 import lexicon
+import sheets
 import wiki_lint
 
 PUBLIC_NAME = "Silent Zero"           # the one place the wiki's working name zOS is translated
@@ -135,8 +136,8 @@ addEventListener('scroll', () => { if (!queued) { queued = true; requestAnimatio
 mark();
 </script>"""
 
-def page(title, head, body, crumb, path="/", description="", markdown=True):
-    back = '<li><a href="/">\u2190 The paper</a></li>' + ('' if title == "Wiki" else '<li><a href="/wiki/">\u2190 Wiki index</a></li>')
+def page(title, head, body, crumb, path="/", description="", markdown=True, full_title=None, in_wiki=True):
+    back = '<li><a href="/">\u2190 The paper</a></li>' + ('' if title == "Wiki" or not in_wiki else '<li><a href="/wiki/">\u2190 Wiki index</a></li>')
     toc = back.replace('<li>', '<li class="toc-back">') + '<li><a href="#top">↑ Top</a></li>' + "".join(
         f'<li><a href="#{i}">{re.sub("<[^>]+>", "", t)}</a></li>' for i, t in re.findall(r'<h2 id="([^"]+)">(.*?)</h2>', body))
     return f"""<!doctype html>
@@ -144,7 +145,7 @@ def page(title, head, body, crumb, path="/", description="", markdown=True):
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>{PUBLIC_NAME + " wiki" if title == "Wiki" else _h.escape(title) + " · " + PUBLIC_NAME + " wiki"}</title>
+<title>{_h.escape(full_title) if full_title else (PUBLIC_NAME + " wiki" if title == "Wiki" else _h.escape(title) + " · " + PUBLIC_NAME + " wiki")}</title>
 {('<meta name="description" content="' + _h.escape(description) + '">') if description else ""}
 <link rel="canonical" href="{SITE}{path}">
 {('<link rel="alternate" type="text/markdown" href="' + md_url(path) + '">') if markdown else ""}
@@ -169,7 +170,7 @@ def page(title, head, body, crumb, path="/", description="", markdown=True):
 {body}
   </article>
 </div>
-<footer><div><span class="about"><span>{PUBLIC_NAME} OS</span><span class="sep"> · </span><span>Wiki</span><span class="sep"> · </span><span>Text <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></span></span><span class="links"><a href="/">Paper</a> <a href="{REPO}/tree/main/wiki">GitHub</a> <a href="https://unwritten.studio/impressum">Imprint</a></span></div></footer>
+<footer><div><span class="about"><span>{PUBLIC_NAME} OS</span><span class="sep"> · </span><span>{"Wiki" if in_wiki else _h.escape(title)}</span><span class="sep"> · </span><span>Text <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></span></span><span class="links"><a href="/">Paper</a> <a href="{REPO}/tree/main/wiki">GitHub</a> <a href="https://unwritten.studio/impressum">Imprint</a></span></div></footer>
 {SCRIPT}
 </body>
 </html>
@@ -291,10 +292,18 @@ lx_head = (f'    <div class="titleblock">\n      <h1 class="name">Lexicon</h1>\n
 (root / "lexicon").mkdir(exist_ok=True)
 (root / "lexicon" / "index.html").write_text(page("Lexicon", lx_head, "\n".join(lx_body), f'<a href="/">{PUBLIC_NAME} OS</a>', path="/lexicon/", description="Every term of the Silent Zero paper and wiki in one line.", markdown=False), encoding="utf-8")
 
+# --- the two doors, Use and Devel: real pages, also laid over the start page as sheets (paper/sheets.py, sheets.json) ---
+for _n in sheets.NAMES:
+    _d = sheets.DATA[_n]
+    (root / _d["dir"]).mkdir(exist_ok=True)
+    (root / _d["dir"] / "index.html").write_text(page(_d["title"], sheets.head(_n), sheets.article(_n), f'<a href="/">{PUBLIC_NAME} OS</a>',
+        path=f"/{_d['dir']}/", description=_d["description"], full_title=f"{_d['title']} · {PUBLIC_NAME} OS", in_wiki=False), encoding="utf-8")
+    (root / _d["dir"] / "index.html.md").write_text(sheets.markdown(_n), encoding="utf-8")
+
 # --- what assistants and search engines read: sitemap.xml and llms.txt (the format: https://llmstxt.org/) ---
 version = changelog.current(changelog.parse())
 todate = version[:10]
-urls = [("/", todate), ("/wiki/", pages["index"]["meta"].get("updated", todate)), ("/lexicon/", None)]
+urls = [("/", todate), ("/wiki/", pages["index"]["meta"].get("updated", todate)), ("/lexicon/", None)] + [(f"/{sheets.DATA[n]['dir']}/", None) for n in sheets.NAMES]
 urls += [(p["url"], p["meta"].get("updated")) for _, p, _ in catalogue]
 sm = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
 for u, mod in urls:
@@ -310,6 +319,8 @@ ll = [f"# {PUBLIC_NAME} OS", "",
       "## Paper", "",
       f"- [{PUBLIC_NAME} OS, working paper ({'v' + version.split('-v')[-1]})]({SITE}/silent-zero.pdf): the full paper as PDF, always the newest version",
       f"- [The paper as a web page]({SITE}/): the same argument with a short summary first, in English (header also in German, French, Spanish, Italian)", "",
+      "## Start here", "",
+      *[f"- [{sheets.DATA[n]['title']}]({SITE}/{sheets.DATA[n]['dir']}/index.html.md): {sheets.DATA[n]['description']}" for n in sheets.NAMES], "",
       "## Wiki", "",
       f"- [Wiki index]({SITE + md_url('/wiki/')}): how the wiki is made, and the catalogue of all pages"]
 for key, title, blurb in GROUPS:

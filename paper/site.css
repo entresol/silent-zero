@@ -356,3 +356,68 @@ dl.lexicon dd { margin: 0; flex: 1 1 18rem; }
 sup.refs { font-size: 0.72em; margin-left: 0.25em; }
 sup.refs a { display: inline-block; padding: 0 0.3em; text-decoration: none; color: var(--accent); font-weight: 600; }
 sup.refs a:hover { text-decoration: underline; }
+
+/* the two doors: Use and Devel. A tab on each edge of the start page; a sheet slides over it and lies there, the page below does not move */
+:root { --sheet-w: min(74rem, 86vw); --tab: 2.6rem; --sh-ease: cubic-bezier(.45, .05, .25, 1); --sh-slide: 1s; }
+html:has(a.sh-tab) { scrollbar-gutter: stable; }
+html.sh-open { overflow: hidden; }
+.sh-tab { position: fixed; top: 34vh; z-index: 60; width: var(--tab); height: 9.5rem; display: flex; align-items: center; justify-content: center;
+  background: var(--paper); border: 1px solid var(--rule); color: var(--ink-deep); font: 600 0.9rem/1 var(--font-text); letter-spacing: 0.05em; text-decoration: none; cursor: pointer; }
+.sh-tab span { writing-mode: vertical-rl; }
+.sh-tab::before { content: ""; position: absolute; top: 0; bottom: 0; width: 3px; background: var(--accent); opacity: 0; transition: opacity 0.25s; }
+.sh-tab:hover::before, .sh-tab:focus-visible::before, .sh-leaf.open .sh-tab::before { opacity: 1; }
+.sh-tab:focus-visible, .sh-close:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.sh-tab-l { left: 0; border-left: 0; border-radius: 0 10px 10px 0; box-shadow: 4px 0 14px -6px rgba(0, 0, 0, 0.2); }
+.sh-tab-l span { transform: rotate(180deg); }
+.sh-tab-l::before { left: 0; }
+.sh-tab-r { right: 0; border-right: 0; border-radius: 10px 0 0 10px; box-shadow: -4px 0 14px -6px rgba(0, 0, 0, 0.2); }
+.sh-tab-r::before { right: 0; }
+/* with JavaScript the tab hangs on its sheet's edge and moves with it */
+.sh-leaf { position: fixed; top: 0; bottom: 0; z-index: 60; width: var(--sheet-w); pointer-events: none; will-change: transform; backface-visibility: hidden; transition: transform 0.3s ease-out; }
+.sh-leaf.moving { transition: transform var(--sh-slide) var(--sh-ease); }
+.sh-leaf > * { pointer-events: auto; }
+.sh-leaf-l { left: 0; transform: translateX(-100%); }
+.sh-leaf-r { right: 0; transform: translateX(100%); }
+.sh-leaf-l:not(.open):has(.sh-tab:hover), .sh-leaf-l:not(.open):has(.sh-tab:focus-visible) { transform: translateX(calc(-100% + 0.9rem)); }
+.sh-leaf-r:not(.open):has(.sh-tab:hover), .sh-leaf-r:not(.open):has(.sh-tab:focus-visible) { transform: translateX(calc(100% - 0.9rem)); }
+.sh-leaf.open { transform: translateX(0); }
+.sh-leaf .sh-tab { position: absolute; }
+.sh-leaf-l .sh-tab { left: 100%; }
+.sh-leaf-r .sh-tab { right: 100%; }
+.sh-leaf::before { content: ""; position: absolute; inset: 0; opacity: 0; pointer-events: none; transition: opacity var(--sh-slide) var(--sh-ease); }
+.sh-leaf.open::before { opacity: 1; }
+.sh-leaf-l::before { box-shadow: 14px 0 48px -8px rgba(0, 0, 0, 0.22); }
+.sh-leaf-r::before { box-shadow: -14px 0 48px -8px rgba(0, 0, 0, 0.22); }
+.sh-page { position: absolute; inset: 0; overflow: auto; background: var(--paper); outline: none; overscroll-behavior: contain; }
+.sh-leaf-l .sh-page { border-right: 1px solid var(--rule); }
+.sh-leaf-r .sh-page { border-left: 1px solid var(--rule); }
+.sh-scrim { position: fixed; inset: 0; z-index: 50; background: rgba(0, 0, 0, 0.05); opacity: 0; pointer-events: none; transition: opacity var(--sh-slide) var(--sh-ease); }
+.sh-scrim.on { opacity: 1; pointer-events: auto; cursor: pointer; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .sh-scrim { background: rgba(0, 0, 0, 0.22); } }
+:root[data-theme="dark"] .sh-scrim { background: rgba(0, 0, 0, 0.22); }
+.sh-in { max-width: 44rem; margin: 0 auto; padding: 9vh var(--gutter-r) 12vh var(--gutter-l); }
+.sh-close { position: sticky; top: 0; float: right; margin: -4vh 0 0 1rem; background: var(--paper); border: 1px solid var(--rule); border-radius: 999px; padding: 0.45rem 0.95rem;
+  font: 600 0.85rem/1 var(--font-text); color: var(--ink-deep); cursor: pointer; z-index: 2; }
+.sh-close:hover { border-color: var(--accent); }
+.sh-title { font: 100 clamp(2.6rem, 6vw, 4.6rem)/1 var(--font-display); letter-spacing: -0.035em; color: var(--ink-deep); margin: 0 0 1rem; }
+.sh-title::before { display: none; }
+.sh-lede { max-width: var(--measure); color: var(--ink); margin: 0 0 2.2rem; }
+.sh-body > h2:not(.sh-title) { font: 100 clamp(1.8rem, 3.6vw, 2.6rem)/1.05 var(--font-display); letter-spacing: -0.03em; color: var(--ink-deep); margin: 3rem 0 1.2rem; }
+.sh-body > h2::before { display: none; }
+.sh-body > h2:not(.sh-title):first-child { margin-top: 2rem; }
+.points { list-style: none; padding: 0; margin: 0; }
+.points li { display: grid; grid-template-columns: 7.6rem 1fr; gap: 0.2rem 1rem; padding: 0.85rem 0; margin: 0; border-top: 1px solid var(--rule); }
+.points li:first-child { border-top: 0; }
+.points strong { color: var(--ink-deep); font-weight: 600; }
+.points p { margin: 0.15rem 0 0; font-size: 0.95rem; color: var(--ink); }
+.st { font-size: 0.74rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; padding-top: 0.25rem; color: var(--muted); }
+.st-now { color: #3f7d52; }
+.st-wip { color: var(--accent); }
+.st-open { color: var(--ink-deep); font-style: italic; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .st-now { color: #6fbf87; } }
+:root[data-theme="dark"] .st-now { color: #6fbf87; }
+p.other { margin-top: 2.2rem; color: var(--muted); font-size: 0.95rem; }
+.sh-inline { display: none; }
+@media (max-width: 45rem) { :root { --sheet-w: 100vw; } .points li { grid-template-columns: 1fr; } .sh-tab { display: none; }
+  .sh-inline { display: block; margin: 0.7rem 0 0; font: 600 0.95rem/1.2 var(--font-text); } .sh-inline a { color: var(--ink-deep); } }
+@media (prefers-reduced-motion: reduce) { :root { --sh-slide: 0.01s; } }
