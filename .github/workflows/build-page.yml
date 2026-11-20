@@ -3,28 +3,61 @@
 # touches the paper, the wiki or the changelog, and commits the result into the pull request. A two-click fix
 # in GitHub's web editor then arrives complete. A published PDF is never replaced (build_site.py),
 # and a PDF that differs only in bytes, not in words, is left as it was.
+#
+# The generated files (index.html, the wiki's HTML, the PDFs) are what makes two open pull requests conflict:
+# each carries its own rebuilt copy. So the build first merges main into the branch, takes main's copy of a
+# generated file where they differ, and rebuilds; a conflict in any other file stops the run with a message.
+# Whenever main changes, every open pull request from this repository is built again the same way, by a manual
+# run of this workflow on its branch, so none of them is left behind.
 name: Build page
 
 on:
   pull_request:
     paths: ["paper/**", "wiki/**", "CHANGELOG.md", ".github/workflows/build-page.yml"]
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["paper/**", "wiki/**", "CHANGELOG.md"]
 
 permissions:
   contents: write
+  actions: write
+  pull-requests: read
 
 concurrency:
-  group: build-page-${{ github.head_ref }}
-  cancel-in-progress: true
+  group: build-page-${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: ${{ github.event_name != 'push' }}
+
+env:
+  BRANCH: ${{ github.head_ref || github.ref_name }}
 
 jobs:
+  update-open-pull-requests:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - name: Build every open pull request again on top of the new main
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh pr list --repo "$GITHUB_REPOSITORY" --state open --json headRefName,isCrossRepository \
+            --jq '.[] | select(.isCrossRepository == false) | .headRefName' |
+          while IFS= read -r b; do
+            [ -n "$b" ] || continue
+            echo "building $b"
+            gh workflow run build-page.yml --repo "$GITHUB_REPOSITORY" --ref "$b" || echo "::warning::could not start a build of $b"
+          done
+
   build:
+    if: github.event_name != 'push'
     runs-on: ubuntu-24.04
     timeout-minutes: 10   # a slow package mirror once held a run for over nine minutes
     steps:
       - uses: actions/checkout@v4
         with:
-          repository: ${{ github.event.pull_request.head.repo.full_name }}
-          ref: ${{ github.head_ref }}
+          repository: ${{ github.event.pull_request.head.repo.full_name || github.repository }}
+          ref: ${{ env.BRANCH }}
           fetch-depth: 0
 
       - name: Know what is published
@@ -58,6 +91,28 @@ jobs:
           EOF
           exit $bad
 
+      - name: Bring the branch up to date with main
+        if: github.event_name == 'workflow_dispatch' || github.event.pull_request.head.repo.full_name == github.repository
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git merge-base --is-ancestor origin/main HEAD; then echo "already up to date with main"; exit 0; fi
+          if ! git merge --no-edit origin/main; then
+            others=""
+            for f in $(git diff --name-only --diff-filter=U); do
+              case "$f" in
+                index.html|llms.txt|sitemap.xml|silent-zero.pdf|zos-zero-os.pdf|versions/*|lexicon/*|wiki/*.html|wiki/*/*.html|wiki/*.html.md|wiki/*/*.html.md)
+                  git checkout --theirs -- "$f" 2>/dev/null || git rm -q -- "$f"
+                  git add -- "$f";;
+                *)
+                  echo "::error file=$f::This branch conflicts with main in a file that is not generated. Merge main into the branch and resolve it by hand."
+                  others=1;;
+              esac
+            done
+            if [ -n "$others" ]; then git merge --abort; exit 1; fi
+            git commit -q --no-edit
+          fi
+
       - name: Install pandoc 3.6.4, LaTeX and Poppler
         run: |
           sudo apt-get update -qq
@@ -80,16 +135,22 @@ jobs:
 
       - name: Commit the result
         env:
-          SAME_REPO: ${{ github.event.pull_request.head.repo.full_name == github.repository }}
+          SAME_REPO: ${{ github.event_name == 'workflow_dispatch' || github.event.pull_request.head.repo.full_name == github.repository }}
         run: |
           git add -A index.html wiki lexicon versions silent-zero.pdf zos-zero-os.pdf sitemap.xml llms.txt
-          if git diff --cached --quiet; then echo "page is up to date"; exit 0; fi
-          git diff --cached --stat
-          if [ "$SAME_REPO" != "true" ]; then
-            echo "::error::The page is out of date. Run paper/build.sh and commit index.html (pull requests from forks cannot be updated automatically)."
-            exit 1
+          if ! git diff --cached --quiet; then
+            git diff --cached --stat
+            if [ "$SAME_REPO" != "true" ]; then
+              echo "::error::The page is out of date. Run paper/build.sh and commit index.html (pull requests from forks cannot be updated automatically)."
+              exit 1
+            fi
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git commit -q -m "Site: rebuild (automatic)"
+          else
+            echo "page is up to date"
           fi
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git commit -q -m "Site: rebuild (automatic)"
-          git push -q origin "HEAD:${GITHUB_HEAD_REF}"
+          # push what the run added: the merge of main and the rebuild
+          if [ "$SAME_REPO" = "true" ] && [ "$(git rev-parse HEAD)" != "$(git rev-parse "origin/${BRANCH}")" ]; then
+            git push -q origin "HEAD:${BRANCH}"
+          fi
