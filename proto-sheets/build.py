@@ -15,7 +15,7 @@ css = re.search(r"<style>(.*?)</style>", src, re.S).group(1)
 css = css.replace("url(assets/", "url(../assets/")   # the prototype lives one folder down
 header = re.search(r'<header class="hero".*?</header>', src, re.S).group(0)
 pulse = re.search(r'<section class="pulse".*?</section>', src, re.S).group(0)
-involved = re.search(r'<h2 id="get-involved">.*?(?=<h2 id=)', src, re.S).group(0)
+involved = re.search(r'<h2 id="get-involved">.*?(?=<h2 id=)', src, re.S).group(0).replace('<h2 id="get-involved">Get involved</h2>', '<h3 class="sheet-sub first">Get involved</h3>')
 # in the prototype the anchors of the entry sheet lead nowhere, and links go up one folder
 for part in ("header", "pulse", "involved"):
     v = locals()[part]
@@ -24,43 +24,42 @@ for part in ("header", "pulse", "involved"):
     locals()[part] = v
     globals()[part] = v
 
-STATUS = {"now": "available now", "wip": "in progress", "plan": "planned"}
+STATUS = {"now": "available now", "wip": "in progress", "plan": "planned", "open": "open question"}
+GH = "https://github.com/entresol/silent-zero"
 
 
 def points(items):
     out = []
-    for status, title, text in items:
-        out.append(f'<li><span class="st st-{status}">{STATUS[status]}</span><div><strong>{title}</strong><p>{text}</p></div></li>')
+    for status, title, text, *link in items:
+        more = f' <a href="{link[0][1]}">{link[0][0]}</a>' if link else ""
+        out.append(f'<li><span class="st st-{status}">{STATUS[status]}</span><div><strong>{title}</strong><p>{text}{more}</p></div></li>')
     return "<ul class=\"points\">" + "".join(out) + "</ul>"
 
 
 use = points([
-    ("plan", "Download the image", "A bootable image for a first board. Placeholder: there is no image yet; what exists today is the boot demo."),
-    ("now", "Watch it boot", "A graphical loader checks the seL4 kernel image, shows the result and starts the kernel (video, 24 s)."),
-    ("plan", "Try it in an emulator", "One command to start the image in QEMU, then on real hardware."),
+    ("now", "What it is for", "AI agents that deliver work and, increasingly, move arms or wheels. Silent Zero treats every agent as untrusted, whatever model drives it, and keeps the agent's authority and the machine's safety beneath it.", ("The paper", "../silent-zero.pdf")),
+    ("now", "See it boot", "A graphical loader checks the seL4 kernel image, shows the result and starts the kernel. 24 seconds of video.", ("Watch", "../assets/video/loader-sel4-boot.mp4")),
+    ("now", "What verification gives you", "The proven part of the kernel does what its specification says. Everything else is labelled tested or assumed and never passed off as proven; firmware and graphics hardware stay trusted.", ("Which is which", "../wiki/design/kernel.html")),
+    ("wip", "What real-time gives you", "By design, processor time is held like memory: an agent cannot starve the control loop, and a small deterministic loop has the last word on every motion. Timing bounds for modern processors are not yet proven.", ("The design", "../wiki/design/safety-path.html")),
+    ("now", "Open and free", "The code is BSD-2-Clause, the paper and the texts CC BY 4.0.", ("Licence", GH + "/blob/main/README.md#licence")),
+    ("now", "Ask a question", "Discussions for questions and ideas, Issues for a flaw or a wrong claim.", ("Discussions", GH + "/discussions")),
+    ("plan", "Try it", "A bootable image, first in an emulator."),
     ("plan", "Check your download", "Checksums and signatures, and how to verify them before you boot."),
-    ("wip", "What verification gives you", "What is proven, what is only assumed, in plain words. Links to the wiki for every claim."),
-    ("wip", "What real-time gives you", "Why a robot's motion path keeps its deadlines while the AI thinks."),
-    ("plan", "A robot on top", "A reference stack for a small robot. Placeholder."),
-    ("plan", "A desktop on top", "What it would take to run familiar programs. Placeholder."),
-    ("plan", "Which hardware works", "A list of boards and what runs on them."),
-    ("plan", "What it costs to certify", "How a safety path relates to the standards a buyer must meet."),
-    ("now", "Read the paper", "The working paper, 15 pages, in English."),
-    ("plan", "Release notes", "What changed in each release, in plain language."),
+    ("plan", "Which hardware", "A first board, then a list of what runs on what."),
+    ("open", "Is it certified?", "Not yet. How a safety path like ours relates to the standards a buyer must meet is still open, and we say so."),
 ])
 dev = points([
-    ("now", "The paper and the wiki", "The architecture, its sources, and what each page proves or assumes."),
-    ("wip", "What verification means here", "Functional correctness, what the kernel proof covers and what it does not."),
-    ("wip", "What real-time means here", "Time as a capability: budgets, scheduling, and what is not yet bounded."),
-    ("plan", "Add a component on top of the kernel", "A static system description, protection domains and channels. Placeholder."),
-    ("plan", "Change the kernel", "How the verified kernel is built and what a change costs in proof."),
-    ("plan", "Build the image yourself", "A reproducible build from source in one container."),
-    ("now", "Read the loader", "The loader code, under 8 KB on RISC-V, tested in QEMU."),
-    ("plan", "Add a driver", "A user-mode driver in a protection domain. Placeholder."),
-    ("plan", "Write a proof", "Where proofs live and how AI help fits in, with the checker as the judge."),
-    ("now", "Report a flaw", "Issues: a wrong claim, a missing source, a bug."),
-    ("now", "Propose a change", "A pull request; CONTRIBUTING.md says how we work."),
-    ("plan", "Roadmap", "What comes next and in which order, with proof status for each step."),
+    ("now", "Architecture on one page", "What the parts are and why nothing at the base is new.", ("The paper", "../silent-zero.pdf")),
+    ("now", "What is proven, what is assumed", "The kernel page lists the proof status per configuration: proven, not stated, tested, assumed.", ("Kernel", "../wiki/design/kernel.html")),
+    ("now", "Read the code", "The loader (under 8 KB on RISC-V), the splash renderer and the build scripts.", ("Code", GH + "/tree/main/loader")),
+    ("now", "Run the loader in QEMU", "Needs clang with the RISC-V target, ld.lld and QEMU; <code>make test</code> boots a good image and tampered ones. The steps are in the README; not yet checked on a clean machine.", ("README", GH + "/blob/main/loader/README.md")),
+    ("now", "Where we are unsure and want help", "Every wiki page ends with its open questions; the Issues collect what the team has to decide.", ("Wiki", "../wiki/")),
+    ("now", "How AI helps with proofs", "A model proposes, the proof checker judges. The wiki collects what is known.", ("Proof automation", "../wiki/concepts/proof-automation.html")),
+    ("wip", "The broker: how authority is handed out", "A design, no code yet, nothing proven.", ("Design", "../wiki/design/broker.html")),
+    ("plan", "Add a component on top of the kernel", "A static system description with protection domains and channels.", ("Static system", "../wiki/design/static-system.html")),
+    ("plan", "Build the image yourself", "A reproducible build from source."),
+    ("now", "Contribute", "CONTRIBUTING.md says how we work: branches, pull requests, the changelog.", ("CONTRIBUTING.md", GH + "/blob/main/CONTRIBUTING.md")),
+    ("now", "Follow along", "The changelog says what changed in substance, the wiki log what was worked in each day.", ("Changelog", GH + "/blob/main/CHANGELOG.md")),
 ])
 
 body = f"""
@@ -73,24 +72,26 @@ body = f"""
   <div class="scrim" id="scrim"></div>
 
   <div class="leaf use" id="leaf-use">
-    <button class="tab" type="button" aria-controls="page-use" aria-expanded="false"><span>Use it</span></button>
+    <button class="tab" type="button" aria-controls="page-use" aria-expanded="false"><span>Users</span></button>
     <section class="page" id="page-use" role="dialog" aria-modal="false" aria-labelledby="h-use" tabindex="-1" inert>
       <div class="page-in">
         <button class="close" type="button" aria-label="Close this sheet">Close</button>
-        <h2 id="h-use">Use it</h2>
-        <p class="sheet-lede">For the people who will run Silent Zero: what you get, what you can try today, and what is still to come.</p>
+        <h2 id="h-use">Use Silent Zero</h2>
+        <p class="sheet-lede">Silent Zero is a small operating system for machines where AI acts in the physical world. You cannot install it yet. This sheet says what you can look at today and what is still to come.</p>
         {use}
       </div>
     </section>
   </div>
 
   <div class="leaf involved" id="leaf-involved">
-    <button class="tab" type="button" aria-controls="page-involved" aria-expanded="false"><span>Get involved</span></button>
+    <button class="tab" type="button" aria-controls="page-involved" aria-expanded="false"><span>Developers</span></button>
     <section class="page" id="page-involved" role="dialog" aria-modal="false" aria-labelledby="h-involved" tabindex="-1" inert>
       <div class="page-in">
         <button class="close" type="button" aria-label="Close this sheet">Close</button>
+        <h2 id="h-involved">Develop with Silent Zero</h2>
+        <p class="sheet-lede">For people who build, verify or just want to look inside. Everything here is open; the label says what works today.</p>
         <div class="involved-old">{involved}</div>
-        <h3 class="sheet-sub">Build on it</h3>
+        <h3 class="sheet-sub">Start here</h3>
         {dev}
       </div>
     </section>
@@ -151,9 +152,10 @@ kbd { font: inherit; border: 1px solid var(--rule); border-radius: 4px; padding:
 .points strong { color: var(--ink-deep); font-weight: 600; }
 .points p { margin: .15rem 0 0; font-size: .95rem; color: var(--ink); }
 .st { font-size: .74rem; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; padding-top: .25rem; color: var(--muted); }
-.st-now { color: #3f7d52; } .st-wip { color: var(--accent); }
+.st-now { color: #3f7d52; } .st-wip { color: var(--accent); } .st-open { color: var(--ink-deep); font-style: italic; }
+.points p a { margin-left: .2rem; }
+.sheet-sub.first { margin-top: 2rem; }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .st-now { color: #6fbf87; } }
-.involved-old h2 { font: 100 clamp(2.6rem, 6vw, 4.6rem)/1 var(--font-display); letter-spacing: -.035em; margin-bottom: 1rem; }
 @media (max-width: 45rem) { :root { --sheet-w: calc(100vw - var(--tab)); } .points li { grid-template-columns: 1fr; } }
 @media (prefers-reduced-motion: reduce) { :root { --slide: .01s; } }
 """
