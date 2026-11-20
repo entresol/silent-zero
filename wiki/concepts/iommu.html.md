@@ -38,3 +38,4 @@ A memory management unit for devices. Devices such as network cards, storage con
 - [Raspberry Pi](https://silentzero.ooo/wiki/systems/raspberry-pi.html.md)
 - [seL4](https://silentzero.ooo/wiki/systems/sel4.html.md)
 - [LeftoverLocals](https://silentzero.ooo/wiki/sources/2024-trail-leftoverlocals-listening-llm.html.md)
+- [Verifying Device Drivers with Pancake](https://silentzero.ooo/wiki/sources/2025-zhao-verifying-device-drivers.html.md)

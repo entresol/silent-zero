@@ -2,7 +2,7 @@
 
 > Simplex in Silent Zero: the agent proposes, the loop disposes; tested, not proven; the paper’s 2001 date disputed by a 1994 origin.
 
-Design · LLM reviewed · updated 2026-11-13 · 5 sources · https://silentzero.ooo/wiki/design/safety-path.html
+Design · LLM reviewed · updated 2026-11-20 · 6 sources · https://silentzero.ooo/wiki/design/safety-path.html
 
 In Silent Zero the agent and its action model play the complex controller of a [Simplex architecture](https://silentzero.ooo/wiki/concepts/simplex.html.md) architecture: powerful, unproven, isolated and lower in criticality. The safety controller and the switching logic play the simple one; they are small, run at the highest criticality and are candidates for proof. "The agent may suggest any motion. Only the loop moves the motor." (paper, Section 4).
 
@@ -26,6 +26,8 @@ The 2026 Synergistic Simplex variant relaxes the rule for its safety layer: it m
 
 A robot model's vendor says its model-level safety filters "are not a substitute for the rigorous safety engineering required for physical systems" and asks for several layers, with emergency stops and collision avoidance outside the model ([Gemini Robotics-ER 1.5](https://silentzero.ooo/wiki/sources/2025-google-building-next-generation.html.md)). Related evidence that is not Simplex: a robot's protective stop caught an oscillating learned controller in an experiment ([Real-Time Execution of Action Chunking Flow Policies](https://silentzero.ooo/wiki/sources/2025-black-real-time-execution.html.md), §4.2), and HACMS showed a compromised component contained in flight ([Formally Verified Software in the Real World](https://silentzero.ooo/wiki/sources/2018-klein-formally-verified-software.html.md)).
 
+A different pattern from Simplex switching is a filter on the commanded motion. One preprint shows a barrier-function shield between a frozen π0.5 policy and the arm, whose barrier program ran at 2.2 ms (p99) on a CPU and which cut collisions with moving hazards in simulation from 65.62 to 27.27 per cent, as a mean over six simulated conditions. It has no proof for the moving-hazard case, takes its hazard model from perception, and runs the nominal action when its program is infeasible. Our reading: it does not meet this page's rule that the loop owns its sensors, and changes no state ([multi-link safety filtering for VLA policies](https://silentzero.ooo/wiki/sources/2026-agarwal-multi-link-safety.html.md), §III-C, §V-A, §V-B).
+
 ## The paper and its sources
 
 - Section 4 cites Sha 2001 and dates the pattern "twenty-five years ago"; Table 1 says "Established since 2001", and the Epilogue "the Simplex pattern from 2001". [The Use of the Simplex Architecture to Enhance Safety in Deep-Learning-Powered Autonomous Systems](https://silentzero.ooo/wiki/sources/2025-nesti-use-simplex-architecture.html.md) traces Simplex to Sha, Rajkumar and Gagliardi 1994. Our reading: the pattern is older than the paper says. Sha 2001 itself is not covered here; for the design of Silent Zero the pattern matters, not its first source.
@@ -42,6 +44,7 @@ A robot model's vendor says its model-level safety filters "are not a substitute
 
 - [Formally Verified Software in the Real World](https://silentzero.ooo/wiki/sources/2018-klein-formally-verified-software.html.md)
 - [Gemini Robotics-ER 1.5](https://silentzero.ooo/wiki/sources/2025-google-building-next-generation.html.md)
+- [multi-link safety filtering for VLA policies](https://silentzero.ooo/wiki/sources/2026-agarwal-multi-link-safety.html.md)
 - [Real-Time Execution of Action Chunking Flow Policies](https://silentzero.ooo/wiki/sources/2025-black-real-time-execution.html.md)
 - [Synergistic Simplex](https://silentzero.ooo/wiki/sources/2026-bansal-synergistic-simplex-cooperative.html.md)
 - [The Use of the Simplex Architecture to Enhance Safety in Deep-Learning-Powered Autonomous Systems](https://silentzero.ooo/wiki/sources/2025-nesti-use-simplex-architecture.html.md)
@@ -52,4 +55,6 @@ A robot model's vendor says its model-level safety filters "are not a substitute
 - [Proof automation](https://silentzero.ooo/wiki/concepts/proof-automation.html.md)
 - [Simplex architecture](https://silentzero.ooo/wiki/concepts/simplex.html.md)
 - [Verus](https://silentzero.ooo/wiki/systems/verus.html.md)
+- [credible compilation against verification](https://silentzero.ooo/wiki/sources/2026-rinard-quantitative-comparison-credible.html.md)
 - [the Axon compiler](https://silentzero.ooo/wiki/sources/2026-rinard-testing-credible-compilation.html.md)
+- [Towards an Agent Operating System](https://silentzero.ooo/wiki/sources/2026-steinder-towards-agent-operating.html.md)

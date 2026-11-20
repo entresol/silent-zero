@@ -35,3 +35,4 @@ Related work only. No `design/` page changes. The paper does not cite this sourc
 - [agentOS](https://silentzero.ooo/wiki/systems/agentos.html.md)
 - [Agent Operating Systems](https://silentzero.ooo/wiki/sources/2026-sharma-agent-operating-systems.html.md)
 - [AgentKernel](https://silentzero.ooo/wiki/sources/2026-zou-agentkernel-trust-native.html.md)
+- [Towards an Agent Operating System](https://silentzero.ooo/wiki/sources/2026-steinder-towards-agent-operating.html.md)

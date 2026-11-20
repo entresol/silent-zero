@@ -43,3 +43,4 @@ Our reading: capabilities limit what a component can reach; labels limit where d
 - [Time protection](https://silentzero.ooo/wiki/concepts/time-protection.html.md)
 - [AgentKernel](https://silentzero.ooo/wiki/sources/2026-zou-agentkernel-trust-native.html.md)
 - [Can CaMeLs Talk?](https://silentzero.ooo/wiki/sources/2026-peters-gill-can-camels.html.md)
+- [Towards an Agent Operating System](https://silentzero.ooo/wiki/sources/2026-steinder-towards-agent-operating.html.md)

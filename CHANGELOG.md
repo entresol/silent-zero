@@ -4,7 +4,11 @@ What changed in substance, newest first: in the paper, on its page and in the pr
 
 Format: `## <version> · <scope>`, then one paragraph. A paper version is `YYYY-MM-DD-vX.Y` and has its own PDF in `versions/`; the newest one is the version the build prints on the paper and the page. A change without a new paper version carries only its date (`YYYY-MM-DD`). Scope is `Paper`, `Site` or `Project`. The build turns this file into the list at the end of the page.
 
-## 2026-11-19 · Site
+## 2026-11-20 · Site
+
+Wiki: six sources worked in, six source pages created (IBM's Agent-OS position paper, a barrier-function shield for VLA policies, a quantitative comparison of credible compilation and verification, OSVBench, AutoRocq, and the Pancake driver paper). Changed in substance: the pages on proof automation (two new bullets and a follow-up on the compiler work), drivers (the Pancake paper's limits), safety path and real-time loops (the shield's timings), agent operating systems and the broker (the IBM paper). No new lexicon terms.
+
+## 2026-11-20 · Site
 
 The page now shows that the wiki is worked on. A line in the header gives the date of the last update and links to a band under it: the same date large, a strip of the last 28 days with the days on which the wiki changed, and the newest sources worked in, each linked to its page. Everything is read from the wiki's log and pages when the page is built, nothing is written for it, and the same repository gives the same band.
 
