@@ -6,6 +6,10 @@ Format: `## <version> · <scope>`, then one paragraph. A paper version is `YYYY-
 
 ## 2026-11-20 · Site
 
+The page has two doors, one for the people who will run Silent Zero (Use) and one for developers and technically interested visitors (Devel). Each is a page of its own, `/use/` and `/devel/`, and each is also a sheet that slides over the start page from the edge when its tab is clicked; the start page underneath does not move. Each door lists ten or eleven points, and each point says whether it is available now, in progress, planned or an open question. A point only says available now if it points at something that exists today. The Get involved section moved from the start page onto the Devel door. English only for now.
+
+## 2026-11-20 · Site
+
 Wiki: six sources worked in, six source pages created (IBM's Agent-OS position paper, a barrier-function shield for VLA policies, a quantitative comparison of credible compilation and verification, OSVBench, AutoRocq, and the Pancake driver paper). Changed in substance: the pages on proof automation (two new bullets and a follow-up on the compiler work), drivers (the Pancake paper's limits), safety path and real-time loops (the shield's timings), agent operating systems and the broker (the IBM paper). No new lexicon terms.
 
 ## 2026-11-20 · Site

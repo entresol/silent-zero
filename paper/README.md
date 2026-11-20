@@ -25,3 +25,7 @@ Licence: the build scripts are BSD-2-Clause. The text and figures: [CC BY 4.0](.
 ## The activity band
 
 `pulse.py` writes the band of latest changes under the header and the date in the header's "latest changes" link, from `CHANGELOG.md` and `wiki/log.md`: the date of the newest change, a 28-day strip ending on it, and the newest change of each area (paper, wiki, project). It reads no clock, so the build stays reproducible; do not edit the band by hand.
+
+## The two doors: Use and Devel
+
+`sheets.json` holds the contents of the two doors, ten or eleven points each with a status (*available now*, *in progress*, *planned*, *open question*); English only for now. `sheets.py` turns it into HTML and Markdown, `build_wiki.py` writes the real pages `use/` and `devel/` (with a Markdown version each, and entries in `sitemap.xml` and `llms.txt`), and `build_site.py` puts the tabs on the start page. `sheets.js` lays a page over the start page as a sheet when a tab is clicked; without JavaScript the tab is a link to the page. The address of an open sheet is `/#use` or `/#devel`. A point may only say *available now* if it links to something that exists today; the build refuses it otherwise. Change the texts in `sheets.json`, not in the generated pages.

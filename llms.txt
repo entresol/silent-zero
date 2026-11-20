@@ -9,6 +9,11 @@ This is a design, not a release: the paper makes the argument and says what is p
 - [Silent Zero OS, working paper (v0.18)](https://silentzero.ooo/silent-zero.pdf): the full paper as PDF, always the newest version
 - [The paper as a web page](https://silentzero.ooo/): the same argument with a short summary first, in English (header also in German, French, Spanish, Italian)
 
+## Start here
+
+- [Use Silent Zero](https://silentzero.ooo/use/index.html.md): What you can look at today and what is still to come, for the people who will run Silent Zero.
+- [Develop with Silent Zero](https://silentzero.ooo/devel/index.html.md): For people who build, verify or want to look inside Silent Zero: where to start, what works, how to take part.
+
 ## Wiki
 
 - [Wiki index](https://silentzero.ooo/wiki/index.html.md): how the wiki is made, and the catalogue of all pages

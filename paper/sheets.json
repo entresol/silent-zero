@@ -1,0 +1,231 @@
+{
+ "_note": "The contents of the two sheets 'Use' and 'Devel': one real page each (/use/, /devel/), also laid over the start page as a sheet. English only for now. Status: now = available now, wip = in progress, plan = planned (a decision stands behind it, no date), open = an open question. Every 'now' must point at something that exists today.",
+ "use": {
+  "tab": "Users",
+  "dir": "use",
+  "title": "Use Silent Zero",
+  "description": "What you can look at today and what is still to come, for the people who will run Silent Zero.",
+  "lede": "Silent Zero is a small operating system for machines where AI acts in the physical world. You cannot install it yet. This page says what you can look at today and what is still to come.",
+  "items": [
+   [
+    "now",
+    "What it is for",
+    "AI agents that deliver work and, increasingly, move arms or wheels. Silent Zero treats every agent as untrusted, whatever model drives it, and keeps the agent's authority and the machine's safety beneath it.",
+    [
+     "The paper",
+     "/silent-zero.pdf"
+    ]
+   ],
+   [
+    "now",
+    "See it boot",
+    "A graphical loader checks the seL4 kernel image, shows the result and starts the kernel. 24 seconds of video.",
+    [
+     "Watch",
+     "/assets/video/loader-sel4-boot.mp4"
+    ]
+   ],
+   [
+    "now",
+    "What verification gives you",
+    "The proven part of the kernel does what its specification says. Everything else is labelled tested or assumed and never passed off as proven; firmware and graphics hardware stay trusted.",
+    [
+     "Which is which",
+     "/wiki/design/kernel.html"
+    ]
+   ],
+   [
+    "wip",
+    "What real-time gives you",
+    "By design, processor time is held like memory: an agent cannot starve the control loop, and a small deterministic loop has the last word on every motion. Timing bounds for modern processors are not yet proven.",
+    [
+     "The design",
+     "/wiki/design/safety-path.html"
+    ]
+   ],
+   [
+    "now",
+    "Open and free",
+    "The code is BSD-2-Clause, the paper and the texts CC BY 4.0.",
+    [
+     "Licence",
+     "https://github.com/entresol/silent-zero/blob/main/README.md#licence"
+    ]
+   ],
+   [
+    "now",
+    "Ask a question",
+    "Discussions for questions and ideas, Issues for a flaw or a wrong claim.",
+    [
+     "Discussions",
+     "https://github.com/entresol/silent-zero/discussions"
+    ]
+   ],
+   [
+    "plan",
+    "Try it",
+    "A bootable image, first in an emulator."
+   ],
+   [
+    "plan",
+    "Check your download",
+    "Checksums and signatures, and how to verify them before you boot."
+   ],
+   [
+    "plan",
+    "Which hardware",
+    "A first board, then a list of what runs on what."
+   ],
+   [
+    "open",
+    "Is it certified?",
+    "Not yet. How a safety path like ours relates to the standards a buyer must meet is still open, and we say so."
+   ]
+  ],
+  "other": "devel"
+ },
+ "devel": {
+  "tab": "Developers",
+  "dir": "devel",
+  "title": "Develop with Silent Zero",
+  "description": "For people who build, verify or want to look inside Silent Zero: where to start, what works, how to take part.",
+  "lede": "For people who build, verify or just want to look inside. Everything here is open; the label says what works today.",
+  "involved": {
+   "heading": "Get involved",
+   "text": "We are looking for people who know firmware, formal verification or robots, and who want to test this argument before the architecture hardens around it.",
+   "bullets": [
+    [
+     "Discuss an idea or ask a question: ",
+     [
+      "Discussions",
+      "https://github.com/entresol/silent-zero/discussions"
+     ],
+     "."
+    ],
+    [
+     "See what the sources behind the paper show, page by page: the ",
+     [
+      "wiki",
+      "/wiki/"
+     ],
+     "."
+    ],
+    [
+     "Point out a flaw, a wrong claim or a missing source: ",
+     [
+      "Issues",
+      "https://github.com/entresol/silent-zero/issues"
+     ],
+     "."
+    ],
+    [
+     "Propose a change to the paper or the code: a pull request; ",
+     [
+      "CONTRIBUTING.md",
+      "https://github.com/entresol/silent-zero/blob/main/CONTRIBUTING.md"
+     ],
+     " says how we work."
+    ]
+   ]
+  },
+  "start": "Start here",
+  "items": [
+   [
+    "now",
+    "Architecture on one page",
+    "What the parts are and why nothing at the base is new.",
+    [
+     "The paper",
+     "/silent-zero.pdf"
+    ]
+   ],
+   [
+    "now",
+    "What is proven, what is assumed",
+    "The kernel page lists the proof status per configuration: proven, not stated, tested, assumed.",
+    [
+     "Kernel",
+     "/wiki/design/kernel.html"
+    ]
+   ],
+   [
+    "now",
+    "Read the code",
+    "The loader (under 8 KB on RISC-V), the splash renderer and the build scripts.",
+    [
+     "Code",
+     "https://github.com/entresol/silent-zero/tree/main/loader"
+    ]
+   ],
+   [
+    "now",
+    "Run the loader in QEMU",
+    "Needs clang with the RISC-V target, ld.lld and QEMU; <code>make test</code> boots a good image and tampered ones. The steps are in the README; not yet checked on a clean machine.",
+    [
+     "README",
+     "https://github.com/entresol/silent-zero/blob/main/loader/README.md"
+    ]
+   ],
+   [
+    "now",
+    "Where we are unsure and want help",
+    "Every wiki page ends with its open questions; the Issues collect what the team has to decide.",
+    [
+     "Wiki",
+     "/wiki/"
+    ]
+   ],
+   [
+    "now",
+    "How AI helps with proofs",
+    "A model proposes, the proof checker judges. The wiki collects what is known.",
+    [
+     "Proof automation",
+     "/wiki/concepts/proof-automation.html"
+    ]
+   ],
+   [
+    "wip",
+    "The broker: how authority is handed out",
+    "A design, no code yet, nothing proven.",
+    [
+     "Design",
+     "/wiki/design/broker.html"
+    ]
+   ],
+   [
+    "plan",
+    "Add a component on top of the kernel",
+    "A static system description with protection domains and channels.",
+    [
+     "Static system",
+     "/wiki/design/static-system.html"
+    ]
+   ],
+   [
+    "plan",
+    "Build the image yourself",
+    "A reproducible build from source."
+   ],
+   [
+    "now",
+    "Contribute",
+    "CONTRIBUTING.md says how we work: branches, pull requests, the changelog.",
+    [
+     "CONTRIBUTING.md",
+     "https://github.com/entresol/silent-zero/blob/main/CONTRIBUTING.md"
+    ]
+   ],
+   [
+    "now",
+    "Follow along",
+    "The changelog says what changed in substance, the wiki log what was worked in each day.",
+    [
+     "Changelog",
+     "https://github.com/entresol/silent-zero/blob/main/CHANGELOG.md"
+    ]
+   ]
+  ],
+  "other": "use"
+ }
+}

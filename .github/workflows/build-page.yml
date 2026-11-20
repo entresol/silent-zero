@@ -137,7 +137,7 @@ jobs:
         env:
           SAME_REPO: ${{ github.event_name == 'workflow_dispatch' || github.event.pull_request.head.repo.full_name == github.repository }}
         run: |
-          git add -A index.html wiki lexicon versions silent-zero.pdf zos-zero-os.pdf sitemap.xml llms.txt
+          git add -A index.html wiki lexicon use devel versions silent-zero.pdf zos-zero-os.pdf sitemap.xml llms.txt
           if ! git diff --cached --quiet; then
             git diff --cached --stat
             if [ "$SAME_REPO" != "true" ]; then
