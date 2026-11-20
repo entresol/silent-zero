@@ -24,4 +24,4 @@ Licence: the build scripts are BSD-2-Clause. The text and figures: [CC BY 4.0](.
 
 ## The activity band
 
-`pulse.py` writes the activity band under the header and the one-line hint above it from `wiki/log.md` and the wiki pages: the date of the last entry, a 28-day strip ending on it, the newest sources worked in. It reads no clock, so the build stays reproducible; do not edit the band by hand.
+`pulse.py` writes the band of latest changes under the header and the date in the header's "latest changes" link, from `CHANGELOG.md` and `wiki/log.md`: the date of the newest change, a 28-day strip ending on it, and the newest change of each area (paper, wiki, project). It reads no clock, so the build stays reproducible; do not edit the band by hand.
