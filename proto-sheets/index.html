@@ -367,24 +367,26 @@ sup.refs a:hover { text-decoration: underline; }
 
 
 /* the prototype: a desk with three sheets */
-:root { --desk: #e6e8e9; --sheet-w: min(74rem, 86vw); --tab: 2.6rem; --ease: cubic-bezier(.2, .85, .25, 1); --slide: .6s; }
+:root { --desk: #e6e8e9; --sheet-w: min(74rem, 86vw); --tab: 2.6rem; --ease: cubic-bezier(.45, .05, .25, 1); --slide: 1.2s; }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --desk: #07090a; } }
 html, body { height: 100%; overflow: hidden; background: var(--desk); }
 .desk { position: fixed; inset: 0; }
-.sheet.entry { position: absolute; inset: 0; overflow: auto; background: var(--paper); transform-origin: 50% 50%;
-  transition: transform var(--slide) var(--ease), filter var(--slide) var(--ease), box-shadow var(--slide) var(--ease); }
+.sheet.entry { position: absolute; inset: 0; overflow: auto; background: var(--paper); }
 .proto-note { max-width: var(--wide); margin: 2rem auto 4rem; padding: 0 var(--gutter-l); color: var(--muted); font-size: .9rem; }
 kbd { font: inherit; border: 1px solid var(--rule); border-radius: 4px; padding: 0 .35em; }
-.scrim { position: absolute; inset: 0; background: transparent; cursor: pointer; z-index: 5; }
+.scrim { position: absolute; inset: 0; background: rgba(0,0,0,.05); opacity: 0; pointer-events: none; z-index: 5; transition: opacity var(--slide) var(--ease); }
+.scrim.on { opacity: 1; pointer-events: auto; cursor: pointer; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .scrim { background: rgba(0,0,0,.22); } }
 .leaf { position: absolute; top: 0; bottom: 0; width: var(--sheet-w); z-index: 10; pointer-events: none;
-  transition: transform var(--slide) var(--ease); }
+  transition: transform .3s ease-out; }
+.leaf.moving { transition: transform var(--slide) var(--ease); }
 .leaf > * { pointer-events: auto; }
 .leaf.use { left: 0; transform: translateX(-100%); }
 .leaf.involved { right: 0; transform: translateX(100%); }
 .leaf.use:not(.open):has(.tab:hover), .leaf.use:not(.open):has(.tab:focus-visible) { transform: translateX(calc(-100% + .9rem)); }
 .leaf.involved:not(.open):has(.tab:hover), .leaf.involved:not(.open):has(.tab:focus-visible) { transform: translateX(calc(100% - .9rem)); }
 .leaf.open { transform: translateX(0); }
-.page { position: absolute; inset: 0; overflow: auto; background: var(--paper); outline: none; }
+.page { position: absolute; inset: 0; overflow: auto; background: var(--paper); outline: none; transition: box-shadow var(--slide) var(--ease); }
 .leaf.use .page { border-right: 1px solid var(--rule); box-shadow: 0 0 0 1px rgba(0,0,0,.02), 14px 0 48px -8px rgba(0,0,0,.22); }
 .leaf.involved .page { border-left: 1px solid var(--rule); box-shadow: 0 0 0 1px rgba(0,0,0,.02), -14px 0 48px -8px rgba(0,0,0,.22); }
 .leaf:not(.open) .page { box-shadow: none; }
@@ -398,10 +400,7 @@ kbd { font: inherit; border: 1px solid var(--rule); border-radius: 4px; padding:
 .leaf.use .tab::before { left: 0; } .leaf.involved .tab::before { right: 0; }
 .tab:hover::before, .tab:focus-visible::before, .leaf.open .tab::before { opacity: 1; }
 .tab:focus-visible, .close:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-.leaf.open .tab { visibility: hidden; }   /* the open sheet closes by its Close button, Esc or the visible edge */
-/* the entry sheet sits back while a sheet lies on it */
-body.open-use .sheet.entry { transform: translateX(1.2rem) scale(.985); filter: brightness(.96); }
-body.open-involved .sheet.entry { transform: translateX(-1.2rem) scale(.985); filter: brightness(.96); }
+
 .page-in { max-width: 44rem; margin: 0 auto; padding: 9vh var(--gutter-r) 12vh var(--gutter-l); }
 .page-in h2 { font: 100 clamp(2.6rem, 6vw, 4.6rem)/1 var(--font-display); letter-spacing: -.035em; color: var(--ink-deep); margin: 0 0 1rem; }
 .page-in h2::before { display: none; }
@@ -456,7 +455,7 @@ body.open-involved .sheet.entry { transform: translateX(-1.2rem) scale(.985); fi
 </div></section>
     <p class="proto-note">Prototype. The two sheets hold placeholder text. Pull a sheet over this one with the tabs at the edges, or with the keys <kbd>←</kbd> and <kbd>→</kbd>; <kbd>Esc</kbd> or a click on the visible edge puts it back.</p>
   </div>
-  <div class="scrim" id="scrim" hidden></div>
+  <div class="scrim" id="scrim"></div>
 
   <div class="leaf use" id="leaf-use">
     <button class="tab" type="button" aria-controls="page-use" aria-expanded="false"><span>Use it</span></button>
@@ -497,10 +496,14 @@ body.open-involved .sheet.entry { transform: translateX(-1.2rem) scale(.985); fi
   const body = document.body, scrim = document.getElementById('scrim');
   const leaves = { use: document.getElementById('leaf-use'), involved: document.getElementById('leaf-involved') };
   let current = null, lastTab = null;
+  let movingTimer = null;
   function set(name, push) {
     if (name === current) return;
     const prev = current;
     current = name;
+    for (const leaf of Object.values(leaves)) leaf.classList.add('moving');
+    clearTimeout(movingTimer);
+    movingTimer = setTimeout(() => { for (const leaf of Object.values(leaves)) leaf.classList.remove('moving'); }, parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--slide')) * 1000 + 80);
     for (const [k, leaf] of Object.entries(leaves)) {
       const on = k === name;
       leaf.classList.toggle('open', on);
@@ -509,14 +512,14 @@ body.open-involved .sheet.entry { transform: translateX(-1.2rem) scale(.985); fi
     }
     body.classList.remove('open-use', 'open-involved');
     if (name) body.classList.add('open-' + name);
-    scrim.hidden = !name;
+    scrim.classList.toggle('on', !!name);
     document.getElementById('entry').inert = !!name;
     if (name) { lastTab = leaves[name].querySelector('.tab'); setTimeout(() => leaves[name].querySelector('.page').focus({ preventScroll: true }), 120); }
     else if (prev && lastTab) lastTab.focus({ preventScroll: true });
     if (push) { try { history.replaceState(null, '', name ? '#' + name : location.pathname); } catch (_) {} }
   }
   for (const [k, leaf] of Object.entries(leaves)) {
-    leaf.querySelector('.tab').addEventListener('click', () => set(k, true));
+    leaf.querySelector('.tab').addEventListener('click', () => set(current === k ? null : k, true));
     leaf.querySelector('.close').addEventListener('click', () => set(null, true));
   }
   scrim.addEventListener('click', () => set(null, true));
