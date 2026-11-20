@@ -233,7 +233,6 @@ page = f"""<!doctype html>
       <p class="name">Silent Zero OS</p>
       <p class="sub" data-t="sub">{en["sub"]}</p>
       <p class="ver" data-t="ver">{en["ver"]}</p>
-      {sheets.inline()}
     </div>
     <p class="status" data-t="status">{en["status"]}</p>
     <div class="actions">

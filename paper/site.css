@@ -357,11 +357,11 @@ sup.refs a { display: inline-block; padding: 0 0.3em; text-decoration: none; col
 sup.refs a:hover { text-decoration: underline; }
 
 /* the two doors: Use and Devel. A tab on each edge of the start page; a sheet slides over it and lies there, the page below does not move */
-:root { --sheet-w: min(74rem, 86vw); --tab: 2.6rem; --sh-ease: cubic-bezier(.45, .05, .25, 1); --sh-slide: 1s; }
+:root { --sheet-w: min(74rem, 86vw); --tab: clamp(1.7rem, calc(5.5vw - 0.5rem), 2.6rem); --sh-ease: cubic-bezier(.45, .05, .25, 1); --sh-slide: 1s; }
 html:has(a.sh-tab) { scrollbar-gutter: stable; }
 html.sh-open { overflow: hidden; }
 .sh-tab { position: fixed; top: 34vh; z-index: 60; width: var(--tab); height: 9.5rem; display: flex; align-items: center; justify-content: center;
-  background: var(--paper); border: 1px solid var(--rule); color: var(--ink-deep); font: 600 0.9rem/1 var(--font-text); letter-spacing: 0.05em; text-decoration: none; cursor: pointer; }
+  background: var(--paper); border: 1px solid var(--rule); color: var(--ink-deep); font: 600 clamp(0.78rem, calc(0.4rem + 1.2vw), 0.9rem)/1 var(--font-text); letter-spacing: 0.05em; text-decoration: none; cursor: pointer; }
 .sh-tab span { writing-mode: vertical-rl; }
 .sh-tab::before { content: ""; position: absolute; top: 0; bottom: 0; width: 3px; background: var(--accent); opacity: 0; transition: opacity 0.25s; }
 .sh-tab:hover::before, .sh-tab:focus-visible::before, .sh-leaf.open .sh-tab::before { opacity: 1; }
@@ -416,22 +416,15 @@ html.sh-open { overflow: hidden; }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .st-now { color: #6fbf87; } }
 :root[data-theme="dark"] .st-now { color: #6fbf87; }
 p.other { margin-top: 2.2rem; color: var(--muted); font-size: 0.95rem; }
-.sh-inline { display: none; }
-@media (max-width: 63.99rem) { .pulse > div { grid-template-columns: minmax(0, 1fr); } }
-/* a tablet held upright: the same tabs; the page gets a margin of their width so they have free space, and a sheet leaves room for its tab */
-@media (min-width: 45rem) and (max-width: 63.99rem) {
-  :root { --sheet-w: calc(100vw - 3.4rem); }
-  html:has(a.sh-tab) { --gutter-l: max(3.1rem, env(safe-area-inset-left, 0px)); --gutter-r: max(3.1rem, env(safe-area-inset-right, 0px)); }
-}
-/* a phone: until the tabs have their own solution, two buttons under the claim and a sheet that leaves a strip */
-@media (max-width: 44.99rem) {
-  :root { --sheet-w: calc(100vw - 1.25rem); }
-  .sh-tab { display: none; }
-  .sh-inline { display: flex; flex-wrap: wrap; gap: 0.6rem; margin: 1.1rem 0 0; }
-  .sh-inline a { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; border: 1px solid var(--rule); border-radius: 999px; background: var(--paper);
-    color: var(--ink-deep); font: 600 0.95rem/1 var(--font-text); text-decoration: none; }
-  .sh-inline a::after { content: "\2192"; color: var(--accent); }
-  .sh-inline a:hover { border-color: var(--accent); }
+/* the same tabs on every width: they scale with it, the page gets a margin of their width so they have free space, and below 64 rem the sheet
+   that lies on the page hides its own tab (Close, Esc and the strip close it) so that it does not sit on the tab of the other door */
+.sh-leaf .sh-tab { transition: opacity 0.3s; }
+@media (max-width: 63.99rem) {
+  .pulse > div { grid-template-columns: minmax(0, 1fr); }
+  :root { --sheet-w: calc(100vw - var(--tab) - 0.4rem); }
+  html:has(a.sh-tab) { --gutter-l: max(1.25rem, calc(var(--tab) + 0.5rem), env(safe-area-inset-left, 0px)); --gutter-r: max(1.25rem, calc(var(--tab) + 0.5rem), env(safe-area-inset-right, 0px)); }
+  .sh-leaf.open .sh-tab { opacity: 0; pointer-events: none; }
+  .sh-in { padding-left: 1.4rem; padding-right: 1.4rem; }
 }
 @media (max-width: 45rem) { .points li { grid-template-columns: 1fr; } }
 /* "reduce motion" means less movement, not no time: the sheet does not slide, it fades in and out */

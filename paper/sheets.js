@@ -69,7 +69,7 @@
     timer = setTimeout(() => { for (const { leaf } of leaves.values()) leaf.classList.remove('moving'); }, s * 1000 + 80);
   }
 
-  async function show(name, how, opener) {   // how: 'push' (from the start page), 'replace' (swap), or '' (the history moved already)
+  async function show(name, how) {   // how: 'push' (from the start page), 'replace' (swap), or '' (the history moved already)
     const my = ++seq, L = leaves.get(name);
     if (!L.ready) {
       try {
@@ -93,7 +93,7 @@
     scrim.classList.add('on');
     root.classList.add('sh-open');
     behind.forEach(el => { el.inert = true; });
-    lastTab = opener || L.tab;
+    lastTab = L.tab;
     setTimeout(() => { if (current === name) L.page.focus({ preventScroll: true }); }, 200);
     try {
       if (how === 'push') history.pushState({ sheet: name }, '', '#' + name);
@@ -120,9 +120,9 @@
     else { hide(); try { history.replaceState(null, '', location.pathname + location.search); } catch (_) {} }
   }
 
-  function toggle(name, opener) {
+  function toggle(name) {
     if (current === name) close();
-    else show(name, current ? 'replace' : 'push', opener);
+    else show(name, current ? 'replace' : 'push');
   }
 
   function fromHash() {
@@ -130,8 +130,6 @@
     if (leaves.has(s)) show(s, ''); else hide(true);
   }
   addEventListener('popstate', fromHash);
-  // on narrow screens the doors are links in the header
-  for (const a of document.querySelectorAll('.sh-inline a[data-sheet]')) a.addEventListener('click', e => { if (leaves.has(a.dataset.sheet)) { e.preventDefault(); toggle(a.dataset.sheet, a); } });
   scrim.addEventListener('click', close);
   addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
   // inside a sheet the link to the other door swaps the sheets

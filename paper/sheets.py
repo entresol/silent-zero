@@ -84,8 +84,3 @@ def doors():
     """The two tabs on the edges of the start page. Without JavaScript they are links to the pages."""
     sides = {NAMES[0]: "l", NAMES[1]: "r"}   # the first door lies on the left, the second on the right
     return "".join(f'<a class="sh-tab sh-tab-{sides[n]}" href="{DATA[n]["dir"]}/" data-sheet="{n}"><span>{_h.escape(DATA[n]["tab"])}</span></a>' for n in NAMES)
-
-
-def inline():
-    """On narrow screens the tabs would cover the text, so the header carries the two doors as a line of links instead."""
-    return '<p class="sh-inline" aria-label="Doors">' + "".join(f'<a href="{DATA[n]["dir"]}/" data-sheet="{n}">{_h.escape(DATA[n]["tab"])}</a>' for n in NAMES) + "</p>"
