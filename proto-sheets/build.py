@@ -110,7 +110,7 @@ kbd { font: inherit; border: 1px solid var(--rule); border-radius: 4px; padding:
 .scrim { position: absolute; inset: 0; background: rgba(0,0,0,.05); opacity: 0; pointer-events: none; z-index: 5; transition: opacity var(--slide) var(--ease); }
 .scrim.on { opacity: 1; pointer-events: auto; cursor: pointer; }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .scrim { background: rgba(0,0,0,.22); } }
-.leaf { position: absolute; top: 0; bottom: 0; width: var(--sheet-w); z-index: 10; pointer-events: none;
+.leaf { position: absolute; top: 0; bottom: 0; width: var(--sheet-w); z-index: 10; pointer-events: none; will-change: transform; backface-visibility: hidden;
   transition: transform .3s ease-out; }
 .leaf.moving { transition: transform var(--slide) var(--ease); }
 .leaf > * { pointer-events: auto; }
@@ -119,10 +119,13 @@ kbd { font: inherit; border: 1px solid var(--rule); border-radius: 4px; padding:
 .leaf.use:not(.open):has(.tab:hover), .leaf.use:not(.open):has(.tab:focus-visible) { transform: translateX(calc(-100% + .9rem)); }
 .leaf.involved:not(.open):has(.tab:hover), .leaf.involved:not(.open):has(.tab:focus-visible) { transform: translateX(calc(100% - .9rem)); }
 .leaf.open { transform: translateX(0); }
-.page { position: absolute; inset: 0; overflow: auto; background: var(--paper); outline: none; transition: box-shadow var(--slide) var(--ease); }
-.leaf.use .page { border-right: 1px solid var(--rule); box-shadow: 0 0 0 1px rgba(0,0,0,.02), 14px 0 48px -8px rgba(0,0,0,.22); }
-.leaf.involved .page { border-left: 1px solid var(--rule); box-shadow: 0 0 0 1px rgba(0,0,0,.02), -14px 0 48px -8px rgba(0,0,0,.22); }
-.leaf:not(.open) .page { box-shadow: none; }
+.page { position: absolute; inset: 0; overflow: auto; background: var(--paper); outline: none; }
+.leaf::before { content: ""; position: absolute; inset: 0; opacity: 0; pointer-events: none; transition: opacity var(--slide) var(--ease); }
+.leaf.open::before { opacity: 1; }
+.leaf.use .page { border-right: 1px solid var(--rule); }
+.leaf.involved .page { border-left: 1px solid var(--rule); }
+.leaf.use::before { box-shadow: 14px 0 48px -8px rgba(0,0,0,.22); }
+.leaf.involved::before { box-shadow: -14px 0 48px -8px rgba(0,0,0,.22); }
 .tab { position: absolute; top: 34vh; width: var(--tab); height: 9.5rem; display: flex; align-items: center; justify-content: center;
   background: var(--paper); border: 1px solid var(--rule); color: var(--ink-deep); font: 600 .9rem/1 var(--font-text); letter-spacing: .05em; cursor: pointer; padding: 0; }
 .tab span { writing-mode: vertical-rl; }
@@ -178,8 +181,8 @@ proto_js = """
     if (name) body.classList.add('open-' + name);
     scrim.classList.toggle('on', !!name);
     document.getElementById('entry').inert = !!name;
-    if (name) { lastTab = leaves[name].querySelector('.tab'); setTimeout(() => leaves[name].querySelector('.page').focus({ preventScroll: true }), 120); }
-    else if (prev && lastTab) lastTab.focus({ preventScroll: true });
+    if (name) { lastTab = leaves[name].querySelector('.tab'); setTimeout(() => leaves[name].querySelector('.page').focus({ preventScroll: true }), 200); }
+    else if (prev && lastTab) setTimeout(() => lastTab.focus({ preventScroll: true }), 200);
     if (push) { try { history.replaceState(null, '', name ? '#' + name : location.pathname); } catch (_) {} }
   }
   for (const [k, leaf] of Object.entries(leaves)) {
