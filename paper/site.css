@@ -417,8 +417,14 @@ html.sh-open { overflow: hidden; }
 :root[data-theme="dark"] .st-now { color: #6fbf87; }
 p.other { margin-top: 2.2rem; color: var(--muted); font-size: 0.95rem; }
 .sh-inline { display: none; }
-@media (max-width: 63.99rem) {
-  .pulse > div { grid-template-columns: minmax(0, 1fr); }
+@media (max-width: 63.99rem) { .pulse > div { grid-template-columns: minmax(0, 1fr); } }
+/* a tablet held upright: the same tabs; the page gets a margin of their width so they have free space, and a sheet leaves room for its tab */
+@media (min-width: 45rem) and (max-width: 63.99rem) {
+  :root { --sheet-w: calc(100vw - 3.4rem); }
+  html:has(a.sh-tab) { --gutter-l: max(3.1rem, env(safe-area-inset-left, 0px)); --gutter-r: max(3.1rem, env(safe-area-inset-right, 0px)); }
+}
+/* a phone: until the tabs have their own solution, two buttons under the claim and a sheet that leaves a strip */
+@media (max-width: 44.99rem) {
   :root { --sheet-w: calc(100vw - 1.25rem); }
   .sh-tab { display: none; }
   .sh-inline { display: flex; flex-wrap: wrap; gap: 0.6rem; margin: 1.1rem 0 0; }
@@ -428,4 +434,13 @@ p.other { margin-top: 2.2rem; color: var(--muted); font-size: 0.95rem; }
   .sh-inline a:hover { border-color: var(--accent); }
 }
 @media (max-width: 45rem) { .points li { grid-template-columns: 1fr; } }
-@media (prefers-reduced-motion: reduce) { :root { --sh-slide: 0.01s; } }
+/* "reduce motion" means less movement, not no time: the sheet does not slide, it fades in and out */
+@media (prefers-reduced-motion: reduce) {
+  :root { --sh-slide: 0.5s; }
+  .sh-leaf, .sh-leaf.moving { transition: none; }
+  .sh-leaf.open .sh-page { animation: sh-fade-in var(--sh-slide) ease both; }
+  .sh-leaf.closing { transform: translateX(0) !important; }   /* also over the peek of a tab that was just touched */
+  .sh-leaf.closing .sh-page { animation: sh-fade-out var(--sh-slide) ease both; }
+  @keyframes sh-fade-in { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes sh-fade-out { from { opacity: 1; } to { opacity: 0; } }
+}
