@@ -177,7 +177,7 @@ pages = subprocess.run(["pdfinfo", str(served)], capture_output=True, text=True)
 pages = re.search(r"Pages:\s+(\d+)", pages).group(1)
 # the header in five languages; English is in the page, the script swaps in the others
 hero_src = json.loads((Path(__file__).resolve().parent / "hero.json").read_text(encoding="utf-8"))
-fill = {"version": CURRENT_VERSION, "pdf": pdf_name, "pages": pages, "refs": n_refs,
+fill = {"last": pulse.last_date(Path(__file__).resolve().parent.parent), "version": CURRENT_VERSION, "pdf": pdf_name, "pages": pages, "refs": n_refs,
         "loader": "https://github.com/entresol/silent-zero/tree/main/loader", "issues": "https://github.com/entresol/silent-zero/issues", "video": "assets/video/loader-sel4-boot.mp4"}
 hero = {l: {k: v.format_map(fill) for k, v in t.items()} for l, t in hero_src.items() if not l.startswith("_")}
 en = hero["en"]
@@ -240,7 +240,6 @@ page = f"""<!doctype html>
       <p class="name">Silent Zero OS</p>
       <p class="sub" data-t="sub">{en["sub"]}</p>
       <p class="ver" data-t="ver">{en["ver"]}</p>
-      {pulse.hint(_top)}
     </div>
     <p class="status" data-t="status">{en["status"]}</p>
     <div class="actions">

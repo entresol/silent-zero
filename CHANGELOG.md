@@ -10,7 +10,7 @@ Wiki: six sources worked in, six source pages created (IBM's Agent-OS position p
 
 ## 2026-11-20 · Site
 
-The page now shows that the wiki is worked on. A line in the header gives the date of the last update and links to a band under it: the same date large, a strip of the last 28 days with the days on which the wiki changed, and the newest sources worked in, each linked to its page. Everything is read from the wiki's log and pages when the page is built, nothing is written for it, and the same repository gives the same band.
+The page now shows its latest changes. The line in the header, which used to link to the list at the bottom, gives the date of the newest change and links to a band under the header: the date large, a strip of the last 28 days with the days on which anything changed, and the newest change of each area, the paper, the wiki and the project, each with its date. The list of all changes stays as the archive, one link away. Everything is read from CHANGELOG.md and the wiki's log when the page is built, nothing is written for it, and the same repository gives the same band.
 
 ## 2026-11-19-v0.18 · Paper
 
