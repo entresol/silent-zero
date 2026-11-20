@@ -121,7 +121,7 @@ def band(root):
 <div class="pulse-now">
 <p class="pulse-title"><span class="dot" aria-hidden="true"></span>Paper · Wiki · Project</p>
 <p class="pulse-date"><time datetime="{last.isoformat()}">{_day(last)} {last.year}</time></p>
-<p class="pulse-meta">{active} of {DAYS} days with changes · <a href="#changes">All changes</a></p>
+<p class="pulse-meta">{active} active days in the last {DAYS // 7} weeks · <a href="#changes">All changes</a></p>
 <div class="strip" role="img" aria-label="{strip_label}">{"".join(cells)}</div>
 </div>
 <ul class="pulse-list">{rows}</ul>
