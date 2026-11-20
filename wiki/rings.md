@@ -89,9 +89,9 @@ Work that extends the design, competes with it or attacks its assumptions: other
 - [x] 2026-huang-model-context-protocol
 - [x] 2026-he-neuro-symbolic-proof-osdi
 - [x] 2024-zhang-selene-pioneering-automated
-- [ ] 2025-li-osvbench-benchmarking-llms
-- [ ] 2025-tu-agentic-verification-software
-- [ ] 2025-zhao-verifying-device-drivers
+- [x] 2025-li-osvbench-benchmarking-llms
+- [x] 2025-tu-agentic-verification-software
+- [x] 2025-zhao-verifying-device-drivers
 - [ ] 2026-sison-two-interfaces-sel4
 - [ ] 2024-wistoff-fence-t-s
 - [ ] 2026-lu-faster-rethinking-real

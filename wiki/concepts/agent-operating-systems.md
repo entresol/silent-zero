@@ -1,9 +1,9 @@
 ---
 type: concept
 status: reviewed
-sources: [2026-hubbard-agentos-operating-system, 2026-bower-cohesix-research-operating, 2022-google-announcing-kataos-sparrow, 2026-zou-agentkernel-trust-native, 2026-zhao-agenticos-intent-oriented, 2026-zhang-agent-libos-runtime, 2026-ke-quine-realizing-llm]
+sources: [2026-hubbard-agentos-operating-system, 2026-bower-cohesix-research-operating, 2022-google-announcing-kataos-sparrow, 2026-zou-agentkernel-trust-native, 2026-zhao-agenticos-intent-oriented, 2026-zhang-agent-libos-runtime, 2026-ke-quine-realizing-llm, 2026-steinder-towards-agent-operating]
 short: OS-layer designs that bound what agents may do
-updated: 2026-11-05
+updated: 2026-11-20
 ---
 
 # Agent operating systems
@@ -23,6 +23,8 @@ Designs that give language-model agents a runtime in which the operating-system 
 | [[2026-ke-quine-realizing-llm]] | processes of an ordinary POSIX system | what the kernel gives any process; no capability model | feasibility runs |
 
 Three of the seven build on seL4, the others on a host kernel, a hypervisor or an ordinary process model. The paper makes the remark that none of the designs it names has real-time control as its aim, and it does not name Quine; it holds for AgenticOS, Agent libOS and Quine as read here; for [[agentos]] whether it has a real-time aim is open.
+
+- IBM researchers argue for an "Agent-OS" for enterprise deployments with 13 platform primitives; their prototype, rossoctl, is a Kubernetes control plane with sidecars, authorization and an MCP gateway, limited to cloud and datacentre deployments. The paper reports no measurements and has no verified component ([[2026-steinder-towards-agent-operating]]).
 
 ## What they share
 
