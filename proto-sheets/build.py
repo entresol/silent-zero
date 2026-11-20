@@ -100,7 +100,7 @@ body = f"""
 
 proto_css = """
 /* the prototype: a desk with three sheets */
-:root { --desk: #e6e8e9; --sheet-w: min(74rem, 86vw); --tab: 2.6rem; --ease: cubic-bezier(.45, .05, .25, 1); --slide: 1.2s; }
+:root { --desk: #e6e8e9; --sheet-w: min(74rem, 86vw); --tab: 2.6rem; --ease: cubic-bezier(.45, .05, .25, 1); --slide: 1s; }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --desk: #07090a; } }
 html, body { height: 100%; overflow: hidden; background: var(--desk); }
 .desk { position: fixed; inset: 0; }
