@@ -1,7 +1,7 @@
 ---
 type: design
 status: reviewed
-sources: [2025-nesti-use-simplex-architecture, 2025-black-real-time-execution, 2018-klein-formally-verified-software, 2025-google-building-next-generation, 2026-bansal-synergistic-simplex-cooperative, 2026-agarwal-multi-link-safety, 2026-jager-context-dependent-runtime, 2026-zheng-assuring-learning-enabled, 2026-lu-faster-rethinking-real]
+sources: [2025-nesti-use-simplex-architecture, 2025-black-real-time-execution, 2018-klein-formally-verified-software, 2025-google-building-next-generation, 2026-bansal-synergistic-simplex-cooperative, 2026-agarwal-multi-link-safety, 2026-jager-context-dependent-runtime, 2026-zheng-assuring-learning-enabled, 2026-lu-faster-rethinking-real, nd-sysgo-robotics-humanoids, nd-sysgo-safety-certification, 2026-nvidia-inside-halos-robotics, 2026-qnx-nvidia-deepen-collaboration, 2026-nvidia-announces-halos-robotics, 2026-abi-research-rtos-robotics-ranking, 2024-dickson-limitations-formal-verification]
 updated: 2026-11-21
 ---
 
@@ -23,6 +23,7 @@ In zOS the agent and its action model play the complex controller of a [[simplex
 | Simplex as a pattern | traced to 1994 and 1998 by a recent paper; the paper's own source, Sha 2001, not read | secondary account | [[2025-nesti-use-simplex-architecture]] |
 | Simplex with learned controllers on a pendulum and a rover, AI isolated by a hypervisor | demonstrated | tests on two systems; switching rule designed per system | [[2025-nesti-use-simplex-architecture]] |
 | Safe side owns the sensors; camera input only on the learned side | demonstrated on the rover | test | [[2025-nesti-use-simplex-architecture]] |
+| A separation kernel or safety RTOS keeps an untrusted AI side apart from the control loops that run on it | offered by vendors: SYSGO's PikeOS (certifications listed by the vendor) and QNX with NVIDIA's Halos on IGX Thor (early access; inspection for certification readiness under way, no robotics certificate claimed) | vendor statements and an analyst ranking; no proof of the kernel mentioned | [[nd-sysgo-robotics-humanoids]], [[nd-sysgo-safety-certification]], [[2026-nvidia-inside-halos-robotics]], [[2026-qnx-nvidia-deepen-collaboration]], [[2026-abi-research-rtos-robotics-ranking]] |
 | A proven safety controller and switching logic | not found in the sources | none | — |
 
 The 2026 Synergistic Simplex variant relaxes the rule for its safety layer: it may read a learned output, such as lane boundaries, when it is independent of the function protected; in one simulated scenario the strict form meant more stops (route completion 0.1 against 0.7), and the authors note that certification standards prohibit such use. Its evidence is a car in CARLA with static obstacles, ten runs per cell in CARLA, and proofs on paper ([[2026-bansal-synergistic-simplex-cooperative]]). Our reading: zOS keeps the strict form, since its loop owns its sensors and takes nothing from the model.
@@ -35,6 +36,8 @@ A 2026 preprint derives the switching rule of a Simplex by contraction and reach
 
 A 2026 research agenda by fourteen authors states what is, in our reading, the same thesis independently: a learned component holds capability, and a monitor with shielding or switching plus a safe controller holds authority. It says thresholds found by testing are empirical evidence, not formal guarantees; it is a position, with no results ([[2026-zheng-assuring-learning-enabled]], §3.4, §5). The authors of FASTER ask for safety monitors and physical safeguards around faster-reacting policies ([[2026-lu-faster-rethinking-real]], appendix H).
 
+Commercial neighbours that, in our reading, build the same split from parts their vendors call certified: [[pikeos]] runs an untrusted ROS 2 and Linux partition "physically separated in memory and CPU time" from control loops on a certified kernel, and [[nvidia-halos]] pairs AI compute with a safety island and, in one configuration, a [[qnx]] virtual machine for safety-critical functions, with a decision logic running as a state machine on the island ([[nd-sysgo-robotics-humanoids]], [[2026-nvidia-inside-halos-robotics]]). Their evidence is the vendors' own statements and, for Halos, inspection for certification readiness; none states a proof of the kernel or of the decision logic. The standards they name (IEC 61508, ISO 13849, ISO 26262) are the yardstick of [[safety-certification]].
+
 ## The paper and its sources
 
 - Section 4 cites Sha 2001 and dates the pattern "twenty-five years ago"; Table 1 says "Established since 2001", and the Epilogue "the Simplex pattern from 2001". [[2025-nesti-use-simplex-architecture]] traces Simplex to Sha, Rajkumar and Gagliardi 1994. Our reading: the pattern is older than the paper says. Sha 2001 itself is not covered here; for the design of zOS the pattern matters, not its first source.
@@ -46,3 +49,4 @@ A 2026 research agenda by fourteen authors states what is, in our reading, the s
 - The sources show the pattern working in tests. None proves a safety controller or its switching logic against a model of the plant.
 - A single bad command can leave the safe region before the monitor reacts; a one-step prediction guards against it and was left out in [[2025-nesti-use-simplex-architecture]] (§4.2).
 - Safety margins can rest on properties of the learned side, as the rover's lateral zones rested on the network's output bound ([[2025-nesti-use-simplex-architecture]], §5.4).
+- Whether a proof of a safety path can count as evidence for a certification body; the sources name the standards and the certified products but no such case ([[safety-certification]]). Our reading: nothing in the split requires the safety side to be zOS's own kernel; the sources do not discuss a certified vendor partition beside an authority layer of zOS.

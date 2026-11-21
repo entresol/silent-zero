@@ -204,3 +204,11 @@ Systems and sources the wiki will need that the pool lacks. They go into the poo
 - [x] 2026-nguyen-booting-windows-x86-64
 - [x] 2026-li-toolfence-fine-grained
 - [x] 2026-chinaei-causality-laundering-denial
+- [x] 2026-nvidia-announces-halos-robotics
+- [x] 2026-nvidia-inside-halos-robotics
+- [x] 2026-qnx-nvidia-deepen-collaboration
+- [x] nd-sysgo-robotics-humanoids
+- [x] nd-sysgo-safety-certification
+- [x] 2026-abi-research-rtos-robotics-ranking
+- [x] nd-sel4-proofs-certification
+- [x] 2024-dickson-limitations-formal-verification

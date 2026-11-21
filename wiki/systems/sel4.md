@@ -1,7 +1,7 @@
 ---
 type: system
 status: reviewed
-sources: [2009-klein-sel4-formal-verification, 2018-klein-formally-verified-software, nd-sel4-verified-configurations, 2026-sel4-functional-correctness-proof, 2026-heiser-mcs-safety-os, 2026-trustworthy-guaranteeing-timeliness-mcs, nd-trustworthy-wcet-worst-case, 2026-sillitoe-resurrecting-sel4-wcet, 2026-sel4-release-17, 2026-he-neuro-symbolic-proof, 2022-google-announcing-kataos-sparrow, nd-trustworthy-proof-statistics, 2026-proofcraft-sel4-security-proofs, 2026-heiser-sel4-operating-systems, 2026-heiser-trustworthy-systems-update, 2026-sison-two-interfaces-sel4]
+sources: [2009-klein-sel4-formal-verification, 2018-klein-formally-verified-software, nd-sel4-verified-configurations, 2026-sel4-functional-correctness-proof, 2026-heiser-mcs-safety-os, 2026-trustworthy-guaranteeing-timeliness-mcs, nd-trustworthy-wcet-worst-case, 2026-sillitoe-resurrecting-sel4-wcet, 2026-sel4-release-17, 2026-he-neuro-symbolic-proof, 2022-google-announcing-kataos-sparrow, nd-trustworthy-proof-statistics, 2026-proofcraft-sel4-security-proofs, 2026-heiser-sel4-operating-systems, 2026-heiser-trustworthy-systems-update, 2026-sison-two-interfaces-sel4, nd-sel4-proofs-certification]
 glossary: seL4
 updated: 2026-11-21
 ---
@@ -34,6 +34,10 @@ The verification of Microkit's main handler loop by Paturel et al. assumes Hoare
 
 - **MCS** makes processor time a capability with budget and period. See [[mixed-criticality]].
 - **WCET.** A sound analysis existed for 32-bit Arm before MCS and was archived when Arm stopped publishing instruction latencies ([[nd-trustworthy-wcet-worst-case]], [[2026-trustworthy-guaranteeing-timeliness-mcs]]). In the words of Sillitoe et al., seL4 thereby "lost any hard real-time guarantees" (§1). Since 2026 the analysis runs again on 64-bit RISC-V for the MCS configuration, still with placeholder values ([[2026-sillitoe-resurrecting-sel4-wcet]]). See [[wcet-analysis]].
+
+## Certification
+
+The seL4 Foundation argues that the proofs go beyond what Common Criteria EAL 7 and the automotive standard ISO 26262 (ASIL-D) require, and that they fit evidence objectives of DO-178C Level A. Its page names no certificate and no certified product, does not mention IEC 61508, and says that, to its knowledge, Isabelle/HOL has not yet been qualified for a DO-178C certification ([[nd-sel4-proofs-certification]]). See [[safety-certification]].
 
 ## In use
 
