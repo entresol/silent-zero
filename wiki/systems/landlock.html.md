@@ -34,3 +34,4 @@ Part of the Linux kernel; the sources read do not state the licence.
 - [Memory-safe code](https://silentzero.ooo/wiki/concepts/memory-safe-code.html.md)
 - [Object capabilities](https://silentzero.ooo/wiki/concepts/object-capabilities.html.md)
 - [PREEMPT_RT](https://silentzero.ooo/wiki/systems/preempt-rt.html.md)
+- [SYSGO: PikeOS for robotics and humanoids](https://silentzero.ooo/wiki/sources/nd-sysgo-robotics-humanoids.html.md)

@@ -6,6 +6,10 @@ Format: `## <version> · <scope>`, then one paragraph. A paper version is `YYYY-
 
 ## 2026-11-21 · Site
 
+The wiki took in what exists on certified safety for robots: eight sources, among them NVIDIA's Halos for Robotics (announcement and technical blog), QNX with NVIDIA, SYSGO's PikeOS (robotics page and certification page), an analyst's ranking of robot-safety real-time operating systems, the seL4 Foundation's page on proofs and certification, and an essay on the limits of formal verification for AI safety. New pages: eight source pages, three system pages (Halos, QNX, PikeOS) and a concept page on safety certification. Changed in substance: the safety path (a certified-kernel route to the same split of AI and safety), mixed criticality (commercial systems) and seL4 (what its foundation says about certification). The sources claim certification readiness or certificates for the commercial stacks and no formal proof; the seL4 page names no certificate. No new lexicon terms beyond the concept page.
+
+## 2026-11-21 · Site
+
 The wiki worked in seven more sources: four that arrived in the pool today (PACE, CaMeLoT, a multi-candidate Simplex, an assurance agenda for learning-enabled systems) and three from the backlog (the seL4 time-protection and kernel-userland abstract, fence.t.s on an out-of-order core, FASTER). Seven source pages were created. Changed in substance: time protection, functional correctness, Simplex, action chunking, proof automation, prompt injection, information-flow control, the Model Context Protocol, object capabilities, the confused deputy, seL4, Microkit, CVA6, RISC-V, and the design pages on the kernel, the real-time loops, the safety path and the broker, with notes on the pages of seven existing sources. No new lexicon terms. Lint not run (not Monday).
 
 ## 2026-11-20 · Site

@@ -13,7 +13,7 @@ The catalogue of every page, with one line each. Read this first.
 - [[static-system]] · one description, one image: what Microkit checks, what is not proved, and the run-time swap in LionsOS, the kernel underneath. 6 sources.
 - [[broker]] · the only component that hands out authority: capability patterns, CaMeL and FIDES, why model-based defences fail, three agent-OS designs for the same job, CaMeL between agents; nothing proven yet. 28 sources.
 - [[real-time-loops]] · the loops that move the motors: asynchronous chunks from slow models, observed timings, no proven bound yet. 13 sources.
-- [[safety-path]] · Simplex in zOS: the agent proposes, the loop disposes; tested, not proven; the paper's 2001 date disputed by a 1994 origin. 9 sources.
+- [[safety-path]] · Simplex in zOS: the agent proposes, the loop disposes; tested, not proven; the paper's 2001 date disputed by a 1994 origin; certified real-time kernels sell the same split as products. 16 sources.
 - [[root-of-trust]] · the firmware below the kernel on Arm, RISC-V, PC and Raspberry Pi; OpenTitan, Caliptra, DICE; all *assumed* in the paper's terms. 13 sources.
 - [[bootloader]] · where the zOS loader sits on each platform, signed and measured boot, proofs about boot code so far; the loader itself unproven. 16 sources.
 - [[drivers]] · user-mode drivers, the first verified Ethernet driver, DMA and the IOMMU as assumed, attacked in 2019 although enabled; device models from Verilog and Windows on x86-64 as first steps; the Pancake paper adds the language and its limits. 13 sources.
@@ -24,7 +24,7 @@ The zOS part *agents* has no page yet; [[agent-operating-systems]] covers the de
 
 ## Systems
 
-- [[sel4]] · the verified microkernel zOS builds on: proofs per architecture and platform, cost, MCS, timing, HACMS. 16 sources.
+- [[sel4]] · the verified microkernel zOS builds on: proofs per architecture and platform, cost, MCS, timing, HACMS; what its foundation says about certification. 17 sources.
 - [[microkit]] · the build system for static seL4 systems: protection domains, channels, budgets, one image. 6 sources.
 - [[lionsos]] · static OS from small components on seL4 and Microkit; first driver verified; Summit 2026 talks on x86-64 VMs and driver specifications. 9 sources.
 - [[coreboot]] · open firmware in stages with a fixed payload; verified and measured boot; closed vendor parts on x86. 3 sources.
@@ -41,6 +41,9 @@ The zOS part *agents* has no page yet; [[agent-operating-systems]] covers the de
 - [[cheriot]] · CHERI capabilities on small RISC-V cores with its own RTOS: memory safety in hardware, measured, not proven; CHERI for RISC-V "being standardised" in 2026. 2 sources.
 - [[cva6]] · open 64-bit RISC-V core whose design lets latency bounds be proved; fence.t prototype. 7 sources.
 - [[sifive-hifive]] · SiFive and its boards: the discontinued HiFive Unleashed with seL4's MCS proof, the HiFive Premier P550 one can buy. 5 sources.
+- [[nvidia-halos]] · NVIDIA's safety stack for robots: IGX Thor with a safety island, Halos Core with Linux or Linux plus QNX; inspected for certification readiness, no robotics certificate claimed. 3 sources.
+- [[qnx]] · commercial microkernel RTOS, the safety side of Halos on IGX Thor; leader in an analyst's ranking for robot safety. 3 sources.
+- [[pikeos]] · commercial separation kernel and hypervisor; IEC 61508 SIL 3 and ISO 26262 ASIL D listed by the vendor; untrusted ROS 2 beside certified control. 3 sources.
 
 ## Concepts
 
@@ -60,9 +63,10 @@ The zOS part *agents* has no page yet; [[agent-operating-systems]] covers the de
 - [[information-flow-control]] · labels for where data came from and who may see it; FIDES and CaMeL for agents; explicit flows only; refusals as a channel; Agent libOS. 8 sources.
 - [[proof-automation]] · machines proposing proof steps, Isabelle checking them; 77.6 % of a seL4 benchmark sample; Verus as a faster verifier. PROMISE as a second method; AutoVerus for Rust; a coding agent's compiler proofs in Lean; the OSDI version and the Selene benchmark; specification writing (OSVBench), AutoRocq, and verified against checked compiler passes. 14 sources.
 - [[memory-safe-code]] · new code in Rust instead of C: Android's memory-safety flaws below 20 % in 2025; the hardening rival to a verified base. 1 source.
-- [[mixed-criticality]] · software of different criticality on one platform; processor time as a capability in seL4 MCS. 3 sources.
+- [[mixed-criticality]] · software of different criticality on one platform; processor time as a capability in seL4 MCS; partitions under a hypervisor in commercial robot stacks. 7 sources.
 - [[model-context-protocol]] · the open protocol that connects agents to tools; three preprints measure its security, one runtime treats it as a client only. 5 sources.
 - [[agent-operating-systems]] · designs that put the limit on an agent in the OS layer: agentOS, Cohesix, KataOS, AgentKernel, AgenticOS, Agent libOS, Quine; IBM's Agent-OS position paper. 8 sources.
+- [[safety-certification]] · proof versus certificate: what a certified kernel, a robot stack and seL4 each state; no certified seL4 product in the sources. 5 sources.
 
 ## Sources
 
@@ -177,3 +181,11 @@ The zOS part *agents* has no page yet; [[agent-operating-systems]] covers the de
 - [[2026-sison-two-interfaces-sel4]] · seL4 verification abstract: hardware flushes made time-protection proofs feasible; system-call Hoare triples that userland proofs assume are not yet proved. progress, full text.
 - [[2024-wistoff-fence-t-s]] · fence.t.s on out-of-order OpenC910: three on-core channels closed at 1.0 % average overhead on Splash-2. measurement, slides only.
 - [[2026-lu-faster-rethinking-real]] · FASTER: a flow policy that samples its first action in one step to shorten reaction time; measured on two consumer GPUs and one real arm. measurement, partly read.
+- [[2026-nvidia-announces-halos-robotics]] · Halos for Robotics, the launch: IGX Thor, Halos OS, an ANAB-accredited inspection lab, Agility as first adopter; readiness inspection, no robotics certificate. report, full text.
+- [[2026-nvidia-inside-halos-robotics]] · the architecture: SIL 3 capable safety island, Halos Core with Linux or Linux plus QNX under a hypervisor, an open outside-in safety blueprint, the lab's route to certification. report, full text.
+- [[2026-qnx-nvidia-deepen-collaboration]] · QNX OS for Safety 8.0 integrated with IGX Thor and Halos for real-time control beside AI compute; no level or certificate named. report, full text.
+- [[nd-sysgo-robotics-humanoids]] · PikeOS for robots: an untrusted ROS 2 and Linux partition separated in memory and CPU time from certified control; no proof mentioned. report, full text.
+- [[nd-sysgo-safety-certification]] · PikeOS 5.1.3: DO-178C DAL A, IEC 61508 SIL 3, ISO 26262 ASIL D and more, pre-certified by TÜV SÜD; no scopes. report, full text.
+- [[2026-abi-research-rtos-robotics-ranking]] · an analyst names QNX, Wind River, SYSGO and Green Hills leaders in robot-safety RTOS; the category exists. report, press release only.
+- [[nd-sel4-proofs-certification]] · the seL4 Foundation on proof and certification: beyond EAL 7 and ASIL-D evidence by its reading, no certificate named, Isabelle/HOL not yet DO-178C qualified. position, full text.
+- [[2024-dickson-limitations-formal-verification]] · proofs about AI in the physical world will stay approximate; verification will still have a role. position, partly read.

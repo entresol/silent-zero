@@ -33,9 +33,12 @@ Proved at C level for AArch32, AArch64, RISC-V and x86-64 in their verified conf
 ## Related pages
 
 - [The kernel](https://silentzero.ooo/wiki/design/kernel.html.md)
+- [Safety certification](https://silentzero.ooo/wiki/concepts/safety-certification.html.md)
 - [seL4](https://silentzero.ooo/wiki/systems/sel4.html.md)
+- [limitations on formal verification for AI safety](https://silentzero.ooo/wiki/sources/2024-dickson-limitations-formal-verification.html.md)
 - [Neuro-symbolic proof generation for seL4](https://silentzero.ooo/wiki/sources/2026-he-neuro-symbolic-proof.html.md)
 - [OSVBench](https://silentzero.ooo/wiki/sources/2025-li-osvbench-benchmarking-llms.html.md)
 - [Robust Composition](https://silentzero.ooo/wiki/sources/2006-miller-robust-composition-towards.html.md)
+- [seL4 Foundation: seL4 proofs and certification](https://silentzero.ooo/wiki/sources/nd-sel4-proofs-certification.html.md)
 - [Trustworthy Systems n.d.: Proof Statistics](https://silentzero.ooo/wiki/sources/nd-trustworthy-proof-statistics.html.md)
 - [Verifying Device Drivers with Pancake](https://silentzero.ooo/wiki/sources/2025-zhao-verifying-device-drivers.html.md)

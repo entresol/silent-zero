@@ -33,3 +33,4 @@ Part of the Linux kernel; the sources read do not state the licence.
 - [Mixed criticality](https://silentzero.ooo/wiki/concepts/mixed-criticality.html.md)
 - [WCET analysis](https://silentzero.ooo/wiki/concepts/wcet-analysis.html.md)
 - [Landlock](https://silentzero.ooo/wiki/systems/landlock.html.md)
+- [SYSGO: PikeOS for robotics and humanoids](https://silentzero.ooo/wiki/sources/nd-sysgo-robotics-humanoids.html.md)
