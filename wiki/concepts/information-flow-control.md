@@ -1,9 +1,9 @@
 ---
 type: concept
 status: reviewed
-sources: [2025-costa-securing-ai-agents, 2025-debenedetti-defeating-prompt-injections, 2026-chinaei-causality-laundering-denial, 2026-zhang-agent-libos-runtime, 2026-zhao-agenticos-intent-oriented, 2026-narisetty-adaptive-evaluation-out]
+sources: [2025-costa-securing-ai-agents, 2025-debenedetti-defeating-prompt-injections, 2026-chinaei-causality-laundering-denial, 2026-zhang-agent-libos-runtime, 2026-zhao-agenticos-intent-oriented, 2026-narisetty-adaptive-evaluation-out, 2026-nikolaou-camelot-camel-orchestrated, 2026-li-pace-provenance-aware]
 glossary: Information-flow control
-updated: 2026-11-19
+updated: 2026-11-21
 ---
 
 # Information-flow control
@@ -19,6 +19,8 @@ Every piece of data carries labels for where it came from (integrity) and who ma
 - **Agent libOS** joins labels conservatively (highest sensitivity, lowest integrity), clears each external recipient against a registry the host owns, and lets a person release one payload to one recipient without changing its label. It does not trust the plan and does not claim noninterference ([[2026-zhang-agent-libos-runtime]], §3.3, §3.4, §8.3).
 - **AgenticOS** proposes labels on inputs and rules at output interfaces, with human confirmation for high-risk flows; it is a design without implementation ([[2026-zhao-agenticos-intent-oriented]], §3.4).
 - A June 2026 survey of such defences calls the assignment of the first label the trusted base of every scheme, and finds it under-specified in all of them ([[2026-narisetty-adaptive-evaluation-out]], §8.2).
+
+CaMeLoT turns CaMeL's provenance into a conservative static taint on the plan (anything undecidable before execution counts as tainted) and does not handle reader sets, so confidentiality, directly, leaving them to CaMeL at run time ([[2026-nikolaou-camelot-camel-orchestrated]], §3.2 for the lattice and taint rule; §3, §4, §5.1 for reader sets). PACE combines a minimum cut over declared flow edges with effect-authority checks, takes origin labels from deployment assignment as a stated premise, and says it does not establish noninterference ([[2026-li-pace-provenance-aware]], §4.4, C.6).
 
 ## Authority is not information flow
 

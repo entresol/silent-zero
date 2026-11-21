@@ -1,6 +1,6 @@
 ---
 type: index
-updated: 2026-11-20
+updated: 2026-11-21
 ---
 
 # zOS wiki
@@ -9,11 +9,11 @@ The catalogue of every page, with one line each. Read this first.
 
 ## zOS
 
-- [[kernel]] · seL4 with MCS as the zOS kernel: proven (C-level correctness; MCS functional correctness on RISC-V), not stated for MCS (integrity, confidentiality), tested (HACMS), assumed (boot, IOMMU); no WCET bound on any 64-bit core yet; the roadmap dates MCS on AArch64 to Q3 2027. 16 sources.
+- [[kernel]] · seL4 with MCS as the zOS kernel: proven (C-level correctness; MCS functional correctness on RISC-V), not stated for MCS (integrity, confidentiality), tested (HACMS), assumed (boot, IOMMU); no WCET bound on any 64-bit core yet; the roadmap dates MCS on AArch64 to Q3 2027. 19 sources.
 - [[static-system]] · one description, one image: what Microkit checks, what is not proved, and the run-time swap in LionsOS, the kernel underneath. 6 sources.
-- [[broker]] · the only component that hands out authority: capability patterns, CaMeL and FIDES, why model-based defences fail, three agent-OS designs for the same job, CaMeL between agents; nothing proven yet. 26 sources.
-- [[real-time-loops]] · the loops that move the motors: asynchronous chunks from slow models, observed timings, no proven bound yet. 10 sources.
-- [[safety-path]] · Simplex in zOS: the agent proposes, the loop disposes; tested, not proven; the paper's 2001 date disputed by a 1994 origin. 6 sources.
+- [[broker]] · the only component that hands out authority: capability patterns, CaMeL and FIDES, why model-based defences fail, three agent-OS designs for the same job, CaMeL between agents; nothing proven yet. 28 sources.
+- [[real-time-loops]] · the loops that move the motors: asynchronous chunks from slow models, observed timings, no proven bound yet. 13 sources.
+- [[safety-path]] · Simplex in zOS: the agent proposes, the loop disposes; tested, not proven; the paper's 2001 date disputed by a 1994 origin. 9 sources.
 - [[root-of-trust]] · the firmware below the kernel on Arm, RISC-V, PC and Raspberry Pi; OpenTitan, Caliptra, DICE; all *assumed* in the paper's terms. 13 sources.
 - [[bootloader]] · where the zOS loader sits on each platform, signed and measured boot, proofs about boot code so far; the loader itself unproven. 16 sources.
 - [[drivers]] · user-mode drivers, the first verified Ethernet driver, DMA and the IOMMU as assumed, attacked in 2019 although enabled; device models from Verilog and Windows on x86-64 as first steps; the Pancake paper adds the language and its limits. 13 sources.
@@ -24,8 +24,8 @@ The zOS part *agents* has no page yet; [[agent-operating-systems]] covers the de
 
 ## Systems
 
-- [[sel4]] · the verified microkernel zOS builds on: proofs per architecture and platform, cost, MCS, timing, HACMS. 14 sources.
-- [[microkit]] · the build system for static seL4 systems: protection domains, channels, budgets, one image. 4 sources.
+- [[sel4]] · the verified microkernel zOS builds on: proofs per architecture and platform, cost, MCS, timing, HACMS. 16 sources.
+- [[microkit]] · the build system for static seL4 systems: protection domains, channels, budgets, one image. 6 sources.
 - [[lionsos]] · static OS from small components on seL4 and Microkit; first driver verified; Summit 2026 talks on x86-64 VMs and driver specifications. 9 sources.
 - [[coreboot]] · open firmware in stages with a fixed payload; verified and measured boot; closed vendor parts on x86. 3 sources.
 - [[tf-a]] · Arm's reference firmware; BL31 stays resident at EL3 below the kernel. 2 sources.
@@ -39,29 +39,29 @@ The zOS part *agents* has no page yet; [[agent-operating-systems]] covers the de
 - [[cohesix]] · seL4-based control layer for edge AI fleets: a Queen decides what hosts' models may do; landing page only. 1 source.
 - [[kataos]] · Google's seL4 and Rust OS for machine-learning devices, 2022; OpenTitan in its Sparrow plan. 1 source.
 - [[cheriot]] · CHERI capabilities on small RISC-V cores with its own RTOS: memory safety in hardware, measured, not proven; CHERI for RISC-V "being standardised" in 2026. 2 sources.
-- [[cva6]] · open 64-bit RISC-V core whose design lets latency bounds be proved; fence.t prototype. 6 sources.
+- [[cva6]] · open 64-bit RISC-V core whose design lets latency bounds be proved; fence.t prototype. 7 sources.
 - [[sifive-hifive]] · SiFive and its boards: the discontinued HiFive Unleashed with seL4's MCS proof, the HiFive Premier P550 one can buy. 5 sources.
 
 ## Concepts
 
-- [[risc-v]] · the open instruction set: what is open (the ISA) and what need not be (cores, chips, boards); privilege levels and the SBI. 11 sources.
+- [[risc-v]] · the open instruction set: what is open (the ISA) and what need not be (cores, chips, boards); privilege levels and the SBI. 12 sources.
 - [[iommu]] · the memory management unit for devices: what it limits, and the 2019 attacks that worked although it was on. 3 sources.
 - [[wcet-analysis]] · upper bounds on execution time, what they need, and where seL4 stands. 6 sources.
-- [[functional-correctness]] · what seL4's refinement proof gives, what it assumes, where it holds. 4 sources.
-- [[object-capabilities]] · references that both designate and authorise; permission versus authority; caretaker and membrane. 6 sources.
-- [[confused-deputy]] · a program misusing one party's authority for another's request; capabilities as the remedy. 3 sources.
-- [[prompt-injection]] · instructions hidden in data an agent reads; heuristic defences fail, defences around the model hold within limits; benign command chains through shared state beat two of them; CaMeL does not carry over between agents; argument-level authorization and refusals as a leak; MCP measured. 12 sources.
+- [[functional-correctness]] · what seL4's refinement proof gives, what it assumes, where it holds. 5 sources.
+- [[object-capabilities]] · references that both designate and authorise; permission versus authority; caretaker and membrane. 7 sources.
+- [[confused-deputy]] · a program misusing one party's authority for another's request; capabilities as the remedy. 4 sources.
+- [[prompt-injection]] · instructions hidden in data an agent reads; heuristic defences fail, defences around the model hold within limits; benign command chains through shared state beat two of them; CaMeL does not carry over between agents; argument-level authorization and refusals as a leak; MCP measured. 14 sources.
 - [[verified-boot]] · each stage checks the next against a key the attacker cannot change; proofs about boot code so far. 6 sources.
 - [[measured-boot]] · each stage records what runs next; TPM and DICE; a verified DICE implementation. 4 sources.
-- [[time-protection]] · closing timing channels between domains; prototypes on CVA6, proof for seL4 in progress. 3 sources.
-- [[simplex]] · a simple safe controller guarding an untrusted one; tested with learned controllers. 2 sources.
-- [[action-chunking]] · slow robot models emitting action sequences for a fast loop; no bound on delay. 3 sources.
+- [[time-protection]] · closing timing channels between domains; prototypes on CVA6, proof for seL4 in progress. 5 sources.
+- [[simplex]] · a simple safe controller guarding an untrusted one; tested with learned controllers. 4 sources.
+- [[action-chunking]] · slow robot models emitting action sequences for a fast loop; no bound on delay. 4 sources.
 - [[ai-vulnerability-discovery]] · AI models finding software flaws at scale: DARPA's challenge and Anthropic's figures, the bottleneck moving to patching. 3 sources.
-- [[information-flow-control]] · labels for where data came from and who may see it; FIDES and CaMeL for agents; explicit flows only; refusals as a channel; Agent libOS. 6 sources.
-- [[proof-automation]] · machines proposing proof steps, Isabelle checking them; 77.6 % of a seL4 benchmark sample; Verus as a faster verifier. PROMISE as a second method; AutoVerus for Rust; a coding agent's compiler proofs in Lean; the OSDI version and the Selene benchmark; specification writing (OSVBench), AutoRocq, and verified against checked compiler passes. 12 sources.
+- [[information-flow-control]] · labels for where data came from and who may see it; FIDES and CaMeL for agents; explicit flows only; refusals as a channel; Agent libOS. 8 sources.
+- [[proof-automation]] · machines proposing proof steps, Isabelle checking them; 77.6 % of a seL4 benchmark sample; Verus as a faster verifier. PROMISE as a second method; AutoVerus for Rust; a coding agent's compiler proofs in Lean; the OSDI version and the Selene benchmark; specification writing (OSVBench), AutoRocq, and verified against checked compiler passes. 14 sources.
 - [[memory-safe-code]] · new code in Rust instead of C: Android's memory-safety flaws below 20 % in 2025; the hardening rival to a verified base. 1 source.
 - [[mixed-criticality]] · software of different criticality on one platform; processor time as a capability in seL4 MCS. 3 sources.
-- [[model-context-protocol]] · the open protocol that connects agents to tools; three preprints measure its security, one runtime treats it as a client only. 4 sources.
+- [[model-context-protocol]] · the open protocol that connects agents to tools; three preprints measure its security, one runtime treats it as a client only. 5 sources.
 - [[agent-operating-systems]] · designs that put the limit on an agent in the OS layer: agentOS, Cohesix, KataOS, AgentKernel, AgenticOS, Agent libOS, Quine; IBM's Agent-OS position paper. 8 sources.
 
 ## Sources
@@ -170,3 +170,10 @@ The zOS part *agents* has no page yet; [[agent-operating-systems]] covers the de
 - [[2025-li-osvbench-benchmarking-llms]] · OSVBench: 245 Hyperkernel tasks for LLM specification writing; best Pass@1 55.10 %, 0 % on five models without examples. measurement, full text.
 - [[2025-tu-agentic-verification-software]] · AutoRocq: an agent proves 48.0 % of CoqGym lemmas, 30.9 % of SV-COMP C lemmas. measurement, full text.
 - [[2025-zhao-verifying-device-drivers]] · Pancake: language, compiler and a verified Ethernet driver; the transpiler is unverified. proof, full text.
+- [[2026-li-pace-provenance-aware]] · PACE: tool calls checked against a capability compiled from the authenticated request; 0 of 30 out-of-authority goals succeeded in a reduced adaptive search; premises unproved. test, full text.
+- [[2026-nikolaou-camelot-camel-orchestrated]] · CaMeLoT: a static temporal check of the agent's plan before execution, on top of CaMeL; coverage and agreement with CaMeL, no attack-success figures. test, full text.
+- [[2026-jager-context-dependent-runtime]] · a Simplex whose switching rule is built from design-time artifacts with several safe controllers; one-step prediction enough in simulation, about 15 periods needed on hardware. test, full text.
+- [[2026-zheng-assuring-learning-enabled]] · a research agenda for learning-enabled CPS: the learned side holds capability, a monitor and a safe controller hold authority; no results. position, full text.
+- [[2026-sison-two-interfaces-sel4]] · seL4 verification abstract: hardware flushes made time-protection proofs feasible; system-call Hoare triples that userland proofs assume are not yet proved. progress, full text.
+- [[2024-wistoff-fence-t-s]] · fence.t.s on out-of-order OpenC910: three on-core channels closed at 1.0 % average overhead on Splash-2. measurement, slides only.
+- [[2026-lu-faster-rethinking-real]] · FASTER: a flow policy that samples its first action in one step to shorten reaction time; measured on two consumer GPUs and one real arm. measurement, partly read.

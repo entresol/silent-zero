@@ -1,9 +1,9 @@
 ---
 type: concept
 status: reviewed
-sources: [2025-black-real-time-execution, 2025-google-building-next-generation, 2026-jiang-futurertc-real-time]
+sources: [2025-black-real-time-execution, 2025-google-building-next-generation, 2026-jiang-futurertc-real-time, 2026-lu-faster-rethinking-real]
 glossary: Action chunking
-updated: 2026-11-05
+updated: 2026-11-21
 ---
 
 # Action chunking
@@ -16,7 +16,7 @@ Real-time chunking (RTC) computes the next chunk while the current one runs and 
 
 ## What it does not do
 
-It does not bound the delay. The scheme works while the inference delay stays within the chunk's slack, estimated from past delays. Such policies are often used above a faster loop that turns their actions into motor signals ([[2025-black-real-time-execution]], Algorithm 1, §5).
+It does not bound the delay. The scheme works while the inference delay stays within the chunk's slack, estimated from past delays. Such policies are often used above a faster loop that turns their actions into motor signals ([[2025-black-real-time-execution]], Algorithm 1, §5). Asynchronous execution also leaves the reaction delay; it follows the time to first action and the interval between calls, and a flow policy that finishes its first action in one denoising step shortens it; measured on two GPUs and two models ([[2026-lu-faster-rethinking-real]], §2, §3.3, §4.1, Table 2).
 
 ## Above the chunks
 

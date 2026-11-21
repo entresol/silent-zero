@@ -4,8 +4,8 @@ id: 2026-trustworthy-where-are-we
 status: reviewed
 read: partial
 kind: progress
-sources: [2026-trustworthy-where-are-we]
-updated: 2026-10-29
+sources: [2026-trustworthy-where-are-we, 2026-sison-two-interfaces-sel4]
+updated: 2026-11-21
 ---
 
 # Sison 2026: Where are we with Time Protection?
@@ -37,6 +37,7 @@ A careful reader adds:
 
 - [[2022-wistoff-systematic-prevention-core]]: **extends** it. Hardware support on RISC-V is now part of seL4's time-protection work, and the problem has moved to verification and to one-way channels.
 - [[2018-klein-formally-verified-software]]: consistent with it; seL4's confidentiality proof excludes timing channels (§3.2), which is the gap time protection addresses.
+- [[2026-sison-two-interfaces-sel4]]: consistent; its abstract repeats the Cheshire platform and the prefetch-cannot-be-verified argument, gives no new proof status.
 - [[time-protection]]: created with [[2022-wistoff-systematic-prevention-core]] and this source.
 
 ## For zOS

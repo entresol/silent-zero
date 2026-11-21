@@ -1,9 +1,9 @@
 ---
 type: concept
 status: reviewed
-sources: [2024-lattuada-verus-practical-foundation, 2026-he-neuro-symbolic-proof, 2009-klein-sel4-formal-verification, 2026-ahn-promise-proof-automation, 2025-yang-autoverus-automated-proof, 2026-rinard-testing-credible-compilation, 2026-liao-llvm-translation-validation, 2026-he-neuro-symbolic-proof-osdi, 2024-zhang-selene-pioneering-automated, 2025-li-osvbench-benchmarking-llms, 2025-tu-agentic-verification-software, 2026-rinard-quantitative-comparison-credible]
+sources: [2024-lattuada-verus-practical-foundation, 2026-he-neuro-symbolic-proof, 2009-klein-sel4-formal-verification, 2026-ahn-promise-proof-automation, 2025-yang-autoverus-automated-proof, 2026-rinard-testing-credible-compilation, 2026-liao-llvm-translation-validation, 2026-he-neuro-symbolic-proof-osdi, 2024-zhang-selene-pioneering-automated, 2025-li-osvbench-benchmarking-llms, 2025-tu-agentic-verification-software, 2026-rinard-quantitative-comparison-credible, 2026-zheng-assuring-learning-enabled, 2026-nikolaou-camelot-camel-orchestrated]
 short: Machine-made proofs that a checker accepts
-updated: 2026-11-20
+updated: 2026-11-21
 ---
 
 # Proof automation
@@ -22,6 +22,8 @@ Generating the proofs of a formal verification by machine instead of by hand. A 
 - A third kind of task is translation validation. Trivet has a model build Lean proofs that an LLVM transformation preserves a program's meaning, accepting only what Lean's kernel checks; on 148 transformations it proves all 74 valid ones and refutes 73 of the 74 invalid ones, where the SMT-based checker Alive2 validates 20 of 30 loop-free fixed-width cases and cannot handle symbolic bit widths. The formalisation covers integer instructions only, and the cost figures are for one commercial model ([[2026-liao-llvm-translation-validation]]).
 - The step before the proof is measured separately. OSVBench gives 245 tasks on the Hyperkernel kernel, where a model writes the state-machine specification: the best of 12 models reached 55.10 per cent Pass@1 with five examples in the prompt, greedy decoding and the mean of three runs, and the five models tested without examples all scored 0 per cent ([[2025-li-osvbench-benchmarking-llms]], Table 1, §4.4). Our reading: a different task, kernel and prover from the figures above, so the numbers do not compare.
 - AutoRocq, an agent that queries Rocq and keeps a proof tree, proves 824 of 1,717 CoqGym lemmas (48.0 per cent), 198 of 641 lemmas from 131 SV-COMP C programs (30.9 per cent) and 12 of 60 Linux kernel-function lemmas. The 1,717 lemmas are the overlap of two existing Coq test sets, the authors built the SV-COMP and kernel sets and ran the baselines, and our reading is that the figures do not compare with the seL4 or Verus ones above ([[2025-tu-agentic-verification-software]]).
+- A 2026 research agenda states the split in general terms: a model proposes and only a small independent checker (type checker, SMT solver, model checker, proof assistant) accepts, with translation validation and proof-carrying code as precedents; a position, not a measurement ([[2026-zheng-assuring-learning-enabled]], §4.3).
+- Loosely related, no proof: CaMeLoT model-checks a small abstraction of an agent's plan. Typed obligations compiled by trusted code gave clean suites on 97 of 97 tasks, while models writing formulas directly gave 12 to 96 of 97 across four models; the margin over Haiku 4.5 is one task and over Sonnet 4.5 three (94 of 97). Our reading: close to by-construction, since trusted code compiles the formulas; the typed route was run with Haiku only ([[2026-nikolaou-camelot-camel-orchestrated]], Table 10).
 
 ## Open questions
 

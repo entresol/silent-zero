@@ -4,8 +4,8 @@ id: 2025-black-real-time-execution
 status: reviewed
 read: full
 kind: measurement
-sources: [2025-black-real-time-execution]
-updated: 2026-10-29
+sources: [2025-black-real-time-execution, 2026-lu-faster-rethinking-real]
+updated: 2026-11-21
 ---
 
 # Black, Galliker and Levine 2025: Real-Time Execution of Action Chunking Flow Policies
@@ -36,6 +36,7 @@ A careful reader adds:
 ## Against the wiki
 
 - [[action-chunking]]: created with this source.
+- Reaction latency, which RTC leaves open, is measured in [[2026-lu-faster-rethinking-real]].
 
 ## For zOS
 

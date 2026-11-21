@@ -4,6 +4,10 @@ What changed in substance, newest first: in the paper, on its page and in the pr
 
 Format: `## <version> · <scope>`, then one paragraph. A paper version is `YYYY-MM-DD-vX.Y` and has its own PDF in `versions/`; the newest one is the version the build prints on the paper and the page. A change without a new paper version carries only its date (`YYYY-MM-DD`). Scope is `Paper`, `Site` or `Project`. The build turns this file into the list at the end of the page.
 
+## 2026-11-21 · Site
+
+The wiki worked in seven more sources: four that arrived in the pool today (PACE, CaMeLoT, a multi-candidate Simplex, an assurance agenda for learning-enabled systems) and three from the backlog (the seL4 time-protection and kernel-userland abstract, fence.t.s on an out-of-order core, FASTER). Seven source pages were created. Changed in substance: time protection, functional correctness, Simplex, action chunking, proof automation, prompt injection, information-flow control, the Model Context Protocol, object capabilities, the confused deputy, seL4, Microkit, CVA6, RISC-V, and the design pages on the kernel, the real-time loops, the safety path and the broker, with notes on the pages of seven existing sources. No new lexicon terms. Lint not run (not Monday).
+
 ## 2026-11-20 · Site
 
 The page has two doors, one for the people who will run Silent Zero (Use) and one for developers and technically interested visitors (Devel). Each is a page of its own, `/use/` and `/devel/`, and each is also a sheet that slides over the start page from the edge when its tab is clicked; the start page underneath does not move. Each door lists ten or eleven points, and each point says whether it is available now, in progress, planned or an open question. A point only says available now if it points at something that exists today. The Get involved section moved from the start page onto the Devel door. English only for now.

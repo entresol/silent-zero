@@ -4,8 +4,8 @@ id: 2022-wistoff-systematic-prevention-core
 status: reviewed
 read: full
 kind: measurement
-sources: [2022-wistoff-systematic-prevention-core]
-updated: 2026-10-29
+sources: [2022-wistoff-systematic-prevention-core, 2024-wistoff-fence-t-s]
+updated: 2026-11-21
 ---
 
 # Wistoff et al. 2022: Systematic Prevention of On-Core Timing Channels
@@ -45,5 +45,5 @@ A careful reader adds:
 
 ## For zOS
 
-- [[kernel]]: the paper (Section 4) says closing timing side channels needs a hardware instruction that exists only as prototypes, citing this paper and Wistoff et al. 2024 (`fence.t.s` for out-of-order cores, not covered here). Confirmed for on-core state; off-core caches can be partitioned in software by colouring, as the paper here does for its L2.
+- [[kernel]]: the paper (Section 4) says closing timing side channels needs a hardware instruction that exists only as prototypes, citing this paper and Wistoff et al. 2024 (`fence.t.s` for out-of-order cores, not covered here). It is covered in [[2024-wistoff-fence-t-s]]. Confirmed for on-core state; off-core caches can be partitioned in software by colouring, as the paper here does for its L2.
 - Our reading: for zOS the agent and the control loop share hardware. Timing channels matter for confidentiality, the agent learning what it should not. For the loop's deadlines, the padded context switch is the relevant part: it makes switching cost a fixed, known quantity.

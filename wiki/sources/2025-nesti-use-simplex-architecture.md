@@ -4,8 +4,8 @@ id: 2025-nesti-use-simplex-architecture
 status: reviewed
 read: full
 kind: test
-sources: [2025-nesti-use-simplex-architecture]
-updated: 2026-10-29
+sources: [2025-nesti-use-simplex-architecture, 2026-jager-context-dependent-runtime]
+updated: 2026-11-21
 ---
 
 # Nesti et al. 2025: The Use of the Simplex Architecture to Enhance Safety in Deep-Learning-Powered Autonomous Systems
@@ -43,6 +43,7 @@ A careful reader adds:
 
 - [[2018-klein-formally-verified-software]]: the authors cite seL4 in UAVs as related work; this paper uses a different hypervisor.
 - [[simplex]]: created with this source.
+- Jäger et al. 2026 test a one-step prediction in simulation and on hardware ([[2026-jager-context-dependent-runtime]], §IV-C, §IV-E1).
 
 ## For zOS
 

@@ -4,8 +4,8 @@ id: 2026-narisetty-adaptive-evaluation-out
 status: reviewed
 read: full
 kind: test
-sources: [2026-narisetty-adaptive-evaluation-out]
-updated: 2026-11-05
+sources: [2026-narisetty-adaptive-evaluation-out, 2026-li-pace-provenance-aware]
+updated: 2026-11-21
 ---
 
 # Narisetty et al. 2026: adaptive evaluation of out-of-band defenses
@@ -40,6 +40,7 @@ A careful reader adds:
 - [[prompt-injection]]: adds the first adaptive test in the wiki of a defence around the model, and a statement of what is still untested. It did not test CaMeL or FIDES.
 - [[broker]]: no change of state. The paper states the premise the broker rests on (the gate must not be a model) and says it has not been shown to survive an adaptive attacker. Our reading: its list of weak spots matches the broker's open questions on provenance, endorsement and implicit flows.
 - [[information-flow-control]]: names provenance assignment as the trusted base of every labelling scheme.
+- [[2026-li-pace-provenance-aware]]: cites this work and runs its own small adaptive search against a deterministic mediator; LLM-mutator search only, one model, only out-of-authority goals.
 
 ## For zOS
 

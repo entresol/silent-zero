@@ -4,8 +4,8 @@ id: 2025-debenedetti-defeating-prompt-injections
 status: reviewed
 read: partial
 kind: test
-sources: [2025-debenedetti-defeating-prompt-injections]
-updated: 2026-10-29
+sources: [2025-debenedetti-defeating-prompt-injections, 2026-nikolaou-camelot-camel-orchestrated]
+updated: 2026-11-21
 ---
 
 # Debenedetti et al. 2025: Defeating Prompt Injections by Design (CaMeL)
@@ -46,6 +46,7 @@ A careful reader adds:
 - [[2026-nasr-attacker-moves-second]]: **complements** it; see there for why CaMeL was left out and for the caveat on utility.
 - [[prompt-injection]]: CaMeL is the main defence around the model.
 - [[object-capabilities]]: CaMeL's capabilities are labels for information flow, related to but distinct from object capabilities.
+- [[2026-nikolaou-camelot-camel-orchestrated]]: **extends** it: a static temporal plan check before execution, with CaMeL's run-time policies kept. CaMeLoT says the CaMeL paper named lack of formality as a limitation and that CaMeL has no whole-execution specification language.
 
 ## For zOS
 

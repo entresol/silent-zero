@@ -1,8 +1,8 @@
 ---
 type: design
 status: reviewed
-sources: [2025-nesti-use-simplex-architecture, 2025-black-real-time-execution, 2018-klein-formally-verified-software, 2025-google-building-next-generation, 2026-bansal-synergistic-simplex-cooperative, 2026-agarwal-multi-link-safety]
-updated: 2026-11-20
+sources: [2025-nesti-use-simplex-architecture, 2025-black-real-time-execution, 2018-klein-formally-verified-software, 2025-google-building-next-generation, 2026-bansal-synergistic-simplex-cooperative, 2026-agarwal-multi-link-safety, 2026-jager-context-dependent-runtime, 2026-zheng-assuring-learning-enabled, 2026-lu-faster-rethinking-real]
+updated: 2026-11-21
 ---
 
 # The safety path
@@ -30,6 +30,10 @@ The 2026 Synergistic Simplex variant relaxes the rule for its safety layer: it m
 A robot model's vendor says its model-level safety filters "are not a substitute for the rigorous safety engineering required for physical systems" and asks for several layers, with emergency stops and collision avoidance outside the model ([[2025-google-building-next-generation]]). Related evidence that is not Simplex: a robot's protective stop caught an oscillating learned controller in an experiment ([[2025-black-real-time-execution]], §4.2), and HACMS showed a compromised component contained in flight ([[2018-klein-formally-verified-software]]).
 
 A different pattern from Simplex switching is a filter on the commanded motion. One preprint shows a barrier-function shield between a frozen π0.5 policy and the arm, whose barrier program ran at 2.2 ms (p99) on a CPU and which cut collisions with moving hazards in simulation from 65.62 to 27.27 per cent, as a mean over six simulated conditions. It has no proof for the moving-hazard case, takes its hazard model from perception, and runs the nominal action when its program is infeasible. Our reading: it does not meet this page's rule that the loop owns its sensors, and changes no state ([[2026-agarwal-multi-link-safety]], §III-C, §V-A, §V-B).
+
+A 2026 preprint derives the switching rule of a Simplex by contraction and reachability analysis for a path-tracking robot with an uncertified high-performance controller on the other side (a behavioural-cloning network in one hardware test). The proof covers the model; the hardware safety margin rests on a tuned prediction horizon, tested on one ground robot ([[2026-jager-context-dependent-runtime]], §IV). Our reading: a second kind of evidence for the switch; it changes no state.
+
+A 2026 research agenda by fourteen authors states what is, in our reading, the same thesis independently: a learned component holds capability, and a monitor with shielding or switching plus a safe controller holds authority. It says thresholds found by testing are empirical evidence, not formal guarantees; it is a position, with no results ([[2026-zheng-assuring-learning-enabled]], §3.4, §5). The authors of FASTER ask for safety monitors and physical safeguards around faster-reacting policies ([[2026-lu-faster-rethinking-real]], appendix H).
 
 ## The paper and its sources
 

@@ -1,9 +1,9 @@
 ---
 type: concept
 status: reviewed
-sources: [2011-waterman-risc-v-instruction, 2014-asanovic-instruction-sets-free, 2024-riscv-unprivileged-isa-manual, 2024-riscv-privileged-isa-manual, nd-riscv-international-about, nd-sifive-risc-v-history, 2026-sel4-release-17, nd-opensbi, nd-sel4-supported-platforms, nd-sifive-hifive-unleashed, 2024-sifive-hifive-premier-p550]
+sources: [2011-waterman-risc-v-instruction, 2014-asanovic-instruction-sets-free, 2024-riscv-unprivileged-isa-manual, 2024-riscv-privileged-isa-manual, nd-riscv-international-about, nd-sifive-risc-v-history, 2026-sel4-release-17, nd-opensbi, nd-sel4-supported-platforms, nd-sifive-hifive-unleashed, 2024-sifive-hifive-premier-p550, 2024-wistoff-fence-t-s]
 glossary: RISC-V and CVA6
-updated: 2026-10-31
+updated: 2026-11-21
 ---
 
 # RISC-V
@@ -37,6 +37,7 @@ Three levels: Machine (M), the only mandatory one, whose code is "usually inhere
 
 - The ISA modules most software needs are ratified: RV32I and RV64I 2.1, M, A, F, D and C ([[2024-riscv-unprivileged-isa-manual]], preface, version 20240411).
 - seL4's C-level proof covers the eight RISC-V platforms its release notes list, boards as well as FPGA designs such as Ariane and Rocket; the proof of the MCS configuration covers one, the HiFive Unleashed ([[2026-sel4-release-17]]).
+- The temporal fence of the time-protection work is a custom instruction, not ratified; the authors' closing slide shows "uSC SIG / Timing Fences TG", which our reading takes to be a RISC-V micro-architecture group ([[2024-wistoff-fence-t-s]], slide 18).
 
 ## Open questions
 

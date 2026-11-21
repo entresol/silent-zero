@@ -1,9 +1,9 @@
 ---
 type: system
 status: reviewed
-sources: [nd-trustworthy-wcet-worst-case, 2026-sillitoe-resurrecting-sel4-wcet, 2022-wistoff-systematic-prevention-core, nd-sel4-microkit-user-manual, nd-sel4-verified-configurations, 2026-sel4-release-17]
+sources: [nd-trustworthy-wcet-worst-case, 2026-sillitoe-resurrecting-sel4-wcet, 2022-wistoff-systematic-prevention-core, 2024-wistoff-fence-t-s, nd-sel4-microkit-user-manual, nd-sel4-verified-configurations, 2026-sel4-release-17]
 short: Open-source 64-bit RISC-V core, also Ariane
-updated: 2026-10-31
+updated: 2026-11-21
 ---
 
 # CVA6
@@ -18,7 +18,7 @@ Our reading: a proof against the design covers the design; a chip or FPGA built 
 
 ## Why it matters for timing channels
 
-On CVA6 a custom instruction, `fence.t`, resets all non-architectural state on a context switch. In an FPGA prototype it closed every measured on-core timing channel, at under 1 per cent slowdown with a context switch every 10 million cycles, equivalent to 10 ms at 1 GHz ([[2022-wistoff-systematic-prevention-core]]). See [[time-protection]].
+On CVA6 a custom instruction, `fence.t`, resets all non-architectural state on a context switch. In an FPGA prototype it closed every measured on-core timing channel, at under 1 per cent slowdown with a context switch every 10 million cycles, equivalent to 10 ms at 1 GHz ([[2022-wistoff-systematic-prevention-core]]). The same group carried the idea to the out-of-order OpenC910 in `fence.t.s` ([[2024-wistoff-fence-t-s]]). See [[time-protection]].
 
 ## Boards
 
