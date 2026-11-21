@@ -6,6 +6,10 @@ Format: `## <version> · <scope>`, then one paragraph. A paper version is `YYYY-
 
 ## 2026-11-21 · Site
 
+The wiki took in the agent sandboxes that exist today: five sources (NVIDIA's overview of OpenShell, Red Hat's post on OpenShell in OpenShift AI 3.5, and three Microsoft posts on Microsoft Execution Containers from Build, from the general availability in October and from Ignite). New pages: five source pages and two system pages (OpenShell, MXC). Changed in substance: the broker (a row and a paragraph on sandboxes that deny outbound traffic by default and hold their policy outside the agent, and an open point on agent-written permission requests), agent operating systems (two rows) and Landlock. Both products are described by their vendors only, with no proof or audit named. No new lexicon terms beyond the two system pages.
+
+## 2026-11-21 · Site
+
 The wiki took in what exists on certified safety for robots: eight sources, among them NVIDIA's Halos for Robotics (announcement and technical blog), QNX with NVIDIA, SYSGO's PikeOS (robotics page and certification page), an analyst's ranking of robot-safety real-time operating systems, the seL4 Foundation's page on proofs and certification, and an essay on the limits of formal verification for AI safety. New pages: eight source pages, three system pages (Halos, QNX, PikeOS) and a concept page on safety certification. Changed in substance: the safety path (a certified-kernel route to the same split of AI and safety), mixed criticality (commercial systems) and seL4 (what its foundation says about certification). The sources claim certification readiness or certificates for the commercial stacks and no formal proof; the seL4 page names no certificate. No new lexicon terms beyond the concept page.
 
 ## 2026-11-21 · Site

@@ -2,7 +2,7 @@
 
 > What the sources behind the Silent Zero paper show, page by page: designs, concepts, systems and sources, each with what is proven, tested or assumed.
 
-This wiki gathers what the sources behind the paper show. It has a page for each source, each concept, each system the paper builds on and each part of the design: 118 sources, 20 concepts, 20 systems and 8 parts of the design so far. Every page says what is proven, tested or assumed, and on which source that rests.
+This wiki gathers what the sources behind the paper show. It has a page for each source, each concept, each system the paper builds on and each part of the design: 123 sources, 20 concepts, 22 systems and 8 parts of the design so far. Every page says what is proven, tested or assumed, and on which source that rests.
 
 ## How this wiki is made
 
@@ -19,7 +19,7 @@ A page can still be wrong or misleading in detail. If you find a mistake, please
 
 - [The kernel](https://silentzero.ooo/wiki/design/kernel.html.md) · seL4 with MCS as the Silent Zero kernel: proven (C-level correctness; MCS functional correctness on RISC-V), not stated for MCS (integrity, confidentiality), tested (HACMS), assumed (boot, IOMMU); no WCET bound on any 64-bit core yet; the roadmap dates MCS on AArch64 to Q3 2027. 19 sources.
 - [The static system](https://silentzero.ooo/wiki/design/static-system.html.md) · one description, one image: what Microkit checks, what is not proved, and the run-time swap in LionsOS, the kernel underneath. 6 sources.
-- [The broker](https://silentzero.ooo/wiki/design/broker.html.md) · the only component that hands out authority: capability patterns, CaMeL and FIDES, why model-based defences fail, three agent-OS designs for the same job, CaMeL between agents; nothing proven yet. 28 sources.
+- [The broker](https://silentzero.ooo/wiki/design/broker.html.md) · the only component that hands out authority: capability patterns, CaMeL and FIDES, why model-based defences fail, three agent-OS designs for the same job, CaMeL between agents; nothing proven yet; the industry's agent sandboxes grant by resource. 31 sources.
 - [Real-time loops](https://silentzero.ooo/wiki/design/real-time-loops.html.md) · the loops that move the motors: asynchronous chunks from slow models, observed timings, no proven bound yet. 13 sources.
 - [The safety path](https://silentzero.ooo/wiki/design/safety-path.html.md) · Simplex in Silent Zero: the agent proposes, the loop disposes; tested, not proven; the paper's 2001 date disputed by a 1994 origin; certified real-time kernels sell the same split as products. 16 sources.
 - [Root of trust and firmware](https://silentzero.ooo/wiki/design/root-of-trust.html.md) · the firmware below the kernel on Arm, RISC-V, PC and Raspberry Pi; OpenTitan, Caliptra, DICE; all *assumed* in the paper's terms. 13 sources.
@@ -38,7 +38,7 @@ A page can still be wrong or misleading in detail. If you find a mistake, please
 - [OpenTitan](https://silentzero.ooo/wiki/systems/opentitan.html.md) · open-source silicon root of trust, shipping in Chromebooks since March 2026. 5 sources.
 - [agentOS](https://silentzero.ooo/wiki/systems/agentos.html.md) · seL4-based I/O platform for agents: device-owning domains, Linux and FreeBSD guests under QEMU; agent services not yet booted. 1 source.
 - [Verus](https://silentzero.ooo/wiki/systems/verus.html.md) · verifier for Rust code with SMT solving; case studies, no kernel; AutoVerus writes proofs for it. 2 sources.
-- [Landlock](https://silentzero.ooo/wiki/systems/landlock.html.md) · Linux sandbox a process applies to itself: filesystem, network, capability and namespace rules; part of the hardened-Linux route. 1 source.
+- [Landlock](https://silentzero.ooo/wiki/systems/landlock.html.md) · Linux sandbox a process applies to itself: filesystem, network, capability and namespace rules; part of the hardened-Linux route, and the base of OpenShell's filesystem layer. 3 sources.
 - [PREEMPT_RT](https://silentzero.ooo/wiki/systems/preempt-rt.html.md) · the Linux real-time configuration: preemptible kernel, threaded interrupts; no latency bound stated. 1 source.
 - [Cohesix](https://silentzero.ooo/wiki/systems/cohesix.html.md) · seL4-based control layer for edge AI fleets: a Queen decides what hosts' models may do; landing page only. 1 source.
 - [KataOS](https://silentzero.ooo/wiki/systems/kataos.html.md) · Google's seL4 and Rust OS for machine-learning devices, 2022; OpenTitan in its Sparrow plan. 1 source.
@@ -48,6 +48,8 @@ A page can still be wrong or misleading in detail. If you find a mistake, please
 - [NVIDIA Halos for Robotics](https://silentzero.ooo/wiki/systems/nvidia-halos.html.md) · NVIDIA's safety stack for robots: IGX Thor with a safety island, Halos Core with Linux or Linux plus QNX; inspected for certification readiness, no robotics certificate claimed. 3 sources.
 - [QNX](https://silentzero.ooo/wiki/systems/qnx.html.md) · commercial microkernel RTOS, the safety side of Halos on IGX Thor; leader in an analyst's ranking for robot safety. 3 sources.
 - [PikeOS](https://silentzero.ooo/wiki/systems/pikeos.html.md) · commercial separation kernel and hypervisor; IEC 61508 SIL 3 and ISO 26262 ASIL D listed by the vendor; untrusted ROS 2 beside certified control. 3 sources.
+- [OpenShell](https://silentzero.ooo/wiki/systems/openshell.html.md) · open-source sandbox runtime for agents: Landlock, seccomp, network namespaces and a policy engine; outbound traffic denied by default; credentials as placeholders; a Developer Preview in OpenShift AI 3.5. 3 sources.
+- [Microsoft Execution Containers (MXC)](https://silentzero.ooo/wiki/systems/mxc.html.md) · Microsoft's policy-driven containment for agents on Windows, macOS and Linux, generally available as of 7 October 2026, with OpenShell integrated; no assurance claimed. 3 sources.
 
 ## Concepts
 
@@ -69,7 +71,7 @@ A page can still be wrong or misleading in detail. If you find a mistake, please
 - [Memory-safe code](https://silentzero.ooo/wiki/concepts/memory-safe-code.html.md) · new code in Rust instead of C: Android's memory-safety flaws below 20 % in 2025; the hardening rival to a verified base. 1 source.
 - [Mixed criticality](https://silentzero.ooo/wiki/concepts/mixed-criticality.html.md) · software of different criticality on one platform; processor time as a capability in seL4 MCS; partitions under a hypervisor in commercial robot stacks. 7 sources.
 - [Model Context Protocol](https://silentzero.ooo/wiki/concepts/model-context-protocol.html.md) · the open protocol that connects agents to tools; three preprints measure its security, one runtime treats it as a client only. 5 sources.
-- [Agent operating systems](https://silentzero.ooo/wiki/concepts/agent-operating-systems.html.md) · designs that put the limit on an agent in the OS layer: agentOS, Cohesix, KataOS, AgentKernel, AgenticOS, Agent libOS, Quine; IBM's Agent-OS position paper. 8 sources.
+- [Agent operating systems](https://silentzero.ooo/wiki/concepts/agent-operating-systems.html.md) · designs that put the limit on an agent in the OS layer: agentOS, Cohesix, KataOS, AgentKernel, AgenticOS, Agent libOS, Quine, OpenShell and MXC as shipped products; IBM's Agent-OS position paper. 13 sources.
 - [Safety certification](https://silentzero.ooo/wiki/concepts/safety-certification.html.md) · proof versus certificate: what a certified kernel, a robot stack and seL4 each state; no certified seL4 product in the sources. 5 sources.
 
 ## Sources
@@ -193,6 +195,11 @@ A page can still be wrong or misleading in detail. If you find a mistake, please
 - [ranking of real-time operating systems for robotics safety](https://silentzero.ooo/wiki/sources/2026-abi-research-rtos-robotics-ranking.html.md) (ABI Research 2026) · an analyst names QNX, Wind River, SYSGO and Green Hills leaders in robot-safety RTOS; the category exists. report, press release only.
 - [seL4 Foundation: seL4 proofs and certification](https://silentzero.ooo/wiki/sources/nd-sel4-proofs-certification.html.md) · the seL4 Foundation on proof and certification: beyond EAL 7 and ASIL-D evidence by its reading, no certificate named, Isabelle/HOL not yet DO-178C qualified. position, full text.
 - [limitations on formal verification for AI safety](https://silentzero.ooo/wiki/sources/2024-dickson-limitations-formal-verification.html.md) (Dickson 2024) · proofs about AI in the physical world will stay approximate; verification will still have a role. position, partly read.
+- [NVIDIA: Overview of OpenShell](https://silentzero.ooo/wiki/sources/nd-nvidia-openshell-overview.html.md) · OpenShell's four protection layers and the mechanisms behind them; no assurance claim. report, full text.
+- [Kernel-level agent security in OpenShift AI 3.5](https://silentzero.ooo/wiki/sources/2026-red-hat-beyond-container-boundaries.html.md) (Red Hat 2026) · OpenShell in OpenShift AI 3.5: default-deny outbound, an agent that proposes its own rule, four automatic checks; a vendor post. report, full text.
+- [Windows platform security for AI agents](https://silentzero.ooo/wiki/sources/2026-microsoft-windows-platform-security-agents.html.md) (Microsoft 2026) · Build 2026: the MXC SDK in early preview, containment, identity and manageability as Windows primitives. report, full text.
+- [Execution Containers, policy-driven containment for AI agents](https://silentzero.ooo/wiki/sources/2026-microsoft-execution-containers-policy-driven.html.md) (Microsoft 2026) · MXC generally available: backends, policy areas, modes, "an agent cannot be its own security authority"; OpenShell integrated. report, full text.
+- [Windows security at Ignite](https://silentzero.ooo/wiki/sources/2026-microsoft-windows-security-ignite-2026.html.md) (Microsoft 2026) · Ignite 2026: the same direction for agents in one section of a broader security post. report, full text.
 
 ## Not yet covered
 

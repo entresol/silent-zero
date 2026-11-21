@@ -212,3 +212,8 @@ Systems and sources the wiki will need that the pool lacks. They go into the poo
 - [x] 2026-abi-research-rtos-robotics-ranking
 - [x] nd-sel4-proofs-certification
 - [x] 2024-dickson-limitations-formal-verification
+- [x] nd-nvidia-openshell-overview
+- [x] 2026-red-hat-beyond-container-boundaries
+- [x] 2026-microsoft-windows-platform-security-agents
+- [x] 2026-microsoft-execution-containers-policy-driven
+- [x] 2026-microsoft-windows-security-ignite-2026

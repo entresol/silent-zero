@@ -1,9 +1,9 @@
 ---
 type: system
 status: reviewed
-sources: [nd-linux-landlock-unprivileged-access]
+sources: [nd-linux-landlock-unprivileged-access, nd-nvidia-openshell-overview, 2026-red-hat-beyond-container-boundaries]
 short: Linux sandbox that processes apply to themselves
-updated: 2026-11-03
+updated: 2026-11-21
 ---
 
 # Landlock
@@ -12,7 +12,7 @@ A Linux security module that lets a process, including an unprivileged one, rest
 
 ## State, November 2026
 
-First in Linux 5.13; the documentation page, dated October 2026 and built for kernel 7.4.0-rc1, describes interface version 12, with network rules for TCP (version 4) and UDP (version 10) and rules for capabilities and namespaces (version 12). It limits rulesets to 16 layers and cannot restrict some special files ([[nd-linux-landlock-unprivileged-access]]).
+First in Linux 5.13; the documentation page, dated October 2026 and built for kernel 7.4.0-rc1, describes interface version 12, with network rules for TCP (version 4) and UDP (version 10) and rules for capabilities and namespaces (version 12). It limits rulesets to 16 layers and cannot restrict some special files ([[nd-linux-landlock-unprivileged-access]]). NVIDIA's [[openshell]] uses it for filesystem confinement in its sandboxes, beside seccomp and network namespaces ([[nd-nvidia-openshell-overview]], [[2026-red-hat-beyond-container-boundaries]]).
 
 ## Licence and code
 
@@ -20,7 +20,7 @@ Part of the Linux kernel; the sources read do not state the licence.
 
 ## Related
 
-[[preempt-rt]], [[object-capabilities]], [[confused-deputy]], [[memory-safe-code]].
+[[preempt-rt]], [[openshell]], [[object-capabilities]], [[confused-deputy]], [[memory-safe-code]].
 
 ## Open questions
 

@@ -469,7 +469,7 @@ p.other { margin-top: 2.2rem; color: var(--muted); font-size: 0.95rem; }
     <div class="titleblock">
       <h1 class="name">Wiki</h1>
       <p class="sub">What the sources behind the paper show, page by page.</p>
-      <p class="ver">166 pages · updated 21 Nov 2026 · <a href="#how">How this wiki is made</a></p>
+      <p class="ver">173 pages · updated 21 Nov 2026 · <a href="#how">How this wiki is made</a></p>
     </div>
   </div>
 </header>
@@ -477,7 +477,7 @@ p.other { margin-top: 2.2rem; color: var(--muted); font-size: 0.95rem; }
 <div class="layout">
   <nav class="toc" id="toc" aria-label="Contents"><p>Contents</p><ol><li class="toc-back"><a href="/">← The paper</a></li><li><a href="#top">↑ Top</a></li><li><a href="#how">How this wiki is made</a></li><li><a href="#design">Design</a></li><li><a href="#systems">Systems</a></li><li><a href="#concepts">Concepts</a></li><li><a href="#sources">Sources</a></li><li><a href="#not-yet-covered">Not yet covered</a></li></ol></nav>
   <article>
-<p>This wiki gathers what the sources behind the paper show. It has a page for each source, each concept, each system the paper builds on and each part of the design: 118 sources, 20 concepts, 20 systems and 8 parts of the design so far. Every page says what is proven, tested or assumed, and on which source that rests.</p>
+<p>This wiki gathers what the sources behind the paper show. It has a page for each source, each concept, each system the paper builds on and each part of the design: 123 sources, 20 concepts, 22 systems and 8 parts of the design so far. Every page says what is proven, tested or assumed, and on which source that rests.</p>
 <h2 id="how">How this wiki is made</h2>
 <p>A language model writes the wiki and keeps it up to date from the sources in the project’s research pool, after Andrej Karpathy’s idea of a wiki that a language model maintains. A daily run adds new sources and works older ones in.</p>
 <ul>
@@ -490,7 +490,7 @@ p.other { margin-top: 2.2rem; color: var(--muted); font-size: 0.95rem; }
 <ul>
 <li><a href="/wiki/design/kernel.html">The kernel</a> · seL4 with MCS as the Silent Zero kernel: proven (C-level correctness; MCS functional correctness on RISC-V), not stated for MCS (integrity, confidentiality), tested (HACMS), assumed (boot, IOMMU); no WCET bound on any 64-bit core yet; the roadmap dates MCS on AArch64 to Q3 2027. 19 sources.</li>
 <li><a href="/wiki/design/static-system.html">The static system</a> · one description, one image: what Microkit checks, what is not proved, and the run-time swap in LionsOS, the kernel underneath. 6 sources.</li>
-<li><a href="/wiki/design/broker.html">The broker</a> · the only component that hands out authority: capability patterns, CaMeL and FIDES, why model-based defences fail, three agent-OS designs for the same job, CaMeL between agents; nothing proven yet. 28 sources.</li>
+<li><a href="/wiki/design/broker.html">The broker</a> · the only component that hands out authority: capability patterns, CaMeL and FIDES, why model-based defences fail, three agent-OS designs for the same job, CaMeL between agents; nothing proven yet; the industry’s agent sandboxes grant by resource. 31 sources.</li>
 <li><a href="/wiki/design/real-time-loops.html">Real-time loops</a> · the loops that move the motors: asynchronous chunks from slow models, observed timings, no proven bound yet. 13 sources.</li>
 <li><a href="/wiki/design/safety-path.html">The safety path</a> · Simplex in Silent Zero: the agent proposes, the loop disposes; tested, not proven; the paper’s 2001 date disputed by a 1994 origin; certified real-time kernels sell the same split as products. 16 sources.</li>
 <li><a href="/wiki/design/root-of-trust.html">Root of trust and firmware</a> · the firmware below the kernel on Arm, RISC-V, PC and Raspberry Pi; OpenTitan, Caliptra, DICE; all <em>assumed</em> in the paper’s terms. 13 sources.</li>
@@ -509,7 +509,7 @@ p.other { margin-top: 2.2rem; color: var(--muted); font-size: 0.95rem; }
 <li><a href="/wiki/systems/opentitan.html">OpenTitan</a> · open-source silicon root of trust, shipping in Chromebooks since March 2026. 5 sources.</li>
 <li><a href="/wiki/systems/agentos.html">agentOS</a> · seL4-based I/O platform for agents: device-owning domains, Linux and FreeBSD guests under QEMU; agent services not yet booted. 1 source.</li>
 <li><a href="/wiki/systems/verus.html">Verus</a> · verifier for Rust code with SMT solving; case studies, no kernel; AutoVerus writes proofs for it. 2 sources.</li>
-<li><a href="/wiki/systems/landlock.html">Landlock</a> · Linux sandbox a process applies to itself: filesystem, network, capability and namespace rules; part of the hardened-Linux route. 1 source.</li>
+<li><a href="/wiki/systems/landlock.html">Landlock</a> · Linux sandbox a process applies to itself: filesystem, network, capability and namespace rules; part of the hardened-Linux route, and the base of OpenShell’s filesystem layer. 3 sources.</li>
 <li><a href="/wiki/systems/preempt-rt.html">PREEMPT_RT</a> · the Linux real-time configuration: preemptible kernel, threaded interrupts; no latency bound stated. 1 source.</li>
 <li><a href="/wiki/systems/cohesix.html">Cohesix</a> · seL4-based control layer for edge AI fleets: a Queen decides what hosts’ models may do; landing page only. 1 source.</li>
 <li><a href="/wiki/systems/kataos.html">KataOS</a> · Google’s seL4 and Rust OS for machine-learning devices, 2022; OpenTitan in its Sparrow plan. 1 source.</li>
@@ -519,6 +519,8 @@ p.other { margin-top: 2.2rem; color: var(--muted); font-size: 0.95rem; }
 <li><a href="/wiki/systems/nvidia-halos.html">NVIDIA Halos for Robotics</a> · NVIDIA’s safety stack for robots: IGX Thor with a safety island, Halos Core with Linux or Linux plus QNX; inspected for certification readiness, no robotics certificate claimed. 3 sources.</li>
 <li><a href="/wiki/systems/qnx.html">QNX</a> · commercial microkernel RTOS, the safety side of Halos on IGX Thor; leader in an analyst’s ranking for robot safety. 3 sources.</li>
 <li><a href="/wiki/systems/pikeos.html">PikeOS</a> · commercial separation kernel and hypervisor; IEC 61508 SIL 3 and ISO 26262 ASIL D listed by the vendor; untrusted ROS 2 beside certified control. 3 sources.</li>
+<li><a href="/wiki/systems/openshell.html">OpenShell</a> · open-source sandbox runtime for agents: Landlock, seccomp, network namespaces and a policy engine; outbound traffic denied by default; credentials as placeholders; a Developer Preview in OpenShift AI 3.5. 3 sources.</li>
+<li><a href="/wiki/systems/mxc.html">Microsoft Execution Containers (MXC)</a> · Microsoft’s policy-driven containment for agents on Windows, macOS and Linux, generally available as of 7 October 2026, with OpenShell integrated; no assurance claimed. 3 sources.</li>
 </ul>
 <h2 id="concepts">Concepts</h2>
 <ul>
@@ -540,7 +542,7 @@ p.other { margin-top: 2.2rem; color: var(--muted); font-size: 0.95rem; }
 <li><a href="/wiki/concepts/memory-safe-code.html">Memory-safe code</a> · new code in Rust instead of C: Android’s memory-safety flaws below 20 % in 2025; the hardening rival to a verified base. 1 source.</li>
 <li><a href="/wiki/concepts/mixed-criticality.html">Mixed criticality</a> · software of different criticality on one platform; processor time as a capability in seL4 MCS; partitions under a hypervisor in commercial robot stacks. 7 sources.</li>
 <li><a href="/wiki/concepts/model-context-protocol.html">Model Context Protocol</a> · the open protocol that connects agents to tools; three preprints measure its security, one runtime treats it as a client only. 5 sources.</li>
-<li><a href="/wiki/concepts/agent-operating-systems.html">Agent operating systems</a> · designs that put the limit on an agent in the OS layer: agentOS, Cohesix, KataOS, AgentKernel, AgenticOS, Agent libOS, Quine; IBM’s Agent-OS position paper. 8 sources.</li>
+<li><a href="/wiki/concepts/agent-operating-systems.html">Agent operating systems</a> · designs that put the limit on an agent in the OS layer: agentOS, Cohesix, KataOS, AgentKernel, AgenticOS, Agent libOS, Quine, OpenShell and MXC as shipped products; IBM’s Agent-OS position paper. 13 sources.</li>
 <li><a href="/wiki/concepts/safety-certification.html">Safety certification</a> · proof versus certificate: what a certified kernel, a robot stack and seL4 each state; no certified seL4 product in the sources. 5 sources.</li>
 </ul>
 <h2 id="sources">Sources</h2>
@@ -664,6 +666,11 @@ p.other { margin-top: 2.2rem; color: var(--muted); font-size: 0.95rem; }
 <li><a href="/wiki/sources/2026-abi-research-rtos-robotics-ranking.html">ranking of real-time operating systems for robotics safety</a> (ABI Research 2026) · an analyst names QNX, Wind River, SYSGO and Green Hills leaders in robot-safety RTOS; the category exists. report, press release only.</li>
 <li><a href="/wiki/sources/nd-sel4-proofs-certification.html">seL4 Foundation: seL4 proofs and certification</a> · the seL4 Foundation on proof and certification: beyond EAL 7 and ASIL-D evidence by its reading, no certificate named, Isabelle/HOL not yet DO-178C qualified. position, full text.</li>
 <li><a href="/wiki/sources/2024-dickson-limitations-formal-verification.html">limitations on formal verification for AI safety</a> (Dickson 2024) · proofs about AI in the physical world will stay approximate; verification will still have a role. position, partly read.</li>
+<li><a href="/wiki/sources/nd-nvidia-openshell-overview.html">NVIDIA: Overview of OpenShell</a> · OpenShell’s four protection layers and the mechanisms behind them; no assurance claim. report, full text.</li>
+<li><a href="/wiki/sources/2026-red-hat-beyond-container-boundaries.html">Kernel-level agent security in OpenShift AI 3.5</a> (Red Hat 2026) · OpenShell in OpenShift AI 3.5: default-deny outbound, an agent that proposes its own rule, four automatic checks; a vendor post. report, full text.</li>
+<li><a href="/wiki/sources/2026-microsoft-windows-platform-security-agents.html">Windows platform security for AI agents</a> (Microsoft 2026) · Build 2026: the MXC SDK in early preview, containment, identity and manageability as Windows primitives. report, full text.</li>
+<li><a href="/wiki/sources/2026-microsoft-execution-containers-policy-driven.html">Execution Containers, policy-driven containment for AI agents</a> (Microsoft 2026) · MXC generally available: backends, policy areas, modes, “an agent cannot be its own security authority”; OpenShell integrated. report, full text.</li>
+<li><a href="/wiki/sources/2026-microsoft-windows-security-ignite-2026.html">Windows security at Ignite</a> (Microsoft 2026) · Ignite 2026: the same direction for agents in one section of a broader security post. report, full text.</li>
 </ul>
 <h2 id="not-yet-covered">Not yet covered</h2>
 <p>The Silent Zero part <em>agents</em> has no page yet; <a href="/wiki/concepts/agent-operating-systems.html">Agent operating systems</a> covers the designs that touch it. Firmware on PCs (Intel ME, AMD PSP, FSP, open alternatives) and on Apple silicon is in the backlog. Also not yet covered: the multicore proof, the ratification status of CHERI for RISC-V, the seams between proven parts and the driver island.</p>
