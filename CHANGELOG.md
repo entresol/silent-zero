@@ -6,6 +6,10 @@ Format: `## <version> · <scope>`, then one paragraph. A paper version is `YYYY-
 
 ## 2026-11-21 · Site
 
+The wiki took in the research neighbours of Silent Zero: eight sources (Atmosphere, a microkernel in Rust verified with Verus, as paper and project page, and from the AgenticOS workshop at SOSP 2026 the capability microkernel Agate, the verification vision SpecOS, the robot runtime TypeGo, the irreversibility budget and two papers on capabilities derived from task intent). New pages: eight source pages and five system pages (Atmosphere, Agate, SpecOS, TypeGo, IntentCap). Changed in substance: the broker (two rows and four paragraphs, among them the nearest published neighbours of its job), agent operating systems (four rows), the kernel page (a verified Rust kernel beside seL4), Verus, proof automation and the real-time loops. None of the sources claims a proof of a broker or a control loop. No new lexicon terms beyond the system pages.
+
+## 2026-11-21 · Site
+
 The wiki took in the agent sandboxes that exist today: five sources (NVIDIA's overview of OpenShell, Red Hat's post on OpenShell in OpenShift AI 3.5, and three Microsoft posts on Microsoft Execution Containers from Build, from the general availability in October and from Ignite). New pages: five source pages and two system pages (OpenShell, MXC). Changed in substance: the broker (a row and a paragraph on sandboxes that deny outbound traffic by default and hold their policy outside the agent, and an open point on agent-written permission requests), agent operating systems (two rows) and Landlock. Both products are described by their vendors only, with no proof or audit named. No new lexicon terms beyond the two system pages.
 
 ## 2026-11-21 · Site

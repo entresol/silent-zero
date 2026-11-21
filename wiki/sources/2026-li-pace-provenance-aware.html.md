@@ -66,6 +66,7 @@ A careful reader adds the following (inference).
 - [Object capabilities](https://silentzero.ooo/wiki/concepts/object-capabilities.html.md)
 - [Prompt injection](https://silentzero.ooo/wiki/concepts/prompt-injection.html.md)
 - [adaptive evaluation of out-of-band defenses](https://silentzero.ooo/wiki/sources/2026-narisetty-adaptive-evaluation-out.html.md)
+- [agent capabilities should follow task intent (IntentCap)](https://silentzero.ooo/wiki/sources/2026-zheng-llm-agent-capabilities.html.md)
 - [Defeating Prompt Injections by Design (CaMeL)](https://silentzero.ooo/wiki/sources/2025-debenedetti-defeating-prompt-injections.html.md)
 - [The Attacker Moves Second](https://silentzero.ooo/wiki/sources/2026-nasr-attacker-moves-second.html.md)
 - [ToolFence](https://silentzero.ooo/wiki/sources/2026-li-toolfence-fine-grained.html.md)

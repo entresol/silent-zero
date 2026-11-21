@@ -2,7 +2,7 @@
 
 > Machines proposing proof steps, Isabelle checking them; 77.6 % of a seL4 benchmark sample; Verus as a faster verifier. PROMISE as a second method; AutoVerus for Rust; a coding agent’s compiler proofs in Lean; the OSDI version and the Selene benchmark; specification writing (OSVBench), AutoRocq, and verified against checked compiler passes.
 
-Concept · LLM reviewed · updated 2026-11-21 · 14 sources · https://silentzero.ooo/wiki/concepts/proof-automation.html
+Concept · LLM reviewed · updated 2026-11-21 · 15 sources · https://silentzero.ooo/wiki/concepts/proof-automation.html
 
 Generating the proofs of a formal verification by machine instead of by hand. A proof checker such as Isabelle accepts only correct proofs, so a model that proposes proof steps may be wrong as often as the time budget allows; only what the checker accepts counts ([Neuro-symbolic proof generation for seL4](https://silentzero.ooo/wiki/sources/2026-he-neuro-symbolic-proof.html.md), §1, §3).
 
@@ -20,6 +20,7 @@ Generating the proofs of a formal verification by machine instead of by hand. A 
 - AutoRocq, an agent that queries Rocq and keeps a proof tree, proves 824 of 1,717 CoqGym lemmas (48.0 per cent), 198 of 641 lemmas from 131 SV-COMP C programs (30.9 per cent) and 12 of 60 Linux kernel-function lemmas. The 1,717 lemmas are the overlap of two existing Coq test sets, the authors built the SV-COMP and kernel sets and ran the baselines, and our reading is that the figures do not compare with the seL4 or Verus ones above ([AutoRocq](https://silentzero.ooo/wiki/sources/2025-tu-agentic-verification-software.html.md)).
 - A 2026 research agenda states the split in general terms: a model proposes and only a small independent checker (type checker, SMT solver, model checker, proof assistant) accepts, with translation validation and proof-carrying code as precedents; a position, not a measurement ([a neuro-symbolic assurance agenda for learning-enabled CPS](https://silentzero.ooo/wiki/sources/2026-zheng-assuring-learning-enabled.html.md), §4.3).
 - Loosely related, no proof: CaMeLoT model-checks a small abstraction of an agent's plan. Typed obligations compiled by trusted code gave clean suites on 97 of 97 tasks, while models writing formulas directly gave 12 to 96 of 97 across four models; the margin over Haiku 4.5 is one task and over Sonnet 4.5 three (94 of 97). Our reading: close to by-construction, since trusted code compiles the formulas; the typed route was run with Haiku only ([CaMeLoT, a static check of an agent's plan on top of CaMeL](https://silentzero.ooo/wiki/sources/2026-nikolaou-camelot-camel-orchestrated.html.md), Table 10).
+- A kernel built with [Verus](https://silentzero.ooo/wiki/systems/verus.html.md) shows the cost side without a model: [Atmosphere](https://silentzero.ooo/wiki/systems/atmosphere.html.md) reports 3.32 lines of proof per line of code, under 2.5 person-years in total and verification in under 20 seconds, against 20 to 1 for seL4 in the authors' table; our reading is that the figures need not count as seL4's do, and the project page gives 7.5 to 1 ([Atmosphere, practical verified kernels with Rust and Verus](https://silentzero.ooo/wiki/sources/2025-chen-atmosphere-practical-verified.html.md)). The paper mentions no model writing proofs.
 
 ## Open questions
 
@@ -29,6 +30,7 @@ Generating the proofs of a formal verification by machine instead of by hand. A 
 ## Sources
 
 - [a neuro-symbolic assurance agenda for learning-enabled CPS](https://silentzero.ooo/wiki/sources/2026-zheng-assuring-learning-enabled.html.md)
+- [Atmosphere, practical verified kernels with Rust and Verus](https://silentzero.ooo/wiki/sources/2025-chen-atmosphere-practical-verified.html.md)
 - [AutoRocq](https://silentzero.ooo/wiki/sources/2025-tu-agentic-verification-software.html.md)
 - [AutoVerus](https://silentzero.ooo/wiki/sources/2025-yang-autoverus-automated-proof.html.md)
 - [CaMeLoT, a static check of an agent's plan on top of CaMeL](https://silentzero.ooo/wiki/sources/2026-nikolaou-camelot-camel-orchestrated.html.md)
@@ -50,5 +52,6 @@ Generating the proofs of a formal verification by machine instead of by hand. A 
 - [The kernel](https://silentzero.ooo/wiki/design/kernel.html.md)
 - [The safety path](https://silentzero.ooo/wiki/design/safety-path.html.md)
 - [Memory-safe code](https://silentzero.ooo/wiki/concepts/memory-safe-code.html.md)
+- [Atmosphere](https://silentzero.ooo/wiki/systems/atmosphere.html.md)
 - [seL4](https://silentzero.ooo/wiki/systems/sel4.html.md)
 - [Verus](https://silentzero.ooo/wiki/systems/verus.html.md)

@@ -2,7 +2,7 @@
 
 > SeL4 with MCS as the Silent Zero kernel: proven (C-level correctness; MCS functional correctness on RISC-V), not stated for MCS (integrity, confidentiality), tested (HACMS), assumed (boot, IOMMU); no WCET bound on any 64-bit core yet; the roadmap dates MCS on AArch64 to Q3 2027.
 
-Design · LLM reviewed · updated 2026-11-21 · 19 sources · https://silentzero.ooo/wiki/design/kernel.html
+Design · LLM reviewed · updated 2026-11-21 · 21 sources · https://silentzero.ooo/wiki/design/kernel.html
 
 In Silent Zero the kernel is [seL4](https://silentzero.ooo/wiki/systems/sel4.html.md) with its mixed-criticality extensions. It isolates components, moves messages between them and hands out processor time, and it is the only code at its privilege level (paper, Section 3).
 
@@ -24,6 +24,7 @@ In Silent Zero the kernel is [seL4](https://silentzero.ooo/wiki/systems/sel4.htm
 | Integrity and confidentiality (no timing channels) | proven on AArch32, AArch64, RISC-V (for AArch64 confidentiality see the open questions below); not stated for MCS | proof; on AArch64 a news item of 24 August 2026 also announces the confidentiality proof | [seL4 Foundation: Verified Configurations](https://silentzero.ooo/wiki/sources/nd-sel4-verified-configurations.html.md), [security proofs complete on AArch64](https://silentzero.ooo/wiki/sources/2026-proofcraft-sel4-security-proofs.html.md) |
 | Binary correctness | listed for AArch32 only; other architectures not stated | proof | [seL4 Foundation: Verified Configurations](https://silentzero.ooo/wiki/sources/nd-sel4-verified-configurations.html.md) |
 | Verified kernel under Microkit on the Raspberry Pi 4 | none: the Pi 4B is verified only without MCS, and Microkit always uses MCS | our reading from two sources | [seL4 Foundation: Verified Configurations](https://silentzero.ooo/wiki/sources/nd-sel4-verified-configurations.html.md), [seL4 Microkit: User Manual, v2.3.0](https://silentzero.ooo/wiki/sources/nd-sel4-microkit-user-manual.html.md) |
+| A verified microkernel in Rust with Verus instead of seL4's Isabelle proofs | exists: [Atmosphere](https://silentzero.ooo/wiki/systems/atmosphere.html.md), functional correctness and a noninterference proof for one three-container configuration; 6K lines of code, 20.1K of proof, under 2.5 person-years; one big lock, authority by a container tree; the paper describes no time budgets | proof (Verus), SOSP 2025; the paper's proof-to-code ratio is 3.32:1 and its project page says 7.5:1 | [Atmosphere, practical verified kernels with Rust and Verus](https://silentzero.ooo/wiki/sources/2025-chen-atmosphere-practical-verified.html.md), [Mars Research Group: the Atmosphere project page](https://silentzero.ooo/wiki/sources/nd-mars-research-atmosphere.html.md) |
 | Kernel boot, [IOMMU](https://silentzero.ooo/wiki/concepts/iommu.html.md)/SMMU | outside every verified configuration | assumed | [seL4 Foundation: Verified Configurations](https://silentzero.ooo/wiki/sources/nd-sel4-verified-configurations.html.md) |
 | Processor time as capability with enforced budgets | implemented in MCS | covered by the C-level refinement proof in our reading; no theorem on temporal isolation | [MCS safety, an OS perspective](https://silentzero.ooo/wiki/sources/2026-heiser-mcs-safety-os.html.md), [MCS functional-correctness proof completed on RISC-V](https://silentzero.ooo/wiki/sources/2026-sel4-functional-correctness-proof.html.md) |
 | Containment of a compromised component in the field | demonstrated under a white-box red-team attack, 2017 | test | [Formally Verified Software in the Real World](https://silentzero.ooo/wiki/sources/2018-klein-formally-verified-software.html.md) |
@@ -64,8 +65,10 @@ The multicore proof itself. See also [Time protection](https://silentzero.ooo/wi
 
 ## Sources
 
+- [Atmosphere, practical verified kernels with Rust and Verus](https://silentzero.ooo/wiki/sources/2025-chen-atmosphere-practical-verified.html.md)
 - [fence.t.s for out-of-order cores](https://silentzero.ooo/wiki/sources/2024-wistoff-fence-t-s.html.md)
 - [Formally Verified Software in the Real World](https://silentzero.ooo/wiki/sources/2018-klein-formally-verified-software.html.md)
+- [Mars Research Group: the Atmosphere project page](https://silentzero.ooo/wiki/sources/nd-mars-research-atmosphere.html.md)
 - [MCS functional-correctness proof completed on RISC-V](https://silentzero.ooo/wiki/sources/2026-sel4-functional-correctness-proof.html.md)
 - [MCS safety, an OS perspective](https://silentzero.ooo/wiki/sources/2026-heiser-mcs-safety-os.html.md)
 - [release 17.0.0](https://silentzero.ooo/wiki/sources/2026-sel4-release-17.html.md)
@@ -96,6 +99,7 @@ The multicore proof itself. See also [Time protection](https://silentzero.ooo/wi
 - [Proof automation](https://silentzero.ooo/wiki/concepts/proof-automation.html.md)
 - [Time protection](https://silentzero.ooo/wiki/concepts/time-protection.html.md)
 - [WCET analysis](https://silentzero.ooo/wiki/concepts/wcet-analysis.html.md)
+- [Atmosphere](https://silentzero.ooo/wiki/systems/atmosphere.html.md)
 - [Raspberry Pi](https://silentzero.ooo/wiki/systems/raspberry-pi.html.md)
 - [seL4](https://silentzero.ooo/wiki/systems/sel4.html.md)
 - [SiFive and the HiFive boards](https://silentzero.ooo/wiki/systems/sifive-hifive.html.md)

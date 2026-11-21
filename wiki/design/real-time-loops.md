@@ -1,7 +1,7 @@
 ---
 type: design
 status: reviewed
-sources: [2025-black-real-time-execution, 2025-nesti-use-simplex-architecture, 2026-sel4-functional-correctness-proof, 2026-heiser-mcs-safety-os, 2022-wistoff-systematic-prevention-core, nd-sel4-microkit-user-manual, 2025-google-building-next-generation, nd-linux-real-time-preemption, 2026-jiang-futurertc-real-time, 2026-agarwal-multi-link-safety, 2024-wistoff-fence-t-s, 2026-lu-faster-rethinking-real, 2026-jager-context-dependent-runtime]
+sources: [2025-black-real-time-execution, 2025-nesti-use-simplex-architecture, 2026-sel4-functional-correctness-proof, 2026-heiser-mcs-safety-os, 2022-wistoff-systematic-prevention-core, nd-sel4-microkit-user-manual, 2025-google-building-next-generation, nd-linux-real-time-preemption, 2026-jiang-futurertc-real-time, 2026-agarwal-multi-link-safety, 2024-wistoff-fence-t-s, 2026-lu-faster-rethinking-real, 2026-jager-context-dependent-runtime, 2026-chen-typego-os-runtime, 2026-li-formal-methods-harness]
 updated: 2026-11-21
 ---
 
@@ -39,6 +39,8 @@ Another: a Simplex decision module measured 0.0281 ms mean and 4.13 ms worst cas
 - The paper calls the loop *verified* (abstract, Section 4) and in Section 4 calls the safety controller a candidate for proof. No source so far shows a control loop on seL4 with a proven deadline; the kernel's WCET is missing (see [[kernel]], [[safety-path]]).
 
 - Section 6 names PREEMPT_RT as Linux's route to real time. [[nd-linux-real-time-preemption]] confirms that it makes the kernel largely preemptible; the chapters read state no latency bound, and warn that shared caches, memory and buses can disturb deterministic handling. See [[preempt-rt]].
+
+- [[typego]] keeps the language model off the critical path with layered asynchronous loops in a Python runtime on a quadruped: planning overlapped with motion, a reflex layer and a scheduler. Its authors report 50 per cent lower per-step delay and about 200 ms and 50 ms of scheduling and reflex overhead; no proved bound, and isolation only as future work ([[2026-chen-typego-os-runtime]]). [[specos]] proposes control loops at 100 Hz and above on static topologies verified offline and planning at 3 to 10 Hz verified at run time; no implementation is reported ([[2026-li-formal-methods-harness]]).
 
 ## Open
 

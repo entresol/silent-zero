@@ -73,3 +73,4 @@ The Silent Zero paper (Section 5) says the first designs for the broker's job ha
 - [WCET analysis](https://silentzero.ooo/wiki/concepts/wcet-analysis.html.md)
 - [AgentOS](https://silentzero.ooo/wiki/sources/2026-liu-agentos-application-silos.html.md)
 - [Quine](https://silentzero.ooo/wiki/sources/2026-ke-quine-realizing-llm.html.md)
+- [the irreversibility budget](https://silentzero.ooo/wiki/sources/2026-mohammadi-irreversibility-budget.html.md)

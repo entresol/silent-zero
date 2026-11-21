@@ -1,7 +1,7 @@
 ---
 type: design
 status: reviewed
-sources: [nd-sel4-microkit-user-manual, 2022-wistoff-systematic-prevention-core, 2026-trustworthy-where-are-we, 2009-klein-sel4-formal-verification, 2018-klein-formally-verified-software, nd-sel4-verified-configurations, 2026-sel4-functional-correctness-proof, 2026-heiser-mcs-safety-os, 2026-trustworthy-guaranteeing-timeliness-mcs, nd-trustworthy-wcet-worst-case, 2026-sillitoe-resurrecting-sel4-wcet, 2026-sel4-release-17, nd-sel4-sel4-roadmap, nd-trustworthy-proof-statistics, 2026-proofcraft-sel4-security-proofs, 2026-heiser-sel4-operating-systems, 2026-heiser-trustworthy-systems-update, 2024-wistoff-fence-t-s, 2026-sison-two-interfaces-sel4]
+sources: [nd-sel4-microkit-user-manual, 2022-wistoff-systematic-prevention-core, 2026-trustworthy-where-are-we, 2009-klein-sel4-formal-verification, 2018-klein-formally-verified-software, nd-sel4-verified-configurations, 2026-sel4-functional-correctness-proof, 2026-heiser-mcs-safety-os, 2026-trustworthy-guaranteeing-timeliness-mcs, nd-trustworthy-wcet-worst-case, 2026-sillitoe-resurrecting-sel4-wcet, 2026-sel4-release-17, nd-sel4-sel4-roadmap, nd-trustworthy-proof-statistics, 2026-proofcraft-sel4-security-proofs, 2026-heiser-sel4-operating-systems, 2026-heiser-trustworthy-systems-update, 2024-wistoff-fence-t-s, 2026-sison-two-interfaces-sel4, 2025-chen-atmosphere-practical-verified, nd-mars-research-atmosphere]
 updated: 2026-11-21
 ---
 
@@ -27,6 +27,7 @@ In zOS the kernel is [[sel4]] with its mixed-criticality extensions. It isolates
 | Integrity and confidentiality (no timing channels) | proven on AArch32, AArch64, RISC-V (for AArch64 confidentiality see the open questions below); not stated for MCS | proof; on AArch64 a news item of 24 August 2026 also announces the confidentiality proof | [[nd-sel4-verified-configurations]], [[2026-proofcraft-sel4-security-proofs]] |
 | Binary correctness | listed for AArch32 only; other architectures not stated | proof | [[nd-sel4-verified-configurations]] |
 | Verified kernel under Microkit on the Raspberry Pi 4 | none: the Pi 4B is verified only without MCS, and Microkit always uses MCS | our reading from two sources | [[nd-sel4-verified-configurations]], [[nd-sel4-microkit-user-manual]] |
+| A verified microkernel in Rust with Verus instead of seL4's Isabelle proofs | exists: [[atmosphere]], functional correctness and a noninterference proof for one three-container configuration; 6K lines of code, 20.1K of proof, under 2.5 person-years; one big lock, authority by a container tree; the paper describes no time budgets | proof (Verus), SOSP 2025; the paper's proof-to-code ratio is 3.32:1 and its project page says 7.5:1 | [[2025-chen-atmosphere-practical-verified]], [[nd-mars-research-atmosphere]] |
 | Kernel boot, [[iommu|IOMMU]]/SMMU | outside every verified configuration | assumed | [[nd-sel4-verified-configurations]] |
 | Processor time as capability with enforced budgets | implemented in MCS | covered by the C-level refinement proof in our reading; no theorem on temporal isolation | [[2026-heiser-mcs-safety-os]], [[2026-sel4-functional-correctness-proof]] |
 | Containment of a compromised component in the field | demonstrated under a white-box red-team attack, 2017 | test | [[2018-klein-formally-verified-software]] |

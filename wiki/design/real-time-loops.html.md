@@ -2,7 +2,7 @@
 
 > The loops that move the motors: asynchronous chunks from slow models, observed timings, no proven bound yet.
 
-Design · LLM reviewed · updated 2026-11-21 · 13 sources · https://silentzero.ooo/wiki/design/real-time-loops.html
+Design · LLM reviewed · updated 2026-11-21 · 15 sources · https://silentzero.ooo/wiki/design/real-time-loops.html
 
 The control loops at the bottom of Silent Zero move the motors on a fixed period and have the last word over motion. Learned models above them are slower and deliver commands early, in chunks; the loops execute them on time or fall back (paper, Sections 2.4 and 4).
 
@@ -37,6 +37,8 @@ Another: a Simplex decision module measured 0.0281 ms mean and 4.13 ms worst cas
 
 - Section 6 names PREEMPT_RT as Linux's route to real time. [Linux kernel documentation: real-time preemption](https://silentzero.ooo/wiki/sources/nd-linux-real-time-preemption.html.md) confirms that it makes the kernel largely preemptible; the chapters read state no latency bound, and warn that shared caches, memory and buses can disturb deterministic handling. See [PREEMPT_RT](https://silentzero.ooo/wiki/systems/preempt-rt.html.md).
 
+- [TypeGo](https://silentzero.ooo/wiki/systems/typego.html.md) keeps the language model off the critical path with layered asynchronous loops in a Python runtime on a quadruped: planning overlapped with motion, a reflex layer and a scheduler. Its authors report 50 per cent lower per-step delay and about 200 ms and 50 ms of scheduling and reflex overhead; no proved bound, and isolation only as future work ([TypeGo, an OS runtime for embodied agents](https://silentzero.ooo/wiki/sources/2026-chen-typego-os-runtime.html.md)). [SpecOS](https://silentzero.ooo/wiki/systems/specos.html.md) proposes control loops at 100 Hz and above on static topologies verified offline and planning at 3 to 10 Hz verified at run time; no implementation is reported ([Formal methods as the harness for AIOS (SpecOS)](https://silentzero.ooo/wiki/sources/2026-li-formal-methods-harness.html.md)).
+
 ## Open
 
 - [Real-Time Execution of Action Chunking Flow Policies](https://silentzero.ooo/wiki/sources/2025-black-real-time-execution.html.md) estimates delay from history and does not bound it. The loop must have a defined behaviour when the next chunk does not arrive: hold, slow, stop.
@@ -49,6 +51,7 @@ Another: a Simplex decision module measured 0.0281 ms mean and 4.13 ms worst cas
 - [context-dependent regions of attraction for a multi-candidate Simplex](https://silentzero.ooo/wiki/sources/2026-jager-context-dependent-runtime.html.md)
 - [FASTER, reaction time of flow VLAs](https://silentzero.ooo/wiki/sources/2026-lu-faster-rethinking-real.html.md)
 - [fence.t.s for out-of-order cores](https://silentzero.ooo/wiki/sources/2024-wistoff-fence-t-s.html.md)
+- [Formal methods as the harness for AIOS (SpecOS)](https://silentzero.ooo/wiki/sources/2026-li-formal-methods-harness.html.md)
 - [FutureRTC](https://silentzero.ooo/wiki/sources/2026-jiang-futurertc-real-time.html.md)
 - [Gemini Robotics-ER 1.5](https://silentzero.ooo/wiki/sources/2025-google-building-next-generation.html.md)
 - [Linux kernel documentation: real-time preemption](https://silentzero.ooo/wiki/sources/nd-linux-real-time-preemption.html.md)
@@ -59,6 +62,7 @@ Another: a Simplex decision module measured 0.0281 ms mean and 4.13 ms worst cas
 - [seL4 Microkit: User Manual, v2.3.0](https://silentzero.ooo/wiki/sources/nd-sel4-microkit-user-manual.html.md)
 - [Systematic Prevention of On-Core Timing Channels](https://silentzero.ooo/wiki/sources/2022-wistoff-systematic-prevention-core.html.md)
 - [The Use of the Simplex Architecture to Enhance Safety in Deep-Learning-Powered Autonomous Systems](https://silentzero.ooo/wiki/sources/2025-nesti-use-simplex-architecture.html.md)
+- [TypeGo, an OS runtime for embodied agents](https://silentzero.ooo/wiki/sources/2026-chen-typego-os-runtime.html.md)
 
 ## Related pages
 
@@ -69,6 +73,8 @@ Another: a Simplex decision module measured 0.0281 ms mean and 4.13 ms worst cas
 - [Memory-safe code](https://silentzero.ooo/wiki/concepts/memory-safe-code.html.md)
 - [Mixed criticality](https://silentzero.ooo/wiki/concepts/mixed-criticality.html.md)
 - [PREEMPT_RT](https://silentzero.ooo/wiki/systems/preempt-rt.html.md)
+- [SpecOS](https://silentzero.ooo/wiki/systems/specos.html.md)
+- [TypeGo](https://silentzero.ooo/wiki/systems/typego.html.md)
 - [ARSENAL](https://silentzero.ooo/wiki/sources/2026-lide-arsenal-assured-robotics.html.md)
 - [Fast, Secure, Adaptable: LionsOS Design, Implementation and Performance](https://silentzero.ooo/wiki/sources/2025-heiser-fast-secure-adaptable.html.md)
 - [Towards an Agent Operating System](https://silentzero.ooo/wiki/sources/2026-steinder-towards-agent-operating.html.md)

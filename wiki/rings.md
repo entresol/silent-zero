@@ -217,3 +217,11 @@ Systems and sources the wiki will need that the pool lacks. They go into the poo
 - [x] 2026-microsoft-windows-platform-security-agents
 - [x] 2026-microsoft-execution-containers-policy-driven
 - [x] 2026-microsoft-windows-security-ignite-2026
+- [x] 2025-chen-atmosphere-practical-verified
+- [x] nd-mars-research-atmosphere
+- [x] 2026-zhao-agate-capability-microkernels
+- [x] 2026-li-formal-methods-harness
+- [x] 2026-chen-typego-os-runtime
+- [x] 2026-mohammadi-irreversibility-budget
+- [x] 2026-zheng-llm-agent-capabilities
+- [x] 2026-lourenco-securing-agentic-ai

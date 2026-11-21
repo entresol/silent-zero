@@ -9,10 +9,10 @@ The catalogue of every page, with one line each. Read this first.
 
 ## zOS
 
-- [[kernel]] · seL4 with MCS as the zOS kernel: proven (C-level correctness; MCS functional correctness on RISC-V), not stated for MCS (integrity, confidentiality), tested (HACMS), assumed (boot, IOMMU); no WCET bound on any 64-bit core yet; the roadmap dates MCS on AArch64 to Q3 2027. 19 sources.
+- [[kernel]] · seL4 with MCS as the zOS kernel: proven (C-level correctness; MCS functional correctness on RISC-V), not stated for MCS (integrity, confidentiality), tested (HACMS), assumed (boot, IOMMU); no WCET bound on any 64-bit core yet; the roadmap dates MCS on AArch64 to Q3 2027. 21 sources.
 - [[static-system]] · one description, one image: what Microkit checks, what is not proved, and the run-time swap in LionsOS, the kernel underneath. 6 sources.
-- [[broker]] · the only component that hands out authority: capability patterns, CaMeL and FIDES, why model-based defences fail, three agent-OS designs for the same job, CaMeL between agents; nothing proven yet; the industry's agent sandboxes grant by resource. 31 sources.
-- [[real-time-loops]] · the loops that move the motors: asynchronous chunks from slow models, observed timings, no proven bound yet. 13 sources.
+- [[broker]] · the only component that hands out authority: capability patterns, CaMeL and FIDES, why model-based defences fail, three agent-OS designs for the same job, CaMeL between agents; nothing proven yet; the industry's agent sandboxes grant by resource; IntentCap and Agate are the nearest published neighbours; a budget for cumulative irreversible exposure. 35 sources.
+- [[real-time-loops]] · the loops that move the motors: asynchronous chunks from slow models, observed timings, no proven bound yet. 15 sources.
 - [[safety-path]] · Simplex in zOS: the agent proposes, the loop disposes; tested, not proven; the paper's 2001 date disputed by a 1994 origin; certified real-time kernels sell the same split as products. 16 sources.
 - [[root-of-trust]] · the firmware below the kernel on Arm, RISC-V, PC and Raspberry Pi; OpenTitan, Caliptra, DICE; all *assumed* in the paper's terms. 13 sources.
 - [[bootloader]] · where the zOS loader sits on each platform, signed and measured boot, proofs about boot code so far; the loader itself unproven. 16 sources.
@@ -33,7 +33,7 @@ The zOS part *agents* has no page yet; [[agent-operating-systems]] covers the de
 - [[raspberry-pi]] · the pib's board: closed ROM and EEPROM boot, secure-boot key in OTP on the Pi 4, seL4 verified without MCS. 4 sources.
 - [[opentitan]] · open-source silicon root of trust, shipping in Chromebooks since March 2026. 5 sources.
 - [[agentos]] · seL4-based I/O platform for agents: device-owning domains, Linux and FreeBSD guests under QEMU; agent services not yet booted. 1 source.
-- [[verus]] · verifier for Rust code with SMT solving; case studies, no kernel; AutoVerus writes proofs for it. 2 sources.
+- [[verus]] · verifier for Rust code with SMT solving; case studies, and a kernel (Atmosphere); AutoVerus writes proofs for it. 4 sources.
 - [[landlock]] · Linux sandbox a process applies to itself: filesystem, network, capability and namespace rules; part of the hardened-Linux route, and the base of OpenShell's filesystem layer. 3 sources.
 - [[preempt-rt]] · the Linux real-time configuration: preemptible kernel, threaded interrupts; no latency bound stated. 1 source.
 - [[cohesix]] · seL4-based control layer for edge AI fleets: a Queen decides what hosts' models may do; landing page only. 1 source.
@@ -45,6 +45,11 @@ The zOS part *agents* has no page yet; [[agent-operating-systems]] covers the de
 - [[qnx]] · commercial microkernel RTOS, the safety side of Halos on IGX Thor; leader in an analyst's ranking for robot safety. 3 sources.
 - [[pikeos]] · commercial separation kernel and hypervisor; IEC 61508 SIL 3 and ISO 26262 ASIL D listed by the vendor; untrusted ROS 2 beside certified control. 3 sources.
 - [[openshell]] · open-source sandbox runtime for agents: Landlock, seccomp, network namespaces and a policy engine; outbound traffic denied by default; credentials as placeholders; a Developer Preview in OpenShift AI 3.5. 3 sources.
+- [[atmosphere]] · microkernel in Rust verified with Verus (SOSP 2025): functional correctness, one noninterference proof, 3.32 lines of proof per line of code; big lock; no time budgets described. 2 sources.
+- [[agate]] · capability microkernel for agents with a userspace broker and user-response deadlines; unit-tested, not verified. 1 source.
+- [[specos]] · vision of an OS that verifies AI-written logic before its intents run, above a verified kernel; no implementation reported. 1 source.
+- [[typego]] · Python runtime that runs robot tasks as processes and keeps the model off the critical path; early prototype. 1 source.
+- [[intentcap]] · capability leases from task intent, checked outside the model (IntentCap), and a vision paper on the same idea. 2 sources.
 - [[mxc]] · Microsoft's policy-driven containment for agents on Windows, macOS and Linux, generally available as of 7 October 2026, with OpenShell integrated; no assurance claimed. 3 sources.
 
 ## Concepts
@@ -63,11 +68,11 @@ The zOS part *agents* has no page yet; [[agent-operating-systems]] covers the de
 - [[action-chunking]] · slow robot models emitting action sequences for a fast loop; no bound on delay. 4 sources.
 - [[ai-vulnerability-discovery]] · AI models finding software flaws at scale: DARPA's challenge and Anthropic's figures, the bottleneck moving to patching. 3 sources.
 - [[information-flow-control]] · labels for where data came from and who may see it; FIDES and CaMeL for agents; explicit flows only; refusals as a channel; Agent libOS. 8 sources.
-- [[proof-automation]] · machines proposing proof steps, Isabelle checking them; 77.6 % of a seL4 benchmark sample; Verus as a faster verifier. PROMISE as a second method; AutoVerus for Rust; a coding agent's compiler proofs in Lean; the OSDI version and the Selene benchmark; specification writing (OSVBench), AutoRocq, and verified against checked compiler passes. 14 sources.
+- [[proof-automation]] · machines proposing proof steps, Isabelle checking them; 77.6 % of a seL4 benchmark sample; Verus as a faster verifier. PROMISE as a second method; AutoVerus for Rust; a coding agent's compiler proofs in Lean; the OSDI version and the Selene benchmark; specification writing (OSVBench), AutoRocq, and verified against checked compiler passes. 15 sources.
 - [[memory-safe-code]] · new code in Rust instead of C: Android's memory-safety flaws below 20 % in 2025; the hardening rival to a verified base. 1 source.
 - [[mixed-criticality]] · software of different criticality on one platform; processor time as a capability in seL4 MCS; partitions under a hypervisor in commercial robot stacks. 7 sources.
 - [[model-context-protocol]] · the open protocol that connects agents to tools; three preprints measure its security, one runtime treats it as a client only. 5 sources.
-- [[agent-operating-systems]] · designs that put the limit on an agent in the OS layer: agentOS, Cohesix, KataOS, AgentKernel, AgenticOS, Agent libOS, Quine, OpenShell and MXC as shipped products; IBM's Agent-OS position paper. 13 sources.
+- [[agent-operating-systems]] · designs that put the limit on an agent in the OS layer: agentOS, Cohesix, KataOS, AgentKernel, AgenticOS, Agent libOS, Quine, OpenShell and MXC as shipped products; IBM's Agent-OS position paper. 19 sources.
 - [[safety-certification]] · proof versus certificate: what a certified kernel, a robot stack and seL4 each state; no certified seL4 product in the sources. 5 sources.
 
 ## Sources
@@ -196,3 +201,11 @@ The zOS part *agents* has no page yet; [[agent-operating-systems]] covers the de
 - [[2026-microsoft-windows-platform-security-agents]] · Build 2026: the MXC SDK in early preview, containment, identity and manageability as Windows primitives. report, full text.
 - [[2026-microsoft-execution-containers-policy-driven]] · MXC generally available: backends, policy areas, modes, "an agent cannot be its own security authority"; OpenShell integrated. report, full text.
 - [[2026-microsoft-windows-security-ignite-2026]] · Ignite 2026: the same direction for agents in one section of a broader security post. report, full text.
+- [[2025-chen-atmosphere-practical-verified]] · a verified Rust microkernel: 6K lines, 20.1K of proof, under 2.5 person-years, containers instead of capabilities, one big lock. proof, partly read.
+- [[nd-mars-research-atmosphere]] · the project page; states 7.5 to 1 proof to code where the paper says 3.32 to 1. report, full text.
+- [[2026-zhao-agate-capability-microkernels]] · Agate: capability microkernel with a trusted userspace broker and deadline scheduling for agents; no verification. progress, full text.
+- [[2026-li-formal-methods-harness]] · SpecOS: relational state, lambdas, intents held back until a two-phase check passes. design, full text.
+- [[2026-chen-typego-os-runtime]] · TypeGo: asynchronous OS-style runtime for a quadruped robot, 50 per cent lower per-step delay. progress, partly read.
+- [[2026-mohammadi-irreversibility-budget]] · a cumulative account of irreversible exposure, charged below the agents; fleets overdraw by up to 48 times without it. design, partly read.
+- [[2026-zheng-llm-agent-capabilities]] · IntentCap: single-use leases from four context sources, a deterministic checker, zero unsafe accepts in 3,746 replayed events. test, full text.
+- [[2026-lourenco-securing-agentic-ai]] · intent-driven capabilities enforced at the system-call boundary; challenges listed. design, full text.
