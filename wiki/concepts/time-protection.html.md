@@ -2,13 +2,15 @@
 
 > Closing timing channels between domains; prototypes on CVA6, proof for seL4 in progress.
 
-Concept · LLM reviewed · updated 2026-10-29 · 3 sources · https://silentzero.ooo/wiki/concepts/time-protection.html
+Concept · LLM reviewed · updated 2026-11-21 · 5 sources · https://silentzero.ooo/wiki/concepts/time-protection.html
 
 Memory protection stops one program from reading another's memory, but programs that share hardware still change its microarchitectural state, such as caches, predictors and TLBs, and the other can measure the effect in time. Time protection closes these timing channels: partition what can be partitioned in space, flush the rest on every switch between security domains, and pad the switch to a fixed duration ([Where are we with Time Protection?](https://silentzero.ooo/wiki/sources/2026-trustworthy-where-are-we.html.md), [Systematic Prevention of On-Core Timing Channels](https://silentzero.ooo/wiki/sources/2022-wistoff-systematic-prevention-core.html.md), §2.3, §3, §4.3).
 
 ## What it needs from hardware
 
 Off-core caches can be partitioned by the OS through cache colouring. On-core state cannot be partitioned efficiently and must be reset, which needs an instruction the mainstream ISAs lack. On [CVA6](https://silentzero.ooo/wiki/systems/cva6.html.md), a custom `fence.t` that resets all non-architectural state closed every measured on-core channel at under 1 per cent cost ([Systematic Prevention of On-Core Timing Channels](https://silentzero.ooo/wiki/sources/2022-wistoff-systematic-prevention-core.html.md)). The flush must itself be padded, or its duration leaks.
+
+On OpenC910, an out-of-order core, software-assisted `fence.t.s` closed the three on-core channels the authors measured (L1 data cache, L1 instruction cache, branch history table) at 1.0 per cent average overhead on Splash-2, per conference slides ([fence.t.s for out-of-order cores](https://silentzero.ooo/wiki/sources/2024-wistoff-fence-t-s.html.md)). The seL4 group reports that hardware flush primitives made verification feasible, while flushing by prefetching is infeasible to verify without an accurate model of each cache's replacement policy; so it also asks for flushes of selected last-level cache partitions. Cheshire (on CVA6) offers `fence.t` and such a partitionable last-level cache ([two interfaces for seL4 kernel verification](https://silentzero.ooo/wiki/sources/2026-sison-two-interfaces-sel4.html.md), §1).
 
 ## State for seL4, October 2026
 
@@ -19,12 +21,15 @@ Off-core caches can be partitioned by the OS through cache colouring. On-core st
 ## Open questions
 
 - Cross-core channels on multicore systems are outside [Systematic Prevention of On-Core Timing Channels](https://silentzero.ooo/wiki/sources/2022-wistoff-systematic-prevention-core.html.md).
+- Whether temporal-fence mechanisms get specified across RISC-V implementations; the `fence.t.s` authors name a Timing Fences task group but report no status ([fence.t.s for out-of-order cores](https://silentzero.ooo/wiki/sources/2024-wistoff-fence-t-s.html.md)).
 - Whether Silent Zero needs time protection between agent and control loop for confidentiality only, or also for predictable timing. See [The kernel](https://silentzero.ooo/wiki/design/kernel.html.md).
 
 ## Sources
 
+- [fence.t.s for out-of-order cores](https://silentzero.ooo/wiki/sources/2024-wistoff-fence-t-s.html.md)
 - [Formally Verified Software in the Real World](https://silentzero.ooo/wiki/sources/2018-klein-formally-verified-software.html.md)
 - [Systematic Prevention of On-Core Timing Channels](https://silentzero.ooo/wiki/sources/2022-wistoff-systematic-prevention-core.html.md)
+- [two interfaces for seL4 kernel verification](https://silentzero.ooo/wiki/sources/2026-sison-two-interfaces-sel4.html.md)
 - [Where are we with Time Protection?](https://silentzero.ooo/wiki/sources/2026-trustworthy-where-are-we.html.md)
 
 ## Related pages

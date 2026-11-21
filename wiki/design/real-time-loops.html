@@ -469,7 +469,7 @@ p.other { margin-top: 2.2rem; color: var(--muted); font-size: 0.95rem; }
     <div class="titleblock">
       <h1 class="name">Real-time loops</h1>
       <p class="sub">the loops that move the motors: asynchronous chunks from slow models, observed timings, no proven bound yet.</p>
-      <p class="ver">Design · <a href="/wiki/#how">LLM reviewed</a> · updated 20 Nov 2026 · 10 sources</p>
+      <p class="ver">Design · <a href="/wiki/#how">LLM reviewed</a> · updated 21 Nov 2026 · 13 sources</p>
     </div>
   </div>
 </header>
@@ -539,13 +539,20 @@ p.other { margin-top: 2.2rem; color: var(--muted); font-size: 0.95rem; }
 </tr>
 <tr>
 <td data-label="Claim">Fixed context-switch time with timing-channel protection</td>
-<td data-label="State">prototype on CVA6</td>
+<td data-label="State">prototype on CVA6; also an OpenC910 prototype, padding length not given (<a href="/wiki/sources/2024-wistoff-fence-t-s.html">fence.t.s for out-of-order cores</a>)</td>
 <td data-label="Evidence">measurement</td>
 <td data-label="Source"><a href="/wiki/sources/2022-wistoff-systematic-prevention-core.html">Systematic Prevention of On-Core Timing Channels</a></td>
+</tr>
+<tr>
+<td data-label="Claim">Reaction to a sudden event through a chunking policy: a range set by inference latency and call interval, shortened by FASTER’s first-action sampling</td>
+<td data-label="State">measured on two consumer GPUs and one real arm; preprint, single-latency model, no bound</td>
+<td data-label="Evidence">measurement</td>
+<td data-label="Source"><a href="/wiki/sources/2026-lu-faster-rethinking-real.html">FASTER, reaction time of flow VLAs</a></td>
 </tr>
 </tbody>
 </table></div>
 <p>One timing reference on an edge platform: the barrier filter ran at every 50 ms step and a flow update every fifth step, both on the CPU, while the policy ran once per ten-action chunk on the integrated GPU, at 177.3 ms (p50) after trimming, against 343 ms in the released configuration; the trimming lowered task success by 4.17 percentage points on the 300 mm escape condition. No bound is proven (<a href="/wiki/sources/2026-agarwal-multi-link-safety.html">multi-link safety filtering for VLA policies</a>, §III-D, §V-B).</p>
+<p>Another: a Simplex decision module measured 0.0281 ms mean and 4.13 ms worst case over 81,749 cycles on a 35 W processor, against a 50 ms control period; no bound is proven, and the authors name timing analysis as future work (<a href="/wiki/sources/2026-jager-context-dependent-runtime.html">context-dependent regions of attraction for a multi-candidate Simplex</a>, §IV-E1, §V).</p>
 <h2 id="the-paper-and-its-sources">The paper and its sources</h2>
 <ul>
 <li><p>Section 2.4 says robot stacks separate a reasoning model that plans and calls tools from an action model that drives the motors, citing <a href="/wiki/sources/2025-google-building-next-generation.html">Gemini Robotics-ER 1.5</a>. Confirmed for Google’s stack, where the reasoning model calls a vision-language-action model for motor control; its thinking budget makes its latency a setting; our reading: a setting, not a bound.</p></li>
@@ -556,13 +563,14 @@ p.other { margin-top: 2.2rem; color: var(--muted); font-size: 0.95rem; }
 <h2 id="open">Open</h2>
 <ul>
 <li><a href="/wiki/sources/2025-black-real-time-execution.html">Real-Time Execution of Action Chunking Flow Policies</a> estimates delay from history and does not bound it. The loop must have a defined behaviour when the next chunk does not arrive: hold, slow, stop.</li>
+<li>The paper’s condition for no interruption of streamed actions is that the next action arrives within one control period (<a href="/wiki/sources/2026-lu-faster-rethinking-real.html">FASTER, reaction time of flow VLAs</a>, appendix D.2); our reading: otherwise the buffer can run dry. What the loop does then is undecided.</li>
 <li>Microkit provides no timers or sleep API (<a href="/wiki/sources/nd-sel4-microkit-user-manual.html">seL4 Microkit: User Manual, v2.3.0</a>); a periodic loop needs a timer driver of its own.</li>
 <li>On Arm, a Microkit component allowed to make secure monitor calls voids the kernel’s WCET properties (<a href="/wiki/sources/nd-sel4-microkit-user-manual.html">seL4 Microkit: User Manual, v2.3.0</a>).</li>
 </ul>
 
 <h2 id="page-sources">Sources</h2>
 <p class="links-note">What this page rests on.</p>
-<ul class="linked-from"><li><a href="/wiki/sources/2026-jiang-futurertc-real-time.html">FutureRTC</a> <span class="kind">Jiang et al. 2026</span></li><li><a href="/wiki/sources/2025-google-building-next-generation.html">Gemini Robotics-ER 1.5</a> <span class="kind">Google 2025</span></li><li><a href="/wiki/sources/nd-linux-real-time-preemption.html">Linux kernel documentation: real-time preemption</a></li><li><a href="/wiki/sources/2026-sel4-functional-correctness-proof.html">MCS functional-correctness proof completed on RISC-V</a> <span class="kind">seL4 Foundation 2026</span></li><li><a href="/wiki/sources/2026-heiser-mcs-safety-os.html">MCS safety, an OS perspective</a> <span class="kind">Heiser 2026</span></li><li><a href="/wiki/sources/2026-agarwal-multi-link-safety.html">multi-link safety filtering for VLA policies</a> <span class="kind">Agarwal and Raghunathan 2026</span></li><li><a href="/wiki/sources/2025-black-real-time-execution.html">Real-Time Execution of Action Chunking Flow Policies</a> <span class="kind">Black, Galliker and Levine 2025</span></li><li><a href="/wiki/sources/nd-sel4-microkit-user-manual.html">seL4 Microkit: User Manual, v2.3.0</a></li><li><a href="/wiki/sources/2022-wistoff-systematic-prevention-core.html">Systematic Prevention of On-Core Timing Channels</a> <span class="kind">Wistoff et al. 2022</span></li><li><a href="/wiki/sources/2025-nesti-use-simplex-architecture.html">The Use of the Simplex Architecture to Enhance Safety in Deep-Learning-Powered Autonomous Systems</a> <span class="kind">Nesti et al. 2025</span></li></ul>
+<ul class="linked-from"><li><a href="/wiki/sources/2026-jager-context-dependent-runtime.html">context-dependent regions of attraction for a multi-candidate Simplex</a> <span class="kind">Jäger et al. 2026</span></li><li><a href="/wiki/sources/2026-lu-faster-rethinking-real.html">FASTER, reaction time of flow VLAs</a> <span class="kind">Lu et al. 2026</span></li><li><a href="/wiki/sources/2024-wistoff-fence-t-s.html">fence.t.s for out-of-order cores</a> <span class="kind">Wistoff, Heiser and Benini 2024</span></li><li><a href="/wiki/sources/2026-jiang-futurertc-real-time.html">FutureRTC</a> <span class="kind">Jiang et al. 2026</span></li><li><a href="/wiki/sources/2025-google-building-next-generation.html">Gemini Robotics-ER 1.5</a> <span class="kind">Google 2025</span></li><li><a href="/wiki/sources/nd-linux-real-time-preemption.html">Linux kernel documentation: real-time preemption</a></li><li><a href="/wiki/sources/2026-sel4-functional-correctness-proof.html">MCS functional-correctness proof completed on RISC-V</a> <span class="kind">seL4 Foundation 2026</span></li><li><a href="/wiki/sources/2026-heiser-mcs-safety-os.html">MCS safety, an OS perspective</a> <span class="kind">Heiser 2026</span></li><li><a href="/wiki/sources/2026-agarwal-multi-link-safety.html">multi-link safety filtering for VLA policies</a> <span class="kind">Agarwal and Raghunathan 2026</span></li><li><a href="/wiki/sources/2025-black-real-time-execution.html">Real-Time Execution of Action Chunking Flow Policies</a> <span class="kind">Black, Galliker and Levine 2025</span></li><li><a href="/wiki/sources/nd-sel4-microkit-user-manual.html">seL4 Microkit: User Manual, v2.3.0</a></li><li><a href="/wiki/sources/2022-wistoff-systematic-prevention-core.html">Systematic Prevention of On-Core Timing Channels</a> <span class="kind">Wistoff et al. 2022</span></li><li><a href="/wiki/sources/2025-nesti-use-simplex-architecture.html">The Use of the Simplex Architecture to Enhance Safety in Deep-Learning-Powered Autonomous Systems</a> <span class="kind">Nesti et al. 2025</span></li></ul>
 <h2 id="related-pages">Related pages</h2>
 <p class="links-note">Pages this one links to, and pages that link here.</p>
 <ul class="linked-from"><li><a href="/wiki/design/kernel.html">The kernel</a> <span class="kind">Design</span></li><li><a href="/wiki/design/safety-path.html">The safety path</a> <span class="kind">Design</span></li><li><a href="/wiki/concepts/action-chunking.html">Action chunking</a> <span class="kind">Concept</span></li><li><a href="/wiki/concepts/agent-operating-systems.html">Agent operating systems</a> <span class="kind">Concept</span></li><li><a href="/wiki/concepts/memory-safe-code.html">Memory-safe code</a> <span class="kind">Concept</span></li><li><a href="/wiki/concepts/mixed-criticality.html">Mixed criticality</a> <span class="kind">Concept</span></li><li><a href="/wiki/systems/preempt-rt.html">PREEMPT_RT</a> <span class="kind">System</span></li><li><a href="/wiki/sources/2026-lide-arsenal-assured-robotics.html">ARSENAL</a> <span class="kind">Source</span></li><li><a href="/wiki/sources/2025-heiser-fast-secure-adaptable.html">Fast, Secure, Adaptable: LionsOS Design, Implementation and Performance</a> <span class="kind">Source</span></li><li><a href="/wiki/sources/2026-steinder-towards-agent-operating.html">Towards an Agent Operating System</a> <span class="kind">Source</span></li></ul>

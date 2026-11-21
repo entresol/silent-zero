@@ -2,7 +2,7 @@
 
 > Real-time chunking keeps task throughput under up to 200 ms of extra delay, where synchronous chunking pauses. measurement, full text.
 
-Source · Black, Galliker and Levine 2025 · LLM reviewed · updated 2026-10-29 · https://silentzero.ooo/wiki/sources/2025-black-real-time-execution.html
+Source · Black, Galliker and Levine 2025 · LLM reviewed · updated 2026-11-21 · https://silentzero.ooo/wiki/sources/2025-black-real-time-execution.html
 
 Kevin Black, Manuel Y. Galliker and Sergey Levine (Physical Intelligence, UC Berkeley). NeurIPS 2025; read in arXiv version 2 of 5 December 2025. [arXiv](https://arxiv.org/abs/2506.07339).
 
@@ -30,11 +30,16 @@ A careful reader adds:
 ## Against the wiki
 
 - [Action chunking](https://silentzero.ooo/wiki/concepts/action-chunking.html.md): created with this source.
+- Reaction latency, which RTC leaves open, is measured in [FASTER, reaction time of flow VLAs](https://silentzero.ooo/wiki/sources/2026-lu-faster-rethinking-real.html.md).
 
 ## For Silent Zero
 
 - [Real-time loops](https://silentzero.ooo/wiki/design/real-time-loops.html.md): the paper (Section 2.4) says action models emit commands in chunks so a robot can hold a 50 Hz control rate while the slower model thinks, citing this source. Partly confirmed: π0.5 runs at 50 Hz with about 100 ms of model latency, but chunking alone pauses while the model thinks; holding the rate needs asynchronous execution such as RTC. Our reading: the paper's sentence credits chunking with what RTC adds.
 - Our reading: this is strong evidence for the paper's split. The learned model cannot meet the loop's deadline and does not try; it delivers chunks early, and a lower loop executes them on time. Silent Zero puts the guarantee into that lower loop and treats chunk arrival as untrusted and possibly late. The protective stop that caught the oscillations is the kind of safety function Silent Zero wants on the motion path, verified.
+
+## Sources
+
+- [FASTER, reaction time of flow VLAs](https://silentzero.ooo/wiki/sources/2026-lu-faster-rethinking-real.html.md)
 
 ## Related pages
 

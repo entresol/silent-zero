@@ -2,7 +2,7 @@
 
 > CaMeL: capabilities and policies around an untrusted model; 77 % utility, no successful attacks within its threat model. test, main text and appendices D, E, I.
 
-Source · Debenedetti et al. 2025 · LLM reviewed · updated 2026-10-29 · https://silentzero.ooo/wiki/sources/2025-debenedetti-defeating-prompt-injections.html
+Source · Debenedetti et al. 2025 · LLM reviewed · updated 2026-11-21 · https://silentzero.ooo/wiki/sources/2025-debenedetti-defeating-prompt-injections.html
 
 Edoardo Debenedetti, Ilia Shumailov, Tianqi Fan, Jamie Hayes, Nicholas Carlini, Daniel Fabian, Christoph Kern, Chongyang Shi, Andreas Terzis and Florian Tramèr (Google, Google DeepMind, ETH Zürich). Preprint; read in arXiv version 2 of 24 June 2025. [arXiv](https://arxiv.org/abs/2503.18813). The main text (§1 to §11) and appendices D, E and I (strict mode, the policies used, a worked side channel) were read; the other appendices hold result tables, prompts and transcripts.
 
@@ -40,11 +40,16 @@ A careful reader adds:
 - [The Attacker Moves Second](https://silentzero.ooo/wiki/sources/2026-nasr-attacker-moves-second.html.md): **complements** it; see there for why CaMeL was left out and for the caveat on utility.
 - [Prompt injection](https://silentzero.ooo/wiki/concepts/prompt-injection.html.md): CaMeL is the main defence around the model.
 - [Object capabilities](https://silentzero.ooo/wiki/concepts/object-capabilities.html.md): CaMeL's capabilities are labels for information flow, related to but distinct from object capabilities.
+- [CaMeLoT, a static check of an agent's plan on top of CaMeL](https://silentzero.ooo/wiki/sources/2026-nikolaou-camelot-camel-orchestrated.html.md): **extends** it: a static temporal plan check before execution, with CaMeL's run-time policies kept. CaMeLoT says the CaMeL paper named lack of formality as a limitation and that CaMeL has no whole-execution specification language.
 
 ## For Silent Zero
 
 - [The broker](https://silentzero.ooo/wiki/design/broker.html.md): the paper's Table 1 cites "CaMeL solves 77 % of tasks with provable security versus 84 % undefended". Confirmed as the abstract states it. Our reading: "provable" here means a stated security property (PI-SEC) that holds by construction if the interpreter and policies are correct; the interpreter is not verified, and the security testing used static attacks.
 - Our reading: CaMeL is the closest existing design to what the paper's broker must do above the kernel: bind each action to recipients and data, check at every tool call, ask a person when policy says no. Its limits name the broker's open problems: who writes the policies, how approvals avoid fatigue, how to stop harmful sequences of individually allowed steps, and what the agent may do with instructions found in data.
+
+## Sources
+
+- [CaMeLoT, a static check of an agent's plan on top of CaMeL](https://silentzero.ooo/wiki/sources/2026-nikolaou-camelot-camel-orchestrated.html.md)
 
 ## Related pages
 
@@ -58,5 +63,6 @@ A careful reader adds:
 - [Causality laundering](https://silentzero.ooo/wiki/sources/2026-chinaei-causality-laundering-denial.html.md)
 - [Indirect prompt injection](https://silentzero.ooo/wiki/sources/2023-greshake-not-what-you.html.md)
 - [MOSAIC](https://silentzero.ooo/wiki/sources/2026-wu-mosaic-knowledge-guided.html.md)
+- [PACE, provenance-aware capability enforcement](https://silentzero.ooo/wiki/sources/2026-li-pace-provenance-aware.html.md)
 - [The Attacker Moves Second](https://silentzero.ooo/wiki/sources/2026-nasr-attacker-moves-second.html.md)
 - [ToolFence](https://silentzero.ooo/wiki/sources/2026-li-toolfence-fine-grained.html.md)

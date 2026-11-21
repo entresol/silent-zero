@@ -2,7 +2,7 @@
 
 > Out-of-band defences compared; Progent against a hand-made adaptive attack on a 7B model: 25.8 % to 4.2 % to 2.6 %. test, full text.
 
-Source · Narisetty et al. 2026 · LLM reviewed · updated 2026-11-05 · https://silentzero.ooo/wiki/sources/2026-narisetty-adaptive-evaluation-out.html
+Source · Narisetty et al. 2026 · LLM reviewed · updated 2026-11-21 · https://silentzero.ooo/wiki/sources/2026-narisetty-adaptive-evaluation-out.html
 
 Praneeth Narisetty, Shiva Nagendra Babu Kore, Uday Kumar Reddy Kattamanchi and Jayaram Kumarapu (LaunchSafe Research). "Adaptive Evaluation of Out-of-Band Defenses Against Prompt Injection in LLM Agents". [arXiv:2606.26479](https://arxiv.org/abs/2606.26479), version 1 of 25 June 2026. A preprint that calls its results preliminary and not peer-reviewed. Read in full.
 
@@ -34,10 +34,15 @@ A careful reader adds:
 - [Prompt injection](https://silentzero.ooo/wiki/concepts/prompt-injection.html.md): adds the first adaptive test in the wiki of a defence around the model, and a statement of what is still untested. It did not test CaMeL or FIDES.
 - [The broker](https://silentzero.ooo/wiki/design/broker.html.md): no change of state. The paper states the premise the broker rests on (the gate must not be a model) and says it has not been shown to survive an adaptive attacker. Our reading: its list of weak spots matches the broker's open questions on provenance, endorsement and implicit flows.
 - [Information-flow control](https://silentzero.ooo/wiki/concepts/information-flow-control.html.md): names provenance assignment as the trusted base of every labelling scheme.
+- [PACE, provenance-aware capability enforcement](https://silentzero.ooo/wiki/sources/2026-li-pace-provenance-aware.html.md): cites this work and runs its own small adaptive search against a deterministic mediator; LLM-mutator search only, one model, only out-of-authority goals.
 
 ## For Silent Zero
 
 The paper does not cite this source. It bears on [The broker](https://silentzero.ooo/wiki/design/broker.html.md) (state *tested* aimed for, *proven* as the target): a deterministic gate that holds against a hand-made adaptive attack on a weak model is a small data point, not evidence of the kind the broker's table calls for.
+
+## Sources
+
+- [PACE, provenance-aware capability enforcement](https://silentzero.ooo/wiki/sources/2026-li-pace-provenance-aware.html.md)
 
 ## Related pages
 

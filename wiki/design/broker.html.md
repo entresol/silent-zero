@@ -2,7 +2,7 @@
 
 > The only component that hands out authority: capability patterns, CaMeL and FIDES, why model-based defences fail, three agent-OS designs for the same job, CaMeL between agents; nothing proven yet.
 
-Design · LLM reviewed · updated 2026-11-20 · 26 sources · https://silentzero.ooo/wiki/design/broker.html
+Design · LLM reviewed · updated 2026-11-21 · 28 sources · https://silentzero.ooo/wiki/design/broker.html
 
 The only component in Silent Zero that hands out authority. It grants capabilities that are attenuated, time-limited and revocable, and it words every request a human sees, so the agent never does. It runs isolated and still belongs to the trusted base, because its decisions are the guarantee. It will be *tested* first, with *proven* as the target (paper, Section 3).
 
@@ -28,6 +28,7 @@ The only component in Silent Zero that hands out authority. It grants capabiliti
 | Binding each sensitive argument to where it may come from (the request, a named earlier tool) cuts hijacked arguments | 0.20 % attack success on AgentDojo with Qwen3-max (CaMeL 0.42 %), 0.90 % with GPT-4o, 0.80 % and 2.10 % for within-tool attacks; runtime 1.63 and 3.79 times the undefended agent; a model compiles the policy and judges grants | test; AgentDojo's fixed attacks, no formal guarantee, preprint | [ToolFence](https://silentzero.ooo/wiki/sources/2026-li-toolfence-fine-grained.html.md) |
 | A refusal reveals nothing the agent may not know | not shown; a preprint argues the opposite for tool-call monitors and proposes recording denials | argument and three constructed scenarios; single author, preprint | [Causality laundering](https://silentzero.ooo/wiki/sources/2026-chinaei-causality-laundering-denial.html.md) |
 | A deterministic gate holds against a hand-made adaptive attack | attack success 25.8 % undefended, 4.2 % defended, 2.6 % under the adaptive attack; utility 45.2 % to 27.1 % | one defence (Progent), whose model-based policy updater was the attack's target, one weak open model, one attack template; mean over three suites, one of which shows no attacks even undefended; preprint | [adaptive evaluation of out-of-band defenses](https://silentzero.ooo/wiki/sources/2026-narisetty-adaptive-evaluation-out.html.md) |
+| PACE checks tool calls against a capability compiled from the authenticated request | tested, not proven: in its benchmarks the schemas and policy were developed by the authors from public interfaces, task formats and development tests, then frozen (E.2); in the evaluated configuration low-impact calls (rule R2) and declared repairs can pass without full authority checking (§4.2, C.6, D.6); request compilation, effect labels and complete mediation are premises it does not prove | benchmarks | [PACE, provenance-aware capability enforcement](https://silentzero.ooo/wiki/sources/2026-li-pace-provenance-aware.html.md), §4.1, E.2 |
 | A proven broker | none in the sources | none | — |
 
 ## The paper and its sources
@@ -55,11 +56,14 @@ The IBM position paper lists tool mediation and identity as platform primitives,
 - [Causality laundering](https://silentzero.ooo/wiki/sources/2026-chinaei-causality-laundering-denial.html.md) argues that denied calls leak, since an agent can infer from a refusal what exists and pass it on later. It is a single-author preprint with three constructed scenarios, and the paper does not say what the broker returns on a refusal. Our reading: an agent that holds no capability to an object has no name to probe, which would narrow the channel; this is design intent and not a result of the source.
 
 - [Can CaMeLs Talk?](https://silentzero.ooo/wiki/sources/2026-peters-gill-can-camels.html.md) shows that CaMeL's guarantee does not carry over when one agent calls another as a tool: the parent's instruction text can carry untrusted data into the child's planner. The authors fix it with a trusted message and a separate data channel, in trees of agents only. Our reading: the paper has several untrusted agents and does not discuss agents calling each other; if Silent Zero lets agents delegate, the instruction a delegating agent writes is a channel the broker would have to control.
+- [PACE, provenance-aware capability enforcement](https://silentzero.ooo/wiki/sources/2026-li-pace-provenance-aware.html.md) checks each tool call against a capability compiled from the authenticated request, with a minimum cut over declared flow edges; it names request compilation, effect labels and complete mediation as premises it does not prove: a tested mediator, not a proven one.
+- [CaMeLoT, a static check of an agent's plan on top of CaMeL](https://silentzero.ooo/wiki/sources/2026-nikolaou-camelot-camel-orchestrated.html.md) adds a static temporal check of CaMeL's plan before any tool runs.
 
 ## Open
 
 - The integrity proof the broker relies on is not stated for MCS, and Microkit always uses MCS. Until it is, the kernel's guarantee under the broker is functional correctness only. See [The kernel](https://silentzero.ooo/wiki/design/kernel.html.md).
 - CaMeL's policies are defined by its engine; users, tool providers or automatic derivation are envisaged later ([Defeating Prompt Injections by Design (CaMeL)](https://silentzero.ooo/wiki/sources/2025-debenedetti-defeating-prompt-injections.html.md), §5.2, §10). For Silent Zero: who writes them, and from what?
+- [CaMeLoT, a static check of an agent's plan on top of CaMeL](https://silentzero.ooo/wiki/sources/2026-nikolaou-camelot-camel-orchestrated.html.md) adds a pre-execution model check of the plan (nuXmv, CTL) behind CaMeL's run-time checks; the rules are written by hand, and task rules are derived from the prompt via typed obligations. It reports no attack-success figures (preprint; coverage and agreement with CaMeL only).
 - Blocked calls go to a person, and too many approvals breed fatigue ([Defeating Prompt Injections by Design (CaMeL)](https://silentzero.ooo/wiki/sources/2025-debenedetti-defeating-prompt-injections.html.md), §9.2). In CaMeL's STRICT mode policies fired in about half the tasks run without attack, with wide differences between task suites (Appendix D). The paper adds that requests must be worded so the agent cannot imitate them, which needs a trusted path to a screen.
 - When a task is to act on instructions found in data, isolating the planner alone cannot help; policies and capabilities must carry the load ([Defeating Prompt Injections by Design (CaMeL)](https://silentzero.ooo/wiki/sources/2025-debenedetti-defeating-prompt-injections.html.md), §6.4).
 - Whether Silent Zero agents may call other agents, and what the broker then sees of the instruction passed between them ([Can CaMeLs Talk?](https://silentzero.ooo/wiki/sources/2026-peters-gill-can-camels.html.md)). The source covers trees of agents only.
@@ -78,6 +82,7 @@ The IBM position paper lists tool mediation and identity as platform primitives,
 - [AgentKernel](https://silentzero.ooo/wiki/sources/2026-zou-agentkernel-trust-native.html.md)
 - [AgentOS](https://silentzero.ooo/wiki/sources/2026-liu-agentos-application-silos.html.md)
 - [Announcing KataOS and Sparrow](https://silentzero.ooo/wiki/sources/2022-google-announcing-kataos-sparrow.html.md)
+- [CaMeLoT, a static check of an agent's plan on top of CaMeL](https://silentzero.ooo/wiki/sources/2026-nikolaou-camelot-camel-orchestrated.html.md)
 - [Can CaMeLs Talk?](https://silentzero.ooo/wiki/sources/2026-peters-gill-can-camels.html.md)
 - [Causality laundering](https://silentzero.ooo/wiki/sources/2026-chinaei-causality-laundering-denial.html.md)
 - [Cohesix, a research operating system for edge AI](https://silentzero.ooo/wiki/sources/2026-bower-cohesix-research-operating.html.md)
@@ -88,6 +93,7 @@ The IBM position paper lists tool mediation and identity as platform primitives,
 - [MCS functional-correctness proof completed on RISC-V](https://silentzero.ooo/wiki/sources/2026-sel4-functional-correctness-proof.html.md)
 - [MCS safety, an OS perspective](https://silentzero.ooo/wiki/sources/2026-heiser-mcs-safety-os.html.md)
 - [MOSAIC](https://silentzero.ooo/wiki/sources/2026-wu-mosaic-knowledge-guided.html.md)
+- [PACE, provenance-aware capability enforcement](https://silentzero.ooo/wiki/sources/2026-li-pace-provenance-aware.html.md)
 - [Robust Composition](https://silentzero.ooo/wiki/sources/2006-miller-robust-composition-towards.html.md)
 - [Securing AI agents with information-flow control](https://silentzero.ooo/wiki/sources/2025-costa-securing-ai-agents.html.md)
 - [seL4 Foundation: Verified Configurations](https://silentzero.ooo/wiki/sources/nd-sel4-verified-configurations.html.md)

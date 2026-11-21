@@ -2,7 +2,7 @@
 
 > References that both designate and authorise; permission versus authority; caretaker and membrane.
 
-Concept · LLM reviewed · updated 2026-11-05 · 6 sources · https://silentzero.ooo/wiki/concepts/object-capabilities.html
+Concept · LLM reviewed · updated 2026-11-21 · 7 sources · https://silentzero.ooo/wiki/concepts/object-capabilities.html
 
 A capability is a reference that indivisibly combines designating an object, the permission to use it, and the means to use it. In the object-capability model, a program can obtain a reference only by holding it from the start, by creating the object, by being created with it, or by being handed it by someone who holds it: "only connectivity begets connectivity" ([Robust Composition](https://silentzero.ooo/wiki/sources/2006-miller-robust-composition-towards.html.md), §9.1, §9.2).
 
@@ -22,6 +22,8 @@ A capability by itself gives full and lasting access. Restrictions are built fro
 - FIDES, like CaMeL, labels data for information flow; the labels convey no authority ([Securing AI agents with information-flow control](https://silentzero.ooo/wiki/sources/2025-costa-securing-ai-agents.html.md); our reading). See [Information-flow control](https://silentzero.ooo/wiki/concepts/information-flow-control.html.md).
 - Agent libOS builds typed capabilities in a library: resource, rights, expiry and use counts, with delegation that may narrow a grant but never widen it, and checks at the primitive that touches the resource. Its capabilities live in a Python process on a host and rest on that host ([Agent libOS](https://silentzero.ooo/wiki/sources/2026-zhang-agent-libos-runtime.html.md), §3.1, §9.1).
 
+PACE's "capabilities" are request-compiled records checked by the host (purpose, resource, arguments, budget, expiry, delegation depth) ([PACE, provenance-aware capability enforcement](https://silentzero.ooo/wiki/sources/2026-li-pace-provenance-aware.html.md), §4.1). Our reading: not tokens the agent holds, and closer to per-request policy than to object capabilities.
+
 ## Open questions
 
 - How kernel capabilities in seL4 map onto credentials for external services an agent calls. See [The broker](https://silentzero.ooo/wiki/design/broker.html.md).
@@ -32,6 +34,7 @@ A capability by itself gives full and lasting access. Restrictions are built fro
 - [CHERIoT, complete memory safety for embedded devices](https://silentzero.ooo/wiki/sources/2023-amar-cheriot-complete-memory.html.md)
 - [Defeating Prompt Injections by Design (CaMeL)](https://silentzero.ooo/wiki/sources/2025-debenedetti-defeating-prompt-injections.html.md)
 - [Formally Verified Software in the Real World](https://silentzero.ooo/wiki/sources/2018-klein-formally-verified-software.html.md)
+- [PACE, provenance-aware capability enforcement](https://silentzero.ooo/wiki/sources/2026-li-pace-provenance-aware.html.md)
 - [Robust Composition](https://silentzero.ooo/wiki/sources/2006-miller-robust-composition-towards.html.md)
 - [Securing AI agents with information-flow control](https://silentzero.ooo/wiki/sources/2025-costa-securing-ai-agents.html.md)
 
