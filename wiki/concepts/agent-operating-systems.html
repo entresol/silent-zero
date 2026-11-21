@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Agent operating systems · Silent Zero wiki</title>
-<meta name="description" content="designs that put the limit on an agent in the OS layer: agentOS, Cohesix, KataOS, AgentKernel, AgenticOS, Agent libOS, Quine; IBM’s Agent-OS position paper.">
+<meta name="description" content="designs that put the limit on an agent in the OS layer: agentOS, Cohesix, KataOS, AgentKernel, AgenticOS, Agent libOS, Quine, OpenShell and MXC as shipped products; IBM’s Agent-OS position paper.">
 <link rel="canonical" href="https://silentzero.ooo/wiki/concepts/agent-operating-systems.html">
 <link rel="alternate" type="text/markdown" href="/wiki/concepts/agent-operating-systems.html.md">
 <link rel="icon" href="/favicon.ico?v=227f1130" sizes="32x32">
@@ -468,8 +468,8 @@ p.other { margin-top: 2.2rem; color: var(--muted); font-size: 0.95rem; }
     <p class="crumbs"><a href="/">Silent Zero OS</a> · <a href="/wiki/">Wiki</a></p>
     <div class="titleblock">
       <h1 class="name">Agent operating systems</h1>
-      <p class="sub">designs that put the limit on an agent in the OS layer: agentOS, Cohesix, KataOS, AgentKernel, AgenticOS, Agent libOS, Quine; IBM’s Agent-OS position paper.</p>
-      <p class="ver">Concept · <a href="/wiki/#how">LLM reviewed</a> · updated 20 Nov 2026 · 8 sources</p>
+      <p class="sub">designs that put the limit on an agent in the OS layer: agentOS, Cohesix, KataOS, AgentKernel, AgenticOS, Agent libOS, Quine, OpenShell and MXC as shipped products; IBM’s Agent-OS position paper.</p>
+      <p class="ver">Concept · <a href="/wiki/#how">LLM reviewed</a> · updated 21 Nov 2026 · 13 sources</p>
     </div>
   </div>
 </header>
@@ -537,16 +537,30 @@ p.other { margin-top: 2.2rem; color: var(--muted); font-size: 0.95rem; }
 <td data-label="How it limits an agent">what the kernel gives any process; no capability model</td>
 <td data-label="Evidence">feasibility runs</td>
 </tr>
+<tr>
+<td data-label="Design"><a href="/wiki/systems/openshell.html">OpenShell</a></td>
+<td data-label="Where it sits">Linux (Landlock, seccomp, network namespaces) and, through MXC, Windows</td>
+<td data-label="How it limits an agent">a policy per sandbox; outbound traffic denied until a rule allows it; credentials as placeholders</td>
+<td data-label="Evidence">documentation and a vendor post; Developer Preview in OpenShift AI 3.5</td>
+</tr>
+<tr>
+<td data-label="Design"><a href="/wiki/systems/mxc.html">Microsoft Execution Containers (MXC)</a></td>
+<td data-label="Where it sits">Windows, macOS and Linux with the platform’s own process sandbox, plus session and WSL backends on Windows and a MicroVM backend (Windows and Linux, experimental)</td>
+<td data-label="How it limits an agent">a declared policy per workload for files, network, process and UI, enforced outside the agent</td>
+<td data-label="Evidence">vendor posts; generally available as of 7 October 2026</td>
+</tr>
 </tbody>
 </table></div>
-<p>Three of the seven build on seL4, the others on a host kernel, a hypervisor or an ordinary process model. The paper makes the remark that none of the designs it names has real-time control as its aim, and it does not name Quine; it holds for AgenticOS, Agent libOS and Quine as read here; for <a href="/wiki/systems/agentos.html">agentOS</a> whether it has a real-time aim is open.</p>
+<p>Three of the nine build on seL4, the others on a host kernel, a hypervisor or an ordinary process model. The paper makes the remark that none of the designs it names has real-time control as its aim, and it does not name Quine; it holds for AgenticOS, Agent libOS and Quine as read here; for <a href="/wiki/systems/agentos.html">agentOS</a> whether it has a real-time aim is open. The pages read on OpenShell and MXC name none either.</p>
 <ul>
-<li>IBM researchers argue for an “Agent-OS” for enterprise deployments with 13 platform primitives; their prototype, rossoctl, is a Kubernetes control plane with sidecars, authorization and an MCP gateway, limited to cloud and datacentre deployments. The paper reports no measurements and has no verified component (<a href="/wiki/sources/2026-steinder-towards-agent-operating.html">Towards an Agent Operating System</a>).</li>
+<li><p>IBM researchers argue for an “Agent-OS” for enterprise deployments with 13 platform primitives; their prototype, rossoctl, is a Kubernetes control plane with sidecars, authorization and an MCP gateway, limited to cloud and datacentre deployments. The paper reports no measurements and has no verified component (<a href="/wiki/sources/2026-steinder-towards-agent-operating.html">Towards an Agent Operating System</a>).</p></li>
+<li><p>The two industry sandboxes, <a href="/wiki/systems/openshell.html">OpenShell</a> and <a href="/wiki/systems/mxc.html">Microsoft Execution Containers (MXC)</a>, are products, not research designs: both are described by their vendors only, with no proof, audit or evaluation in the sources read. MXC says it is generally available and OpenShell is a Developer Preview in one distribution. NVIDIA has integrated OpenShell into MXC (<a href="/wiki/sources/2026-microsoft-execution-containers-policy-driven.html">Execution Containers, policy-driven containment for AI agents</a>).</p></li>
 </ul>
 <h2 id="what-they-share">What they share</h2>
 <ul>
 <li>The agent and the model are untrusted, and the check sits outside the model, in the designs that have one.</li>
 <li>Most bind authority to something finer than a user, a declared task, a capability or a ceiling; Quine has no capability model, and the KataOS announcement describes none.</li>
+<li>OpenShell and MXC grant by resource, such as a path, an endpoint, a binary, a method or a network destination; the pages read do not describe a grant bound to the recipient and data of one call (OpenShell’s HTTP rules look at the URL path, method and headers of each request, which is a narrower thing).</li>
 <li>AgenticOS requires that every external effect be recorded, and Agent libOS records the effects that pass through its primitives.</li>
 </ul>
 <h2 id="open-questions">Open questions</h2>
@@ -557,10 +571,10 @@ p.other { margin-top: 2.2rem; color: var(--muted); font-size: 0.95rem; }
 
 <h2 id="page-sources">Sources</h2>
 <p class="links-note">What this page rests on.</p>
-<ul class="linked-from"><li><a href="/wiki/sources/2026-zhang-agent-libos-runtime.html">Agent libOS</a> <span class="kind">Zhang 2026</span></li><li><a href="/wiki/sources/2026-zhao-agenticos-intent-oriented.html">AgenticOS</a> <span class="kind">Zhao et al. 2026</span></li><li><a href="/wiki/sources/2026-zou-agentkernel-trust-native.html">AgentKernel</a> <span class="kind">Zou et al. 2026</span></li><li><a href="/wiki/sources/2026-hubbard-agentos-operating-system.html">agentOS, an operating system for agents on seL4</a> <span class="kind">Hubbard 2026</span></li><li><a href="/wiki/sources/2022-google-announcing-kataos-sparrow.html">Announcing KataOS and Sparrow</a> <span class="kind">Google 2022</span></li><li><a href="/wiki/sources/2026-bower-cohesix-research-operating.html">Cohesix, a research operating system for edge AI</a> <span class="kind">Bower 2026</span></li><li><a href="/wiki/sources/2026-ke-quine-realizing-llm.html">Quine</a> <span class="kind">Ke 2026</span></li><li><a href="/wiki/sources/2026-steinder-towards-agent-operating.html">Towards an Agent Operating System</a> <span class="kind">Steinder and Franke 2026</span></li></ul>
+<ul class="linked-from"><li><a href="/wiki/sources/2026-zhang-agent-libos-runtime.html">Agent libOS</a> <span class="kind">Zhang 2026</span></li><li><a href="/wiki/sources/2026-zhao-agenticos-intent-oriented.html">AgenticOS</a> <span class="kind">Zhao et al. 2026</span></li><li><a href="/wiki/sources/2026-zou-agentkernel-trust-native.html">AgentKernel</a> <span class="kind">Zou et al. 2026</span></li><li><a href="/wiki/sources/2026-hubbard-agentos-operating-system.html">agentOS, an operating system for agents on seL4</a> <span class="kind">Hubbard 2026</span></li><li><a href="/wiki/sources/2022-google-announcing-kataos-sparrow.html">Announcing KataOS and Sparrow</a> <span class="kind">Google 2022</span></li><li><a href="/wiki/sources/2026-bower-cohesix-research-operating.html">Cohesix, a research operating system for edge AI</a> <span class="kind">Bower 2026</span></li><li><a href="/wiki/sources/2026-microsoft-execution-containers-policy-driven.html">Execution Containers, policy-driven containment for AI agents</a> <span class="kind">Microsoft 2026</span></li><li><a href="/wiki/sources/2026-red-hat-beyond-container-boundaries.html">Kernel-level agent security in OpenShift AI 3.5</a> <span class="kind">Red Hat 2026</span></li><li><a href="/wiki/sources/nd-nvidia-openshell-overview.html">NVIDIA: Overview of OpenShell</a></li><li><a href="/wiki/sources/2026-ke-quine-realizing-llm.html">Quine</a> <span class="kind">Ke 2026</span></li><li><a href="/wiki/sources/2026-steinder-towards-agent-operating.html">Towards an Agent Operating System</a> <span class="kind">Steinder and Franke 2026</span></li><li><a href="/wiki/sources/2026-microsoft-windows-platform-security-agents.html">Windows platform security for AI agents</a> <span class="kind">Microsoft 2026</span></li><li><a href="/wiki/sources/2026-microsoft-windows-security-ignite-2026.html">Windows security at Ignite</a> <span class="kind">Microsoft 2026</span></li></ul>
 <h2 id="related-pages">Related pages</h2>
 <p class="links-note">Pages this one links to, and pages that link here.</p>
-<ul class="linked-from"><li><a href="/wiki/design/real-time-loops.html">Real-time loops</a> <span class="kind">Design</span></li><li><a href="/wiki/design/broker.html">The broker</a> <span class="kind">Design</span></li><li><a href="/wiki/design/kernel.html">The kernel</a> <span class="kind">Design</span></li><li><a href="/wiki/systems/agentos.html">agentOS</a> <span class="kind">System</span></li><li><a href="/wiki/systems/cohesix.html">Cohesix</a> <span class="kind">System</span></li><li><a href="/wiki/systems/kataos.html">KataOS</a> <span class="kind">System</span></li></ul>
+<ul class="linked-from"><li><a href="/wiki/design/real-time-loops.html">Real-time loops</a> <span class="kind">Design</span></li><li><a href="/wiki/design/broker.html">The broker</a> <span class="kind">Design</span></li><li><a href="/wiki/design/kernel.html">The kernel</a> <span class="kind">Design</span></li><li><a href="/wiki/systems/agentos.html">agentOS</a> <span class="kind">System</span></li><li><a href="/wiki/systems/cohesix.html">Cohesix</a> <span class="kind">System</span></li><li><a href="/wiki/systems/kataos.html">KataOS</a> <span class="kind">System</span></li><li><a href="/wiki/systems/mxc.html">Microsoft Execution Containers (MXC)</a> <span class="kind">System</span></li><li><a href="/wiki/systems/openshell.html">OpenShell</a> <span class="kind">System</span></li></ul>
   </article>
 </div>
 <footer><div><span class="about"><span>Silent Zero OS</span><span class="sep"> · </span><span>Wiki</span><span class="sep"> · </span><span>Text <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></span></span><span class="links"><a href="/">Paper</a> <a href="https://github.com/entresol/silent-zero/tree/main/wiki">GitHub</a> <a href="https://unwritten.studio/impressum">Imprint</a></span></div></footer>

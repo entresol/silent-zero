@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Landlock · Silent Zero wiki</title>
-<meta name="description" content="Linux sandbox a process applies to itself: filesystem, network, capability and namespace rules; part of the hardened-Linux route.">
+<meta name="description" content="Linux sandbox a process applies to itself: filesystem, network, capability and namespace rules; part of the hardened-Linux route, and the base of OpenShell’s filesystem layer.">
 <link rel="canonical" href="https://silentzero.ooo/wiki/systems/landlock.html">
 <link rel="alternate" type="text/markdown" href="/wiki/systems/landlock.html.md">
 <link rel="icon" href="/favicon.ico?v=227f1130" sizes="32x32">
@@ -468,8 +468,8 @@ p.other { margin-top: 2.2rem; color: var(--muted); font-size: 0.95rem; }
     <p class="crumbs"><a href="/">Silent Zero OS</a> · <a href="/wiki/">Wiki</a></p>
     <div class="titleblock">
       <h1 class="name">Landlock</h1>
-      <p class="sub">Linux sandbox a process applies to itself: filesystem, network, capability and namespace rules; part of the hardened-Linux route.</p>
-      <p class="ver">System · <a href="/wiki/#how">LLM reviewed</a> · updated 3 Nov 2026 · 1 source</p>
+      <p class="sub">Linux sandbox a process applies to itself: filesystem, network, capability and namespace rules; part of the hardened-Linux route, and the base of OpenShell’s filesystem layer.</p>
+      <p class="ver">System · <a href="/wiki/#how">LLM reviewed</a> · updated 21 Nov 2026 · 3 sources</p>
     </div>
   </div>
 </header>
@@ -479,11 +479,11 @@ p.other { margin-top: 2.2rem; color: var(--muted); font-size: 0.95rem; }
   <article>
 <p>A Linux security module that lets a process, including an unprivileged one, restrict its own filesystem, network, capability and namespace rights, and those of its future children. Rulesets stack with the system-wide access controls (<a href="/wiki/sources/nd-linux-landlock-unprivileged-access.html">Linux kernel documentation: Landlock</a>). It is the sandboxing route the paper names for a hardened-Linux agent.</p>
 <h2 id="state-november-2026">State, November 2026</h2>
-<p>First in Linux 5.13; the documentation page, dated October 2026 and built for kernel 7.4.0-rc1, describes interface version 12, with network rules for TCP (version 4) and UDP (version 10) and rules for capabilities and namespaces (version 12). It limits rulesets to 16 layers and cannot restrict some special files (<a href="/wiki/sources/nd-linux-landlock-unprivileged-access.html">Linux kernel documentation: Landlock</a>).</p>
+<p>First in Linux 5.13; the documentation page, dated October 2026 and built for kernel 7.4.0-rc1, describes interface version 12, with network rules for TCP (version 4) and UDP (version 10) and rules for capabilities and namespaces (version 12). It limits rulesets to 16 layers and cannot restrict some special files (<a href="/wiki/sources/nd-linux-landlock-unprivileged-access.html">Linux kernel documentation: Landlock</a>). NVIDIA’s <a href="/wiki/systems/openshell.html">OpenShell</a> uses it for filesystem confinement in its sandboxes, beside seccomp and network namespaces (<a href="/wiki/sources/nd-nvidia-openshell-overview.html">NVIDIA: Overview of OpenShell</a>, <a href="/wiki/sources/2026-red-hat-beyond-container-boundaries.html">Kernel-level agent security in OpenShift AI 3.5</a>).</p>
 <h2 id="licence-and-code">Licence and code</h2>
 <p>Part of the Linux kernel; the sources read do not state the licence.</p>
 <h2 id="related">Related</h2>
-<p><a href="/wiki/systems/preempt-rt.html">PREEMPT_RT</a>, <a href="/wiki/concepts/object-capabilities.html">Object capabilities</a>, <a href="/wiki/concepts/confused-deputy.html">Confused deputy</a>, <a href="/wiki/concepts/memory-safe-code.html">Memory-safe code</a>.</p>
+<p><a href="/wiki/systems/preempt-rt.html">PREEMPT_RT</a>, <a href="/wiki/systems/openshell.html">OpenShell</a>, <a href="/wiki/concepts/object-capabilities.html">Object capabilities</a>, <a href="/wiki/concepts/confused-deputy.html">Confused deputy</a>, <a href="/wiki/concepts/memory-safe-code.html">Memory-safe code</a>.</p>
 <h2 id="open-questions">Open questions</h2>
 <ul>
 <li>Whether any assurance beyond testing exists for the module; the documentation read makes no claim.</li>
@@ -492,10 +492,10 @@ p.other { margin-top: 2.2rem; color: var(--muted); font-size: 0.95rem; }
 
 <h2 id="page-sources">Sources</h2>
 <p class="links-note">What this page rests on.</p>
-<ul class="linked-from"><li><a href="/wiki/sources/nd-linux-landlock-unprivileged-access.html">Linux kernel documentation: Landlock</a></li></ul>
+<ul class="linked-from"><li><a href="/wiki/sources/2026-red-hat-beyond-container-boundaries.html">Kernel-level agent security in OpenShift AI 3.5</a> <span class="kind">Red Hat 2026</span></li><li><a href="/wiki/sources/nd-linux-landlock-unprivileged-access.html">Linux kernel documentation: Landlock</a></li><li><a href="/wiki/sources/nd-nvidia-openshell-overview.html">NVIDIA: Overview of OpenShell</a></li></ul>
 <h2 id="related-pages">Related pages</h2>
 <p class="links-note">Pages this one links to, and pages that link here.</p>
-<ul class="linked-from"><li><a href="/wiki/design/broker.html">The broker</a> <span class="kind">Design</span></li><li><a href="/wiki/concepts/confused-deputy.html">Confused deputy</a> <span class="kind">Concept</span></li><li><a href="/wiki/concepts/memory-safe-code.html">Memory-safe code</a> <span class="kind">Concept</span></li><li><a href="/wiki/concepts/object-capabilities.html">Object capabilities</a> <span class="kind">Concept</span></li><li><a href="/wiki/systems/preempt-rt.html">PREEMPT_RT</a> <span class="kind">System</span></li><li><a href="/wiki/sources/nd-sysgo-robotics-humanoids.html">SYSGO: PikeOS for robotics and humanoids</a> <span class="kind">Source</span></li></ul>
+<ul class="linked-from"><li><a href="/wiki/design/broker.html">The broker</a> <span class="kind">Design</span></li><li><a href="/wiki/concepts/confused-deputy.html">Confused deputy</a> <span class="kind">Concept</span></li><li><a href="/wiki/concepts/memory-safe-code.html">Memory-safe code</a> <span class="kind">Concept</span></li><li><a href="/wiki/concepts/object-capabilities.html">Object capabilities</a> <span class="kind">Concept</span></li><li><a href="/wiki/systems/mxc.html">Microsoft Execution Containers (MXC)</a> <span class="kind">System</span></li><li><a href="/wiki/systems/openshell.html">OpenShell</a> <span class="kind">System</span></li><li><a href="/wiki/systems/preempt-rt.html">PREEMPT_RT</a> <span class="kind">System</span></li><li><a href="/wiki/sources/nd-sysgo-robotics-humanoids.html">SYSGO: PikeOS for robotics and humanoids</a> <span class="kind">Source</span></li></ul>
   </article>
 </div>
 <footer><div><span class="about"><span>Silent Zero OS</span><span class="sep"> · </span><span>Wiki</span><span class="sep"> · </span><span>Text <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></span></span><span class="links"><a href="/">Paper</a> <a href="https://github.com/entresol/silent-zero/tree/main/wiki">GitHub</a> <a href="https://unwritten.studio/impressum">Imprint</a></span></div></footer>
