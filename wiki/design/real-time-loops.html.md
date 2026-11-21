@@ -2,7 +2,7 @@
 
 > The loops that move the motors: asynchronous chunks from slow models, observed timings, no proven bound yet.
 
-Design · LLM reviewed · updated 2026-11-20 · 10 sources · https://silentzero.ooo/wiki/design/real-time-loops.html
+Design · LLM reviewed · updated 2026-11-21 · 13 sources · https://silentzero.ooo/wiki/design/real-time-loops.html
 
 The control loops at the bottom of Silent Zero move the motors on a fixed period and have the last word over motion. Learned models above them are slower and deliver commands early, in chunks; the loops execute them on time or fall back (paper, Sections 2.4 and 4).
 
@@ -22,9 +22,12 @@ The control loops at the bottom of Silent Zero move the motors on a fixed period
 | Isolated safe domain with the learned controller in the loop at a 4 ms period | worst observed round trip 3,976 µs over 10,000 samples, 24 µs margin, no bound | measurement on a hypervisor not claimed to be verified | [The Use of the Simplex Architecture to Enhance Safety in Deep-Learning-Powered Autonomous Systems](https://silentzero.ooo/wiki/sources/2025-nesti-use-simplex-architecture.html.md) |
 | Processor-time budgets enforced by the kernel | implemented in seL4 MCS | MCS functional-correctness proof on RISC-V; no theorem on temporal isolation | [MCS functional-correctness proof completed on RISC-V](https://silentzero.ooo/wiki/sources/2026-sel4-functional-correctness-proof.html.md), [MCS safety, an OS perspective](https://silentzero.ooo/wiki/sources/2026-heiser-mcs-safety-os.html.md), [The kernel](https://silentzero.ooo/wiki/design/kernel.html.md) |
 | Kernel WCET and schedulability | not yet | none | [The kernel](https://silentzero.ooo/wiki/design/kernel.html.md) |
-| Fixed context-switch time with timing-channel protection | prototype on CVA6 | measurement | [Systematic Prevention of On-Core Timing Channels](https://silentzero.ooo/wiki/sources/2022-wistoff-systematic-prevention-core.html.md) |
+| Fixed context-switch time with timing-channel protection | prototype on CVA6; also an OpenC910 prototype, padding length not given ([fence.t.s for out-of-order cores](https://silentzero.ooo/wiki/sources/2024-wistoff-fence-t-s.html.md)) | measurement | [Systematic Prevention of On-Core Timing Channels](https://silentzero.ooo/wiki/sources/2022-wistoff-systematic-prevention-core.html.md) |
+| Reaction to a sudden event through a chunking policy: a range set by inference latency and call interval, shortened by FASTER's first-action sampling | measured on two consumer GPUs and one real arm; preprint, single-latency model, no bound | measurement | [FASTER, reaction time of flow VLAs](https://silentzero.ooo/wiki/sources/2026-lu-faster-rethinking-real.html.md) |
 
 One timing reference on an edge platform: the barrier filter ran at every 50 ms step and a flow update every fifth step, both on the CPU, while the policy ran once per ten-action chunk on the integrated GPU, at 177.3 ms (p50) after trimming, against 343 ms in the released configuration; the trimming lowered task success by 4.17 percentage points on the 300 mm escape condition. No bound is proven ([multi-link safety filtering for VLA policies](https://silentzero.ooo/wiki/sources/2026-agarwal-multi-link-safety.html.md), §III-D, §V-B).
+
+Another: a Simplex decision module measured 0.0281 ms mean and 4.13 ms worst case over 81,749 cycles on a 35 W processor, against a 50 ms control period; no bound is proven, and the authors name timing analysis as future work ([context-dependent regions of attraction for a multi-candidate Simplex](https://silentzero.ooo/wiki/sources/2026-jager-context-dependent-runtime.html.md), §IV-E1, §V).
 
 ## The paper and its sources
 
@@ -37,11 +40,15 @@ One timing reference on an edge platform: the barrier filter ran at every 50 ms 
 ## Open
 
 - [Real-Time Execution of Action Chunking Flow Policies](https://silentzero.ooo/wiki/sources/2025-black-real-time-execution.html.md) estimates delay from history and does not bound it. The loop must have a defined behaviour when the next chunk does not arrive: hold, slow, stop.
+- The paper's condition for no interruption of streamed actions is that the next action arrives within one control period ([FASTER, reaction time of flow VLAs](https://silentzero.ooo/wiki/sources/2026-lu-faster-rethinking-real.html.md), appendix D.2); our reading: otherwise the buffer can run dry. What the loop does then is undecided.
 - Microkit provides no timers or sleep API ([seL4 Microkit: User Manual, v2.3.0](https://silentzero.ooo/wiki/sources/nd-sel4-microkit-user-manual.html.md)); a periodic loop needs a timer driver of its own.
 - On Arm, a Microkit component allowed to make secure monitor calls voids the kernel's WCET properties ([seL4 Microkit: User Manual, v2.3.0](https://silentzero.ooo/wiki/sources/nd-sel4-microkit-user-manual.html.md)).
 
 ## Sources
 
+- [context-dependent regions of attraction for a multi-candidate Simplex](https://silentzero.ooo/wiki/sources/2026-jager-context-dependent-runtime.html.md)
+- [FASTER, reaction time of flow VLAs](https://silentzero.ooo/wiki/sources/2026-lu-faster-rethinking-real.html.md)
+- [fence.t.s for out-of-order cores](https://silentzero.ooo/wiki/sources/2024-wistoff-fence-t-s.html.md)
 - [FutureRTC](https://silentzero.ooo/wiki/sources/2026-jiang-futurertc-real-time.html.md)
 - [Gemini Robotics-ER 1.5](https://silentzero.ooo/wiki/sources/2025-google-building-next-generation.html.md)
 - [Linux kernel documentation: real-time preemption](https://silentzero.ooo/wiki/sources/nd-linux-real-time-preemption.html.md)

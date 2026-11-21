@@ -2,7 +2,7 @@
 
 > The build system for static seL4 systems: protection domains, channels, budgets, one image.
 
-System · LLM reviewed · updated 2026-11-14 · 5 sources · https://silentzero.ooo/wiki/systems/microkit.html
+System · LLM reviewed · updated 2026-11-21 · 6 sources · https://silentzero.ooo/wiki/systems/microkit.html
 
 A small operating system on [seL4](https://silentzero.ooo/wiki/systems/sel4.html.md) for systems whose structure is fixed at build time. One XML description declares the protection domains, memory regions, channels and interrupts, and the Microkit tool turns it into a single bootable image on Arm and RISC-V ([seL4 Microkit: User Manual, v2.3.0](https://silentzero.ooo/wiki/sources/nd-sel4-microkit-user-manual.html.md)). [LionsOS](https://silentzero.ooo/wiki/systems/lionsos.html.md) is built with it ([Trustworthy Systems: LionsOS](https://silentzero.ooo/wiki/sources/2026-trustworthy-lionsos.html.md)).
 
@@ -28,6 +28,7 @@ Not yet covered by the wiki's sources.
 ## Open questions
 
 - How [IOMMU](https://silentzero.ooo/wiki/concepts/iommu.html.md)-backed IO address spaces work on Arm and RISC-V; the manual describes them in general terms and states the mapping explicitly only for x86.
+- The verification of Microkit's main handler loop by Paturel et al. assumes Hoare triples about seL4 system calls that have not been proved; proving them, including blocking Recv, is ongoing at UNSW ([two interfaces for seL4 kernel verification](https://silentzero.ooo/wiki/sources/2026-sison-two-interfaces-sel4.html.md), §2).
 - What it would take to prove that a system description and its generated capDL specification enforce the intended authority, as CAmkES did for its descriptions ([Formally Verified Software in the Real World](https://silentzero.ooo/wiki/sources/2018-klein-formally-verified-software.html.md), §5.2).
 
 ## Sources
@@ -37,6 +38,7 @@ Not yet covered by the wiki's sources.
 - [seL4 Microkit: User Manual, v2.3.0](https://silentzero.ooo/wiki/sources/nd-sel4-microkit-user-manual.html.md)
 - [Trustworthy Systems R&D update](https://silentzero.ooo/wiki/sources/2026-heiser-trustworthy-systems-update.html.md)
 - [Trustworthy Systems: LionsOS](https://silentzero.ooo/wiki/sources/2026-trustworthy-lionsos.html.md)
+- [two interfaces for seL4 kernel verification](https://silentzero.ooo/wiki/sources/2026-sison-two-interfaces-sel4.html.md)
 
 ## Related pages
 

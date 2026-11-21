@@ -1,9 +1,9 @@
 ---
 type: concept
 status: reviewed
-sources: [2009-klein-sel4-formal-verification, 2018-klein-formally-verified-software, nd-sel4-verified-configurations, 2026-sel4-functional-correctness-proof]
+sources: [2009-klein-sel4-formal-verification, 2018-klein-formally-verified-software, nd-sel4-verified-configurations, 2026-sel4-functional-correctness-proof, 2026-sison-two-interfaces-sel4]
 glossary: Functional correctness
-updated: 2026-10-29
+updated: 2026-11-21
 ---
 
 # Functional correctness
@@ -16,6 +16,7 @@ A program is functionally correct when every behaviour of its implementation is 
 - It says nothing about whether the specification is what a user wants. The authors grant this point to "a cynic" and answer that the specification is simpler and more abstract than the code ([[2009-klein-sel4-formal-verification]], §4.5).
 - It holds only under its assumptions: compiler, assembly, hardware, and for seL4 the boot code and cache and TLB maintenance ([[2009-klein-sel4-formal-verification]], §4.4, §4.5). Binary verification later removed the compiler from this list for ARMv7 ([[2018-klein-formally-verified-software]], §3.2).
 - It is the base for security proofs. Properties proved as Hoare triples about the abstract specification carry over to the code through refinement, though "not all security properties can be" stated that way ([[2009-klein-sel4-formal-verification]], §2.3). Integrity and intransitive non-interference have been proved for seL4 ([[2018-klein-formally-verified-software]], §3.2); how confidentiality reaches the code is not explained in the wiki's sources.
+- It has not been proved that seL4's abstract specification meets the Hoare triples that the English descriptions of system calls in the reference manual imply. The group works on it; Recv, including its blocking case with Signal, is the worked example, the work is to extend to more system calls, initially those the Microkit libraries use, and the proofs are described as almost complete for some motivating cases ([[2026-sison-two-interfaces-sel4]], §2).
 
 ## State for seL4, October 2026
 

@@ -1,9 +1,9 @@
 ---
 type: system
 status: reviewed
-sources: [2009-klein-sel4-formal-verification, 2018-klein-formally-verified-software, nd-sel4-verified-configurations, 2026-sel4-functional-correctness-proof, 2026-heiser-mcs-safety-os, 2026-trustworthy-guaranteeing-timeliness-mcs, nd-trustworthy-wcet-worst-case, 2026-sillitoe-resurrecting-sel4-wcet, 2026-sel4-release-17, 2026-he-neuro-symbolic-proof, 2022-google-announcing-kataos-sparrow, nd-trustworthy-proof-statistics, 2026-proofcraft-sel4-security-proofs, 2026-heiser-sel4-operating-systems, 2026-heiser-trustworthy-systems-update]
+sources: [2009-klein-sel4-formal-verification, 2018-klein-formally-verified-software, nd-sel4-verified-configurations, 2026-sel4-functional-correctness-proof, 2026-heiser-mcs-safety-os, 2026-trustworthy-guaranteeing-timeliness-mcs, nd-trustworthy-wcet-worst-case, 2026-sillitoe-resurrecting-sel4-wcet, 2026-sel4-release-17, 2026-he-neuro-symbolic-proof, 2022-google-announcing-kataos-sparrow, nd-trustworthy-proof-statistics, 2026-proofcraft-sel4-security-proofs, 2026-heiser-sel4-operating-systems, 2026-heiser-trustworthy-systems-update, 2026-sison-two-interfaces-sel4]
 glossary: seL4
-updated: 2026-11-14
+updated: 2026-11-21
 ---
 
 # seL4
@@ -23,6 +23,8 @@ A microkernel of the L4 family whose C implementation has a machine-checked proo
 | Multicore | verification in progress; the verified scope is single-core, with a multikernel configuration under way | [[2026-heiser-mcs-safety-os]]; [[2026-heiser-sel4-operating-systems]] (article dated April to June 2026); slides of September 2026 compare SMP and multikernel by benchmark and state no proof status ([[2026-heiser-trustworthy-systems-update]]) |
 
 An overview by Heiser (published 30 April, current version 26 June 2026) says the MCS time mechanisms were then outside the proofs, with verification expected in 2027; its version date is three days before the announcement of 29 June 2026 above ([[2026-heiser-sel4-operating-systems]]). The documentation page's RISC-V section still called the MCS verification ongoing on 23 October 2026 ([[nd-sel4-verified-configurations]]).
+
+The verification of Microkit's main handler loop by Paturel et al. assumes Hoare triples about seL4 system calls that have not been proved; proving them, including blocking Recv, is ongoing at UNSW ([[2026-sison-two-interfaces-sel4]], §2). See [[microkit]].
 
 ## Size and cost
 

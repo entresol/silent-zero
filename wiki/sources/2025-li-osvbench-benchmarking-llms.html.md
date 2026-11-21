@@ -52,6 +52,7 @@ A careful reader adds the following.
 - [Functional correctness](https://silentzero.ooo/wiki/concepts/functional-correctness.html.md)
 - [Proof automation](https://silentzero.ooo/wiki/concepts/proof-automation.html.md)
 - [seL4](https://silentzero.ooo/wiki/systems/sel4.html.md)
+- [CaMeLoT, a static check of an agent's plan on top of CaMeL](https://silentzero.ooo/wiki/sources/2026-nikolaou-camelot-camel-orchestrated.html.md)
 - [Neuro-symbolic proof generation for seL4](https://silentzero.ooo/wiki/sources/2026-he-neuro-symbolic-proof.html.md)
 - [seL4, Formal Verification of an OS Kernel](https://silentzero.ooo/wiki/sources/2009-klein-sel4-formal-verification.html.md)
 - [Selene](https://silentzero.ooo/wiki/sources/2024-zhang-selene-pioneering-automated.html.md)

@@ -2,7 +2,7 @@
 
 > Instructions hidden in data an agent reads; heuristic defences fail, defences around the model hold within limits; benign command chains through shared state beat two of them; CaMeL does not carry over between agents; argument-level authorization and refusals as a leak; MCP measured.
 
-Concept · LLM reviewed · updated 2026-11-19 · 12 sources · https://silentzero.ooo/wiki/concepts/prompt-injection.html
+Concept · LLM reviewed · updated 2026-11-21 · 14 sources · https://silentzero.ooo/wiki/concepts/prompt-injection.html
 
 An attacker places instructions in data that a language-model agent reads, such as an email, a document or a web page, so that the agent acts on them instead of on its user's request. A jailbreak, by contrast, is the user working against the model designer's intent ([The Attacker Moves Second](https://silentzero.ooo/wiki/sources/2026-nasr-attacker-moves-second.html.md), §5). The *indirect* variant, with the instructions placed in data the application retrieves rather than typed by its user, was analysed in 2023 in what its authors present as the first systematic treatment, with demonstrations against Bing Chat and applications built on GPT-4 ([Indirect prompt injection](https://silentzero.ooo/wiki/sources/2023-greshake-not-what-you.html.md)).
 
@@ -21,6 +21,8 @@ An October 2026 preprint shows that the guarantee of CaMeL does not carry over t
 
 Two further preprints bear on the defences around the model. ToolFence compiles a typed authorization blueprint from the user's request, with a model call that sees only the request and the tool schemas, and checks every tool call against it with a deterministic monitor; a model judge may grant capabilities the blueprint missed, seeing their shape and not the argument values. On AgentDojo it reached 0.20 per cent attack success with Qwen3-max against 0.42 per cent for CaMeL, with a lower runtime cost, against AgentDojo's fixed attacks; the authors claim no formal guarantee ([ToolFence](https://silentzero.ooo/wiki/sources/2026-li-toolfence-fine-grained.html.md)). A single-author preprint argues that a denied tool call is itself a channel, since the agent can infer from the refusal what exists and pass it on, and proposes a monitor that records denials; its evidence is three constructed scenarios ([Causality laundering](https://silentzero.ooo/wiki/sources/2026-chinaei-causality-laundering-denial.html.md)).
 
+A September 2026 preprint, CaMeLoT, adds a static plan check on top of CaMeL that rejects plans violating temporal rules (ordering, approval, liveness) before any tool runs; it measures coverage and agreement with CaMeL, not attack success ([CaMeLoT, a static check of an agent's plan on top of CaMeL](https://silentzero.ooo/wiki/sources/2026-nikolaou-camelot-camel-orchestrated.html.md)). PACE, a preprint, ran a reduced-scale adaptive search on one open model (30 out-of-authority AgentDojo goals, a mutator, 50 episodes each) and got 0 of 30 successes against PACE and 21 of 30 undefended; it did not attack goals inside the granted authority, and 59.6 per cent of AgentDojo pairs were out of authority already ([PACE, provenance-aware capability enforcement](https://silentzero.ooo/wiki/sources/2026-li-pace-provenance-aware.html.md), §5.2, E.2, F.2).
+
 ## Open questions
 
 - When the user asks the agent to follow instructions found in data, data becomes control; isolating the planner alone cannot stop it, and policies and capabilities have to carry the load ([Defeating Prompt Injections by Design (CaMeL)](https://silentzero.ooo/wiki/sources/2025-debenedetti-defeating-prompt-injections.html.md), §6.4).
@@ -31,6 +33,7 @@ Two further preprints bear on the defences around the model. ToolFence compiles 
 
 - [adaptive evaluation of out-of-band defenses](https://silentzero.ooo/wiki/sources/2026-narisetty-adaptive-evaluation-out.html.md)
 - [breaking the protocol](https://silentzero.ooo/wiki/sources/2026-maloyan-breaking-protocol-security.html.md)
+- [CaMeLoT, a static check of an agent's plan on top of CaMeL](https://silentzero.ooo/wiki/sources/2026-nikolaou-camelot-camel-orchestrated.html.md)
 - [Can CaMeLs Talk?](https://silentzero.ooo/wiki/sources/2026-peters-gill-can-camels.html.md)
 - [Causality laundering](https://silentzero.ooo/wiki/sources/2026-chinaei-causality-laundering-denial.html.md)
 - [Defeating Prompt Injections by Design (CaMeL)](https://silentzero.ooo/wiki/sources/2025-debenedetti-defeating-prompt-injections.html.md)
@@ -38,6 +41,7 @@ Two further preprints bear on the defences around the model. ToolFence compiles 
 - [MCP threat modelling and tool poisoning](https://silentzero.ooo/wiki/sources/2026-huang-model-context-protocol.html.md)
 - [MCP-38](https://silentzero.ooo/wiki/sources/2026-shen-mcp-38-comprehensive.html.md)
 - [MOSAIC](https://silentzero.ooo/wiki/sources/2026-wu-mosaic-knowledge-guided.html.md)
+- [PACE, provenance-aware capability enforcement](https://silentzero.ooo/wiki/sources/2026-li-pace-provenance-aware.html.md)
 - [Securing AI agents with information-flow control](https://silentzero.ooo/wiki/sources/2025-costa-securing-ai-agents.html.md)
 - [The Attacker Moves Second](https://silentzero.ooo/wiki/sources/2026-nasr-attacker-moves-second.html.md)
 - [ToolFence](https://silentzero.ooo/wiki/sources/2026-li-toolfence-fine-grained.html.md)

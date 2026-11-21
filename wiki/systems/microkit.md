@@ -1,9 +1,9 @@
 ---
 type: system
 status: reviewed
-sources: [nd-sel4-microkit-user-manual, 2026-trustworthy-lionsos, 2018-klein-formally-verified-software, 2026-microkit-release-2-4-0, 2026-heiser-trustworthy-systems-update]
+sources: [nd-sel4-microkit-user-manual, 2026-trustworthy-lionsos, 2018-klein-formally-verified-software, 2026-microkit-release-2-4-0, 2026-heiser-trustworthy-systems-update, 2026-sison-two-interfaces-sel4]
 glossary: Microkit
-updated: 2026-11-14
+updated: 2026-11-21
 ---
 
 # Microkit
@@ -32,4 +32,5 @@ Not yet covered by the wiki's sources.
 ## Open questions
 
 - How [[iommu|IOMMU]]-backed IO address spaces work on Arm and RISC-V; the manual describes them in general terms and states the mapping explicitly only for x86.
+- The verification of Microkit's main handler loop by Paturel et al. assumes Hoare triples about seL4 system calls that have not been proved; proving them, including blocking Recv, is ongoing at UNSW ([[2026-sison-two-interfaces-sel4]], §2).
 - What it would take to prove that a system description and its generated capDL specification enforce the intended authority, as CAmkES did for its descriptions ([[2018-klein-formally-verified-software]], §5.2).

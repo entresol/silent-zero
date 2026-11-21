@@ -2,7 +2,7 @@
 
 > The verified microkernel Silent Zero builds on: proofs per architecture and platform, cost, MCS, timing, HACMS.
 
-System · LLM reviewed · updated 2026-11-14 · 15 sources · https://silentzero.ooo/wiki/systems/sel4.html
+System · LLM reviewed · updated 2026-11-21 · 16 sources · https://silentzero.ooo/wiki/systems/sel4.html
 
 A microkernel of the L4 family whose C implementation has a machine-checked proof of [Functional correctness](https://silentzero.ooo/wiki/concepts/functional-correctness.html.md), first completed in 2009 for ARMv6 ([seL4, Formal Verification of an OS Kernel](https://silentzero.ooo/wiki/sources/2009-klein-sel4-formal-verification.html.md)). It provides a minimal set of mechanisms: threads, capabilities, virtual address spaces, IPC, notifications and interrupt delivery ([Formally Verified Software in the Real World](https://silentzero.ooo/wiki/sources/2018-klein-formally-verified-software.html.md), §3.1). Drivers run in user mode, except the kernel's timer ([seL4, Formal Verification of an OS Kernel](https://silentzero.ooo/wiki/sources/2009-klein-sel4-formal-verification.html.md), §3.3, §3.4). Its proofs are in Isabelle/HOL in the `seL4/l4v` repository ([seL4 Foundation: Verified Configurations](https://silentzero.ooo/wiki/sources/nd-sel4-verified-configurations.html.md)).
 
@@ -19,6 +19,8 @@ A microkernel of the L4 family whose C implementation has a machine-checked proo
 | Multicore | verification in progress; the verified scope is single-core, with a multikernel configuration under way | [MCS safety, an OS perspective](https://silentzero.ooo/wiki/sources/2026-heiser-mcs-safety-os.html.md); [seL4 for reliability](https://silentzero.ooo/wiki/sources/2026-heiser-sel4-operating-systems.html.md) (article dated April to June 2026); slides of September 2026 compare SMP and multikernel by benchmark and state no proof status ([Trustworthy Systems R&D update](https://silentzero.ooo/wiki/sources/2026-heiser-trustworthy-systems-update.html.md)) |
 
 An overview by Heiser (published 30 April, current version 26 June 2026) says the MCS time mechanisms were then outside the proofs, with verification expected in 2027; its version date is three days before the announcement of 29 June 2026 above ([seL4 for reliability](https://silentzero.ooo/wiki/sources/2026-heiser-sel4-operating-systems.html.md)). The documentation page's RISC-V section still called the MCS verification ongoing on 23 October 2026 ([seL4 Foundation: Verified Configurations](https://silentzero.ooo/wiki/sources/nd-sel4-verified-configurations.html.md)).
+
+The verification of Microkit's main handler loop by Paturel et al. assumes Hoare triples about seL4 system calls that have not been proved; proving them, including blocking Recv, is ongoing at UNSW ([two interfaces for seL4 kernel verification](https://silentzero.ooo/wiki/sources/2026-sison-two-interfaces-sel4.html.md), §2). See [Microkit](https://silentzero.ooo/wiki/systems/microkit.html.md).
 
 ## Size and cost
 
@@ -57,6 +59,7 @@ CAmkES, the multicore proof. The roadmap is in [seL4 Foundation: Development roa
 - [Trustworthy Systems n.d.: Proof Statistics](https://silentzero.ooo/wiki/sources/nd-trustworthy-proof-statistics.html.md)
 - [Trustworthy Systems R&D update](https://silentzero.ooo/wiki/sources/2026-heiser-trustworthy-systems-update.html.md)
 - [Trustworthy Systems: Guaranteeing timeliness of MCS on seL4](https://silentzero.ooo/wiki/sources/2026-trustworthy-guaranteeing-timeliness-mcs.html.md)
+- [two interfaces for seL4 kernel verification](https://silentzero.ooo/wiki/sources/2026-sison-two-interfaces-sel4.html.md)
 - [WCET analysis of seL4](https://silentzero.ooo/wiki/sources/nd-trustworthy-wcet-worst-case.html.md)
 
 ## Related pages

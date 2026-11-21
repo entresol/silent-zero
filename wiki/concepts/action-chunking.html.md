@@ -2,7 +2,7 @@
 
 > Slow robot models emitting action sequences for a fast loop; no bound on delay.
 
-Concept · LLM reviewed · updated 2026-11-05 · 3 sources · https://silentzero.ooo/wiki/concepts/action-chunking.html
+Concept · LLM reviewed · updated 2026-11-21 · 4 sources · https://silentzero.ooo/wiki/concepts/action-chunking.html
 
 A learned robot policy emits a sequence of future actions for each call, a *chunk*, and the robot executes several of them before the next call. This keeps motion consistent over time, but it costs reactivity, and switching between chunks can cause pauses or jumps; on its own it "does not fully address the latency problem" ([Real-Time Execution of Action Chunking Flow Policies](https://silentzero.ooo/wiki/sources/2025-black-real-time-execution.html.md), abstract, §1, §2).
 
@@ -12,7 +12,7 @@ Real-time chunking (RTC) computes the next chunk while the current one runs and 
 
 ## What it does not do
 
-It does not bound the delay. The scheme works while the inference delay stays within the chunk's slack, estimated from past delays. Such policies are often used above a faster loop that turns their actions into motor signals ([Real-Time Execution of Action Chunking Flow Policies](https://silentzero.ooo/wiki/sources/2025-black-real-time-execution.html.md), Algorithm 1, §5).
+It does not bound the delay. The scheme works while the inference delay stays within the chunk's slack, estimated from past delays. Such policies are often used above a faster loop that turns their actions into motor signals ([Real-Time Execution of Action Chunking Flow Policies](https://silentzero.ooo/wiki/sources/2025-black-real-time-execution.html.md), Algorithm 1, §5). Asynchronous execution also leaves the reaction delay; it follows the time to first action and the interval between calls, and a flow policy that finishes its first action in one denoising step shortens it; measured on two GPUs and two models ([FASTER, reaction time of flow VLAs](https://silentzero.ooo/wiki/sources/2026-lu-faster-rethinking-real.html.md), §2, §3.3, §4.1, Table 2).
 
 ## Above the chunks
 
@@ -24,6 +24,7 @@ A reasoning model can sit above the action model and call it as a tool; in Googl
 
 ## Sources
 
+- [FASTER, reaction time of flow VLAs](https://silentzero.ooo/wiki/sources/2026-lu-faster-rethinking-real.html.md)
 - [FutureRTC](https://silentzero.ooo/wiki/sources/2026-jiang-futurertc-real-time.html.md)
 - [Gemini Robotics-ER 1.5](https://silentzero.ooo/wiki/sources/2025-google-building-next-generation.html.md)
 - [Real-Time Execution of Action Chunking Flow Policies](https://silentzero.ooo/wiki/sources/2025-black-real-time-execution.html.md)

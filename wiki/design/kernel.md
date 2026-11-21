@@ -1,8 +1,8 @@
 ---
 type: design
 status: reviewed
-sources: [nd-sel4-microkit-user-manual, 2022-wistoff-systematic-prevention-core, 2026-trustworthy-where-are-we, 2009-klein-sel4-formal-verification, 2018-klein-formally-verified-software, nd-sel4-verified-configurations, 2026-sel4-functional-correctness-proof, 2026-heiser-mcs-safety-os, 2026-trustworthy-guaranteeing-timeliness-mcs, nd-trustworthy-wcet-worst-case, 2026-sillitoe-resurrecting-sel4-wcet, 2026-sel4-release-17, nd-sel4-sel4-roadmap, nd-trustworthy-proof-statistics, 2026-proofcraft-sel4-security-proofs, 2026-heiser-sel4-operating-systems, 2026-heiser-trustworthy-systems-update]
-updated: 2026-11-14
+sources: [nd-sel4-microkit-user-manual, 2022-wistoff-systematic-prevention-core, 2026-trustworthy-where-are-we, 2009-klein-sel4-formal-verification, 2018-klein-formally-verified-software, nd-sel4-verified-configurations, 2026-sel4-functional-correctness-proof, 2026-heiser-mcs-safety-os, 2026-trustworthy-guaranteeing-timeliness-mcs, nd-trustworthy-wcet-worst-case, 2026-sillitoe-resurrecting-sel4-wcet, 2026-sel4-release-17, nd-sel4-sel4-roadmap, nd-trustworthy-proof-statistics, 2026-proofcraft-sel4-security-proofs, 2026-heiser-sel4-operating-systems, 2026-heiser-trustworthy-systems-update, 2024-wistoff-fence-t-s, 2026-sison-two-interfaces-sel4]
+updated: 2026-11-21
 ---
 
 # The kernel
@@ -35,7 +35,7 @@ In zOS the kernel is [[sel4]] with its mixed-criticality extensions. It isolates
 | Sound instruction latencies for CVA6 | expected Q1 2027 | to be proved against the design | [[2026-sillitoe-resurrecting-sel4-wcet]] |
 | Verified scope of the proofs | single-core configurations; time mechanisms (MCS) not covered when Heiser's overview was published (April to June 2026) | statement by the article's author | [[2026-heiser-sel4-operating-systems]] |
 | Schedulability framework for MCS | planned, September 2027 | none yet | [[2026-heiser-mcs-safety-os]] |
-| Time protection against timing channels | implemented in research versions on Arm, x86, RISC-V; proof in progress | measurement on prototypes; no proof | [[2022-wistoff-systematic-prevention-core]], [[2026-trustworthy-where-are-we]] |
+| Time protection against timing channels | implemented in research versions on Arm, x86, RISC-V; proof in progress | measurement on prototypes; no proof | [[2022-wistoff-systematic-prevention-core]], [[2026-trustworthy-where-are-we]]; out-of-order, one core, measurement: [[2024-wistoff-fence-t-s]] |
 
 No current seL4 has a WCET bound on a 64-bit core. Budgets keep an agent from taking more than its share of time, but a deadline also needs the kernel's WCET and a schedulability analysis, and neither exists yet for MCS.
 
@@ -59,6 +59,7 @@ No current seL4 has a WCET bound on a 64-bit core. Budgets keep an agent from ta
 - The sources say nothing about whether the integrity and confidentiality proofs have been carried to the MCS configuration. Since Microkit always uses MCS, every Microkit-based zOS lacks them for now, and the [[broker]] relies on integrity.
 - The MCS proof is a functional-correctness proof. No source states a theorem that budgets keep one component from taking another's processor time; for zOS's claim that an agent cannot starve the control loop, that is *implemented*, not *proven*.
 - **The broker's time.** In MCS a passive server runs on its client's budget ([[2026-heiser-mcs-safety-os]]). Whether the zOS broker should be such a server is a design question for the [[static-system]].
+- **The gap between kernel and userland.** Userland verification such as Microkit's handler loop assumes certain Hoare-triple requirements about system calls; the triples the manual's English descriptions imply are not proved against the abstract specification, and the group's abstract describes proofs as almost complete for some motivating cases ([[2026-sison-two-interfaces-sel4]], §2). Our reading: a verified zOS component above seL4 inherits this assumption until it is closed.
 
 ## Not yet in the wiki
 

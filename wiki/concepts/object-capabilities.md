@@ -1,9 +1,9 @@
 ---
 type: concept
 status: reviewed
-sources: [2006-miller-robust-composition-towards, 2018-klein-formally-verified-software, 2025-debenedetti-defeating-prompt-injections, 2023-amar-cheriot-complete-memory, 2025-costa-securing-ai-agents, 2026-zhang-agent-libos-runtime]
+sources: [2006-miller-robust-composition-towards, 2018-klein-formally-verified-software, 2025-debenedetti-defeating-prompt-injections, 2023-amar-cheriot-complete-memory, 2025-costa-securing-ai-agents, 2026-zhang-agent-libos-runtime, 2026-li-pace-provenance-aware]
 glossary: Capability
-updated: 2026-11-05
+updated: 2026-11-21
 ---
 
 # Object capabilities
@@ -25,6 +25,8 @@ A capability by itself gives full and lasting access. Restrictions are built fro
 - In hardware, CHERI makes every pointer a capability with bounds and permissions that the processor checks on each memory access and that cannot be forged or widened. CHERIoT adapts it to 32-bit RISC-V embedded cores and adds revocation of capabilities to freed memory ([[2023-amar-cheriot-complete-memory]], §2.4, §3.3). See [[cheriot]].
 - FIDES, like CaMeL, labels data for information flow; the labels convey no authority ([[2025-costa-securing-ai-agents]]; our reading). See [[information-flow-control]].
 - Agent libOS builds typed capabilities in a library: resource, rights, expiry and use counts, with delegation that may narrow a grant but never widen it, and checks at the primitive that touches the resource. Its capabilities live in a Python process on a host and rest on that host ([[2026-zhang-agent-libos-runtime]], §3.1, §9.1).
+
+PACE's "capabilities" are request-compiled records checked by the host (purpose, resource, arguments, budget, expiry, delegation depth) ([[2026-li-pace-provenance-aware]], §4.1). Our reading: not tokens the agent holds, and closer to per-request policy than to object capabilities.
 
 ## Open questions
 

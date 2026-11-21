@@ -4,8 +4,8 @@ id: 2026-nasr-attacker-moves-second
 status: reviewed
 read: full
 kind: test
-sources: [2026-nasr-attacker-moves-second]
-updated: 2026-10-29
+sources: [2026-nasr-attacker-moves-second, 2026-li-pace-provenance-aware]
+updated: 2026-11-21
 ---
 
 # Nasr et al. 2026: The Attacker Moves Second
@@ -41,6 +41,7 @@ A careful reader adds:
 
 - [[2025-debenedetti-defeating-prompt-injections]]: **complements** it. CaMeL is one of the plan-then-execute designs this paper skips, with the authors' own reason and their caveat on utility.
 - [[prompt-injection]]: created with this source.
+- [[2026-li-pace-provenance-aware]]: cites this work and runs its own small adaptive search against a deterministic mediator; LLM-mutator search only, one model, only out-of-authority goals.
 
 ## For zOS
 

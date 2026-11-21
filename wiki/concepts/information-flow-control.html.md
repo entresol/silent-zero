@@ -2,7 +2,7 @@
 
 > Labels for where data came from and who may see it; FIDES and CaMeL for agents; explicit flows only; refusals as a channel; Agent libOS.
 
-Concept · LLM reviewed · updated 2026-11-19 · 6 sources · https://silentzero.ooo/wiki/concepts/information-flow-control.html
+Concept · LLM reviewed · updated 2026-11-21 · 8 sources · https://silentzero.ooo/wiki/concepts/information-flow-control.html
 
 Every piece of data carries labels for where it came from (integrity) and who may see it (confidentiality), and labels propagate with the data. A policy then decides from the labels whether an action may proceed, for instance whether an agent may send an email after reading an untrusted one ([Securing AI agents with information-flow control](https://silentzero.ooo/wiki/sources/2025-costa-securing-ai-agents.html.md), §1).
 
@@ -15,6 +15,8 @@ Every piece of data carries labels for where it came from (integrity) and who ma
 - **Agent libOS** joins labels conservatively (highest sensitivity, lowest integrity), clears each external recipient against a registry the host owns, and lets a person release one payload to one recipient without changing its label. It does not trust the plan and does not claim noninterference ([Agent libOS](https://silentzero.ooo/wiki/sources/2026-zhang-agent-libos-runtime.html.md), §3.3, §3.4, §8.3).
 - **AgenticOS** proposes labels on inputs and rules at output interfaces, with human confirmation for high-risk flows; it is a design without implementation ([AgenticOS](https://silentzero.ooo/wiki/sources/2026-zhao-agenticos-intent-oriented.html.md), §3.4).
 - A June 2026 survey of such defences calls the assignment of the first label the trusted base of every scheme, and finds it under-specified in all of them ([adaptive evaluation of out-of-band defenses](https://silentzero.ooo/wiki/sources/2026-narisetty-adaptive-evaluation-out.html.md), §8.2).
+
+CaMeLoT turns CaMeL's provenance into a conservative static taint on the plan (anything undecidable before execution counts as tainted) and does not handle reader sets, so confidentiality, directly, leaving them to CaMeL at run time ([CaMeLoT, a static check of an agent's plan on top of CaMeL](https://silentzero.ooo/wiki/sources/2026-nikolaou-camelot-camel-orchestrated.html.md), §3.2 for the lattice and taint rule; §3, §4, §5.1 for reader sets). PACE combines a minimum cut over declared flow edges with effect-authority checks, takes origin labels from deployment assignment as a stated premise, and says it does not establish noninterference ([PACE, provenance-aware capability enforcement](https://silentzero.ooo/wiki/sources/2026-li-pace-provenance-aware.html.md), §4.4, C.6).
 
 ## Authority is not information flow
 
@@ -31,8 +33,10 @@ Our reading: capabilities limit what a component can reach; labels limit where d
 - [adaptive evaluation of out-of-band defenses](https://silentzero.ooo/wiki/sources/2026-narisetty-adaptive-evaluation-out.html.md)
 - [Agent libOS](https://silentzero.ooo/wiki/sources/2026-zhang-agent-libos-runtime.html.md)
 - [AgenticOS](https://silentzero.ooo/wiki/sources/2026-zhao-agenticos-intent-oriented.html.md)
+- [CaMeLoT, a static check of an agent's plan on top of CaMeL](https://silentzero.ooo/wiki/sources/2026-nikolaou-camelot-camel-orchestrated.html.md)
 - [Causality laundering](https://silentzero.ooo/wiki/sources/2026-chinaei-causality-laundering-denial.html.md)
 - [Defeating Prompt Injections by Design (CaMeL)](https://silentzero.ooo/wiki/sources/2025-debenedetti-defeating-prompt-injections.html.md)
+- [PACE, provenance-aware capability enforcement](https://silentzero.ooo/wiki/sources/2026-li-pace-provenance-aware.html.md)
 - [Securing AI agents with information-flow control](https://silentzero.ooo/wiki/sources/2025-costa-securing-ai-agents.html.md)
 
 ## Related pages

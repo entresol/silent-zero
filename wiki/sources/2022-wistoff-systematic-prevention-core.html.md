@@ -2,7 +2,7 @@
 
 > Fence.t on CVA6: resetting all non-architectural state closes on-core timing channels at under 1 % cost. measurement, full text.
 
-Source · Wistoff et al. 2022 · LLM reviewed · updated 2026-10-29 · https://silentzero.ooo/wiki/sources/2022-wistoff-systematic-prevention-core.html
+Source · Wistoff et al. 2022 · LLM reviewed · updated 2026-11-21 · https://silentzero.ooo/wiki/sources/2022-wistoff-systematic-prevention-core.html
 
 Nils Wistoff, Moritz Schneider, Frank K. Gürkaynak, Gernot Heiser and Luca Benini (ETH Zürich, UNSW Sydney, University of Bologna). IEEE Transactions on Computers, 2022; read in the arXiv version 2 of 13 October 2025. [arXiv](https://arxiv.org/abs/2202.12029).
 
@@ -39,8 +39,12 @@ A careful reader adds:
 
 ## For Silent Zero
 
-- [The kernel](https://silentzero.ooo/wiki/design/kernel.html.md): the paper (Section 4) says closing timing side channels needs a hardware instruction that exists only as prototypes, citing this paper and Wistoff et al. 2024 (`fence.t.s` for out-of-order cores, not covered here). Confirmed for on-core state; off-core caches can be partitioned in software by colouring, as the paper here does for its L2.
+- [The kernel](https://silentzero.ooo/wiki/design/kernel.html.md): the paper (Section 4) says closing timing side channels needs a hardware instruction that exists only as prototypes, citing this paper and Wistoff et al. 2024 (`fence.t.s` for out-of-order cores, not covered here). It is covered in [fence.t.s for out-of-order cores](https://silentzero.ooo/wiki/sources/2024-wistoff-fence-t-s.html.md). Confirmed for on-core state; off-core caches can be partitioned in software by colouring, as the paper here does for its L2.
 - Our reading: for Silent Zero the agent and the control loop share hardware. Timing channels matter for confidentiality, the agent learning what it should not. For the loop's deadlines, the padded context switch is the relevant part: it makes switching cost a fixed, known quantity.
+
+## Sources
+
+- [fence.t.s for out-of-order cores](https://silentzero.ooo/wiki/sources/2024-wistoff-fence-t-s.html.md)
 
 ## Related pages
 
@@ -49,4 +53,5 @@ A careful reader adds:
 - [Time protection](https://silentzero.ooo/wiki/concepts/time-protection.html.md)
 - [CVA6](https://silentzero.ooo/wiki/systems/cva6.html.md)
 - [seL4](https://silentzero.ooo/wiki/systems/sel4.html.md)
+- [two interfaces for seL4 kernel verification](https://silentzero.ooo/wiki/sources/2026-sison-two-interfaces-sel4.html.md)
 - [Where are we with Time Protection?](https://silentzero.ooo/wiki/sources/2026-trustworthy-where-are-we.html.md)

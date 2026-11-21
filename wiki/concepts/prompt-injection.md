@@ -1,9 +1,9 @@
 ---
 type: concept
 status: reviewed
-sources: [2026-nasr-attacker-moves-second, 2025-debenedetti-defeating-prompt-injections, 2023-greshake-not-what-you, 2025-costa-securing-ai-agents, 2026-shen-mcp-38-comprehensive, 2026-wu-mosaic-knowledge-guided, 2026-peters-gill-can-camels, 2026-li-toolfence-fine-grained, 2026-chinaei-causality-laundering-denial, 2026-narisetty-adaptive-evaluation-out, 2026-maloyan-breaking-protocol-security, 2026-huang-model-context-protocol]
+sources: [2026-nasr-attacker-moves-second, 2025-debenedetti-defeating-prompt-injections, 2023-greshake-not-what-you, 2025-costa-securing-ai-agents, 2026-shen-mcp-38-comprehensive, 2026-wu-mosaic-knowledge-guided, 2026-peters-gill-can-camels, 2026-li-toolfence-fine-grained, 2026-chinaei-causality-laundering-denial, 2026-narisetty-adaptive-evaluation-out, 2026-maloyan-breaking-protocol-security, 2026-huang-model-context-protocol, 2026-nikolaou-camelot-camel-orchestrated, 2026-li-pace-provenance-aware]
 glossary: Prompt injection
-updated: 2026-11-19
+updated: 2026-11-21
 ---
 
 # Prompt injection
@@ -24,6 +24,8 @@ A July 2026 preprint adds an attack that carries no explicit malicious instructi
 An October 2026 preprint shows that the guarantee of CaMeL does not carry over to agents that call other agents. Untrusted data that one agent hands to another in the instruction text is read there as trusted, and changes the second agent's plan. The authors built such an attack. On their own multi-agent benchmark, averaged over five models, attack success was 12.9 per cent without CaMeL, 0.2 per cent with CaMeL on each agent and 0.0 per cent with a protocol that keeps data apart from instructions ([[2026-peters-gill-can-camels]]).
 
 Two further preprints bear on the defences around the model. ToolFence compiles a typed authorization blueprint from the user's request, with a model call that sees only the request and the tool schemas, and checks every tool call against it with a deterministic monitor; a model judge may grant capabilities the blueprint missed, seeing their shape and not the argument values. On AgentDojo it reached 0.20 per cent attack success with Qwen3-max against 0.42 per cent for CaMeL, with a lower runtime cost, against AgentDojo's fixed attacks; the authors claim no formal guarantee ([[2026-li-toolfence-fine-grained]]). A single-author preprint argues that a denied tool call is itself a channel, since the agent can infer from the refusal what exists and pass it on, and proposes a monitor that records denials; its evidence is three constructed scenarios ([[2026-chinaei-causality-laundering-denial]]).
+
+A September 2026 preprint, CaMeLoT, adds a static plan check on top of CaMeL that rejects plans violating temporal rules (ordering, approval, liveness) before any tool runs; it measures coverage and agreement with CaMeL, not attack success ([[2026-nikolaou-camelot-camel-orchestrated]]). PACE, a preprint, ran a reduced-scale adaptive search on one open model (30 out-of-authority AgentDojo goals, a mutator, 50 episodes each) and got 0 of 30 successes against PACE and 21 of 30 undefended; it did not attack goals inside the granted authority, and 59.6 per cent of AgentDojo pairs were out of authority already ([[2026-li-pace-provenance-aware]], §5.2, E.2, F.2).
 
 ## Open questions
 

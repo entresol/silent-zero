@@ -2,7 +2,7 @@
 
 > SeL4 with MCS as the Silent Zero kernel: proven (C-level correctness; MCS functional correctness on RISC-V), not stated for MCS (integrity, confidentiality), tested (HACMS), assumed (boot, IOMMU); no WCET bound on any 64-bit core yet; the roadmap dates MCS on AArch64 to Q3 2027.
 
-Design · LLM reviewed · updated 2026-11-14 · 17 sources · https://silentzero.ooo/wiki/design/kernel.html
+Design · LLM reviewed · updated 2026-11-21 · 19 sources · https://silentzero.ooo/wiki/design/kernel.html
 
 In Silent Zero the kernel is [seL4](https://silentzero.ooo/wiki/systems/sel4.html.md) with its mixed-criticality extensions. It isolates components, moves messages between them and hands out processor time, and it is the only code at its privilege level (paper, Section 3).
 
@@ -32,7 +32,7 @@ In Silent Zero the kernel is [seL4](https://silentzero.ooo/wiki/systems/sel4.htm
 | Sound instruction latencies for CVA6 | expected Q1 2027 | to be proved against the design | [Resurrecting seL4's WCET Analysis](https://silentzero.ooo/wiki/sources/2026-sillitoe-resurrecting-sel4-wcet.html.md) |
 | Verified scope of the proofs | single-core configurations; time mechanisms (MCS) not covered when Heiser's overview was published (April to June 2026) | statement by the article's author | [seL4 for reliability](https://silentzero.ooo/wiki/sources/2026-heiser-sel4-operating-systems.html.md) |
 | Schedulability framework for MCS | planned, September 2027 | none yet | [MCS safety, an OS perspective](https://silentzero.ooo/wiki/sources/2026-heiser-mcs-safety-os.html.md) |
-| Time protection against timing channels | implemented in research versions on Arm, x86, RISC-V; proof in progress | measurement on prototypes; no proof | [Systematic Prevention of On-Core Timing Channels](https://silentzero.ooo/wiki/sources/2022-wistoff-systematic-prevention-core.html.md), [Where are we with Time Protection?](https://silentzero.ooo/wiki/sources/2026-trustworthy-where-are-we.html.md) |
+| Time protection against timing channels | implemented in research versions on Arm, x86, RISC-V; proof in progress | measurement on prototypes; no proof | [Systematic Prevention of On-Core Timing Channels](https://silentzero.ooo/wiki/sources/2022-wistoff-systematic-prevention-core.html.md), [Where are we with Time Protection?](https://silentzero.ooo/wiki/sources/2026-trustworthy-where-are-we.html.md); out-of-order, one core, measurement: [fence.t.s for out-of-order cores](https://silentzero.ooo/wiki/sources/2024-wistoff-fence-t-s.html.md) |
 
 No current seL4 has a WCET bound on a 64-bit core. Budgets keep an agent from taking more than its share of time, but a deadline also needs the kernel's WCET and a schedulability analysis, and neither exists yet for MCS.
 
@@ -56,6 +56,7 @@ No current seL4 has a WCET bound on a 64-bit core. Budgets keep an agent from ta
 - The sources say nothing about whether the integrity and confidentiality proofs have been carried to the MCS configuration. Since Microkit always uses MCS, every Microkit-based Silent Zero lacks them for now, and the [The broker](https://silentzero.ooo/wiki/design/broker.html.md) relies on integrity.
 - The MCS proof is a functional-correctness proof. No source states a theorem that budgets keep one component from taking another's processor time; for Silent Zero's claim that an agent cannot starve the control loop, that is *implemented*, not *proven*.
 - **The broker's time.** In MCS a passive server runs on its client's budget ([MCS safety, an OS perspective](https://silentzero.ooo/wiki/sources/2026-heiser-mcs-safety-os.html.md)). Whether the Silent Zero broker should be such a server is a design question for the [The static system](https://silentzero.ooo/wiki/design/static-system.html.md).
+- **The gap between kernel and userland.** Userland verification such as Microkit's handler loop assumes certain Hoare-triple requirements about system calls; the triples the manual's English descriptions imply are not proved against the abstract specification, and the group's abstract describes proofs as almost complete for some motivating cases ([two interfaces for seL4 kernel verification](https://silentzero.ooo/wiki/sources/2026-sison-two-interfaces-sel4.html.md), §2). Our reading: a verified Silent Zero component above seL4 inherits this assumption until it is closed.
 
 ## Not yet in the wiki
 
@@ -63,6 +64,7 @@ The multicore proof itself. See also [Time protection](https://silentzero.ooo/wi
 
 ## Sources
 
+- [fence.t.s for out-of-order cores](https://silentzero.ooo/wiki/sources/2024-wistoff-fence-t-s.html.md)
 - [Formally Verified Software in the Real World](https://silentzero.ooo/wiki/sources/2018-klein-formally-verified-software.html.md)
 - [MCS functional-correctness proof completed on RISC-V](https://silentzero.ooo/wiki/sources/2026-sel4-functional-correctness-proof.html.md)
 - [MCS safety, an OS perspective](https://silentzero.ooo/wiki/sources/2026-heiser-mcs-safety-os.html.md)
@@ -78,6 +80,7 @@ The multicore proof itself. See also [Time protection](https://silentzero.ooo/wi
 - [Trustworthy Systems n.d.: Proof Statistics](https://silentzero.ooo/wiki/sources/nd-trustworthy-proof-statistics.html.md)
 - [Trustworthy Systems R&D update](https://silentzero.ooo/wiki/sources/2026-heiser-trustworthy-systems-update.html.md)
 - [Trustworthy Systems: Guaranteeing timeliness of MCS on seL4](https://silentzero.ooo/wiki/sources/2026-trustworthy-guaranteeing-timeliness-mcs.html.md)
+- [two interfaces for seL4 kernel verification](https://silentzero.ooo/wiki/sources/2026-sison-two-interfaces-sel4.html.md)
 - [WCET analysis of seL4](https://silentzero.ooo/wiki/sources/nd-trustworthy-wcet-worst-case.html.md)
 - [Where are we with Time Protection?](https://silentzero.ooo/wiki/sources/2026-trustworthy-where-are-we.html.md)
 

@@ -469,13 +469,13 @@ p.other { margin-top: 2.2rem; color: var(--muted); font-size: 0.95rem; }
     <div class="titleblock">
       <h1 class="name">Real-Time Execution of Action Chunking Flow Policies</h1>
       <p class="sub">real-time chunking keeps task throughput under up to 200 ms of extra delay, where synchronous chunking pauses. measurement, full text.</p>
-      <p class="ver">Source · Black, Galliker and Levine 2025 · <a href="/wiki/#how">LLM reviewed</a> · updated 29 Oct 2026</p>
+      <p class="ver">Source · Black, Galliker and Levine 2025 · <a href="/wiki/#how">LLM reviewed</a> · updated 21 Nov 2026</p>
     </div>
   </div>
 </header>
 <button class="menu" type="button" aria-controls="toc" aria-expanded="false" aria-label="Contents" hidden><span></span></button>
 <div class="layout">
-  <nav class="toc" id="toc" aria-label="Contents"><p>Contents</p><ol><li class="toc-back"><a href="/">← The paper</a></li><li class="toc-back"><a href="/wiki/">← Wiki index</a></li><li><a href="#top">↑ Top</a></li><li><a href="#what-it-shows">What it shows</a></li><li><a href="#how">How</a></li><li><a href="#limits">Limits</a></li><li><a href="#against-the-wiki">Against the wiki</a></li><li><a href="#for-zos">For Silent Zero</a></li><li><a href="#related-pages">Related pages</a></li></ol></nav>
+  <nav class="toc" id="toc" aria-label="Contents"><p>Contents</p><ol><li class="toc-back"><a href="/">← The paper</a></li><li class="toc-back"><a href="/wiki/">← Wiki index</a></li><li><a href="#top">↑ Top</a></li><li><a href="#what-it-shows">What it shows</a></li><li><a href="#how">How</a></li><li><a href="#limits">Limits</a></li><li><a href="#against-the-wiki">Against the wiki</a></li><li><a href="#for-zos">For Silent Zero</a></li><li><a href="#page-sources">Sources</a></li><li><a href="#related-pages">Related pages</a></li></ol></nav>
   <article>
 <p>Kevin Black, Manuel Y. Galliker and Sergey Levine (Physical Intelligence, UC Berkeley). NeurIPS 2025; read in arXiv version 2 of 5 December 2025. <a href="https://arxiv.org/abs/2506.07339" rel="noopener" target="_blank">arXiv</a>.</p>
 <h2 id="what-it-shows">What it shows</h2>
@@ -498,6 +498,7 @@ p.other { margin-top: 2.2rem; color: var(--muted); font-size: 0.95rem; }
 <h2 id="against-the-wiki">Against the wiki</h2>
 <ul>
 <li><a href="/wiki/concepts/action-chunking.html">Action chunking</a>: created with this source.</li>
+<li>Reaction latency, which RTC leaves open, is measured in <a href="/wiki/sources/2026-lu-faster-rethinking-real.html">FASTER, reaction time of flow VLAs</a>.</li>
 </ul>
 <h2 id="for-zos">For Silent Zero</h2>
 <ul>
@@ -505,6 +506,9 @@ p.other { margin-top: 2.2rem; color: var(--muted); font-size: 0.95rem; }
 <li>Our reading: this is strong evidence for the paper’s split. The learned model cannot meet the loop’s deadline and does not try; it delivers chunks early, and a lower loop executes them on time. Silent Zero puts the guarantee into that lower loop and treats chunk arrival as untrusted and possibly late. The protective stop that caught the oscillations is the kind of safety function Silent Zero wants on the motion path, verified.</li>
 </ul>
 
+<h2 id="page-sources">Sources</h2>
+<p class="links-note">What this page rests on.</p>
+<ul class="linked-from"><li><a href="/wiki/sources/2026-lu-faster-rethinking-real.html">FASTER, reaction time of flow VLAs</a> <span class="kind">Lu et al. 2026</span></li></ul>
 <h2 id="related-pages">Related pages</h2>
 <p class="links-note">Pages this one links to, and pages that link here.</p>
 <ul class="linked-from"><li><a href="/wiki/design/real-time-loops.html">Real-time loops</a> <span class="kind">Design</span></li><li><a href="/wiki/design/safety-path.html">The safety path</a> <span class="kind">Design</span></li><li><a href="/wiki/concepts/action-chunking.html">Action chunking</a> <span class="kind">Concept</span></li><li><a href="/wiki/sources/2026-jiang-futurertc-real-time.html">FutureRTC</a> <span class="kind">Source</span></li><li><a href="/wiki/sources/2026-agarwal-multi-link-safety.html">multi-link safety filtering for VLA policies</a> <span class="kind">Source</span></li></ul>

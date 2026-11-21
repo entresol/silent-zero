@@ -2,7 +2,7 @@
 
 > The open instruction set: what is open (the ISA) and what need not be (cores, chips, boards); privilege levels and the SBI.
 
-Concept · LLM reviewed · updated 2026-10-31 · 11 sources · https://silentzero.ooo/wiki/concepts/risc-v.html
+Concept · LLM reviewed · updated 2026-11-21 · 12 sources · https://silentzero.ooo/wiki/concepts/risc-v.html
 
 An instruction set architecture (ISA): the specification of the instructions a processor understands, which software is written against. RISC-V was started in Berkeley in May 2010 for research and teaching ([RISC-V International: About](https://silentzero.ooo/wiki/sources/nd-riscv-international-about.html.md), [The RISC-V Instruction Set Manual, Version 1.0](https://silentzero.ooo/wiki/sources/2011-waterman-risc-v-instruction.html.md)). Today it is an open standard that RISC-V International maintains and that anyone may implement without paying royalties ([RISC-V International: About](https://silentzero.ooo/wiki/sources/nd-riscv-international-about.html.md)). The specification itself is under a Creative Commons licence ([The RISC-V Instruction Set Manual, Volume I](https://silentzero.ooo/wiki/sources/2024-riscv-unprivileged-isa-manual.html.md)).
 
@@ -33,6 +33,7 @@ Three levels: Machine (M), the only mandatory one, whose code is "usually inhere
 
 - The ISA modules most software needs are ratified: RV32I and RV64I 2.1, M, A, F, D and C ([The RISC-V Instruction Set Manual, Volume I](https://silentzero.ooo/wiki/sources/2024-riscv-unprivileged-isa-manual.html.md), preface, version 20240411).
 - seL4's C-level proof covers the eight RISC-V platforms its release notes list, boards as well as FPGA designs such as Ariane and Rocket; the proof of the MCS configuration covers one, the HiFive Unleashed ([release 17.0.0](https://silentzero.ooo/wiki/sources/2026-sel4-release-17.html.md)).
+- The temporal fence of the time-protection work is a custom instruction, not ratified; the authors' closing slide shows "uSC SIG / Timing Fences TG", which our reading takes to be a RISC-V micro-architecture group ([fence.t.s for out-of-order cores](https://silentzero.ooo/wiki/sources/2024-wistoff-fence-t-s.html.md), slide 18).
 
 ## Open questions
 
@@ -41,6 +42,7 @@ Three levels: Machine (M), the only mandatory one, whose code is "usually inhere
 
 ## Sources
 
+- [fence.t.s for out-of-order cores](https://silentzero.ooo/wiki/sources/2024-wistoff-fence-t-s.html.md)
 - [Instruction Sets Should Be Free](https://silentzero.ooo/wiki/sources/2014-asanovic-instruction-sets-free.html.md)
 - [OpenSBI](https://silentzero.ooo/wiki/sources/nd-opensbi.html.md)
 - [release 17.0.0](https://silentzero.ooo/wiki/sources/2026-sel4-release-17.html.md)

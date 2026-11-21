@@ -1,8 +1,8 @@
 ---
 type: design
 status: reviewed
-sources: [2025-black-real-time-execution, 2025-nesti-use-simplex-architecture, 2026-sel4-functional-correctness-proof, 2026-heiser-mcs-safety-os, 2022-wistoff-systematic-prevention-core, nd-sel4-microkit-user-manual, 2025-google-building-next-generation, nd-linux-real-time-preemption, 2026-jiang-futurertc-real-time, 2026-agarwal-multi-link-safety]
-updated: 2026-11-20
+sources: [2025-black-real-time-execution, 2025-nesti-use-simplex-architecture, 2026-sel4-functional-correctness-proof, 2026-heiser-mcs-safety-os, 2022-wistoff-systematic-prevention-core, nd-sel4-microkit-user-manual, 2025-google-building-next-generation, nd-linux-real-time-preemption, 2026-jiang-futurertc-real-time, 2026-agarwal-multi-link-safety, 2024-wistoff-fence-t-s, 2026-lu-faster-rethinking-real, 2026-jager-context-dependent-runtime]
+updated: 2026-11-21
 ---
 
 # Real-time loops
@@ -25,9 +25,12 @@ The control loops at the bottom of zOS move the motors on a fixed period and hav
 | Isolated safe domain with the learned controller in the loop at a 4 ms period | worst observed round trip 3,976 µs over 10,000 samples, 24 µs margin, no bound | measurement on a hypervisor not claimed to be verified | [[2025-nesti-use-simplex-architecture]] |
 | Processor-time budgets enforced by the kernel | implemented in seL4 MCS | MCS functional-correctness proof on RISC-V; no theorem on temporal isolation | [[2026-sel4-functional-correctness-proof]], [[2026-heiser-mcs-safety-os]], [[kernel]] |
 | Kernel WCET and schedulability | not yet | none | [[kernel]] |
-| Fixed context-switch time with timing-channel protection | prototype on CVA6 | measurement | [[2022-wistoff-systematic-prevention-core]] |
+| Fixed context-switch time with timing-channel protection | prototype on CVA6; also an OpenC910 prototype, padding length not given ([[2024-wistoff-fence-t-s]]) | measurement | [[2022-wistoff-systematic-prevention-core]] |
+| Reaction to a sudden event through a chunking policy: a range set by inference latency and call interval, shortened by FASTER's first-action sampling | measured on two consumer GPUs and one real arm; preprint, single-latency model, no bound | measurement | [[2026-lu-faster-rethinking-real]] |
 
 One timing reference on an edge platform: the barrier filter ran at every 50 ms step and a flow update every fifth step, both on the CPU, while the policy ran once per ten-action chunk on the integrated GPU, at 177.3 ms (p50) after trimming, against 343 ms in the released configuration; the trimming lowered task success by 4.17 percentage points on the 300 mm escape condition. No bound is proven ([[2026-agarwal-multi-link-safety]], §III-D, §V-B).
+
+Another: a Simplex decision module measured 0.0281 ms mean and 4.13 ms worst case over 81,749 cycles on a 35 W processor, against a 50 ms control period; no bound is proven, and the authors name timing analysis as future work ([[2026-jager-context-dependent-runtime]], §IV-E1, §V).
 
 ## The paper and its sources
 
@@ -40,5 +43,6 @@ One timing reference on an edge platform: the barrier filter ran at every 50 ms 
 ## Open
 
 - [[2025-black-real-time-execution]] estimates delay from history and does not bound it. The loop must have a defined behaviour when the next chunk does not arrive: hold, slow, stop.
+- The paper's condition for no interruption of streamed actions is that the next action arrives within one control period ([[2026-lu-faster-rethinking-real]], appendix D.2); our reading: otherwise the buffer can run dry. What the loop does then is undecided.
 - Microkit provides no timers or sleep API ([[nd-sel4-microkit-user-manual]]); a periodic loop needs a timer driver of its own.
 - On Arm, a Microkit component allowed to make secure monitor calls voids the kernel's WCET properties ([[nd-sel4-microkit-user-manual]]).

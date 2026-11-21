@@ -2,7 +2,7 @@
 
 > Time protection for seL4: proof approach revised, one-way channels on RISC-V. progress, slides and abstract.
 
-Source · Sison 2026 · LLM reviewed · updated 2026-10-29 · https://silentzero.ooo/wiki/sources/2026-trustworthy-where-are-we.html
+Source · Sison 2026 · LLM reviewed · updated 2026-11-21 · https://silentzero.ooo/wiki/sources/2026-trustworthy-where-are-we.html
 
 Rob Sison (UNSW Sydney). Talk at the seL4 Summit 2026, Vancouver, 2 September 2026. [Programme entry](https://sel4summit2026.sched.com/event/2Prqx) with abstract and slides. The wiki has read the abstract and the slides; there is no paper.
 
@@ -31,12 +31,17 @@ A careful reader adds:
 
 - [Systematic Prevention of On-Core Timing Channels](https://silentzero.ooo/wiki/sources/2022-wistoff-systematic-prevention-core.html.md): **extends** it. Hardware support on RISC-V is now part of seL4's time-protection work, and the problem has moved to verification and to one-way channels.
 - [Formally Verified Software in the Real World](https://silentzero.ooo/wiki/sources/2018-klein-formally-verified-software.html.md): consistent with it; seL4's confidentiality proof excludes timing channels (§3.2), which is the gap time protection addresses.
+- [two interfaces for seL4 kernel verification](https://silentzero.ooo/wiki/sources/2026-sison-two-interfaces-sel4.html.md): consistent; its abstract repeats the Cheshire platform and the prefetch-cannot-be-verified argument, gives no new proof status.
 - [Time protection](https://silentzero.ooo/wiki/concepts/time-protection.html.md): created with [Systematic Prevention of On-Core Timing Channels](https://silentzero.ooo/wiki/sources/2022-wistoff-systematic-prevention-core.html.md) and this source.
 
 ## For Silent Zero
 
 - [The kernel](https://silentzero.ooo/wiki/design/kernel.html.md): time protection on seL4 is implemented in research versions and *not proven*. The paper does not claim otherwise.
 - Our reading: one-way channels matter for Silent Zero. Sensor data flows from the control side to the agent, and the agent should not learn more than it is sent. The talk shows that a one-way channel through shared memory is not one-way in timing unless the cache is partitioned and flushed with care.
+
+## Sources
+
+- [two interfaces for seL4 kernel verification](https://silentzero.ooo/wiki/sources/2026-sison-two-interfaces-sel4.html.md)
 
 ## Related pages
 

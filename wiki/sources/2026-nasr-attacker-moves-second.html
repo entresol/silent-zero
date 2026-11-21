@@ -469,13 +469,13 @@ p.other { margin-top: 2.2rem; color: var(--muted); font-size: 0.95rem; }
     <div class="titleblock">
       <h1 class="name">The Attacker Moves Second</h1>
       <p class="sub">adaptive attacks break 12 prompt-injection and jailbreak defences, most above 90 %. test, full text.</p>
-      <p class="ver">Source · Nasr et al. 2026 · <a href="/wiki/#how">LLM reviewed</a> · updated 29 Oct 2026</p>
+      <p class="ver">Source · Nasr et al. 2026 · <a href="/wiki/#how">LLM reviewed</a> · updated 21 Nov 2026</p>
     </div>
   </div>
 </header>
 <button class="menu" type="button" aria-controls="toc" aria-expanded="false" aria-label="Contents" hidden><span></span></button>
 <div class="layout">
-  <nav class="toc" id="toc" aria-label="Contents"><p>Contents</p><ol><li class="toc-back"><a href="/">← The paper</a></li><li class="toc-back"><a href="/wiki/">← Wiki index</a></li><li><a href="#top">↑ Top</a></li><li><a href="#what-it-shows">What it shows</a></li><li><a href="#how">How</a></li><li><a href="#limits">Limits</a></li><li><a href="#against-the-wiki">Against the wiki</a></li><li><a href="#for-zos">For Silent Zero</a></li><li><a href="#related-pages">Related pages</a></li></ol></nav>
+  <nav class="toc" id="toc" aria-label="Contents"><p>Contents</p><ol><li class="toc-back"><a href="/">← The paper</a></li><li class="toc-back"><a href="/wiki/">← Wiki index</a></li><li><a href="#top">↑ Top</a></li><li><a href="#what-it-shows">What it shows</a></li><li><a href="#how">How</a></li><li><a href="#limits">Limits</a></li><li><a href="#against-the-wiki">Against the wiki</a></li><li><a href="#for-zos">For Silent Zero</a></li><li><a href="#page-sources">Sources</a></li><li><a href="#related-pages">Related pages</a></li></ol></nav>
   <article>
 <p>Milad Nasr, Nicholas Carlini, Chawin Sitawarin, Sander V. Schulhoff, Florian Tramèr and nine co-authors (OpenAI, Anthropic, Google DeepMind, HackAPrompt, ETH Zürich and others). The Silent Zero paper’s reference list gives USENIX Security 2026; the wiki read arXiv version 1 of 10 October 2025, marked “under review”. <a href="https://arxiv.org/abs/2510.09023" rel="noopener" target="_blank">arXiv</a>.</p>
 <h2 id="what-it-shows">What it shows</h2>
@@ -504,6 +504,7 @@ p.other { margin-top: 2.2rem; color: var(--muted); font-size: 0.95rem; }
 <ul>
 <li><a href="/wiki/sources/2025-debenedetti-defeating-prompt-injections.html">Defeating Prompt Injections by Design (CaMeL)</a>: <strong>complements</strong> it. CaMeL is one of the plan-then-execute designs this paper skips, with the authors’ own reason and their caveat on utility.</li>
 <li><a href="/wiki/concepts/prompt-injection.html">Prompt injection</a>: created with this source.</li>
+<li><a href="/wiki/sources/2026-li-pace-provenance-aware.html">PACE, provenance-aware capability enforcement</a>: cites this work and runs its own small adaptive search against a deterministic mediator; LLM-mutator search only, one model, only out-of-authority goals.</li>
 </ul>
 <h2 id="for-zos">For Silent Zero</h2>
 <ul>
@@ -511,6 +512,9 @@ p.other { margin-top: 2.2rem; color: var(--muted); font-size: 0.95rem; }
 <li>Our reading: any broker that relies on a model to judge whether a request is benign is a defence of the kind broken here. The broker’s decisions must not depend on a model’s judgement of untrusted text.</li>
 </ul>
 
+<h2 id="page-sources">Sources</h2>
+<p class="links-note">What this page rests on.</p>
+<ul class="linked-from"><li><a href="/wiki/sources/2026-li-pace-provenance-aware.html">PACE, provenance-aware capability enforcement</a> <span class="kind">Li et al. 2026</span></li></ul>
 <h2 id="related-pages">Related pages</h2>
 <p class="links-note">Pages this one links to, and pages that link here.</p>
 <ul class="linked-from"><li><a href="/wiki/design/broker.html">The broker</a> <span class="kind">Design</span></li><li><a href="/wiki/concepts/prompt-injection.html">Prompt injection</a> <span class="kind">Concept</span></li><li><a href="/wiki/sources/2026-narisetty-adaptive-evaluation-out.html">adaptive evaluation of out-of-band defenses</a> <span class="kind">Source</span></li><li><a href="/wiki/sources/2025-debenedetti-defeating-prompt-injections.html">Defeating Prompt Injections by Design (CaMeL)</a> <span class="kind">Source</span></li><li><a href="/wiki/sources/2023-greshake-not-what-you.html">Indirect prompt injection</a> <span class="kind">Source</span></li><li><a href="/wiki/sources/2026-huang-model-context-protocol.html">MCP threat modelling and tool poisoning</a> <span class="kind">Source</span></li></ul>

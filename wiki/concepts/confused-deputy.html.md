@@ -2,7 +2,7 @@
 
 > A program misusing one party’s authority for another’s request; capabilities as the remedy.
 
-Concept · LLM reviewed · updated 2026-10-31 · 3 sources · https://silentzero.ooo/wiki/concepts/confused-deputy.html
+Concept · LLM reviewed · updated 2026-11-21 · 4 sources · https://silentzero.ooo/wiki/concepts/confused-deputy.html
 
 A program that acts with authority from more than one source, and cannot keep them apart, can be tricked into using one party's authority for another party's request. Hardy's compiler held a licence to write in its own directory and wrote a user's debugging output over the billing file there, because the user named it ([The Confused Deputy](https://silentzero.ooo/wiki/sources/1988-hardy-confused-deputy-or.html.md)).
 
@@ -21,10 +21,12 @@ The pattern and its remedy have been established since 1988; Miller generalises 
 ## Open questions
 
 - How far the analogy to agents holds. The Silent Zero paper argues that indirect prompt injection follows the same pattern (Section 2.4), citing [Indirect prompt injection](https://silentzero.ooo/wiki/sources/2023-greshake-not-what-you.html.md), which frames retrieved prompts as "arbitrary code" and does not use the term, and states that capabilities only limit how far a deceived agent can reach (Section 6). Our reading: the pattern matches, the remedy does not fully carry over. Hardy's deputy was confused by an ambiguous name; an injected agent is subverted in its own decisions and uses capabilities it really holds. See [Prompt injection](https://silentzero.ooo/wiki/concepts/prompt-injection.html.md) and [The broker](https://silentzero.ooo/wiki/design/broker.html.md).
+- The authors of [PACE, provenance-aware capability enforcement](https://silentzero.ooo/wiki/sources/2026-li-pace-provenance-aware.html.md) (§1) call attacks through tool metadata a confused deputy and draw authority from the request channel instead of the agent. Our reading: a different remedy from Hardy's.
 
 ## Sources
 
 - [Indirect prompt injection](https://silentzero.ooo/wiki/sources/2023-greshake-not-what-you.html.md)
+- [PACE, provenance-aware capability enforcement](https://silentzero.ooo/wiki/sources/2026-li-pace-provenance-aware.html.md)
 - [Robust Composition](https://silentzero.ooo/wiki/sources/2006-miller-robust-composition-towards.html.md)
 - [The Confused Deputy](https://silentzero.ooo/wiki/sources/1988-hardy-confused-deputy-or.html.md)
 

@@ -2,7 +2,7 @@
 
 > Adaptive attacks break 12 prompt-injection and jailbreak defences, most above 90 %. test, full text.
 
-Source · Nasr et al. 2026 · LLM reviewed · updated 2026-10-29 · https://silentzero.ooo/wiki/sources/2026-nasr-attacker-moves-second.html
+Source · Nasr et al. 2026 · LLM reviewed · updated 2026-11-21 · https://silentzero.ooo/wiki/sources/2026-nasr-attacker-moves-second.html
 
 Milad Nasr, Nicholas Carlini, Chawin Sitawarin, Sander V. Schulhoff, Florian Tramèr and nine co-authors (OpenAI, Anthropic, Google DeepMind, HackAPrompt, ETH Zürich and others). The Silent Zero paper's reference list gives USENIX Security 2026; the wiki read arXiv version 1 of 10 October 2025, marked "under review". [arXiv](https://arxiv.org/abs/2510.09023).
 
@@ -35,11 +35,16 @@ A careful reader adds:
 
 - [Defeating Prompt Injections by Design (CaMeL)](https://silentzero.ooo/wiki/sources/2025-debenedetti-defeating-prompt-injections.html.md): **complements** it. CaMeL is one of the plan-then-execute designs this paper skips, with the authors' own reason and their caveat on utility.
 - [Prompt injection](https://silentzero.ooo/wiki/concepts/prompt-injection.html.md): created with this source.
+- [PACE, provenance-aware capability enforcement](https://silentzero.ooo/wiki/sources/2026-li-pace-provenance-aware.html.md): cites this work and runs its own small adaptive search against a deterministic mediator; LLM-mutator search only, one model, only out-of-authority goals.
 
 ## For Silent Zero
 
 - [The broker](https://silentzero.ooo/wiki/design/broker.html.md): the paper (Section 2.4) says adaptive attacks broke 12 published defences, most with success rates above 90 per cent. Confirmed, with two notes: the source says "either fully or substantially", and not all twelve are published papers. This is the evidence behind the paper's thesis that Silent Zero does not try to make the agent trustworthy.
 - Our reading: any broker that relies on a model to judge whether a request is benign is a defence of the kind broken here. The broker's decisions must not depend on a model's judgement of untrusted text.
+
+## Sources
+
+- [PACE, provenance-aware capability enforcement](https://silentzero.ooo/wiki/sources/2026-li-pace-provenance-aware.html.md)
 
 ## Related pages
 

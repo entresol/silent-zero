@@ -51,3 +51,4 @@ The Silent Zero paper has several untrusted agents, each in its own protection d
 - [The broker](https://silentzero.ooo/wiki/design/broker.html.md)
 - [Information-flow control](https://silentzero.ooo/wiki/concepts/information-flow-control.html.md)
 - [Prompt injection](https://silentzero.ooo/wiki/concepts/prompt-injection.html.md)
+- [CaMeLoT, a static check of an agent's plan on top of CaMeL](https://silentzero.ooo/wiki/sources/2026-nikolaou-camelot-camel-orchestrated.html.md)

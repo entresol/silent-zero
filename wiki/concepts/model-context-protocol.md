@@ -1,9 +1,9 @@
 ---
 type: concept
 status: reviewed
-sources: [2026-shen-mcp-38-comprehensive, 2026-maloyan-breaking-protocol-security, 2026-huang-model-context-protocol, 2026-zhang-agent-libos-runtime]
+sources: [2026-shen-mcp-38-comprehensive, 2026-maloyan-breaking-protocol-security, 2026-huang-model-context-protocol, 2026-zhang-agent-libos-runtime, 2026-li-pace-provenance-aware]
 glossary: Model Context Protocol (MCP)
-updated: 2026-11-05
+updated: 2026-11-21
 ---
 
 # Model Context Protocol
@@ -20,6 +20,7 @@ Four preprints, none peer-reviewed, look at it from different sides.
 - **Use as a client only.** A runtime for self-evolving agents registers servers and tools by the host and treats a server's capability declaration as neither a grant nor a process's authority. Its MCP part is a client subset, with its newest manifest pinned to a specification revision of July 2026; sampling is not implemented ([[2026-zhang-agent-libos-runtime]], §6.4).
 
 Our reading: the sources agree that the model reads unvalidated text from whoever runs a server, and differ on where to fix it, in the protocol, in the clients or around the model. Only Maloyan and Namiot and Huang et al. measure anything, and they measure how often attacks work and not what a mediator that grants only declared authority would change.
+On MCPTox, PACE cut worst-group attack success to 0.0, 2.62 and 2.65 per cent from 32.52, 56.54 and 86.93 on three models, with refusal 1.97, 0.58 and 28.55 against 0.16, 0.42 and 27.96; the authors argue that reviewing a tool description at admission cannot justify relaxing mediation ([[2026-li-pace-provenance-aware]], Table 1, §3).
 
 ## Open questions
 

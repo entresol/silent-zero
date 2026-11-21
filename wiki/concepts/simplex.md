@@ -1,9 +1,9 @@
 ---
 type: concept
 status: reviewed
-sources: [2025-nesti-use-simplex-architecture, 2026-bansal-synergistic-simplex-cooperative]
+sources: [2025-nesti-use-simplex-architecture, 2026-bansal-synergistic-simplex-cooperative, 2026-zheng-assuring-learning-enabled, 2026-jager-context-dependent-runtime]
 glossary: Simplex architecture
-updated: 2026-11-13
+updated: 2026-11-21
 ---
 
 # Simplex architecture
@@ -23,7 +23,11 @@ Demonstrated with learned controllers on a pendulum and a rover, on a hypervisor
 
 A 2026 variant, Synergistic Simplex, lets information flow both ways: the safety layer may ask the learned layer to replan within safe bounds, and may use a learned output that is independent of the function it protects, under conditions the authors derive on paper. In simulation of a car it cut stops where an undetected obstacle lay in a neighbouring lane, with no collisions; its assumptions include static obstacles and correct lane detection ([[2026-bansal-synergistic-simplex-cooperative]]).
 
+A 2026 research agenda uses Simplex as the runtime layer for foundation-model-enabled cyber-physical systems and names shielding (modifying single actions) as a variant beside switching; there is no demonstration and no concrete switching rule (§5.1 gives only a qualitative condition and names real-time reachability as a basis) ([[2026-zheng-assuring-learning-enabled]], §5.1). The agenda's monitor reads symbolic world-model elements, interface states and uncertainty estimates that the learned side exposes (§5.1). Our reading: closer to the relaxed form of [[2026-bansal-synergistic-simplex-cooperative]] than to the strict form; the paper does not discuss the difference.
+
+A 2026 preprint builds the switching rule from design-time artifacts, with several certified safe controllers and a switch between them. In simulation a one-step prediction kept a ground robot within its limit when the model was matched, but on hardware only a horizon of about 15 control periods did so in every configuration ([[2026-jager-context-dependent-runtime]], §IV-C, §IV-E1).
+
 ## Open questions
 
 - The zOS paper dates the pattern to 2001 and cites Sha 2001; [[2025-nesti-use-simplex-architecture]] dates it to 1994.
-- How a monitor handles a wrong command that leaves the safe region within one step; Nesti et al. name a one-step prediction and leave it out (§4.2).
+- How a monitor handles a wrong command that leaves the safe region within one step; Nesti et al. name a one-step prediction and leave it out (§4.2). Jäger et al. found one step enough only with matched dynamics; with unmodelled dynamics they tuned the horizon by experiment ([[2026-jager-context-dependent-runtime]], §IV-D).

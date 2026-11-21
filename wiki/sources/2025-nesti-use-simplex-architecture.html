@@ -469,13 +469,13 @@ p.other { margin-top: 2.2rem; color: var(--muted); font-size: 0.95rem; }
     <div class="titleblock">
       <h1 class="name">The Use of the Simplex Architecture to Enhance Safety in Deep-Learning-Powered Autonomous Systems</h1>
       <p class="sub">Simplex with learned controllers on a pendulum and a rover, isolated by a hypervisor. test, full text.</p>
-      <p class="ver">Source · Nesti et al. 2025 · <a href="/wiki/#how">LLM reviewed</a> · updated 29 Oct 2026</p>
+      <p class="ver">Source · Nesti et al. 2025 · <a href="/wiki/#how">LLM reviewed</a> · updated 21 Nov 2026</p>
     </div>
   </div>
 </header>
 <button class="menu" type="button" aria-controls="toc" aria-expanded="false" aria-label="Contents" hidden><span></span></button>
 <div class="layout">
-  <nav class="toc" id="toc" aria-label="Contents"><p>Contents</p><ol><li class="toc-back"><a href="/">← The paper</a></li><li class="toc-back"><a href="/wiki/">← Wiki index</a></li><li><a href="#top">↑ Top</a></li><li><a href="#what-it-shows">What it shows</a></li><li><a href="#how">How</a></li><li><a href="#limits">Limits</a></li><li><a href="#against-the-wiki">Against the wiki</a></li><li><a href="#for-zos">For Silent Zero</a></li><li><a href="#related-pages">Related pages</a></li></ol></nav>
+  <nav class="toc" id="toc" aria-label="Contents"><p>Contents</p><ol><li class="toc-back"><a href="/">← The paper</a></li><li class="toc-back"><a href="/wiki/">← Wiki index</a></li><li><a href="#top">↑ Top</a></li><li><a href="#what-it-shows">What it shows</a></li><li><a href="#how">How</a></li><li><a href="#limits">Limits</a></li><li><a href="#against-the-wiki">Against the wiki</a></li><li><a href="#for-zos">For Silent Zero</a></li><li><a href="#page-sources">Sources</a></li><li><a href="#related-pages">Related pages</a></li></ol></nav>
   <article>
 <p>Federico Nesti, Niko Salamini, Mauro Marinoni, Giorgiomaria Cicero, Gabriele Serra, Alessandro Biondi and Giorgio Buttazzo (Scuola Superiore Sant’Anna, Pisa; Accelerat). Preprint, September 2025. <a href="https://arxiv.org/abs/2509.21014" rel="noopener" target="_blank">arXiv</a>.</p>
 <h2 id="what-it-shows">What it shows</h2>
@@ -506,6 +506,7 @@ p.other { margin-top: 2.2rem; color: var(--muted); font-size: 0.95rem; }
 <ul>
 <li><a href="/wiki/sources/2018-klein-formally-verified-software.html">Formally Verified Software in the Real World</a>: the authors cite seL4 in UAVs as related work; this paper uses a different hypervisor.</li>
 <li><a href="/wiki/concepts/simplex.html">Simplex architecture</a>: created with this source.</li>
+<li>Jäger et al. 2026 test a one-step prediction in simulation and on hardware (<a href="/wiki/sources/2026-jager-context-dependent-runtime.html">context-dependent regions of attraction for a multi-candidate Simplex</a>, §IV-C, §IV-E1).</li>
 </ul>
 <h2 id="for-zos">For Silent Zero</h2>
 <ul>
@@ -514,9 +515,12 @@ p.other { margin-top: 2.2rem; color: var(--muted); font-size: 0.95rem; }
 <li>Our reading: the rover’s stop that a person must acknowledge is the pattern the paper’s “a controller that stops at every doubt is safe and useless” warns about, and the zones are the answer: degrade speed before stopping. The zones also show a hidden dependency: the lateral margin relied on a bound in the learned network’s output layer.</li>
 </ul>
 
+<h2 id="page-sources">Sources</h2>
+<p class="links-note">What this page rests on.</p>
+<ul class="linked-from"><li><a href="/wiki/sources/2026-jager-context-dependent-runtime.html">context-dependent regions of attraction for a multi-candidate Simplex</a> <span class="kind">Jäger et al. 2026</span></li></ul>
 <h2 id="related-pages">Related pages</h2>
 <p class="links-note">Pages this one links to, and pages that link here.</p>
-<ul class="linked-from"><li><a href="/wiki/design/real-time-loops.html">Real-time loops</a> <span class="kind">Design</span></li><li><a href="/wiki/design/safety-path.html">The safety path</a> <span class="kind">Design</span></li><li><a href="/wiki/concepts/simplex.html">Simplex architecture</a> <span class="kind">Concept</span></li><li><a href="/wiki/sources/2018-klein-formally-verified-software.html">Formally Verified Software in the Real World</a> <span class="kind">Source</span></li><li><a href="/wiki/sources/2026-bansal-synergistic-simplex-cooperative.html">Synergistic Simplex</a> <span class="kind">Source</span></li></ul>
+<ul class="linked-from"><li><a href="/wiki/design/real-time-loops.html">Real-time loops</a> <span class="kind">Design</span></li><li><a href="/wiki/design/safety-path.html">The safety path</a> <span class="kind">Design</span></li><li><a href="/wiki/concepts/simplex.html">Simplex architecture</a> <span class="kind">Concept</span></li><li><a href="/wiki/sources/2026-zheng-assuring-learning-enabled.html">a neuro-symbolic assurance agenda for learning-enabled CPS</a> <span class="kind">Source</span></li><li><a href="/wiki/sources/2018-klein-formally-verified-software.html">Formally Verified Software in the Real World</a> <span class="kind">Source</span></li><li><a href="/wiki/sources/2026-bansal-synergistic-simplex-cooperative.html">Synergistic Simplex</a> <span class="kind">Source</span></li></ul>
   </article>
 </div>
 <footer><div><span class="about"><span>Silent Zero OS</span><span class="sep"> · </span><span>Wiki</span><span class="sep"> · </span><span>Text <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></span></span><span class="links"><a href="/">Paper</a> <a href="https://github.com/entresol/silent-zero/tree/main/wiki">GitHub</a> <a href="https://unwritten.studio/impressum">Imprint</a></span></div></footer>

@@ -2,7 +2,7 @@
 
 > Open 64-bit RISC-V core whose design lets latency bounds be proved; fence.t prototype.
 
-System · LLM reviewed · updated 2026-10-31 · 6 sources · https://silentzero.ooo/wiki/systems/cva6.html
+System · LLM reviewed · updated 2026-11-21 · 7 sources · https://silentzero.ooo/wiki/systems/cva6.html
 
 An open-source 64-bit RISC-V application core, also known as Ariane, developed at ETH Zürich ([WCET analysis of seL4](https://silentzero.ooo/wiki/sources/nd-trustworthy-wcet-worst-case.html.md)) and documented today by the Open Hardware Foundation ([Resurrecting seL4's WCET Analysis](https://silentzero.ooo/wiki/sources/2026-sillitoe-resurrecting-sel4-wcet.html.md), ref. 10). Its SystemVerilog source is public.
 
@@ -14,7 +14,7 @@ Our reading: a proof against the design covers the design; a chip or FPGA built 
 
 ## Why it matters for timing channels
 
-On CVA6 a custom instruction, `fence.t`, resets all non-architectural state on a context switch. In an FPGA prototype it closed every measured on-core timing channel, at under 1 per cent slowdown with a context switch every 10 million cycles, equivalent to 10 ms at 1 GHz ([Systematic Prevention of On-Core Timing Channels](https://silentzero.ooo/wiki/sources/2022-wistoff-systematic-prevention-core.html.md)). See [Time protection](https://silentzero.ooo/wiki/concepts/time-protection.html.md).
+On CVA6 a custom instruction, `fence.t`, resets all non-architectural state on a context switch. In an FPGA prototype it closed every measured on-core timing channel, at under 1 per cent slowdown with a context switch every 10 million cycles, equivalent to 10 ms at 1 GHz ([Systematic Prevention of On-Core Timing Channels](https://silentzero.ooo/wiki/sources/2022-wistoff-systematic-prevention-core.html.md)). The same group carried the idea to the out-of-order OpenC910 in `fence.t.s` ([fence.t.s for out-of-order cores](https://silentzero.ooo/wiki/sources/2024-wistoff-fence-t-s.html.md)). See [Time protection](https://silentzero.ooo/wiki/concepts/time-protection.html.md).
 
 ## Boards
 
@@ -26,6 +26,7 @@ Silicon with CVA6, licence.
 
 ## Sources
 
+- [fence.t.s for out-of-order cores](https://silentzero.ooo/wiki/sources/2024-wistoff-fence-t-s.html.md)
 - [release 17.0.0](https://silentzero.ooo/wiki/sources/2026-sel4-release-17.html.md)
 - [Resurrecting seL4's WCET Analysis](https://silentzero.ooo/wiki/sources/2026-sillitoe-resurrecting-sel4-wcet.html.md)
 - [seL4 Foundation: Verified Configurations](https://silentzero.ooo/wiki/sources/nd-sel4-verified-configurations.html.md)

@@ -2,7 +2,7 @@
 
 > Simplex with learned controllers on a pendulum and a rover, isolated by a hypervisor. test, full text.
 
-Source · Nesti et al. 2025 · LLM reviewed · updated 2026-10-29 · https://silentzero.ooo/wiki/sources/2025-nesti-use-simplex-architecture.html
+Source · Nesti et al. 2025 · LLM reviewed · updated 2026-11-21 · https://silentzero.ooo/wiki/sources/2025-nesti-use-simplex-architecture.html
 
 Federico Nesti, Niko Salamini, Mauro Marinoni, Giorgiomaria Cicero, Gabriele Serra, Alessandro Biondi and Giorgio Buttazzo (Scuola Superiore Sant'Anna, Pisa; Accelerat). Preprint, September 2025. [arXiv](https://arxiv.org/abs/2509.21014).
 
@@ -37,6 +37,7 @@ A careful reader adds:
 
 - [Formally Verified Software in the Real World](https://silentzero.ooo/wiki/sources/2018-klein-formally-verified-software.html.md): the authors cite seL4 in UAVs as related work; this paper uses a different hypervisor.
 - [Simplex architecture](https://silentzero.ooo/wiki/concepts/simplex.html.md): created with this source.
+- Jäger et al. 2026 test a one-step prediction in simulation and on hardware ([context-dependent regions of attraction for a multi-candidate Simplex](https://silentzero.ooo/wiki/sources/2026-jager-context-dependent-runtime.html.md), §IV-C, §IV-E1).
 
 ## For Silent Zero
 
@@ -44,10 +45,15 @@ A careful reader adds:
 - Two lessons fit Silent Zero. The switching rule has to be designed per system, as the paper's "for one robot and one task" says. And the safe side owns the sensors it relies on and leaves out inputs it cannot trust, here the camera.
 - Our reading: the rover's stop that a person must acknowledge is the pattern the paper's "a controller that stops at every doubt is safe and useless" warns about, and the zones are the answer: degrade speed before stopping. The zones also show a hidden dependency: the lateral margin relied on a bound in the learned network's output layer.
 
+## Sources
+
+- [context-dependent regions of attraction for a multi-candidate Simplex](https://silentzero.ooo/wiki/sources/2026-jager-context-dependent-runtime.html.md)
+
 ## Related pages
 
 - [Real-time loops](https://silentzero.ooo/wiki/design/real-time-loops.html.md)
 - [The safety path](https://silentzero.ooo/wiki/design/safety-path.html.md)
 - [Simplex architecture](https://silentzero.ooo/wiki/concepts/simplex.html.md)
+- [a neuro-symbolic assurance agenda for learning-enabled CPS](https://silentzero.ooo/wiki/sources/2026-zheng-assuring-learning-enabled.html.md)
 - [Formally Verified Software in the Real World](https://silentzero.ooo/wiki/sources/2018-klein-formally-verified-software.html.md)
 - [Synergistic Simplex](https://silentzero.ooo/wiki/sources/2026-bansal-synergistic-simplex-cooperative.html.md)

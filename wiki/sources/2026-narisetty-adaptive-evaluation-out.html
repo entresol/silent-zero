@@ -469,13 +469,13 @@ p.other { margin-top: 2.2rem; color: var(--muted); font-size: 0.95rem; }
     <div class="titleblock">
       <h1 class="name">adaptive evaluation of out-of-band defenses</h1>
       <p class="sub">out-of-band defences compared; Progent against a hand-made adaptive attack on a 7B model: 25.8 % to 4.2 % to 2.6 %. test, full text.</p>
-      <p class="ver">Source · Narisetty et al. 2026 · <a href="/wiki/#how">LLM reviewed</a> · updated 5 Nov 2026</p>
+      <p class="ver">Source · Narisetty et al. 2026 · <a href="/wiki/#how">LLM reviewed</a> · updated 21 Nov 2026</p>
     </div>
   </div>
 </header>
 <button class="menu" type="button" aria-controls="toc" aria-expanded="false" aria-label="Contents" hidden><span></span></button>
 <div class="layout">
-  <nav class="toc" id="toc" aria-label="Contents"><p>Contents</p><ol><li class="toc-back"><a href="/">← The paper</a></li><li class="toc-back"><a href="/wiki/">← Wiki index</a></li><li><a href="#top">↑ Top</a></li><li><a href="#what-it-shows">What it shows</a></li><li><a href="#how">How</a></li><li><a href="#limits">Limits</a></li><li><a href="#against-the-wiki">Against the wiki</a></li><li><a href="#for-zos">For Silent Zero</a></li><li><a href="#related-pages">Related pages</a></li></ol></nav>
+  <nav class="toc" id="toc" aria-label="Contents"><p>Contents</p><ol><li class="toc-back"><a href="/">← The paper</a></li><li class="toc-back"><a href="/wiki/">← Wiki index</a></li><li><a href="#top">↑ Top</a></li><li><a href="#what-it-shows">What it shows</a></li><li><a href="#how">How</a></li><li><a href="#limits">Limits</a></li><li><a href="#against-the-wiki">Against the wiki</a></li><li><a href="#for-zos">For Silent Zero</a></li><li><a href="#page-sources">Sources</a></li><li><a href="#related-pages">Related pages</a></li></ol></nav>
   <article>
 <p>Praneeth Narisetty, Shiva Nagendra Babu Kore, Uday Kumar Reddy Kattamanchi and Jayaram Kumarapu (LaunchSafe Research). “Adaptive Evaluation of Out-of-Band Defenses Against Prompt Injection in LLM Agents”. <a href="https://arxiv.org/abs/2606.26479" rel="noopener" target="_blank">arXiv:2606.26479</a>, version 1 of 25 June 2026. A preprint that calls its results preliminary and not peer-reviewed. Read in full.</p>
 <h2 id="what-it-shows">What it shows</h2>
@@ -502,10 +502,14 @@ p.other { margin-top: 2.2rem; color: var(--muted); font-size: 0.95rem; }
 <li><a href="/wiki/concepts/prompt-injection.html">Prompt injection</a>: adds the first adaptive test in the wiki of a defence around the model, and a statement of what is still untested. It did not test CaMeL or FIDES.</li>
 <li><a href="/wiki/design/broker.html">The broker</a>: no change of state. The paper states the premise the broker rests on (the gate must not be a model) and says it has not been shown to survive an adaptive attacker. Our reading: its list of weak spots matches the broker’s open questions on provenance, endorsement and implicit flows.</li>
 <li><a href="/wiki/concepts/information-flow-control.html">Information-flow control</a>: names provenance assignment as the trusted base of every labelling scheme.</li>
+<li><a href="/wiki/sources/2026-li-pace-provenance-aware.html">PACE, provenance-aware capability enforcement</a>: cites this work and runs its own small adaptive search against a deterministic mediator; LLM-mutator search only, one model, only out-of-authority goals.</li>
 </ul>
 <h2 id="for-zos">For Silent Zero</h2>
 <p>The paper does not cite this source. It bears on <a href="/wiki/design/broker.html">The broker</a> (state <em>tested</em> aimed for, <em>proven</em> as the target): a deterministic gate that holds against a hand-made adaptive attack on a weak model is a small data point, not evidence of the kind the broker’s table calls for.</p>
 
+<h2 id="page-sources">Sources</h2>
+<p class="links-note">What this page rests on.</p>
+<ul class="linked-from"><li><a href="/wiki/sources/2026-li-pace-provenance-aware.html">PACE, provenance-aware capability enforcement</a> <span class="kind">Li et al. 2026</span></li></ul>
 <h2 id="related-pages">Related pages</h2>
 <p class="links-note">Pages this one links to, and pages that link here.</p>
 <ul class="linked-from"><li><a href="/wiki/design/broker.html">The broker</a> <span class="kind">Design</span></li><li><a href="/wiki/concepts/information-flow-control.html">Information-flow control</a> <span class="kind">Concept</span></li><li><a href="/wiki/concepts/prompt-injection.html">Prompt injection</a> <span class="kind">Concept</span></li><li><a href="/wiki/sources/2026-nasr-attacker-moves-second.html">The Attacker Moves Second</a> <span class="kind">Source</span></li></ul>

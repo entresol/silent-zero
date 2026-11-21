@@ -92,9 +92,9 @@ Work that extends the design, competes with it or attacks its assumptions: other
 - [x] 2025-li-osvbench-benchmarking-llms
 - [x] 2025-tu-agentic-verification-software
 - [x] 2025-zhao-verifying-device-drivers
-- [ ] 2026-sison-two-interfaces-sel4
-- [ ] 2024-wistoff-fence-t-s
-- [ ] 2026-lu-faster-rethinking-real
+- [x] 2026-sison-two-interfaces-sel4
+- [x] 2024-wistoff-fence-t-s
+- [x] 2026-lu-faster-rethinking-real
 - [ ] 2026-wang-real-time-robot
 - [ ] 2026-liu-learning-native-continuation
 - [ ] 2026-sel4-sel4-16-0

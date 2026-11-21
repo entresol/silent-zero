@@ -2,7 +2,7 @@
 
 > Machines proposing proof steps, Isabelle checking them; 77.6 % of a seL4 benchmark sample; Verus as a faster verifier. PROMISE as a second method; AutoVerus for Rust; a coding agent’s compiler proofs in Lean; the OSDI version and the Selene benchmark; specification writing (OSVBench), AutoRocq, and verified against checked compiler passes.
 
-Concept · LLM reviewed · updated 2026-11-20 · 12 sources · https://silentzero.ooo/wiki/concepts/proof-automation.html
+Concept · LLM reviewed · updated 2026-11-21 · 14 sources · https://silentzero.ooo/wiki/concepts/proof-automation.html
 
 Generating the proofs of a formal verification by machine instead of by hand. A proof checker such as Isabelle accepts only correct proofs, so a model that proposes proof steps may be wrong as often as the time budget allows; only what the checker accepts counts ([Neuro-symbolic proof generation for seL4](https://silentzero.ooo/wiki/sources/2026-he-neuro-symbolic-proof.html.md), §1, §3).
 
@@ -18,6 +18,8 @@ Generating the proofs of a formal verification by machine instead of by hand. A 
 - A third kind of task is translation validation. Trivet has a model build Lean proofs that an LLVM transformation preserves a program's meaning, accepting only what Lean's kernel checks; on 148 transformations it proves all 74 valid ones and refutes 73 of the 74 invalid ones, where the SMT-based checker Alive2 validates 20 of 30 loop-free fixed-width cases and cannot handle symbolic bit widths. The formalisation covers integer instructions only, and the cost figures are for one commercial model ([Trivet](https://silentzero.ooo/wiki/sources/2026-liao-llvm-translation-validation.html.md)).
 - The step before the proof is measured separately. OSVBench gives 245 tasks on the Hyperkernel kernel, where a model writes the state-machine specification: the best of 12 models reached 55.10 per cent Pass@1 with five examples in the prompt, greedy decoding and the mean of three runs, and the five models tested without examples all scored 0 per cent ([OSVBench](https://silentzero.ooo/wiki/sources/2025-li-osvbench-benchmarking-llms.html.md), Table 1, §4.4). Our reading: a different task, kernel and prover from the figures above, so the numbers do not compare.
 - AutoRocq, an agent that queries Rocq and keeps a proof tree, proves 824 of 1,717 CoqGym lemmas (48.0 per cent), 198 of 641 lemmas from 131 SV-COMP C programs (30.9 per cent) and 12 of 60 Linux kernel-function lemmas. The 1,717 lemmas are the overlap of two existing Coq test sets, the authors built the SV-COMP and kernel sets and ran the baselines, and our reading is that the figures do not compare with the seL4 or Verus ones above ([AutoRocq](https://silentzero.ooo/wiki/sources/2025-tu-agentic-verification-software.html.md)).
+- A 2026 research agenda states the split in general terms: a model proposes and only a small independent checker (type checker, SMT solver, model checker, proof assistant) accepts, with translation validation and proof-carrying code as precedents; a position, not a measurement ([a neuro-symbolic assurance agenda for learning-enabled CPS](https://silentzero.ooo/wiki/sources/2026-zheng-assuring-learning-enabled.html.md), §4.3).
+- Loosely related, no proof: CaMeLoT model-checks a small abstraction of an agent's plan. Typed obligations compiled by trusted code gave clean suites on 97 of 97 tasks, while models writing formulas directly gave 12 to 96 of 97 across four models; the margin over Haiku 4.5 is one task and over Sonnet 4.5 three (94 of 97). Our reading: close to by-construction, since trusted code compiles the formulas; the typed route was run with Haiku only ([CaMeLoT, a static check of an agent's plan on top of CaMeL](https://silentzero.ooo/wiki/sources/2026-nikolaou-camelot-camel-orchestrated.html.md), Table 10).
 
 ## Open questions
 
@@ -26,8 +28,10 @@ Generating the proofs of a formal verification by machine instead of by hand. A 
 
 ## Sources
 
+- [a neuro-symbolic assurance agenda for learning-enabled CPS](https://silentzero.ooo/wiki/sources/2026-zheng-assuring-learning-enabled.html.md)
 - [AutoRocq](https://silentzero.ooo/wiki/sources/2025-tu-agentic-verification-software.html.md)
 - [AutoVerus](https://silentzero.ooo/wiki/sources/2025-yang-autoverus-automated-proof.html.md)
+- [CaMeLoT, a static check of an agent's plan on top of CaMeL](https://silentzero.ooo/wiki/sources/2026-nikolaou-camelot-camel-orchestrated.html.md)
 - [credible compilation against verification](https://silentzero.ooo/wiki/sources/2026-rinard-quantitative-comparison-credible.html.md)
 - [Neuro-symbolic proof generation for seL4](https://silentzero.ooo/wiki/sources/2026-he-neuro-symbolic-proof.html.md)
 - [neuro-symbolic proof generation, OSDI version](https://silentzero.ooo/wiki/sources/2026-he-neuro-symbolic-proof-osdi.html.md)

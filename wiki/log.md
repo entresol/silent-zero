@@ -189,3 +189,31 @@ Sources added to the pool today, daily run. Created: three source pages, each re
 ## [2026-11-20] ingest | 2025-li-osvbench-benchmarking-llms, 2025-tu-agentic-verification-software, 2025-zhao-verifying-device-drivers
 
 Backlog, in the order of the rings; no decision is open, so the limit did not hold. Created: three source pages, each read in full. Changed: [[proof-automation]] (two bullets), [[drivers]] (a second source for the Pancake row, the unverified transpiler and the missing link between driver proof and compiler theorem), index, rings. The effort and overhead figures of the Pancake paper differ from those of the later SMT-based paper; the page records both. No question for the team.
+
+## [2026-11-21] ingest | 2026-li-pace-provenance-aware
+
+Sources added to the pool today, daily run. Created: one source page, read in full except the reference list (proofs read, not independently verified). Changed: [[broker]], [[prompt-injection]], [[information-flow-control]], [[model-context-protocol]], [[object-capabilities]], [[confused-deputy]], the pages of [[2026-nasr-attacker-moves-second]] and [[2026-narisetty-adaptive-evaluation-out]], index. No question for the team.
+
+## [2026-11-21] ingest | 2026-nikolaou-camelot-camel-orchestrated
+
+Sources added to the pool today, daily run. Created: one source page, read in full. Changed: [[broker]], [[prompt-injection]], [[information-flow-control]], [[proof-automation]], the page of [[2025-debenedetti-defeating-prompt-injections]], index. No question for the team.
+
+## [2026-11-21] ingest | 2026-jager-context-dependent-runtime
+
+Sources added to the pool today, daily run. Created: one source page, read in full. Changed: [[simplex]], [[safety-path]], [[real-time-loops]], the page of [[2025-nesti-use-simplex-architecture]], index. No question for the team.
+
+## [2026-11-21] ingest | 2026-zheng-assuring-learning-enabled
+
+Sources added to the pool today, daily run. Created: one source page, read in full; a position paper without results. Changed: [[simplex]], [[safety-path]], [[proof-automation]], index. No question for the team.
+
+## [2026-11-21] ingest | 2026-sison-two-interfaces-sel4
+
+Backlog, in the order of the rings; no decision is open, so the limit did not hold. Created: one source page, read in full (an extended abstract). Changed: [[time-protection]], [[functional-correctness]], [[sel4]], [[microkit]], [[kernel]], the page of [[2026-trustworthy-where-are-we]], index, rings. No question for the team.
+
+## [2026-11-21] ingest | 2024-wistoff-fence-t-s
+
+Backlog, in the order of the rings; no decision is open, so the limit did not hold. Created: one source page, read in full (slides). Changed: [[time-protection]], [[cva6]], [[risc-v]], [[kernel]], [[real-time-loops]], the page of [[2022-wistoff-systematic-prevention-core]], index, rings. No question for the team.
+
+## [2026-11-21] ingest | 2026-lu-faster-rethinking-real
+
+Backlog, in the order of the rings; no decision is open, so the limit did not hold. Created: one source page, read in part (appendix A, D.3, most of E.2, Table 5 and the references not read; no claim rests on them). Changed: [[real-time-loops]], [[action-chunking]], [[safety-path]], the page of [[2025-black-real-time-execution]], index, rings. No question for the team.
