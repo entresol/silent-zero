@@ -1,8 +1,8 @@
 # seL4
 
-> The verified microkernel Silent Zero builds on: proofs per architecture and platform, cost, MCS, timing, HACMS; what its foundation says about certification.
+> The verified microkernel Silent Zero builds on: proofs per architecture and platform, cost, MCS, timing, HACMS; what its foundation says about certification; the 2026 releases.
 
-System · LLM reviewed · updated 2026-11-21 · 17 sources · https://silentzero.ooo/wiki/systems/sel4.html
+System · LLM reviewed · updated 2026-11-22 · 18 sources · https://silentzero.ooo/wiki/systems/sel4.html
 
 A microkernel of the L4 family whose C implementation has a machine-checked proof of [Functional correctness](https://silentzero.ooo/wiki/concepts/functional-correctness.html.md), first completed in 2009 for ARMv6 ([seL4, Formal Verification of an OS Kernel](https://silentzero.ooo/wiki/sources/2009-klein-sel4-formal-verification.html.md)). It provides a minimal set of mechanisms: threads, capabilities, virtual address spaces, IPC, notifications and interrupt delivery ([Formally Verified Software in the Real World](https://silentzero.ooo/wiki/sources/2018-klein-formally-verified-software.html.md), §3.1). Drivers run in user mode, except the kernel's timer ([seL4, Formal Verification of an OS Kernel](https://silentzero.ooo/wiki/sources/2009-klein-sel4-formal-verification.html.md), §3.3, §3.4). Its proofs are in Isabelle/HOL in the `seL4/l4v` repository ([seL4 Foundation: Verified Configurations](https://silentzero.ooo/wiki/sources/nd-sel4-verified-configurations.html.md)).
 
@@ -21,6 +21,10 @@ A microkernel of the L4 family whose C implementation has a machine-checked proo
 An overview by Heiser (published 30 April, current version 26 June 2026) says the MCS time mechanisms were then outside the proofs, with verification expected in 2027; its version date is three days before the announcement of 29 June 2026 above ([seL4 for reliability](https://silentzero.ooo/wiki/sources/2026-heiser-sel4-operating-systems.html.md)). The documentation page's RISC-V section still called the MCS verification ongoing on 23 October 2026 ([seL4 Foundation: Verified Configurations](https://silentzero.ooo/wiki/sources/nd-sel4-verified-configurations.html.md)).
 
 The verification of Microkit's main handler loop by Paturel et al. assumes Hoare triples about seL4 system calls that have not been proved; proving them, including blocking Recv, is ongoing at UNSW ([two interfaces for seL4 kernel verification](https://silentzero.ooo/wiki/sources/2026-sison-two-interfaces-sel4.html.md), §2). See [Microkit](https://silentzero.ooo/wiki/systems/microkit.html.md).
+
+## Releases in 2026
+
+15.0.0 on 31 March (new features; domain schedules added to CAmkES and capDL), 16.0.0 on 22 July (breaking changes for direct users of the API; Microkit 2.3.0 with breaking changes for x86_64) and 17.0.0 on 30 October (fixes in unverified configurations and an audit of unproved code in the verified ones; the announcement thanks Anthropic for reporting issues) ([seL4 Foundation: the news page, January to October 2026](https://silentzero.ooo/wiki/sources/2026-sel4-sel4-16-0.html.md); for the proofs of 17.0.0 see [release 17.0.0](https://silentzero.ooo/wiki/sources/2026-sel4-release-17.html.md)). Our reading: three kernel releases in seven months, the last two announced with breaking changes; the news page states no long-term support policy.
 
 ## Size and cost
 
@@ -59,6 +63,7 @@ CAmkES, the multicore proof. The roadmap is in [seL4 Foundation: Development roa
 - [security proofs complete on AArch64](https://silentzero.ooo/wiki/sources/2026-proofcraft-sel4-security-proofs.html.md)
 - [seL4 for reliability](https://silentzero.ooo/wiki/sources/2026-heiser-sel4-operating-systems.html.md)
 - [seL4 Foundation: seL4 proofs and certification](https://silentzero.ooo/wiki/sources/nd-sel4-proofs-certification.html.md)
+- [seL4 Foundation: the news page, January to October 2026](https://silentzero.ooo/wiki/sources/2026-sel4-sel4-16-0.html.md)
 - [seL4 Foundation: Verified Configurations](https://silentzero.ooo/wiki/sources/nd-sel4-verified-configurations.html.md)
 - [seL4, Formal Verification of an OS Kernel](https://silentzero.ooo/wiki/sources/2009-klein-sel4-formal-verification.html.md)
 - [Trustworthy Systems n.d.: Proof Statistics](https://silentzero.ooo/wiki/sources/nd-trustworthy-proof-statistics.html.md)
@@ -94,6 +99,7 @@ CAmkES, the multicore proof. The roadmap is in [seL4 Foundation: Development roa
 - [Inside Halos for Robotics](https://silentzero.ooo/wiki/sources/2026-nvidia-inside-halos-robotics.html.md)
 - [OSVBench](https://silentzero.ooo/wiki/sources/2025-li-osvbench-benchmarking-llms.html.md)
 - [Robust Composition](https://silentzero.ooo/wiki/sources/2006-miller-robust-composition-towards.html.md)
+- [safeL4, a Rust microkernel without hardware isolation between its domains](https://silentzero.ooo/wiki/sources/2026-xu-safel4-rethinking-safe.html.md)
 - [seL4 Foundation: Development roadmap](https://silentzero.ooo/wiki/sources/nd-sel4-sel4-roadmap.html.md)
 - [seL4 Microkit: User Manual, v2.3.0](https://silentzero.ooo/wiki/sources/nd-sel4-microkit-user-manual.html.md)
 - [Systematic Prevention of On-Core Timing Channels](https://silentzero.ooo/wiki/sources/2022-wistoff-systematic-prevention-core.html.md)

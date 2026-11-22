@@ -45,6 +45,7 @@ The notes state which proofs exist; they do not show them. The proofs themselves
 - [seL4](https://silentzero.ooo/wiki/systems/sel4.html.md)
 - [SiFive and the HiFive boards](https://silentzero.ooo/wiki/systems/sifive-hifive.html.md)
 - [seL4 Foundation: Supported platforms](https://silentzero.ooo/wiki/sources/nd-sel4-supported-platforms.html.md)
+- [seL4 Foundation: the news page, January to October 2026](https://silentzero.ooo/wiki/sources/2026-sel4-sel4-16-0.html.md)
 - [seL4 Foundation: Verified Configurations](https://silentzero.ooo/wiki/sources/nd-sel4-verified-configurations.html.md)
 - [SiFive: HiFive Unleashed](https://silentzero.ooo/wiki/sources/nd-sifive-hifive-unleashed.html.md)
 - [the HiFive Premier P550](https://silentzero.ooo/wiki/sources/2024-sifive-hifive-premier-p550.html.md)
