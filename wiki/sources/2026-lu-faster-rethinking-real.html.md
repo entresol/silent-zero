@@ -56,4 +56,6 @@ A careful reader adds the following (inference).
 - [The safety path](https://silentzero.ooo/wiki/design/safety-path.html.md)
 - [Action chunking](https://silentzero.ooo/wiki/concepts/action-chunking.html.md)
 - [multi-link safety filtering for VLA policies](https://silentzero.ooo/wiki/sources/2026-agarwal-multi-link-safety.html.md)
+- [RAVEL, rolling inference for flow-based VLAs](https://silentzero.ooo/wiki/sources/2026-chen-ravel-asynchronous-rolling.html.md)
 - [Real-Time Execution of Action Chunking Flow Policies](https://silentzero.ooo/wiki/sources/2025-black-real-time-execution.html.md)
+- [REMAC, masked action chunking](https://silentzero.ooo/wiki/sources/2026-wang-real-time-robot.html.md)

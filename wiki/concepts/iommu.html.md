@@ -39,4 +39,5 @@ A memory management unit for devices. Devices such as network cards, storage con
 - [seL4](https://silentzero.ooo/wiki/systems/sel4.html.md)
 - [Inside Halos for Robotics](https://silentzero.ooo/wiki/sources/2026-nvidia-inside-halos-robotics.html.md)
 - [LeftoverLocals](https://silentzero.ooo/wiki/sources/2024-trail-leftoverlocals-listening-llm.html.md)
+- [safeL4, a Rust microkernel without hardware isolation between its domains](https://silentzero.ooo/wiki/sources/2026-xu-safel4-rethinking-safe.html.md)
 - [Verifying Device Drivers with Pancake](https://silentzero.ooo/wiki/sources/2025-zhao-verifying-device-drivers.html.md)

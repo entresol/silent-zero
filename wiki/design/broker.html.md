@@ -133,6 +133,7 @@ The IBM position paper lists tool mediation and identity as platform primitives,
 - [AutoRocq](https://silentzero.ooo/wiki/sources/2025-tu-agentic-verification-software.html.md)
 - [breaking the protocol](https://silentzero.ooo/wiki/sources/2026-maloyan-breaking-protocol-security.html.md)
 - [credible compilation against verification](https://silentzero.ooo/wiki/sources/2026-rinard-quantitative-comparison-credible.html.md)
+- [IntentOS, an agentic OS kernel](https://silentzero.ooo/wiki/sources/2026-wang-agentic-os-kernel.html.md)
 - [LeftoverLocals](https://silentzero.ooo/wiki/sources/2024-trail-leftoverlocals-listening-llm.html.md)
 - [Linux kernel documentation: Landlock](https://silentzero.ooo/wiki/sources/nd-linux-landlock-unprivileged-access.html.md)
 - [MCP threat modelling and tool poisoning](https://silentzero.ooo/wiki/sources/2026-huang-model-context-protocol.html.md)

@@ -469,7 +469,7 @@ p.other { margin-top: 2.2rem; color: var(--muted); font-size: 0.95rem; }
     <div class="titleblock">
       <h1 class="name">Wiki</h1>
       <p class="sub">What the sources behind the paper show, page by page.</p>
-      <p class="ver">173 pages · updated 21 Nov 2026 · <a href="#how">How this wiki is made</a></p>
+      <p class="ver">179 pages · updated 22 Nov 2026 · <a href="#how">How this wiki is made</a></p>
     </div>
   </div>
 </header>
@@ -477,7 +477,7 @@ p.other { margin-top: 2.2rem; color: var(--muted); font-size: 0.95rem; }
 <div class="layout">
   <nav class="toc" id="toc" aria-label="Contents"><p>Contents</p><ol><li class="toc-back"><a href="/">← The paper</a></li><li><a href="#top">↑ Top</a></li><li><a href="#how">How this wiki is made</a></li><li><a href="#design">Design</a></li><li><a href="#systems">Systems</a></li><li><a href="#concepts">Concepts</a></li><li><a href="#sources">Sources</a></li><li><a href="#not-yet-covered">Not yet covered</a></li></ol></nav>
   <article>
-<p>This wiki gathers what the sources behind the paper show. It has a page for each source, each concept, each system the paper builds on and each part of the design: 123 sources, 20 concepts, 22 systems and 8 parts of the design so far. Every page says what is proven, tested or assumed, and on which source that rests.</p>
+<p>This wiki gathers what the sources behind the paper show. It has a page for each source, each concept, each system the paper builds on and each part of the design: 129 sources, 20 concepts, 22 systems and 8 parts of the design so far. Every page says what is proven, tested or assumed, and on which source that rests.</p>
 <h2 id="how">How this wiki is made</h2>
 <p>A language model writes the wiki and keeps it up to date from the sources in the project’s research pool, after Andrej Karpathy’s idea of a wiki that a language model maintains. A daily run adds new sources and works older ones in.</p>
 <ul>
@@ -488,10 +488,10 @@ p.other { margin-top: 2.2rem; color: var(--muted); font-size: 0.95rem; }
 <p>A page can still be wrong or misleading in detail. If you find a mistake, please <a href="https://github.com/entresol/silent-zero/issues" rel="noopener" target="_blank">open an issue</a>. Wiki rules are noted <a href="https://github.com/entresol/silent-zero/blob/main/wiki/CLAUDE.md" rel="noopener" target="_blank">here</a>, changes are followed <a href="https://github.com/entresol/silent-zero/blob/main/wiki/log.md" rel="noopener" target="_blank">here</a>.</p>
 <h2 id="design">Design</h2>
 <ul>
-<li><a href="/wiki/design/kernel.html">The kernel</a> · seL4 with MCS as the Silent Zero kernel: proven (C-level correctness; MCS functional correctness on RISC-V), not stated for MCS (integrity, confidentiality), tested (HACMS), assumed (boot, IOMMU); no WCET bound on any 64-bit core yet; the roadmap dates MCS on AArch64 to Q3 2027. 19 sources.</li>
+<li><a href="/wiki/design/kernel.html">The kernel</a> · seL4 with MCS as the Silent Zero kernel: proven (C-level correctness; MCS functional correctness on RISC-V), not stated for MCS (integrity, confidentiality), tested (HACMS), assumed (boot, IOMMU); no WCET bound on any 64-bit core yet; the roadmap dates MCS on AArch64 to Q3 2027. 20 sources.</li>
 <li><a href="/wiki/design/static-system.html">The static system</a> · one description, one image: what Microkit checks, what is not proved, and the run-time swap in LionsOS, the kernel underneath. 6 sources.</li>
 <li><a href="/wiki/design/broker.html">The broker</a> · the only component that hands out authority: capability patterns, CaMeL and FIDES, why model-based defences fail, three agent-OS designs for the same job, CaMeL between agents; nothing proven yet; the industry’s agent sandboxes grant by resource. 31 sources.</li>
-<li><a href="/wiki/design/real-time-loops.html">Real-time loops</a> · the loops that move the motors: asynchronous chunks from slow models, observed timings, no proven bound yet. 13 sources.</li>
+<li><a href="/wiki/design/real-time-loops.html">Real-time loops</a> · the loops that move the motors: asynchronous chunks from slow models, policies trained for a delay range, observed timings, no proven bound yet. 16 sources.</li>
 <li><a href="/wiki/design/safety-path.html">The safety path</a> · Simplex in Silent Zero: the agent proposes, the loop disposes; tested, not proven; the paper’s 2001 date disputed by a 1994 origin; certified real-time kernels sell the same split as products. 16 sources.</li>
 <li><a href="/wiki/design/root-of-trust.html">Root of trust and firmware</a> · the firmware below the kernel on Arm, RISC-V, PC and Raspberry Pi; OpenTitan, Caliptra, DICE; all <em>assumed</em> in the paper’s terms. 13 sources.</li>
 <li><a href="/wiki/design/bootloader.html">The bootloader</a> · where the Silent Zero loader sits on each platform, signed and measured boot, proofs about boot code so far; the loader itself unproven. 16 sources.</li>
@@ -499,8 +499,8 @@ p.other { margin-top: 2.2rem; color: var(--muted); font-size: 0.95rem; }
 </ul>
 <h2 id="systems">Systems</h2>
 <ul>
-<li><a href="/wiki/systems/sel4.html">seL4</a> · the verified microkernel Silent Zero builds on: proofs per architecture and platform, cost, MCS, timing, HACMS; what its foundation says about certification. 17 sources.</li>
-<li><a href="/wiki/systems/microkit.html">Microkit</a> · the build system for static seL4 systems: protection domains, channels, budgets, one image. 6 sources.</li>
+<li><a href="/wiki/systems/sel4.html">seL4</a> · the verified microkernel Silent Zero builds on: proofs per architecture and platform, cost, MCS, timing, HACMS; what its foundation says about certification; the 2026 releases. 18 sources.</li>
+<li><a href="/wiki/systems/microkit.html">Microkit</a> · the build system for static seL4 systems: protection domains, channels, budgets, one image. 7 sources.</li>
 <li><a href="/wiki/systems/lionsos.html">LionsOS</a> · static OS from small components on seL4 and Microkit; first driver verified; Summit 2026 talks on x86-64 VMs and driver specifications. 9 sources.</li>
 <li><a href="/wiki/systems/coreboot.html">coreboot</a> · open firmware in stages with a fixed payload; verified and measured boot; closed vendor parts on x86. 3 sources.</li>
 <li><a href="/wiki/systems/tf-a.html">Trusted Firmware-A</a> · Arm’s reference firmware; BL31 stays resident at EL3 below the kernel. 2 sources.</li>
@@ -535,14 +535,14 @@ p.other { margin-top: 2.2rem; color: var(--muted); font-size: 0.95rem; }
 <li><a href="/wiki/concepts/measured-boot.html">Measured boot</a> · each stage records what runs next; TPM and DICE; a verified DICE implementation. 4 sources.</li>
 <li><a href="/wiki/concepts/time-protection.html">Time protection</a> · closing timing channels between domains; prototypes on CVA6, proof for seL4 in progress. 5 sources.</li>
 <li><a href="/wiki/concepts/simplex.html">Simplex architecture</a> · a simple safe controller guarding an untrusted one; tested with learned controllers. 4 sources.</li>
-<li><a href="/wiki/concepts/action-chunking.html">Action chunking</a> · slow robot models emitting action sequences for a fast loop; no bound on delay. 4 sources.</li>
+<li><a href="/wiki/concepts/action-chunking.html">Action chunking</a> · slow robot models emitting action sequences for a fast loop; RTC and three 2026 policy-side answers; no bound on delay. 7 sources.</li>
 <li><a href="/wiki/concepts/ai-vulnerability-discovery.html">AI vulnerability discovery</a> · AI models finding software flaws at scale: DARPA’s challenge and Anthropic’s figures, the bottleneck moving to patching. 3 sources.</li>
 <li><a href="/wiki/concepts/information-flow-control.html">Information-flow control</a> · labels for where data came from and who may see it; FIDES and CaMeL for agents; explicit flows only; refusals as a channel; Agent libOS. 8 sources.</li>
 <li><a href="/wiki/concepts/proof-automation.html">Proof automation</a> · machines proposing proof steps, Isabelle checking them; 77.6 % of a seL4 benchmark sample; Verus as a faster verifier. PROMISE as a second method; AutoVerus for Rust; a coding agent’s compiler proofs in Lean; the OSDI version and the Selene benchmark; specification writing (OSVBench), AutoRocq, and verified against checked compiler passes. 14 sources.</li>
-<li><a href="/wiki/concepts/memory-safe-code.html">Memory-safe code</a> · new code in Rust instead of C: Android’s memory-safety flaws below 20 % in 2025; the hardening rival to a verified base. 1 source.</li>
+<li><a href="/wiki/concepts/memory-safe-code.html">Memory-safe code</a> · new code in Rust instead of C: Android’s memory-safety flaws below 20 % in 2025; a Rust microkernel without hardware isolation as a research rival; the hardening rival to a verified base. 2 sources.</li>
 <li><a href="/wiki/concepts/mixed-criticality.html">Mixed criticality</a> · software of different criticality on one platform; processor time as a capability in seL4 MCS; partitions under a hypervisor in commercial robot stacks. 7 sources.</li>
 <li><a href="/wiki/concepts/model-context-protocol.html">Model Context Protocol</a> · the open protocol that connects agents to tools; three preprints measure its security, one runtime treats it as a client only. 5 sources.</li>
-<li><a href="/wiki/concepts/agent-operating-systems.html">Agent operating systems</a> · designs that put the limit on an agent in the OS layer: agentOS, Cohesix, KataOS, AgentKernel, AgenticOS, Agent libOS, Quine, OpenShell and MXC as shipped products; IBM’s Agent-OS position paper. 13 sources.</li>
+<li><a href="/wiki/concepts/agent-operating-systems.html">Agent operating systems</a> · designs that put the limit on an agent in the OS layer: agentOS, Cohesix, KataOS, AgentKernel, AgenticOS, Agent libOS, Quine, OpenShell and MXC as shipped products; IBM’s Agent-OS position paper; IntentOS, a language-model planner beside the Linux kernel. 14 sources.</li>
 <li><a href="/wiki/concepts/safety-certification.html">Safety certification</a> · proof versus certificate: what a certified kernel, a robot stack and seL4 each state; no certified seL4 product in the sources. 5 sources.</li>
 </ul>
 <h2 id="sources">Sources</h2>
@@ -671,6 +671,12 @@ p.other { margin-top: 2.2rem; color: var(--muted); font-size: 0.95rem; }
 <li><a href="/wiki/sources/2026-microsoft-windows-platform-security-agents.html">Windows platform security for AI agents</a> (Microsoft 2026) · Build 2026: the MXC SDK in early preview, containment, identity and manageability as Windows primitives. report, full text.</li>
 <li><a href="/wiki/sources/2026-microsoft-execution-containers-policy-driven.html">Execution Containers, policy-driven containment for AI agents</a> (Microsoft 2026) · MXC generally available: backends, policy areas, modes, “an agent cannot be its own security authority”; OpenShell integrated. report, full text.</li>
 <li><a href="/wiki/sources/2026-microsoft-windows-security-ignite-2026.html">Windows security at Ignite</a> (Microsoft 2026) · Ignite 2026: the same direction for agents in one section of a broader security post. report, full text.</li>
+<li><a href="/wiki/sources/2026-sel4-sel4-16-0.html">seL4 Foundation: the news page, January to October 2026</a> · the seL4 news page for 2026: releases 15.0.0, 16.0.0 and 17.0.0 with their breaking changes, the AArch64 confidentiality item, Foundation members. report, full text.</li>
+<li><a href="/wiki/sources/2026-wang-real-time-robot.html">REMAC, masked action chunking</a> (Wang et al. 2026) · REMAC: masked fine-tuning so a chunking policy copes with delay; beats RTC on one real arm; needs a maximum delay fixed in advance. measurement, full text.</li>
+<li><a href="/wiki/sources/2026-liu-learning-native-continuation.html">Legato, native continuation for chunked policies</a> (Liu et al. 2026) · Legato: continuation between chunks trained into the policy; 14 to 23 % faster than RTC on five dual-arm tasks, in its own runs. measurement, partly read.</li>
+<li><a href="/wiki/sources/2026-chen-ravel-asynchronous-rolling.html">RAVEL, rolling inference for flow-based VLAs</a> (Chen et al. 2026) · RAVEL: rolling inference cuts the time to the first action by 2.6 to 2.9 times on one GPU; real-world dynamic tasks. measurement, full text.</li>
+<li><a href="/wiki/sources/2026-xu-safel4-rethinking-safe.html">safeL4, a Rust microkernel without hardware isolation between its domains</a> (Xu et al. 2026) · safeL4: a Rust microkernel without hardware isolation between safe domains, primitives 1.91 times faster than seL4’s on average on a Raspberry Pi 3B+; trusts the toolchain and DMA devices. measurement, partly read.</li>
+<li><a href="/wiki/sources/2026-wang-agentic-os-kernel.html">IntentOS, an agentic OS kernel</a> (Wang et al. 2026) · IntentOS: a language model beside Linux composes micro-syscalls; safety rests on new per-call checks. measurement, partly read.</li>
 </ul>
 <h2 id="not-yet-covered">Not yet covered</h2>
 <p>The Silent Zero part <em>agents</em> has no page yet; <a href="/wiki/concepts/agent-operating-systems.html">Agent operating systems</a> covers the designs that touch it. Firmware on PCs (Intel ME, AMD PSP, FSP, open alternatives) and on Apple silicon is in the backlog. Also not yet covered: the multicore proof, the ratification status of CHERI for RISC-V, the seams between proven parts and the driver island.</p>

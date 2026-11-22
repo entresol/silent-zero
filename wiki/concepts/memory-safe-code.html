@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Memory-safe code · Silent Zero wiki</title>
-<meta name="description" content="new code in Rust instead of C: Android’s memory-safety flaws below 20 % in 2025; the hardening rival to a verified base.">
+<meta name="description" content="new code in Rust instead of C: Android’s memory-safety flaws below 20 % in 2025; a Rust microkernel without hardware isolation as a research rival; the hardening rival to a verified base.">
 <link rel="canonical" href="https://silentzero.ooo/wiki/concepts/memory-safe-code.html">
 <link rel="alternate" type="text/markdown" href="/wiki/concepts/memory-safe-code.html.md">
 <link rel="icon" href="/favicon.ico?v=227f1130" sizes="32x32">
@@ -468,8 +468,8 @@ p.other { margin-top: 2.2rem; color: var(--muted); font-size: 0.95rem; }
     <p class="crumbs"><a href="/">Silent Zero OS</a> · <a href="/wiki/">Wiki</a></p>
     <div class="titleblock">
       <h1 class="name">Memory-safe code</h1>
-      <p class="sub">new code in Rust instead of C: Android’s memory-safety flaws below 20 % in 2025; the hardening rival to a verified base.</p>
-      <p class="ver">Concept · <a href="/wiki/#how">LLM reviewed</a> · updated 4 Nov 2026 · 1 source</p>
+      <p class="sub">new code in Rust instead of C: Android’s memory-safety flaws below 20 % in 2025; a Rust microkernel without hardware isolation as a research rival; the hardening rival to a verified base.</p>
+      <p class="ver">Concept · <a href="/wiki/#how">LLM reviewed</a> · updated 22 Nov 2026 · 2 sources</p>
     </div>
   </div>
 </header>
@@ -483,6 +483,7 @@ p.other { margin-top: 2.2rem; color: var(--muted); font-size: 0.95rem; }
 <li>Google reports for Android that memory-safety flaws fell below 20 per cent of all vulnerabilities in 2025, for the first time. Its Rust code shows about 0.2 such flaws per million lines against about 1,000 for its C and C++ code. The Rust figure rests on one near-miss in about 5 million lines. Medium and large Rust changes were rolled back about four times less often than C++ changes, and Rust changes spent about 25 per cent less time in review (<a href="/wiki/sources/2025-vander-rust-android-move.html">Rust in Android</a>).</li>
 <li>The same post says memory-safe languages are one part of a defence in depth and that about 4 per cent of the Rust code sits in <code>unsafe</code> blocks, which the post says do not switch off most of Rust’s safety checks (<a href="/wiki/sources/2025-vander-rust-android-move.html">Rust in Android</a>).</li>
 <li>Rust in kernels: Android’s 6.12 Linux kernel has Rust enabled and a first production Rust driver (<a href="/wiki/sources/2025-vander-rust-android-move.html">Rust in Android</a>). KataOS put Rust on seL4 in 2022 (<a href="/wiki/systems/kataos.html">KataOS</a>).</li>
+<li>Research kernels go further and replace hardware isolation between domains with the language. safeL4, a Rust microkernel announced for ASPLOS 2027, uses Rust object capabilities for isolation and reports primitives 1.91 times faster than seL4’s on average (geometric mean) on a Raspberry Pi 3B+; legacy code still runs in hardware-isolated tasks. It trusts the Rust toolchain, <code>unsafe</code> code (15.1 per cent of its kernel) and DMA-capable devices, has no IOMMU isolation yet, and is not described as formally verified (<a href="/wiki/sources/2026-xu-safel4-rethinking-safe.html">safeL4, a Rust microkernel without hardware isolation between its domains</a>).</li>
 <li>Memory safety is not a proof of the program’s behaviour. <a href="/wiki/systems/verus.html">Verus</a> proves properties of Rust code, and <a href="/wiki/concepts/proof-automation.html">Proof automation</a> covers models that write such proofs.</li>
 </ul>
 <h2 id="related">Related</h2>
@@ -495,7 +496,7 @@ p.other { margin-top: 2.2rem; color: var(--muted); font-size: 0.95rem; }
 
 <h2 id="page-sources">Sources</h2>
 <p class="links-note">What this page rests on.</p>
-<ul class="linked-from"><li><a href="/wiki/sources/2025-vander-rust-android-move.html">Rust in Android</a> <span class="kind">Vander Stoep 2025</span></li></ul>
+<ul class="linked-from"><li><a href="/wiki/sources/2025-vander-rust-android-move.html">Rust in Android</a> <span class="kind">Vander Stoep 2025</span></li><li><a href="/wiki/sources/2026-xu-safel4-rethinking-safe.html">safeL4, a Rust microkernel without hardware isolation between its domains</a> <span class="kind">Xu et al. 2026</span></li></ul>
 <h2 id="related-pages">Related pages</h2>
 <p class="links-note">Pages this one links to, and pages that link here.</p>
 <ul class="linked-from"><li><a href="/wiki/design/real-time-loops.html">Real-time loops</a> <span class="kind">Design</span></li><li><a href="/wiki/design/broker.html">The broker</a> <span class="kind">Design</span></li><li><a href="/wiki/concepts/proof-automation.html">Proof automation</a> <span class="kind">Concept</span></li><li><a href="/wiki/systems/kataos.html">KataOS</a> <span class="kind">System</span></li><li><a href="/wiki/systems/landlock.html">Landlock</a> <span class="kind">System</span></li><li><a href="/wiki/systems/preempt-rt.html">PREEMPT_RT</a> <span class="kind">System</span></li><li><a href="/wiki/systems/verus.html">Verus</a> <span class="kind">System</span></li></ul>
