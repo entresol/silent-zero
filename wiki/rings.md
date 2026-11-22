@@ -95,9 +95,9 @@ Work that extends the design, competes with it or attacks its assumptions: other
 - [x] 2026-sison-two-interfaces-sel4
 - [x] 2024-wistoff-fence-t-s
 - [x] 2026-lu-faster-rethinking-real
-- [ ] 2026-wang-real-time-robot
-- [ ] 2026-liu-learning-native-continuation
-- [ ] 2026-sel4-sel4-16-0
+- [x] 2026-wang-real-time-robot
+- [x] 2026-liu-learning-native-continuation
+- [x] 2026-sel4-sel4-16-0
 - [ ] 2026-kurd-cheri-standardisation-status
 - [ ] 2025-cheriot-cheriot-isa-1
 - [ ] 2026-owasp-owasp-mcp-top
@@ -217,3 +217,6 @@ Systems and sources the wiki will need that the pool lacks. They go into the poo
 - [x] 2026-microsoft-windows-platform-security-agents
 - [x] 2026-microsoft-execution-containers-policy-driven
 - [x] 2026-microsoft-windows-security-ignite-2026
+- [x] 2026-xu-safel4-rethinking-safe
+- [x] 2026-wang-agentic-os-kernel
+- [x] 2026-chen-ravel-asynchronous-rolling
