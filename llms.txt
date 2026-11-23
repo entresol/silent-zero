@@ -41,7 +41,7 @@ This is a design, not a release: the paper makes the argument and says what is p
 - [Measured boot](https://silentzero.ooo/wiki/concepts/measured-boot.html.md): each stage records what runs next; TPM and DICE; a verified DICE implementation.
 - [Memory-safe code](https://silentzero.ooo/wiki/concepts/memory-safe-code.html.md): new code in Rust instead of C: Android’s memory-safety flaws below 20 % in 2025; a Rust microkernel without hardware isolation as a research rival; the hardening rival to a verified base.
 - [Mixed criticality](https://silentzero.ooo/wiki/concepts/mixed-criticality.html.md): software of different criticality on one platform; processor time as a capability in seL4 MCS; partitions under a hypervisor in commercial robot stacks.
-- [Model Context Protocol](https://silentzero.ooo/wiki/concepts/model-context-protocol.html.md): the open protocol that connects agents to tools; three preprints measure its security, one runtime treats it as a client only.
+- [Model Context Protocol](https://silentzero.ooo/wiki/concepts/model-context-protocol.html.md): the open protocol that connects agents to tools; three preprints measure its security, one runtime treats it as a client only; a vendor’s guide to OWASP’s MCP list.
 - [Object capabilities](https://silentzero.ooo/wiki/concepts/object-capabilities.html.md): references that both designate and authorise; permission versus authority; caretaker and membrane.
 - [Prompt injection](https://silentzero.ooo/wiki/concepts/prompt-injection.html.md): instructions hidden in data an agent reads; heuristic defences fail, defences around the model hold within limits; benign command chains through shared state beat two of them; CaMeL does not carry over between agents; argument-level authorization and refusals as a leak; MCP measured.
 - [Proof automation](https://silentzero.ooo/wiki/concepts/proof-automation.html.md): machines proposing proof steps, Isabelle checking them; 77.6 % of a seL4 benchmark sample; Verus as a faster verifier. PROMISE as a second method; AutoVerus for Rust; a coding agent’s compiler proofs in Lean; the OSDI version and the Selene benchmark; specification writing (OSVBench), AutoRocq, and verified against checked compiler passes.
@@ -55,7 +55,7 @@ This is a design, not a release: the paper makes the argument and says what is p
 ## Systems
 
 - [agentOS](https://silentzero.ooo/wiki/systems/agentos.html.md): seL4-based I/O platform for agents: device-owning domains, Linux and FreeBSD guests under QEMU; agent services not yet booted.
-- [CHERIoT](https://silentzero.ooo/wiki/systems/cheriot.html.md): CHERI capabilities on small RISC-V cores with its own RTOS: memory safety in hardware, measured, not proven; CHERI for RISC-V “being standardised” in 2026.
+- [CHERIoT](https://silentzero.ooo/wiki/systems/cheriot.html.md): CHERI capabilities on small RISC-V cores with its own RTOS: memory safety in hardware, measured, not proven; the 1.0 ISA of November 2025; CHERI for RISC-V in architecture review in April 2026, not ratified in any source here.
 - [Cohesix](https://silentzero.ooo/wiki/systems/cohesix.html.md): seL4-based control layer for edge AI fleets: a Queen decides what hosts’ models may do; landing page only.
 - [coreboot](https://silentzero.ooo/wiki/systems/coreboot.html.md): open firmware in stages with a fixed payload; verified and measured boot; closed vendor parts on x86.
 - [CVA6](https://silentzero.ooo/wiki/systems/cva6.html.md): open 64-bit RISC-V core whose design lets latency bounds be proved; fence.t prototype.
@@ -107,6 +107,7 @@ This is a design, not a release: the paper makes the argument and says what is p
 - [Can CaMeLs Talk?](https://silentzero.ooo/wiki/sources/2026-peters-gill-can-camels.html.md) (Peters-Gill et al. 2026)
 - [Causality laundering](https://silentzero.ooo/wiki/sources/2026-chinaei-causality-laundering-denial.html.md) (Chinaei 2026)
 - [CHERI is being standardised](https://silentzero.ooo/wiki/sources/2026-moore-cheri-is-being.html.md) (Moore 2026)
+- [CHERI standardisation status](https://silentzero.ooo/wiki/sources/2026-kurd-cheri-standardisation-status.html.md) (Kurd 2026)
 - [CHERIoT, complete memory safety for embedded devices](https://silentzero.ooo/wiki/sources/2023-amar-cheriot-complete-memory.html.md) (Amar et al. 2023)
 - [Chromium OS: Verified Boot (design document)](https://silentzero.ooo/wiki/sources/nd-chromeos-verified-boot.html.md)
 - [Cohesix, a research operating system for edge AI](https://silentzero.ooo/wiki/sources/2026-bower-cohesix-research-operating.html.md) (Bower 2026)
@@ -130,6 +131,7 @@ This is a design, not a release: the paper makes the argument and says what is p
 - [Inside Halos for Robotics](https://silentzero.ooo/wiki/sources/2026-nvidia-inside-halos-robotics.html.md) (NVIDIA 2026)
 - [Instruction Sets Should Be Free](https://silentzero.ooo/wiki/sources/2014-asanovic-instruction-sets-free.html.md) (Asanović and Patterson 2014)
 - [IntentOS, an agentic OS kernel](https://silentzero.ooo/wiki/sources/2026-wang-agentic-os-kernel.html.md) (Wang et al. 2026)
+- [ISA 1.0 released](https://silentzero.ooo/wiki/sources/2025-cheriot-cheriot-isa-1.html.md) (CHERIoT 2025)
 - [Kernel-level agent security in OpenShift AI 3.5](https://silentzero.ooo/wiki/sources/2026-red-hat-beyond-container-boundaries.html.md) (Red Hat 2026)
 - [LeftoverLocals](https://silentzero.ooo/wiki/sources/2024-trail-leftoverlocals-listening-llm.html.md) (Khlaaf and Sorensen 2024)
 - [Legato, native continuation for chunked policies](https://silentzero.ooo/wiki/sources/2026-liu-learning-native-continuation.html.md) (Liu et al. 2026)
@@ -192,6 +194,7 @@ This is a design, not a release: the paper makes the argument and says what is p
 - [the Axon compiler](https://silentzero.ooo/wiki/sources/2026-rinard-testing-credible-compilation.html.md) (Rinard 2026)
 - [The Confused Deputy](https://silentzero.ooo/wiki/sources/1988-hardy-confused-deputy-or.html.md) (Hardy 1988)
 - [the HiFive Premier P550](https://silentzero.ooo/wiki/sources/2024-sifive-hifive-premier-p550.html.md) (SiFive 2024)
+- [the OWASP MCP Top 10](https://silentzero.ooo/wiki/sources/2026-owasp-owasp-mcp-top.html.md) (Cycode 2026)
 - [The RISC-V Instruction Set Manual, Version 1.0](https://silentzero.ooo/wiki/sources/2011-waterman-risc-v-instruction.html.md) (Waterman et al. 2011)
 - [The RISC-V Instruction Set Manual, Volume I](https://silentzero.ooo/wiki/sources/2024-riscv-unprivileged-isa-manual.html.md) (RISC-V International 2024)
 - [The RISC-V Instruction Set Manual, Volume II](https://silentzero.ooo/wiki/sources/2024-riscv-privileged-isa-manual.html.md) (RISC-V International 2024)

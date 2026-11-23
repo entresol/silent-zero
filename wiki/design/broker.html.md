@@ -140,4 +140,5 @@ The IBM position paper lists tool mediation and identity as platform primitives,
 - [multi-link safety filtering for VLA policies](https://silentzero.ooo/wiki/sources/2026-agarwal-multi-link-safety.html.md)
 - [Quine](https://silentzero.ooo/wiki/sources/2026-ke-quine-realizing-llm.html.md)
 - [the Axon compiler](https://silentzero.ooo/wiki/sources/2026-rinard-testing-credible-compilation.html.md)
+- [the OWASP MCP Top 10](https://silentzero.ooo/wiki/sources/2026-owasp-owasp-mcp-top.html.md)
 - [Windows platform security for AI agents](https://silentzero.ooo/wiki/sources/2026-microsoft-windows-platform-security-agents.html.md)

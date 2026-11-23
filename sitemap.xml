@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://silentzero.ooo/</loc><lastmod>2026-11-19</lastmod></url>
-  <url><loc>https://silentzero.ooo/wiki/</loc><lastmod>2026-11-22</lastmod></url>
+  <url><loc>https://silentzero.ooo/wiki/</loc><lastmod>2026-11-23</lastmod></url>
   <url><loc>https://silentzero.ooo/lexicon/</loc></url>
   <url><loc>https://silentzero.ooo/use/</loc></url>
   <url><loc>https://silentzero.ooo/devel/</loc></url>
@@ -15,7 +15,7 @@
   <url><loc>https://silentzero.ooo/wiki/concepts/measured-boot.html</loc><lastmod>2026-10-30</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/concepts/memory-safe-code.html</loc><lastmod>2026-11-22</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/concepts/mixed-criticality.html</loc><lastmod>2026-10-29</lastmod></url>
-  <url><loc>https://silentzero.ooo/wiki/concepts/model-context-protocol.html</loc><lastmod>2026-11-21</lastmod></url>
+  <url><loc>https://silentzero.ooo/wiki/concepts/model-context-protocol.html</loc><lastmod>2026-11-23</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/concepts/object-capabilities.html</loc><lastmod>2026-11-21</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/concepts/prompt-injection.html</loc><lastmod>2026-11-21</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/concepts/proof-automation.html</loc><lastmod>2026-11-21</lastmod></url>
@@ -58,6 +58,7 @@
   <url><loc>https://silentzero.ooo/wiki/sources/2024-wistoff-fence-t-s.html</loc><lastmod>2026-11-21</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/sources/2024-zhang-selene-pioneering-automated.html</loc><lastmod>2026-11-05</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/sources/2025-black-real-time-execution.html</loc><lastmod>2026-11-21</lastmod></url>
+  <url><loc>https://silentzero.ooo/wiki/sources/2025-cheriot-cheriot-isa-1.html</loc><lastmod>2026-11-23</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/sources/2025-cnx-nuvoton-introduces-first.html</loc><lastmod>2026-10-31</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/sources/2025-costa-securing-ai-agents.html</loc><lastmod>2026-10-31</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/sources/2025-darpa-ai-cyber-challenge.html</loc><lastmod>2026-10-31</lastmod></url>
@@ -90,6 +91,7 @@
   <url><loc>https://silentzero.ooo/wiki/sources/2026-jager-context-dependent-runtime.html</loc><lastmod>2026-11-21</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/sources/2026-jiang-futurertc-real-time.html</loc><lastmod>2026-11-05</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/sources/2026-ke-quine-realizing-llm.html</loc><lastmod>2026-11-05</lastmod></url>
+  <url><loc>https://silentzero.ooo/wiki/sources/2026-kurd-cheri-standardisation-status.html</loc><lastmod>2026-11-23</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/sources/2026-li-pace-provenance-aware.html</loc><lastmod>2026-11-21</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/sources/2026-li-toolfence-fine-grained.html</loc><lastmod>2026-11-19</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/sources/2026-liao-llvm-translation-validation.html</loc><lastmod>2026-11-13</lastmod></url>
@@ -110,6 +112,7 @@
   <url><loc>https://silentzero.ooo/wiki/sources/2026-nikolaou-camelot-camel-orchestrated.html</loc><lastmod>2026-11-21</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/sources/2026-nvidia-announces-halos-robotics.html</loc><lastmod>2026-11-21</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/sources/2026-nvidia-inside-halos-robotics.html</loc><lastmod>2026-11-21</lastmod></url>
+  <url><loc>https://silentzero.ooo/wiki/sources/2026-owasp-owasp-mcp-top.html</loc><lastmod>2026-11-23</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/sources/2026-peters-gill-can-camels.html</loc><lastmod>2026-11-10</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/sources/2026-proofcraft-sel4-security-proofs.html</loc><lastmod>2026-11-05</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/sources/2026-qnx-nvidia-deepen-collaboration.html</loc><lastmod>2026-11-21</lastmod></url>
@@ -163,7 +166,7 @@
   <url><loc>https://silentzero.ooo/wiki/sources/nd-trustworthy-wcet-worst-case.html</loc><lastmod>2026-10-29</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/sources/nd-uboot-verified-boot.html</loc><lastmod>2026-10-30</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/systems/agentos.html</loc><lastmod>2026-11-01</lastmod></url>
-  <url><loc>https://silentzero.ooo/wiki/systems/cheriot.html</loc><lastmod>2026-11-02</lastmod></url>
+  <url><loc>https://silentzero.ooo/wiki/systems/cheriot.html</loc><lastmod>2026-11-23</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/systems/cohesix.html</loc><lastmod>2026-10-31</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/systems/coreboot.html</loc><lastmod>2026-10-30</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/systems/cva6.html</loc><lastmod>2026-11-21</lastmod></url>

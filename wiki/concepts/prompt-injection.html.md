@@ -58,4 +58,5 @@ A September 2026 preprint, CaMeLoT, adds a static plan check on top of CaMeL tha
 - [LeftoverLocals](https://silentzero.ooo/wiki/sources/2024-trail-leftoverlocals-listening-llm.html.md)
 - [multi-link safety filtering for VLA policies](https://silentzero.ooo/wiki/sources/2026-agarwal-multi-link-safety.html.md)
 - [Quine](https://silentzero.ooo/wiki/sources/2026-ke-quine-realizing-llm.html.md)
+- [the OWASP MCP Top 10](https://silentzero.ooo/wiki/sources/2026-owasp-owasp-mcp-top.html.md)
 - [Towards an Agent Operating System](https://silentzero.ooo/wiki/sources/2026-steinder-towards-agent-operating.html.md)
