@@ -4,6 +4,10 @@ What changed in substance, newest first: in the paper, on its page and in the pr
 
 Format: `## <version> · <scope>`, then one paragraph. A paper version is `YYYY-MM-DD-vX.Y` and has its own PDF in `versions/`; the newest one is the version the build prints on the paper and the page. A change without a new paper version carries only its date (`YYYY-MM-DD`). Scope is `Paper`, `Site` or `Project`. The build turns this file into the list at the end of the page.
 
+## 2026-11-23 · Site
+
+The wiki worked in three sources from the backlog: slides on the standardisation status of CHERI for RISC-V (April 2026), the CHERIoT 1.0 ISA announcement (November 2025) and a security vendor's guide to the OWASP MCP Top 10. Three source pages were created. Changed in substance: the CHERIoT page (the 1.0 release, and the standardisation state with its stage and a dated estimate, still without a ratification) and the Model Context Protocol page (a paragraph on the OWASP list and its figures). No new lexicon terms. The Monday lint found nothing by script and fixed one source count in the index.
+
 ## 2026-11-22 · Site
 
 The wiki worked in six more sources: three that arrived in the pool today (safeL4, a Rust microkernel without hardware isolation; IntentOS, an agentic kernel inside Linux; RAVEL, rolling inference for flow-based VLA policies) and three from the backlog (REMAC and Legato, two training-time answers to delay in action chunking, and the seL4 news page for 2026). Six source pages were created. Changed in substance: action chunking (three policy-side methods and the claims they make against RTC), real-time loops (two rows and an open point), seL4 (a section on the 2026 releases), Microkit (version 2.3.0), memory-safe code, agent operating systems (a row) and the kernel page (an open point). No new lexicon terms.

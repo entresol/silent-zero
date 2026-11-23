@@ -233,3 +233,11 @@ Sources added to the pool today, daily run. Created: three source pages (safeL4 
 ## [2026-11-22] ingest | 2026-wang-real-time-robot, 2026-liu-learning-native-continuation, 2026-sel4-sel4-16-0
 
 Backlog, in the order of the rings; no decision is open, so the limit did not hold. Created: three source pages; REMAC and the news page read in full, Legato without the appendix, which its PDF does not contain. Changed: [[action-chunking]] (three 2026 policy-side answers to delay and the claims against RTC), [[real-time-loops]], [[sel4]] (a section on the 2026 releases), [[microkit]] (2.3.0), index, rings. The pool title of 2026-sel4-sel4-16-0 says "seL4 16.0.0 release", but the snapshot is the whole 2026 news page; the source page says so. No question for the team.
+
+## [2026-11-23] lint
+
+Monday pass. `wiki_lint.py` found nothing. Reading half: the index's source counts were compared with the front matter of every concept, system and design page; one disagreed ([[wcet-analysis]], 6 in the index, 7 in the front matter) and is fixed. No `drafted` page was held back for a reason that is older than today's ingest. Contradictions between pages and claims replaced by newer sources were not searched page by page; left open for a fuller pass. Nothing new under Needs a decision.
+
+## [2026-11-23] ingest | 2026-kurd-cheri-standardisation-status, 2025-cheriot-cheriot-isa-1, 2026-owasp-owasp-mcp-top
+
+Backlog, in the order of the rings; no decision is open, so the limit did not hold. Created: three source pages, all read in full; the OWASP page rests on a security vendor's blog summary, not on OWASP's own text, which the pool lacks (a candidate for the pool: the OWASP MCP Top 10 project page). Changed: [[cheriot]] (a section on ISA 1.0, the standardisation question with its April 2026 stage), [[model-context-protocol]] (a paragraph on the OWASP list), [[2026-moore-cheri-is-being]] (links the talk it points to), index, rings. Kurd's slides place the RISC-V CHERI specification in architecture review before its freeze, with their own timetable marked out of date; no later source is in the pool, so whether CHERI for RISC-V is ratified now is not answered. The paper's "being standardised" and "under way" hold against all three. No question for the team.
