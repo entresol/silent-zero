@@ -1,6 +1,6 @@
 ---
 type: index
-updated: 2026-11-22
+updated: 2026-11-23
 ---
 
 # zOS wiki
@@ -20,7 +20,7 @@ The catalogue of every page, with one line each. Read this first.
 
 ## Not yet covered
 
-The zOS part *agents* has no page yet; [[agent-operating-systems]] covers the designs that touch it. Firmware on PCs (Intel ME, AMD PSP, FSP, open alternatives) and on Apple silicon is in the backlog. Also not yet covered: the multicore proof, the ratification status of CHERI for RISC-V, the seams between proven parts and the driver island.
+The zOS part *agents* has no page yet; [[agent-operating-systems]] covers the designs that touch it. Firmware on PCs (Intel ME, AMD PSP, FSP, open alternatives) and on Apple silicon is in the backlog. Also not yet covered: the multicore proof, the ratification status of CHERI for RISC-V after April 2026 (the sources here stop there), the seams between proven parts and the driver island.
 
 ## Systems
 
@@ -38,7 +38,7 @@ The zOS part *agents* has no page yet; [[agent-operating-systems]] covers the de
 - [[preempt-rt]] · the Linux real-time configuration: preemptible kernel, threaded interrupts; no latency bound stated. 1 source.
 - [[cohesix]] · seL4-based control layer for edge AI fleets: a Queen decides what hosts' models may do; landing page only. 1 source.
 - [[kataos]] · Google's seL4 and Rust OS for machine-learning devices, 2022; OpenTitan in its Sparrow plan. 1 source.
-- [[cheriot]] · CHERI capabilities on small RISC-V cores with its own RTOS: memory safety in hardware, measured, not proven; CHERI for RISC-V "being standardised" in 2026. 2 sources.
+- [[cheriot]] · CHERI capabilities on small RISC-V cores with its own RTOS: memory safety in hardware, measured, not proven; the 1.0 ISA of November 2025; CHERI for RISC-V in architecture review in April 2026, not ratified in any source here. 4 sources.
 - [[cva6]] · open 64-bit RISC-V core whose design lets latency bounds be proved; fence.t prototype. 7 sources.
 - [[sifive-hifive]] · SiFive and its boards: the discontinued HiFive Unleashed with seL4's MCS proof, the HiFive Premier P550 one can buy. 5 sources.
 - [[nvidia-halos]] · NVIDIA's safety stack for robots: IGX Thor with a safety island, Halos Core with Linux or Linux plus QNX; inspected for certification readiness, no robotics certificate claimed. 3 sources.
@@ -51,7 +51,7 @@ The zOS part *agents* has no page yet; [[agent-operating-systems]] covers the de
 
 - [[risc-v]] · the open instruction set: what is open (the ISA) and what need not be (cores, chips, boards); privilege levels and the SBI. 12 sources.
 - [[iommu]] · the memory management unit for devices: what it limits, and the 2019 attacks that worked although it was on. 3 sources.
-- [[wcet-analysis]] · upper bounds on execution time, what they need, and where seL4 stands. 6 sources.
+- [[wcet-analysis]] · upper bounds on execution time, what they need, and where seL4 stands. 7 sources.
 - [[functional-correctness]] · what seL4's refinement proof gives, what it assumes, where it holds. 5 sources.
 - [[object-capabilities]] · references that both designate and authorise; permission versus authority; caretaker and membrane. 7 sources.
 - [[confused-deputy]] · a program misusing one party's authority for another's request; capabilities as the remedy. 4 sources.
@@ -66,7 +66,7 @@ The zOS part *agents* has no page yet; [[agent-operating-systems]] covers the de
 - [[proof-automation]] · machines proposing proof steps, Isabelle checking them; 77.6 % of a seL4 benchmark sample; Verus as a faster verifier. PROMISE as a second method; AutoVerus for Rust; a coding agent's compiler proofs in Lean; the OSDI version and the Selene benchmark; specification writing (OSVBench), AutoRocq, and verified against checked compiler passes. 14 sources.
 - [[memory-safe-code]] · new code in Rust instead of C: Android's memory-safety flaws below 20 % in 2025; a Rust microkernel without hardware isolation as a research rival; the hardening rival to a verified base. 2 sources.
 - [[mixed-criticality]] · software of different criticality on one platform; processor time as a capability in seL4 MCS; partitions under a hypervisor in commercial robot stacks. 7 sources.
-- [[model-context-protocol]] · the open protocol that connects agents to tools; three preprints measure its security, one runtime treats it as a client only. 5 sources.
+- [[model-context-protocol]] · the open protocol that connects agents to tools; three preprints measure its security, one runtime treats it as a client only; a vendor's guide to OWASP's MCP list. 6 sources.
 - [[agent-operating-systems]] · designs that put the limit on an agent in the OS layer: agentOS, Cohesix, KataOS, AgentKernel, AgenticOS, Agent libOS, Quine, OpenShell and MXC as shipped products; IBM's Agent-OS position paper; IntentOS, a language-model planner beside the Linux kernel. 14 sources.
 - [[safety-certification]] · proof versus certificate: what a certified kernel, a robot stack and seL4 each state; no certified seL4 product in the sources. 5 sources.
 
@@ -202,3 +202,6 @@ The zOS part *agents* has no page yet; [[agent-operating-systems]] covers the de
 - [[2026-chen-ravel-asynchronous-rolling]] · RAVEL: rolling inference cuts the time to the first action by 2.6 to 2.9 times on one GPU; real-world dynamic tasks. measurement, full text.
 - [[2026-xu-safel4-rethinking-safe]] · safeL4: a Rust microkernel without hardware isolation between safe domains, primitives 1.91 times faster than seL4's on average on a Raspberry Pi 3B+; trusts the toolchain and DMA devices. measurement, partly read.
 - [[2026-wang-agentic-os-kernel]] · IntentOS: a language model beside Linux composes micro-syscalls; safety rests on new per-call checks. measurement, partly read.
+- [[2026-kurd-cheri-standardisation-status]] · Kurd, April 2026: CHERI for RISC-V in architecture review before its freeze; ratification intended for Q2, thought more likely Q3, on a slide marked out of date. progress, slides, full text.
+- [[2025-cheriot-cheriot-isa-1]] · CHERIoT ISA 1.0, November 2025: stable since December 2024, two implementations, first chips from the fab; the RISC-V CHERI base "tentatively Y". report, full text.
+- [[2026-owasp-owasp-mcp-top]] · a security vendor's guide to the OWASP MCP Top 10 (version 0.1): ten risks, 30-plus CVEs in two months, figures without method. report, full text.

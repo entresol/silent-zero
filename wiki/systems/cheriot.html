@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>CHERIoT · Silent Zero wiki</title>
-<meta name="description" content="CHERI capabilities on small RISC-V cores with its own RTOS: memory safety in hardware, measured, not proven; CHERI for RISC-V “being standardised” in 2026.">
+<meta name="description" content="CHERI capabilities on small RISC-V cores with its own RTOS: memory safety in hardware, measured, not proven; the 1.0 ISA of November 2025; CHERI for RISC-V in architecture review in April 2026, not ratified in any source here.">
 <link rel="canonical" href="https://silentzero.ooo/wiki/systems/cheriot.html">
 <link rel="alternate" type="text/markdown" href="/wiki/systems/cheriot.html.md">
 <link rel="icon" href="/favicon.ico?v=227f1130" sizes="32x32">
@@ -468,18 +468,20 @@ p.other { margin-top: 2.2rem; color: var(--muted); font-size: 0.95rem; }
     <p class="crumbs"><a href="/">Silent Zero OS</a> · <a href="/wiki/">Wiki</a></p>
     <div class="titleblock">
       <h1 class="name">CHERIoT</h1>
-      <p class="sub">CHERI capabilities on small RISC-V cores with its own RTOS: memory safety in hardware, measured, not proven; CHERI for RISC-V “being standardised” in 2026.</p>
-      <p class="ver">System · <a href="/wiki/#how">LLM reviewed</a> · updated 2 Nov 2026 · 2 sources</p>
+      <p class="sub">CHERI capabilities on small RISC-V cores with its own RTOS: memory safety in hardware, measured, not proven; the 1.0 ISA of November 2025; CHERI for RISC-V in architecture review in April 2026, not ratified in any source here.</p>
+      <p class="ver">System · <a href="/wiki/#how">LLM reviewed</a> · updated 23 Nov 2026 · 4 sources</p>
     </div>
   </div>
 </header>
 <button class="menu" type="button" aria-controls="toc" aria-expanded="false" aria-label="Contents" hidden><span></span></button>
 <div class="layout">
-  <nav class="toc" id="toc" aria-label="Contents"><p>Contents</p><ol><li class="toc-back"><a href="/">← The paper</a></li><li class="toc-back"><a href="/wiki/">← Wiki index</a></li><li><a href="#top">↑ Top</a></li><li><a href="#state-as-published-in-2023">State, as published in 2023</a></li><li><a href="#what-it-is-and-what-it-is-not">What it is, and what it is not</a></li><li><a href="#licence-and-code">Licence and code</a></li><li><a href="#related">Related</a></li><li><a href="#open-questions">Open questions</a></li><li><a href="#page-sources">Sources</a></li><li><a href="#related-pages">Related pages</a></li></ol></nav>
+  <nav class="toc" id="toc" aria-label="Contents"><p>Contents</p><ol><li class="toc-back"><a href="/">← The paper</a></li><li class="toc-back"><a href="/wiki/">← Wiki index</a></li><li><a href="#top">↑ Top</a></li><li><a href="#state-as-published-in-2023">State, as published in 2023</a></li><li><a href="#state-in-november-2025-isa-1.0">State in November 2025: ISA 1.0</a></li><li><a href="#what-it-is-and-what-it-is-not">What it is, and what it is not</a></li><li><a href="#licence-and-code">Licence and code</a></li><li><a href="#related">Related</a></li><li><a href="#open-questions">Open questions</a></li><li><a href="#page-sources">Sources</a></li><li><a href="#related-pages">Related pages</a></li></ol></nav>
   <article>
 <p>A 32-bit RISC-V adaptation of the CHERI capability architecture for embedded devices, co-designed with its own real-time OS. Every memory access needs a capability, a pointer that carries bounds and permissions and cannot be forged; hardware revocation adds temporal safety, so that compartments from mutually distrusting suppliers can share one core and one heap (<a href="/wiki/sources/2023-amar-cheriot-complete-memory.html">CHERIoT, complete memory safety for embedded devices</a>).</p>
 <h2 id="state-as-published-in-2023">State, as published in 2023</h2>
-<p>Two cores implement it, a Flute-based prototype and CHERIoT-Ibex, derived from the Ibex core of the OpenTitan project. Measured in synthesis for 28 nm, the full CHERIoT-Ibex needs a little under 10 per cent more gates than Ibex with a 16-entry PMP; CoreMark loses 21 per cent on Ibex and 6 per cent on Flute, on Flute largely from compiler bugs, by the authors’ belief. An IoT application ran on an FPGA at 20 MHz with 17.5 per cent CPU load (<a href="/wiki/sources/2023-amar-cheriot-complete-memory.html">CHERIoT, complete memory safety for embedded devices</a>). Later developments are not yet covered here.</p>
+<p>Two cores implement it, a Flute-based prototype and CHERIoT-Ibex, derived from the Ibex core of the OpenTitan project. Measured in synthesis for 28 nm, the full CHERIoT-Ibex needs a little under 10 per cent more gates than Ibex with a 16-entry PMP; CoreMark loses 21 per cent on Ibex and 6 per cent on Flute, on Flute largely from compiler bugs, by the authors’ belief. An IoT application ran on an FPGA at 20 MHz with 17.5 per cent CPU load (<a href="/wiki/sources/2023-amar-cheriot-complete-memory.html">CHERIoT, complete memory safety for embedded devices</a>).</p>
+<h2 id="state-in-november-2025-isa-1.0">State in November 2025: ISA 1.0</h2>
+<p>The project released version 1.0 of the specification on 3 November 2025 by the post’s address. It gives December 2024 as the last ISA change, names CHERIoT Ibex 1.0 and CHERIoT Kudu as implementations (Kudu without an official release yet), and says the first chips with the Ibex-based core were returning from the fab, with mass production planned for 2026. All of this is the project’s own account, without data. Version 2.0 is meant to be source-compatible with 1.0 on top of the RISC-V CHERI base, which the post calls “tentatively named Y” (<a href="/wiki/sources/2025-cheriot-cheriot-isa-1.html">ISA 1.0 released</a>).</p>
 <h2 id="what-it-is-and-what-it-is-not">What it is, and what it is not</h2>
 <ul>
 <li>Isolation without an MMU, aimed at deterministic latency; no WCET analysis is reported.</li>
@@ -492,13 +494,14 @@ p.other { margin-top: 2.2rem; color: var(--muted); font-size: 0.95rem; }
 <p><a href="/wiki/concepts/object-capabilities.html">Object capabilities</a>, <a href="/wiki/concepts/risc-v.html">RISC-V</a>, <a href="/wiki/systems/opentitan.html">OpenTitan</a> (the Ibex core’s home).</p>
 <h2 id="open-questions">Open questions</h2>
 <ul>
-<li>Whether CHERIoT hardware, or CHERI for RISC-V generally, is standardised and available. A talk of March 2026 calls it “being standardised” and lists the criteria, a Sail specification, simulation and a test suite among them, without a ratification or a date (<a href="/wiki/sources/2026-moore-cheri-is-being.html">CHERI is being standardised</a>).</li>
+<li>Whether CHERI for RISC-V is ratified. A talk of March 2026 calls it “being standardised” (<a href="/wiki/sources/2026-moore-cheri-is-being.html">CHERI is being standardised</a>). Slides of 6 April 2026 put the specification in architecture review before its freeze, with ratification intended for the second quarter and thought more likely in the third, and call that timetable out of date (<a href="/wiki/sources/2026-kurd-cheri-standardisation-status.html">CHERI standardisation status</a>). The pool holds nothing later, so the state after April is not known here.</li>
+<li>Whether CHERIoT silicon is available beyond the one company’s plan for 2026.</li>
 <li>Whether a Silent Zero board could use capability hardware below seL4, and what that would add to the kernel’s proofs.</li>
 </ul>
 
 <h2 id="page-sources">Sources</h2>
 <p class="links-note">What this page rests on.</p>
-<ul class="linked-from"><li><a href="/wiki/sources/2026-moore-cheri-is-being.html">CHERI is being standardised</a> <span class="kind">Moore 2026</span></li><li><a href="/wiki/sources/2023-amar-cheriot-complete-memory.html">CHERIoT, complete memory safety for embedded devices</a> <span class="kind">Amar et al. 2023</span></li></ul>
+<ul class="linked-from"><li><a href="/wiki/sources/2026-moore-cheri-is-being.html">CHERI is being standardised</a> <span class="kind">Moore 2026</span></li><li><a href="/wiki/sources/2026-kurd-cheri-standardisation-status.html">CHERI standardisation status</a> <span class="kind">Kurd 2026</span></li><li><a href="/wiki/sources/2023-amar-cheriot-complete-memory.html">CHERIoT, complete memory safety for embedded devices</a> <span class="kind">Amar et al. 2023</span></li><li><a href="/wiki/sources/2025-cheriot-cheriot-isa-1.html">ISA 1.0 released</a> <span class="kind">CHERIoT 2025</span></li></ul>
 <h2 id="related-pages">Related pages</h2>
 <p class="links-note">Pages this one links to, and pages that link here.</p>
 <ul class="linked-from"><li><a href="/wiki/concepts/object-capabilities.html">Object capabilities</a> <span class="kind">Concept</span></li><li><a href="/wiki/concepts/risc-v.html">RISC-V</a> <span class="kind">Concept</span></li><li><a href="/wiki/systems/opentitan.html">OpenTitan</a> <span class="kind">System</span></li></ul>

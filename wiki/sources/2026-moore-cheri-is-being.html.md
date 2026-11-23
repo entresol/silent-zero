@@ -8,7 +8,7 @@ Simon W. Moore (University of Cambridge), "CHERI is being standardised, so why d
 
 ## What it shows
 
-- **Criteria for standardising CHERI for RISC-V.** Compelling use cases; implementations in hardware with software support; a specification in Sail; simulation support; a test suite. For the status the slides point to a talk by Tariq Kurd, "CHERI RISC-V Standardisation Status", which is not in the pool.
+- **Criteria for standardising CHERI for RISC-V.** Compelling use cases; implementations in hardware with software support; a specification in Sail; simulation support; a test suite. For the status the slides point to a talk by Tariq Kurd, "CHERI RISC-V Standardisation Status", which the wiki has as [CHERI standardisation status](https://silentzero.ooo/wiki/sources/2026-kurd-cheri-standardisation-status.html.md) (that these are the same talk is our reading; the titles differ slightly).
 - **What is understood.** Moore lists the compressed capability format and capabilities for spatial memory safety, temporal memory safety and compartmentalisation as well understood. For all of these, he says, three things are understood: the added instructions, the compiler, linker and debugger support, and the way to build applications, run-times and operating systems.
 - **Why research continues.** He compares CHERI with page tables and branch prediction, which industry and academia still refine. Open topics: new uses of capabilities (the slides cite Ericsson and list conditional, blinded and coloured capabilities; that all three are Ericsson's is our reading); faster temporal memory safety; new compartmentalisation models; tools that evaluate where compartment boundaries lie; single-address-space operating systems that use CHERI for isolation.
 - **Conclusion.** The base CHERI mechanisms are ready for standardisation, many use cases exist and many more are to be invented.
@@ -38,3 +38,4 @@ A careful reader adds:
 
 - [Root of trust and firmware](https://silentzero.ooo/wiki/design/root-of-trust.html.md)
 - [CHERIoT](https://silentzero.ooo/wiki/systems/cheriot.html.md)
+- [CHERI standardisation status](https://silentzero.ooo/wiki/sources/2026-kurd-cheri-standardisation-status.html.md)

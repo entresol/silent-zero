@@ -1,8 +1,8 @@
 # Model Context Protocol
 
-> The open protocol that connects agents to tools; three preprints measure its security, one runtime treats it as a client only.
+> The open protocol that connects agents to tools; three preprints measure its security, one runtime treats it as a client only; a vendor’s guide to OWASP’s MCP list.
 
-Concept · LLM reviewed · updated 2026-11-21 · 5 sources · https://silentzero.ooo/wiki/concepts/model-context-protocol.html
+Concept · LLM reviewed · updated 2026-11-23 · 6 sources · https://silentzero.ooo/wiki/concepts/model-context-protocol.html
 
 An open protocol, introduced by Anthropic in November 2024, with which an AI application connects to external tools and data. A client inside a host application manages connections to servers; a server offers tools, resources and prompts over JSON-RPC, on a local pipe or over HTTP. The model chooses tools from the free-text descriptions the servers supply ([breaking the protocol](https://silentzero.ooo/wiki/sources/2026-maloyan-breaking-protocol-security.html.md), §II; [MCP threat modelling and tool poisoning](https://silentzero.ooo/wiki/sources/2026-huang-model-context-protocol.html.md), §1; [MCP-38](https://silentzero.ooo/wiki/sources/2026-shen-mcp-38-comprehensive.html.md), §2.2). The paper says it has been governed by the Agentic AI Foundation under the Linux Foundation since December 2025, citing an announcement this wiki has not yet worked in (paper, Section 3 and the table in Section 5), and describes a humanoid robot's agent moving its joints through MCP tools (Section 7).
 
@@ -18,6 +18,8 @@ Four preprints, none peer-reviewed, look at it from different sides.
 Our reading: the sources agree that the model reads unvalidated text from whoever runs a server, and differ on where to fix it, in the protocol, in the clients or around the model. Only Maloyan and Namiot and Huang et al. measure anything, and they measure how often attacks work and not what a mediator that grants only declared authority would change.
 On MCPTox, PACE cut worst-group attack success to 0.0, 2.62 and 2.65 per cent from 32.52, 56.54 and 86.93 on three models, with refusal 1.97, 0.58 and 28.55 against 0.16, 0.42 and 27.96; the authors argue that reviewing a tool description at admission cannot justify relaxing mediation ([PACE, provenance-aware capability enforcement](https://silentzero.ooo/wiki/sources/2026-li-pace-provenance-aware.html.md), Table 1, §3).
 
+Another source is not a preprint but a security vendor's guide to the first OWASP project on MCP, version 0.1 of 2025. Its ten risks include tool poisoning, intent-flow subversion and context over-sharing as well as command injection, weak authentication, leaked tokens and supply-chain attacks; the post itself calls the CVEs "classic web application vulnerabilities" in new use, and it counts more than 30 CVEs in two months of 2026. Its figures are the vendor's and come largely without a method ([the OWASP MCP Top 10](https://silentzero.ooo/wiki/sources/2026-owasp-owasp-mcp-top.html.md)). The OWASP original is not in the pool.
+
 ## Open questions
 
 - Whether the weaknesses of the early specification hold for the revisions since; Maloyan and Namiot analyse one version.
@@ -30,6 +32,7 @@ On MCPTox, PACE cut worst-group attack success to 0.0, 2.62 and 2.65 per cent fr
 - [MCP threat modelling and tool poisoning](https://silentzero.ooo/wiki/sources/2026-huang-model-context-protocol.html.md)
 - [MCP-38](https://silentzero.ooo/wiki/sources/2026-shen-mcp-38-comprehensive.html.md)
 - [PACE, provenance-aware capability enforcement](https://silentzero.ooo/wiki/sources/2026-li-pace-provenance-aware.html.md)
+- [the OWASP MCP Top 10](https://silentzero.ooo/wiki/sources/2026-owasp-owasp-mcp-top.html.md)
 
 ## Related pages
 
