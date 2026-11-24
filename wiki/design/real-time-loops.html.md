@@ -1,8 +1,8 @@
 # Real-time loops
 
-> The loops that move the motors: asynchronous chunks from slow models, policies trained for a delay range, observed timings, no proven bound yet.
+> The loops that move the motors: asynchronous chunks from slow models, policies trained for a delay range, observed timings, per-step costs of two barrier filters, no proven bound yet.
 
-Design · LLM reviewed · updated 2026-11-22 · 16 sources · https://silentzero.ooo/wiki/design/real-time-loops.html
+Design · LLM reviewed · updated 2026-11-24 · 20 sources · https://silentzero.ooo/wiki/design/real-time-loops.html
 
 The control loops at the bottom of Silent Zero move the motors on a fixed period and have the last word over motion. Learned models above them are slower and deliver commands early, in chunks; the loops execute them on time or fall back (paper, Sections 2.4 and 4).
 
@@ -31,6 +31,8 @@ One timing reference on an edge platform: the barrier filter ran at every 50 ms 
 
 Another: a Simplex decision module measured 0.0281 ms mean and 4.13 ms worst case over 81,749 cycles on a 35 W processor, against a 50 ms control period; no bound is proven, and the authors name timing analysis as future work ([context-dependent regions of attraction for a multi-candidate Simplex](https://silentzero.ooo/wiki/sources/2026-jager-context-dependent-runtime.html.md), §IV-E1, §V).
 
+Two barrier filters give per-step costs. AEGIS's constraint layer took 0.356 ms per step on an RTX 4090 setup, about 1/47 of the policy's inference time, in a 20 Hz loop; the paper does not say whether this includes its vision-language model and detector ([VLSA and AEGIS, a barrier-function layer for VLA policies](https://silentzero.ooo/wiki/sources/2025-hu-vlsa-vision-language.html.md), §V-B). KNOWS's wrapper took 49.3 ms per step (segmentation 19.3 ms, program 11.4 ms; the listed parts sum to 50.0 ms) against the 50 ms of a 20 Hz loop, while one policy call took 243 ms per chunk, about 30 ms per step with eight-step chunks. The paper does not say how policy and wrapper overlap, and wrapper plus policy share would exceed 50 ms if they did not; the authors call perception the only term near the budget, on a workstation with two RTX PRO 6000 GPUs ([KNOWS, a safety filter steered by the policy's attention](https://silentzero.ooo/wiki/sources/2026-park-your-model-already.html.md), §4.3, Table 2). Means only, no worst case, no bound; see [Control barrier functions](https://silentzero.ooo/wiki/concepts/control-barrier-functions.html.md).
+
 ## The paper and its sources
 
 - Section 2.4 says robot stacks separate a reasoning model that plans and calls tools from an action model that drives the motors, citing [Gemini Robotics-ER 1.5](https://silentzero.ooo/wiki/sources/2025-google-building-next-generation.html.md). Confirmed for Google's stack, where the reasoning model calls a vision-language-action model for motor control; its thinking budget makes its latency a setting; our reading: a setting, not a bound.
@@ -38,6 +40,8 @@ Another: a Simplex decision module measured 0.0281 ms mean and 4.13 ms worst cas
 - The paper calls the loop *verified* (abstract, Section 4) and in Section 4 calls the safety controller a candidate for proof. No source so far shows a control loop on seL4 with a proven deadline; the kernel's WCET is missing (see [The kernel](https://silentzero.ooo/wiki/design/kernel.html.md), [The safety path](https://silentzero.ooo/wiki/design/safety-path.html.md)).
 
 - Section 6 names PREEMPT_RT as Linux's route to real time. [Linux kernel documentation: real-time preemption](https://silentzero.ooo/wiki/sources/nd-linux-real-time-preemption.html.md) confirms that it makes the kernel largely preemptible; the chapters read state no latency bound, and warn that shared caches, memory and buses can disturb deterministic handling. See [PREEMPT_RT](https://silentzero.ooo/wiki/systems/preempt-rt.html.md).
+
+- [TypeGo](https://silentzero.ooo/wiki/systems/typego.html.md) keeps the language model off the critical path with layered asynchronous loops in a Python runtime on a quadruped: planning overlapped with motion, a reflex layer and a scheduler. Its authors report 50 per cent lower per-step delay and about 200 ms and 50 ms of scheduling and reflex overhead; no proved bound, and isolation only as future work ([TypeGo, an OS runtime for embodied agents](https://silentzero.ooo/wiki/sources/2026-chen-typego-os-runtime.html.md)). [SpecOS](https://silentzero.ooo/wiki/systems/specos.html.md) proposes control loops at 100 Hz and above on static topologies verified offline and planning at 3 to 10 Hz verified at run time; no implementation is reported ([Formal methods as the harness for AIOS (SpecOS)](https://silentzero.ooo/wiki/sources/2026-li-formal-methods-harness.html.md)).
 
 ## Open
 
@@ -53,8 +57,10 @@ Another: a Simplex decision module measured 0.0281 ms mean and 4.13 ms worst cas
 - [context-dependent regions of attraction for a multi-candidate Simplex](https://silentzero.ooo/wiki/sources/2026-jager-context-dependent-runtime.html.md)
 - [FASTER, reaction time of flow VLAs](https://silentzero.ooo/wiki/sources/2026-lu-faster-rethinking-real.html.md)
 - [fence.t.s for out-of-order cores](https://silentzero.ooo/wiki/sources/2024-wistoff-fence-t-s.html.md)
+- [Formal methods as the harness for AIOS (SpecOS)](https://silentzero.ooo/wiki/sources/2026-li-formal-methods-harness.html.md)
 - [FutureRTC](https://silentzero.ooo/wiki/sources/2026-jiang-futurertc-real-time.html.md)
 - [Gemini Robotics-ER 1.5](https://silentzero.ooo/wiki/sources/2025-google-building-next-generation.html.md)
+- [KNOWS, a safety filter steered by the policy's attention](https://silentzero.ooo/wiki/sources/2026-park-your-model-already.html.md)
 - [Legato, native continuation for chunked policies](https://silentzero.ooo/wiki/sources/2026-liu-learning-native-continuation.html.md)
 - [Linux kernel documentation: real-time preemption](https://silentzero.ooo/wiki/sources/nd-linux-real-time-preemption.html.md)
 - [MCS functional-correctness proof completed on RISC-V](https://silentzero.ooo/wiki/sources/2026-sel4-functional-correctness-proof.html.md)
@@ -66,6 +72,8 @@ Another: a Simplex decision module measured 0.0281 ms mean and 4.13 ms worst cas
 - [seL4 Microkit: User Manual, v2.3.0](https://silentzero.ooo/wiki/sources/nd-sel4-microkit-user-manual.html.md)
 - [Systematic Prevention of On-Core Timing Channels](https://silentzero.ooo/wiki/sources/2022-wistoff-systematic-prevention-core.html.md)
 - [The Use of the Simplex Architecture to Enhance Safety in Deep-Learning-Powered Autonomous Systems](https://silentzero.ooo/wiki/sources/2025-nesti-use-simplex-architecture.html.md)
+- [TypeGo, an OS runtime for embodied agents](https://silentzero.ooo/wiki/sources/2026-chen-typego-os-runtime.html.md)
+- [VLSA and AEGIS, a barrier-function layer for VLA policies](https://silentzero.ooo/wiki/sources/2025-hu-vlsa-vision-language.html.md)
 
 ## Related pages
 
@@ -73,9 +81,12 @@ Another: a Simplex decision module measured 0.0281 ms mean and 4.13 ms worst cas
 - [The safety path](https://silentzero.ooo/wiki/design/safety-path.html.md)
 - [Action chunking](https://silentzero.ooo/wiki/concepts/action-chunking.html.md)
 - [Agent operating systems](https://silentzero.ooo/wiki/concepts/agent-operating-systems.html.md)
+- [Control barrier functions](https://silentzero.ooo/wiki/concepts/control-barrier-functions.html.md)
 - [Memory-safe code](https://silentzero.ooo/wiki/concepts/memory-safe-code.html.md)
 - [Mixed criticality](https://silentzero.ooo/wiki/concepts/mixed-criticality.html.md)
 - [PREEMPT_RT](https://silentzero.ooo/wiki/systems/preempt-rt.html.md)
+- [SpecOS](https://silentzero.ooo/wiki/systems/specos.html.md)
+- [TypeGo](https://silentzero.ooo/wiki/systems/typego.html.md)
 - [ARSENAL](https://silentzero.ooo/wiki/sources/2026-lide-arsenal-assured-robotics.html.md)
 - [Fast, Secure, Adaptable: LionsOS Design, Implementation and Performance](https://silentzero.ooo/wiki/sources/2025-heiser-fast-secure-adaptable.html.md)
 - [Towards an Agent Operating System](https://silentzero.ooo/wiki/sources/2026-steinder-towards-agent-operating.html.md)

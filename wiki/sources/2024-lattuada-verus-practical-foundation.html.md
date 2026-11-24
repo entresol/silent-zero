@@ -42,4 +42,6 @@ The paper (Section 2.3 and the table of building blocks in Section 5) says Verus
 - [Drivers](https://silentzero.ooo/wiki/design/drivers.html.md)
 - [The kernel](https://silentzero.ooo/wiki/design/kernel.html.md)
 - [Proof automation](https://silentzero.ooo/wiki/concepts/proof-automation.html.md)
+- [Atmosphere](https://silentzero.ooo/wiki/systems/atmosphere.html.md)
 - [Verus](https://silentzero.ooo/wiki/systems/verus.html.md)
+- [Atmosphere, practical verified kernels with Rust and Verus](https://silentzero.ooo/wiki/sources/2025-chen-atmosphere-practical-verified.html.md)

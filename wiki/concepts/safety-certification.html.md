@@ -1,8 +1,8 @@
 # Safety certification
 
-> Proof versus certificate: what a certified kernel, a robot stack and seL4 each state; no certified seL4 product in the sources.
+> Proof versus certificate: what a certified kernel, a robot stack and seL4 each state; no certified seL4 product in the sources; ELISA’s aim for Linux.
 
-Concept · LLM reviewed · updated 2026-11-21 · 5 sources · https://silentzero.ooo/wiki/concepts/safety-certification.html
+Concept · LLM reviewed · updated 2026-11-24 · 6 sources · https://silentzero.ooo/wiki/concepts/safety-certification.html
 
 Certification is "a process to assess a system against a pre-existing standard", with verification typically a key component among other requirements ([seL4 Foundation: seL4 proofs and certification](https://silentzero.ooo/wiki/sources/nd-sel4-proofs-certification.html.md)). A proof of code and a certificate for a product are different things: our reading is that the proof is evidence and the certificate is the result of an assessment against a standard. The sources name IEC 61508 (listed for industrial automation), ISO 13849, ISO 26262 (road vehicles) and DO-178C (airborne software). In NVIDIA's account the final system certificate comes from a third-party certification agency.
 
@@ -13,9 +13,11 @@ Certification is "a process to assess a system against a pre-existing standard",
 - **seL4 has proofs and no certificate named.** The seL4 Foundation argues that its proofs go beyond what Common Criteria EAL 7 and ISO 26262 ASIL-D require and fit DO-178C Level A evidence. Its page names no certificate or certified product and does not mention IEC 61508. It says Isabelle/HOL has, to its knowledge, not been qualified for DO-178C ([seL4 Foundation: seL4 proofs and certification](https://silentzero.ooo/wiki/sources/nd-sel4-proofs-certification.html.md), [seL4](https://silentzero.ooo/wiki/systems/sel4.html.md)).
 - **A limit on proofs about the world.** An essay argues that proofs about AI systems in the physical world will stay approximate; it expects formal verification to help through proofs about approximate models ([limitations on formal verification for AI safety](https://silentzero.ooo/wiki/sources/2024-dickson-limitations-formal-verification.html.md)).
 
+- **An open Linux effort aims at certification.** The Linux Foundation's ELISA project says it wants to give companies shared elements, processes and tools to develop and certify Linux-based safety systems; its February 2026 release names no standard and no certified result ([NVIDIA joins as a premier member](https://silentzero.ooo/wiki/sources/2026-elisa-enabling-linux-safety.html.md), [ELISA](https://silentzero.ooo/wiki/systems/elisa.html.md)).
+
 ## Related
 
-[Functional correctness](https://silentzero.ooo/wiki/concepts/functional-correctness.html.md), [Mixed criticality](https://silentzero.ooo/wiki/concepts/mixed-criticality.html.md), [The safety path](https://silentzero.ooo/wiki/design/safety-path.html.md), [NVIDIA Halos for Robotics](https://silentzero.ooo/wiki/systems/nvidia-halos.html.md), [PikeOS](https://silentzero.ooo/wiki/systems/pikeos.html.md), [QNX](https://silentzero.ooo/wiki/systems/qnx.html.md).
+[Functional correctness](https://silentzero.ooo/wiki/concepts/functional-correctness.html.md), [Mixed criticality](https://silentzero.ooo/wiki/concepts/mixed-criticality.html.md), [The safety path](https://silentzero.ooo/wiki/design/safety-path.html.md), [NVIDIA Halos for Robotics](https://silentzero.ooo/wiki/systems/nvidia-halos.html.md), [PikeOS](https://silentzero.ooo/wiki/systems/pikeos.html.md), [QNX](https://silentzero.ooo/wiki/systems/qnx.html.md), [ELISA](https://silentzero.ooo/wiki/systems/elisa.html.md).
 
 ## Open questions
 
@@ -28,6 +30,7 @@ Certification is "a process to assess a system against a pre-existing standard",
 - [Halos for Robotics, the announcement](https://silentzero.ooo/wiki/sources/2026-nvidia-announces-halos-robotics.html.md)
 - [Inside Halos for Robotics](https://silentzero.ooo/wiki/sources/2026-nvidia-inside-halos-robotics.html.md)
 - [limitations on formal verification for AI safety](https://silentzero.ooo/wiki/sources/2024-dickson-limitations-formal-verification.html.md)
+- [NVIDIA joins as a premier member](https://silentzero.ooo/wiki/sources/2026-elisa-enabling-linux-safety.html.md)
 - [seL4 Foundation: seL4 proofs and certification](https://silentzero.ooo/wiki/sources/nd-sel4-proofs-certification.html.md)
 - [SYSGO: PikeOS safety certification](https://silentzero.ooo/wiki/sources/nd-sysgo-safety-certification.html.md)
 
@@ -36,6 +39,7 @@ Certification is "a process to assess a system against a pre-existing standard",
 - [The safety path](https://silentzero.ooo/wiki/design/safety-path.html.md)
 - [Functional correctness](https://silentzero.ooo/wiki/concepts/functional-correctness.html.md)
 - [Mixed criticality](https://silentzero.ooo/wiki/concepts/mixed-criticality.html.md)
+- [ELISA](https://silentzero.ooo/wiki/systems/elisa.html.md)
 - [NVIDIA Halos for Robotics](https://silentzero.ooo/wiki/systems/nvidia-halos.html.md)
 - [PikeOS](https://silentzero.ooo/wiki/systems/pikeos.html.md)
 - [QNX](https://silentzero.ooo/wiki/systems/qnx.html.md)

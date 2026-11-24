@@ -1,7 +1,7 @@
 ---
 type: concept
 status: reviewed
-sources: [2024-lattuada-verus-practical-foundation, 2026-he-neuro-symbolic-proof, 2009-klein-sel4-formal-verification, 2026-ahn-promise-proof-automation, 2025-yang-autoverus-automated-proof, 2026-rinard-testing-credible-compilation, 2026-liao-llvm-translation-validation, 2026-he-neuro-symbolic-proof-osdi, 2024-zhang-selene-pioneering-automated, 2025-li-osvbench-benchmarking-llms, 2025-tu-agentic-verification-software, 2026-rinard-quantitative-comparison-credible, 2026-zheng-assuring-learning-enabled, 2026-nikolaou-camelot-camel-orchestrated]
+sources: [2024-lattuada-verus-practical-foundation, 2026-he-neuro-symbolic-proof, 2009-klein-sel4-formal-verification, 2026-ahn-promise-proof-automation, 2025-yang-autoverus-automated-proof, 2026-rinard-testing-credible-compilation, 2026-liao-llvm-translation-validation, 2026-he-neuro-symbolic-proof-osdi, 2024-zhang-selene-pioneering-automated, 2025-li-osvbench-benchmarking-llms, 2025-tu-agentic-verification-software, 2026-rinard-quantitative-comparison-credible, 2026-zheng-assuring-learning-enabled, 2026-nikolaou-camelot-camel-orchestrated, 2025-chen-atmosphere-practical-verified]
 short: Machine-made proofs that a checker accepts
 updated: 2026-11-21
 ---
@@ -24,6 +24,7 @@ Generating the proofs of a formal verification by machine instead of by hand. A 
 - AutoRocq, an agent that queries Rocq and keeps a proof tree, proves 824 of 1,717 CoqGym lemmas (48.0 per cent), 198 of 641 lemmas from 131 SV-COMP C programs (30.9 per cent) and 12 of 60 Linux kernel-function lemmas. The 1,717 lemmas are the overlap of two existing Coq test sets, the authors built the SV-COMP and kernel sets and ran the baselines, and our reading is that the figures do not compare with the seL4 or Verus ones above ([[2025-tu-agentic-verification-software]]).
 - A 2026 research agenda states the split in general terms: a model proposes and only a small independent checker (type checker, SMT solver, model checker, proof assistant) accepts, with translation validation and proof-carrying code as precedents; a position, not a measurement ([[2026-zheng-assuring-learning-enabled]], §4.3).
 - Loosely related, no proof: CaMeLoT model-checks a small abstraction of an agent's plan. Typed obligations compiled by trusted code gave clean suites on 97 of 97 tasks, while models writing formulas directly gave 12 to 96 of 97 across four models; the margin over Haiku 4.5 is one task and over Sonnet 4.5 three (94 of 97). Our reading: close to by-construction, since trusted code compiles the formulas; the typed route was run with Haiku only ([[2026-nikolaou-camelot-camel-orchestrated]], Table 10).
+- A kernel built with [[verus]] shows the cost side without a model: [[atmosphere]] reports 3.32 lines of proof per line of code, under 2.5 person-years in total and verification in under 20 seconds, against 20 to 1 for seL4 in the authors' table; our reading is that the figures need not count as seL4's do, and the project page gives 7.5 to 1 ([[2025-chen-atmosphere-practical-verified]]). The paper mentions no model writing proofs.
 
 ## Open questions
 

@@ -2,7 +2,7 @@
 
 > The Linux real-time configuration: preemptible kernel, threaded interrupts; no latency bound stated.
 
-System · LLM reviewed · updated 2026-11-03 · 1 source · https://silentzero.ooo/wiki/systems/preempt-rt.html
+System · LLM reviewed · updated 2026-11-24 · 1 source · https://silentzero.ooo/wiki/systems/preempt-rt.html
 
 The configuration of the Linux kernel that makes it real-time in the kernel developers' sense: sleeping locks with priority inheritance and forced-threaded interrupts leave only a few critical paths non-preemptible ([Linux kernel documentation: real-time preemption](https://silentzero.ooo/wiki/sources/nd-linux-real-time-preemption.html.md)).
 
@@ -16,7 +16,7 @@ Part of the Linux kernel; the sources read do not state the licence.
 
 ## Related
 
-[Landlock](https://silentzero.ooo/wiki/systems/landlock.html.md), [WCET analysis](https://silentzero.ooo/wiki/concepts/wcet-analysis.html.md), [Mixed criticality](https://silentzero.ooo/wiki/concepts/mixed-criticality.html.md), [Real-time loops](https://silentzero.ooo/wiki/design/real-time-loops.html.md).
+[Landlock](https://silentzero.ooo/wiki/systems/landlock.html.md), [ELISA](https://silentzero.ooo/wiki/systems/elisa.html.md), [WCET analysis](https://silentzero.ooo/wiki/concepts/wcet-analysis.html.md), [Mixed criticality](https://silentzero.ooo/wiki/concepts/mixed-criticality.html.md), [Real-time loops](https://silentzero.ooo/wiki/design/real-time-loops.html.md).
 
 ## Open questions
 
@@ -32,5 +32,7 @@ Part of the Linux kernel; the sources read do not state the licence.
 - [Memory-safe code](https://silentzero.ooo/wiki/concepts/memory-safe-code.html.md)
 - [Mixed criticality](https://silentzero.ooo/wiki/concepts/mixed-criticality.html.md)
 - [WCET analysis](https://silentzero.ooo/wiki/concepts/wcet-analysis.html.md)
+- [ELISA](https://silentzero.ooo/wiki/systems/elisa.html.md)
 - [Landlock](https://silentzero.ooo/wiki/systems/landlock.html.md)
+- [NVIDIA joins as a premier member](https://silentzero.ooo/wiki/sources/2026-elisa-enabling-linux-safety.html.md)
 - [SYSGO: PikeOS for robotics and humanoids](https://silentzero.ooo/wiki/sources/nd-sysgo-robotics-humanoids.html.md)
