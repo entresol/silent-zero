@@ -6,7 +6,7 @@ This is a design, not a release: the paper makes the argument and says what is p
 
 ## Paper
 
-- [Silent Zero OS, working paper (v0.18)](https://silentzero.ooo/silent-zero.pdf): the full paper as PDF, always the newest version
+- [Silent Zero OS, working paper (v0.19)](https://silentzero.ooo/silent-zero.pdf): the full paper as PDF, always the newest version
 - [The paper as a web page](https://silentzero.ooo/): the same argument with a short summary first, in English (header also in German, French, Spanish, Italian)
 
 ## Start here
