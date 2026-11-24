@@ -101,9 +101,9 @@ Work that extends the design, competes with it or attacks its assumptions: other
 - [x] 2026-kurd-cheri-standardisation-status
 - [x] 2025-cheriot-cheriot-isa-1
 - [x] 2026-owasp-owasp-mcp-top
-- [ ] 2026-elisa-enabling-linux-safety
-- [ ] 2025-hu-vlsa-vision-language
-- [ ] 2026-park-your-model-already
+- [x] 2026-elisa-enabling-linux-safety
+- [x] 2025-hu-vlsa-vision-language
+- [x] 2026-park-your-model-already
 - [ ] 2026-tsinghua-libero-safety-comprehensive
 - [ ] 2026-unverified-silent-failures-physical
 - [ ] 2026-unverified-autoreal-seL4-proof

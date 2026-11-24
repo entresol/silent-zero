@@ -46,4 +46,5 @@ A careful reader adds:
 - [The safety path](https://silentzero.ooo/wiki/design/safety-path.html.md)
 - [Action chunking](https://silentzero.ooo/wiki/concepts/action-chunking.html.md)
 - [FASTER, reaction time of flow VLAs](https://silentzero.ooo/wiki/sources/2026-lu-faster-rethinking-real.html.md)
+- [KNOWS, a safety filter steered by the policy's attention](https://silentzero.ooo/wiki/sources/2026-park-your-model-already.html.md)
 - [Real-Time Execution of Action Chunking Flow Policies](https://silentzero.ooo/wiki/sources/2025-black-real-time-execution.html.md)

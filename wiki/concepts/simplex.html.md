@@ -38,6 +38,7 @@ A 2026 preprint builds the switching rule from design-time artifacts, with sever
 ## Related pages
 
 - [The safety path](https://silentzero.ooo/wiki/design/safety-path.html.md)
+- [Control barrier functions](https://silentzero.ooo/wiki/concepts/control-barrier-functions.html.md)
 - [credible compilation against verification](https://silentzero.ooo/wiki/sources/2026-rinard-quantitative-comparison-credible.html.md)
 - [Halos for Robotics, the announcement](https://silentzero.ooo/wiki/sources/2026-nvidia-announces-halos-robotics.html.md)
 - [Inside Halos for Robotics](https://silentzero.ooo/wiki/sources/2026-nvidia-inside-halos-robotics.html.md)

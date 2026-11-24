@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://silentzero.ooo/</loc><lastmod>2026-11-19</lastmod></url>
-  <url><loc>https://silentzero.ooo/wiki/</loc><lastmod>2026-11-23</lastmod></url>
+  <url><loc>https://silentzero.ooo/wiki/</loc><lastmod>2026-11-24</lastmod></url>
   <url><loc>https://silentzero.ooo/lexicon/</loc></url>
   <url><loc>https://silentzero.ooo/use/</loc></url>
   <url><loc>https://silentzero.ooo/devel/</loc></url>
@@ -9,6 +9,7 @@
   <url><loc>https://silentzero.ooo/wiki/concepts/agent-operating-systems.html</loc><lastmod>2026-11-22</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/concepts/ai-vulnerability-discovery.html</loc><lastmod>2026-10-31</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/concepts/confused-deputy.html</loc><lastmod>2026-11-21</lastmod></url>
+  <url><loc>https://silentzero.ooo/wiki/concepts/control-barrier-functions.html</loc><lastmod>2026-11-24</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/concepts/functional-correctness.html</loc><lastmod>2026-11-21</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/concepts/information-flow-control.html</loc><lastmod>2026-11-21</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/concepts/iommu.html</loc><lastmod>2026-11-02</lastmod></url>
@@ -20,7 +21,7 @@
   <url><loc>https://silentzero.ooo/wiki/concepts/prompt-injection.html</loc><lastmod>2026-11-21</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/concepts/proof-automation.html</loc><lastmod>2026-11-21</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/concepts/risc-v.html</loc><lastmod>2026-11-21</lastmod></url>
-  <url><loc>https://silentzero.ooo/wiki/concepts/safety-certification.html</loc><lastmod>2026-11-21</lastmod></url>
+  <url><loc>https://silentzero.ooo/wiki/concepts/safety-certification.html</loc><lastmod>2026-11-24</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/concepts/simplex.html</loc><lastmod>2026-11-21</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/concepts/time-protection.html</loc><lastmod>2026-11-21</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/concepts/verified-boot.html</loc><lastmod>2026-10-30</lastmod></url>
@@ -29,9 +30,9 @@
   <url><loc>https://silentzero.ooo/wiki/design/broker.html</loc><lastmod>2026-11-21</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/design/drivers.html</loc><lastmod>2026-11-20</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/design/kernel.html</loc><lastmod>2026-11-22</lastmod></url>
-  <url><loc>https://silentzero.ooo/wiki/design/real-time-loops.html</loc><lastmod>2026-11-22</lastmod></url>
+  <url><loc>https://silentzero.ooo/wiki/design/real-time-loops.html</loc><lastmod>2026-11-24</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/design/root-of-trust.html</loc><lastmod>2026-11-02</lastmod></url>
-  <url><loc>https://silentzero.ooo/wiki/design/safety-path.html</loc><lastmod>2026-11-21</lastmod></url>
+  <url><loc>https://silentzero.ooo/wiki/design/safety-path.html</loc><lastmod>2026-11-24</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/design/static-system.html</loc><lastmod>2026-11-03</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/sources/1988-hardy-confused-deputy-or.html</loc><lastmod>2026-10-29</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/sources/2006-miller-robust-composition-towards.html</loc><lastmod>2026-10-29</lastmod></url>
@@ -66,6 +67,7 @@
   <url><loc>https://silentzero.ooo/wiki/sources/2025-debenedetti-defeating-prompt-injections.html</loc><lastmod>2026-11-21</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/sources/2025-google-building-next-generation.html</loc><lastmod>2026-10-31</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/sources/2025-heiser-fast-secure-adaptable.html</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://silentzero.ooo/wiki/sources/2025-hu-vlsa-vision-language.html</loc><lastmod>2026-11-24</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/sources/2025-li-osvbench-benchmarking-llms.html</loc><lastmod>2026-11-20</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/sources/2025-nesti-use-simplex-architecture.html</loc><lastmod>2026-11-21</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/sources/2025-tu-agentic-verification-software.html</loc><lastmod>2026-11-20</lastmod></url>
@@ -82,6 +84,7 @@
   <url><loc>https://silentzero.ooo/wiki/sources/2026-chen-ravel-asynchronous-rolling.html</loc><lastmod>2026-11-22</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/sources/2026-chen-typego-os-runtime.html</loc><lastmod>2026-11-21</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/sources/2026-chinaei-causality-laundering-denial.html</loc><lastmod>2026-11-19</lastmod></url>
+  <url><loc>https://silentzero.ooo/wiki/sources/2026-elisa-enabling-linux-safety.html</loc><lastmod>2026-11-24</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/sources/2026-google-opentitan-shipping-production.html</loc><lastmod>2026-10-29</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/sources/2026-he-neuro-symbolic-proof-osdi.html</loc><lastmod>2026-11-05</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/sources/2026-he-neuro-symbolic-proof.html</loc><lastmod>2026-10-31</lastmod></url>
@@ -118,6 +121,7 @@
   <url><loc>https://silentzero.ooo/wiki/sources/2026-nvidia-announces-halos-robotics.html</loc><lastmod>2026-11-21</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/sources/2026-nvidia-inside-halos-robotics.html</loc><lastmod>2026-11-21</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/sources/2026-owasp-owasp-mcp-top.html</loc><lastmod>2026-11-23</lastmod></url>
+  <url><loc>https://silentzero.ooo/wiki/sources/2026-park-your-model-already.html</loc><lastmod>2026-11-24</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/sources/2026-peters-gill-can-camels.html</loc><lastmod>2026-11-10</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/sources/2026-proofcraft-sel4-security-proofs.html</loc><lastmod>2026-11-05</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/sources/2026-qnx-nvidia-deepen-collaboration.html</loc><lastmod>2026-11-21</lastmod></url>
@@ -180,6 +184,7 @@
   <url><loc>https://silentzero.ooo/wiki/systems/cohesix.html</loc><lastmod>2026-10-31</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/systems/coreboot.html</loc><lastmod>2026-10-30</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/systems/cva6.html</loc><lastmod>2026-11-21</lastmod></url>
+  <url><loc>https://silentzero.ooo/wiki/systems/elisa.html</loc><lastmod>2026-11-24</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/systems/intentcap.html</loc><lastmod>2026-11-21</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/systems/kataos.html</loc><lastmod>2026-10-31</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/systems/landlock.html</loc><lastmod>2026-11-21</lastmod></url>
@@ -191,7 +196,7 @@
   <url><loc>https://silentzero.ooo/wiki/systems/openshell.html</loc><lastmod>2026-11-21</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/systems/opentitan.html</loc><lastmod>2026-10-31</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/systems/pikeos.html</loc><lastmod>2026-11-21</lastmod></url>
-  <url><loc>https://silentzero.ooo/wiki/systems/preempt-rt.html</loc><lastmod>2026-11-03</lastmod></url>
+  <url><loc>https://silentzero.ooo/wiki/systems/preempt-rt.html</loc><lastmod>2026-11-24</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/systems/qnx.html</loc><lastmod>2026-11-21</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/systems/raspberry-pi.html</loc><lastmod>2026-10-31</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/systems/sel4.html</loc><lastmod>2026-11-22</lastmod></url>

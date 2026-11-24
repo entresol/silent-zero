@@ -1,8 +1,8 @@
 ---
 type: design
 status: reviewed
-sources: [2025-black-real-time-execution, 2025-nesti-use-simplex-architecture, 2026-sel4-functional-correctness-proof, 2026-heiser-mcs-safety-os, 2022-wistoff-systematic-prevention-core, nd-sel4-microkit-user-manual, 2025-google-building-next-generation, nd-linux-real-time-preemption, 2026-jiang-futurertc-real-time, 2026-agarwal-multi-link-safety, 2024-wistoff-fence-t-s, 2026-lu-faster-rethinking-real, 2026-jager-context-dependent-runtime, 2026-chen-typego-os-runtime, 2026-li-formal-methods-harness, 2026-wang-real-time-robot, 2026-liu-learning-native-continuation, 2026-chen-ravel-asynchronous-rolling]
-updated: 2026-11-22
+sources: [2025-black-real-time-execution, 2025-nesti-use-simplex-architecture, 2026-sel4-functional-correctness-proof, 2026-heiser-mcs-safety-os, 2022-wistoff-systematic-prevention-core, nd-sel4-microkit-user-manual, 2025-google-building-next-generation, nd-linux-real-time-preemption, 2026-jiang-futurertc-real-time, 2026-agarwal-multi-link-safety, 2024-wistoff-fence-t-s, 2026-wang-real-time-robot, 2026-liu-learning-native-continuation, 2026-chen-ravel-asynchronous-rolling, 2026-lu-faster-rethinking-real, 2026-jager-context-dependent-runtime, 2026-park-your-model-already, 2025-hu-vlsa-vision-language, 2026-chen-typego-os-runtime, 2026-li-formal-methods-harness]
+updated: 2026-11-24
 ---
 
 # Real-time loops
@@ -33,6 +33,8 @@ The control loops at the bottom of zOS move the motors on a fixed period and hav
 One timing reference on an edge platform: the barrier filter ran at every 50 ms step and a flow update every fifth step, both on the CPU, while the policy ran once per ten-action chunk on the integrated GPU, at 177.3 ms (p50) after trimming, against 343 ms in the released configuration; the trimming lowered task success by 4.17 percentage points on the 300 mm escape condition. No bound is proven ([[2026-agarwal-multi-link-safety]], §III-D, §V-B).
 
 Another: a Simplex decision module measured 0.0281 ms mean and 4.13 ms worst case over 81,749 cycles on a 35 W processor, against a 50 ms control period; no bound is proven, and the authors name timing analysis as future work ([[2026-jager-context-dependent-runtime]], §IV-E1, §V).
+
+Two barrier filters give per-step costs. AEGIS's constraint layer took 0.356 ms per step on an RTX 4090 setup, about 1/47 of the policy's inference time, in a 20 Hz loop; the paper does not say whether this includes its vision-language model and detector ([[2025-hu-vlsa-vision-language]], §V-B). KNOWS's wrapper took 49.3 ms per step (segmentation 19.3 ms, program 11.4 ms; the listed parts sum to 50.0 ms) against the 50 ms of a 20 Hz loop, while one policy call took 243 ms per chunk, about 30 ms per step with eight-step chunks. The paper does not say how policy and wrapper overlap, and wrapper plus policy share would exceed 50 ms if they did not; the authors call perception the only term near the budget, on a workstation with two RTX PRO 6000 GPUs ([[2026-park-your-model-already]], §4.3, Table 2). Means only, no worst case, no bound; see [[control-barrier-functions]].
 
 ## The paper and its sources
 
