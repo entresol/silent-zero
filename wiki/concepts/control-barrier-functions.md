@@ -2,7 +2,7 @@
 type: concept
 status: reviewed
 sources: [2025-hu-vlsa-vision-language, 2026-park-your-model-already, 2026-agarwal-multi-link-safety]
-short: Filter that keeps a robot inside a set of safe states
+short: Filter keeping a robot inside safe states
 updated: 2026-11-24
 ---
 
