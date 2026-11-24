@@ -136,7 +136,7 @@ addEventListener('scroll', () => { if (!queued) { queued = true; requestAnimatio
 mark();
 </script>"""
 
-def page(title, head, body, crumb, path="/", description="", markdown=True, full_title=None, in_wiki=True):
+def page(title, head, body, crumb, path="/", description="", markdown=True, full_title=None, in_wiki=True, pre=""):
     back = '<li><a href="/">\u2190 The paper</a></li>' + ('' if title == "Wiki" or not in_wiki else '<li><a href="/wiki/">\u2190 Wiki index</a></li>')
     toc = back.replace('<li>', '<li class="toc-back">') + '<li><a href="#top">↑ Top</a></li>' + "".join(
         f'<li><a href="#{i}">{re.sub("<[^>]+>", "", t)}</a></li>' for i, t in re.findall(r'<h2 id="([^"]+)">(.*?)</h2>', body))
@@ -157,7 +157,7 @@ def page(title, head, body, crumb, path="/", description="", markdown=True, full
 </style>
 </head>
 <body>
-<header class="hero slim" id="top">
+{pre}<header class="hero slim" id="top">
   <div class="hero-inner">
     <p class="crumbs">{crumb}</p>
 {head}
@@ -297,7 +297,7 @@ for _n in sheets.NAMES:
     _d = sheets.DATA[_n]
     (root / _d["dir"]).mkdir(exist_ok=True)
     (root / _d["dir"] / "index.html").write_text(page(_d["title"], sheets.head(_n), sheets.article(_n), f'<a href="/">{PUBLIC_NAME} OS</a>',
-        path=f"/{_d['dir']}/", description=_d["description"], full_title=f"{_d['title']} · {PUBLIC_NAME} OS", in_wiki=False), encoding="utf-8")
+        path=f"/{_d['dir']}/", description=_d["description"], full_title=f"{_d['title']} · {PUBLIC_NAME} OS", in_wiki=False, pre=sheets.page_tabs(_n)), encoding="utf-8")
     (root / _d["dir"] / "index.html.md").write_text(sheets.markdown(_n), encoding="utf-8")
 
 # --- what assistants and search engines read: sitemap.xml and llms.txt (the format: https://llmstxt.org/) ---
