@@ -1,6 +1,6 @@
 ---
 type: index
-updated: 2026-11-23
+updated: 2026-11-24
 ---
 
 # zOS wiki
@@ -12,8 +12,8 @@ The catalogue of every page, with one line each. Read this first.
 - [[kernel]] · seL4 with MCS as the zOS kernel: proven (C-level correctness; MCS functional correctness on RISC-V), not stated for MCS (integrity, confidentiality), tested (HACMS), assumed (boot, IOMMU); no WCET bound on any 64-bit core yet; the roadmap dates MCS on AArch64 to Q3 2027. 20 sources.
 - [[static-system]] · one description, one image: what Microkit checks, what is not proved, and the run-time swap in LionsOS, the kernel underneath. 6 sources.
 - [[broker]] · the only component that hands out authority: capability patterns, CaMeL and FIDES, why model-based defences fail, three agent-OS designs for the same job, CaMeL between agents; nothing proven yet; the industry's agent sandboxes grant by resource. 31 sources.
-- [[real-time-loops]] · the loops that move the motors: asynchronous chunks from slow models, policies trained for a delay range, observed timings, no proven bound yet. 16 sources.
-- [[safety-path]] · Simplex in zOS: the agent proposes, the loop disposes; tested, not proven; the paper's 2001 date disputed by a 1994 origin; certified real-time kernels sell the same split as products. 16 sources.
+- [[real-time-loops]] · the loops that move the motors: asynchronous chunks from slow models, policies trained for a delay range, observed timings, per-step costs of two barrier filters, no proven bound yet. 18 sources.
+- [[safety-path]] · Simplex in zOS: the agent proposes, the loop disposes; tested, not proven; the paper's 2001 date disputed by a 1994 origin; certified real-time kernels sell the same split as products; two more barrier filters, guarantees conditional on perception. 19 sources.
 - [[root-of-trust]] · the firmware below the kernel on Arm, RISC-V, PC and Raspberry Pi; OpenTitan, Caliptra, DICE; all *assumed* in the paper's terms. 13 sources.
 - [[bootloader]] · where the zOS loader sits on each platform, signed and measured boot, proofs about boot code so far; the loader itself unproven. 16 sources.
 - [[drivers]] · user-mode drivers, the first verified Ethernet driver, DMA and the IOMMU as assumed, attacked in 2019 although enabled; device models from Verilog and Windows on x86-64 as first steps; the Pancake paper adds the language and its limits. 13 sources.
@@ -36,6 +36,7 @@ The zOS part *agents* has no page yet; [[agent-operating-systems]] covers the de
 - [[verus]] · verifier for Rust code with SMT solving; case studies, no kernel; AutoVerus writes proofs for it. 2 sources.
 - [[landlock]] · Linux sandbox a process applies to itself: filesystem, network, capability and namespace rules; part of the hardened-Linux route, and the base of OpenShell's filesystem layer. 3 sources.
 - [[preempt-rt]] · the Linux real-time configuration: preemptible kernel, threaded interrupts; no latency bound stated. 1 source.
+- [[elisa]] · the Linux Foundation's project for Linux in safety applications; NVIDIA joined as a premier member in February 2026; no certificate named. 1 source.
 - [[cohesix]] · seL4-based control layer for edge AI fleets: a Queen decides what hosts' models may do; landing page only. 1 source.
 - [[kataos]] · Google's seL4 and Rust OS for machine-learning devices, 2022; OpenTitan in its Sparrow plan. 1 source.
 - [[cheriot]] · CHERI capabilities on small RISC-V cores with its own RTOS: memory safety in hardware, measured, not proven; the 1.0 ISA of November 2025; CHERI for RISC-V in architecture review in April 2026, not ratified in any source here. 4 sources.
@@ -68,7 +69,8 @@ The zOS part *agents* has no page yet; [[agent-operating-systems]] covers the de
 - [[mixed-criticality]] · software of different criticality on one platform; processor time as a capability in seL4 MCS; partitions under a hypervisor in commercial robot stacks. 7 sources.
 - [[model-context-protocol]] · the open protocol that connects agents to tools; three preprints measure its security, one runtime treats it as a client only; a vendor's guide to OWASP's MCP list. 6 sources.
 - [[agent-operating-systems]] · designs that put the limit on an agent in the OS layer: agentOS, Cohesix, KataOS, AgentKernel, AgenticOS, Agent libOS, Quine, OpenShell and MXC as shipped products; IBM's Agent-OS position paper; IntentOS, a language-model planner beside the Linux kernel. 14 sources.
-- [[safety-certification]] · proof versus certificate: what a certified kernel, a robot stack and seL4 each state; no certified seL4 product in the sources. 5 sources.
+- [[control-barrier-functions]] · a filter that keeps a robot's commanded motion inside a safe set; three VLA filters, guarantees conditional on perception. 3 sources.
+- [[safety-certification]] · proof versus certificate: what a certified kernel, a robot stack and seL4 each state; no certified seL4 product in the sources; ELISA's aim for Linux. 6 sources.
 
 ## Sources
 
@@ -171,6 +173,9 @@ The zOS part *agents* has no page yet; [[agent-operating-systems]] covers the de
 - [[2026-chinaei-causality-laundering-denial]] · causality laundering: a denied tool call leaks what exists; a monitor that records denials; three constructed scenarios, single author. design, partly read.
 - [[2026-lide-arsenal-assured-robotics]] · ARSENAL, seL4 Summit 2026 talk abstract: ROS 2 on seL4 for Army ground vehicles, two configurations, a proof of concept each; security services planned. report, abstract only.
 - [[2026-steinder-towards-agent-operating]] · IBM position paper: an Agent-OS with 13 primitives on a Kubernetes control plane; no measurements. position, full text.
+- [[2025-hu-vlsa-vision-language]] · AEGIS: a barrier-function layer behind a VLA policy; collision avoidance 18.7 to 77.9 % on SafeLIBERO, theorem conditional on perception. measurement, full text.
+- [[2026-park-your-model-already]] · KNOWS: the policy's own attention names the target; collisions with moving obstacles 70.8 to 26.9 % against the authors' baseline, simulation only. measurement, full text.
+- [[2026-elisa-enabling-linux-safety]] · ELISA's press release of February 2026: NVIDIA joins; the project aims to help certify Linux-based safety systems. report, full text.
 - [[2026-agarwal-multi-link-safety]] · a barrier-function shield between a frozen VLA and the arm; collisions with moving hazards 65.62 to 27.27 % in simulation. measurement, full text.
 - [[2026-rinard-quantitative-comparison-credible]] · credible compilation against verification: verified optimisations took about an order of magnitude more agent effort. measurement, full text.
 - [[2025-li-osvbench-benchmarking-llms]] · OSVBench: 245 Hyperkernel tasks for LLM specification writing; best Pass@1 55.10 %, 0 % on five models without examples. measurement, full text.

@@ -1,9 +1,9 @@
 ---
 type: concept
 status: reviewed
-sources: [nd-sel4-proofs-certification, nd-sysgo-safety-certification, 2026-nvidia-announces-halos-robotics, 2026-nvidia-inside-halos-robotics, 2024-dickson-limitations-formal-verification]
+sources: [nd-sel4-proofs-certification, nd-sysgo-safety-certification, 2026-nvidia-announces-halos-robotics, 2026-nvidia-inside-halos-robotics, 2024-dickson-limitations-formal-verification, 2026-elisa-enabling-linux-safety]
 short: Assessing a system against a safety standard
-updated: 2026-11-21
+updated: 2026-11-24
 ---
 
 # Safety certification
@@ -17,9 +17,11 @@ Certification is "a process to assess a system against a pre-existing standard",
 - **seL4 has proofs and no certificate named.** The seL4 Foundation argues that its proofs go beyond what Common Criteria EAL 7 and ISO 26262 ASIL-D require and fit DO-178C Level A evidence. Its page names no certificate or certified product and does not mention IEC 61508. It says Isabelle/HOL has, to its knowledge, not been qualified for DO-178C ([[nd-sel4-proofs-certification]], [[sel4]]).
 - **A limit on proofs about the world.** An essay argues that proofs about AI systems in the physical world will stay approximate; it expects formal verification to help through proofs about approximate models ([[2024-dickson-limitations-formal-verification]]).
 
+- **An open Linux effort aims at certification.** The Linux Foundation's ELISA project says it wants to give companies shared elements, processes and tools to develop and certify Linux-based safety systems; its February 2026 release names no standard and no certified result ([[2026-elisa-enabling-linux-safety]], [[elisa]]).
+
 ## Related
 
-[[functional-correctness]], [[mixed-criticality]], [[safety-path]], [[nvidia-halos]], [[pikeos]], [[qnx]].
+[[functional-correctness]], [[mixed-criticality]], [[safety-path]], [[nvidia-halos]], [[pikeos]], [[qnx]], [[elisa]].
 
 ## Open questions
 

@@ -1,8 +1,8 @@
 ---
 type: design
 status: reviewed
-sources: [2025-nesti-use-simplex-architecture, 2025-black-real-time-execution, 2018-klein-formally-verified-software, 2025-google-building-next-generation, 2026-bansal-synergistic-simplex-cooperative, 2026-agarwal-multi-link-safety, 2026-jager-context-dependent-runtime, 2026-zheng-assuring-learning-enabled, 2026-lu-faster-rethinking-real, nd-sysgo-robotics-humanoids, nd-sysgo-safety-certification, 2026-nvidia-inside-halos-robotics, 2026-qnx-nvidia-deepen-collaboration, 2026-nvidia-announces-halos-robotics, 2026-abi-research-rtos-robotics-ranking, 2024-dickson-limitations-formal-verification]
-updated: 2026-11-21
+sources: [2025-nesti-use-simplex-architecture, 2025-black-real-time-execution, 2018-klein-formally-verified-software, 2025-google-building-next-generation, 2026-bansal-synergistic-simplex-cooperative, 2026-agarwal-multi-link-safety, 2026-jager-context-dependent-runtime, 2026-zheng-assuring-learning-enabled, 2026-lu-faster-rethinking-real, 2025-hu-vlsa-vision-language, 2026-park-your-model-already, 2026-elisa-enabling-linux-safety, nd-sysgo-robotics-humanoids, nd-sysgo-safety-certification, 2026-nvidia-inside-halos-robotics, 2026-qnx-nvidia-deepen-collaboration, 2026-nvidia-announces-halos-robotics, 2026-abi-research-rtos-robotics-ranking, 2024-dickson-limitations-formal-verification]
+updated: 2026-11-24
 ---
 
 # The safety path
@@ -32,6 +32,8 @@ A robot model's vendor says its model-level safety filters "are not a substitute
 
 A different pattern from Simplex switching is a filter on the commanded motion. One preprint shows a barrier-function shield between a frozen π0.5 policy and the arm, whose barrier program ran at 2.2 ms (p99) on a CPU and which cut collisions with moving hazards in simulation from 65.62 to 27.27 per cent, as a mean over six simulated conditions. It has no proof for the moving-hazard case, takes its hazard model from perception, and runs the nominal action when its program is infeasible. Our reading: it does not meet this page's rule that the loop owns its sensors, and changes no state ([[2026-agarwal-multi-link-safety]], §III-C, §V-A, §V-B).
 
+Two further preprints belong to this family, summarised on [[control-barrier-functions]]. AEGIS puts a barrier program behind a π0.5 policy without retraining it; its theorem needs accurate perception and enclosing ellipsoids, and on its benchmark the collision avoidance rate rose from 18.7 to 77.9 per cent (translation-only actions), so collisions remain; the obstacle comes from a vision-language model and a detector ([[2025-hu-vlsa-vision-language]], Theorem 1, Table I). KNOWS takes the target from the policy's own attention at every step and stops when no safe action exists; with moving obstacles its collision rate fell from 70.8 to 26.9 per cent on average against its authors' own reconstruction of the earlier design, in simulation ([[2026-park-your-model-already]], §3.1, Table 1). Our reading: neither meets the rule that the loop relies on nothing the learned side controls, and neither changes a state.
+
 A 2026 preprint derives the switching rule of a Simplex by contraction and reachability analysis for a path-tracking robot with an uncertified high-performance controller on the other side (a behavioural-cloning network in one hardware test). The proof covers the model; the hardware safety margin rests on a tuned prediction horizon, tested on one ground robot ([[2026-jager-context-dependent-runtime]], §IV). Our reading: a second kind of evidence for the switch; it changes no state.
 
 A 2026 research agenda by fourteen authors states what is, in our reading, the same thesis independently: a learned component holds capability, and a monitor with shielding or switching plus a safe controller holds authority. It says thresholds found by testing are empirical evidence, not formal guarantees; it is a position, with no results ([[2026-zheng-assuring-learning-enabled]], §3.4, §5). The authors of FASTER ask for safety monitors and physical safeguards around faster-reacting policies ([[2026-lu-faster-rethinking-real]], appendix H).
@@ -40,6 +42,7 @@ Commercial neighbours that, in our reading, build the same split from parts thei
 
 ## The paper and its sources
 
+- Section 6 names the alternative of hardened Linux with a separate safety controller for the motors and cites the ELISA project. [[2026-elisa-enabling-linux-safety]] shows that the project exists and aims at certifying Linux-based safety systems; it names no certificate (see [[elisa]]).
 - Section 4 cites Sha 2001 and dates the pattern "twenty-five years ago"; Table 1 says "Established since 2001", and the Epilogue "the Simplex pattern from 2001". [[2025-nesti-use-simplex-architecture]] traces Simplex to Sha, Rajkumar and Gagliardi 1994. Our reading: the pattern is older than the paper says. Sha 2001 itself is not covered here; for the design of zOS the pattern matters, not its first source.
 - Section 4's "Most of the engineering lies in deciding what it can reliably detect, for one robot and one task" matches Nesti et al.: the switching rule "requires to be designed for each use case".
 - The abstract and Section 4 speak of a "verified loop", while Section 4 also calls the safety controller and switching logic "candidates for proof". Our reading: the paper should keep one of the two; the sources support only the second.
