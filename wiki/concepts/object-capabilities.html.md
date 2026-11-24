@@ -43,6 +43,7 @@ PACE's "capabilities" are request-compiled records checked by the host (purpose,
 - [The broker](https://silentzero.ooo/wiki/design/broker.html.md)
 - [Information-flow control](https://silentzero.ooo/wiki/concepts/information-flow-control.html.md)
 - [CHERIoT](https://silentzero.ooo/wiki/systems/cheriot.html.md)
+- [Intent-bound capabilities (IntentCap and its neighbour)](https://silentzero.ooo/wiki/systems/intentcap.html.md)
 - [Landlock](https://silentzero.ooo/wiki/systems/landlock.html.md)
 - [seL4](https://silentzero.ooo/wiki/systems/sel4.html.md)
 - [Agent Operating Systems](https://silentzero.ooo/wiki/sources/2026-sharma-agent-operating-systems.html.md)

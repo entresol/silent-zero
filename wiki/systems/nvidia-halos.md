@@ -2,7 +2,7 @@
 type: system
 status: reviewed
 sources: [2026-nvidia-announces-halos-robotics, 2026-nvidia-inside-halos-robotics, 2026-qnx-nvidia-deepen-collaboration]
-short: NVIDIA's robot safety stack, certification under way
+short: NVIDIA's robot safety stack, certification pending
 updated: 2026-11-21
 ---
 

@@ -45,6 +45,8 @@ Our reading: capabilities limit what a component can reach; labels limit where d
 - [Object capabilities](https://silentzero.ooo/wiki/concepts/object-capabilities.html.md)
 - [Prompt injection](https://silentzero.ooo/wiki/concepts/prompt-injection.html.md)
 - [Time protection](https://silentzero.ooo/wiki/concepts/time-protection.html.md)
+- [Intent-bound capabilities (IntentCap and its neighbour)](https://silentzero.ooo/wiki/systems/intentcap.html.md)
+- [agent capabilities should follow task intent (IntentCap)](https://silentzero.ooo/wiki/sources/2026-zheng-llm-agent-capabilities.html.md)
 - [AgentKernel](https://silentzero.ooo/wiki/sources/2026-zou-agentkernel-trust-native.html.md)
 - [Can CaMeLs Talk?](https://silentzero.ooo/wiki/sources/2026-peters-gill-can-camels.html.md)
 - [Towards an Agent Operating System](https://silentzero.ooo/wiki/sources/2026-steinder-towards-agent-operating.html.md)
