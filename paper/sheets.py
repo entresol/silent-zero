@@ -2,7 +2,7 @@
 """The two doors of the page: Use (for the people who will run Silent Zero) and Devel (for developers and technically
 interested visitors). Each is a real page, /use/ and /devel/, and the start page can lay it over itself as a sheet.
 
-The contents are in sheets.json (English only for now): ten or eleven points per door, each with a status. Everything
+The contents are in sheets.json (English only for now): about a dozen points per door, each with a status. Everything
 here only turns that data into HTML and Markdown; build_wiki.py writes the pages, build_site.py puts the tabs on the
 start page. A point may only say "available now" if it points at something that exists today."""
 import html as _h

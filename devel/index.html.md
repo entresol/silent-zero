@@ -19,6 +19,7 @@ We are looking for people who know firmware, formal verification or robots, and 
 - **Run the loader in QEMU** (available now): Needs clang with the RISC-V target, ld.lld and QEMU; `make test` boots a good image and tampered ones. The steps are in the README; not yet checked on a clean machine. [README](https://github.com/entresol/silent-zero/blob/main/loader/README.md)
 - **Where we are unsure and want help** (available now): Every wiki page ends with its open questions; the Issues collect what the team has to decide. [Wiki](https://silentzero.ooo/wiki/)
 - **How AI helps with proofs** (available now): A model proposes, the proof checker judges. The wiki collects what is known. [Proof automation](https://silentzero.ooo/wiki/concepts/proof-automation.html)
+- **Who else is building this** (available now): The wiki sets the agent operating systems and sandboxes that exist today side by side, with what each shows and what it leaves open. The verified research kernels and the certified robot stacks have pages too. [Agent operating systems](https://silentzero.ooo/wiki/concepts/agent-operating-systems.html)
 - **The broker: how authority is handed out** (in progress): A design, no code yet, nothing proven. [Design](https://silentzero.ooo/wiki/design/broker.html)
 - **Add a component on top of the kernel** (planned): A static system description with protection domains and channels. [Static system](https://silentzero.ooo/wiki/design/static-system.html)
 - **Build the image yourself** (planned): A reproducible build from source.

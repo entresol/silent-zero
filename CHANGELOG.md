@@ -8,6 +8,10 @@ Format: `## <version> · <scope>`, then one paragraph. A paper version is `YYYY-
 
 The wiki worked in three sources from the backlog: the press release of the ELISA project of February 2026 (NVIDIA joins as a premier member), the VLSA paper with its AEGIS barrier-function layer for robot policies, and the KNOWS paper, which steers a similar filter by the policy's own attention. Three source pages were created, with a system page for ELISA and a concept page for control barrier functions. Changed in substance: the safety path (two more barrier filters, both with guarantees that depend on perception, and a line on what the ELISA source does and does not show), the real-time loops (per-step costs of the two filters) and the page on safety certification. New lexicon terms: ELISA, control barrier functions.
 
+## 2026-11-24 · Site
+
+The two doors say a little more. Use, "Is it certified?": still not yet and still open, now with what the sources say (commercial robot stacks list certificates or work towards them, the seL4 Foundation's page names none, how a proof becomes evidence for a certification body is open, no route to a certificate is promised) and a link to the wiki's page on safety certification. Devel has a new point, "Who else is building this", linking to the wiki's page on agent operating systems, sandboxes and the neighbouring research kernels.
+
 ## 2026-11-23 · Site
 
 The wiki worked in three sources from the backlog: slides on the standardisation status of CHERI for RISC-V (April 2026), the CHERIoT 1.0 ISA announcement (November 2025) and a security vendor's guide to the OWASP MCP Top 10. Three source pages were created. Changed in substance: the CHERIoT page (the 1.0 release, and the standardisation state with its stage and a dated estimate, still without a ratification) and the Model Context Protocol page (a paragraph on the OWASP list and its figures). No new lexicon terms. The Monday lint found nothing by script and fixed one source count in the index.
