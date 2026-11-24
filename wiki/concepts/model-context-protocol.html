@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Model Context Protocol · Silent Zero wiki</title>
-<meta name="description" content="the open protocol that connects agents to tools; three preprints measure its security, one runtime treats it as a client only.">
+<meta name="description" content="the open protocol that connects agents to tools; three preprints measure its security, one runtime treats it as a client only; a vendor’s guide to OWASP’s MCP list.">
 <link rel="canonical" href="https://silentzero.ooo/wiki/concepts/model-context-protocol.html">
 <link rel="alternate" type="text/markdown" href="/wiki/concepts/model-context-protocol.html.md">
 <link rel="icon" href="/favicon.ico?v=227f1130" sizes="32x32">
@@ -468,8 +468,8 @@ p.other { margin-top: 2.2rem; color: var(--muted); font-size: 0.95rem; }
     <p class="crumbs"><a href="/">Silent Zero OS</a> · <a href="/wiki/">Wiki</a></p>
     <div class="titleblock">
       <h1 class="name">Model Context Protocol</h1>
-      <p class="sub">the open protocol that connects agents to tools; three preprints measure its security, one runtime treats it as a client only.</p>
-      <p class="ver">Concept · <a href="/wiki/#how">LLM reviewed</a> · updated 21 Nov 2026 · 5 sources</p>
+      <p class="sub">the open protocol that connects agents to tools; three preprints measure its security, one runtime treats it as a client only; a vendor’s guide to OWASP’s MCP list.</p>
+      <p class="ver">Concept · <a href="/wiki/#how">LLM reviewed</a> · updated 23 Nov 2026 · 6 sources</p>
     </div>
   </div>
 </header>
@@ -487,6 +487,7 @@ p.other { margin-top: 2.2rem; color: var(--muted); font-size: 0.95rem; }
 <li><strong>Use as a client only.</strong> A runtime for self-evolving agents registers servers and tools by the host and treats a server’s capability declaration as neither a grant nor a process’s authority. Its MCP part is a client subset, with its newest manifest pinned to a specification revision of July 2026; sampling is not implemented (<a href="/wiki/sources/2026-zhang-agent-libos-runtime.html">Agent libOS</a>, §6.4).</li>
 </ul>
 <p>Our reading: the sources agree that the model reads unvalidated text from whoever runs a server, and differ on where to fix it, in the protocol, in the clients or around the model. Only Maloyan and Namiot and Huang et al. measure anything, and they measure how often attacks work and not what a mediator that grants only declared authority would change. On MCPTox, PACE cut worst-group attack success to 0.0, 2.62 and 2.65 per cent from 32.52, 56.54 and 86.93 on three models, with refusal 1.97, 0.58 and 28.55 against 0.16, 0.42 and 27.96; the authors argue that reviewing a tool description at admission cannot justify relaxing mediation (<a href="/wiki/sources/2026-li-pace-provenance-aware.html">PACE, provenance-aware capability enforcement</a>, Table 1, §3).</p>
+<p>Another source is not a preprint but a security vendor’s guide to the first OWASP project on MCP, version 0.1 of 2025. Its ten risks include tool poisoning, intent-flow subversion and context over-sharing as well as command injection, weak authentication, leaked tokens and supply-chain attacks; the post itself calls the CVEs “classic web application vulnerabilities” in new use, and it counts more than 30 CVEs in two months of 2026. Its figures are the vendor’s and come largely without a method (<a href="/wiki/sources/2026-owasp-owasp-mcp-top.html">the OWASP MCP Top 10</a>). The OWASP original is not in the pool.</p>
 <h2 id="open-questions">Open questions</h2>
 <ul>
 <li>Whether the weaknesses of the early specification hold for the revisions since; Maloyan and Namiot analyse one version.</li>
@@ -495,7 +496,7 @@ p.other { margin-top: 2.2rem; color: var(--muted); font-size: 0.95rem; }
 
 <h2 id="page-sources">Sources</h2>
 <p class="links-note">What this page rests on.</p>
-<ul class="linked-from"><li><a href="/wiki/sources/2026-zhang-agent-libos-runtime.html">Agent libOS</a> <span class="kind">Zhang 2026</span></li><li><a href="/wiki/sources/2026-maloyan-breaking-protocol-security.html">breaking the protocol</a> <span class="kind">Maloyan and Namiot 2026</span></li><li><a href="/wiki/sources/2026-huang-model-context-protocol.html">MCP threat modelling and tool poisoning</a> <span class="kind">Huang et al. 2026</span></li><li><a href="/wiki/sources/2026-shen-mcp-38-comprehensive.html">MCP-38</a> <span class="kind">Shen, Toyoda and Leung 2026</span></li><li><a href="/wiki/sources/2026-li-pace-provenance-aware.html">PACE, provenance-aware capability enforcement</a> <span class="kind">Li et al. 2026</span></li></ul>
+<ul class="linked-from"><li><a href="/wiki/sources/2026-zhang-agent-libos-runtime.html">Agent libOS</a> <span class="kind">Zhang 2026</span></li><li><a href="/wiki/sources/2026-maloyan-breaking-protocol-security.html">breaking the protocol</a> <span class="kind">Maloyan and Namiot 2026</span></li><li><a href="/wiki/sources/2026-huang-model-context-protocol.html">MCP threat modelling and tool poisoning</a> <span class="kind">Huang et al. 2026</span></li><li><a href="/wiki/sources/2026-shen-mcp-38-comprehensive.html">MCP-38</a> <span class="kind">Shen, Toyoda and Leung 2026</span></li><li><a href="/wiki/sources/2026-li-pace-provenance-aware.html">PACE, provenance-aware capability enforcement</a> <span class="kind">Li et al. 2026</span></li><li><a href="/wiki/sources/2026-owasp-owasp-mcp-top.html">the OWASP MCP Top 10</a> <span class="kind">Cycode 2026</span></li></ul>
 <h2 id="related-pages">Related pages</h2>
 <p class="links-note">Pages this one links to, and pages that link here.</p>
 <ul class="linked-from"><li><a href="/wiki/design/broker.html">The broker</a> <span class="kind">Design</span></li><li><a href="/wiki/concepts/prompt-injection.html">Prompt injection</a> <span class="kind">Concept</span></li><li><a href="/wiki/sources/2026-steinder-towards-agent-operating.html">Towards an Agent Operating System</a> <span class="kind">Source</span></li></ul>

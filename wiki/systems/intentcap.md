@@ -2,7 +2,7 @@
 type: system
 status: reviewed
 sources: [2026-zheng-llm-agent-capabilities, 2026-lourenco-securing-agentic-ai]
-short: Task-scoped capability leases, checked outside the model
+short: Single-use capability leases from task intent
 updated: 2026-11-21
 ---
 

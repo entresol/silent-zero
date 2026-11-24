@@ -81,5 +81,8 @@ Commercial neighbours that, in our reading, build the same split from parts thei
 - [credible compilation against verification](https://silentzero.ooo/wiki/sources/2026-rinard-quantitative-comparison-credible.html.md)
 - [fence.t.s for out-of-order cores](https://silentzero.ooo/wiki/sources/2024-wistoff-fence-t-s.html.md)
 - [Formal methods as the harness for AIOS (SpecOS)](https://silentzero.ooo/wiki/sources/2026-li-formal-methods-harness.html.md)
+- [Legato, native continuation for chunked policies](https://silentzero.ooo/wiki/sources/2026-liu-learning-native-continuation.html.md)
+- [RAVEL, rolling inference for flow-based VLAs](https://silentzero.ooo/wiki/sources/2026-chen-ravel-asynchronous-rolling.html.md)
+- [REMAC, masked action chunking](https://silentzero.ooo/wiki/sources/2026-wang-real-time-robot.html.md)
 - [the Axon compiler](https://silentzero.ooo/wiki/sources/2026-rinard-testing-credible-compilation.html.md)
 - [Towards an Agent Operating System](https://silentzero.ooo/wiki/sources/2026-steinder-towards-agent-operating.html.md)

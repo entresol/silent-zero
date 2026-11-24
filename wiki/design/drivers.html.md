@@ -67,5 +67,6 @@ In Silent Zero drivers run in user mode, each with access only to its own device
 - [Proof automation](https://silentzero.ooo/wiki/concepts/proof-automation.html.md)
 - [Microkit](https://silentzero.ooo/wiki/systems/microkit.html.md)
 - [AutoRocq](https://silentzero.ooo/wiki/sources/2025-tu-agentic-verification-software.html.md)
+- [safeL4, a Rust microkernel without hardware isolation between its domains](https://silentzero.ooo/wiki/sources/2026-xu-safel4-rethinking-safe.html.md)
 - [seL4 for reliability](https://silentzero.ooo/wiki/sources/2026-heiser-sel4-operating-systems.html.md)
 - [Verus, a practical foundation for systems verification](https://silentzero.ooo/wiki/sources/2024-lattuada-verus-practical-foundation.html.md)

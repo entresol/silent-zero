@@ -1,9 +1,9 @@
 ---
 type: system
 status: reviewed
-sources: [2009-klein-sel4-formal-verification, 2018-klein-formally-verified-software, nd-sel4-verified-configurations, 2026-sel4-functional-correctness-proof, 2026-heiser-mcs-safety-os, 2026-trustworthy-guaranteeing-timeliness-mcs, nd-trustworthy-wcet-worst-case, 2026-sillitoe-resurrecting-sel4-wcet, 2026-sel4-release-17, 2026-he-neuro-symbolic-proof, 2022-google-announcing-kataos-sparrow, nd-trustworthy-proof-statistics, 2026-proofcraft-sel4-security-proofs, 2026-heiser-sel4-operating-systems, 2026-heiser-trustworthy-systems-update, 2026-sison-two-interfaces-sel4, nd-sel4-proofs-certification]
+sources: [2009-klein-sel4-formal-verification, 2018-klein-formally-verified-software, nd-sel4-verified-configurations, 2026-sel4-functional-correctness-proof, 2026-heiser-mcs-safety-os, 2026-trustworthy-guaranteeing-timeliness-mcs, nd-trustworthy-wcet-worst-case, 2026-sillitoe-resurrecting-sel4-wcet, 2026-sel4-release-17, 2026-he-neuro-symbolic-proof, 2022-google-announcing-kataos-sparrow, nd-trustworthy-proof-statistics, 2026-proofcraft-sel4-security-proofs, 2026-heiser-sel4-operating-systems, 2026-heiser-trustworthy-systems-update, 2026-sison-two-interfaces-sel4, nd-sel4-proofs-certification, 2026-sel4-sel4-16-0]
 glossary: seL4
-updated: 2026-11-21
+updated: 2026-11-22
 ---
 
 # seL4
@@ -25,6 +25,10 @@ A microkernel of the L4 family whose C implementation has a machine-checked proo
 An overview by Heiser (published 30 April, current version 26 June 2026) says the MCS time mechanisms were then outside the proofs, with verification expected in 2027; its version date is three days before the announcement of 29 June 2026 above ([[2026-heiser-sel4-operating-systems]]). The documentation page's RISC-V section still called the MCS verification ongoing on 23 October 2026 ([[nd-sel4-verified-configurations]]).
 
 The verification of Microkit's main handler loop by Paturel et al. assumes Hoare triples about seL4 system calls that have not been proved; proving them, including blocking Recv, is ongoing at UNSW ([[2026-sison-two-interfaces-sel4]], §2). See [[microkit]].
+
+## Releases in 2026
+
+15.0.0 on 31 March (new features; domain schedules added to CAmkES and capDL), 16.0.0 on 22 July (breaking changes for direct users of the API; Microkit 2.3.0 with breaking changes for x86_64) and 17.0.0 on 30 October (fixes in unverified configurations and an audit of unproved code in the verified ones; the announcement thanks Anthropic for reporting issues) ([[2026-sel4-sel4-16-0]]; for the proofs of 17.0.0 see [[2026-sel4-release-17]]). Our reading: three kernel releases in seven months, the last two announced with breaking changes; the news page states no long-term support policy.
 
 ## Size and cost
 

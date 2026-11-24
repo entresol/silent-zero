@@ -2,7 +2,7 @@
 
 > What the sources behind the Silent Zero paper show, page by page: designs, concepts, systems and sources, each with what is proven, tested or assumed.
 
-This wiki gathers what the sources behind the paper show. It has a page for each source, each concept, each system the paper builds on and each part of the design: 131 sources, 20 concepts, 27 systems and 8 parts of the design so far. Every page says what is proven, tested or assumed, and on which source that rests.
+This wiki gathers what the sources behind the paper show. It has a page for each source, each concept, each system the paper builds on and each part of the design: 140 sources, 20 concepts, 27 systems and 8 parts of the design so far. Every page says what is proven, tested or assumed, and on which source that rests.
 
 ## How this wiki is made
 
@@ -17,10 +17,10 @@ A page can still be wrong or misleading in detail. If you find a mistake, please
 
 ## Design
 
-- [The kernel](https://silentzero.ooo/wiki/design/kernel.html.md) · seL4 with MCS as the Silent Zero kernel: proven (C-level correctness; MCS functional correctness on RISC-V), not stated for MCS (integrity, confidentiality), tested (HACMS), assumed (boot, IOMMU); no WCET bound on any 64-bit core yet; the roadmap dates MCS on AArch64 to Q3 2027. 21 sources.
+- [The kernel](https://silentzero.ooo/wiki/design/kernel.html.md) · seL4 with MCS as the Silent Zero kernel: proven (C-level correctness; MCS functional correctness on RISC-V), not stated for MCS (integrity, confidentiality), tested (HACMS), assumed (boot, IOMMU); no WCET bound on any 64-bit core yet; the roadmap dates MCS on AArch64 to Q3 2027. 22 sources.
 - [The static system](https://silentzero.ooo/wiki/design/static-system.html.md) · one description, one image: what Microkit checks, what is not proved, and the run-time swap in LionsOS, the kernel underneath. 6 sources.
 - [The broker](https://silentzero.ooo/wiki/design/broker.html.md) · the only component that hands out authority: capability patterns, CaMeL and FIDES, why model-based defences fail, three agent-OS designs for the same job, CaMeL between agents; nothing proven yet; the industry's agent sandboxes grant by resource; IntentCap and Agate are the nearest published neighbours; a budget for cumulative irreversible exposure. 35 sources.
-- [Real-time loops](https://silentzero.ooo/wiki/design/real-time-loops.html.md) · the loops that move the motors: asynchronous chunks from slow models, observed timings, no proven bound yet. 15 sources.
+- [Real-time loops](https://silentzero.ooo/wiki/design/real-time-loops.html.md) · the loops that move the motors: asynchronous chunks from slow models, policies trained for a delay range, observed timings, no proven bound yet. 18 sources.
 - [The safety path](https://silentzero.ooo/wiki/design/safety-path.html.md) · Simplex in Silent Zero: the agent proposes, the loop disposes; tested, not proven; the paper's 2001 date disputed by a 1994 origin; certified real-time kernels sell the same split as products. 16 sources.
 - [Root of trust and firmware](https://silentzero.ooo/wiki/design/root-of-trust.html.md) · the firmware below the kernel on Arm, RISC-V, PC and Raspberry Pi; OpenTitan, Caliptra, DICE; all *assumed* in the paper's terms. 13 sources.
 - [The bootloader](https://silentzero.ooo/wiki/design/bootloader.html.md) · where the Silent Zero loader sits on each platform, signed and measured boot, proofs about boot code so far; the loader itself unproven. 16 sources.
@@ -28,8 +28,8 @@ A page can still be wrong or misleading in detail. If you find a mistake, please
 
 ## Systems
 
-- [seL4](https://silentzero.ooo/wiki/systems/sel4.html.md) · the verified microkernel Silent Zero builds on: proofs per architecture and platform, cost, MCS, timing, HACMS; what its foundation says about certification. 17 sources.
-- [Microkit](https://silentzero.ooo/wiki/systems/microkit.html.md) · the build system for static seL4 systems: protection domains, channels, budgets, one image. 6 sources.
+- [seL4](https://silentzero.ooo/wiki/systems/sel4.html.md) · the verified microkernel Silent Zero builds on: proofs per architecture and platform, cost, MCS, timing, HACMS; what its foundation says about certification; the 2026 releases. 18 sources.
+- [Microkit](https://silentzero.ooo/wiki/systems/microkit.html.md) · the build system for static seL4 systems: protection domains, channels, budgets, one image. 7 sources.
 - [LionsOS](https://silentzero.ooo/wiki/systems/lionsos.html.md) · static OS from small components on seL4 and Microkit; first driver verified; Summit 2026 talks on x86-64 VMs and driver specifications. 9 sources.
 - [coreboot](https://silentzero.ooo/wiki/systems/coreboot.html.md) · open firmware in stages with a fixed payload; verified and measured boot; closed vendor parts on x86. 3 sources.
 - [Trusted Firmware-A](https://silentzero.ooo/wiki/systems/tf-a.html.md) · Arm's reference firmware; BL31 stays resident at EL3 below the kernel. 2 sources.
@@ -42,7 +42,7 @@ A page can still be wrong or misleading in detail. If you find a mistake, please
 - [PREEMPT_RT](https://silentzero.ooo/wiki/systems/preempt-rt.html.md) · the Linux real-time configuration: preemptible kernel, threaded interrupts; no latency bound stated. 1 source.
 - [Cohesix](https://silentzero.ooo/wiki/systems/cohesix.html.md) · seL4-based control layer for edge AI fleets: a Queen decides what hosts' models may do; landing page only. 1 source.
 - [KataOS](https://silentzero.ooo/wiki/systems/kataos.html.md) · Google's seL4 and Rust OS for machine-learning devices, 2022; OpenTitan in its Sparrow plan. 1 source.
-- [CHERIoT](https://silentzero.ooo/wiki/systems/cheriot.html.md) · CHERI capabilities on small RISC-V cores with its own RTOS: memory safety in hardware, measured, not proven; CHERI for RISC-V "being standardised" in 2026. 2 sources.
+- [CHERIoT](https://silentzero.ooo/wiki/systems/cheriot.html.md) · CHERI capabilities on small RISC-V cores with its own RTOS: memory safety in hardware, measured, not proven; the 1.0 ISA of November 2025; CHERI for RISC-V in architecture review in April 2026, not ratified in any source here. 4 sources.
 - [CVA6](https://silentzero.ooo/wiki/systems/cva6.html.md) · open 64-bit RISC-V core whose design lets latency bounds be proved; fence.t prototype. 7 sources.
 - [SiFive and the HiFive boards](https://silentzero.ooo/wiki/systems/sifive-hifive.html.md) · SiFive and its boards: the discontinued HiFive Unleashed with seL4's MCS proof, the HiFive Premier P550 one can buy. 5 sources.
 - [NVIDIA Halos for Robotics](https://silentzero.ooo/wiki/systems/nvidia-halos.html.md) · NVIDIA's safety stack for robots: IGX Thor with a safety island, Halos Core with Linux or Linux plus QNX; inspected for certification readiness, no robotics certificate claimed. 3 sources.
@@ -60,7 +60,7 @@ A page can still be wrong or misleading in detail. If you find a mistake, please
 
 - [RISC-V](https://silentzero.ooo/wiki/concepts/risc-v.html.md) · the open instruction set: what is open (the ISA) and what need not be (cores, chips, boards); privilege levels and the SBI. 12 sources.
 - [IOMMU](https://silentzero.ooo/wiki/concepts/iommu.html.md) · the memory management unit for devices: what it limits, and the 2019 attacks that worked although it was on. 3 sources.
-- [WCET analysis](https://silentzero.ooo/wiki/concepts/wcet-analysis.html.md) · upper bounds on execution time, what they need, and where seL4 stands. 6 sources.
+- [WCET analysis](https://silentzero.ooo/wiki/concepts/wcet-analysis.html.md) · upper bounds on execution time, what they need, and where seL4 stands. 7 sources.
 - [Functional correctness](https://silentzero.ooo/wiki/concepts/functional-correctness.html.md) · what seL4's refinement proof gives, what it assumes, where it holds. 5 sources.
 - [Object capabilities](https://silentzero.ooo/wiki/concepts/object-capabilities.html.md) · references that both designate and authorise; permission versus authority; caretaker and membrane. 7 sources.
 - [Confused deputy](https://silentzero.ooo/wiki/concepts/confused-deputy.html.md) · a program misusing one party's authority for another's request; capabilities as the remedy. 4 sources.
@@ -69,14 +69,14 @@ A page can still be wrong or misleading in detail. If you find a mistake, please
 - [Measured boot](https://silentzero.ooo/wiki/concepts/measured-boot.html.md) · each stage records what runs next; TPM and DICE; a verified DICE implementation. 4 sources.
 - [Time protection](https://silentzero.ooo/wiki/concepts/time-protection.html.md) · closing timing channels between domains; prototypes on CVA6, proof for seL4 in progress. 5 sources.
 - [Simplex architecture](https://silentzero.ooo/wiki/concepts/simplex.html.md) · a simple safe controller guarding an untrusted one; tested with learned controllers. 4 sources.
-- [Action chunking](https://silentzero.ooo/wiki/concepts/action-chunking.html.md) · slow robot models emitting action sequences for a fast loop; no bound on delay. 4 sources.
+- [Action chunking](https://silentzero.ooo/wiki/concepts/action-chunking.html.md) · slow robot models emitting action sequences for a fast loop; RTC and three 2026 policy-side answers; no bound on delay. 7 sources.
 - [AI vulnerability discovery](https://silentzero.ooo/wiki/concepts/ai-vulnerability-discovery.html.md) · AI models finding software flaws at scale: DARPA's challenge and Anthropic's figures, the bottleneck moving to patching. 3 sources.
 - [Information-flow control](https://silentzero.ooo/wiki/concepts/information-flow-control.html.md) · labels for where data came from and who may see it; FIDES and CaMeL for agents; explicit flows only; refusals as a channel; Agent libOS. 8 sources.
 - [Proof automation](https://silentzero.ooo/wiki/concepts/proof-automation.html.md) · machines proposing proof steps, Isabelle checking them; 77.6 % of a seL4 benchmark sample; Verus as a faster verifier. PROMISE as a second method; AutoVerus for Rust; a coding agent's compiler proofs in Lean; the OSDI version and the Selene benchmark; specification writing (OSVBench), AutoRocq, and verified against checked compiler passes. 15 sources.
-- [Memory-safe code](https://silentzero.ooo/wiki/concepts/memory-safe-code.html.md) · new code in Rust instead of C: Android's memory-safety flaws below 20 % in 2025; the hardening rival to a verified base. 1 source.
+- [Memory-safe code](https://silentzero.ooo/wiki/concepts/memory-safe-code.html.md) · new code in Rust instead of C: Android's memory-safety flaws below 20 % in 2025; a Rust microkernel without hardware isolation as a research rival; the hardening rival to a verified base. 2 sources.
 - [Mixed criticality](https://silentzero.ooo/wiki/concepts/mixed-criticality.html.md) · software of different criticality on one platform; processor time as a capability in seL4 MCS; partitions under a hypervisor in commercial robot stacks. 7 sources.
-- [Model Context Protocol](https://silentzero.ooo/wiki/concepts/model-context-protocol.html.md) · the open protocol that connects agents to tools; three preprints measure its security, one runtime treats it as a client only. 5 sources.
-- [Agent operating systems](https://silentzero.ooo/wiki/concepts/agent-operating-systems.html.md) · designs that put the limit on an agent in the OS layer: agentOS, Cohesix, KataOS, AgentKernel, AgenticOS, Agent libOS, Quine, OpenShell and MXC as shipped products; IBM's Agent-OS position paper. 19 sources.
+- [Model Context Protocol](https://silentzero.ooo/wiki/concepts/model-context-protocol.html.md) · the open protocol that connects agents to tools; three preprints measure its security, one runtime treats it as a client only; a vendor's guide to OWASP's MCP list. 6 sources.
+- [Agent operating systems](https://silentzero.ooo/wiki/concepts/agent-operating-systems.html.md) · designs that put the limit on an agent in the OS layer: agentOS, Cohesix, KataOS, AgentKernel, AgenticOS, Agent libOS, Quine, OpenShell and MXC as shipped products; IBM's Agent-OS position paper; IntentOS, a language-model planner beside the Linux kernel. 20 sources.
 - [Safety certification](https://silentzero.ooo/wiki/concepts/safety-certification.html.md) · proof versus certificate: what a certified kernel, a robot stack and seL4 each state; no certified seL4 product in the sources. 5 sources.
 
 ## Sources
@@ -213,7 +213,16 @@ A page can still be wrong or misleading in detail. If you find a mistake, please
 - [the irreversibility budget](https://silentzero.ooo/wiki/sources/2026-mohammadi-irreversibility-budget.html.md) (Mohammadi and Bindschaedler 2026) · a cumulative account of irreversible exposure, charged below the agents; fleets overdraw by up to 48 times without it. design, partly read.
 - [agent capabilities should follow task intent (IntentCap)](https://silentzero.ooo/wiki/sources/2026-zheng-llm-agent-capabilities.html.md) (Zheng, Zhang and Mao 2026) · IntentCap: single-use leases from four context sources, a deterministic checker, zero unsafe accepts in 3,746 replayed events. test, full text.
 - [securing agentic AI with OS-level intent-driven capabilities](https://silentzero.ooo/wiki/sources/2026-lourenco-securing-agentic-ai.html.md) (Lourenço et al. 2026) · intent-driven capabilities enforced at the system-call boundary; challenges listed. design, full text.
+- [seL4 Foundation: the news page, January to October 2026](https://silentzero.ooo/wiki/sources/2026-sel4-sel4-16-0.html.md) · the seL4 news page for 2026: releases 15.0.0, 16.0.0 and 17.0.0 with their breaking changes, the AArch64 confidentiality item, Foundation members. report, full text.
+- [REMAC, masked action chunking](https://silentzero.ooo/wiki/sources/2026-wang-real-time-robot.html.md) (Wang et al. 2026) · REMAC: masked fine-tuning so a chunking policy copes with delay; beats RTC on one real arm; needs a maximum delay fixed in advance. measurement, full text.
+- [Legato, native continuation for chunked policies](https://silentzero.ooo/wiki/sources/2026-liu-learning-native-continuation.html.md) (Liu et al. 2026) · Legato: continuation between chunks trained into the policy; 14 to 23 % faster than RTC on five dual-arm tasks, in its own runs. measurement, partly read.
+- [RAVEL, rolling inference for flow-based VLAs](https://silentzero.ooo/wiki/sources/2026-chen-ravel-asynchronous-rolling.html.md) (Chen et al. 2026) · RAVEL: rolling inference cuts the time to the first action by 2.6 to 2.9 times on one GPU; real-world dynamic tasks. measurement, full text.
+- [safeL4, a Rust microkernel without hardware isolation between its domains](https://silentzero.ooo/wiki/sources/2026-xu-safel4-rethinking-safe.html.md) (Xu et al. 2026) · safeL4: a Rust microkernel without hardware isolation between safe domains, primitives 1.91 times faster than seL4's on average on a Raspberry Pi 3B+; trusts the toolchain and DMA devices. measurement, partly read.
+- [IntentOS, an agentic OS kernel](https://silentzero.ooo/wiki/sources/2026-wang-agentic-os-kernel.html.md) (Wang et al. 2026) · IntentOS: a language model beside Linux composes micro-syscalls; safety rests on new per-call checks. measurement, partly read.
+- [CHERI standardisation status](https://silentzero.ooo/wiki/sources/2026-kurd-cheri-standardisation-status.html.md) (Kurd 2026) · Kurd, April 2026: CHERI for RISC-V in architecture review before its freeze; ratification intended for Q2, thought more likely Q3, on a slide marked out of date. progress, slides, full text.
+- [ISA 1.0 released](https://silentzero.ooo/wiki/sources/2025-cheriot-cheriot-isa-1.html.md) (CHERIoT 2025) · CHERIoT ISA 1.0, November 2025: stable since December 2024, two implementations, first chips from the fab; the RISC-V CHERI base "tentatively Y". report, full text.
+- [the OWASP MCP Top 10](https://silentzero.ooo/wiki/sources/2026-owasp-owasp-mcp-top.html.md) (Cycode 2026) · a security vendor's guide to the OWASP MCP Top 10 (version 0.1): ten risks, 30-plus CVEs in two months, figures without method. report, full text.
 
 ## Not yet covered
 
-The Silent Zero part *agents* has no page yet; [Agent operating systems](https://silentzero.ooo/wiki/concepts/agent-operating-systems.html.md) covers the designs that touch it. Firmware on PCs (Intel ME, AMD PSP, FSP, open alternatives) and on Apple silicon is in the backlog. Also not yet covered: the multicore proof, the ratification status of CHERI for RISC-V, the seams between proven parts and the driver island.
+The Silent Zero part *agents* has no page yet; [Agent operating systems](https://silentzero.ooo/wiki/concepts/agent-operating-systems.html.md) covers the designs that touch it. Firmware on PCs (Intel ME, AMD PSP, FSP, open alternatives) and on Apple silicon is in the backlog. Also not yet covered: the multicore proof, the ratification status of CHERI for RISC-V after April 2026 (the sources here stop there), the seams between proven parts and the driver island.

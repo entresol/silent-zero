@@ -2,7 +2,7 @@
 
 > SeL4 with MCS as the Silent Zero kernel: proven (C-level correctness; MCS functional correctness on RISC-V), not stated for MCS (integrity, confidentiality), tested (HACMS), assumed (boot, IOMMU); no WCET bound on any 64-bit core yet; the roadmap dates MCS on AArch64 to Q3 2027.
 
-Design · LLM reviewed · updated 2026-11-21 · 21 sources · https://silentzero.ooo/wiki/design/kernel.html
+Design · LLM reviewed · updated 2026-11-22 · 22 sources · https://silentzero.ooo/wiki/design/kernel.html
 
 In Silent Zero the kernel is [seL4](https://silentzero.ooo/wiki/systems/sel4.html.md) with its mixed-criticality extensions. It isolates components, moves messages between them and hands out processor time, and it is the only code at its privilege level (paper, Section 3).
 
@@ -50,6 +50,8 @@ No current seL4 has a WCET bound on a 64-bit core. Budgets keep an agent from ta
 
 ## Open
 
+- **A rival without a proof.** safeL4, a Rust microkernel with language-level capabilities and no hardware isolation between its safe-Rust domains, reports primitives 1.91 times faster than seL4's on average on one small Arm board; its trusted base includes the Rust toolchain, its `unsafe` code and DMA-capable devices, and it has no IOMMU isolation yet ([safeL4, a Rust microkernel without hardware isolation between its domains](https://silentzero.ooo/wiki/sources/2026-xu-safel4-rethinking-safe.html.md)). Our reading: it answers the cost of hardware isolation, not the question of what is proven. The paper's choice of seL4 rests on the proof, and the paper raises no objection to seL4's isolation cost that safeL4 answers.
+
 - Which 32-bit cores the old analysis covered. Section 4 of the paper says seL4's sound WCET analysis existed "only for the ARM11 processor", following [WCET analysis of seL4](https://silentzero.ooo/wiki/sources/nd-trustworthy-wcet-worst-case.html.md). The sources conflict. The archived page names ARM11; [Resurrecting seL4's WCET Analysis](https://silentzero.ooo/wiki/sources/2026-sillitoe-resurrecting-sel4-wcet.html.md) (§1) says the *first* analysis, Blackham et al. 2011, was on Armv7; the current project page [Trustworthy Systems: Guaranteeing timeliness of MCS on seL4](https://silentzero.ooo/wiki/sources/2026-trustworthy-guaranteeing-timeliness-mcs.html.md) and the slides [MCS safety, an OS perspective](https://silentzero.ooo/wiki/sources/2026-heiser-mcs-safety-os.html.md) say Armv6 and Armv7. The ARM1136 is an Armv6 core ([seL4, Formal Verification of an OS Kernel](https://silentzero.ooo/wiki/sources/2009-klein-sel4-formal-verification.html.md), §5.1). All agree the work covered 32-bit Arm before MCS, and the archived page adds that on ARM11 the loop bounds were set by hand. Our reading: "only for ARM11" is narrower than three sources and "sound and complete" is stronger than the archived page for that core; "32-bit Arm, before MCS" is safe. Blackham et al. 2011 and Sewell et al. 2016, not yet covered here, would settle it.
 - What Arm's latencies change. Section 4 of the paper says Arm stopped publishing latencies "for its out-of-order cores" and concludes that only an open RISC-V core puts a proof of timing within reach. [Resurrecting seL4's WCET Analysis](https://silentzero.ooo/wiki/sources/2026-sillitoe-resurrecting-sel4-wcet.html.md) (footnote 1) says Arm stopped for its in-order cores as well and has resumed for them, and plans the analysis on an in-order Armv8 core. Our reading: the paper's conclusion still holds for latencies *proved* against the hardware design, since Arm's would rest on vendor documentation and stay *assumed*; only the wording "for its out-of-order cores" is narrower than the source.
 - **Kernel loops without a static bound.** Capability lookups, message cancellation and the MCS scheduling queues walk structures sized at run time, and system design has to bound them ([Resurrecting seL4's WCET Analysis](https://silentzero.ooo/wiki/sources/2026-sillitoe-resurrecting-sel4-wcet.html.md), §5.1). The project plans WCET per kernel operation, so that a system that never destroys objects after boot gets a lower bound ([Trustworthy Systems: Guaranteeing timeliness of MCS on seL4](https://silentzero.ooo/wiki/sources/2026-trustworthy-guaranteeing-timeliness-mcs.html.md)). Our reading: a static system fixes object counts and rights at build time, which should help with both. It is open whether that yields the bounds the analysis needs.
@@ -73,6 +75,7 @@ The multicore proof itself. See also [Time protection](https://silentzero.ooo/wi
 - [MCS safety, an OS perspective](https://silentzero.ooo/wiki/sources/2026-heiser-mcs-safety-os.html.md)
 - [release 17.0.0](https://silentzero.ooo/wiki/sources/2026-sel4-release-17.html.md)
 - [Resurrecting seL4's WCET Analysis](https://silentzero.ooo/wiki/sources/2026-sillitoe-resurrecting-sel4-wcet.html.md)
+- [safeL4, a Rust microkernel without hardware isolation between its domains](https://silentzero.ooo/wiki/sources/2026-xu-safel4-rethinking-safe.html.md)
 - [security proofs complete on AArch64](https://silentzero.ooo/wiki/sources/2026-proofcraft-sel4-security-proofs.html.md)
 - [seL4 for reliability](https://silentzero.ooo/wiki/sources/2026-heiser-sel4-operating-systems.html.md)
 - [seL4 Foundation: Development roadmap](https://silentzero.ooo/wiki/sources/nd-sel4-sel4-roadmap.html.md)
@@ -107,6 +110,7 @@ The multicore proof itself. See also [Time protection](https://silentzero.ooo/wi
 - [AutoRocq](https://silentzero.ooo/wiki/sources/2025-tu-agentic-verification-software.html.md)
 - [Instruction Sets Should Be Free](https://silentzero.ooo/wiki/sources/2014-asanovic-instruction-sets-free.html.md)
 - [OSVBench](https://silentzero.ooo/wiki/sources/2025-li-osvbench-benchmarking-llms.html.md)
+- [seL4 Foundation: the news page, January to October 2026](https://silentzero.ooo/wiki/sources/2026-sel4-sel4-16-0.html.md)
 - [seL4 on PC99 (x86-64)](https://silentzero.ooo/wiki/sources/nd-sel4-x64-platform.html.md)
 - [SiFive: HiFive Unleashed](https://silentzero.ooo/wiki/sources/nd-sifive-hifive-unleashed.html.md)
 - [the Axon compiler](https://silentzero.ooo/wiki/sources/2026-rinard-testing-credible-compilation.html.md)

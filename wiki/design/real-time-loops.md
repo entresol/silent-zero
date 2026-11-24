@@ -1,8 +1,8 @@
 ---
 type: design
 status: reviewed
-sources: [2025-black-real-time-execution, 2025-nesti-use-simplex-architecture, 2026-sel4-functional-correctness-proof, 2026-heiser-mcs-safety-os, 2022-wistoff-systematic-prevention-core, nd-sel4-microkit-user-manual, 2025-google-building-next-generation, nd-linux-real-time-preemption, 2026-jiang-futurertc-real-time, 2026-agarwal-multi-link-safety, 2024-wistoff-fence-t-s, 2026-lu-faster-rethinking-real, 2026-jager-context-dependent-runtime, 2026-chen-typego-os-runtime, 2026-li-formal-methods-harness]
-updated: 2026-11-21
+sources: [2025-black-real-time-execution, 2025-nesti-use-simplex-architecture, 2026-sel4-functional-correctness-proof, 2026-heiser-mcs-safety-os, 2022-wistoff-systematic-prevention-core, nd-sel4-microkit-user-manual, 2025-google-building-next-generation, nd-linux-real-time-preemption, 2026-jiang-futurertc-real-time, 2026-agarwal-multi-link-safety, 2024-wistoff-fence-t-s, 2026-lu-faster-rethinking-real, 2026-jager-context-dependent-runtime, 2026-chen-typego-os-runtime, 2026-li-formal-methods-harness, 2026-wang-real-time-robot, 2026-liu-learning-native-continuation, 2026-chen-ravel-asynchronous-rolling]
+updated: 2026-11-22
 ---
 
 # Real-time loops
@@ -27,6 +27,8 @@ The control loops at the bottom of zOS move the motors on a fixed period and hav
 | Kernel WCET and schedulability | not yet | none | [[kernel]] |
 | Fixed context-switch time with timing-channel protection | prototype on CVA6; also an OpenC910 prototype, padding length not given ([[2024-wistoff-fence-t-s]]) | measurement | [[2022-wistoff-systematic-prevention-core]] |
 | Reaction to a sudden event through a chunking policy: a range set by inference latency and call interval, shortened by FASTER's first-action sampling | measured on two consumer GPUs and one real arm; preprint, single-latency model, no bound | measurement | [[2026-lu-faster-rethinking-real]] |
+| Policies trained for a delay range: REMAC beats RTC on a real arm with 122 to 140 ms end-to-end delay; failure outside the trained maximum is stated as possible | measured on one arm, 30 trials per task; ICLR 2026 paper; no bound | measurement | [[2026-wang-real-time-robot]] |
+| Rolling inference: median time to the first action 54.97 ms against 142.58 ms (X-VLA) and 93.45 against 272.86 ms (π0.5) on one RTX 4090 | measured; observation age 118 ms against 236 to 465 ms (medians) on a real arm, 20 trials per cell; preprint, no worst case | measurement | [[2026-chen-ravel-asynchronous-rolling]] |
 
 One timing reference on an edge platform: the barrier filter ran at every 50 ms step and a flow update every fifth step, both on the CPU, while the policy ran once per ten-action chunk on the integrated GPU, at 177.3 ms (p50) after trimming, against 343 ms in the released configuration; the trimming lowered task success by 4.17 percentage points on the 300 mm escape condition. No bound is proven ([[2026-agarwal-multi-link-safety]], §III-D, §V-B).
 
@@ -43,6 +45,8 @@ Another: a Simplex decision module measured 0.0281 ms mean and 4.13 ms worst cas
 - [[typego]] keeps the language model off the critical path with layered asynchronous loops in a Python runtime on a quadruped: planning overlapped with motion, a reflex layer and a scheduler. Its authors report 50 per cent lower per-step delay and about 200 ms and 50 ms of scheduling and reflex overhead; no proved bound, and isolation only as future work ([[2026-chen-typego-os-runtime]]). [[specos]] proposes control loops at 100 Hz and above on static topologies verified offline and planning at 3 to 10 Hz verified at run time; no implementation is reported ([[2026-li-formal-methods-harness]]).
 
 ## Open
+
+- Fine-tuning answers (REMAC, Legato, RAVEL) train for a delay range or lower the delay's median; our reading is that none of the three bounds the delay (RAVEL reports a 95th percentile, REMAC's authors state both that a maximum delay must be specified and that their training bounds are not limits; [[2026-wang-real-time-robot]], [[2026-chen-ravel-asynchronous-rolling]]). The loop's rule for a late chunk stays undecided.
 
 - [[2025-black-real-time-execution]] estimates delay from history and does not bound it. The loop must have a defined behaviour when the next chunk does not arrive: hold, slow, stop.
 - The paper's condition for no interruption of streamed actions is that the next action arrives within one control period ([[2026-lu-faster-rethinking-real]], appendix D.2); our reading: otherwise the buffer can run dry. What the loop does then is undecided.

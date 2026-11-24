@@ -1,9 +1,9 @@
 ---
 type: concept
 status: reviewed
-sources: [2026-shen-mcp-38-comprehensive, 2026-maloyan-breaking-protocol-security, 2026-huang-model-context-protocol, 2026-zhang-agent-libos-runtime, 2026-li-pace-provenance-aware]
+sources: [2026-shen-mcp-38-comprehensive, 2026-maloyan-breaking-protocol-security, 2026-huang-model-context-protocol, 2026-zhang-agent-libos-runtime, 2026-li-pace-provenance-aware, 2026-owasp-owasp-mcp-top]
 glossary: Model Context Protocol (MCP)
-updated: 2026-11-21
+updated: 2026-11-23
 ---
 
 # Model Context Protocol
@@ -21,6 +21,8 @@ Four preprints, none peer-reviewed, look at it from different sides.
 
 Our reading: the sources agree that the model reads unvalidated text from whoever runs a server, and differ on where to fix it, in the protocol, in the clients or around the model. Only Maloyan and Namiot and Huang et al. measure anything, and they measure how often attacks work and not what a mediator that grants only declared authority would change.
 On MCPTox, PACE cut worst-group attack success to 0.0, 2.62 and 2.65 per cent from 32.52, 56.54 and 86.93 on three models, with refusal 1.97, 0.58 and 28.55 against 0.16, 0.42 and 27.96; the authors argue that reviewing a tool description at admission cannot justify relaxing mediation ([[2026-li-pace-provenance-aware]], Table 1, §3).
+
+Another source is not a preprint but a security vendor's guide to the first OWASP project on MCP, version 0.1 of 2025. Its ten risks include tool poisoning, intent-flow subversion and context over-sharing as well as command injection, weak authentication, leaked tokens and supply-chain attacks; the post itself calls the CVEs "classic web application vulnerabilities" in new use, and it counts more than 30 CVEs in two months of 2026. Its figures are the vendor's and come largely without a method ([[2026-owasp-owasp-mcp-top]]). The OWASP original is not in the pool.
 
 ## Open questions
 
