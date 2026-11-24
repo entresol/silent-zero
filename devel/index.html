@@ -439,15 +439,6 @@ p.other { margin-top: 2.2rem; color: var(--muted); font-size: 0.95rem; }
 .sh-edge { position: fixed; top: 0; bottom: 0; width: 1px; background: var(--accent); opacity: 0.55; z-index: 59; pointer-events: none; }
 .sh-edge-l { left: 0; }
 .sh-edge-r { right: 0; }
-/* a tab says in one line what is behind it when the pointer rests on it or it has the focus; it takes no click and nobody has to wait for it */
-.sh-tab[data-peek]::after { content: attr(data-peek); position: absolute; top: 50%; width: max-content; max-width: 12.5rem; padding: 0.55rem 0.8rem; box-sizing: border-box;
-  background: var(--paper); border: 1px solid var(--rule); color: var(--ink); font: 400 0.82rem/1.3 var(--font-text); letter-spacing: 0; text-align: left; white-space: normal;
-  opacity: 0; pointer-events: none; transition: opacity 0.15s ease-out, transform 0.15s ease-out; box-shadow: 0 6px 18px -8px rgba(0, 0, 0, 0.25); }
-.sh-tab-l[data-peek]::after { left: 100%; border-left: 0; transform: translate(-6px, -50%); }
-.sh-tab-r[data-peek]::after { right: 100%; border-right: 0; transform: translate(6px, -50%); }
-.sh-tab[data-peek]:focus-visible::after { opacity: 1; transform: translate(0, -50%); }
-@media (hover: hover) and (pointer: fine) { .sh-tab[data-peek]:hover::after { opacity: 1; transform: translate(0, -50%); } }
-@media (prefers-reduced-motion: reduce) { .sh-tab[data-peek]::after { transition: none; } }
 /* the same tabs on every width: they scale with it, the page gets a margin of their width so they have free space, and below 64 rem the sheet
    that lies on the page keeps its own tab, labelled and in the strip beside it, and the other door's tab steps aside while it is open (a tap beside the sheet
    closes it and cannot open the other door); the way to the other door is the link at the end of the sheet */
@@ -478,7 +469,7 @@ p.other { margin-top: 2.2rem; color: var(--muted); font-size: 0.95rem; }
 </style>
 </head>
 <body>
-<i class="sh-edge sh-edge-r" aria-hidden="true"></i><a class="sh-tab sh-tab-l" href="/use/" data-peek="What works today, and what is still to come"><span>Users</span></a><a class="sh-tab sh-tab-r sh-here" href="/" aria-current="page" data-peek="Back to the start page"><span>Developers</span></a><header class="hero slim" id="top">
+<i class="sh-edge sh-edge-r" aria-hidden="true"></i><a class="sh-tab sh-tab-l" href="/use/"><span>Users</span></a><a class="sh-tab sh-tab-r sh-here" href="/" aria-current="page" title="Back to the start page"><span>Developers</span></a><header class="hero slim" id="top">
   <div class="hero-inner">
     <p class="crumbs"><a href="/">Silent Zero OS</a></p>
     <div class="titleblock">

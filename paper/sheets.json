@@ -2,7 +2,6 @@
  "_note": "The contents of the two sheets 'Use' and 'Devel': one real page each (/use/, /devel/), also laid over the start page as a sheet. English only for now. Status: now = available now, wip = in progress, plan = planned (a decision stands behind it, no date), open = an open question. Every 'now' must point at something that exists today.",
  "use": {
   "tab": "Users",
-  "peek": "What works today, and what is still to come",
   "dir": "use",
   "title": "Use Silent Zero",
   "description": "What you can look at today and what is still to come, for the people who will run Silent Zero.",
@@ -91,7 +90,6 @@
  },
  "devel": {
   "tab": "Developers",
-  "peek": "What you can read, run and help with",
   "dir": "devel",
   "title": "Develop with Silent Zero",
   "description": "For people who build, verify or want to look inside Silent Zero: where to start, what works, how to take part.",

@@ -83,7 +83,7 @@ def markdown(name):
 def doors():
     """The two tabs on the edges of the start page. Without JavaScript they are links to the pages."""
     sides = {NAMES[0]: "l", NAMES[1]: "r"}   # the first door lies on the left, the second on the right
-    return "".join(f'<a class="sh-tab sh-tab-{sides[n]}" href="{DATA[n]["dir"]}/" data-sheet="{n}" data-peek="{_h.escape(DATA[n]["peek"])}"><span>{_h.escape(DATA[n]["tab"])}</span></a>' for n in NAMES)
+    return "".join(f'<a class="sh-tab sh-tab-{sides[n]}" href="{DATA[n]["dir"]}/" data-sheet="{n}"><span>{_h.escape(DATA[n]["tab"])}</span></a>' for n in NAMES)
 
 
 def page_tabs(name):
@@ -94,7 +94,7 @@ def page_tabs(name):
     for n in NAMES:
         d = DATA[n]
         if n == name:
-            out.append(f'<a class="sh-tab sh-tab-{sides[n]} sh-here" href="/" aria-current="page" data-peek="Back to the start page"><span>{_h.escape(d["tab"])}</span></a>')
+            out.append(f'<a class="sh-tab sh-tab-{sides[n]} sh-here" href="/" aria-current="page" title="Back to the start page"><span>{_h.escape(d["tab"])}</span></a>')
         else:
-            out.append(f'<a class="sh-tab sh-tab-{sides[n]}" href="/{d["dir"]}/" data-peek="{_h.escape(d["peek"])}"><span>{_h.escape(d["tab"])}</span></a>')
+            out.append(f'<a class="sh-tab sh-tab-{sides[n]}" href="/{d["dir"]}/"><span>{_h.escape(d["tab"])}</span></a>')
     return "".join(out)
