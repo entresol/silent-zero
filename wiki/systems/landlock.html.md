@@ -36,6 +36,7 @@ Part of the Linux kernel; the sources read do not state the licence.
 - [Memory-safe code](https://silentzero.ooo/wiki/concepts/memory-safe-code.html.md)
 - [Object capabilities](https://silentzero.ooo/wiki/concepts/object-capabilities.html.md)
 - [Agate](https://silentzero.ooo/wiki/systems/agate.html.md)
+- [ELISA](https://silentzero.ooo/wiki/systems/elisa.html.md)
 - [Microsoft Execution Containers (MXC)](https://silentzero.ooo/wiki/systems/mxc.html.md)
 - [OpenShell](https://silentzero.ooo/wiki/systems/openshell.html.md)
 - [PREEMPT_RT](https://silentzero.ooo/wiki/systems/preempt-rt.html.md)

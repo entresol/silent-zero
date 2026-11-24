@@ -37,6 +37,8 @@ The Outside-In Safety Blueprint is open source (GitHub, early access). The sourc
 - [The safety path](https://silentzero.ooo/wiki/design/safety-path.html.md)
 - [Mixed criticality](https://silentzero.ooo/wiki/concepts/mixed-criticality.html.md)
 - [Safety certification](https://silentzero.ooo/wiki/concepts/safety-certification.html.md)
+- [ELISA](https://silentzero.ooo/wiki/systems/elisa.html.md)
 - [PikeOS](https://silentzero.ooo/wiki/systems/pikeos.html.md)
 - [QNX](https://silentzero.ooo/wiki/systems/qnx.html.md)
 - [seL4](https://silentzero.ooo/wiki/systems/sel4.html.md)
+- [NVIDIA joins as a premier member](https://silentzero.ooo/wiki/sources/2026-elisa-enabling-linux-safety.html.md)

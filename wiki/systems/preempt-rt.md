@@ -3,7 +3,7 @@ type: system
 status: reviewed
 sources: [nd-linux-real-time-preemption]
 short: Linux build option for low-latency scheduling
-updated: 2026-11-03
+updated: 2026-11-24
 ---
 
 # PREEMPT_RT
@@ -20,7 +20,7 @@ Part of the Linux kernel; the sources read do not state the licence.
 
 ## Related
 
-[[landlock]], [[wcet-analysis]], [[mixed-criticality]], [[real-time-loops]].
+[[landlock]], [[elisa]], [[wcet-analysis]], [[mixed-criticality]], [[real-time-loops]].
 
 ## Open questions
 

@@ -39,5 +39,6 @@ A reasoning model can sit above the action model and call it as a tool; in Googl
 ## Related pages
 
 - [Real-time loops](https://silentzero.ooo/wiki/design/real-time-loops.html.md)
+- [Control barrier functions](https://silentzero.ooo/wiki/concepts/control-barrier-functions.html.md)
 - [TypeGo](https://silentzero.ooo/wiki/systems/typego.html.md)
 - [multi-link safety filtering for VLA policies](https://silentzero.ooo/wiki/sources/2026-agarwal-multi-link-safety.html.md)

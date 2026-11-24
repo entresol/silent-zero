@@ -469,7 +469,7 @@ p.other { margin-top: 2.2rem; color: var(--muted); font-size: 0.95rem; }
     <div class="titleblock">
       <h1 class="name">Wiki</h1>
       <p class="sub">What the sources behind the paper show, page by page.</p>
-      <p class="ver">195 pages · updated 23 Nov 2026 · <a href="#how">How this wiki is made</a></p>
+      <p class="ver">200 pages · updated 24 Nov 2026 · <a href="#how">How this wiki is made</a></p>
     </div>
   </div>
 </header>
@@ -477,7 +477,7 @@ p.other { margin-top: 2.2rem; color: var(--muted); font-size: 0.95rem; }
 <div class="layout">
   <nav class="toc" id="toc" aria-label="Contents"><p>Contents</p><ol><li class="toc-back"><a href="/">← The paper</a></li><li><a href="#top">↑ Top</a></li><li><a href="#how">How this wiki is made</a></li><li><a href="#design">Design</a></li><li><a href="#systems">Systems</a></li><li><a href="#concepts">Concepts</a></li><li><a href="#sources">Sources</a></li><li><a href="#not-yet-covered">Not yet covered</a></li></ol></nav>
   <article>
-<p>This wiki gathers what the sources behind the paper show. It has a page for each source, each concept, each system the paper builds on and each part of the design: 140 sources, 20 concepts, 27 systems and 8 parts of the design so far. Every page says what is proven, tested or assumed, and on which source that rests.</p>
+<p>This wiki gathers what the sources behind the paper show. It has a page for each source, each concept, each system the paper builds on and each part of the design: 143 sources, 21 concepts, 28 systems and 8 parts of the design so far. Every page says what is proven, tested or assumed, and on which source that rests.</p>
 <h2 id="how">How this wiki is made</h2>
 <p>A language model writes the wiki and keeps it up to date from the sources in the project’s research pool, after Andrej Karpathy’s idea of a wiki that a language model maintains. A daily run adds new sources and works older ones in.</p>
 <ul>
@@ -491,8 +491,8 @@ p.other { margin-top: 2.2rem; color: var(--muted); font-size: 0.95rem; }
 <li><a href="/wiki/design/kernel.html">The kernel</a> · seL4 with MCS as the Silent Zero kernel: proven (C-level correctness; MCS functional correctness on RISC-V), not stated for MCS (integrity, confidentiality), tested (HACMS), assumed (boot, IOMMU); no WCET bound on any 64-bit core yet; the roadmap dates MCS on AArch64 to Q3 2027. 22 sources.</li>
 <li><a href="/wiki/design/static-system.html">The static system</a> · one description, one image: what Microkit checks, what is not proved, and the run-time swap in LionsOS, the kernel underneath. 6 sources.</li>
 <li><a href="/wiki/design/broker.html">The broker</a> · the only component that hands out authority: capability patterns, CaMeL and FIDES, why model-based defences fail, three agent-OS designs for the same job, CaMeL between agents; nothing proven yet; the industry’s agent sandboxes grant by resource; IntentCap and Agate are the nearest published neighbours; a budget for cumulative irreversible exposure. 35 sources.</li>
-<li><a href="/wiki/design/real-time-loops.html">Real-time loops</a> · the loops that move the motors: asynchronous chunks from slow models, policies trained for a delay range, observed timings, no proven bound yet. 18 sources.</li>
-<li><a href="/wiki/design/safety-path.html">The safety path</a> · Simplex in Silent Zero: the agent proposes, the loop disposes; tested, not proven; the paper’s 2001 date disputed by a 1994 origin; certified real-time kernels sell the same split as products. 16 sources.</li>
+<li><a href="/wiki/design/real-time-loops.html">Real-time loops</a> · the loops that move the motors: asynchronous chunks from slow models, policies trained for a delay range, observed timings, per-step costs of two barrier filters, no proven bound yet. 20 sources.</li>
+<li><a href="/wiki/design/safety-path.html">The safety path</a> · Simplex in Silent Zero: the agent proposes, the loop disposes; tested, not proven; the paper’s 2001 date disputed by a 1994 origin; certified real-time kernels sell the same split as products; two more barrier filters, guarantees conditional on perception. 19 sources.</li>
 <li><a href="/wiki/design/root-of-trust.html">Root of trust and firmware</a> · the firmware below the kernel on Arm, RISC-V, PC and Raspberry Pi; OpenTitan, Caliptra, DICE; all <em>assumed</em> in the paper’s terms. 13 sources.</li>
 <li><a href="/wiki/design/bootloader.html">The bootloader</a> · where the Silent Zero loader sits on each platform, signed and measured boot, proofs about boot code so far; the loader itself unproven. 16 sources.</li>
 <li><a href="/wiki/design/drivers.html">Drivers</a> · user-mode drivers, the first verified Ethernet driver, DMA and the IOMMU as assumed, attacked in 2019 although enabled; device models from Verilog and Windows on x86-64 as first steps; the Pancake paper adds the language and its limits. 13 sources.</li>
@@ -511,6 +511,7 @@ p.other { margin-top: 2.2rem; color: var(--muted); font-size: 0.95rem; }
 <li><a href="/wiki/systems/verus.html">Verus</a> · verifier for Rust code with SMT solving; case studies, and a kernel (Atmosphere); AutoVerus writes proofs for it. 4 sources.</li>
 <li><a href="/wiki/systems/landlock.html">Landlock</a> · Linux sandbox a process applies to itself: filesystem, network, capability and namespace rules; part of the hardened-Linux route, and the base of OpenShell’s filesystem layer. 3 sources.</li>
 <li><a href="/wiki/systems/preempt-rt.html">PREEMPT_RT</a> · the Linux real-time configuration: preemptible kernel, threaded interrupts; no latency bound stated. 1 source.</li>
+<li><a href="/wiki/systems/elisa.html">ELISA</a> · the Linux Foundation’s project for Linux in safety applications; NVIDIA joined as a premier member in February 2026; no certificate named. 1 source.</li>
 <li><a href="/wiki/systems/cohesix.html">Cohesix</a> · seL4-based control layer for edge AI fleets: a Queen decides what hosts’ models may do; landing page only. 1 source.</li>
 <li><a href="/wiki/systems/kataos.html">KataOS</a> · Google’s seL4 and Rust OS for machine-learning devices, 2022; OpenTitan in its Sparrow plan. 1 source.</li>
 <li><a href="/wiki/systems/cheriot.html">CHERIoT</a> · CHERI capabilities on small RISC-V cores with its own RTOS: memory safety in hardware, measured, not proven; the 1.0 ISA of November 2025; CHERI for RISC-V in architecture review in April 2026, not ratified in any source here. 4 sources.</li>
@@ -548,7 +549,8 @@ p.other { margin-top: 2.2rem; color: var(--muted); font-size: 0.95rem; }
 <li><a href="/wiki/concepts/mixed-criticality.html">Mixed criticality</a> · software of different criticality on one platform; processor time as a capability in seL4 MCS; partitions under a hypervisor in commercial robot stacks. 7 sources.</li>
 <li><a href="/wiki/concepts/model-context-protocol.html">Model Context Protocol</a> · the open protocol that connects agents to tools; three preprints measure its security, one runtime treats it as a client only; a vendor’s guide to OWASP’s MCP list. 6 sources.</li>
 <li><a href="/wiki/concepts/agent-operating-systems.html">Agent operating systems</a> · designs that put the limit on an agent in the OS layer: agentOS, Cohesix, KataOS, AgentKernel, AgenticOS, Agent libOS, Quine, OpenShell and MXC as shipped products; IBM’s Agent-OS position paper; IntentOS, a language-model planner beside the Linux kernel. 20 sources.</li>
-<li><a href="/wiki/concepts/safety-certification.html">Safety certification</a> · proof versus certificate: what a certified kernel, a robot stack and seL4 each state; no certified seL4 product in the sources. 5 sources.</li>
+<li><a href="/wiki/concepts/control-barrier-functions.html">Control barrier functions</a> · a filter that keeps a robot’s commanded motion inside a safe set; three VLA filters, guarantees conditional on perception. 3 sources.</li>
+<li><a href="/wiki/concepts/safety-certification.html">Safety certification</a> · proof versus certificate: what a certified kernel, a robot stack and seL4 each state; no certified seL4 product in the sources; ELISA’s aim for Linux. 6 sources.</li>
 </ul>
 <h2 id="sources">Sources</h2>
 <ul>
@@ -651,6 +653,9 @@ p.other { margin-top: 2.2rem; color: var(--muted); font-size: 0.95rem; }
 <li><a href="/wiki/sources/2026-chinaei-causality-laundering-denial.html">Causality laundering</a> (Chinaei 2026) · causality laundering: a denied tool call leaks what exists; a monitor that records denials; three constructed scenarios, single author. design, partly read.</li>
 <li><a href="/wiki/sources/2026-lide-arsenal-assured-robotics.html">ARSENAL</a> (Lide 2026) · ARSENAL, seL4 Summit 2026 talk abstract: ROS 2 on seL4 for Army ground vehicles, two configurations, a proof of concept each; security services planned. report, abstract only.</li>
 <li><a href="/wiki/sources/2026-steinder-towards-agent-operating.html">Towards an Agent Operating System</a> (Steinder and Franke 2026) · IBM position paper: an Agent-OS with 13 primitives on a Kubernetes control plane; no measurements. position, full text.</li>
+<li><a href="/wiki/sources/2025-hu-vlsa-vision-language.html">VLSA and AEGIS, a barrier-function layer for VLA policies</a> (Hu et al. 2025) · AEGIS: a barrier-function layer behind a VLA policy; collision avoidance 18.7 to 77.9 % on SafeLIBERO, theorem conditional on perception. measurement, full text.</li>
+<li><a href="/wiki/sources/2026-park-your-model-already.html">KNOWS, a safety filter steered by the policy’s attention</a> (Park et al. 2026) · KNOWS: the policy’s own attention names the target; collisions with moving obstacles 70.8 to 26.9 % against the authors’ baseline, simulation only. measurement, full text.</li>
+<li><a href="/wiki/sources/2026-elisa-enabling-linux-safety.html">NVIDIA joins as a premier member</a> (ELISA 2026) · ELISA’s press release of February 2026: NVIDIA joins; the project aims to help certify Linux-based safety systems. report, full text.</li>
 <li><a href="/wiki/sources/2026-agarwal-multi-link-safety.html">multi-link safety filtering for VLA policies</a> (Agarwal and Raghunathan 2026) · a barrier-function shield between a frozen VLA and the arm; collisions with moving hazards 65.62 to 27.27 % in simulation. measurement, full text.</li>
 <li><a href="/wiki/sources/2026-rinard-quantitative-comparison-credible.html">credible compilation against verification</a> (Rinard 2026) · credible compilation against verification: verified optimisations took about an order of magnitude more agent effort. measurement, full text.</li>
 <li><a href="/wiki/sources/2025-li-osvbench-benchmarking-llms.html">OSVBench</a> (Li et al. 2025) · OSVBench: 245 Hyperkernel tasks for LLM specification writing; best Pass@1 55.10 %, 0 % on five models without examples. measurement, full text.</li>
