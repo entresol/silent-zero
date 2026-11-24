@@ -11,6 +11,6 @@
 - **Try it** (planned): A bootable image, first in an emulator.
 - **Check your download** (planned): Checksums and signatures, and how to verify them before you boot.
 - **Which hardware** (planned): A first board, then a list of what runs on what.
-- **Is it certified?** (open question): Not yet. How a safety path like ours relates to the standards a buyer must meet is still open, and we say so.
+- **Is it certified?** (open question): Not yet. Today's commercial robot stacks list certificates (PikeOS) or work towards them (NVIDIA Halos); the seL4 Foundation's own page names none. How a proof becomes evidence for a certification body is open, and we promise no route to a certificate. [Safety certification in the wiki](https://silentzero.ooo/wiki/concepts/safety-certification.html)
 
 Looking for the other door? [Developers](https://silentzero.ooo/devel/index.html.md)

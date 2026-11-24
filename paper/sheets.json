@@ -79,7 +79,11 @@
    [
     "open",
     "Is it certified?",
-    "Not yet. How a safety path like ours relates to the standards a buyer must meet is still open, and we say so."
+    "Not yet. Today's commercial robot stacks list certificates (PikeOS) or work towards them (NVIDIA Halos); the seL4 Foundation's own page names none. How a proof becomes evidence for a certification body is open, and we promise no route to a certificate.",
+    [
+     "Safety certification in the wiki",
+     "/wiki/concepts/safety-certification.html"
+    ]
    ]
   ],
   "other": "devel"
@@ -182,6 +186,15 @@
     [
      "Proof automation",
      "/wiki/concepts/proof-automation.html"
+    ]
+   ],
+   [
+    "now",
+    "Who else is building this",
+    "The wiki sets the agent operating systems and sandboxes that exist today side by side, with what each shows and what it leaves open. The verified research kernels and the certified robot stacks have pages too.",
+    [
+     "Agent operating systems",
+     "/wiki/concepts/agent-operating-systems.html"
     ]
    ],
    [
