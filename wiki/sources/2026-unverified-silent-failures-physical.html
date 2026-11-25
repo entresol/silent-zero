@@ -1,0 +1,543 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Silent failures in physical AI, a literature review of runtime action authorization · Silent Zero wiki</title>
+<meta name="description" content="a single-author review: runtime action authorization between a black-box model and the hardware, seven guardrail functions, no experiment. survey, partly read.">
+<link rel="canonical" href="https://silentzero.ooo/wiki/sources/2026-unverified-silent-failures-physical.html">
+<link rel="alternate" type="text/markdown" href="/wiki/sources/2026-unverified-silent-failures-physical.html.md">
+<link rel="icon" href="/favicon.ico?v=227f1130" sizes="32x32">
+<link rel="icon" href="/assets/favicon.svg?v=227f1130" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png?v=227f1130">
+<style>
+/* entresol typography: Inter Thin for large display only, Nunito Sans for everything else.
+   Fonts are self-hosted (SIL OFL 1.1); no requests to third-party font servers. */
+@font-face { font-family: "Inter"; font-style: normal; font-weight: 100 900; font-display: swap;
+  src: url(/assets/fonts/inter-latin-opsz-normal.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "Inter"; font-style: normal; font-weight: 100 900; font-display: swap;
+  src: url(/assets/fonts/inter-latin-ext-opsz-normal.woff2) format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: "Nunito Sans"; font-style: normal; font-weight: 200 1000; font-display: swap;
+  src: url(/assets/fonts/nunito-sans-latin-wght-normal.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "Nunito Sans"; font-style: normal; font-weight: 200 1000; font-display: swap;
+  src: url(/assets/fonts/nunito-sans-latin-ext-wght-normal.woff2) format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: "Nunito Sans"; font-style: italic; font-weight: 200 1000; font-display: swap;
+  src: url(/assets/fonts/nunito-sans-latin-wght-italic.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "Nunito Sans"; font-style: italic; font-weight: 200 1000; font-display: swap;
+  src: url(/assets/fonts/nunito-sans-latin-ext-wght-italic.woff2) format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+
+/* Layout: one reading column (~65 characters), sticky contents on wide screens, figures and table break out wider. */
+:root {
+  --font-display: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;   /* weight 100 only, large sizes only */
+  --font-text: "Nunito Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --paper: #ffffff;
+  --ink-deep: #1a1d1f;   /* headlines */
+  --ink: #3e4447;        /* running text */
+  --muted: #6f767a;      /* meta; 4.6:1 on white, WCAG AA for normal text */
+  --rule: #e2e5e7;
+  --pulse-bg: #f6f7f8;   /* the band of latest changes: a light grey stage */
+  --accent: #e8a020;     /* entresol gold, the only accent */
+  --measure: 36rem;
+  --wide: 58rem;
+  --gutter-l: max(1.25rem, env(safe-area-inset-left, 0px));
+  --gutter-r: max(1.25rem, env(safe-area-inset-right, 0px));
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #121517; --ink-deep: #f1f3f4; --ink: #c5ccd0; --muted: #8b9498; --rule: #2a2f33; --pulse-bg: #181c1e; --accent: #e8a020;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #121517; --ink-deep: #f1f3f4; --ink: #c5ccd0; --muted: #8b9498; --rule: #2a2f33; --pulse-bg: #181c1e; --accent: #e8a020;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; background: var(--paper); color: var(--ink);
+  font: 400 1.125rem/1.72 var(--font-text);
+}
+a { color: var(--ink-deep); text-decoration-color: var(--accent); text-underline-offset: 0.2em; text-decoration-thickness: 1px; }
+a:hover { text-decoration-thickness: 2px; }
+a:focus-visible { outline: 1px solid var(--accent); outline-offset: 3px; }
+
+/* Display: Inter Thin, never below ~40px */
+h1, h2, .titleblock .name {
+  font-family: var(--font-display); font-weight: 100; font-optical-sizing: auto;
+  color: var(--ink-deep); text-wrap: balance;
+}
+
+.hero { padding-block: 18vh 10vh; padding-left: var(--gutter-l); padding-right: var(--gutter-r); border-bottom: 1px solid var(--rule); }
+.hero-inner { max-width: var(--wide); margin: 0 auto; }
+.hero h1 { font-size: clamp(54px, 9.5vw, 112px); line-height: 0.98; letter-spacing: -0.04em; margin: 0 0 1.6rem; }
+.hero .lede { max-width: var(--measure); margin: 0 0 3.5rem; }   /* identical to running text */
+.titleblock { max-width: 46rem; border-left: 1px solid var(--accent); padding-left: 1.1rem; }
+.titleblock p { margin: 0; }
+.titleblock .name { font-size: clamp(40px, 4.4vw, 48px); line-height: 1.05; letter-spacing: -0.03em; margin-bottom: 0.5rem; }
+.titleblock .sub { color: var(--muted); }
+.actions { margin-top: 2.2rem; display: flex; flex-wrap: wrap; gap: 0.8rem 1.6rem; align-items: center; }
+.btn {
+  font: 600 1.125rem/1.3 var(--font-text); color: var(--ink-deep);
+  text-decoration: underline; text-decoration-color: var(--accent);
+  text-decoration-thickness: 2px; text-underline-offset: 0.35em;
+}
+.btn::after { content: "\00a0\2193"; color: var(--accent); }
+.btn:hover { text-decoration-thickness: 3px; }
+.meta { color: var(--muted); font-size: 0.95rem; }
+
+.layout { padding-block: 4rem 6rem; padding-left: var(--gutter-l); padding-right: var(--gutter-r); }
+article { max-width: var(--measure); margin: 0 auto; }
+article .wide { width: min(var(--wide), calc(100vw - 2.5rem)); margin-left: 50%; transform: translateX(-50%); }
+nav.toc { display: none; }
+@media (min-width: 76rem) {
+  .layout { display: grid; grid-template-columns: 1fr var(--measure) 1fr; column-gap: 3rem; }
+  nav.toc { display: block; grid-column: 1; justify-self: end; position: sticky; top: 2rem; align-self: start; width: 14rem; }
+  article { grid-column: 2; margin: 0; }
+}
+nav.toc ol { list-style: none; margin: 0; padding: 0; font: 400 0.9rem/1.45 var(--font-text); }
+nav.toc li { margin: 0 0 0.5rem; }
+nav.toc a { color: var(--muted); text-decoration: none; }
+nav.toc a:hover { color: var(--ink-deep); }
+/* the section being read, marked by the script */
+nav.toc a[aria-current] { color: var(--ink-deep); text-decoration: underline 1px var(--accent); text-underline-offset: 0.3em; }
+nav.toc p { font: 600 0.9rem/1 var(--font-text); margin: 0 0 1rem; color: var(--ink-deep); }
+
+/* Narrow screens: the contents become a panel from the left, opened by a menu button at the top left.
+   The button is shown by the script only; without JavaScript the page stays as it was. */
+button.menu { display: none; }
+@media (max-width: 75.98rem) {
+  /* 44px touch target; left offset puts the 18px lines flush with the text column */
+  button.menu:not([hidden]) {
+    display: block; position: fixed; z-index: 20;
+    top: max(0.5rem, env(safe-area-inset-top, 0px)); left: calc(var(--gutter-l) - 0.8125rem);
+    width: 2.75rem; height: 2.75rem; padding: 0; border: 1px solid var(--rule); border-radius: 50%; cursor: pointer;
+    background: var(--paper); color: var(--ink-deep);   /* opaque: it sits on running text while reading */
+  }
+  button.menu:focus-visible { outline: 1px solid var(--accent); outline-offset: 0; }
+  /* three lines: the span is the middle one, its pseudo-elements the outer two; open, they cross */
+  button.menu span, button.menu span::before, button.menu span::after {
+    position: absolute; width: 1.125rem; height: 1px; background: currentColor;
+  }
+  button.menu span { left: calc(50% - 0.5625rem); top: calc(50% - 0.5px); }
+  button.menu span::before, button.menu span::after { content: ""; left: 0; top: 0; transition: transform 0.2s ease; }
+  button.menu span::before { transform: translateY(-6px); }
+  button.menu span::after { transform: translateY(6px); }
+  button.menu[aria-expanded="true"] span { background: transparent; }
+  button.menu[aria-expanded="true"] span::before { transform: rotate(45deg); }
+  button.menu[aria-expanded="true"] span::after { transform: rotate(-45deg); }
+
+  nav.toc {
+    display: block; position: fixed; z-index: 10; inset: 0 auto 0 0; width: min(20rem, 85vw);
+    overflow-y: auto; overscroll-behavior: contain;
+    padding: calc(max(0.5rem, env(safe-area-inset-top, 0px)) + 4rem) 1.5rem 2rem var(--gutter-l);
+    background: var(--paper); border-right: 1px solid var(--rule);
+    visibility: hidden; transform: translateX(-100%); transition: transform 0.25s ease, visibility 0s 0.25s;
+  }
+  .menu-open { overflow: hidden; }
+  .menu-open nav.toc { visibility: visible; transform: none; transition: transform 0.25s ease; box-shadow: 0 0 0 100vmax rgb(0 0 0 / 0.25); }
+  nav.toc ol { font-size: 1rem; }
+  nav.toc li { margin-bottom: 0.85rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  nav.toc, button.menu span::before, button.menu span::after { transition: none !important; }
+}
+
+h2 { font-size: clamp(36px, 5vw, 56px); line-height: 1.04; letter-spacing: -0.035em; margin: 4.2rem 0 1.4rem; scroll-margin-top: 1.5rem; }
+h2::before { content: ""; display: block; width: 32px; height: 1px; background: var(--accent); margin-bottom: 1.1rem; }
+h3 { font: 600 1.125rem/1.35 var(--font-text); color: var(--ink-deep); margin: 2.4rem 0 0.6rem; text-wrap: balance; }
+p { margin: 0 0 1.15rem; hyphens: auto; }
+ol, ul { padding-left: 1.3rem; }
+li { margin-bottom: 0.4rem; }
+blockquote { margin: 1.6rem 0; padding-left: 1.1rem; border-left: 1px solid var(--accent); }
+/* the motto at the start of the prologue: the line large, its source small */
+blockquote p:first-child { font-size: 1.15em; color: var(--ink-deep); margin-bottom: 0.4rem; }
+blockquote p + p { font-size: 0.85em; color: var(--muted); }
+strong { font-weight: 600; color: var(--ink-deep); }
+
+figure { margin: 2.8rem 0; }
+figure img { width: 100%; max-width: 100%; background: #ffffff; height: auto; display: block; }
+figcaption { max-width: var(--measure); margin: 0.8rem auto 0; font-size: 0.95rem; line-height: 1.55; color: var(--muted); }
+
+.table-wrap { overflow-x: auto; margin: 2rem 0 2.4rem; }
+table { border-collapse: collapse; width: 100%; font-size: 0.95rem; line-height: 1.5; }
+th { font: 600 0.9rem/1.3 var(--font-text); color: var(--ink-deep); text-align: left; border-bottom: 1px solid var(--accent); padding: 0 0.9rem 0.5rem 0; }
+td { vertical-align: top; border-bottom: 1px solid var(--rule); padding: 0.6rem 0.9rem 0.6rem 0; }
+td:first-child { white-space: nowrap; color: var(--ink-deep); font-weight: 600; }
+
+#references + ul { list-style: none; padding: 0; font-size: 0.95rem; line-height: 1.55; }
+#references + ul li { padding-left: 1.4rem; text-indent: -1.4rem; margin-bottom: 0.55rem; overflow-wrap: anywhere; }
+
+footer { border-top: 1px solid var(--rule); padding-block: 2rem 3rem; padding-left: var(--gutter-l); padding-right: var(--gutter-r); }
+footer div { max-width: var(--wide); margin: 0 auto; color: var(--muted); font-size: 0.95rem; display: flex; flex-wrap: wrap; gap: 0.5rem 2rem; justify-content: space-between; }
+footer .links { display: flex; gap: 1.4rem; }
+@media (max-width: 40rem) { footer .about > span:not(.sep) { display: block; } footer .sep { display: none; } }
+
+@media (max-width: 40rem) {
+  .hero { padding-block-start: 12vh; }
+  td:first-child { white-space: normal; }
+}
+@media print {
+  .hero { padding: 2rem 0; } nav.toc, button.menu, .actions, footer { display: none; }
+}
+
+/* language selector at the top right of the header, level with the menu button and flush with the column's right
+   edge; shown by the script only */
+.hero { position: relative; }
+.langs { position: absolute; top: max(0.5rem, env(safe-area-inset-top, 0px)); right: calc(max(var(--gutter-r), (100% - var(--wide)) / 2) - 0.6rem); display: flex; }
+.langs[hidden] { display: none; }
+.langs button {
+  min-width: 2.75rem; min-height: 2.75rem; padding: 0 0.35rem; border: 0; background: none; cursor: pointer;
+  font: 500 0.75rem/1 var(--font-text); letter-spacing: 0.08em; color: var(--muted);
+  text-decoration: underline 1px transparent; text-underline-offset: 0.45em; transition: color 0.18s ease;
+}
+.langs button + button::before { content: "|"; display: inline-block; width: 0; position: relative; left: -0.55rem; color: var(--rule); pointer-events: none; }
+.langs button:hover { color: var(--ink-deep); }
+.langs button[aria-pressed="true"] { color: var(--ink-deep); text-decoration-color: var(--accent); }
+.langs button:focus-visible { outline: 1px solid var(--accent); outline-offset: -2px; }
+@media print { .langs { display: none; } }
+
+/* status line under the title block */
+.hero .status { max-width: var(--measure); margin: 1.6rem 0 0; color: var(--ink); }
+.hero .status a { hyphens: manual; }   /* no "Is-sues" in German */
+
+/* wide figures extend only to the right while the contents column is visible */
+@media (min-width: 76rem) {
+  article .wide { width: min(var(--wide), calc(100% + 3rem + (100vw - 2.5rem - var(--measure) - 6rem) / 2)); margin-left: 0; transform: none; }
+}
+.fig-scroll { overflow-x: auto; }
+@media (max-width: 40rem) {
+  .fig-scroll img { min-width: 44rem; }
+}
+
+/* citations link to the reference list */
+a.cite { color: inherit; text-decoration-color: var(--rule); }
+a.cite:hover { text-decoration-color: var(--accent); }
+a.gl { color: inherit; text-decoration: underline dotted var(--muted); text-underline-offset: 0.2em; white-space: nowrap; }
+a.gl:hover, a.gl:focus-visible { text-decoration-color: var(--accent); }
+@media (hover: hover) {
+  a.gl { position: relative; }
+  a.gl:hover::after { content: attr(data-def); position: absolute; left: 0; top: 100%; margin-top: 0.35rem; z-index: 5;
+    width: max-content; max-width: min(22rem, 80vw); padding: 0.5rem 0.7rem; background: var(--paper); color: var(--ink);
+    border: 1px solid var(--rule); border-left: 2px solid var(--accent); font-size: 0.85rem; line-height: 1.4; font-weight: 400;
+    font-style: normal; white-space: normal; pointer-events: none; }
+  a.gl.flip:hover::after { left: auto; right: 0; }
+}
+/* touch screens have no hover: a tap on a term opens its meaning in a popover anchored to it, after Apple's HIG and
+   Material's rich tooltips. A second tap, or a tap elsewhere, closes it; its footer links to the glossary entry.
+   Set up by the page script; the popover sits in the page, so it scrolls with its term. */
+.gl-pop { position: absolute; z-index: 8; margin: 0; padding: 0.6rem 0.8rem 0.5rem; background: var(--paper); color: var(--ink);
+  border: 1px solid var(--rule); border-top: 2px solid var(--accent); border-radius: 0.25rem; font-size: 0.9rem; line-height: 1.45;
+  box-shadow: 0 0.4rem 1.2rem color-mix(in srgb, var(--ink-deep) 14%, transparent); }
+.gl-pop p { margin: 0; }
+.gl-pop .gl-pop-foot { margin-top: 0.45rem; padding-top: 0.4rem; border-top: 1px solid var(--rule); font-size: 0.8rem; }
+.gl-pop .gl-pop-foot a { color: var(--ink-deep); }
+/* the arrow points at the term: up when the popover opens below it, down when it opens above */
+.gl-pop::before { content: ""; position: absolute; left: var(--arrow, 1rem); top: -0.5rem; width: 0.8rem; height: 0.8rem;
+  margin-left: -0.4rem; background: var(--accent); clip-path: polygon(50% 0, 100% 100%, 0 100%); }
+.gl-pop.above { border-top: 1px solid var(--rule); border-bottom: 2px solid var(--accent); }
+.gl-pop.above::before { top: auto; bottom: -0.5rem; clip-path: polygon(0 0, 100% 0, 50% 100%); }
+a.gl[aria-expanded] { -webkit-tap-highlight-color: transparent; }
+a.gl[aria-expanded="true"] { color: var(--ink-deep); text-decoration: underline solid var(--accent); background: color-mix(in srgb, var(--accent) 14%, transparent); }
+#glossary ~ h3 { margin-top: 1.6rem; }
+[id^="gl-"] { scroll-margin-top: 1.5rem; }
+#references + ul li:target { background: color-mix(in srgb, var(--accent) 14%, transparent); }
+
+/* figure 2 as text */
+figure.timeline ol { list-style: none; margin: 0; padding: 0; border-left: 1px solid var(--rule); }
+figure.timeline li { display: grid; grid-template-columns: 4.2rem 1fr; gap: 0 1rem; padding: 0 0 1.4rem 0; margin: 0; position: relative; }
+figure.timeline li::before { content: ""; position: absolute; left: -4px; top: 0.55rem; width: 7px; height: 7px; border-radius: 50%; background: var(--muted); }
+figure.timeline li.start::before { background: var(--accent); }
+figure.timeline .year { padding-left: 1rem; font-weight: 600; color: var(--ink-deep); font-variant-numeric: tabular-nums; }
+figure.timeline li > div { min-width: 0; }
+figure.timeline p { margin: 0; }
+figure.timeline .st-name { color: var(--ink-deep); font-weight: 600; }
+figure.timeline .st-sub { color: var(--muted); font-size: 0.95rem; }
+figure.timeline .st-check { font-size: 0.95rem; margin-top: 0.25rem; }
+figure.timeline .kind { display: inline-block; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+  margin-right: 0.5rem; color: var(--accent); vertical-align: 0.1em; }
+figure.timeline figcaption { margin-left: 0; }
+
+/* component table: one entry per block on phones */
+@media (max-width: 40rem) {
+  .table-wrap table, .table-wrap tbody, .table-wrap tr, .table-wrap td { display: block; width: 100%; }
+  .table-wrap thead { display: none; }
+  .table-wrap tr { border-bottom: 1px solid var(--rule); padding: 0.8rem 0; }
+  .table-wrap td { border: 0; padding: 0.15rem 0; }
+  .table-wrap td::before { content: attr(data-label); display: block; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+  .table-wrap td:first-child { white-space: normal; }
+}
+
+/* revisions */
+ol.revisions { list-style: none; padding: 0; margin: 1.2rem 0 0; }
+ol.revisions li { padding: 0.9rem 0; border-top: 1px solid var(--rule); margin: 0; }
+ol.revisions li > div { min-width: 0; }
+ol.revisions p { margin: 0; }
+ol.revisions .rev-ver { font-weight: 600; color: var(--ink-deep); font-variant-numeric: tabular-nums; }
+details.revisions-more { margin-top: 0; border-top: 1px solid var(--rule); }
+details.revisions-more > summary { cursor: pointer; padding: 0.9rem 0; color: var(--ink-deep); font-weight: 600; }
+details.revisions-more > summary::marker { color: var(--accent); }
+details.revisions-more ol.revisions { margin-top: 0; }
+ol.revisions .rev-date { color: var(--muted); font-size: 0.95rem; margin-bottom: 0.2rem; }
+
+/* title block: slogan, authors, version */
+.titleblock .ver { color: var(--muted); font-size: 0.95rem; margin-top: 0.15rem; }
+
+/* the wiki: the same header, slimmer, with the page's title in the title block instead of the poster */
+.hero.slim { padding-block: 7vh 3.5rem; }
+.hero.slim .crumbs { margin: 0 0 2.2rem; color: var(--muted); font-size: 0.95rem; }
+.hero.slim .crumbs a { color: var(--muted); text-decoration: none; }
+.hero.slim .crumbs a:hover { color: var(--ink-deep); }
+.hero.slim .titleblock h1.name { font-size: clamp(40px, 4.4vw, 48px); line-height: 1.05; letter-spacing: -0.03em; margin: 0 0 0.5rem; }
+.hero.slim .titleblock .sub { max-width: var(--measure); }
+.hero.slim .titleblock .ver a { hyphens: manual; }
+nav.toc li.toc-back { margin-bottom: 0.5rem; }
+nav.toc li.toc-back:not(:has(+ li.toc-back)) { margin-bottom: 1.4rem; padding-bottom: 1rem; border-bottom: 1px solid var(--rule); }
+nav.toc li.toc-back a { color: var(--ink-deep); }
+nav.toc li.toc-sep { margin-top: 1.4rem; padding-top: 1rem; border-top: 1px solid var(--rule); }
+ul.linked-from { list-style: none; padding: 0; }
+p.links-note { color: var(--muted); font-size: 0.95rem; margin-top: -0.6rem; }
+ul.linked-from .kind { color: var(--muted); font-size: 0.85rem; margin-left: 0.4rem; }
+
+/* narrow screens: jump targets land below the menu button (last, so it wins over the scroll margins above) */
+@media (max-width: 75.98rem) {
+  h2, [id^="gl-"], #references + ul li { scroll-margin-top: 4rem; }
+}
+
+/* the activity band under the header: when the wiki was last worked on, 28 days as a strip, the newest sources */
+.pulse { padding-block: 1.9rem 2.1rem; padding-left: var(--gutter-l); padding-right: var(--gutter-r); border-bottom: 1px solid var(--rule); background: var(--pulse-bg); }
+.pulse > div { max-width: var(--wide); margin: 0 auto; display: grid; grid-template-columns: minmax(0, 22rem) minmax(0, 1fr); gap: 1.6rem 3rem; align-items: start; }
+:where(.pulse) p { margin: 0; }
+.pulse-title { display: flex; align-items: center; gap: 0.6rem; font: 600 0.95rem/1 var(--font-text); }
+.pulse-title a { color: var(--ink-deep); text-decoration: none; }
+.pulse-title a:hover { text-decoration: underline; text-decoration-color: var(--accent); }
+.pulse .dot, .titleblock .ver .dot { position: relative; width: 0.6rem; height: 0.6rem; border-radius: 50%; background: var(--accent); flex: none; }
+.pulse-date { margin-top: 1.1rem; font: 100 clamp(2rem, 4.2vw, 2.7rem)/1.05 var(--font-display); letter-spacing: -0.03em; color: var(--ink-deep); }
+.titleblock .ver .dot { display: inline-block; vertical-align: 0.05em; margin-right: 0.55rem; }
+.pulse-meta { margin-top: 0.5rem; font-size: 0.9rem; color: var(--muted); }
+.strip { display: grid; grid-template-columns: repeat(28, 1fr); gap: 3px; margin-top: 1.1rem; }
+.strip i { display: block; height: 1.15rem; border-radius: 2px; background: var(--rule); }
+.strip i.on { background: var(--accent); }
+.strip i.last { box-shadow: 0 0 0 2px var(--pulse-bg), 0 0 0 3px var(--accent); }
+.pulse-list { list-style: none; margin: 0; padding: 0; }
+.pulse-list li { display: grid; grid-template-columns: 4.6rem 3.6rem 1fr; gap: 0.1rem 0.8rem; padding: 0.7rem 0; border-top: 1px solid var(--rule); font-size: 0.95rem; line-height: 1.4; }
+.pulse-list li:first-child { border-top: 0; padding-top: 0; }
+.pulse-list li:last-child { padding-bottom: 0; }
+.pulse-list .area { font-weight: 600; color: var(--ink-deep); }
+.pulse-meta a { color: var(--ink); text-decoration-color: var(--rule); }
+.pulse-meta a:hover { text-decoration-color: var(--accent); }
+.pulse-list time { color: var(--muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.pulse-list a { color: var(--ink-deep); text-decoration-color: var(--rule); }
+.pulse-list a:hover { text-decoration-color: var(--accent); }
+@media (prefers-reduced-motion: no-preference) {
+  .pulse .dot::after, .titleblock .ver .dot::after { content: ""; position: absolute; inset: 0; border-radius: 50%; border: 1px solid var(--accent); animation: pulse-ring 2.8s ease-out infinite; }
+  @keyframes pulse-ring { from { transform: scale(1); opacity: 0.9; } to { transform: scale(3.2); opacity: 0; } }
+}
+@media (max-width: 45rem) {
+  .pulse-list li { grid-template-columns: auto 1fr; }
+  .pulse-list .what { grid-column: 1 / -1; }
+}
+
+/* the lexicon: an A-Z line above the footer and one line per term on /lexicon/ */
+.az-band { border-top: 1px solid var(--rule); padding-block: 1.6rem; padding-left: var(--gutter-l); padding-right: var(--gutter-r); }
+.az-band > div { max-width: var(--wide); margin: 0 auto; display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.4rem 1.2rem; }
+.az-title { font: 600 0.95rem/1 var(--font-text); }
+nav.az { display: flex; flex-wrap: wrap; gap: 0.2rem; font: 500 0.95rem/1 var(--font-text); }
+nav.az a, nav.az span { display: inline-block; min-width: 1.6rem; padding: 0.45rem 0; text-align: center; }
+nav.az a { text-decoration: none; color: var(--ink-deep); }
+nav.az a:hover { text-decoration: underline; text-decoration-color: var(--accent); }
+nav.az span { color: var(--muted); opacity: 0.45; }
+article > nav.az { margin-bottom: 1rem; }
+h2.lx-letter { font: 600 0.95rem/1 var(--font-text); color: var(--accent); margin: 1.6rem 0 0.3rem; letter-spacing: 0.04em; }
+h2.lx-letter::before { display: none; }
+dl.lexicon { margin: 0; }
+dl.lexicon > div { display: flex; flex-wrap: wrap; column-gap: 0.6rem; padding: 0.35rem 0; border-bottom: 1px solid var(--rule); }
+dl.lexicon dt { font-weight: 600; color: var(--ink-deep); flex: 0 0 18.5rem; }
+@media (min-width: 40rem) { dl.lexicon dt { white-space: nowrap; } }
+dl.lexicon .nw { white-space: nowrap; }
+dl.lexicon dd { margin: 0; flex: 1 1 18rem; }
+@media (max-width: 40rem) { dl.lexicon dt { flex-basis: 100%; } }
+sup.refs { font-size: 0.72em; margin-left: 0.25em; }
+sup.refs a { display: inline-block; padding: 0 0.3em; text-decoration: none; color: var(--accent); font-weight: 600; }
+sup.refs a:hover { text-decoration: underline; }
+
+/* the two doors: Use and Devel. A tab on each edge of the start page; a sheet slides over it and lies there, the page below does not move */
+:root { --sheet-w: min(74rem, 86vw); --tab: clamp(1.7rem, calc(5.5vw - 0.5rem), 2.6rem); --sh-ease: cubic-bezier(.45, .05, .25, 1); --sh-slide: 1s; }
+html:has(a.sh-tab) { scrollbar-gutter: stable; }
+html.sh-open { overflow: hidden; }
+.sh-tab { position: fixed; top: 34vh; z-index: 60; width: var(--tab); height: 9.5rem; display: flex; align-items: center; justify-content: center;
+  background: var(--paper); border: 1px solid var(--rule); color: var(--ink-deep); font: 600 clamp(0.78rem, calc(0.4rem + 1.2vw), 0.9rem)/1 var(--font-text); letter-spacing: 0.05em; text-decoration: none; cursor: pointer; }
+.sh-tab span { writing-mode: vertical-rl; }
+.sh-tab::before { content: ""; position: absolute; top: 0; bottom: 0; width: 1px; background: var(--accent); opacity: 0; transition: opacity 0.25s; }
+.sh-tab:focus-visible::before, .sh-leaf.open .sh-tab::before { opacity: 1; }
+@media (hover: hover) and (pointer: fine) { .sh-tab:hover::before { opacity: 1; } }
+.sh-tab:focus-visible, .sh-close:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.sh-tab-l { left: 0; border-left: 0; border-radius: 0 10px 10px 0; box-shadow: 4px 0 14px -6px rgba(0, 0, 0, 0.2); }
+.sh-tab-l span { transform: rotate(180deg); }
+.sh-tab-l::before { left: 0; }
+.sh-tab-r { right: 0; border-right: 0; border-radius: 10px 0 0 10px; box-shadow: -4px 0 14px -6px rgba(0, 0, 0, 0.2); }
+.sh-tab-r::before { right: 0; }
+/* with JavaScript the tab hangs on its sheet's edge and moves with it */
+.sh-leaf { position: fixed; top: 0; bottom: 0; z-index: 60; width: var(--sheet-w); pointer-events: none; will-change: transform; backface-visibility: hidden; transition: transform 0.3s ease-out; }
+.sh-leaf.moving { transition: transform var(--sh-slide) var(--sh-ease); }
+.sh-leaf > * { pointer-events: auto; }
+.sh-leaf-l { left: 0; transform: translateX(-100%); }
+.sh-leaf-r { right: 0; transform: translateX(100%); }
+.sh-leaf-l:not(.open):has(.sh-tab:focus-visible) { transform: translateX(calc(-100% + 0.9rem)); }
+.sh-leaf-r:not(.open):has(.sh-tab:focus-visible) { transform: translateX(calc(100% - 0.9rem)); }
+@media (hover: hover) and (pointer: fine) {
+  .sh-leaf-l:not(.open):has(.sh-tab:hover) { transform: translateX(calc(-100% + 0.9rem)); }
+  .sh-leaf-r:not(.open):has(.sh-tab:hover) { transform: translateX(calc(100% - 0.9rem)); }
+}
+.sh-leaf.open { transform: translateX(0); }
+.sh-leaf .sh-tab { position: absolute; }
+.sh-leaf-l .sh-tab { left: 100%; }
+.sh-leaf-r .sh-tab { right: 100%; }
+.sh-leaf::before { content: ""; position: absolute; inset: 0; opacity: 0; pointer-events: none; transition: opacity var(--sh-slide) var(--sh-ease); }
+.sh-leaf.open::before { opacity: 1; }
+.sh-leaf-l::before { box-shadow: 14px 0 48px -8px rgba(0, 0, 0, 0.22); }
+.sh-leaf-r::before { box-shadow: -14px 0 48px -8px rgba(0, 0, 0, 0.22); }
+.sh-page { position: absolute; inset: 0; overflow: auto; background: var(--paper); outline: none; overscroll-behavior: contain; }
+.sh-leaf-l .sh-page { border-right: 1px solid var(--rule); }
+.sh-leaf-r .sh-page { border-left: 1px solid var(--rule); }
+.sh-scrim { position: fixed; inset: 0; z-index: 50; background: rgba(0, 0, 0, 0.05); opacity: 0; pointer-events: none; transition: opacity var(--sh-slide) var(--sh-ease); }
+.sh-scrim.on { opacity: 1; pointer-events: auto; cursor: pointer; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .sh-scrim { background: rgba(0, 0, 0, 0.22); } }
+:root[data-theme="dark"] .sh-scrim { background: rgba(0, 0, 0, 0.22); }
+.sh-in { max-width: 44rem; margin: 0 auto; padding: 9vh var(--gutter-r) 12vh var(--gutter-l); }
+.sh-close { position: sticky; top: 0; float: right; margin: -4vh -0.6rem 0 1rem; padding: 0.7rem 0.6rem; background: none; border: 0; border-radius: 0; cursor: pointer; z-index: 2;
+  font: 600 0.95rem/1 var(--font-text); color: var(--ink-deep); text-decoration: underline; text-decoration-color: var(--rule); text-underline-offset: 0.3em; }
+.sh-close:hover { text-decoration-color: var(--accent); }
+.sh-title { font: 100 clamp(2.6rem, 6vw, 4.6rem)/1 var(--font-display); letter-spacing: -0.035em; color: var(--ink-deep); margin: 0 0 1rem; }
+.sh-title::before { display: none; }
+.sh-lede { max-width: var(--measure); color: var(--ink); margin: 0 0 2.2rem; }
+.sh-body > h2:not(.sh-title) { font: 100 clamp(1.8rem, 3.6vw, 2.6rem)/1.05 var(--font-display); letter-spacing: -0.03em; color: var(--ink-deep); margin: 3rem 0 1.2rem; }
+.sh-body > h2::before { display: none; }
+.sh-body > h2:not(.sh-title):first-child { margin-top: 2rem; }
+.points { list-style: none; padding: 0; margin: 0; }
+.points li { display: grid; grid-template-columns: 7.6rem 1fr; gap: 0.2rem 1rem; padding: 0.85rem 0; margin: 0; border-top: 1px solid var(--rule); }
+.points li:first-child { border-top: 0; }
+.points strong { color: var(--ink-deep); font-weight: 600; }
+.points p { margin: 0.15rem 0 0; font-size: 0.95rem; color: var(--ink); }
+.st { font-size: 0.74rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; padding-top: 0.25rem; color: var(--muted); }
+.st-now { color: #3f7d52; }
+.st-wip { color: var(--accent); }
+.st-open { color: var(--ink-deep); font-style: italic; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .st-now { color: #6fbf87; } }
+:root[data-theme="dark"] .st-now { color: #6fbf87; }
+p.other { margin-top: 2.2rem; color: var(--muted); font-size: 0.95rem; }
+/* the same tabs on every width: they scale with it, the page gets a margin of their width so they have free space, and below 64 rem the sheet
+   that lies on the page keeps its own tab, labelled and in the strip beside it, and the other door's tab steps aside while it is open (a tap beside the sheet
+   closes it and cannot open the other door); the way to the other door is the link at the end of the sheet */
+.sh-leaf .sh-tab { transition: opacity 0.3s; }
+@media (max-width: 63.99rem) {
+  .pulse > div { grid-template-columns: minmax(0, 1fr); }
+  :root { --sheet-w: calc(100vw - var(--tab) - 0.4rem); }
+  html:has(a.sh-tab) { --gutter-l: max(1.25rem, calc(var(--tab) + 0.5rem), env(safe-area-inset-left, 0px)); --gutter-r: max(1.25rem, calc(var(--tab) + 0.5rem), env(safe-area-inset-right, 0px)); }
+  html.sh-open .sh-leaf:not(.open) .sh-tab { opacity: 0; pointer-events: none; }
+  .sh-in { padding-left: 1.4rem; padding-right: 1.4rem; }
+  .sh-close { position: fixed; top: 0.5rem; right: 0.7rem; float: none; margin: 0; padding: 0.9rem 0.9rem; }
+}
+@media (max-width: 45rem) { .points li { grid-template-columns: 1fr; } }
+/* "reduce motion" means less movement, not no time: the sheet does not slide, it fades in and out */
+@media (prefers-reduced-motion: reduce) {
+  :root { --sh-slide: 0.5s; }
+  .sh-leaf, .sh-leaf.moving { transition: none; }
+  .sh-leaf.open .sh-page { animation: sh-fade-in var(--sh-slide) ease both; }
+  .sh-leaf.closing { transform: translateX(0) !important; }   /* also over the peek of a tab that was just touched */
+  .sh-leaf.closing .sh-page, .sh-leaf.closing .sh-tab { animation: sh-fade-out var(--sh-slide) ease both; }
+  /* backwards: afterwards the other rules decide, so the other door's tab can step aside; two names, so that the animation starts again when the sheet opens */
+  .sh-leaf:not(.open):not(.closing) .sh-tab { animation: sh-fade-in var(--sh-slide) ease backwards; }
+  .sh-leaf.open .sh-tab { animation: sh-fade-in-open var(--sh-slide) ease backwards; }
+  @keyframes sh-fade-in { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes sh-fade-in-open { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes sh-fade-out { from { opacity: 1; } to { opacity: 0; } }
+}
+</style>
+</head>
+<body>
+<header class="hero slim" id="top">
+  <div class="hero-inner">
+    <p class="crumbs"><a href="/">Silent Zero OS</a> · <a href="/wiki/">Wiki</a></p>
+    <div class="titleblock">
+      <h1 class="name">Silent failures in physical AI, a literature review of runtime action authorization</h1>
+      <p class="sub">a single-author review: runtime action authorization between a black-box model and the hardware, seven guardrail functions, no experiment. survey, partly read.</p>
+      <p class="ver">Source · Or 2026 · <a href="/wiki/#how">LLM reviewed</a> · updated 25 Nov 2026</p>
+    </div>
+  </div>
+</header>
+<button class="menu" type="button" aria-controls="toc" aria-expanded="false" aria-label="Contents" hidden><span></span></button>
+<div class="layout">
+  <nav class="toc" id="toc" aria-label="Contents"><p>Contents</p><ol><li class="toc-back"><a href="/">← The paper</a></li><li class="toc-back"><a href="/wiki/">← Wiki index</a></li><li><a href="#top">↑ Top</a></li><li><a href="#what-it-shows">What it shows</a></li><li><a href="#how">How</a></li><li><a href="#limits">Limits</a></li><li><a href="#against-the-wiki">Against the wiki</a></li><li><a href="#for-zos">For Silent Zero</a></li><li><a href="#related-pages">Related pages</a></li></ol></nav>
+  <article>
+<p>Barak Or (STATE16, a company the author founded and leads; the text lists teaching posts at other institutions “solely for biographical context” and says they did not sponsor or endorse the paper). “Silent Failures in Physical AI: A Literature Review of Runtime Action Authorization for Autonomous Systems”, arXiv 2606.00090 [cs.RO], v1 of 23 May 2026. A single-author preprint. <a href="https://arxiv.org/abs/2606.00090" rel="noopener" target="_blank">arXiv</a>. Read: the abstract, §1 to §3, the evaluation requirements (§8, in part), the limitations (§11), the assurance implications (§10) and the conclusion; the literature map, the empirical-milestone table and the simulator section only skimmed. No claim below rests on the skimmed parts.</p>
+<h2 id="what-it-shows">What it shows</h2>
+<ul>
+<li><strong>A definition.</strong> A silent failure is a case in which an autonomous system acts with high apparent confidence on an incorrect, incomplete or physically invalid picture of the world, so that the system keeps running and no crash reveals it. The paper formalises it: a runtime layer decides “authorize, modify, block, fallback or escalate” for each proposed action from the observation history, a state estimate, active constraints and evidence about the state’s validity (§1, §2, equations 1 to 4).</li>
+<li><strong>A formal claim.</strong> Equation 3 says that the policy’s likelihood of an action does not imply that the action is authorized. The paper calls it its minimal formal claim and says the formalisation is intentionally minimal; it introduces no benchmark and no empirical evaluation of a guardrail (§11). Our reading: it states the problem and proves nothing.</li>
+<li><strong>A taxonomy.</strong> Seven guardrail functions: semantic validity, state validity, physical feasibility, spatial and operational validity, temporal validity, fallback authority, auditability (Table 1). The author argues that safe control, runtime assurance, shielding, uncertainty estimation and benchmarks each cover part of this, and that no single stream of the literature surveyed covers all (§1, §4).</li>
+<li><strong>Evaluation requirements.</strong> Guardrails should be judged by the quality of their interventions, not by task success alone; the paper lists metric families and a minimal record of an “authorization event” with fields for evidence, decision, fallback, timing and audit trace (§8, §10, Tables 4, 5, 7).</li>
+<li><strong>Boundary conditions it names.</strong> A runtime layer cannot guarantee safety when observability is poor, constraints are incomplete, the fallback is underspecified or the environment is adversarial. Guarantees from barrier filters or runtime assurance weaken when state estimates are stale, the dynamics model is wrong, or the action representation the policy exposes differs from the one assumed in the safety proof. A correct block that arrives after commitment is insufficient, and a fallback is not automatically safe. The layer should not replace certified control, verified hardware limits, operator training, incident response or regulatory compliance (§11).</li>
+</ul>
+<h2 id="how">How</h2>
+<p>A literature review with a “focused review strategy” (our reading: not a systematic one): sources from arXiv, OpenReview, IEEE, ACM and proceedings, chosen for relevance to the path from model output to hardware command, with standards, certification and general AI ethics excluded unless they bear on that path (§4.1). The author names the risk that adjacent work is under-represented and says the incidents from road vehicles used as examples are analogues, not evidence about vision-language-action models (§11).</p>
+<h2 id="limits">Limits</h2>
+<p>The author says: the formalisation is minimal; the paper offers no benchmark and no evaluation of a guardrail; guardrails are one layer among several; the selection is curated. A careful reader adds:</p>
+<ul>
+<li>One author, one company, a preprint without review. Our reading: the paper also states a case for an independent authorization layer, which fits the author’s business, though the text declares no product.</li>
+<li>Its synthesis depends on the literature it chose; the paper does not show that a gap exists beyond the author’s reading of eleven streams.</li>
+<li>The text read does not discuss a verified kernel, capabilities or <a href="/wiki/concepts/simplex.html">Simplex architecture</a> as such, although a reference list entry cites the Simplex architecture.</li>
+</ul>
+<h2 id="against-the-wiki">Against the wiki</h2>
+<ul>
+<li><a href="/wiki/design/safety-path.html">The safety path</a>: <strong>confirms and extends</strong>. The paper asks for a layer independent of the learned model that checks state validity, feasibility, timing and fallback before a command reaches the hardware, which, in our reading, is the split of <a href="/wiki/concepts/simplex.html">Simplex architecture</a> (the text does not discuss Simplex); its list of conditions under which such a layer’s guarantees weaken matches the wiki’s open points on perception and on the learned side’s influence on safety margins.</li>
+<li><a href="/wiki/concepts/control-barrier-functions.html">Control barrier functions</a>: <strong>confirms</strong>. The paper names the same weakness: barrier guarantees depend on state estimates and models that the filter does not control.</li>
+<li><a href="/wiki/design/broker.html">The broker</a>: touches. The paper’s “semantic validity” and “spatial and operational validity” include task permissions and policy engines; its audit-trace requirement is not discussed on the broker page.</li>
+</ul>
+<h2 id="for-zos">For Silent Zero</h2>
+<p><a href="/wiki/design/safety-path.html">The safety path</a>: no change of state. Our reading: the authorization-event record is a candidate checklist for what Silent Zero’s loop and broker log, and its seven functions show which checks fall to the safety loop (state, feasibility, timing, fallback) and which to the broker (intent, permissions). That split is ours, not the paper’s.</p>
+
+<h2 id="related-pages">Related pages</h2>
+<p class="links-note">Pages this one links to, and pages that link here.</p>
+<ul class="linked-from"><li><a href="/wiki/design/broker.html">The broker</a> <span class="kind">Design</span></li><li><a href="/wiki/design/safety-path.html">The safety path</a> <span class="kind">Design</span></li><li><a href="/wiki/concepts/control-barrier-functions.html">Control barrier functions</a> <span class="kind">Concept</span></li><li><a href="/wiki/concepts/simplex.html">Simplex architecture</a> <span class="kind">Concept</span></li></ul>
+  </article>
+</div>
+<footer><div><span class="about"><span>Silent Zero OS</span><span class="sep"> · </span><span>Wiki</span><span class="sep"> · </span><span>Text <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></span></span><span class="links"><a href="/">Paper</a> <a href="https://github.com/entresol/silent-zero/tree/main/wiki">GitHub</a> <a href="https://unwritten.studio/impressum">Imprint</a></span></div></footer>
+<script>
+// narrow screens: the menu button opens the contents as a panel; while it is open the page behind it is inert
+const menu = document.querySelector('button.menu'), toc = document.getElementById('toc');
+const behind = document.querySelectorAll('header.hero, article, footer');
+const isOpen = () => menu.getAttribute('aria-expanded') === 'true';
+function setMenu(open) {
+  menu.setAttribute('aria-expanded', open);
+  document.documentElement.classList.toggle('menu-open', open);
+  behind.forEach(el => el.inert = open);
+  if (open) toc.querySelector('a').focus();
+}
+menu.hidden = false;   // without JavaScript the button stays hidden and the page works as before
+menu.addEventListener('click', () => setMenu(!isOpen()));
+toc.addEventListener('click', e => { if (e.target.closest('a')) setMenu(false); });
+document.addEventListener('click', e => { if (isOpen() && !toc.contains(e.target) && !menu.contains(e.target)) setMenu(false); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && isOpen()) { setMenu(false); menu.focus(); } });
+matchMedia('(min-width: 76rem)').addEventListener('change', e => { if (e.matches) setMenu(false); });
+// the contents mark the section being read: the last heading that has passed the upper fifth of the screen
+const heads = [...document.querySelectorAll('article h2[id]')], links = new Map([...toc.querySelectorAll('a')].filter(a => a.hash).map(a => [a.hash.slice(1), a]));
+let current = null, queued = false;
+function mark() {
+  queued = false;
+  const h = heads.filter(h => h.getBoundingClientRect().top < innerHeight / 5).pop(), a = h ? links.get(h.id) : null;
+  if (a === current) return;
+  current?.removeAttribute('aria-current'); a?.setAttribute('aria-current', 'location'); current = a;
+}
+addEventListener('scroll', () => { if (!queued) { queued = true; requestAnimationFrame(mark); } }, { passive: true });
+mark();
+</script>
+</body>
+</html>

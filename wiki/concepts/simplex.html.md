@@ -43,4 +43,5 @@ A 2026 preprint builds the switching rule from design-time artifacts, with sever
 - [Halos for Robotics, the announcement](https://silentzero.ooo/wiki/sources/2026-nvidia-announces-halos-robotics.html.md)
 - [Inside Halos for Robotics](https://silentzero.ooo/wiki/sources/2026-nvidia-inside-halos-robotics.html.md)
 - [multi-link safety filtering for VLA policies](https://silentzero.ooo/wiki/sources/2026-agarwal-multi-link-safety.html.md)
+- [Silent failures in physical AI, a literature review of runtime action authorization](https://silentzero.ooo/wiki/sources/2026-unverified-silent-failures-physical.html.md)
 - [the Axon compiler](https://silentzero.ooo/wiki/sources/2026-rinard-testing-credible-compilation.html.md)
