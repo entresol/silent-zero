@@ -4,6 +4,10 @@ What changed in substance, newest first: in the paper, on its page and in the pr
 
 Format: `## <version> · <scope>`, then one paragraph. A paper version is `YYYY-MM-DD-vX.Y` and has its own PDF in `versions/`; the newest one is the version the build prints on the paper and the page. A change without a new paper version carries only its date (`YYYY-MM-DD`). Scope is `Paper`, `Site` or `Project`. The build turns this file into the list at the end of the page.
 
+## 2026-11-25 · Site
+
+The wiki worked in three sources from the backlog: LIBERO-Safety, a benchmark of physical and semantic safety for robot policies with a chunk-level barrier filter, a single-author literature review of runtime action authorization for physical AI, and AutoReal, a 7-billion-parameter model that proves about half of a sample of seL4 theorems in Isabelle. Three source pages were created. The pages on control barrier functions, proof automation and the safety path changed in substance; no new lexicon terms.
+
 ## 2026-11-24 · Site
 
 The wiki worked in three sources from the backlog: the press release of the ELISA project of February 2026 (NVIDIA joins as a premier member), the VLSA paper with its AEGIS barrier-function layer for robot policies, and the KNOWS paper, which steers a similar filter by the policy's own attention. Three source pages were created, with a system page for ELISA and a concept page for control barrier functions. Changed in substance: the safety path (two more barrier filters, both with guarantees that depend on perception, and a line on what the ELISA source does and does not show), the real-time loops (per-step costs of the two filters) and the page on safety certification. New lexicon terms: ELISA, control barrier functions.
