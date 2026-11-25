@@ -1,6 +1,6 @@
 ---
 type: index
-updated: 2026-11-24
+updated: 2026-11-25
 ---
 
 # zOS wiki
@@ -69,12 +69,12 @@ The zOS part *agents* has no page yet; [[agent-operating-systems]] covers the de
 - [[action-chunking]] · slow robot models emitting action sequences for a fast loop; RTC and three 2026 policy-side answers; no bound on delay. 7 sources.
 - [[ai-vulnerability-discovery]] · AI models finding software flaws at scale: DARPA's challenge and Anthropic's figures, the bottleneck moving to patching. 3 sources.
 - [[information-flow-control]] · labels for where data came from and who may see it; FIDES and CaMeL for agents; explicit flows only; refusals as a channel; Agent libOS. 8 sources.
-- [[proof-automation]] · machines proposing proof steps, Isabelle checking them; 77.6 % of a seL4 benchmark sample; Verus as a faster verifier. PROMISE as a second method; AutoVerus for Rust; a coding agent's compiler proofs in Lean; the OSDI version and the Selene benchmark; specification writing (OSVBench), AutoRocq, and verified against checked compiler passes. 15 sources.
+- [[proof-automation]] · machines proposing proof steps, Isabelle checking them; 77.6 % of a seL4 benchmark sample; Verus as a faster verifier. PROMISE as a second method; AutoVerus for Rust; a coding agent's compiler proofs in Lean; the OSDI version and the Selene benchmark; specification writing (OSVBench), AutoRocq, and verified against checked compiler passes; AutoReal, a 7B prover, on 660 seL4 theorems. 16 sources.
 - [[memory-safe-code]] · new code in Rust instead of C: Android's memory-safety flaws below 20 % in 2025; a Rust microkernel without hardware isolation as a research rival; the hardening rival to a verified base. 2 sources.
 - [[mixed-criticality]] · software of different criticality on one platform; processor time as a capability in seL4 MCS; partitions under a hypervisor in commercial robot stacks. 7 sources.
 - [[model-context-protocol]] · the open protocol that connects agents to tools; three preprints measure its security, one runtime treats it as a client only; a vendor's guide to OWASP's MCP list. 6 sources.
 - [[agent-operating-systems]] · designs that put the limit on an agent in the OS layer: agentOS, Cohesix, KataOS, AgentKernel, AgenticOS, Agent libOS, Quine, OpenShell and MXC as shipped products; IBM's Agent-OS position paper; IntentOS, a language-model planner beside the Linux kernel. 20 sources.
-- [[control-barrier-functions]] · a filter that keeps a robot's commanded motion inside a safe set; three VLA filters, guarantees conditional on perception. 3 sources.
+- [[control-barrier-functions]] · a filter that keeps a robot's commanded motion inside a safe set; four VLA filters, guarantees conditional on perception. 5 sources.
 - [[safety-certification]] · proof versus certificate: what a certified kernel, a robot stack and seL4 each state; no certified seL4 product in the sources; ELISA's aim for Linux. 6 sources.
 
 ## Sources
@@ -223,3 +223,6 @@ The zOS part *agents* has no page yet; [[agent-operating-systems]] covers the de
 - [[2026-kurd-cheri-standardisation-status]] · Kurd, April 2026: CHERI for RISC-V in architecture review before its freeze; ratification intended for Q2, thought more likely Q3, on a slide marked out of date. progress, slides, full text.
 - [[2025-cheriot-cheriot-isa-1]] · CHERIoT ISA 1.0, November 2025: stable since December 2024, two implementations, first chips from the fab; the RISC-V CHERI base "tentatively Y". report, full text.
 - [[2026-owasp-owasp-mcp-top]] · a security vendor's guide to the OWASP MCP Top 10 (version 0.1): ten risks, 30-plus CVEs in two months, figures without method. report, full text.
+- [[2026-tsinghua-libero-safety-comprehensive]] · LIBERO-Safety: five suites and 19,664 collision-free demonstrations; eight VLA policies fall sharply on out-of-distribution levels; a chunk-level barrier filter shown once on a real robot. measurement, partly read.
+- [[2026-unverified-silent-failures-physical]] · a single-author review: runtime action authorization between a black-box model and the hardware, seven guardrail functions, no experiment. survey, partly read.
+- [[2026-unverified-autoreal-sel4-proof]] · AutoReal: a 7B model proves 341 of 660 seL4 theorems (51.67 %, 256 attempts); ablation 1 to 57 of 105. measurement, partly read.

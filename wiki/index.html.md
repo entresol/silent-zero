@@ -2,7 +2,7 @@
 
 > What the sources behind the Silent Zero paper show, page by page: designs, concepts, systems and sources, each with what is proven, tested or assumed.
 
-This wiki gathers what the sources behind the paper show. It has a page for each source, each concept, each system the paper builds on and each part of the design: 143 sources, 21 concepts, 28 systems and 8 parts of the design so far. Every page says what is proven, tested or assumed, and on which source that rests.
+This wiki gathers what the sources behind the paper show. It has a page for each source, each concept, each system the paper builds on and each part of the design: 146 sources, 21 concepts, 28 systems and 8 parts of the design so far. Every page says what is proven, tested or assumed, and on which source that rests.
 
 ## How this wiki is made
 
@@ -73,12 +73,12 @@ A page can still be wrong or misleading in detail. If you find a mistake, please
 - [Action chunking](https://silentzero.ooo/wiki/concepts/action-chunking.html.md) · slow robot models emitting action sequences for a fast loop; RTC and three 2026 policy-side answers; no bound on delay. 7 sources.
 - [AI vulnerability discovery](https://silentzero.ooo/wiki/concepts/ai-vulnerability-discovery.html.md) · AI models finding software flaws at scale: DARPA's challenge and Anthropic's figures, the bottleneck moving to patching. 3 sources.
 - [Information-flow control](https://silentzero.ooo/wiki/concepts/information-flow-control.html.md) · labels for where data came from and who may see it; FIDES and CaMeL for agents; explicit flows only; refusals as a channel; Agent libOS. 8 sources.
-- [Proof automation](https://silentzero.ooo/wiki/concepts/proof-automation.html.md) · machines proposing proof steps, Isabelle checking them; 77.6 % of a seL4 benchmark sample; Verus as a faster verifier. PROMISE as a second method; AutoVerus for Rust; a coding agent's compiler proofs in Lean; the OSDI version and the Selene benchmark; specification writing (OSVBench), AutoRocq, and verified against checked compiler passes. 15 sources.
+- [Proof automation](https://silentzero.ooo/wiki/concepts/proof-automation.html.md) · machines proposing proof steps, Isabelle checking them; 77.6 % of a seL4 benchmark sample; Verus as a faster verifier. PROMISE as a second method; AutoVerus for Rust; a coding agent's compiler proofs in Lean; the OSDI version and the Selene benchmark; specification writing (OSVBench), AutoRocq, and verified against checked compiler passes; AutoReal, a 7B prover, on 660 seL4 theorems. 16 sources.
 - [Memory-safe code](https://silentzero.ooo/wiki/concepts/memory-safe-code.html.md) · new code in Rust instead of C: Android's memory-safety flaws below 20 % in 2025; a Rust microkernel without hardware isolation as a research rival; the hardening rival to a verified base. 2 sources.
 - [Mixed criticality](https://silentzero.ooo/wiki/concepts/mixed-criticality.html.md) · software of different criticality on one platform; processor time as a capability in seL4 MCS; partitions under a hypervisor in commercial robot stacks. 7 sources.
 - [Model Context Protocol](https://silentzero.ooo/wiki/concepts/model-context-protocol.html.md) · the open protocol that connects agents to tools; three preprints measure its security, one runtime treats it as a client only; a vendor's guide to OWASP's MCP list. 6 sources.
 - [Agent operating systems](https://silentzero.ooo/wiki/concepts/agent-operating-systems.html.md) · designs that put the limit on an agent in the OS layer: agentOS, Cohesix, KataOS, AgentKernel, AgenticOS, Agent libOS, Quine, OpenShell and MXC as shipped products; IBM's Agent-OS position paper; IntentOS, a language-model planner beside the Linux kernel. 20 sources.
-- [Control barrier functions](https://silentzero.ooo/wiki/concepts/control-barrier-functions.html.md) · a filter that keeps a robot's commanded motion inside a safe set; three VLA filters, guarantees conditional on perception. 3 sources.
+- [Control barrier functions](https://silentzero.ooo/wiki/concepts/control-barrier-functions.html.md) · a filter that keeps a robot's commanded motion inside a safe set; four VLA filters, guarantees conditional on perception. 5 sources.
 - [Safety certification](https://silentzero.ooo/wiki/concepts/safety-certification.html.md) · proof versus certificate: what a certified kernel, a robot stack and seL4 each state; no certified seL4 product in the sources; ELISA's aim for Linux. 6 sources.
 
 ## Sources
@@ -227,6 +227,9 @@ A page can still be wrong or misleading in detail. If you find a mistake, please
 - [CHERI standardisation status](https://silentzero.ooo/wiki/sources/2026-kurd-cheri-standardisation-status.html.md) (Kurd 2026) · Kurd, April 2026: CHERI for RISC-V in architecture review before its freeze; ratification intended for Q2, thought more likely Q3, on a slide marked out of date. progress, slides, full text.
 - [ISA 1.0 released](https://silentzero.ooo/wiki/sources/2025-cheriot-cheriot-isa-1.html.md) (CHERIoT 2025) · CHERIoT ISA 1.0, November 2025: stable since December 2024, two implementations, first chips from the fab; the RISC-V CHERI base "tentatively Y". report, full text.
 - [the OWASP MCP Top 10](https://silentzero.ooo/wiki/sources/2026-owasp-owasp-mcp-top.html.md) (Cycode 2026) · a security vendor's guide to the OWASP MCP Top 10 (version 0.1): ten risks, 30-plus CVEs in two months, figures without method. report, full text.
+- [LIBERO-Safety, a benchmark for physical and semantic safety of VLA models](https://silentzero.ooo/wiki/sources/2026-tsinghua-libero-safety-comprehensive.html.md) (Cui, Zhang et al. 2026) · LIBERO-Safety: five suites and 19,664 collision-free demonstrations; eight VLA policies fall sharply on out-of-distribution levels; a chunk-level barrier filter shown once on a real robot. measurement, partly read.
+- [Silent failures in physical AI, a literature review of runtime action authorization](https://silentzero.ooo/wiki/sources/2026-unverified-silent-failures-physical.html.md) (Or 2026) · a single-author review: runtime action authorization between a black-box model and the hardware, seven guardrail functions, no experiment. survey, partly read.
+- [AutoReal, LLM-driven theorem proving on seL4](https://silentzero.ooo/wiki/sources/2026-unverified-autoreal-sel4-proof.html.md) (Zhang et al. 2026) · AutoReal: a 7B model proves 341 of 660 seL4 theorems (51.67 %, 256 attempts); ablation 1 to 57 of 105. measurement, partly read.
 
 ## Not yet covered
 

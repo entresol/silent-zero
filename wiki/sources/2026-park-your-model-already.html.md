@@ -45,6 +45,7 @@ A careful reader adds:
 - [Real-time loops](https://silentzero.ooo/wiki/design/real-time-loops.html.md)
 - [The safety path](https://silentzero.ooo/wiki/design/safety-path.html.md)
 - [Control barrier functions](https://silentzero.ooo/wiki/concepts/control-barrier-functions.html.md)
+- [LIBERO-Safety, a benchmark for physical and semantic safety of VLA models](https://silentzero.ooo/wiki/sources/2026-tsinghua-libero-safety-comprehensive.html.md)
 - [multi-link safety filtering for VLA policies](https://silentzero.ooo/wiki/sources/2026-agarwal-multi-link-safety.html.md)
 - [RAVEL, rolling inference for flow-based VLAs](https://silentzero.ooo/wiki/sources/2026-chen-ravel-asynchronous-rolling.html.md)
 - [VLSA and AEGIS, a barrier-function layer for VLA policies](https://silentzero.ooo/wiki/sources/2025-hu-vlsa-vision-language.html.md)

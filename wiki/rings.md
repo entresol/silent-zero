@@ -104,9 +104,9 @@ Work that extends the design, competes with it or attacks its assumptions: other
 - [x] 2026-elisa-enabling-linux-safety
 - [x] 2025-hu-vlsa-vision-language
 - [x] 2026-park-your-model-already
-- [ ] 2026-tsinghua-libero-safety-comprehensive
-- [ ] 2026-unverified-silent-failures-physical
-- [ ] 2026-unverified-autoreal-seL4-proof
+- [x] 2026-tsinghua-libero-safety-comprehensive
+- [x] 2026-unverified-silent-failures-physical
+- [x] 2026-unverified-autoreal-sel4-proof
 
 ### firmware and boot, core · worked in on 2026-10-30
 
