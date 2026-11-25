@@ -35,7 +35,7 @@ This is a design, not a release: the paper makes the argument and says what is p
 - [Agent operating systems](https://silentzero.ooo/wiki/concepts/agent-operating-systems.html.md): designs that put the limit on an agent in the OS layer: agentOS, Cohesix, KataOS, AgentKernel, AgenticOS, Agent libOS, Quine, OpenShell and MXC as shipped products; IBM’s Agent-OS position paper; IntentOS, a language-model planner beside the Linux kernel.
 - [AI vulnerability discovery](https://silentzero.ooo/wiki/concepts/ai-vulnerability-discovery.html.md): AI models finding software flaws at scale: DARPA’s challenge and Anthropic’s figures, the bottleneck moving to patching.
 - [Confused deputy](https://silentzero.ooo/wiki/concepts/confused-deputy.html.md): a program misusing one party’s authority for another’s request; capabilities as the remedy.
-- [Control barrier functions](https://silentzero.ooo/wiki/concepts/control-barrier-functions.html.md): a filter that keeps a robot’s commanded motion inside a safe set; three VLA filters, guarantees conditional on perception.
+- [Control barrier functions](https://silentzero.ooo/wiki/concepts/control-barrier-functions.html.md): a filter that keeps a robot’s commanded motion inside a safe set; four VLA filters, guarantees conditional on perception.
 - [Functional correctness](https://silentzero.ooo/wiki/concepts/functional-correctness.html.md): what seL4’s refinement proof gives, what it assumes, where it holds.
 - [Information-flow control](https://silentzero.ooo/wiki/concepts/information-flow-control.html.md): labels for where data came from and who may see it; FIDES and CaMeL for agents; explicit flows only; refusals as a channel; Agent libOS.
 - [IOMMU](https://silentzero.ooo/wiki/concepts/iommu.html.md): the memory management unit for devices: what it limits, and the 2019 attacks that worked although it was on.
@@ -45,7 +45,7 @@ This is a design, not a release: the paper makes the argument and says what is p
 - [Model Context Protocol](https://silentzero.ooo/wiki/concepts/model-context-protocol.html.md): the open protocol that connects agents to tools; three preprints measure its security, one runtime treats it as a client only; a vendor’s guide to OWASP’s MCP list.
 - [Object capabilities](https://silentzero.ooo/wiki/concepts/object-capabilities.html.md): references that both designate and authorise; permission versus authority; caretaker and membrane.
 - [Prompt injection](https://silentzero.ooo/wiki/concepts/prompt-injection.html.md): instructions hidden in data an agent reads; heuristic defences fail, defences around the model hold within limits; benign command chains through shared state beat two of them; CaMeL does not carry over between agents; argument-level authorization and refusals as a leak; MCP measured.
-- [Proof automation](https://silentzero.ooo/wiki/concepts/proof-automation.html.md): machines proposing proof steps, Isabelle checking them; 77.6 % of a seL4 benchmark sample; Verus as a faster verifier. PROMISE as a second method; AutoVerus for Rust; a coding agent’s compiler proofs in Lean; the OSDI version and the Selene benchmark; specification writing (OSVBench), AutoRocq, and verified against checked compiler passes.
+- [Proof automation](https://silentzero.ooo/wiki/concepts/proof-automation.html.md): machines proposing proof steps, Isabelle checking them; 77.6 % of a seL4 benchmark sample; Verus as a faster verifier. PROMISE as a second method; AutoVerus for Rust; a coding agent’s compiler proofs in Lean; the OSDI version and the Selene benchmark; specification writing (OSVBench), AutoRocq, and verified against checked compiler passes; AutoReal, a 7B prover, on 660 seL4 theorems.
 - [RISC-V](https://silentzero.ooo/wiki/concepts/risc-v.html.md): the open instruction set: what is open (the ISA) and what need not be (cores, chips, boards); privilege levels and the SBI.
 - [Safety certification](https://silentzero.ooo/wiki/concepts/safety-certification.html.md): proof versus certificate: what a certified kernel, a robot stack and seL4 each state; no certified seL4 product in the sources; ELISA’s aim for Linux.
 - [Simplex architecture](https://silentzero.ooo/wiki/concepts/simplex.html.md): a simple safe controller guarding an untrusted one; tested with learned controllers.
@@ -108,6 +108,7 @@ This is a design, not a release: the paper makes the argument and says what is p
 - [Anthropic 2026b: Project Glasswing, an initial update](https://silentzero.ooo/wiki/sources/2026-anthropic-project-glasswing-initial.html.md)
 - [ARSENAL](https://silentzero.ooo/wiki/sources/2026-lide-arsenal-assured-robotics.html.md) (Lide 2026)
 - [Atmosphere, practical verified kernels with Rust and Verus](https://silentzero.ooo/wiki/sources/2025-chen-atmosphere-practical-verified.html.md) (Chen et al. 2025)
+- [AutoReal, LLM-driven theorem proving on seL4](https://silentzero.ooo/wiki/sources/2026-unverified-autoreal-sel4-proof.html.md) (Zhang et al. 2026)
 - [AutoRocq](https://silentzero.ooo/wiki/sources/2025-tu-agentic-verification-software.html.md) (Tu et al. 2026)
 - [AutoVerus](https://silentzero.ooo/wiki/sources/2025-yang-autoverus-automated-proof.html.md) (Yang et al. 2025)
 - [Booting Windows on an x86-64 seL4-based VMM](https://silentzero.ooo/wiki/sources/2026-nguyen-booting-windows-x86-64.html.md) (Nguyen 2026)
@@ -147,6 +148,7 @@ This is a design, not a release: the paper makes the argument and says what is p
 - [KNOWS, a safety filter steered by the policy's attention](https://silentzero.ooo/wiki/sources/2026-park-your-model-already.html.md) (Park et al. 2026)
 - [LeftoverLocals](https://silentzero.ooo/wiki/sources/2024-trail-leftoverlocals-listening-llm.html.md) (Khlaaf and Sorensen 2024)
 - [Legato, native continuation for chunked policies](https://silentzero.ooo/wiki/sources/2026-liu-learning-native-continuation.html.md) (Liu et al. 2026)
+- [LIBERO-Safety, a benchmark for physical and semantic safety of VLA models](https://silentzero.ooo/wiki/sources/2026-tsinghua-libero-safety-comprehensive.html.md) (Cui, Zhang et al. 2026)
 - [limitations on formal verification for AI safety](https://silentzero.ooo/wiki/sources/2024-dickson-limitations-formal-verification.html.md) (Dickson 2024)
 - [Linux kernel documentation: Landlock](https://silentzero.ooo/wiki/sources/nd-linux-landlock-unprivileged-access.html.md)
 - [Linux kernel documentation: real-time preemption](https://silentzero.ooo/wiki/sources/nd-linux-real-time-preemption.html.md)
@@ -199,6 +201,7 @@ This is a design, not a release: the paper makes the argument and says what is p
 - [Selene](https://silentzero.ooo/wiki/sources/2024-zhang-selene-pioneering-automated.html.md) (Zhang, Lu and Duan 2024)
 - [SiFive: HiFive Unleashed](https://silentzero.ooo/wiki/sources/nd-sifive-hifive-unleashed.html.md)
 - [SiFive: RISC-V History](https://silentzero.ooo/wiki/sources/nd-sifive-risc-v-history.html.md)
+- [Silent failures in physical AI, a literature review of runtime action authorization](https://silentzero.ooo/wiki/sources/2026-unverified-silent-failures-physical.html.md) (Or 2026)
 - [SMT-based Deductive Verification of Device Drivers](https://silentzero.ooo/wiki/sources/2026-tyler-smt-based-deductive.html.md) (Tyler et al. 2026)
 - [Synergistic Simplex](https://silentzero.ooo/wiki/sources/2026-bansal-synergistic-simplex-cooperative.html.md) (Bansal et al. 2026)
 - [SYSGO: PikeOS for robotics and humanoids](https://silentzero.ooo/wiki/sources/nd-sysgo-robotics-humanoids.html.md)

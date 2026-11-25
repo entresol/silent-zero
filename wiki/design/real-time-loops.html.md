@@ -89,4 +89,5 @@ Two barrier filters give per-step costs. AEGIS's constraint layer took 0.356 ms 
 - [TypeGo](https://silentzero.ooo/wiki/systems/typego.html.md)
 - [ARSENAL](https://silentzero.ooo/wiki/sources/2026-lide-arsenal-assured-robotics.html.md)
 - [Fast, Secure, Adaptable: LionsOS Design, Implementation and Performance](https://silentzero.ooo/wiki/sources/2025-heiser-fast-secure-adaptable.html.md)
+- [LIBERO-Safety, a benchmark for physical and semantic safety of VLA models](https://silentzero.ooo/wiki/sources/2026-tsinghua-libero-safety-comprehensive.html.md)
 - [Towards an Agent Operating System](https://silentzero.ooo/wiki/sources/2026-steinder-towards-agent-operating.html.md)

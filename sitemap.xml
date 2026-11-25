@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://silentzero.ooo/</loc><lastmod>2026-11-19</lastmod></url>
-  <url><loc>https://silentzero.ooo/wiki/</loc><lastmod>2026-11-24</lastmod></url>
+  <url><loc>https://silentzero.ooo/wiki/</loc><lastmod>2026-11-25</lastmod></url>
   <url><loc>https://silentzero.ooo/lexicon/</loc></url>
   <url><loc>https://silentzero.ooo/use/</loc></url>
   <url><loc>https://silentzero.ooo/devel/</loc></url>
@@ -9,7 +9,7 @@
   <url><loc>https://silentzero.ooo/wiki/concepts/agent-operating-systems.html</loc><lastmod>2026-11-22</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/concepts/ai-vulnerability-discovery.html</loc><lastmod>2026-10-31</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/concepts/confused-deputy.html</loc><lastmod>2026-11-21</lastmod></url>
-  <url><loc>https://silentzero.ooo/wiki/concepts/control-barrier-functions.html</loc><lastmod>2026-11-24</lastmod></url>
+  <url><loc>https://silentzero.ooo/wiki/concepts/control-barrier-functions.html</loc><lastmod>2026-11-25</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/concepts/functional-correctness.html</loc><lastmod>2026-11-21</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/concepts/information-flow-control.html</loc><lastmod>2026-11-21</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/concepts/iommu.html</loc><lastmod>2026-11-02</lastmod></url>
@@ -19,7 +19,7 @@
   <url><loc>https://silentzero.ooo/wiki/concepts/model-context-protocol.html</loc><lastmod>2026-11-23</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/concepts/object-capabilities.html</loc><lastmod>2026-11-21</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/concepts/prompt-injection.html</loc><lastmod>2026-11-21</lastmod></url>
-  <url><loc>https://silentzero.ooo/wiki/concepts/proof-automation.html</loc><lastmod>2026-11-21</lastmod></url>
+  <url><loc>https://silentzero.ooo/wiki/concepts/proof-automation.html</loc><lastmod>2026-11-25</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/concepts/risc-v.html</loc><lastmod>2026-11-21</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/concepts/safety-certification.html</loc><lastmod>2026-11-24</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/concepts/simplex.html</loc><lastmod>2026-11-21</lastmod></url>
@@ -32,7 +32,7 @@
   <url><loc>https://silentzero.ooo/wiki/design/kernel.html</loc><lastmod>2026-11-22</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/design/real-time-loops.html</loc><lastmod>2026-11-24</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/design/root-of-trust.html</loc><lastmod>2026-11-02</lastmod></url>
-  <url><loc>https://silentzero.ooo/wiki/design/safety-path.html</loc><lastmod>2026-11-24</lastmod></url>
+  <url><loc>https://silentzero.ooo/wiki/design/safety-path.html</loc><lastmod>2026-11-25</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/design/static-system.html</loc><lastmod>2026-11-03</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/sources/1988-hardy-confused-deputy-or.html</loc><lastmod>2026-10-29</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/sources/2006-miller-robust-composition-towards.html</loc><lastmod>2026-10-29</lastmod></url>
@@ -140,7 +140,10 @@
   <url><loc>https://silentzero.ooo/wiki/sources/2026-trustworthy-guaranteeing-timeliness-mcs.html</loc><lastmod>2026-10-29</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/sources/2026-trustworthy-lionsos.html</loc><lastmod>2026-10-29</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/sources/2026-trustworthy-where-are-we.html</loc><lastmod>2026-11-21</lastmod></url>
+  <url><loc>https://silentzero.ooo/wiki/sources/2026-tsinghua-libero-safety-comprehensive.html</loc><lastmod>2026-11-25</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/sources/2026-tyler-smt-based-deductive.html</loc><lastmod>2026-10-29</lastmod></url>
+  <url><loc>https://silentzero.ooo/wiki/sources/2026-unverified-autoreal-sel4-proof.html</loc><lastmod>2026-11-25</lastmod></url>
+  <url><loc>https://silentzero.ooo/wiki/sources/2026-unverified-silent-failures-physical.html</loc><lastmod>2026-11-25</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/sources/2026-wang-agentic-os-kernel.html</loc><lastmod>2026-11-22</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/sources/2026-wang-real-time-robot.html</loc><lastmod>2026-11-22</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/sources/2026-wu-mosaic-knowledge-guided.html</loc><lastmod>2026-11-07</lastmod></url>

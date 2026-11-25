@@ -107,6 +107,7 @@ The multicore proof itself. See also [Time protection](https://silentzero.ooo/wi
 - [seL4](https://silentzero.ooo/wiki/systems/sel4.html.md)
 - [SiFive and the HiFive boards](https://silentzero.ooo/wiki/systems/sifive-hifive.html.md)
 - [Anthropic 2026a: Project Glasswing, securing critical software for the AI era](https://silentzero.ooo/wiki/sources/2026-anthropic-project-glasswing-securing.html.md)
+- [AutoReal, LLM-driven theorem proving on seL4](https://silentzero.ooo/wiki/sources/2026-unverified-autoreal-sel4-proof.html.md)
 - [AutoRocq](https://silentzero.ooo/wiki/sources/2025-tu-agentic-verification-software.html.md)
 - [Instruction Sets Should Be Free](https://silentzero.ooo/wiki/sources/2014-asanovic-instruction-sets-free.html.md)
 - [OSVBench](https://silentzero.ooo/wiki/sources/2025-li-osvbench-benchmarking-llms.html.md)

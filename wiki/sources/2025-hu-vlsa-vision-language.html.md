@@ -45,4 +45,5 @@ A careful reader adds:
 - [The safety path](https://silentzero.ooo/wiki/design/safety-path.html.md)
 - [Control barrier functions](https://silentzero.ooo/wiki/concepts/control-barrier-functions.html.md)
 - [KNOWS, a safety filter steered by the policy's attention](https://silentzero.ooo/wiki/sources/2026-park-your-model-already.html.md)
+- [LIBERO-Safety, a benchmark for physical and semantic safety of VLA models](https://silentzero.ooo/wiki/sources/2026-tsinghua-libero-safety-comprehensive.html.md)
 - [multi-link safety filtering for VLA policies](https://silentzero.ooo/wiki/sources/2026-agarwal-multi-link-safety.html.md)

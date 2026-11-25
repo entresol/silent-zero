@@ -2,7 +2,7 @@
 
 > Simplex in Silent Zero: the agent proposes, the loop disposes; tested, not proven; the paper’s 2001 date disputed by a 1994 origin; certified real-time kernels sell the same split as products; two more barrier filters, guarantees conditional on perception.
 
-Design · LLM reviewed · updated 2026-11-24 · 19 sources · https://silentzero.ooo/wiki/design/safety-path.html
+Design · LLM reviewed · updated 2026-11-25 · 21 sources · https://silentzero.ooo/wiki/design/safety-path.html
 
 In Silent Zero the agent and its action model play the complex controller of a [Simplex architecture](https://silentzero.ooo/wiki/concepts/simplex.html.md) architecture: powerful, unproven, isolated and lower in criticality. The safety controller and the switching logic play the simple one; they are small, run at the highest criticality and are candidates for proof. "The agent may suggest any motion. Only the loop moves the motor." (paper, Section 4).
 
@@ -30,6 +30,8 @@ A robot model's vendor says its model-level safety filters "are not a substitute
 A different pattern from Simplex switching is a filter on the commanded motion. One preprint shows a barrier-function shield between a frozen π0.5 policy and the arm, whose barrier program ran at 2.2 ms (p99) on a CPU and which cut collisions with moving hazards in simulation from 65.62 to 27.27 per cent, as a mean over six simulated conditions. It has no proof for the moving-hazard case, takes its hazard model from perception, and runs the nominal action when its program is infeasible. Our reading: it does not meet this page's rule that the loop owns its sensors, and changes no state ([multi-link safety filtering for VLA policies](https://silentzero.ooo/wiki/sources/2026-agarwal-multi-link-safety.html.md), §III-C, §V-A, §V-B).
 
 Two further preprints belong to this family, summarised on [Control barrier functions](https://silentzero.ooo/wiki/concepts/control-barrier-functions.html.md). AEGIS puts a barrier program behind a π0.5 policy without retraining it; its theorem needs accurate perception and enclosing ellipsoids, and on its benchmark the collision avoidance rate rose from 18.7 to 77.9 per cent (translation-only actions), so collisions remain; the obstacle comes from a vision-language model and a detector ([VLSA and AEGIS, a barrier-function layer for VLA policies](https://silentzero.ooo/wiki/sources/2025-hu-vlsa-vision-language.html.md), Theorem 1, Table I). KNOWS takes the target from the policy's own attention at every step and stops when no safe action exists; with moving obstacles its collision rate fell from 70.8 to 26.9 per cent on average against its authors' own reconstruction of the earlier design, in simulation ([KNOWS, a safety filter steered by the policy's attention](https://silentzero.ooo/wiki/sources/2026-park-your-model-already.html.md), §3.1, Table 1). Our reading: neither meets the rule that the loop relies on nothing the learned side controls, and neither changes a state.
+
+A single-author literature review argues, in our reading, for the same split from the other side (it does not discuss Simplex): an authorization layer independent of the learned model that checks state validity, feasibility, timing and fallback before a command reaches the hardware, and records the decision. It measures nothing and, in our reading, proves nothing; it says such a layer's guarantees weaken with stale state estimates or a wrong model; it is a preprint by the head of a company ([Silent failures in physical AI, a literature review of runtime action authorization](https://silentzero.ooo/wiki/sources/2026-unverified-silent-failures-physical.html.md), §1, §11). A benchmark with a dataset of 19,664 collision-free demonstrations scores eight VLA policies on physical safety and two reasoning models on semantic safety; it does not score an external filter, so it could serve as a test bed that nobody has used for that yet (our reading; [LIBERO-Safety, a benchmark for physical and semantic safety of VLA models](https://silentzero.ooo/wiki/sources/2026-tsinghua-libero-safety-comprehensive.html.md)).
 
 A 2026 preprint derives the switching rule of a Simplex by contraction and reachability analysis for a path-tracking robot with an uncertified high-performance controller on the other side (a behavioural-cloning network in one hardware test). The proof covers the model; the hardware safety margin rests on a tuned prediction horizon, tested on one ground robot ([context-dependent regions of attraction for a multi-candidate Simplex](https://silentzero.ooo/wiki/sources/2026-jager-context-dependent-runtime.html.md), §IV). Our reading: a second kind of evidence for the switch; it changes no state.
 
@@ -61,12 +63,14 @@ Commercial neighbours that, in our reading, build the same split from parts thei
 - [Halos for Robotics, the announcement](https://silentzero.ooo/wiki/sources/2026-nvidia-announces-halos-robotics.html.md)
 - [Inside Halos for Robotics](https://silentzero.ooo/wiki/sources/2026-nvidia-inside-halos-robotics.html.md)
 - [KNOWS, a safety filter steered by the policy's attention](https://silentzero.ooo/wiki/sources/2026-park-your-model-already.html.md)
+- [LIBERO-Safety, a benchmark for physical and semantic safety of VLA models](https://silentzero.ooo/wiki/sources/2026-tsinghua-libero-safety-comprehensive.html.md)
 - [limitations on formal verification for AI safety](https://silentzero.ooo/wiki/sources/2024-dickson-limitations-formal-verification.html.md)
 - [multi-link safety filtering for VLA policies](https://silentzero.ooo/wiki/sources/2026-agarwal-multi-link-safety.html.md)
 - [NVIDIA joins as a premier member](https://silentzero.ooo/wiki/sources/2026-elisa-enabling-linux-safety.html.md)
 - [QNX and NVIDIA deepen their collaboration](https://silentzero.ooo/wiki/sources/2026-qnx-nvidia-deepen-collaboration.html.md)
 - [ranking of real-time operating systems for robotics safety](https://silentzero.ooo/wiki/sources/2026-abi-research-rtos-robotics-ranking.html.md)
 - [Real-Time Execution of Action Chunking Flow Policies](https://silentzero.ooo/wiki/sources/2025-black-real-time-execution.html.md)
+- [Silent failures in physical AI, a literature review of runtime action authorization](https://silentzero.ooo/wiki/sources/2026-unverified-silent-failures-physical.html.md)
 - [Synergistic Simplex](https://silentzero.ooo/wiki/sources/2026-bansal-synergistic-simplex-cooperative.html.md)
 - [SYSGO: PikeOS for robotics and humanoids](https://silentzero.ooo/wiki/sources/nd-sysgo-robotics-humanoids.html.md)
 - [SYSGO: PikeOS safety certification](https://silentzero.ooo/wiki/sources/nd-sysgo-safety-certification.html.md)
@@ -86,6 +90,7 @@ Commercial neighbours that, in our reading, build the same split from parts thei
 - [QNX](https://silentzero.ooo/wiki/systems/qnx.html.md)
 - [SpecOS](https://silentzero.ooo/wiki/systems/specos.html.md)
 - [Verus](https://silentzero.ooo/wiki/systems/verus.html.md)
+- [AutoReal, LLM-driven theorem proving on seL4](https://silentzero.ooo/wiki/sources/2026-unverified-autoreal-sel4-proof.html.md)
 - [credible compilation against verification](https://silentzero.ooo/wiki/sources/2026-rinard-quantitative-comparison-credible.html.md)
 - [fence.t.s for out-of-order cores](https://silentzero.ooo/wiki/sources/2024-wistoff-fence-t-s.html.md)
 - [Formal methods as the harness for AIOS (SpecOS)](https://silentzero.ooo/wiki/sources/2026-li-formal-methods-harness.html.md)

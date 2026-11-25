@@ -40,6 +40,7 @@ The paper does not cite this source. No `design/` page changes state.
 ## Related pages
 
 - [Proof automation](https://silentzero.ooo/wiki/concepts/proof-automation.html.md)
+- [AutoReal, LLM-driven theorem proving on seL4](https://silentzero.ooo/wiki/sources/2026-unverified-autoreal-sel4-proof.html.md)
 - [AutoRocq](https://silentzero.ooo/wiki/sources/2025-tu-agentic-verification-software.html.md)
 - [neuro-symbolic proof generation, OSDI version](https://silentzero.ooo/wiki/sources/2026-he-neuro-symbolic-proof-osdi.html.md)
 - [OSVBench](https://silentzero.ooo/wiki/sources/2025-li-osvbench-benchmarking-llms.html.md)
