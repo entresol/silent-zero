@@ -1,9 +1,9 @@
 ---
 type: system
 status: reviewed
-sources: [nd-coreboot-architecture, nd-coreboot-vboot, nd-coreboot-measured-boot]
+sources: [nd-coreboot-architecture, nd-coreboot-vboot, nd-coreboot-measured-boot, nd-coreboot-payloads, nd-coreboot-amd-psp, nd-coreboot-intel-fsp]
 short: Open firmware in stages with a fixed payload
-updated: 2026-10-30
+updated: 2026-11-26
 ---
 
 # coreboot
@@ -18,9 +18,15 @@ Documentation for version 26.09. Verified boot (vboot) roots trust in the write-
 
 The read-write firmware includes processor-specific binaries such as `fspm.bin` and `fsps.bin`, in our reading Intel's memory and silicon initialisation ([[nd-coreboot-vboot]]). The first measurement is taken by coreboot's own boot block; Intel Boot Guard and AMD Hardware Validated Boot root only the verification of that block in hardware ([[nd-coreboot-measured-boot]]).
 
+On AMD machines the image also carries firmware for the Platform Security Processor, an on-die processor that, according to coreboot's guide, initialises the silicon before the x86 cores start; coreboot's tools assemble the firmware images into its image ([[nd-coreboot-amd-psp]], [[amd-psp]]). On Intel boards coreboot calls Intel's FSP and collects its bugs itself, since Intel does not list them ([[nd-coreboot-intel-fsp]], [[intel-fsp]]).
+
+## Payloads
+
+The payload can be any statically linked ELF binary, SeaBIOS, edk2, GRUB2, Linux or Heads ([[nd-coreboot-payloads]]). The documentation page does not say whether any of them can start a Multiboot 2 image, which Microkit needs ([[nd-sel4-microkit-user-manual]]).
+
 ## Licence and code
 
-Not yet covered by the wiki's sources.
+The documentation is licensed CC-by 4.0 ([[nd-coreboot-payloads]]). The licence of the code is not yet covered by the wiki's sources.
 
 ## Open questions
 

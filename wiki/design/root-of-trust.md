@@ -1,8 +1,8 @@
 ---
 type: design
 status: reviewed
-sources: [2026-google-opentitan-shipping-production, nd-caliptra, nd-coreboot-architecture, nd-coreboot-vboot, nd-coreboot-measured-boot, nd-tfa-firmware-design, nd-opensbi, nd-raspberrypi-boot, 2021-tao-dice-formally-verified, 2022-zhang-pa-boot-formally, nd-sel4-verified-configurations, nd-sel4-microkit-user-manual, 2019-markettos-thunderclap-exploring-vulnerabilities]
-updated: 2026-11-02
+sources: [2026-google-opentitan-shipping-production, nd-caliptra, nd-coreboot-architecture, nd-coreboot-vboot, nd-coreboot-measured-boot, nd-tfa-firmware-design, nd-opensbi, nd-raspberrypi-boot, 2021-tao-dice-formally-verified, 2022-zhang-pa-boot-formally, nd-sel4-verified-configurations, nd-sel4-microkit-user-manual, 2019-markettos-thunderclap-exploring-vulnerabilities, nd-coreboot-amd-psp, nd-coreboot-intel-fsp]
+updated: 2026-11-26
 ---
 
 # Root of trust and firmware
@@ -50,4 +50,4 @@ The bottom of zOS: a root of trust that measures the first code to run, together
 - No source so far names a board that carries OpenTitan and runs seL4.
 - What the root of trust measures, and how that reaches the zOS bootloader's first screen, is open on every platform. On Arm and RISC-V the Microkit loader expects an earlier bootloader such as U-Boot ([[nd-sel4-microkit-user-manual]]); see [[bootloader]].
 - On the Pi, which firmware stays resident below the kernel, and how secure boot is enabled and what it verifies, is not covered by the sources.
-- Which parts of the firmware below the kernel a zOS hardware profile accepts: on Arm, how much of BL31 and whether a trusted OS; on a PC, the vendor's closed code. Intel ME, AMD PSP and open alternatives are not yet covered here.
+- Which parts of the firmware below the kernel a zOS hardware profile accepts: on Arm, how much of BL31 and whether a trusted OS; on a PC, the vendor's closed code. The AMD PSP and Intel's FSP are described only through coreboot's documentation ([[amd-psp]], [[intel-fsp]]); Intel ME and open alternatives are not yet covered here.

@@ -9,7 +9,7 @@
   <url><loc>https://silentzero.ooo/wiki/concepts/agent-operating-systems.html</loc><lastmod>2026-11-22</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/concepts/ai-vulnerability-discovery.html</loc><lastmod>2026-10-31</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/concepts/confused-deputy.html</loc><lastmod>2026-11-21</lastmod></url>
-  <url><loc>https://silentzero.ooo/wiki/concepts/control-barrier-functions.html</loc><lastmod>2026-11-25</lastmod></url>
+  <url><loc>https://silentzero.ooo/wiki/concepts/control-barrier-functions.html</loc><lastmod>2026-11-26</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/concepts/functional-correctness.html</loc><lastmod>2026-11-21</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/concepts/information-flow-control.html</loc><lastmod>2026-11-21</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/concepts/iommu.html</loc><lastmod>2026-11-02</lastmod></url>
@@ -26,13 +26,13 @@
   <url><loc>https://silentzero.ooo/wiki/concepts/time-protection.html</loc><lastmod>2026-11-21</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/concepts/verified-boot.html</loc><lastmod>2026-10-30</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/concepts/wcet-analysis.html</loc><lastmod>2026-11-14</lastmod></url>
-  <url><loc>https://silentzero.ooo/wiki/design/bootloader.html</loc><lastmod>2026-10-31</lastmod></url>
+  <url><loc>https://silentzero.ooo/wiki/design/bootloader.html</loc><lastmod>2026-11-26</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/design/broker.html</loc><lastmod>2026-11-21</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/design/drivers.html</loc><lastmod>2026-11-20</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/design/kernel.html</loc><lastmod>2026-11-22</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/design/real-time-loops.html</loc><lastmod>2026-11-24</lastmod></url>
-  <url><loc>https://silentzero.ooo/wiki/design/root-of-trust.html</loc><lastmod>2026-11-02</lastmod></url>
-  <url><loc>https://silentzero.ooo/wiki/design/safety-path.html</loc><lastmod>2026-11-25</lastmod></url>
+  <url><loc>https://silentzero.ooo/wiki/design/root-of-trust.html</loc><lastmod>2026-11-26</lastmod></url>
+  <url><loc>https://silentzero.ooo/wiki/design/safety-path.html</loc><lastmod>2026-11-26</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/design/static-system.html</loc><lastmod>2026-11-03</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/sources/1988-hardy-confused-deputy-or.html</loc><lastmod>2026-10-29</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/sources/2006-miller-robust-composition-towards.html</loc><lastmod>2026-10-29</lastmod></url>
@@ -148,6 +148,7 @@
   <url><loc>https://silentzero.ooo/wiki/sources/2026-wang-real-time-robot.html</loc><lastmod>2026-11-22</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/sources/2026-wu-mosaic-knowledge-guided.html</loc><lastmod>2026-11-07</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/sources/2026-xu-safel4-rethinking-safe.html</loc><lastmod>2026-11-22</lastmod></url>
+  <url><loc>https://silentzero.ooo/wiki/sources/2026-yu-safe-night-vla.html</loc><lastmod>2026-11-26</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/sources/2026-zhang-agent-libos-runtime.html</loc><lastmod>2026-11-05</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/sources/2026-zhao-agate-capability-microkernels.html</loc><lastmod>2026-11-21</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/sources/2026-zhao-agenticos-intent-oriented.html</loc><lastmod>2026-11-05</lastmod></url>
@@ -156,8 +157,11 @@
   <url><loc>https://silentzero.ooo/wiki/sources/2026-zou-agentkernel-trust-native.html</loc><lastmod>2026-11-03</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/sources/nd-caliptra.html</loc><lastmod>2026-10-30</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/sources/nd-chromeos-verified-boot.html</loc><lastmod>2026-10-30</lastmod></url>
+  <url><loc>https://silentzero.ooo/wiki/sources/nd-coreboot-amd-psp.html</loc><lastmod>2026-11-26</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/sources/nd-coreboot-architecture.html</loc><lastmod>2026-10-30</lastmod></url>
+  <url><loc>https://silentzero.ooo/wiki/sources/nd-coreboot-intel-fsp.html</loc><lastmod>2026-11-26</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/sources/nd-coreboot-measured-boot.html</loc><lastmod>2026-10-30</lastmod></url>
+  <url><loc>https://silentzero.ooo/wiki/sources/nd-coreboot-payloads.html</loc><lastmod>2026-11-26</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/sources/nd-coreboot-vboot.html</loc><lastmod>2026-10-30</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/sources/nd-linux-landlock-unprivileged-access.html</loc><lastmod>2026-11-03</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/sources/nd-linux-real-time-preemption.html</loc><lastmod>2026-11-03</lastmod></url>
@@ -182,12 +186,14 @@
   <url><loc>https://silentzero.ooo/wiki/sources/nd-uboot-verified-boot.html</loc><lastmod>2026-10-30</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/systems/agate.html</loc><lastmod>2026-11-21</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/systems/agentos.html</loc><lastmod>2026-11-01</lastmod></url>
+  <url><loc>https://silentzero.ooo/wiki/systems/amd-psp.html</loc><lastmod>2026-11-26</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/systems/atmosphere.html</loc><lastmod>2026-11-21</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/systems/cheriot.html</loc><lastmod>2026-11-23</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/systems/cohesix.html</loc><lastmod>2026-10-31</lastmod></url>
-  <url><loc>https://silentzero.ooo/wiki/systems/coreboot.html</loc><lastmod>2026-10-30</lastmod></url>
+  <url><loc>https://silentzero.ooo/wiki/systems/coreboot.html</loc><lastmod>2026-11-26</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/systems/cva6.html</loc><lastmod>2026-11-21</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/systems/elisa.html</loc><lastmod>2026-11-24</lastmod></url>
+  <url><loc>https://silentzero.ooo/wiki/systems/intel-fsp.html</loc><lastmod>2026-11-26</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/systems/intentcap.html</loc><lastmod>2026-11-21</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/systems/kataos.html</loc><lastmod>2026-10-31</lastmod></url>
   <url><loc>https://silentzero.ooo/wiki/systems/landlock.html</loc><lastmod>2026-11-21</lastmod></url>
