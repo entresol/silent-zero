@@ -1,8 +1,8 @@
 ---
 type: design
 status: reviewed
-sources: [nd-coreboot-architecture, nd-coreboot-vboot, nd-chromeos-verified-boot, nd-uboot-verified-boot, nd-raspberrypi-boot, nd-tfa-firmware-design, nd-opensbi, nd-sel4-x64-platform, nd-sel4-microkit-user-manual, nd-sel4-verified-configurations, 2018-cook-model-checking-boot, 2020-straznickas-verified-first-stage, 2021-tao-dice-formally-verified, 2026-sel4-release-17, nd-sel4-supported-platforms, 2024-riscv-privileged-isa-manual]
-updated: 2026-10-31
+sources: [nd-coreboot-architecture, nd-coreboot-vboot, nd-chromeos-verified-boot, nd-uboot-verified-boot, nd-raspberrypi-boot, nd-tfa-firmware-design, nd-opensbi, nd-sel4-x64-platform, nd-sel4-microkit-user-manual, nd-sel4-verified-configurations, 2018-cook-model-checking-boot, 2020-straznickas-verified-first-stage, 2021-tao-dice-formally-verified, 2026-sel4-release-17, nd-sel4-supported-platforms, 2024-riscv-privileged-isa-manual, nd-coreboot-payloads]
+updated: 2026-11-26
 ---
 
 # The bootloader
@@ -19,7 +19,7 @@ In zOS the bootloader "checks one signed, static system image and starts it, or 
 
 | Platform | What runs before it | How the kernel is started today | Source |
 | --- | --- | --- | --- |
-| PC (x86-64) | vendor firmware and, with coreboot, its stages up to the payload | a Multiboot loader such as GRUB or syslinux; Microkit requires a Multiboot 2 loader | [[nd-coreboot-architecture]], [[nd-sel4-x64-platform]], [[nd-sel4-microkit-user-manual]] |
+| PC (x86-64) | vendor firmware and, with coreboot, its stages up to the payload | a Multiboot loader such as GRUB or syslinux; Microkit requires a Multiboot 2 loader; coreboot's payloads include a static ELF binary and GRUB2 | [[nd-coreboot-architecture]], [[nd-coreboot-payloads]], [[nd-sel4-x64-platform]], [[nd-sel4-microkit-user-manual]] |
 | Arm boards | on Arm's reference platforms TF-A's BL1, BL2 and BL31; on vendor boards often a vendor ROM in place of BL1 and BL2 | U-Boot loads the Microkit image, and the Microkit loader starts seL4 | [[nd-tfa-firmware-design]], [[nd-sel4-microkit-user-manual]] |
 | Raspberry Pi 4 and 5 | ROM and EEPROM bootloader, on the Pi 4 also the GPU firmware; on the Pi 5 the bootloader loads the kernel image itself | for Microkit on the Pi 4B, U-Boot, then the Microkit loader | [[nd-raspberrypi-boot]], [[nd-sel4-microkit-user-manual]] |
 | RISC-V | OpenSBI in machine mode; on the HiFive Premier P550 firmware, then OpenSBI and U-Boot from SPI flash | U-Boot, or OpenSBI with the image as its payload, then the Microkit loader | [[nd-opensbi]], [[nd-sel4-microkit-user-manual]], [[nd-sel4-supported-platforms]] |

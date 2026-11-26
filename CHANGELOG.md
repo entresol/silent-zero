@@ -4,6 +4,10 @@ What changed in substance, newest first: in the paper, on its page and in the pr
 
 Format: `## <version> · <scope>`, then one paragraph. A paper version is `YYYY-MM-DD-vX.Y` and has its own PDF in `versions/`; the newest one is the version the build prints on the paper and the page. A change without a new paper version carries only its date (`YYYY-MM-DD`). Scope is `Paper`, `Site` or `Project`. The build turns this file into the list at the end of the page.
 
+## 2026-11-26 · Site
+
+The wiki worked in four sources: Safe-Night VLA, a thermal-perception robot policy with a barrier-function filter on modelled boundaries, and three pages of coreboot's documentation on payloads, the AMD Platform Security Processor and Intel's Firmware Support Package. Four source pages were created, with system pages for the AMD PSP and the FSP. The pages on control barrier functions, the safety path and coreboot changed in substance; the root-of-trust and bootloader pages got a line each. New lexicon terms: AMD PSP, Intel FSP.
+
 ## 2026-11-25 · Site
 
 The wiki worked in three sources from the backlog: LIBERO-Safety, a benchmark of physical and semantic safety for robot policies with a chunk-level barrier filter, a single-author literature review of runtime action authorization for physical AI, and AutoReal, a 7-billion-parameter model that proves about half of a sample of seL4 theorems in Isabelle. Three source pages were created. The pages on control barrier functions, proof automation and the safety path changed in substance; no new lexicon terms.

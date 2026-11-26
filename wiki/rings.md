@@ -131,9 +131,9 @@ The sources that carry the paper's firmware, bootloader and root-of-trust layers
 
 Vendor firmware, distributions and other platforms; for the daily run once the team opens it.
 
-- [ ] nd-coreboot-payloads
-- [ ] nd-coreboot-amd-psp
-- [ ] nd-coreboot-intel-fsp
+- [x] nd-coreboot-payloads
+- [x] nd-coreboot-amd-psp
+- [x] nd-coreboot-intel-fsp
 - [ ] nd-intel-fsp-binaries
 - [ ] nd-amd-opensil
 - [ ] nd-me-cleaner
