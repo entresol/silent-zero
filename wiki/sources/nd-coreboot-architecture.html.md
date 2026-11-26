@@ -36,4 +36,5 @@ A careful reader adds: the page describes the open part of the chain. What runs 
 - [Root of trust and firmware](https://silentzero.ooo/wiki/design/root-of-trust.html.md)
 - [The bootloader](https://silentzero.ooo/wiki/design/bootloader.html.md)
 - [coreboot](https://silentzero.ooo/wiki/systems/coreboot.html.md)
+- [coreboot: payloads](https://silentzero.ooo/wiki/sources/nd-coreboot-payloads.html.md)
 - [coreboot: verified boot (vboot)](https://silentzero.ooo/wiki/sources/nd-coreboot-vboot.html.md)

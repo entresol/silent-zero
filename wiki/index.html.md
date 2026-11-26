@@ -2,7 +2,7 @@
 
 > What the sources behind the Silent Zero paper show, page by page: designs, concepts, systems and sources, each with what is proven, tested or assumed.
 
-This wiki gathers what the sources behind the paper show. It has a page for each source, each concept, each system the paper builds on and each part of the design: 146 sources, 21 concepts, 28 systems and 8 parts of the design so far. Every page says what is proven, tested or assumed, and on which source that rests.
+This wiki gathers what the sources behind the paper show. It has a page for each source, each concept, each system the paper builds on and each part of the design: 150 sources, 21 concepts, 30 systems and 8 parts of the design so far. Every page says what is proven, tested or assumed, and on which source that rests.
 
 ## How this wiki is made
 
@@ -21,9 +21,9 @@ A page can still be wrong or misleading in detail. If you find a mistake, please
 - [The static system](https://silentzero.ooo/wiki/design/static-system.html.md) · one description, one image: what Microkit checks, what is not proved, and the run-time swap in LionsOS, the kernel underneath. 6 sources.
 - [The broker](https://silentzero.ooo/wiki/design/broker.html.md) · the only component that hands out authority: capability patterns, CaMeL and FIDES, why model-based defences fail, three agent-OS designs for the same job, CaMeL between agents; nothing proven yet; the industry's agent sandboxes grant by resource; IntentCap and Agate are the nearest published neighbours; a budget for cumulative irreversible exposure. 35 sources.
 - [Real-time loops](https://silentzero.ooo/wiki/design/real-time-loops.html.md) · the loops that move the motors: asynchronous chunks from slow models, policies trained for a delay range, observed timings, per-step costs of two barrier filters, no proven bound yet. 20 sources.
-- [The safety path](https://silentzero.ooo/wiki/design/safety-path.html.md) · Simplex in Silent Zero: the agent proposes, the loop disposes; tested, not proven; the paper's 2001 date disputed by a 1994 origin; certified real-time kernels sell the same split as products; two more barrier filters, guarantees conditional on perception. 19 sources.
-- [Root of trust and firmware](https://silentzero.ooo/wiki/design/root-of-trust.html.md) · the firmware below the kernel on Arm, RISC-V, PC and Raspberry Pi; OpenTitan, Caliptra, DICE; all *assumed* in the paper's terms. 13 sources.
-- [The bootloader](https://silentzero.ooo/wiki/design/bootloader.html.md) · where the Silent Zero loader sits on each platform, signed and measured boot, proofs about boot code so far; the loader itself unproven. 16 sources.
+- [The safety path](https://silentzero.ooo/wiki/design/safety-path.html.md) · Simplex in Silent Zero: the agent proposes, the loop disposes; tested, not proven; the paper's 2001 date disputed by a 1994 origin; certified real-time kernels sell the same split as products; three more barrier filters, guarantees conditional on perception or on modelled geometry. 20 sources.
+- [Root of trust and firmware](https://silentzero.ooo/wiki/design/root-of-trust.html.md) · the firmware below the kernel on Arm, RISC-V, PC and Raspberry Pi; OpenTitan, Caliptra, DICE; all *assumed* in the paper's terms; AMD PSP and Intel FSP through coreboot's documentation. 15 sources.
+- [The bootloader](https://silentzero.ooo/wiki/design/bootloader.html.md) · where the Silent Zero loader sits on each platform, signed and measured boot, proofs about boot code so far; the loader itself unproven; coreboot's payloads. 17 sources.
 - [Drivers](https://silentzero.ooo/wiki/design/drivers.html.md) · user-mode drivers, the first verified Ethernet driver, DMA and the IOMMU as assumed, attacked in 2019 although enabled; device models from Verilog and Windows on x86-64 as first steps; the Pancake paper adds the language and its limits. 13 sources.
 
 ## Systems
@@ -31,7 +31,9 @@ A page can still be wrong or misleading in detail. If you find a mistake, please
 - [seL4](https://silentzero.ooo/wiki/systems/sel4.html.md) · the verified microkernel Silent Zero builds on: proofs per architecture and platform, cost, MCS, timing, HACMS; what its foundation says about certification; the 2026 releases. 18 sources.
 - [Microkit](https://silentzero.ooo/wiki/systems/microkit.html.md) · the build system for static seL4 systems: protection domains, channels, budgets, one image. 7 sources.
 - [LionsOS](https://silentzero.ooo/wiki/systems/lionsos.html.md) · static OS from small components on seL4 and Microkit; first driver verified; Summit 2026 talks on x86-64 VMs and driver specifications. 9 sources.
-- [coreboot](https://silentzero.ooo/wiki/systems/coreboot.html.md) · open firmware in stages with a fixed payload; verified and measured boot; closed vendor parts on x86. 3 sources.
+- [coreboot](https://silentzero.ooo/wiki/systems/coreboot.html.md) · open firmware in stages with a fixed payload; verified and measured boot; closed vendor parts on x86, its payloads. 6 sources.
+- [AMD Platform Security Processor (PSP)](https://silentzero.ooo/wiki/systems/amd-psp.html.md) · AMD's on-die processor that starts first and runs signed firmware; documented only through coreboot's image guide. 1 source.
+- [Intel Firmware Support Package (FSP)](https://silentzero.ooo/wiki/systems/intel-fsp.html.md) · Intel's binary initialisation code that coreboot calls; seven bugs collected by coreboot. 1 source.
 - [Trusted Firmware-A](https://silentzero.ooo/wiki/systems/tf-a.html.md) · Arm's reference firmware; BL31 stays resident at EL3 below the kernel. 2 sources.
 - [OpenSBI](https://silentzero.ooo/wiki/systems/opensbi.html.md) · RISC-V firmware in machine mode below the kernel. 3 sources.
 - [Raspberry Pi](https://silentzero.ooo/wiki/systems/raspberry-pi.html.md) · the pib's board: closed ROM and EEPROM boot, secure-boot key in OTP on the Pi 4, seL4 verified without MCS. 4 sources.
@@ -78,7 +80,7 @@ A page can still be wrong or misleading in detail. If you find a mistake, please
 - [Mixed criticality](https://silentzero.ooo/wiki/concepts/mixed-criticality.html.md) · software of different criticality on one platform; processor time as a capability in seL4 MCS; partitions under a hypervisor in commercial robot stacks. 7 sources.
 - [Model Context Protocol](https://silentzero.ooo/wiki/concepts/model-context-protocol.html.md) · the open protocol that connects agents to tools; three preprints measure its security, one runtime treats it as a client only; a vendor's guide to OWASP's MCP list. 6 sources.
 - [Agent operating systems](https://silentzero.ooo/wiki/concepts/agent-operating-systems.html.md) · designs that put the limit on an agent in the OS layer: agentOS, Cohesix, KataOS, AgentKernel, AgenticOS, Agent libOS, Quine, OpenShell and MXC as shipped products; IBM's Agent-OS position paper; IntentOS, a language-model planner beside the Linux kernel. 20 sources.
-- [Control barrier functions](https://silentzero.ooo/wiki/concepts/control-barrier-functions.html.md) · a filter that keeps a robot's commanded motion inside a safe set; four VLA filters, guarantees conditional on perception. 5 sources.
+- [Control barrier functions](https://silentzero.ooo/wiki/concepts/control-barrier-functions.html.md) · a filter that keeps a robot's commanded motion inside a safe set; five VLA filters, guarantees conditional on perception or on modelled geometry. 6 sources.
 - [Safety certification](https://silentzero.ooo/wiki/concepts/safety-certification.html.md) · proof versus certificate: what a certified kernel, a robot stack and seL4 each state; no certified seL4 product in the sources; ELISA's aim for Linux. 6 sources.
 
 ## Sources
@@ -130,6 +132,9 @@ A page can still be wrong or misleading in detail. If you find a mistake, please
 - [The Attacker Moves Second](https://silentzero.ooo/wiki/sources/2026-nasr-attacker-moves-second.html.md) (Nasr et al. 2026) · adaptive attacks break 12 prompt-injection and jailbreak defences, most above 90 %. test, full text.
 - [coreboot: architecture and boot stages](https://silentzero.ooo/wiki/sources/nd-coreboot-architecture.html.md) · coreboot's stages from bootblock to a payload fixed at build time. report, full text.
 - [coreboot: verified boot (vboot)](https://silentzero.ooo/wiki/sources/nd-coreboot-vboot.html.md) · verified boot rooted in write-protected flash, A/B slots, automatic recovery. report, full text.
+- [coreboot: payloads](https://silentzero.ooo/wiki/sources/nd-coreboot-payloads.html.md) · the payloads coreboot can start: ELF, SeaBIOS, edk2, GRUB2, Linux, Heads; nothing on verification. report, full text.
+- [coreboot: AMD PSP firmware integration guide](https://silentzero.ooo/wiki/sources/nd-coreboot-amd-psp.html.md) · how the AMD PSP's firmware is laid out in a coreboot image; AMD's details under non-disclosure. report, partly read.
+- [coreboot: Intel FSP documentation](https://silentzero.ooo/wiki/sources/nd-coreboot-intel-fsp.html.md) · coreboot's integration rule for Intel's FSP and its list of seven FSP bugs. report, full text.
 - [coreboot: measured boot](https://silentzero.ooo/wiki/sources/nd-coreboot-measured-boot.html.md) · TPM measurements, a software-rooted first measurement, vendor hardware roots behind it. report, full text.
 - [Chromium OS: Verified Boot (design document)](https://silentzero.ooo/wiki/sources/nd-chromeos-verified-boot.html.md) · Chromium OS's design: against the opportunistic attacker, the owner keeps control, rollback a weakness. design, full text.
 - [Trusted Firmware-A: firmware design](https://silentzero.ooo/wiki/sources/nd-tfa-firmware-design.html.md) · Arm's boot stages BL1 to BL33; BL31 resident at EL3. report, cold boot and runtime services.
@@ -182,6 +187,7 @@ A page can still be wrong or misleading in detail. If you find a mistake, please
 - [Causality laundering](https://silentzero.ooo/wiki/sources/2026-chinaei-causality-laundering-denial.html.md) (Chinaei 2026) · causality laundering: a denied tool call leaks what exists; a monitor that records denials; three constructed scenarios, single author. design, partly read.
 - [ARSENAL](https://silentzero.ooo/wiki/sources/2026-lide-arsenal-assured-robotics.html.md) (Lide 2026) · ARSENAL, seL4 Summit 2026 talk abstract: ROS 2 on seL4 for Army ground vehicles, two configurations, a proof of concept each; security services planned. report, abstract only.
 - [Towards an Agent Operating System](https://silentzero.ooo/wiki/sources/2026-steinder-towards-agent-operating.html.md) (Steinder and Franke 2026) · IBM position paper: an Agent-OS with 13 primitives on a Kubernetes control plane; no measurements. position, full text.
+- [Safe-Night VLA, thermal perception and a barrier filter on a Franka arm](https://silentzero.ooo/wiki/sources/2026-yu-safe-night-vla.html.md) (Yu et al. 2026) · thermal perception for a VLA plus a joint-space barrier filter on modelled boundaries; mirror rejection 4 to 15 of 20 with the filter. measurement, full text.
 - [VLSA and AEGIS, a barrier-function layer for VLA policies](https://silentzero.ooo/wiki/sources/2025-hu-vlsa-vision-language.html.md) (Hu et al. 2025) · AEGIS: a barrier-function layer behind a VLA policy; collision avoidance 18.7 to 77.9 % on SafeLIBERO, theorem conditional on perception. measurement, full text.
 - [KNOWS, a safety filter steered by the policy's attention](https://silentzero.ooo/wiki/sources/2026-park-your-model-already.html.md) (Park et al. 2026) · KNOWS: the policy's own attention names the target; collisions with moving obstacles 70.8 to 26.9 % against the authors' baseline, simulation only. measurement, full text.
 - [NVIDIA joins as a premier member](https://silentzero.ooo/wiki/sources/2026-elisa-enabling-linux-safety.html.md) (ELISA 2026) · ELISA's press release of February 2026: NVIDIA joins; the project aims to help certify Linux-based safety systems. report, full text.
@@ -233,4 +239,4 @@ A page can still be wrong or misleading in detail. If you find a mistake, please
 
 ## Not yet covered
 
-The Silent Zero part *agents* has no page yet; [Agent operating systems](https://silentzero.ooo/wiki/concepts/agent-operating-systems.html.md) covers the designs that touch it. Firmware on PCs (Intel ME, AMD PSP, FSP, open alternatives) and on Apple silicon is in the backlog. Also not yet covered: the multicore proof, the ratification status of CHERI for RISC-V after April 2026 (the sources here stop there), the seams between proven parts and the driver island.
+The Silent Zero part *agents* has no page yet; [Agent operating systems](https://silentzero.ooo/wiki/concepts/agent-operating-systems.html.md) covers the designs that touch it. Firmware on PCs (Intel ME, open alternatives; AMD PSP and FSP only through coreboot's documentation) and on Apple silicon is in the backlog. Also not yet covered: the multicore proof, the ratification status of CHERI for RISC-V after April 2026 (the sources here stop there), the seams between proven parts and the driver island.

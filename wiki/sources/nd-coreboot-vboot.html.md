@@ -40,5 +40,7 @@ A careful reader adds: the read-write sections contain processor-specific binari
 - [The bootloader](https://silentzero.ooo/wiki/design/bootloader.html.md)
 - [Verified boot](https://silentzero.ooo/wiki/concepts/verified-boot.html.md)
 - [coreboot](https://silentzero.ooo/wiki/systems/coreboot.html.md)
+- [Intel Firmware Support Package (FSP)](https://silentzero.ooo/wiki/systems/intel-fsp.html.md)
 - [Chromium OS: Verified Boot (design document)](https://silentzero.ooo/wiki/sources/nd-chromeos-verified-boot.html.md)
 - [coreboot: architecture and boot stages](https://silentzero.ooo/wiki/sources/nd-coreboot-architecture.html.md)
+- [coreboot: Intel FSP documentation](https://silentzero.ooo/wiki/sources/nd-coreboot-intel-fsp.html.md)
