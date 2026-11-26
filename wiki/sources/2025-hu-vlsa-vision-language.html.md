@@ -47,3 +47,4 @@ A careful reader adds:
 - [KNOWS, a safety filter steered by the policy's attention](https://silentzero.ooo/wiki/sources/2026-park-your-model-already.html.md)
 - [LIBERO-Safety, a benchmark for physical and semantic safety of VLA models](https://silentzero.ooo/wiki/sources/2026-tsinghua-libero-safety-comprehensive.html.md)
 - [multi-link safety filtering for VLA policies](https://silentzero.ooo/wiki/sources/2026-agarwal-multi-link-safety.html.md)
+- [Safe-Night VLA, thermal perception and a barrier filter on a Franka arm](https://silentzero.ooo/wiki/sources/2026-yu-safe-night-vla.html.md)

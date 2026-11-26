@@ -33,5 +33,6 @@ A careful reader adds: the page names the proof configuration without saying wha
 
 - [The bootloader](https://silentzero.ooo/wiki/design/bootloader.html.md)
 - [The kernel](https://silentzero.ooo/wiki/design/kernel.html.md)
+- [coreboot: payloads](https://silentzero.ooo/wiki/sources/nd-coreboot-payloads.html.md)
 - [seL4 Foundation: Verified Configurations](https://silentzero.ooo/wiki/sources/nd-sel4-verified-configurations.html.md)
 - [seL4 Microkit: User Manual, v2.3.0](https://silentzero.ooo/wiki/sources/nd-sel4-microkit-user-manual.html.md)

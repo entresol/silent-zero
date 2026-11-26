@@ -1,8 +1,8 @@
 # The bootloader
 
-> Where the Silent Zero loader sits on each platform, signed and measured boot, proofs about boot code so far; the loader itself unproven.
+> Where the Silent Zero loader sits on each platform, signed and measured boot, proofs about boot code so far; the loader itself unproven; coreboot’s payloads.
 
-Design · LLM reviewed · updated 2026-10-31 · 16 sources · https://silentzero.ooo/wiki/design/bootloader.html
+Design · LLM reviewed · updated 2026-11-26 · 17 sources · https://silentzero.ooo/wiki/design/bootloader.html
 
 In Silent Zero the bootloader "checks one signed, static system image and starts it, or stops. There is no menu, no configuration and no fallback, and nothing of it stays resident." It draws the first screen, showing only compiled-in text and what it has measured itself, and marks as assumed what it cannot check, itself included. It belongs to the trusted base as *assumed*. A first prototype for RISC-V checks a hash rather than a signature and is just under 8 KB, more than two thirds of it the renderer and its font data (paper, Section 3).
 
@@ -16,7 +16,7 @@ In Silent Zero the bootloader "checks one signed, static system image and starts
 
 | Platform | What runs before it | How the kernel is started today | Source |
 | --- | --- | --- | --- |
-| PC (x86-64) | vendor firmware and, with coreboot, its stages up to the payload | a Multiboot loader such as GRUB or syslinux; Microkit requires a Multiboot 2 loader | [coreboot: architecture and boot stages](https://silentzero.ooo/wiki/sources/nd-coreboot-architecture.html.md), [seL4 on PC99 (x86-64)](https://silentzero.ooo/wiki/sources/nd-sel4-x64-platform.html.md), [seL4 Microkit: User Manual, v2.3.0](https://silentzero.ooo/wiki/sources/nd-sel4-microkit-user-manual.html.md) |
+| PC (x86-64) | vendor firmware and, with coreboot, its stages up to the payload | a Multiboot loader such as GRUB or syslinux; Microkit requires a Multiboot 2 loader; coreboot's payloads include a static ELF binary and GRUB2 | [coreboot: architecture and boot stages](https://silentzero.ooo/wiki/sources/nd-coreboot-architecture.html.md), [coreboot: payloads](https://silentzero.ooo/wiki/sources/nd-coreboot-payloads.html.md), [seL4 on PC99 (x86-64)](https://silentzero.ooo/wiki/sources/nd-sel4-x64-platform.html.md), [seL4 Microkit: User Manual, v2.3.0](https://silentzero.ooo/wiki/sources/nd-sel4-microkit-user-manual.html.md) |
 | Arm boards | on Arm's reference platforms TF-A's BL1, BL2 and BL31; on vendor boards often a vendor ROM in place of BL1 and BL2 | U-Boot loads the Microkit image, and the Microkit loader starts seL4 | [Trusted Firmware-A: firmware design](https://silentzero.ooo/wiki/sources/nd-tfa-firmware-design.html.md), [seL4 Microkit: User Manual, v2.3.0](https://silentzero.ooo/wiki/sources/nd-sel4-microkit-user-manual.html.md) |
 | Raspberry Pi 4 and 5 | ROM and EEPROM bootloader, on the Pi 4 also the GPU firmware; on the Pi 5 the bootloader loads the kernel image itself | for Microkit on the Pi 4B, U-Boot, then the Microkit loader | [Raspberry Pi documentation: boot](https://silentzero.ooo/wiki/sources/nd-raspberrypi-boot.html.md), [seL4 Microkit: User Manual, v2.3.0](https://silentzero.ooo/wiki/sources/nd-sel4-microkit-user-manual.html.md) |
 | RISC-V | OpenSBI in machine mode; on the HiFive Premier P550 firmware, then OpenSBI and U-Boot from SPI flash | U-Boot, or OpenSBI with the image as its payload, then the Microkit loader | [OpenSBI](https://silentzero.ooo/wiki/sources/nd-opensbi.html.md), [seL4 Microkit: User Manual, v2.3.0](https://silentzero.ooo/wiki/sources/nd-sel4-microkit-user-manual.html.md), [seL4 Foundation: Supported platforms](https://silentzero.ooo/wiki/sources/nd-sel4-supported-platforms.html.md) |
@@ -57,6 +57,7 @@ Our reading of the second video: the Silent Zero loader now sits where the paper
 
 - [Chromium OS: Verified Boot (design document)](https://silentzero.ooo/wiki/sources/nd-chromeos-verified-boot.html.md)
 - [coreboot: architecture and boot stages](https://silentzero.ooo/wiki/sources/nd-coreboot-architecture.html.md)
+- [coreboot: payloads](https://silentzero.ooo/wiki/sources/nd-coreboot-payloads.html.md)
 - [coreboot: verified boot (vboot)](https://silentzero.ooo/wiki/sources/nd-coreboot-vboot.html.md)
 - [DICE\*, a Formally Verified Implementation of DICE Measured Boot](https://silentzero.ooo/wiki/sources/2021-tao-dice-formally-verified.html.md)
 - [Model Checking Boot Code from AWS Data Centers](https://silentzero.ooo/wiki/sources/2018-cook-model-checking-boot.html.md)

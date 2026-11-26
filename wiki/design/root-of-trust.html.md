@@ -1,8 +1,8 @@
 # Root of trust and firmware
 
-> The firmware below the kernel on Arm, RISC-V, PC and Raspberry Pi; OpenTitan, Caliptra, DICE; all assumed in the paper’s terms.
+> The firmware below the kernel on Arm, RISC-V, PC and Raspberry Pi; OpenTitan, Caliptra, DICE; all assumed in the paper’s terms; AMD PSP and Intel FSP through coreboot’s documentation.
 
-Design · LLM reviewed · updated 2026-11-02 · 13 sources · https://silentzero.ooo/wiki/design/root-of-trust.html
+Design · LLM reviewed · updated 2026-11-26 · 15 sources · https://silentzero.ooo/wiki/design/root-of-trust.html
 
 The bottom of Silent Zero: a root of trust that measures the first code to run, together with the hardware's memory management and IOMMU. Firmware runs here with more privilege than the kernel; on RISC-V, Microkit relies on SBI firmware such as OpenSBI in machine mode, and on Arm trusted firmware at the highest exception level plays that role. "This layer belongs to the trusted base and is *assumed*." (paper, Section 3).
 
@@ -47,12 +47,14 @@ The bottom of Silent Zero: a root of trust that measures the first code to run, 
 - No source so far names a board that carries OpenTitan and runs seL4.
 - What the root of trust measures, and how that reaches the Silent Zero bootloader's first screen, is open on every platform. On Arm and RISC-V the Microkit loader expects an earlier bootloader such as U-Boot ([seL4 Microkit: User Manual, v2.3.0](https://silentzero.ooo/wiki/sources/nd-sel4-microkit-user-manual.html.md)); see [The bootloader](https://silentzero.ooo/wiki/design/bootloader.html.md).
 - On the Pi, which firmware stays resident below the kernel, and how secure boot is enabled and what it verifies, is not covered by the sources.
-- Which parts of the firmware below the kernel a Silent Zero hardware profile accepts: on Arm, how much of BL31 and whether a trusted OS; on a PC, the vendor's closed code. Intel ME, AMD PSP and open alternatives are not yet covered here.
+- Which parts of the firmware below the kernel a Silent Zero hardware profile accepts: on Arm, how much of BL31 and whether a trusted OS; on a PC, the vendor's closed code. The AMD PSP and Intel's FSP are described only through coreboot's documentation ([AMD Platform Security Processor (PSP)](https://silentzero.ooo/wiki/systems/amd-psp.html.md), [Intel Firmware Support Package (FSP)](https://silentzero.ooo/wiki/systems/intel-fsp.html.md)); Intel ME and open alternatives are not yet covered here.
 
 ## Sources
 
 - [Caliptra](https://silentzero.ooo/wiki/sources/nd-caliptra.html.md)
+- [coreboot: AMD PSP firmware integration guide](https://silentzero.ooo/wiki/sources/nd-coreboot-amd-psp.html.md)
 - [coreboot: architecture and boot stages](https://silentzero.ooo/wiki/sources/nd-coreboot-architecture.html.md)
+- [coreboot: Intel FSP documentation](https://silentzero.ooo/wiki/sources/nd-coreboot-intel-fsp.html.md)
 - [coreboot: measured boot](https://silentzero.ooo/wiki/sources/nd-coreboot-measured-boot.html.md)
 - [coreboot: verified boot (vboot)](https://silentzero.ooo/wiki/sources/nd-coreboot-vboot.html.md)
 - [DICE\*, a Formally Verified Implementation of DICE Measured Boot](https://silentzero.ooo/wiki/sources/2021-tao-dice-formally-verified.html.md)
@@ -69,6 +71,8 @@ The bottom of Silent Zero: a root of trust that measures the first code to run, 
 
 - [The bootloader](https://silentzero.ooo/wiki/design/bootloader.html.md)
 - [IOMMU](https://silentzero.ooo/wiki/concepts/iommu.html.md)
+- [AMD Platform Security Processor (PSP)](https://silentzero.ooo/wiki/systems/amd-psp.html.md)
+- [Intel Firmware Support Package (FSP)](https://silentzero.ooo/wiki/systems/intel-fsp.html.md)
 - [OpenTitan](https://silentzero.ooo/wiki/systems/opentitan.html.md)
 - [Trusted Firmware-A](https://silentzero.ooo/wiki/systems/tf-a.html.md)
 - [CHERI is being standardised](https://silentzero.ooo/wiki/sources/2026-moore-cheri-is-being.html.md)
