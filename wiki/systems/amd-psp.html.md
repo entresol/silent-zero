@@ -2,7 +2,7 @@
 
 > AMD’s on-die processor that starts first and runs signed firmware; documented only through coreboot’s image guide.
 
-System · LLM reviewed · updated 2026-11-26 · 1 source · https://silentzero.ooo/wiki/systems/amd-psp.html
+System · LLM reviewed · updated 2026-11-27 · 2 sources · https://silentzero.ooo/wiki/systems/amd-psp.html
 
 According to coreboot's guide, the PSP is an isolated processor on AMD's chips. It runs its own firmware from the same SPI flash as the BIOS, verifies its boot loader's signature and initialises the silicon before the x86 cores leave reset. AMD now calls it the AMD Secure Processor ([coreboot: AMD PSP firmware integration guide](https://silentzero.ooo/wiki/sources/nd-coreboot-amd-psp.html.md)).
 
@@ -14,15 +14,19 @@ The only source in the wiki is coreboot's integration guide, which documents how
 
 The firmware is AMD's and is not open in this source. The coreboot tools `amdfwtool` and `amdcompress` that assemble the image are part of coreboot; their licence is not covered by the wiki's sources.
 
+AMD also publishes an open library for silicon initialisation, [AMD openSIL](https://silentzero.ooo/wiki/systems/amd-opensil.html.md); its README, as the wiki read it, does not mention the PSP and covers a server proof of concept ([AMD openSIL (repository README)](https://silentzero.ooo/wiki/sources/nd-amd-opensil.html.md)).
+
 ## Open questions
 
-- Whether any open replacement exists, and what the PSP can access once the x86 cores run. See [Root of trust and firmware](https://silentzero.ooo/wiki/design/root-of-trust.html.md) and [coreboot](https://silentzero.ooo/wiki/systems/coreboot.html.md).
+- Whether any open replacement for the PSP firmware exists, and what the PSP can access once the x86 cores run. See [Root of trust and firmware](https://silentzero.ooo/wiki/design/root-of-trust.html.md) and [coreboot](https://silentzero.ooo/wiki/systems/coreboot.html.md).
 
 ## Sources
 
+- [AMD openSIL (repository README)](https://silentzero.ooo/wiki/sources/nd-amd-opensil.html.md)
 - [coreboot: AMD PSP firmware integration guide](https://silentzero.ooo/wiki/sources/nd-coreboot-amd-psp.html.md)
 
 ## Related pages
 
 - [Root of trust and firmware](https://silentzero.ooo/wiki/design/root-of-trust.html.md)
+- [AMD openSIL](https://silentzero.ooo/wiki/systems/amd-opensil.html.md)
 - [coreboot](https://silentzero.ooo/wiki/systems/coreboot.html.md)

@@ -36,3 +36,4 @@ The page does not say what the FSP does; "memory and silicon initialisation" is 
 - [Intel Firmware Support Package (FSP)](https://silentzero.ooo/wiki/systems/intel-fsp.html.md)
 - [coreboot: measured boot](https://silentzero.ooo/wiki/sources/nd-coreboot-measured-boot.html.md)
 - [coreboot: verified boot (vboot)](https://silentzero.ooo/wiki/sources/nd-coreboot-vboot.html.md)
+- [Intel FSP binaries (repository README)](https://silentzero.ooo/wiki/sources/nd-intel-fsp-binaries.html.md)

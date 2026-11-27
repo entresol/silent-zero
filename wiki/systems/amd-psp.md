@@ -1,9 +1,9 @@
 ---
 type: system
 status: reviewed
-sources: [nd-coreboot-amd-psp]
+sources: [nd-coreboot-amd-psp, nd-amd-opensil]
 short: AMD's on-die processor that starts first
-updated: 2026-11-26
+updated: 2026-11-27
 ---
 
 # AMD Platform Security Processor (PSP)
@@ -18,6 +18,8 @@ The only source in the wiki is coreboot's integration guide, which documents how
 
 The firmware is AMD's and is not open in this source. The coreboot tools `amdfwtool` and `amdcompress` that assemble the image are part of coreboot; their licence is not covered by the wiki's sources.
 
+AMD also publishes an open library for silicon initialisation, [[amd-opensil]]; its README, as the wiki read it, does not mention the PSP and covers a server proof of concept ([[nd-amd-opensil]]).
+
 ## Open questions
 
-- Whether any open replacement exists, and what the PSP can access once the x86 cores run. See [[root-of-trust]] and [[coreboot]].
+- Whether any open replacement for the PSP firmware exists, and what the PSP can access once the x86 cores run. See [[root-of-trust]] and [[coreboot]].

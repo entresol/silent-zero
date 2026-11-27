@@ -36,4 +36,5 @@ The pattern and its remedy have been established since 1988; Miller generalises 
 - [Prompt injection](https://silentzero.ooo/wiki/concepts/prompt-injection.html.md)
 - [Landlock](https://silentzero.ooo/wiki/systems/landlock.html.md)
 - [OpenShell](https://silentzero.ooo/wiki/systems/openshell.html.md)
+- [CARI: cross-boundary adversarial runtime injection in coding-agent workflows](https://silentzero.ooo/wiki/sources/2026-fu-cari-cross-boundary.html.md)
 - [Linux kernel documentation: Landlock](https://silentzero.ooo/wiki/sources/nd-linux-landlock-unprivileged-access.html.md)
