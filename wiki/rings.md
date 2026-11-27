@@ -134,9 +134,9 @@ Vendor firmware, distributions and other platforms; for the daily run once the t
 - [x] nd-coreboot-payloads
 - [x] nd-coreboot-amd-psp
 - [x] nd-coreboot-intel-fsp
-- [ ] nd-intel-fsp-binaries
-- [ ] nd-amd-opensil
-- [ ] nd-me-cleaner
+- [x] nd-intel-fsp-binaries
+- [x] nd-amd-opensil
+- [x] nd-me-cleaner
 - [ ] nd-heads
 - [ ] nd-linuxboot
 - [ ] nd-oreboot

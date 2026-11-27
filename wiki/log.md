@@ -261,3 +261,11 @@ Source added to the pool today, daily run. Created: one source page, read in ful
 ## [2026-11-26] ingest | nd-coreboot-payloads, nd-coreboot-amd-psp, nd-coreboot-intel-fsp
 
 Backlog, in the order of the rings (firmware and boot, periphery); no decision is open, so the limit did not hold. Created: three source pages (the AMD page read partly: overview, structures, tools and references, not the byte layouts of every entry type) and the system pages [[amd-psp]] and [[intel-fsp]]. Changed: [[coreboot]] (a section on payloads, the PSP and the FSP, the documentation's licence), [[root-of-trust]] (an open point), [[bootloader]] (a PC row entry on payloads), index, rings. The payloads page does not say whether SeaBIOS can start Multiboot kernels, so whether a zOS loader can start a Microkit image from coreboot stays open. All three pages are coreboot's documentation, not AMD's or Intel's. No question for the team.
+
+## [2026-11-27] ingest | 2026-fu-cari-cross-boundary
+
+Source added to the pool today, daily run. Created: one source page, read in part (the appendices not read; no claim rests on them). Changed: [[prompt-injection]] (a paragraph on injection through a peer component's runtime feedback), [[broker]] (a table row), index. The attack set-up is synthetic and the defences tested are system prompts only; the page says so. No question for the team.
+
+## [2026-11-27] ingest | nd-intel-fsp-binaries, nd-amd-opensil, nd-me-cleaner
+
+Backlog, in the order of the rings (firmware and boot, periphery); no decision is open, so the limit did not hold. Created: three source pages, all read in full (short READMEs), and the system pages [[intel-me]] and [[amd-opensil]]. Changed: [[intel-fsp]] (Intel's binary repository), [[amd-psp]] (a pointer to openSIL), [[coreboot]] (a sentence on the ME), [[root-of-trust]] (the PC open point now names ME, FSP binaries and openSIL), index, rings. The me_cleaner page is the project's own account of the ME, not Intel's; the openSIL README is undated and its roadmap line "trending 2026" was not checked. The licence of Intel's binaries is not stated in the source. No question for the team.

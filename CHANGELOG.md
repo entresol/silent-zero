@@ -4,6 +4,10 @@ What changed in substance, newest first: in the paper, on its page and in the pr
 
 Format: `## <version> · <scope>`, then one paragraph. A paper version is `YYYY-MM-DD-vX.Y` and has its own PDF in `versions/`; the newest one is the version the build prints on the paper and the page. A change without a new paper version carries only its date (`YYYY-MM-DD`). Scope is `Paper`, `Site` or `Project`. The build turns this file into the list at the end of the page.
 
+## 2026-11-27 · Site
+
+The wiki worked in four sources: CARI, a preprint on injecting instructions through the runtime feedback of a component a coding agent must call, and three READMEs on PC firmware (Intel's FSP binaries, AMD's openSIL, the me_cleaner project's account of the Intel ME). Four source pages were created, and two system pages, Intel ME and AMD openSIL. Pages changed in substance: prompt injection (a further attack path and its measured defences), the broker (a table row), root of trust, Intel FSP, AMD PSP and coreboot (what the three READMEs add). New lexicon terms: Intel ME, AMD openSIL.
+
 ## 2026-11-26 · Site
 
 The wiki worked in four sources: Safe-Night VLA, a thermal-perception robot policy with a barrier-function filter on modelled boundaries, and three pages of coreboot's documentation on payloads, the AMD Platform Security Processor and Intel's Firmware Support Package. Four source pages were created, with system pages for the AMD PSP and the FSP. The pages on control barrier functions, the safety path and coreboot changed in substance; the root-of-trust and bootloader pages got a line each. New lexicon terms: AMD PSP, Intel FSP.
