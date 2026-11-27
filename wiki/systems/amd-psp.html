@@ -475,7 +475,7 @@ p.other { margin-top: 2.2rem; color: var(--muted); font-size: 0.95rem; }
     <div class="titleblock">
       <h1 class="name">AMD Platform Security Processor (PSP)</h1>
       <p class="sub">AMD’s on-die processor that starts first and runs signed firmware; documented only through coreboot’s image guide.</p>
-      <p class="ver">System · <a href="/wiki/#how">LLM reviewed</a> · updated 26 Nov 2026 · 1 source</p>
+      <p class="ver">System · <a href="/wiki/#how">LLM reviewed</a> · updated 27 Nov 2026 · 2 sources</p>
     </div>
   </div>
 </header>
@@ -488,17 +488,18 @@ p.other { margin-top: 2.2rem; color: var(--muted); font-size: 0.95rem; }
 <p>The only source in the wiki is coreboot’s integration guide, which documents how its image carries PSP firmware: a signed boot loader whose public key the on-chip boot code uses, a recovery loader, a “SecureOS” with a firmware TPM, and boot loaders that set up memory before the main cores start. The page does not describe the firmware’s behaviour; AMD’s details are under non-disclosure (<a href="/wiki/sources/nd-coreboot-amd-psp.html">coreboot: AMD PSP firmware integration guide</a>).</p>
 <h2 id="licence-and-code">Licence and code</h2>
 <p>The firmware is AMD’s and is not open in this source. The coreboot tools <code>amdfwtool</code> and <code>amdcompress</code> that assemble the image are part of coreboot; their licence is not covered by the wiki’s sources.</p>
+<p>AMD also publishes an open library for silicon initialisation, <a href="/wiki/systems/amd-opensil.html">AMD openSIL</a>; its README, as the wiki read it, does not mention the PSP and covers a server proof of concept (<a href="/wiki/sources/nd-amd-opensil.html">AMD openSIL (repository README)</a>).</p>
 <h2 id="open-questions">Open questions</h2>
 <ul>
-<li>Whether any open replacement exists, and what the PSP can access once the x86 cores run. See <a href="/wiki/design/root-of-trust.html">Root of trust and firmware</a> and <a href="/wiki/systems/coreboot.html">coreboot</a>.</li>
+<li>Whether any open replacement for the PSP firmware exists, and what the PSP can access once the x86 cores run. See <a href="/wiki/design/root-of-trust.html">Root of trust and firmware</a> and <a href="/wiki/systems/coreboot.html">coreboot</a>.</li>
 </ul>
 
 <h2 id="page-sources">Sources</h2>
 <p class="links-note">What this page rests on.</p>
-<ul class="linked-from"><li><a href="/wiki/sources/nd-coreboot-amd-psp.html">coreboot: AMD PSP firmware integration guide</a></li></ul>
+<ul class="linked-from"><li><a href="/wiki/sources/nd-amd-opensil.html">AMD openSIL (repository README)</a></li><li><a href="/wiki/sources/nd-coreboot-amd-psp.html">coreboot: AMD PSP firmware integration guide</a></li></ul>
 <h2 id="related-pages">Related pages</h2>
 <p class="links-note">Pages this one links to, and pages that link here.</p>
-<ul class="linked-from"><li><a href="/wiki/design/root-of-trust.html">Root of trust and firmware</a> <span class="kind">Design</span></li><li><a href="/wiki/systems/coreboot.html">coreboot</a> <span class="kind">System</span></li></ul>
+<ul class="linked-from"><li><a href="/wiki/design/root-of-trust.html">Root of trust and firmware</a> <span class="kind">Design</span></li><li><a href="/wiki/systems/amd-opensil.html">AMD openSIL</a> <span class="kind">System</span></li><li><a href="/wiki/systems/coreboot.html">coreboot</a> <span class="kind">System</span></li></ul>
   </article>
 </div>
 <footer><div><span class="about"><span>Silent Zero OS</span><span class="sep"> · </span><span>Wiki</span><span class="sep"> · </span><span>Text <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></span></span><span class="links"><a href="/">Paper</a> <a href="https://github.com/entresol/silent-zero/tree/main/wiki">GitHub</a> <a href="https://unwritten.studio/impressum">Imprint</a></span></div></footer>

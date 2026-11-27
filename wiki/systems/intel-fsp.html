@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Intel Firmware Support Package (FSP) · Silent Zero wiki</title>
-<meta name="description" content="Intel’s binary initialisation code that coreboot calls; seven bugs collected by coreboot.">
+<meta name="description" content="Intel’s binary initialisation code that coreboot calls; seven bugs collected by coreboot; Intel posts the binaries per platform.">
 <link rel="canonical" href="https://silentzero.ooo/wiki/systems/intel-fsp.html">
 <link rel="alternate" type="text/markdown" href="/wiki/systems/intel-fsp.html.md">
 <link rel="icon" href="/favicon.ico?v=227f1130" sizes="32x32">
@@ -474,8 +474,8 @@ p.other { margin-top: 2.2rem; color: var(--muted); font-size: 0.95rem; }
     <p class="crumbs"><a href="/">Silent Zero OS</a> · <a href="/wiki/">Wiki</a></p>
     <div class="titleblock">
       <h1 class="name">Intel Firmware Support Package (FSP)</h1>
-      <p class="sub">Intel’s binary initialisation code that coreboot calls; seven bugs collected by coreboot.</p>
-      <p class="ver">System · <a href="/wiki/#how">LLM reviewed</a> · updated 26 Nov 2026 · 1 source</p>
+      <p class="sub">Intel’s binary initialisation code that coreboot calls; seven bugs collected by coreboot; Intel posts the binaries per platform.</p>
+      <p class="ver">System · <a href="/wiki/#how">LLM reviewed</a> · updated 27 Nov 2026 · 2 sources</p>
     </div>
   </div>
 </header>
@@ -486,8 +486,9 @@ p.other { margin-top: 2.2rem; color: var(--muted); font-size: 0.95rem; }
 <p>The page names Intel’s Firmware Support Package, which coreboot configures through parameters called UPDs (<a href="/wiki/sources/nd-coreboot-intel-fsp.html">coreboot: Intel FSP documentation</a>). Our reading: it is Intel’s binary firmware for initialisation, the names FSP-M and FSP-S point to a memory part and a silicon part, and <a href="/wiki/sources/nd-coreboot-vboot.html">coreboot: verified boot (vboot)</a> lists <code>fspm.bin</code> and <code>fsps.bin</code> in the read-write firmware.</p>
 <h2 id="state-november-2026">State, November 2026</h2>
 <p>coreboot’s documentation links the open FSP specification, versions 1.0 to 2.1, and the official FSP bug tracker. It says Intel does not list known bugs and collects seven for four platform families, two without a workaround. Its integration rule is that an FSP-based boot should be replaceable by a native implementation without touching the mainboard code (<a href="/wiki/sources/nd-coreboot-intel-fsp.html">coreboot: Intel FSP documentation</a>).</p>
+<p>Intel posts the binaries in a GitHub repository, one directory per platform: seventeen in the README, from Skylake and Braswell to Raptor Lake, with Atom and Xeon parts, mostly at specification v2.0 to v2.3, older ones in a legacy branch (<a href="/wiki/sources/nd-intel-fsp-binaries.html">Intel FSP binaries (repository README)</a>).</p>
 <h2 id="licence-and-code">Licence and code</h2>
-<p>Our reading: the binaries are Intel’s. Their licence is not covered by the wiki’s sources.</p>
+<p>The repository holds binaries; its README names licences only for three third-party components (EDK2, EDK2-Platforms, OpenSSL). The licence of the binaries themselves is not covered by the wiki’s sources (<a href="/wiki/sources/nd-intel-fsp-binaries.html">Intel FSP binaries (repository README)</a>). Our reading: the FSP is distributed only as binaries; Intel’s other proprietary component on the same boards is <a href="/wiki/systems/intel-me.html">Intel Management Engine (ME)</a>.</p>
 <h2 id="open-questions">Open questions</h2>
 <ul>
 <li>Which Intel boards boot without the FSP, and what runs in it that nothing else can check. See <a href="/wiki/design/root-of-trust.html">Root of trust and firmware</a> and <a href="/wiki/systems/coreboot.html">coreboot</a>.</li>
@@ -495,10 +496,10 @@ p.other { margin-top: 2.2rem; color: var(--muted); font-size: 0.95rem; }
 
 <h2 id="page-sources">Sources</h2>
 <p class="links-note">What this page rests on.</p>
-<ul class="linked-from"><li><a href="/wiki/sources/nd-coreboot-intel-fsp.html">coreboot: Intel FSP documentation</a></li></ul>
+<ul class="linked-from"><li><a href="/wiki/sources/nd-coreboot-intel-fsp.html">coreboot: Intel FSP documentation</a></li><li><a href="/wiki/sources/nd-intel-fsp-binaries.html">Intel FSP binaries (repository README)</a></li></ul>
 <h2 id="related-pages">Related pages</h2>
 <p class="links-note">Pages this one links to, and pages that link here.</p>
-<ul class="linked-from"><li><a href="/wiki/design/root-of-trust.html">Root of trust and firmware</a> <span class="kind">Design</span></li><li><a href="/wiki/systems/coreboot.html">coreboot</a> <span class="kind">System</span></li><li><a href="/wiki/sources/nd-coreboot-vboot.html">coreboot: verified boot (vboot)</a> <span class="kind">Source</span></li></ul>
+<ul class="linked-from"><li><a href="/wiki/design/root-of-trust.html">Root of trust and firmware</a> <span class="kind">Design</span></li><li><a href="/wiki/systems/coreboot.html">coreboot</a> <span class="kind">System</span></li><li><a href="/wiki/systems/intel-me.html">Intel Management Engine (ME)</a> <span class="kind">System</span></li><li><a href="/wiki/sources/nd-coreboot-vboot.html">coreboot: verified boot (vboot)</a> <span class="kind">Source</span></li></ul>
   </article>
 </div>
 <footer><div><span class="about"><span>Silent Zero OS</span><span class="sep"> · </span><span>Wiki</span><span class="sep"> · </span><span>Text <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></span></span><span class="links"><a href="/">Paper</a> <a href="https://github.com/entresol/silent-zero/tree/main/wiki">GitHub</a> <a href="https://unwritten.studio/impressum">Imprint</a></span></div></footer>

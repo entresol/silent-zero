@@ -1,9 +1,9 @@
 ---
 type: concept
 status: reviewed
-sources: [2026-nasr-attacker-moves-second, 2025-debenedetti-defeating-prompt-injections, 2023-greshake-not-what-you, 2025-costa-securing-ai-agents, 2026-shen-mcp-38-comprehensive, 2026-wu-mosaic-knowledge-guided, 2026-peters-gill-can-camels, 2026-li-toolfence-fine-grained, 2026-chinaei-causality-laundering-denial, 2026-narisetty-adaptive-evaluation-out, 2026-maloyan-breaking-protocol-security, 2026-huang-model-context-protocol, 2026-nikolaou-camelot-camel-orchestrated, 2026-li-pace-provenance-aware]
+sources: [2026-nasr-attacker-moves-second, 2025-debenedetti-defeating-prompt-injections, 2023-greshake-not-what-you, 2025-costa-securing-ai-agents, 2026-shen-mcp-38-comprehensive, 2026-wu-mosaic-knowledge-guided, 2026-peters-gill-can-camels, 2026-li-toolfence-fine-grained, 2026-chinaei-causality-laundering-denial, 2026-narisetty-adaptive-evaluation-out, 2026-maloyan-breaking-protocol-security, 2026-huang-model-context-protocol, 2026-nikolaou-camelot-camel-orchestrated, 2026-li-pace-provenance-aware, 2026-fu-cari-cross-boundary]
 glossary: Prompt injection
-updated: 2026-11-21
+updated: 2026-11-27
 ---
 
 # Prompt injection
@@ -26,6 +26,8 @@ An October 2026 preprint shows that the guarantee of CaMeL does not carry over t
 Two further preprints bear on the defences around the model. ToolFence compiles a typed authorization blueprint from the user's request, with a model call that sees only the request and the tool schemas, and checks every tool call against it with a deterministic monitor; a model judge may grant capabilities the blueprint missed, seeing their shape and not the argument values. On AgentDojo it reached 0.20 per cent attack success with Qwen3-max against 0.42 per cent for CaMeL, with a lower runtime cost, against AgentDojo's fixed attacks; the authors claim no formal guarantee ([[2026-li-toolfence-fine-grained]]). A single-author preprint argues that a denied tool call is itself a channel, since the agent can infer from the refusal what exists and pass it on, and proposes a monitor that records denials; its evidence is three constructed scenarios ([[2026-chinaei-causality-laundering-denial]]).
 
 A September 2026 preprint, CaMeLoT, adds a static plan check on top of CaMeL that rejects plans violating temporal rules (ordering, approval, liveness) before any tool runs; it measures coverage and agreement with CaMeL, not attack success ([[2026-nikolaou-camelot-camel-orchestrated]]). PACE, a preprint, ran a reduced-scale adaptive search on one open model (30 out-of-authority AgentDojo goals, a mutator, 50 episodes each) and got 0 of 30 successes against PACE and 21 of 30 undefended; it did not attack goals inside the granted authority, and 59.6 per cent of AgentDojo pairs were out of authority already ([[2026-li-pace-provenance-aware]], §5.2, E.2, F.2).
+
+An October 2026 preprint, CARI, puts the injection into the runtime feedback of a component the agent must call, such as a backend, a test run or a CI job: it may report its state, and has no authority to act on the victim's files or credentials. In the authors' synthetic set-up (four languages, five models, ten attacks, 15 trials each) it succeeded in 2,845 of 3,000 trials, and, on the Python target, in 61.3 per cent for Codex and 58.7 per cent for Claude Code; less explicit wording restored success on payloads the products had stopped. For three actions in the authors' harness, the same payload succeeded in 8.9 per cent (GPT-5.4-mini) and 2.2 per cent (Claude Sonnet 4.5) as a static artifact and in 93.3 and 97.8 per cent as an action-triggered diagnostic. A generic warning in the system prompt gave limited protection (94.7 per cent success on Claude Sonnet 4.5, 66.0 on GPT-5.4-mini); an attack-aware policy cut it to 6.0 and 11.3 per cent and let benign tasks fall to 60.7 and 20.7 per cent, against non-adaptive attacks ([[2026-fu-cari-cross-boundary]]). The authors test no defence outside the model.
 
 ## Open questions
 

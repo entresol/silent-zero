@@ -14,13 +14,13 @@ The catalogue of every page, with one line each. Read this first.
 - [[broker]] · the only component that hands out authority: capability patterns, CaMeL and FIDES, why model-based defences fail, three agent-OS designs for the same job, CaMeL between agents; nothing proven yet; the industry's agent sandboxes grant by resource; IntentCap and Agate are the nearest published neighbours; a budget for cumulative irreversible exposure. 35 sources.
 - [[real-time-loops]] · the loops that move the motors: asynchronous chunks from slow models, policies trained for a delay range, observed timings, per-step costs of two barrier filters, no proven bound yet. 20 sources.
 - [[safety-path]] · Simplex in zOS: the agent proposes, the loop disposes; tested, not proven; the paper's 2001 date disputed by a 1994 origin; certified real-time kernels sell the same split as products; three more barrier filters, guarantees conditional on perception or on modelled geometry. 20 sources.
-- [[root-of-trust]] · the firmware below the kernel on Arm, RISC-V, PC and Raspberry Pi; OpenTitan, Caliptra, DICE; all *assumed* in the paper's terms; AMD PSP and Intel FSP through coreboot's documentation. 15 sources.
+- [[root-of-trust]] · the firmware below the kernel on Arm, RISC-V, PC and Raspberry Pi; OpenTitan, Caliptra, DICE; all *assumed* in the paper's terms; AMD PSP through coreboot's documentation, Intel FSP binaries and ME, AMD's open library. 18 sources.
 - [[bootloader]] · where the zOS loader sits on each platform, signed and measured boot, proofs about boot code so far; the loader itself unproven; coreboot's payloads. 17 sources.
 - [[drivers]] · user-mode drivers, the first verified Ethernet driver, DMA and the IOMMU as assumed, attacked in 2019 although enabled; device models from Verilog and Windows on x86-64 as first steps; the Pancake paper adds the language and its limits. 13 sources.
 
 ## Not yet covered
 
-The zOS part *agents* has no page yet; [[agent-operating-systems]] covers the designs that touch it. Firmware on PCs (Intel ME, open alternatives; AMD PSP and FSP only through coreboot's documentation) and on Apple silicon is in the backlog. Also not yet covered: the multicore proof, the ratification status of CHERI for RISC-V after April 2026 (the sources here stop there), the seams between proven parts and the driver island.
+The zOS part *agents* has no page yet; [[agent-operating-systems]] covers the designs that touch it. Firmware on PCs beyond these (Heads, LinuxBoot, oreboot, Dasharo) and on Apple silicon is in the backlog. Also not yet covered: the multicore proof, the ratification status of CHERI for RISC-V after April 2026 (the sources here stop there), the seams between proven parts and the driver island.
 
 ## Systems
 
@@ -28,8 +28,10 @@ The zOS part *agents* has no page yet; [[agent-operating-systems]] covers the de
 - [[microkit]] · the build system for static seL4 systems: protection domains, channels, budgets, one image. 7 sources.
 - [[lionsos]] · static OS from small components on seL4 and Microkit; first driver verified; Summit 2026 talks on x86-64 VMs and driver specifications. 9 sources.
 - [[coreboot]] · open firmware in stages with a fixed payload; verified and measured boot; closed vendor parts on x86, its payloads. 6 sources.
-- [[amd-psp]] · AMD's on-die processor that starts first and runs signed firmware; documented only through coreboot's image guide. 1 source.
-- [[intel-fsp]] · Intel's binary initialisation code that coreboot calls; seven bugs collected by coreboot. 1 source.
+- [[amd-psp]] · AMD's on-die processor that starts first and runs signed firmware; documented only through coreboot's image guide. 2 sources.
+- [[amd-opensil]] · AMD's open C libraries for silicon start-up; a server proof of concept, MIT. 1 source.
+- [[intel-fsp]] · Intel's binary initialisation code that coreboot calls; seven bugs collected by coreboot; Intel posts the binaries per platform. 2 sources.
+- [[intel-me]] · Intel's signed co-processor in PC chipsets; a script reduces its firmware but cannot remove it. 1 source.
 - [[tf-a]] · Arm's reference firmware; BL31 stays resident at EL3 below the kernel. 2 sources.
 - [[opensbi]] · RISC-V firmware in machine mode below the kernel. 3 sources.
 - [[raspberry-pi]] · the pib's board: closed ROM and EEPROM boot, secure-boot key in OTP on the Pi 4, seL4 verified without MCS. 4 sources.
@@ -63,7 +65,7 @@ The zOS part *agents* has no page yet; [[agent-operating-systems]] covers the de
 - [[functional-correctness]] · what seL4's refinement proof gives, what it assumes, where it holds. 5 sources.
 - [[object-capabilities]] · references that both designate and authorise; permission versus authority; caretaker and membrane. 7 sources.
 - [[confused-deputy]] · a program misusing one party's authority for another's request; capabilities as the remedy. 4 sources.
-- [[prompt-injection]] · instructions hidden in data an agent reads; heuristic defences fail, defences around the model hold within limits; benign command chains through shared state beat two of them; CaMeL does not carry over between agents; argument-level authorization and refusals as a leak; MCP measured. 14 sources.
+- [[prompt-injection]] · instructions hidden in data an agent reads; heuristic defences fail, defences around the model hold within limits; benign command chains through shared state beat two of them; CaMeL does not carry over between agents; argument-level authorization and refusals as a leak; MCP measured; injection through a peer component's runtime feedback. 15 sources.
 - [[verified-boot]] · each stage checks the next against a key the attacker cannot change; proofs about boot code so far. 6 sources.
 - [[measured-boot]] · each stage records what runs next; TPM and DICE; a verified DICE implementation. 4 sources.
 - [[time-protection]] · closing timing channels between domains; prototypes on CVA6, proof for seL4 in progress. 5 sources.
@@ -131,6 +133,9 @@ The zOS part *agents* has no page yet; [[agent-operating-systems]] covers the de
 - [[nd-coreboot-payloads]] · the payloads coreboot can start: ELF, SeaBIOS, edk2, GRUB2, Linux, Heads; nothing on verification. report, full text.
 - [[nd-coreboot-amd-psp]] · how the AMD PSP's firmware is laid out in a coreboot image; AMD's details under non-disclosure. report, partly read.
 - [[nd-coreboot-intel-fsp]] · coreboot's integration rule for Intel's FSP and its list of seven FSP bugs. report, full text.
+- [[nd-intel-fsp-binaries]] · Intel's repository of FSP binaries, seventeen platform directories; the binaries' licence not stated. report, full text.
+- [[nd-amd-opensil]] · AMD's openSIL README: open C libraries, proof of concept for 4th Gen EPYC on one board, production phase "trending 2026". report, full text.
+- [[nd-me-cleaner]] · the me_cleaner README: what the Intel ME is and how far its firmware can be cut. report, full text.
 - [[nd-coreboot-measured-boot]] · TPM measurements, a software-rooted first measurement, vendor hardware roots behind it. report, full text.
 - [[nd-chromeos-verified-boot]] · Chromium OS's design: against the opportunistic attacker, the owner keeps control, rollback a weakness. design, full text.
 - [[nd-tfa-firmware-design]] · Arm's boot stages BL1 to BL33; BL31 resident at EL3. report, cold boot and runtime services.
@@ -192,6 +197,7 @@ The zOS part *agents* has no page yet; [[agent-operating-systems]] covers the de
 - [[2025-li-osvbench-benchmarking-llms]] · OSVBench: 245 Hyperkernel tasks for LLM specification writing; best Pass@1 55.10 %, 0 % on five models without examples. measurement, full text.
 - [[2025-tu-agentic-verification-software]] · AutoRocq: an agent proves 48.0 % of CoqGym lemmas, 30.9 % of SV-COMP C lemmas. measurement, full text.
 - [[2025-zhao-verifying-device-drivers]] · Pancake: language, compiler and a verified Ethernet driver; the transpiler is unverified. proof, full text.
+- [[2026-fu-cari-cross-boundary]] · CARI: instructions in a peer component's runtime feedback; 2,845 of 3,000 trials succeed in the authors' harness, 58.7 and 61.3 per cent on two product agents. test, partly read.
 - [[2026-li-pace-provenance-aware]] · PACE: tool calls checked against a capability compiled from the authenticated request; 0 of 30 out-of-authority goals succeeded in a reduced adaptive search; premises unproved. test, full text.
 - [[2026-nikolaou-camelot-camel-orchestrated]] · CaMeLoT: a static temporal check of the agent's plan before execution, on top of CaMeL; coverage and agreement with CaMeL, no attack-success figures. test, full text.
 - [[2026-jager-context-dependent-runtime]] · a Simplex whose switching rule is built from design-time artifacts with several safe controllers; one-step prediction enough in simulation, about 15 periods needed on hardware. test, full text.
