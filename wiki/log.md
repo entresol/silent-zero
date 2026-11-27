@@ -264,7 +264,7 @@ Backlog, in the order of the rings (firmware and boot, periphery); no decision i
 
 ## [2026-11-27] ingest | 2026-fu-cari-cross-boundary
 
-Source added to the pool today, daily run. Created: one source page, read in part (the appendices not read; no claim rests on them). Changed: [[prompt-injection]] (a paragraph on injection through a peer component's runtime feedback), [[broker]] (a table row), index. The attack set-up is synthetic and the defences tested are system prompts only; the page says so. No question for the team.
+Source added to the pool today, daily run. Created: one source page, read in part (the appendices not read; no claim rests on them). Changed: [[prompt-injection]] (a paragraph on injection through a peer component's runtime feedback), index. The [[broker]] page stands at 19,995 bytes, 5 under the build's limit of 20,000, so the row planned for it was left out; the page wants splitting before it can take more (the case is on the source page and in prompt-injection). The attack set-up is synthetic and the defences tested are system prompts only; the page says so. No question for the team.
 
 ## [2026-11-27] ingest | nd-intel-fsp-binaries, nd-amd-opensil, nd-me-cleaner
 

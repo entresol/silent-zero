@@ -1,7 +1,7 @@
 ---
 type: source
 id: nd-me-cleaner
-status: drafted
+status: reviewed
 read: full
 kind: report
 sources: [nd-me-cleaner]
@@ -14,8 +14,8 @@ The README of the me_cleaner project, a Python script that modifies an Intel ME 
 
 ## What it shows
 
-- **What the ME is.** The README calls Intel ME a co-processor in all post-2006 Intel boards, the base of features such as AMT, Boot Guard and PAVP, with full access to the system including memory through DMA and network access invisible to the user. Its firmware can be neither disabled nor reimplemented, because it is signed and tied into the boot.
-- **What can be done, by generation.** Before Nehalem (ME version 6, 2008/2009) the ME could be removed by setting bits in the flash descriptor. From Nehalem on a missing valid firmware makes the PC shut off after 30 minutes, which the README guesses to be an anti-theft measure. The tool reduces the firmware to the modules the boot needs: ROMP and BUP for versions 6 to 10 (about 90 kB, from 1.5 or 5 MB), and four modules (rbe, kernel, syslib, bup) from version 11 on, Skylake onwards (about 300 kB, from 2 or 7 MB). It states that the ME is then active only during boot.
+- **What the ME is.** The README calls Intel ME a co-processor in all post-2006 Intel boards, the base of features such as AMT, Boot Guard and PAVP, which requires, in its words, full access to the system including memory through DMA and network access invisible to the user. Its firmware can be neither disabled nor reimplemented, because it is signed and tied into the boot.
+- **What can be done, by generation.** Before Nehalem (ME version 6, 2008/2009) the ME could be removed by setting bits in the flash descriptor. From Nehalem on a missing valid firmware makes the PC shut off after 30 minutes, which the README guesses to be an anti-theft measure. The tool reduces the firmware to the modules the boot needs: ROMP and BUP for versions 6 to 10 (about 90 kB, from 1.5 or 5 MB), and four modules (rbe, kernel, syslib, bup) from version 11 on, Skylake onwards (about 300 kB, from 2 or 7 MB). It says the aim is that the ME is then active only during boot.
 - **Side effects.** On some boards the vendor firmware does not boot without a valid ME; elsewhere there may be longer boot times or warnings. The ME's features stop working.
 - **Practice.** Reading and rewriting the image usually needs an external SPI programmer, because the region is often not writable from the operating system.
 
@@ -25,7 +25,7 @@ A description of a tool and its results by generation; no measurement or test ta
 
 ## Limits
 
-The README is the authors' own account, undated, and written by people reducing the ME, not by Intel; it gives no evidence for the DMA and network claims. It does not say what a reduced ME can still do while running, and the claim that it is active only during boot is the tool's goal, not a proof. Newer ME generations than the README names are not covered.
+The README is the authors' own account, undated, and written by people reducing the ME, not by Intel; it gives no evidence for the DMA and network claims. It does not say what a reduced ME can still do while running, and the claim that it is active only during boot is the tool's goal, not a proof. The README is undated and names no generation after "version >= 11"; whether it still holds for the newest ones is not covered.
 
 ## Against the wiki
 

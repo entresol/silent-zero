@@ -1,7 +1,7 @@
 ---
 type: source
 id: nd-amd-opensil
-status: drafted
+status: reviewed
 read: full
 kind: report
 sources: [nd-amd-opensil]
@@ -20,7 +20,7 @@ The README of AMD's openSIL repository, "Genoa Proof-of-Concept"; undated, and t
 
 ## How
 
-A project README. It states no tests or measurements.
+A project README. It reports no test results or measurements; it says only that all testing was done on the Onyx reference board.
 
 ## Limits
 
@@ -33,4 +33,4 @@ The page does not mention the Platform Security Processor, so nothing here says 
 
 ## For zOS
 
-[[root-of-trust]]: no change of state. Our reading: AMD's open library is a server proof of concept as of the page, not a path to an open PC profile for zOS.
+[[root-of-trust]]: no change of state. Our reading: AMD's open library is a server proof of concept as of the page, nothing on the page points to a PC profile; it lists only a server part, and the "additional platforms" of phase III are not itemised.

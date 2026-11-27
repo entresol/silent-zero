@@ -1,6 +1,6 @@
 ---
 type: system
-status: drafted
+status: reviewed
 sources: [nd-amd-opensil]
 short: AMD's open C libraries for silicon start-up
 updated: 2026-11-27

@@ -6,7 +6,7 @@ Format: `## <version> · <scope>`, then one paragraph. A paper version is `YYYY-
 
 ## 2026-11-27 · Site
 
-The wiki worked in four sources: CARI, a preprint on injecting instructions through the runtime feedback of a component a coding agent must call, and three READMEs on PC firmware (Intel's FSP binaries, AMD's openSIL, the me_cleaner project's account of the Intel ME). Four source pages were created, and two system pages, Intel ME and AMD openSIL. Pages changed in substance: prompt injection (a further attack path and its measured defences), the broker (a table row), root of trust, Intel FSP, AMD PSP and coreboot (what the three READMEs add). New lexicon terms: Intel ME, AMD openSIL.
+The wiki worked in four sources: CARI, a preprint on injecting instructions through the runtime feedback of a component a coding agent must call, and three READMEs on PC firmware (Intel's FSP binaries, AMD's openSIL, the me_cleaner project's account of the Intel ME). Four source pages were created, and two system pages, Intel ME and AMD openSIL. Pages changed in substance: prompt injection (a further attack path and its measured defences), root of trust, Intel FSP, AMD PSP and coreboot (what the three READMEs add). New lexicon terms: Intel ME, AMD openSIL.
 
 ## 2026-11-26 · Site
 
