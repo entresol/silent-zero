@@ -469,7 +469,7 @@ p.other { margin-top: 2.2rem; color: var(--muted); font-size: 0.95rem; }
     <div class="titleblock">
       <h1 class="name">Wiki</h1>
       <p class="sub">What the sources behind the paper show, page by page.</p>
-      <p class="ver">209 pages · updated 25 Nov 2026 · <a href="#how">How this wiki is made</a></p>
+      <p class="ver">215 pages · updated 25 Nov 2026 · <a href="#how">How this wiki is made</a></p>
     </div>
   </div>
 </header>
@@ -477,7 +477,7 @@ p.other { margin-top: 2.2rem; color: var(--muted); font-size: 0.95rem; }
 <div class="layout">
   <nav class="toc" id="toc" aria-label="Contents"><p>Contents</p><ol><li class="toc-back"><a href="/">← The paper</a></li><li><a href="#top">↑ Top</a></li><li><a href="#how">How this wiki is made</a></li><li><a href="#design">Design</a></li><li><a href="#systems">Systems</a></li><li><a href="#concepts">Concepts</a></li><li><a href="#sources">Sources</a></li><li><a href="#not-yet-covered">Not yet covered</a></li></ol></nav>
   <article>
-<p>This wiki gathers what the sources behind the paper show. It has a page for each source, each concept, each system the paper builds on and each part of the design: 150 sources, 21 concepts, 30 systems and 8 parts of the design so far. Every page says what is proven, tested or assumed, and on which source that rests.</p>
+<p>This wiki gathers what the sources behind the paper show. It has a page for each source, each concept, each system the paper builds on and each part of the design: 154 sources, 21 concepts, 32 systems and 8 parts of the design so far. Every page says what is proven, tested or assumed, and on which source that rests.</p>
 <h2 id="how">How this wiki is made</h2>
 <p>A language model writes the wiki and keeps it up to date from the sources in the project’s research pool, after Andrej Karpathy’s idea of a wiki that a language model maintains. A daily run adds new sources and works older ones in.</p>
 <ul>
@@ -493,7 +493,7 @@ p.other { margin-top: 2.2rem; color: var(--muted); font-size: 0.95rem; }
 <li><a href="/wiki/design/broker.html">The broker</a> · the only component that hands out authority: capability patterns, CaMeL and FIDES, why model-based defences fail, three agent-OS designs for the same job, CaMeL between agents; nothing proven yet; the industry’s agent sandboxes grant by resource; IntentCap and Agate are the nearest published neighbours; a budget for cumulative irreversible exposure. 35 sources.</li>
 <li><a href="/wiki/design/real-time-loops.html">Real-time loops</a> · the loops that move the motors: asynchronous chunks from slow models, policies trained for a delay range, observed timings, per-step costs of two barrier filters, no proven bound yet. 20 sources.</li>
 <li><a href="/wiki/design/safety-path.html">The safety path</a> · Simplex in Silent Zero: the agent proposes, the loop disposes; tested, not proven; the paper’s 2001 date disputed by a 1994 origin; certified real-time kernels sell the same split as products; three more barrier filters, guarantees conditional on perception or on modelled geometry. 20 sources.</li>
-<li><a href="/wiki/design/root-of-trust.html">Root of trust and firmware</a> · the firmware below the kernel on Arm, RISC-V, PC and Raspberry Pi; OpenTitan, Caliptra, DICE; all <em>assumed</em> in the paper’s terms; AMD PSP and Intel FSP through coreboot’s documentation. 15 sources.</li>
+<li><a href="/wiki/design/root-of-trust.html">Root of trust and firmware</a> · the firmware below the kernel on Arm, RISC-V, PC and Raspberry Pi; OpenTitan, Caliptra, DICE; all <em>assumed</em> in the paper’s terms; AMD PSP through coreboot’s documentation, Intel FSP binaries and ME, AMD’s open library. 18 sources.</li>
 <li><a href="/wiki/design/bootloader.html">The bootloader</a> · where the Silent Zero loader sits on each platform, signed and measured boot, proofs about boot code so far; the loader itself unproven; coreboot’s payloads. 17 sources.</li>
 <li><a href="/wiki/design/drivers.html">Drivers</a> · user-mode drivers, the first verified Ethernet driver, DMA and the IOMMU as assumed, attacked in 2019 although enabled; device models from Verilog and Windows on x86-64 as first steps; the Pancake paper adds the language and its limits. 13 sources.</li>
 </ul>
@@ -503,8 +503,10 @@ p.other { margin-top: 2.2rem; color: var(--muted); font-size: 0.95rem; }
 <li><a href="/wiki/systems/microkit.html">Microkit</a> · the build system for static seL4 systems: protection domains, channels, budgets, one image. 7 sources.</li>
 <li><a href="/wiki/systems/lionsos.html">LionsOS</a> · static OS from small components on seL4 and Microkit; first driver verified; Summit 2026 talks on x86-64 VMs and driver specifications. 9 sources.</li>
 <li><a href="/wiki/systems/coreboot.html">coreboot</a> · open firmware in stages with a fixed payload; verified and measured boot; closed vendor parts on x86, its payloads. 6 sources.</li>
-<li><a href="/wiki/systems/amd-psp.html">AMD Platform Security Processor (PSP)</a> · AMD’s on-die processor that starts first and runs signed firmware; documented only through coreboot’s image guide. 1 source.</li>
-<li><a href="/wiki/systems/intel-fsp.html">Intel Firmware Support Package (FSP)</a> · Intel’s binary initialisation code that coreboot calls; seven bugs collected by coreboot. 1 source.</li>
+<li><a href="/wiki/systems/amd-psp.html">AMD Platform Security Processor (PSP)</a> · AMD’s on-die processor that starts first and runs signed firmware; documented only through coreboot’s image guide. 2 sources.</li>
+<li><a href="/wiki/systems/amd-opensil.html">AMD openSIL</a> · AMD’s open C libraries for silicon start-up; a server proof of concept, MIT. 1 source.</li>
+<li><a href="/wiki/systems/intel-fsp.html">Intel Firmware Support Package (FSP)</a> · Intel’s binary initialisation code that coreboot calls; seven bugs collected by coreboot; Intel posts the binaries per platform. 2 sources.</li>
+<li><a href="/wiki/systems/intel-me.html">Intel Management Engine (ME)</a> · Intel’s signed co-processor in PC chipsets; a script reduces its firmware but cannot remove it. 1 source.</li>
 <li><a href="/wiki/systems/tf-a.html">Trusted Firmware-A</a> · Arm’s reference firmware; BL31 stays resident at EL3 below the kernel. 2 sources.</li>
 <li><a href="/wiki/systems/opensbi.html">OpenSBI</a> · RISC-V firmware in machine mode below the kernel. 3 sources.</li>
 <li><a href="/wiki/systems/raspberry-pi.html">Raspberry Pi</a> · the pib’s board: closed ROM and EEPROM boot, secure-boot key in OTP on the Pi 4, seL4 verified without MCS. 4 sources.</li>
@@ -538,7 +540,7 @@ p.other { margin-top: 2.2rem; color: var(--muted); font-size: 0.95rem; }
 <li><a href="/wiki/concepts/functional-correctness.html">Functional correctness</a> · what seL4’s refinement proof gives, what it assumes, where it holds. 5 sources.</li>
 <li><a href="/wiki/concepts/object-capabilities.html">Object capabilities</a> · references that both designate and authorise; permission versus authority; caretaker and membrane. 7 sources.</li>
 <li><a href="/wiki/concepts/confused-deputy.html">Confused deputy</a> · a program misusing one party’s authority for another’s request; capabilities as the remedy. 4 sources.</li>
-<li><a href="/wiki/concepts/prompt-injection.html">Prompt injection</a> · instructions hidden in data an agent reads; heuristic defences fail, defences around the model hold within limits; benign command chains through shared state beat two of them; CaMeL does not carry over between agents; argument-level authorization and refusals as a leak; MCP measured. 14 sources.</li>
+<li><a href="/wiki/concepts/prompt-injection.html">Prompt injection</a> · instructions hidden in data an agent reads; heuristic defences fail, defences around the model hold within limits; benign command chains through shared state beat two of them; CaMeL does not carry over between agents; argument-level authorization and refusals as a leak; MCP measured; injection through a peer component’s runtime feedback. 15 sources.</li>
 <li><a href="/wiki/concepts/verified-boot.html">Verified boot</a> · each stage checks the next against a key the attacker cannot change; proofs about boot code so far. 6 sources.</li>
 <li><a href="/wiki/concepts/measured-boot.html">Measured boot</a> · each stage records what runs next; TPM and DICE; a verified DICE implementation. 4 sources.</li>
 <li><a href="/wiki/concepts/time-protection.html">Time protection</a> · closing timing channels between domains; prototypes on CVA6, proof for seL4 in progress. 5 sources.</li>
@@ -606,6 +608,9 @@ p.other { margin-top: 2.2rem; color: var(--muted); font-size: 0.95rem; }
 <li><a href="/wiki/sources/nd-coreboot-payloads.html">coreboot: payloads</a> · the payloads coreboot can start: ELF, SeaBIOS, edk2, GRUB2, Linux, Heads; nothing on verification. report, full text.</li>
 <li><a href="/wiki/sources/nd-coreboot-amd-psp.html">coreboot: AMD PSP firmware integration guide</a> · how the AMD PSP’s firmware is laid out in a coreboot image; AMD’s details under non-disclosure. report, partly read.</li>
 <li><a href="/wiki/sources/nd-coreboot-intel-fsp.html">coreboot: Intel FSP documentation</a> · coreboot’s integration rule for Intel’s FSP and its list of seven FSP bugs. report, full text.</li>
+<li><a href="/wiki/sources/nd-intel-fsp-binaries.html">Intel FSP binaries (repository README)</a> · Intel’s repository of FSP binaries, seventeen platform directories; the binaries’ licence not stated. report, full text.</li>
+<li><a href="/wiki/sources/nd-amd-opensil.html">AMD openSIL (repository README)</a> · AMD’s openSIL README: open C libraries, proof of concept for 4th Gen EPYC on one board, production phase “trending 2026”. report, full text.</li>
+<li><a href="/wiki/sources/nd-me-cleaner.html">me_cleaner (repository README)</a> · the me_cleaner README: what the Intel ME is and how far its firmware can be cut. report, full text.</li>
 <li><a href="/wiki/sources/nd-coreboot-measured-boot.html">coreboot: measured boot</a> · TPM measurements, a software-rooted first measurement, vendor hardware roots behind it. report, full text.</li>
 <li><a href="/wiki/sources/nd-chromeos-verified-boot.html">Chromium OS: Verified Boot (design document)</a> · Chromium OS’s design: against the opportunistic attacker, the owner keeps control, rollback a weakness. design, full text.</li>
 <li><a href="/wiki/sources/nd-tfa-firmware-design.html">Trusted Firmware-A: firmware design</a> · Arm’s boot stages BL1 to BL33; BL31 resident at EL3. report, cold boot and runtime services.</li>
@@ -667,6 +672,7 @@ p.other { margin-top: 2.2rem; color: var(--muted); font-size: 0.95rem; }
 <li><a href="/wiki/sources/2025-li-osvbench-benchmarking-llms.html">OSVBench</a> (Li et al. 2025) · OSVBench: 245 Hyperkernel tasks for LLM specification writing; best Pass@1 55.10 %, 0 % on five models without examples. measurement, full text.</li>
 <li><a href="/wiki/sources/2025-tu-agentic-verification-software.html">AutoRocq</a> (Tu et al. 2026) · AutoRocq: an agent proves 48.0 % of CoqGym lemmas, 30.9 % of SV-COMP C lemmas. measurement, full text.</li>
 <li><a href="/wiki/sources/2025-zhao-verifying-device-drivers.html">Verifying Device Drivers with Pancake</a> (Zhao et al. 2025) · Pancake: language, compiler and a verified Ethernet driver; the transpiler is unverified. proof, full text.</li>
+<li><a href="/wiki/sources/2026-fu-cari-cross-boundary.html">CARI: cross-boundary adversarial runtime injection in coding-agent workflows</a> · CARI: instructions in a peer component’s runtime feedback; 2,845 of 3,000 trials succeed in the authors’ harness, 58.7 and 61.3 per cent on two product agents. test, partly read.</li>
 <li><a href="/wiki/sources/2026-li-pace-provenance-aware.html">PACE, provenance-aware capability enforcement</a> (Li et al. 2026) · PACE: tool calls checked against a capability compiled from the authenticated request; 0 of 30 out-of-authority goals succeeded in a reduced adaptive search; premises unproved. test, full text.</li>
 <li><a href="/wiki/sources/2026-nikolaou-camelot-camel-orchestrated.html">CaMeLoT, a static check of an agent’s plan on top of CaMeL</a> (Nikolaou et al. 2026) · CaMeLoT: a static temporal check of the agent’s plan before execution, on top of CaMeL; coverage and agreement with CaMeL, no attack-success figures. test, full text.</li>
 <li><a href="/wiki/sources/2026-jager-context-dependent-runtime.html">context-dependent regions of attraction for a multi-candidate Simplex</a> (Jäger et al. 2026) · a Simplex whose switching rule is built from design-time artifacts with several safe controllers; one-step prediction enough in simulation, about 15 periods needed on hardware. test, full text.</li>
@@ -709,7 +715,7 @@ p.other { margin-top: 2.2rem; color: var(--muted); font-size: 0.95rem; }
 <li><a href="/wiki/sources/2026-unverified-autoreal-sel4-proof.html">AutoReal, LLM-driven theorem proving on seL4</a> (Zhang et al. 2026) · AutoReal: a 7B model proves 341 of 660 seL4 theorems (51.67 %, 256 attempts); ablation 1 to 57 of 105. measurement, partly read.</li>
 </ul>
 <h2 id="not-yet-covered">Not yet covered</h2>
-<p>The Silent Zero part <em>agents</em> has no page yet; <a href="/wiki/concepts/agent-operating-systems.html">Agent operating systems</a> covers the designs that touch it. Firmware on PCs (Intel ME, open alternatives; AMD PSP and FSP only through coreboot’s documentation) and on Apple silicon is in the backlog. Also not yet covered: the multicore proof, the ratification status of CHERI for RISC-V after April 2026 (the sources here stop there), the seams between proven parts and the driver island.</p>
+<p>The Silent Zero part <em>agents</em> has no page yet; <a href="/wiki/concepts/agent-operating-systems.html">Agent operating systems</a> covers the designs that touch it. Firmware on PCs beyond these (Heads, LinuxBoot, oreboot, Dasharo) and on Apple silicon is in the backlog. Also not yet covered: the multicore proof, the ratification status of CHERI for RISC-V after April 2026 (the sources here stop there), the seams between proven parts and the driver island.</p>
 
   </article>
 </div>

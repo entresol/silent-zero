@@ -1,8 +1,8 @@
 # Prompt injection
 
-> Instructions hidden in data an agent reads; heuristic defences fail, defences around the model hold within limits; benign command chains through shared state beat two of them; CaMeL does not carry over between agents; argument-level authorization and refusals as a leak; MCP measured.
+> Instructions hidden in data an agent reads; heuristic defences fail, defences around the model hold within limits; benign command chains through shared state beat two of them; CaMeL does not carry over between agents; argument-level authorization and refusals as a leak; MCP measured; injection through a peer component’s runtime feedback.
 
-Concept · LLM reviewed · updated 2026-11-21 · 14 sources · https://silentzero.ooo/wiki/concepts/prompt-injection.html
+Concept · LLM reviewed · updated 2026-11-27 · 15 sources · https://silentzero.ooo/wiki/concepts/prompt-injection.html
 
 An attacker places instructions in data that a language-model agent reads, such as an email, a document or a web page, so that the agent acts on them instead of on its user's request. A jailbreak, by contrast, is the user working against the model designer's intent ([The Attacker Moves Second](https://silentzero.ooo/wiki/sources/2026-nasr-attacker-moves-second.html.md), §5). The *indirect* variant, with the instructions placed in data the application retrieves rather than typed by its user, was analysed in 2023 in what its authors present as the first systematic treatment, with demonstrations against Bing Chat and applications built on GPT-4 ([Indirect prompt injection](https://silentzero.ooo/wiki/sources/2023-greshake-not-what-you.html.md)).
 
@@ -23,6 +23,8 @@ Two further preprints bear on the defences around the model. ToolFence compiles 
 
 A September 2026 preprint, CaMeLoT, adds a static plan check on top of CaMeL that rejects plans violating temporal rules (ordering, approval, liveness) before any tool runs; it measures coverage and agreement with CaMeL, not attack success ([CaMeLoT, a static check of an agent's plan on top of CaMeL](https://silentzero.ooo/wiki/sources/2026-nikolaou-camelot-camel-orchestrated.html.md)). PACE, a preprint, ran a reduced-scale adaptive search on one open model (30 out-of-authority AgentDojo goals, a mutator, 50 episodes each) and got 0 of 30 successes against PACE and 21 of 30 undefended; it did not attack goals inside the granted authority, and 59.6 per cent of AgentDojo pairs were out of authority already ([PACE, provenance-aware capability enforcement](https://silentzero.ooo/wiki/sources/2026-li-pace-provenance-aware.html.md), §5.2, E.2, F.2).
 
+An October 2026 preprint, CARI, puts the injection into the runtime feedback of a component the agent must call, such as a backend, a test run or a CI job: it may report its state, and has no authority to act on the victim's files or credentials. In the authors' synthetic set-up (four languages, five models, ten attacks, 15 trials each) it succeeded in 2,845 of 3,000 trials, and, on the Python target, in 61.3 per cent for Codex and 58.7 per cent for Claude Code; less explicit wording restored success on payloads the products had stopped. For three actions in the authors' harness, the same payload succeeded in 8.9 per cent (GPT-5.4-mini) and 2.2 per cent (Claude Sonnet 4.5) as a static artifact and in 93.3 and 97.8 per cent as an action-triggered diagnostic. A generic warning in the system prompt gave limited protection (94.7 per cent success on Claude Sonnet 4.5, 66.0 on GPT-5.4-mini); an attack-aware policy cut it to 6.0 and 11.3 per cent and let benign tasks fall to 60.7 and 20.7 per cent, against non-adaptive attacks ([CARI: cross-boundary adversarial runtime injection in coding-agent workflows](https://silentzero.ooo/wiki/sources/2026-fu-cari-cross-boundary.html.md)). The authors test no defence outside the model.
+
 ## Open questions
 
 - When the user asks the agent to follow instructions found in data, data becomes control; isolating the planner alone cannot stop it, and policies and capabilities have to carry the load ([Defeating Prompt Injections by Design (CaMeL)](https://silentzero.ooo/wiki/sources/2025-debenedetti-defeating-prompt-injections.html.md), §6.4).
@@ -35,6 +37,7 @@ A September 2026 preprint, CaMeLoT, adds a static plan check on top of CaMeL tha
 - [breaking the protocol](https://silentzero.ooo/wiki/sources/2026-maloyan-breaking-protocol-security.html.md)
 - [CaMeLoT, a static check of an agent's plan on top of CaMeL](https://silentzero.ooo/wiki/sources/2026-nikolaou-camelot-camel-orchestrated.html.md)
 - [Can CaMeLs Talk?](https://silentzero.ooo/wiki/sources/2026-peters-gill-can-camels.html.md)
+- [CARI: cross-boundary adversarial runtime injection in coding-agent workflows](https://silentzero.ooo/wiki/sources/2026-fu-cari-cross-boundary.html.md)
 - [Causality laundering](https://silentzero.ooo/wiki/sources/2026-chinaei-causality-laundering-denial.html.md)
 - [Defeating Prompt Injections by Design (CaMeL)](https://silentzero.ooo/wiki/sources/2025-debenedetti-defeating-prompt-injections.html.md)
 - [Indirect prompt injection](https://silentzero.ooo/wiki/sources/2023-greshake-not-what-you.html.md)
