@@ -307,6 +307,7 @@ page = f"""<!doctype html>
 </div>
 <section class="az-band" id="lexicon" aria-label="Lexicon"><div><a class="az-title" href="lexicon/">Lexicon</a>{az}</div></section>
 <footer><div><span class="about"><span>Silent Zero OS</span><span class="sep"> · </span><span>Working paper {CURRENT_VERSION}</span><span class="sep"> · </span><span>Text and figures <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></span></span><span class="links"><a href="silent-zero.pdf" download="silent-zero.pdf">PDF</a> <a href="wiki/">Wiki</a> <a href="https://github.com/entresol/silent-zero">GitHub</a> <a href="https://unwritten.studio/impressum">Imprint</a></span></div></footer>
+<script type="speculationrules">{{"prerender":[{{"urls":["/use/","/devel/"],"eagerness":"moderate"}}]}}</script>
 <script>
 {sheets_js}
 </script>

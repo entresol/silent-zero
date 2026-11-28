@@ -1,5 +1,5 @@
-// The two doors of the start page. Each tab on the edge is a link to a real page (/use/, /devel/). With JavaScript a click
-// lays that page over the start page as a sheet instead: it slides in from its side, one sheet at a time, and the start page
+// The two doors of the start page. Each tab on the edge is a link to a real page (/use/, /devel/). With JavaScript the first
+// click of a visit (prototype: see MODE) lays that page over the start page as a sheet instead; later clicks go to the page at once: it slides in from its side, one sheet at a time, and the start page
 // underneath does not move. Esc, the Close button, a click on the visible edge or the tab on the sheet put it back. The
 // address (/#use, /#devel) and the Back button follow the sheet; the hash keeps the start page's relative links working.
 // The pages are fetched once, in the idle time after loading.
@@ -11,6 +11,19 @@
   const scrim = document.createElement('div');
   scrim.className = 'sh-scrim';
   document.body.append(scrim);
+  // How a click on a tab behaves. 'once' (the default): the first click of a visit lets the sheet slide in, so the idea shows itself once; every later
+  // click goes straight to the page. 'instant': always straight to the page. 'slide': always the sheet. ?doors=slide|once|instant on any start page
+  // address sets it and the browser remembers it.
+  const MODE = (() => {
+    try {
+      const q = new URLSearchParams(location.search).get('doors');
+      if (q === 'slide' || q === 'once' || q === 'instant') localStorage.setItem('sz-doors', q);
+      return localStorage.getItem('sz-doors') || 'once';
+    } catch (_) { return 'once'; }
+  })();
+  const seen = () => { try { return sessionStorage.getItem('sz-slid') === '1'; } catch (_) { return false; } };
+  const markSeen = () => { try { sessionStorage.setItem('sz-slid', '1'); } catch (_) {} };
+  const slides = () => current || MODE === 'slide' || (MODE === 'once' && !seen());
   const leaves = new Map(), pages = new Map();
   let current = null, lastTab = null, seq = 0, timer = null, byKey = false;
   addEventListener('keydown', () => { byKey = true; }, true);
@@ -51,7 +64,12 @@
     tab.setAttribute('aria-expanded', 'false');
     tab.setAttribute('aria-controls', page.id);
     leaves.set(name, { leaf, page, tab, url: new URL(tab.getAttribute('href'), location.href).pathname, body: page.querySelector('.sh-body'), ready: false });
-    tab.addEventListener('click', e => { e.preventDefault(); toggle(name); });
+    tab.addEventListener('click', e => {
+      if (e.button || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || !slides()) return;   // the link itself takes the visitor to the page
+      e.preventDefault();
+      markSeen();
+      toggle(name);
+    });
     tab.addEventListener('pointerenter', () => load(leaves.get(name).url).catch(() => {}));
     page.querySelector('.sh-close').addEventListener('click', () => close());
   }

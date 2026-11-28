@@ -84,3 +84,17 @@ def doors():
     """The two tabs on the edges of the start page. Without JavaScript they are links to the pages."""
     sides = {NAMES[0]: "l", NAMES[1]: "r"}   # the first door lies on the left, the second on the right
     return "".join(f'<a class="sh-tab sh-tab-{sides[n]}" href="{DATA[n]["dir"]}/" data-sheet="{n}"><span>{_h.escape(DATA[n]["tab"])}</span></a>' for n in NAMES)
+
+
+def page_tabs(name):
+    """The same tabs on a door's own page: the tab of this door is the open one (a way back to the start page), the other door's
+    tab sits on its own edge, and a thin edge line runs down the side of the open door."""
+    sides = {NAMES[0]: "l", NAMES[1]: "r"}
+    out = [f'<i class="sh-edge sh-edge-{sides[name]}" aria-hidden="true"></i>']
+    for n in NAMES:
+        d = DATA[n]
+        if n == name:
+            out.append(f'<a class="sh-tab sh-tab-{sides[n]} sh-here" href="/" aria-current="page" title="Back to the start page"><span>{_h.escape(d["tab"])}</span></a>')
+        else:
+            out.append(f'<a class="sh-tab sh-tab-{sides[n]}" href="/{d["dir"]}/"><span>{_h.escape(d["tab"])}</span></a>')
+    return "".join(out)
