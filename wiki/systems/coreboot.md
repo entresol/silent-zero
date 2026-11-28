@@ -1,9 +1,9 @@
 ---
 type: system
 status: reviewed
-sources: [nd-coreboot-architecture, nd-coreboot-vboot, nd-coreboot-measured-boot, nd-coreboot-payloads, nd-coreboot-amd-psp, nd-coreboot-intel-fsp, nd-me-cleaner]
+sources: [nd-coreboot-architecture, nd-coreboot-vboot, nd-coreboot-measured-boot, nd-coreboot-payloads, nd-coreboot-amd-psp, nd-coreboot-intel-fsp, nd-me-cleaner, nd-heads, nd-linuxboot, nd-oreboot]
 short: Open firmware in stages with a fixed payload
-updated: 2026-11-27
+updated: 2026-11-28
 ---
 
 # coreboot
@@ -23,6 +23,8 @@ On AMD machines the image also carries firmware for the Platform Security Proces
 ## Payloads
 
 The payload can be any statically linked ELF binary, SeaBIOS, edk2, GRUB2, Linux or Heads ([[nd-coreboot-payloads]]). The documentation page does not say whether any of them can start a Multiboot 2 image, which Microkit needs ([[nd-sel4-microkit-user-manual]]).
+
+[[heads]] puts a Linux payload with TPM measurement and user-signed boot files into the ROM ([[nd-heads]]). [[linuxboot]] is the wider idea of Linux as the bootloader; [[oreboot]] is a Rust fork that currently plans to support only LinuxBoot payloads ([[nd-linuxboot]], [[nd-oreboot]]).
 
 ## Licence and code
 

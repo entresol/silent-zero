@@ -35,6 +35,9 @@ The page does not say which payloads are verified, signed or measured. It names 
 
 - [The bootloader](https://silentzero.ooo/wiki/design/bootloader.html.md)
 - [coreboot](https://silentzero.ooo/wiki/systems/coreboot.html.md)
+- [LinuxBoot](https://silentzero.ooo/wiki/systems/linuxboot.html.md)
 - [coreboot: architecture and boot stages](https://silentzero.ooo/wiki/sources/nd-coreboot-architecture.html.md)
+- [Heads: the project wiki's overview](https://silentzero.ooo/wiki/sources/nd-heads.html.md)
+- [LinuxBoot: the project page](https://silentzero.ooo/wiki/sources/nd-linuxboot.html.md)
 - [seL4 Microkit: User Manual, v2.3.0](https://silentzero.ooo/wiki/sources/nd-sel4-microkit-user-manual.html.md)
 - [seL4 on PC99 (x86-64)](https://silentzero.ooo/wiki/sources/nd-sel4-x64-platform.html.md)
