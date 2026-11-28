@@ -1,8 +1,8 @@
 ---
 type: design
 status: reviewed
-sources: [2025-black-real-time-execution, 2025-nesti-use-simplex-architecture, 2026-sel4-functional-correctness-proof, 2026-heiser-mcs-safety-os, 2022-wistoff-systematic-prevention-core, nd-sel4-microkit-user-manual, 2025-google-building-next-generation, nd-linux-real-time-preemption, 2026-jiang-futurertc-real-time, 2026-agarwal-multi-link-safety, 2024-wistoff-fence-t-s, 2026-wang-real-time-robot, 2026-liu-learning-native-continuation, 2026-chen-ravel-asynchronous-rolling, 2026-lu-faster-rethinking-real, 2026-jager-context-dependent-runtime, 2026-park-your-model-already, 2025-hu-vlsa-vision-language, 2026-chen-typego-os-runtime, 2026-li-formal-methods-harness]
-updated: 2026-11-24
+sources: [2025-black-real-time-execution, 2025-nesti-use-simplex-architecture, 2026-sel4-functional-correctness-proof, 2026-heiser-mcs-safety-os, 2022-wistoff-systematic-prevention-core, nd-sel4-microkit-user-manual, 2025-google-building-next-generation, nd-linux-real-time-preemption, 2026-jiang-futurertc-real-time, 2026-agarwal-multi-link-safety, 2024-wistoff-fence-t-s, 2026-wang-real-time-robot, 2026-liu-learning-native-continuation, 2026-chen-ravel-asynchronous-rolling, 2026-lu-faster-rethinking-real, 2026-agouzoul-understanding-asynchronous-inference, 2026-jager-context-dependent-runtime, 2026-park-your-model-already, 2025-hu-vlsa-vision-language, 2026-chen-typego-os-runtime, 2026-li-formal-methods-harness]
+updated: 2026-11-28
 ---
 
 # Real-time loops
@@ -28,6 +28,7 @@ The control loops at the bottom of zOS move the motors on a fixed period and hav
 | Fixed context-switch time with timing-channel protection | prototype on CVA6; also an OpenC910 prototype, padding length not given ([[2024-wistoff-fence-t-s]]) | measurement | [[2022-wistoff-systematic-prevention-core]] |
 | Reaction to a sudden event through a chunking policy: a range set by inference latency and call interval, shortened by FASTER's first-action sampling | measured on two consumer GPUs and one real arm; preprint, single-latency model, no bound | measurement | [[2026-lu-faster-rethinking-real]] |
 | Policies trained for a delay range: REMAC beats RTC on a real arm with 122 to 140 ms end-to-end delay; failure outside the trained maximum is stated as possible | measured on one arm, 30 trials per task; ICLR 2026 paper; no bound | measurement | [[2026-wang-real-time-robot]] |
+| Four ways to execute chunks from stale observations compared: with SmolVLA on LIBERO, success of the naive baseline falls from about 61 to about 10 to 12 per cent between delays of 0 and 20 control steps, and most methods lose success at high delay, some only slightly | measured in simulation, delays fixed, one preprint, no robot | measurement; no bound on delay | [[2026-agouzoul-understanding-asynchronous-inference]] |
 | Rolling inference: median time to the first action 54.97 ms against 142.58 ms (X-VLA) and 93.45 against 272.86 ms (π0.5) on one RTX 4090 | measured; observation age 118 ms against 236 to 465 ms (medians) on a real arm, 20 trials per cell; preprint, no worst case | measurement | [[2026-chen-ravel-asynchronous-rolling]] |
 
 One timing reference on an edge platform: the barrier filter ran at every 50 ms step and a flow update every fifth step, both on the CPU, while the policy ran once per ten-action chunk on the integrated GPU, at 177.3 ms (p50) after trimming, against 343 ms in the released configuration; the trimming lowered task success by 4.17 percentage points on the 300 mm escape condition. No bound is proven ([[2026-agarwal-multi-link-safety]], §III-D, §V-B).
@@ -48,7 +49,7 @@ Two barrier filters give per-step costs. AEGIS's constraint layer took 0.356 ms 
 
 ## Open
 
-- Fine-tuning answers (REMAC, Legato, RAVEL) train for a delay range or lower the delay's median; our reading is that none of the three bounds the delay (RAVEL reports a 95th percentile, REMAC's authors state both that a maximum delay must be specified and that their training bounds are not limits; [[2026-wang-real-time-robot]], [[2026-chen-ravel-asynchronous-rolling]]). The loop's rule for a late chunk stays undecided.
+- A fixed-delay comparison of four methods leaves late chunks beyond the sweep untested, and its authors name varying delay as a limit ([[2026-agouzoul-understanding-asynchronous-inference]], §7). Fine-tuning answers (REMAC, Legato, RAVEL) train for a delay range or lower the delay's median; our reading is that none of the three bounds the delay (RAVEL reports a 95th percentile, REMAC's authors state both that a maximum delay must be specified and that their training bounds are not limits; [[2026-wang-real-time-robot]], [[2026-chen-ravel-asynchronous-rolling]]). The loop's rule for a late chunk stays undecided.
 
 - [[2025-black-real-time-execution]] estimates delay from history and does not bound it. The loop must have a defined behaviour when the next chunk does not arrive: hold, slow, stop.
 - The paper's condition for no interruption of streamed actions is that the next action arrives within one control period ([[2026-lu-faster-rethinking-real]], appendix D.2); our reading: otherwise the buffer can run dry. What the loop does then is undecided.

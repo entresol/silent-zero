@@ -1,6 +1,6 @@
 ---
 type: index
-updated: 2026-11-25
+updated: 2026-11-28
 ---
 
 # zOS wiki
@@ -12,22 +12,25 @@ The catalogue of every page, with one line each. Read this first.
 - [[kernel]] · seL4 with MCS as the zOS kernel: proven (C-level correctness; MCS functional correctness on RISC-V), not stated for MCS (integrity, confidentiality), tested (HACMS), assumed (boot, IOMMU); no WCET bound on any 64-bit core yet; the roadmap dates MCS on AArch64 to Q3 2027. 22 sources.
 - [[static-system]] · one description, one image: what Microkit checks, what is not proved, and the run-time swap in LionsOS, the kernel underneath. 6 sources.
 - [[broker]] · the only component that hands out authority: capability patterns, CaMeL and FIDES, why model-based defences fail, three agent-OS designs for the same job, CaMeL between agents; nothing proven yet; the industry's agent sandboxes grant by resource; IntentCap and Agate are the nearest published neighbours; a budget for cumulative irreversible exposure. 35 sources.
-- [[real-time-loops]] · the loops that move the motors: asynchronous chunks from slow models, policies trained for a delay range, observed timings, per-step costs of two barrier filters, no proven bound yet. 20 sources.
+- [[real-time-loops]] · the loops that move the motors: asynchronous chunks from slow models, policies trained for a delay range, observed timings, per-step costs of two barrier filters, a fixed-delay comparison of four chunk methods, no proven bound yet. 21 sources.
 - [[safety-path]] · Simplex in zOS: the agent proposes, the loop disposes; tested, not proven; the paper's 2001 date disputed by a 1994 origin; certified real-time kernels sell the same split as products; three more barrier filters, guarantees conditional on perception or on modelled geometry. 20 sources.
 - [[root-of-trust]] · the firmware below the kernel on Arm, RISC-V, PC and Raspberry Pi; OpenTitan, Caliptra, DICE; all *assumed* in the paper's terms; AMD PSP through coreboot's documentation, Intel FSP binaries and ME, AMD's open library. 18 sources.
-- [[bootloader]] · where the zOS loader sits on each platform, signed and measured boot, proofs about boot code so far; the loader itself unproven; coreboot's payloads. 17 sources.
+- [[bootloader]] · where the zOS loader sits on each platform, signed and measured boot, proofs about boot code so far; the loader itself unproven; coreboot's payloads, Heads and LinuxBoot. 19 sources.
 - [[drivers]] · user-mode drivers, the first verified Ethernet driver, DMA and the IOMMU as assumed, attacked in 2019 although enabled; device models from Verilog and Windows on x86-64 as first steps; the Pancake paper adds the language and its limits. 13 sources.
 
 ## Not yet covered
 
-The zOS part *agents* has no page yet; [[agent-operating-systems]] covers the designs that touch it. Firmware on PCs beyond these (Heads, LinuxBoot, oreboot, Dasharo) and on Apple silicon is in the backlog. Also not yet covered: the multicore proof, the ratification status of CHERI for RISC-V after April 2026 (the sources here stop there), the seams between proven parts and the driver island.
+The zOS part *agents* has no page yet; [[agent-operating-systems]] covers the designs that touch it. Firmware on PCs beyond these (Dasharo) and on Apple silicon is in the backlog. Also not yet covered: the multicore proof, the ratification status of CHERI for RISC-V after April 2026 (the sources here stop there), the seams between proven parts and the driver island.
 
 ## Systems
 
 - [[sel4]] · the verified microkernel zOS builds on: proofs per architecture and platform, cost, MCS, timing, HACMS; what its foundation says about certification; the 2026 releases. 18 sources.
 - [[microkit]] · the build system for static seL4 systems: protection domains, channels, budgets, one image. 7 sources.
 - [[lionsos]] · static OS from small components on seL4 and Microkit; first driver verified; Summit 2026 talks on x86-64 VMs and driver specifications. 9 sources.
-- [[coreboot]] · open firmware in stages with a fixed payload; verified and measured boot; closed vendor parts on x86, its payloads. 6 sources.
+- [[coreboot]] · open firmware in stages with a fixed payload; verified and measured boot; closed vendor parts on x86, its payloads, Heads, LinuxBoot and oreboot. 10 sources.
+- [[heads]] · coreboot plus a Linux payload that measures into a TPM and checks boot files signed with the user's keys; tamper-evident, not tamper-proof. 1 source.
+- [[linuxboot]] · a Linux kernel and initramfs as the bootloader instead of UEFI's late stages; a Linux Foundation project. 2 sources.
+- [[oreboot]] · a coreboot fork in Rust that plans to start only LinuxBoot payloads. 1 source.
 - [[amd-psp]] · AMD's on-die processor that starts first and runs signed firmware; documented only through coreboot's image guide. 2 sources.
 - [[amd-opensil]] · AMD's open C libraries for silicon start-up; a server proof of concept, MIT. 1 source.
 - [[intel-fsp]] · Intel's binary initialisation code that coreboot calls; seven bugs collected by coreboot; Intel posts the binaries per platform. 2 sources.
@@ -70,7 +73,7 @@ The zOS part *agents* has no page yet; [[agent-operating-systems]] covers the de
 - [[measured-boot]] · each stage records what runs next; TPM and DICE; a verified DICE implementation. 4 sources.
 - [[time-protection]] · closing timing channels between domains; prototypes on CVA6, proof for seL4 in progress. 5 sources.
 - [[simplex]] · a simple safe controller guarding an untrusted one; tested with learned controllers. 4 sources.
-- [[action-chunking]] · slow robot models emitting action sequences for a fast loop; RTC and three 2026 policy-side answers; no bound on delay. 7 sources.
+- [[action-chunking]] · slow robot models emitting action sequences for a fast loop; RTC, three 2026 policy-side answers and a four-way comparison; no bound on delay. 8 sources.
 - [[ai-vulnerability-discovery]] · AI models finding software flaws at scale: DARPA's challenge and Anthropic's figures, the bottleneck moving to patching. 3 sources.
 - [[information-flow-control]] · labels for where data came from and who may see it; FIDES and CaMeL for agents; explicit flows only; refusals as a channel; Agent libOS. 8 sources.
 - [[proof-automation]] · machines proposing proof steps, Isabelle checking them; 77.6 % of a seL4 benchmark sample; Verus as a faster verifier. PROMISE as a second method; AutoVerus for Rust; a coding agent's compiler proofs in Lean; the OSDI version and the Selene benchmark; specification writing (OSVBench), AutoRocq, and verified against checked compiler passes; AutoReal, a 7B prover, on 660 seL4 theorems. 16 sources.
@@ -136,6 +139,9 @@ The zOS part *agents* has no page yet; [[agent-operating-systems]] covers the de
 - [[nd-intel-fsp-binaries]] · Intel's repository of FSP binaries, seventeen platform directories; the binaries' licence not stated. report, full text.
 - [[nd-amd-opensil]] · AMD's openSIL README: open C libraries, proof of concept for 4th Gen EPYC on one board, production phase "trending 2026". report, full text.
 - [[nd-me-cleaner]] · the me_cleaner README: what the Intel ME is and how far its firmware can be cut. report, full text.
+- [[nd-heads]] · the Heads wiki's overview: coreboot with a Linux payload, TPM measurement, user-signed /boot; summaries of talks. report, full text.
+- [[nd-linuxboot]] · the LinuxBoot project page: Linux as the bootloader, reasons without figures. report, full text.
+- [[nd-oreboot]] · the oreboot README: a Rust coreboot fork for LinuxBoot payloads, a RISC-V boot log. report, full text.
 - [[nd-coreboot-measured-boot]] · TPM measurements, a software-rooted first measurement, vendor hardware roots behind it. report, full text.
 - [[nd-chromeos-verified-boot]] · Chromium OS's design: against the opportunistic attacker, the owner keeps control, rollback a weakness. design, full text.
 - [[nd-tfa-firmware-design]] · Arm's boot stages BL1 to BL33; BL31 resident at EL3. report, cold boot and runtime services.
@@ -205,6 +211,7 @@ The zOS part *agents* has no page yet; [[agent-operating-systems]] covers the de
 - [[2026-sison-two-interfaces-sel4]] · seL4 verification abstract: hardware flushes made time-protection proofs feasible; system-call Hoare triples that userland proofs assume are not yet proved. progress, full text.
 - [[2024-wistoff-fence-t-s]] · fence.t.s on out-of-order OpenC910: three on-core channels closed at 1.0 % average overhead on Splash-2. measurement, slides only.
 - [[2026-lu-faster-rethinking-real]] · FASTER: a flow policy that samples its first action in one step to shorten reaction time; measured on two consumer GPUs and one real arm. measurement, partly read.
+- [[2026-agouzoul-understanding-asynchronous-inference]] · four ways to run action chunks on stale observations compared under one protocol, delays up to 20 steps; rankings differ between Kinetix and LIBERO. measurement, partly read.
 - [[2026-nvidia-announces-halos-robotics]] · Halos for Robotics, the launch: IGX Thor, Halos OS, an ANAB-accredited inspection lab, Agility as first adopter; readiness inspection, no robotics certificate. report, full text.
 - [[2026-nvidia-inside-halos-robotics]] · the architecture: SIL 3 capable safety island, Halos Core with Linux or Linux plus QNX under a hypervisor, an open outside-in safety blueprint, the lab's route to certification. report, full text.
 - [[2026-qnx-nvidia-deepen-collaboration]] · QNX OS for Safety 8.0 integrated with IGX Thor and Halos for real-time control beside AI compute; no level or certificate named. report, full text.

@@ -137,9 +137,9 @@ Vendor firmware, distributions and other platforms; for the daily run once the t
 - [x] nd-intel-fsp-binaries
 - [x] nd-amd-opensil
 - [x] nd-me-cleaner
-- [ ] nd-heads
-- [ ] nd-linuxboot
-- [ ] nd-oreboot
+- [x] nd-heads
+- [x] nd-linuxboot
+- [x] nd-oreboot
 - [ ] nd-dasharo-overview
 - [ ] nd-apple-boot-apple-silicon
 - [ ] nd-apple-startup-disk-policy
