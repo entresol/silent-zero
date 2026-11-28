@@ -42,3 +42,4 @@ A careful reader adds: a measurement records what ran; it does not stop anything
 - [coreboot](https://silentzero.ooo/wiki/systems/coreboot.html.md)
 - [coreboot: AMD PSP firmware integration guide](https://silentzero.ooo/wiki/sources/nd-coreboot-amd-psp.html.md)
 - [coreboot: Intel FSP documentation](https://silentzero.ooo/wiki/sources/nd-coreboot-intel-fsp.html.md)
+- [Heads: the project wiki's overview](https://silentzero.ooo/wiki/sources/nd-heads.html.md)

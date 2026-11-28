@@ -46,6 +46,7 @@ A careful reader adds:
 - [Real-time loops](https://silentzero.ooo/wiki/design/real-time-loops.html.md)
 - [The safety path](https://silentzero.ooo/wiki/design/safety-path.html.md)
 - [Action chunking](https://silentzero.ooo/wiki/concepts/action-chunking.html.md)
+- [asynchronous inference methods for VLAs, compared](https://silentzero.ooo/wiki/sources/2026-agouzoul-understanding-asynchronous-inference.html.md)
 - [FutureRTC](https://silentzero.ooo/wiki/sources/2026-jiang-futurertc-real-time.html.md)
 - [Legato, native continuation for chunked policies](https://silentzero.ooo/wiki/sources/2026-liu-learning-native-continuation.html.md)
 - [multi-link safety filtering for VLA policies](https://silentzero.ooo/wiki/sources/2026-agarwal-multi-link-safety.html.md)

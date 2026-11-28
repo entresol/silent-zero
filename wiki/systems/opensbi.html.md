@@ -27,3 +27,4 @@ BSD-2-Clause, with parts of libfdt dual-licensed; on GitHub at `riscv-software-s
 ## Related pages
 
 - [RISC-V](https://silentzero.ooo/wiki/concepts/risc-v.html.md)
+- [oreboot: the README](https://silentzero.ooo/wiki/sources/nd-oreboot.html.md)

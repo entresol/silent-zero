@@ -21,9 +21,9 @@ This is a design, not a release: the paper makes the argument and says what is p
 ## Design
 
 - [Drivers](https://silentzero.ooo/wiki/design/drivers.html.md): user-mode drivers, the first verified Ethernet driver, DMA and the IOMMU as assumed, attacked in 2019 although enabled; device models from Verilog and Windows on x86-64 as first steps; the Pancake paper adds the language and its limits.
-- [Real-time loops](https://silentzero.ooo/wiki/design/real-time-loops.html.md): the loops that move the motors: asynchronous chunks from slow models, policies trained for a delay range, observed timings, per-step costs of two barrier filters, no proven bound yet.
+- [Real-time loops](https://silentzero.ooo/wiki/design/real-time-loops.html.md): the loops that move the motors: asynchronous chunks from slow models, policies trained for a delay range, observed timings, per-step costs of two barrier filters, a fixed-delay comparison of four chunk methods, no proven bound yet.
 - [Root of trust and firmware](https://silentzero.ooo/wiki/design/root-of-trust.html.md): the firmware below the kernel on Arm, RISC-V, PC and Raspberry Pi; OpenTitan, Caliptra, DICE; all assumed in the paper’s terms; AMD PSP through coreboot’s documentation, Intel FSP binaries and ME, AMD’s open library.
-- [The bootloader](https://silentzero.ooo/wiki/design/bootloader.html.md): where the Silent Zero loader sits on each platform, signed and measured boot, proofs about boot code so far; the loader itself unproven; coreboot’s payloads.
+- [The bootloader](https://silentzero.ooo/wiki/design/bootloader.html.md): where the Silent Zero loader sits on each platform, signed and measured boot, proofs about boot code so far; the loader itself unproven; coreboot’s payloads, Heads and LinuxBoot.
 - [The broker](https://silentzero.ooo/wiki/design/broker.html.md): the only component that hands out authority: capability patterns, CaMeL and FIDES, why model-based defences fail, three agent-OS designs for the same job, CaMeL between agents; nothing proven yet; the industry’s agent sandboxes grant by resource; IntentCap and Agate are the nearest published neighbours; a budget for cumulative irreversible exposure.
 - [The kernel](https://silentzero.ooo/wiki/design/kernel.html.md): seL4 with MCS as the Silent Zero kernel: proven (C-level correctness; MCS functional correctness on RISC-V), not stated for MCS (integrity, confidentiality), tested (HACMS), assumed (boot, IOMMU); no WCET bound on any 64-bit core yet; the roadmap dates MCS on AArch64 to Q3 2027.
 - [The safety path](https://silentzero.ooo/wiki/design/safety-path.html.md): Simplex in Silent Zero: the agent proposes, the loop disposes; tested, not proven; the paper’s 2001 date disputed by a 1994 origin; certified real-time kernels sell the same split as products; three more barrier filters, guarantees conditional on perception or on modelled geometry.
@@ -31,7 +31,7 @@ This is a design, not a release: the paper makes the argument and says what is p
 
 ## Concepts
 
-- [Action chunking](https://silentzero.ooo/wiki/concepts/action-chunking.html.md): slow robot models emitting action sequences for a fast loop; RTC and three 2026 policy-side answers; no bound on delay.
+- [Action chunking](https://silentzero.ooo/wiki/concepts/action-chunking.html.md): slow robot models emitting action sequences for a fast loop; RTC, three 2026 policy-side answers and a four-way comparison; no bound on delay.
 - [Agent operating systems](https://silentzero.ooo/wiki/concepts/agent-operating-systems.html.md): designs that put the limit on an agent in the OS layer: agentOS, Cohesix, KataOS, AgentKernel, AgenticOS, Agent libOS, Quine, OpenShell and MXC as shipped products; IBM’s Agent-OS position paper; IntentOS, a language-model planner beside the Linux kernel.
 - [AI vulnerability discovery](https://silentzero.ooo/wiki/concepts/ai-vulnerability-discovery.html.md): AI models finding software flaws at scale: DARPA’s challenge and Anthropic’s figures, the bottleneck moving to patching.
 - [Confused deputy](https://silentzero.ooo/wiki/concepts/confused-deputy.html.md): a program misusing one party’s authority for another’s request; capabilities as the remedy.
@@ -62,14 +62,16 @@ This is a design, not a release: the paper makes the argument and says what is p
 - [Atmosphere](https://silentzero.ooo/wiki/systems/atmosphere.html.md): microkernel in Rust verified with Verus (SOSP 2025): functional correctness, one noninterference proof, 3.32 lines of proof per line of code; big lock; no time budgets described.
 - [CHERIoT](https://silentzero.ooo/wiki/systems/cheriot.html.md): CHERI capabilities on small RISC-V cores with its own RTOS: memory safety in hardware, measured, not proven; the 1.0 ISA of November 2025; CHERI for RISC-V in architecture review in April 2026, not ratified in any source here.
 - [Cohesix](https://silentzero.ooo/wiki/systems/cohesix.html.md): seL4-based control layer for edge AI fleets: a Queen decides what hosts’ models may do; landing page only.
-- [coreboot](https://silentzero.ooo/wiki/systems/coreboot.html.md): open firmware in stages with a fixed payload; verified and measured boot; closed vendor parts on x86, its payloads.
+- [coreboot](https://silentzero.ooo/wiki/systems/coreboot.html.md): open firmware in stages with a fixed payload; verified and measured boot; closed vendor parts on x86, its payloads, Heads, LinuxBoot and oreboot.
 - [CVA6](https://silentzero.ooo/wiki/systems/cva6.html.md): open 64-bit RISC-V core whose design lets latency bounds be proved; fence.t prototype.
 - [ELISA](https://silentzero.ooo/wiki/systems/elisa.html.md): the Linux Foundation’s project for Linux in safety applications; NVIDIA joined as a premier member in February 2026; no certificate named.
+- [Heads](https://silentzero.ooo/wiki/systems/heads.html.md): coreboot plus a Linux payload that measures into a TPM and checks boot files signed with the user’s keys; tamper-evident, not tamper-proof.
 - [Intel Firmware Support Package (FSP)](https://silentzero.ooo/wiki/systems/intel-fsp.html.md): Intel’s binary initialisation code that coreboot calls; seven bugs collected by coreboot; Intel posts the binaries per platform.
 - [Intel Management Engine (ME)](https://silentzero.ooo/wiki/systems/intel-me.html.md): Intel’s signed co-processor in PC chipsets; a script reduces its firmware but cannot remove it.
 - [Intent-bound capabilities (IntentCap and its neighbour)](https://silentzero.ooo/wiki/systems/intentcap.html.md): capability leases from task intent, checked outside the model (IntentCap), and a vision paper on the same idea.
 - [KataOS](https://silentzero.ooo/wiki/systems/kataos.html.md): Google’s seL4 and Rust OS for machine-learning devices, 2022; OpenTitan in its Sparrow plan.
 - [Landlock](https://silentzero.ooo/wiki/systems/landlock.html.md): Linux sandbox a process applies to itself: filesystem, network, capability and namespace rules; part of the hardened-Linux route, and the base of OpenShell’s filesystem layer.
+- [LinuxBoot](https://silentzero.ooo/wiki/systems/linuxboot.html.md): a Linux kernel and initramfs as the bootloader instead of UEFI’s late stages; a Linux Foundation project.
 - [LionsOS](https://silentzero.ooo/wiki/systems/lionsos.html.md): static OS from small components on seL4 and Microkit; first driver verified; Summit 2026 talks on x86-64 VMs and driver specifications.
 - [Microkit](https://silentzero.ooo/wiki/systems/microkit.html.md): the build system for static seL4 systems: protection domains, channels, budgets, one image.
 - [Microsoft Execution Containers (MXC)](https://silentzero.ooo/wiki/systems/mxc.html.md): Microsoft’s policy-driven containment for agents on Windows, macOS and Linux, generally available as of 7 October 2026, with OpenShell integrated; no assurance claimed.
@@ -77,6 +79,7 @@ This is a design, not a release: the paper makes the argument and says what is p
 - [OpenSBI](https://silentzero.ooo/wiki/systems/opensbi.html.md): RISC-V firmware in machine mode below the kernel.
 - [OpenShell](https://silentzero.ooo/wiki/systems/openshell.html.md): open-source sandbox runtime for agents: Landlock, seccomp, network namespaces and a policy engine; outbound traffic denied by default; credentials as placeholders; a Developer Preview in OpenShift AI 3.5.
 - [OpenTitan](https://silentzero.ooo/wiki/systems/opentitan.html.md): open-source silicon root of trust, shipping in Chromebooks since March 2026.
+- [oreboot](https://silentzero.ooo/wiki/systems/oreboot.html.md): a coreboot fork in Rust that plans to start only LinuxBoot payloads.
 - [PikeOS](https://silentzero.ooo/wiki/systems/pikeos.html.md): commercial separation kernel and hypervisor; IEC 61508 SIL 3 and ISO 26262 ASIL D listed by the vendor; untrusted ROS 2 beside certified control.
 - [PREEMPT_RT](https://silentzero.ooo/wiki/systems/preempt-rt.html.md): the Linux real-time configuration: preemptible kernel, threaded interrupts; no latency bound stated.
 - [QNX](https://silentzero.ooo/wiki/systems/qnx.html.md): commercial microkernel RTOS, the safety side of Halos on IGX Thor; leader in an analyst’s ranking for robot safety.
@@ -112,6 +115,7 @@ This is a design, not a release: the paper makes the argument and says what is p
 - [Anthropic 2026a: Project Glasswing, securing critical software for the AI era](https://silentzero.ooo/wiki/sources/2026-anthropic-project-glasswing-securing.html.md)
 - [Anthropic 2026b: Project Glasswing, an initial update](https://silentzero.ooo/wiki/sources/2026-anthropic-project-glasswing-initial.html.md)
 - [ARSENAL](https://silentzero.ooo/wiki/sources/2026-lide-arsenal-assured-robotics.html.md) (Lide 2026)
+- [asynchronous inference methods for VLAs, compared](https://silentzero.ooo/wiki/sources/2026-agouzoul-understanding-asynchronous-inference.html.md) (Agouzoul 2026)
 - [Atmosphere, practical verified kernels with Rust and Verus](https://silentzero.ooo/wiki/sources/2025-chen-atmosphere-practical-verified.html.md) (Chen et al. 2025)
 - [AutoReal, LLM-driven theorem proving on seL4](https://silentzero.ooo/wiki/sources/2026-unverified-autoreal-sel4-proof.html.md) (Zhang et al. 2026)
 - [AutoRocq](https://silentzero.ooo/wiki/sources/2025-tu-agentic-verification-software.html.md) (Tu et al. 2026)
@@ -148,6 +152,7 @@ This is a design, not a release: the paper makes the argument and says what is p
 - [FutureRTC](https://silentzero.ooo/wiki/sources/2026-jiang-futurertc-real-time.html.md) (Jiang et al. 2026)
 - [Gemini Robotics-ER 1.5](https://silentzero.ooo/wiki/sources/2025-google-building-next-generation.html.md) (Google 2025)
 - [Halos for Robotics, the announcement](https://silentzero.ooo/wiki/sources/2026-nvidia-announces-halos-robotics.html.md) (NVIDIA 2026)
+- [Heads: the project wiki's overview](https://silentzero.ooo/wiki/sources/nd-heads.html.md)
 - [Indirect prompt injection](https://silentzero.ooo/wiki/sources/2023-greshake-not-what-you.html.md) (Greshake et al. 2023)
 - [Inside Halos for Robotics](https://silentzero.ooo/wiki/sources/2026-nvidia-inside-halos-robotics.html.md) (NVIDIA 2026)
 - [Instruction Sets Should Be Free](https://silentzero.ooo/wiki/sources/2014-asanovic-instruction-sets-free.html.md) (Asanović and Patterson 2014)
@@ -162,6 +167,7 @@ This is a design, not a release: the paper makes the argument and says what is p
 - [limitations on formal verification for AI safety](https://silentzero.ooo/wiki/sources/2024-dickson-limitations-formal-verification.html.md) (Dickson 2024)
 - [Linux kernel documentation: Landlock](https://silentzero.ooo/wiki/sources/nd-linux-landlock-unprivileged-access.html.md)
 - [Linux kernel documentation: real-time preemption](https://silentzero.ooo/wiki/sources/nd-linux-real-time-preemption.html.md)
+- [LinuxBoot: the project page](https://silentzero.ooo/wiki/sources/nd-linuxboot.html.md)
 - [Mars Research Group: the Atmosphere project page](https://silentzero.ooo/wiki/sources/nd-mars-research-atmosphere.html.md)
 - [MCP threat modelling and tool poisoning](https://silentzero.ooo/wiki/sources/2026-huang-model-context-protocol.html.md) (Huang et al. 2026)
 - [MCP-38](https://silentzero.ooo/wiki/sources/2026-shen-mcp-38-comprehensive.html.md) (Shen, Toyoda and Leung 2026)
@@ -179,6 +185,7 @@ This is a design, not a release: the paper makes the argument and says what is p
 - [NVIDIA: Overview of OpenShell](https://silentzero.ooo/wiki/sources/nd-nvidia-openshell-overview.html.md)
 - [OpenSBI](https://silentzero.ooo/wiki/sources/nd-opensbi.html.md)
 - [OpenTitan shipping in production](https://silentzero.ooo/wiki/sources/2026-google-opentitan-shipping-production.html.md) (Google 2026)
+- [oreboot: the README](https://silentzero.ooo/wiki/sources/nd-oreboot.html.md)
 - [OSVBench](https://silentzero.ooo/wiki/sources/2025-li-osvbench-benchmarking-llms.html.md) (Li et al. 2025)
 - [PA-Boot, a Formally Verified Authentication Protocol for Multiprocessor Secure Boot under Hardware Supply-chain Attacks](https://silentzero.ooo/wiki/sources/2022-zhang-pa-boot-formally.html.md) (Zhang et al. 2022)
 - [PACE, provenance-aware capability enforcement](https://silentzero.ooo/wiki/sources/2026-li-pace-provenance-aware.html.md) (Li et al. 2026)
