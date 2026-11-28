@@ -1,8 +1,8 @@
 # The bootloader
 
-> Where the Silent Zero loader sits on each platform, signed and measured boot, proofs about boot code so far; the loader itself unproven; coreboot’s payloads.
+> Where the Silent Zero loader sits on each platform, signed and measured boot, proofs about boot code so far; the loader itself unproven; coreboot’s payloads, Heads and LinuxBoot.
 
-Design · LLM reviewed · updated 2026-11-26 · 17 sources · https://silentzero.ooo/wiki/design/bootloader.html
+Design · LLM reviewed · updated 2026-11-28 · 19 sources · https://silentzero.ooo/wiki/design/bootloader.html
 
 In Silent Zero the bootloader "checks one signed, static system image and starts it, or stops. There is no menu, no configuration and no fallback, and nothing of it stays resident." It draws the first screen, showing only compiled-in text and what it has measured itself, and marks as assumed what it cannot check, itself included. It belongs to the trusted base as *assumed*. A first prototype for RISC-V checks a hash rather than a signature and is just under 8 KB, more than two thirds of it the renderer and its font data (paper, Section 3).
 
@@ -46,6 +46,8 @@ Our reading of the second video: the Silent Zero loader now sits where the paper
 - "No fallback": coreboot's vboot falls back automatically between two signed read-write slots, and to a read-only recovery firmware that reinstalls from external media, possibly with the user's help ([coreboot: verified boot (vboot)](https://silentzero.ooo/wiki/sources/nd-coreboot-vboot.html.md)). The Raspberry Pi's own firmware offers `tryboot` and partition walks for A/B schemes below any loader ([Raspberry Pi documentation: boot](https://silentzero.ooo/wiki/sources/nd-raspberrypi-boot.html.md)). Our reading: the paper's loader has one image, so a failed update leaves the robot stopped where vboot would boot the previous signed version; once nothing verifies, both end with a person. On a Pi, the firmware's fallback would have to be configured off, or accepted below the loader.
 - "What the loader has measured itself": our reading: on the PC, Arm and Pi rows above, firmware has run before the loader, some of it closed. The loader can hash stored firmware images, as coreboot's measurements do, but cannot attest what actually ran before it; the first screen can only mark that as assumed, as the paper says.
 
+- On a PC, [Heads](https://silentzero.ooo/wiki/systems/heads.html.md) is a Linux payload in the coreboot ROM that measures into a TPM and checks signed files with keys the user holds; it keeps the closed Intel parts beneath it and needs a re-signing step after every kernel update ([Heads: the project wiki's overview](https://silentzero.ooo/wiki/sources/nd-heads.html.md)). [LinuxBoot](https://silentzero.ooo/wiki/systems/linuxboot.html.md) makes a Linux kernel and initramfs the loader, and Heads is one of its runtimes ([LinuxBoot: the project page](https://silentzero.ooo/wiki/sources/nd-linuxboot.html.md), [Heads: the project wiki's overview](https://silentzero.ooo/wiki/sources/nd-heads.html.md)). Our reading: both bound the design range around a loader that the paper describes as checking one signed image.
+
 ## Open
 
 - Where the public key lives on each platform: write-protected flash, OTP fuses or a root-of-trust chip. "If the public key can be changed, then the verification is worthless" ([U-Boot: verified boot](https://silentzero.ooo/wiki/sources/nd-uboot-verified-boot.html.md)).
@@ -60,6 +62,8 @@ Our reading of the second video: the Silent Zero loader now sits where the paper
 - [coreboot: payloads](https://silentzero.ooo/wiki/sources/nd-coreboot-payloads.html.md)
 - [coreboot: verified boot (vboot)](https://silentzero.ooo/wiki/sources/nd-coreboot-vboot.html.md)
 - [DICE\*, a Formally Verified Implementation of DICE Measured Boot](https://silentzero.ooo/wiki/sources/2021-tao-dice-formally-verified.html.md)
+- [Heads: the project wiki's overview](https://silentzero.ooo/wiki/sources/nd-heads.html.md)
+- [LinuxBoot: the project page](https://silentzero.ooo/wiki/sources/nd-linuxboot.html.md)
 - [Model Checking Boot Code from AWS Data Centers](https://silentzero.ooo/wiki/sources/2018-cook-model-checking-boot.html.md)
 - [OpenSBI](https://silentzero.ooo/wiki/sources/nd-opensbi.html.md)
 - [Raspberry Pi documentation: boot](https://silentzero.ooo/wiki/sources/nd-raspberrypi-boot.html.md)
@@ -79,8 +83,12 @@ Our reading of the second video: the Silent Zero loader now sits where the paper
 - [Measured boot](https://silentzero.ooo/wiki/concepts/measured-boot.html.md)
 - [Verified boot](https://silentzero.ooo/wiki/concepts/verified-boot.html.md)
 - [coreboot](https://silentzero.ooo/wiki/systems/coreboot.html.md)
+- [Heads](https://silentzero.ooo/wiki/systems/heads.html.md)
+- [LinuxBoot](https://silentzero.ooo/wiki/systems/linuxboot.html.md)
+- [oreboot](https://silentzero.ooo/wiki/systems/oreboot.html.md)
 - [SiFive and the HiFive boards](https://silentzero.ooo/wiki/systems/sifive-hifive.html.md)
 - [Booting Windows on an x86-64 seL4-based VMM](https://silentzero.ooo/wiki/sources/2026-nguyen-booting-windows-x86-64.html.md)
 - [coreboot: measured boot](https://silentzero.ooo/wiki/sources/nd-coreboot-measured-boot.html.md)
+- [oreboot: the README](https://silentzero.ooo/wiki/sources/nd-oreboot.html.md)
 - [SiFive: HiFive Unleashed](https://silentzero.ooo/wiki/sources/nd-sifive-hifive-unleashed.html.md)
 - [the HiFive Premier P550](https://silentzero.ooo/wiki/sources/2024-sifive-hifive-premier-p550.html.md)

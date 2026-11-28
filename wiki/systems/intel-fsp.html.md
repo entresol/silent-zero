@@ -31,3 +31,4 @@ The repository holds binaries; its README names licences only for three third-pa
 - [coreboot](https://silentzero.ooo/wiki/systems/coreboot.html.md)
 - [Intel Management Engine (ME)](https://silentzero.ooo/wiki/systems/intel-me.html.md)
 - [coreboot: verified boot (vboot)](https://silentzero.ooo/wiki/sources/nd-coreboot-vboot.html.md)
+- [Heads: the project wiki's overview](https://silentzero.ooo/wiki/sources/nd-heads.html.md)

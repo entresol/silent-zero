@@ -37,3 +37,4 @@ Writing new code in a language such as Rust that prevents memory errors, instead
 - [Landlock](https://silentzero.ooo/wiki/systems/landlock.html.md)
 - [PREEMPT_RT](https://silentzero.ooo/wiki/systems/preempt-rt.html.md)
 - [Verus](https://silentzero.ooo/wiki/systems/verus.html.md)
+- [oreboot: the README](https://silentzero.ooo/wiki/sources/nd-oreboot.html.md)

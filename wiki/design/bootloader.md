@@ -1,8 +1,8 @@
 ---
 type: design
 status: reviewed
-sources: [nd-coreboot-architecture, nd-coreboot-vboot, nd-chromeos-verified-boot, nd-uboot-verified-boot, nd-raspberrypi-boot, nd-tfa-firmware-design, nd-opensbi, nd-sel4-x64-platform, nd-sel4-microkit-user-manual, nd-sel4-verified-configurations, 2018-cook-model-checking-boot, 2020-straznickas-verified-first-stage, 2021-tao-dice-formally-verified, 2026-sel4-release-17, nd-sel4-supported-platforms, 2024-riscv-privileged-isa-manual, nd-coreboot-payloads]
-updated: 2026-11-26
+sources: [nd-coreboot-architecture, nd-coreboot-vboot, nd-chromeos-verified-boot, nd-uboot-verified-boot, nd-raspberrypi-boot, nd-tfa-firmware-design, nd-opensbi, nd-sel4-x64-platform, nd-sel4-microkit-user-manual, nd-sel4-verified-configurations, 2018-cook-model-checking-boot, 2020-straznickas-verified-first-stage, 2021-tao-dice-formally-verified, 2026-sel4-release-17, nd-sel4-supported-platforms, 2024-riscv-privileged-isa-manual, nd-coreboot-payloads, nd-heads, nd-linuxboot]
+updated: 2026-11-28
 ---
 
 # The bootloader
@@ -48,6 +48,8 @@ Our reading of the second video: the zOS loader now sits where the paper puts it
 - Section 3's "Boot code lies outside seL4's verified configurations" is confirmed by [[nd-sel4-verified-configurations]].
 - "No fallback": coreboot's vboot falls back automatically between two signed read-write slots, and to a read-only recovery firmware that reinstalls from external media, possibly with the user's help ([[nd-coreboot-vboot]]). The Raspberry Pi's own firmware offers `tryboot` and partition walks for A/B schemes below any loader ([[nd-raspberrypi-boot]]). Our reading: the paper's loader has one image, so a failed update leaves the robot stopped where vboot would boot the previous signed version; once nothing verifies, both end with a person. On a Pi, the firmware's fallback would have to be configured off, or accepted below the loader.
 - "What the loader has measured itself": our reading: on the PC, Arm and Pi rows above, firmware has run before the loader, some of it closed. The loader can hash stored firmware images, as coreboot's measurements do, but cannot attest what actually ran before it; the first screen can only mark that as assumed, as the paper says.
+
+- On a PC, [[heads]] is a Linux payload in the coreboot ROM that measures into a TPM and checks signed files with keys the user holds; it keeps the closed Intel parts beneath it and needs a re-signing step after every kernel update ([[nd-heads]]). [[linuxboot]] makes a Linux kernel and initramfs the loader, and Heads is one of its runtimes ([[nd-linuxboot]], [[nd-heads]]). Our reading: both bound the design range around a loader that the paper describes as checking one signed image.
 
 ## Open
 

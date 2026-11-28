@@ -1,8 +1,8 @@
 # coreboot
 
-> Open firmware in stages with a fixed payload; verified and measured boot; closed vendor parts on x86, its payloads.
+> Open firmware in stages with a fixed payload; verified and measured boot; closed vendor parts on x86, its payloads, Heads, LinuxBoot and oreboot.
 
-System · LLM reviewed · updated 2026-11-27 · 7 sources · https://silentzero.ooo/wiki/systems/coreboot.html
+System · LLM reviewed · updated 2026-11-28 · 10 sources · https://silentzero.ooo/wiki/systems/coreboot.html
 
 Open-source firmware that initialises a machine and hands over to a payload. It is built from stages, each loading the next: bootblock, an optional verstage for verified boot, romstage (DRAM), postcar, ramstage (devices, tables, lockdown) and the payload, which is fixed in coreboot's file system and cannot be chosen at run time ([coreboot: architecture and boot stages](https://silentzero.ooo/wiki/sources/nd-coreboot-architecture.html.md)).
 
@@ -20,6 +20,8 @@ On AMD machines the image also carries firmware for the Platform Security Proces
 
 The payload can be any statically linked ELF binary, SeaBIOS, edk2, GRUB2, Linux or Heads ([coreboot: payloads](https://silentzero.ooo/wiki/sources/nd-coreboot-payloads.html.md)). The documentation page does not say whether any of them can start a Multiboot 2 image, which Microkit needs ([seL4 Microkit: User Manual, v2.3.0](https://silentzero.ooo/wiki/sources/nd-sel4-microkit-user-manual.html.md)).
 
+[Heads](https://silentzero.ooo/wiki/systems/heads.html.md) puts a Linux payload with TPM measurement and user-signed boot files into the ROM ([Heads: the project wiki's overview](https://silentzero.ooo/wiki/sources/nd-heads.html.md)). [LinuxBoot](https://silentzero.ooo/wiki/systems/linuxboot.html.md) is the wider idea of Linux as the bootloader; [oreboot](https://silentzero.ooo/wiki/systems/oreboot.html.md) is a Rust fork that currently plans to support only LinuxBoot payloads ([LinuxBoot: the project page](https://silentzero.ooo/wiki/sources/nd-linuxboot.html.md), [oreboot: the README](https://silentzero.ooo/wiki/sources/nd-oreboot.html.md)).
+
 ## Licence and code
 
 The documentation is licensed CC-by 4.0 ([coreboot: payloads](https://silentzero.ooo/wiki/sources/nd-coreboot-payloads.html.md)). The licence of the code is not yet covered by the wiki's sources.
@@ -36,15 +38,21 @@ The documentation is licensed CC-by 4.0 ([coreboot: payloads](https://silentzero
 - [coreboot: measured boot](https://silentzero.ooo/wiki/sources/nd-coreboot-measured-boot.html.md)
 - [coreboot: payloads](https://silentzero.ooo/wiki/sources/nd-coreboot-payloads.html.md)
 - [coreboot: verified boot (vboot)](https://silentzero.ooo/wiki/sources/nd-coreboot-vboot.html.md)
+- [Heads: the project wiki's overview](https://silentzero.ooo/wiki/sources/nd-heads.html.md)
+- [LinuxBoot: the project page](https://silentzero.ooo/wiki/sources/nd-linuxboot.html.md)
 - [me_cleaner (repository README)](https://silentzero.ooo/wiki/sources/nd-me-cleaner.html.md)
+- [oreboot: the README](https://silentzero.ooo/wiki/sources/nd-oreboot.html.md)
 
 ## Related pages
 
 - [The bootloader](https://silentzero.ooo/wiki/design/bootloader.html.md)
 - [AMD openSIL](https://silentzero.ooo/wiki/systems/amd-opensil.html.md)
 - [AMD Platform Security Processor (PSP)](https://silentzero.ooo/wiki/systems/amd-psp.html.md)
+- [Heads](https://silentzero.ooo/wiki/systems/heads.html.md)
 - [Intel Firmware Support Package (FSP)](https://silentzero.ooo/wiki/systems/intel-fsp.html.md)
 - [Intel Management Engine (ME)](https://silentzero.ooo/wiki/systems/intel-me.html.md)
+- [LinuxBoot](https://silentzero.ooo/wiki/systems/linuxboot.html.md)
+- [oreboot](https://silentzero.ooo/wiki/systems/oreboot.html.md)
 - [AMD openSIL (repository README)](https://silentzero.ooo/wiki/sources/nd-amd-opensil.html.md)
 - [Intel FSP binaries (repository README)](https://silentzero.ooo/wiki/sources/nd-intel-fsp-binaries.html.md)
 - [seL4 Microkit: User Manual, v2.3.0](https://silentzero.ooo/wiki/sources/nd-sel4-microkit-user-manual.html.md)

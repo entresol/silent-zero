@@ -35,4 +35,5 @@ The authors state three limits (Limitations). The observation module relies on t
 
 - [Real-time loops](https://silentzero.ooo/wiki/design/real-time-loops.html.md)
 - [Action chunking](https://silentzero.ooo/wiki/concepts/action-chunking.html.md)
+- [asynchronous inference methods for VLAs, compared](https://silentzero.ooo/wiki/sources/2026-agouzoul-understanding-asynchronous-inference.html.md)
 - [Real-Time Execution of Action Chunking Flow Policies](https://silentzero.ooo/wiki/sources/2025-black-real-time-execution.html.md)

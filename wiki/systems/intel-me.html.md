@@ -27,3 +27,4 @@ The firmware is Intel's, signed and closed. me_cleaner is a script of its own pr
 - [Root of trust and firmware](https://silentzero.ooo/wiki/design/root-of-trust.html.md)
 - [coreboot](https://silentzero.ooo/wiki/systems/coreboot.html.md)
 - [Intel Firmware Support Package (FSP)](https://silentzero.ooo/wiki/systems/intel-fsp.html.md)
+- [Heads: the project wiki's overview](https://silentzero.ooo/wiki/sources/nd-heads.html.md)

@@ -4,6 +4,10 @@ What changed in substance, newest first: in the paper, on its page and in the pr
 
 Format: `## <version> · <scope>`, then one paragraph. A paper version is `YYYY-MM-DD-vX.Y` and has its own PDF in `versions/`; the newest one is the version the build prints on the paper and the page. A change without a new paper version carries only its date (`YYYY-MM-DD`). Scope is `Paper`, `Site` or `Project`. The build turns this file into the list at the end of the page.
 
+## 2026-11-28 · Site
+
+The wiki worked in four sources: a preprint comparing four ways to run robot action chunks on stale observations, and three pages on open PC and RISC-V firmware (the Heads project wiki, the LinuxBoot page, the oreboot README). Four source pages and three system pages (heads, linuxboot, oreboot) were created. The pages on action chunking, real-time loops, coreboot and the bootloader changed in substance. New lexicon terms: Heads, LinuxBoot, oreboot. The Monday lint did not run today.
+
 ## 2026-11-27 · Site
 
 The wiki worked in four sources: CARI, a preprint on injecting instructions through the runtime feedback of a component a coding agent must call, and three READMEs on PC firmware (Intel's FSP binaries, AMD's openSIL, the me_cleaner project's account of the Intel ME). Four source pages were created, and two system pages, Intel ME and AMD openSIL. Pages changed in substance: prompt injection (a further attack path and its measured defences), root of trust, Intel FSP, AMD PSP and coreboot (what the three READMEs add). New lexicon terms: Intel ME, AMD openSIL.
